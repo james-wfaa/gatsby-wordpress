@@ -18,6 +18,7 @@ const StyledPageSection = styled(PageSection)`
     max-width: 1280px;
     margin: 0 auto;
     text-align: center;
+    border: 1px solid #000;
 `
 
 PageSection.propTypes = {

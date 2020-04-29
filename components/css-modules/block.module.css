@@ -1,0 +1,8 @@
+.block {
+    max-width: 300px;
+    border: 1px solid #000;
+}
+.heading {
+    font-size: 48px;
+    color: purple;
+}
