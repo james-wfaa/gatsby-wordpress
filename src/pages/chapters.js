@@ -1,14 +1,15 @@
 import React from "react"
 import Layout from "../../components/Layout"
-import JamesCard from "../../components/content-blocks/JamesCard"
-import JamesCardGreen from "../../components/content-blocks/JamesCardGreen"
+import CardD from "../../components/content-blocks/CardD"
 
 export default () => {
     return (
 <Layout>
     <div>uwalumni.com | homepage</div>
-    <JamesCard heading="This is the default JamesCard" />
-    <JamesCardGreen heading="This is JamesCardGreen using styled-components for overrides" />
+    <CardD 
+    date="Apr. 3" 
+    title="The Past, Present and Future of Rainstorms and Floods in Wisconsin and Around the World"
+    category="Global Hotspots" />
 </Layout>
     )
 }

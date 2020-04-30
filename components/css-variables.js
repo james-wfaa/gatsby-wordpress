@@ -1,12 +1,30 @@
+export const baseSize = '18px';
+
+export const baseColors = {
+    mainRed: '#c5050c',
+    black:   '#000',
+    white:   '#FFF',
+    darkGrey: '#777',
+}
+export const colors = {
+    dateColor: '#3c3c3c',
+    titleColor: baseColors.mainRed,
+    bgWhite:    baseColors.white,
+    darkGrey:   baseColors.darkGrey,
+}
+
 export const size = {
     mobileS: '320px',
     mobileM: '375px',
-    mobileL: '425px',
+    mobileL: '414px',
+    tabletS: '656px',
     tablet: '768px',
-    laptopS: '1024px',
+    tabletL: '936px',
+    laptopS: '1200px',
     laptop:  '1280px',
     laptopL: '1440px',
-    desktop: '2560px'
+    desktop: '1920px',
+    max: '2880px'
 }
 export const breakpoints = {
     mobileS: `(min-width: ${size.mobileS})`,
