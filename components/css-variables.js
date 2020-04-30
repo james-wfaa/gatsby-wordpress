@@ -5,12 +5,16 @@ export const baseColors = {
     black:   '#000',
     white:   '#FFF',
     darkGrey: '#777',
+    lightGrey: '#F3F3F3',
 }
 export const colors = {
     dateColor: '#3c3c3c',
     titleColor: baseColors.mainRed,
+    titleWhite: baseColors.white,
     bgWhite:    baseColors.white,
+    promoRed:   baseColors.mainRed,
     darkGrey:   baseColors.darkGrey,
+    navcardGrey:baseColors.lightGrey,
 }
 
 export const size = {
