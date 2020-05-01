@@ -1,7 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { colors } from '../css-variables'
-import CardTitle from '../parts/CardTitle'
+import { breakpoints } from '../css-variables'
 const CardD = ({ className, children }) => {
 
     return (
@@ -12,10 +11,14 @@ const CardD = ({ className, children }) => {
 }
 
 const StyledCardD = styled(CardD)`
-width: 344px;
-min-height: 344px;
+width: 256px;
+min-height: 256px;
 margin: 30px;
 position: relative;
+@media screen and ${breakpoints.tabletS} {
+    width: 344px;
+    min-height: 344px;
+  }
 
 `
 

@@ -3,13 +3,11 @@ import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
 
-const PageSection = ({className, preHeading, heading, postHeading, excerpt, content, ctaSection}) => {
+const PageSection = ({className, children}) => {
 
 
     return (
-        <div className={className}>
-            <h2>{heading}</h2>
-            <div>{content}</div>
+        <div className={className}>{children}
         </div>
     )
 }
@@ -17,9 +15,9 @@ const PageSection = ({className, preHeading, heading, postHeading, excerpt, cont
 const StyledPageSection = styled(PageSection)`
     max-width: 1280px;
     margin: 0 auto;
-    text-align: center;
-    border: 1px solid #000;
+    position: relative;
 `
+
 
 PageSection.propTypes = {
     preHeading: PropTypes.string,
