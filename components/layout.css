@@ -1,5 +1,5 @@
 html {
-  font-family: sans-serif;
+  font-family:  "Verlag A","Verlag B";
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -186,7 +186,7 @@ textarea {
   font: inherit;
 }
 html {
-  font: 112.5%/1.45em georgia, serif;
+  font: 112.5%/1.45em "Verlag A","Verlag B";
   box-sizing: border-box;
   overflow-y: scroll;
 }
@@ -201,7 +201,7 @@ html {
 }
 body {
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: georgia, serif;
+  font-family: "Verlag A","Verlag B";
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;

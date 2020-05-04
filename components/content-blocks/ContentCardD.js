@@ -65,6 +65,7 @@ position: absolute;
 }
 &__title {
     color: ${colors.titleColor};
+    font-family: mrs-eaves-xl-serif, serif;
     font-size: 1.111rem;
     font-style: italic;
     font-weight: bold;
@@ -75,6 +76,7 @@ position: absolute;
 }
 &__category {
     font-size: 0.778rem;
+    font-weight: 800;
     text-transform: uppercase;
     color: ${colors.darkGrey};
 }

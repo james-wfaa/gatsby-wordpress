@@ -1,13 +1,9 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import styled from 'styled-components'
-
 import React from "react"
-
+import styled from 'styled-components'
 
 const Footer = ({ className} ) => {  
     return (
-    <footer class={className}>
+    <footer className={className}>
     © {new Date().getFullYear()}, Built with
     {` `}
     <a href="https://www.gatsbyjs.org">Gatsby</a>
