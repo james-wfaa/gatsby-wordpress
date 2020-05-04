@@ -1,20 +1,33 @@
 export const baseSize = '18px';
 
 export const baseColors = {
-    mainRed: '#c5050c',
     black:   '#000',
     white:   '#FFF',
-    darkGrey: '#777',
-    lightGrey: '#F3F3F3',
+    mainRed: '#c5050c',
+    toneRed: '#A5050A',
+    deepRed: '#8100000',
+    flamingle: '#E8306E',
+    offBlack: '#3C3C3C',
+    darkerGrey: '#777777',
+    darkGrey: '#949494',
+    grey: '#CCCCCC',
+    lightGrey: '#E0E0E0',
+    lightestGrey: '#F3F3F3',
 }
 export const colors = {
-    dateColor: '#3c3c3c',
-    titleColor: baseColors.mainRed,
-    titleWhite: baseColors.white,
-    bgWhite:    baseColors.white,
-    promoRed:   baseColors.mainRed,
-    darkGrey:   baseColors.darkGrey,
-    navcardGrey:baseColors.lightGrey,
+    dateColor:      baseColors.offBlack,
+    titleColor:     baseColors.mainRed,
+    cardTitleBg:    baseColors.lightestGrey,
+    cardBorder:     baseColors.darkGrey,
+    cardText:       baseColors.offBlack,
+    cardTags:       baseColors.darkGrey,
+    copyText:       baseColors.offBlack,
+    titleWhite:     baseColors.white,
+    bgWhite:        baseColors.white,
+    promoRed:       baseColors.mainRed,
+    categoryGrey:   baseColors.darkerGrey,
+    tagGrey:        baseColors.darkerGrey,
+    navcardGrey:    baseColors.lightestGrey,
 }
 
 export const size = {
