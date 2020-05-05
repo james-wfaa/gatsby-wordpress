@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { colors, breakpoints } from '../css-variables'
+import { colors, fonts, breakpoints } from '../css-variables'
 import CardD from './CardD'
 
 const ContentCardD = ({ className, date, title, category, venue, location, excerpt, url, urlText })=> {
@@ -55,6 +55,8 @@ position: absolute;
 
 
 &__date {
+    font-family: mrs-eaves-xl-serif-narrow, serif;
+    font-weight: bold;
     font-size: 1.333rem;
     color: ${colors.dateColor};
     font-style: italic;
@@ -65,7 +67,7 @@ position: absolute;
 }
 &__title {
     color: ${colors.titleColor};
-    font-family: mrs-eaves-xl-serif, serif;
+    font-family: ${fonts.eaves};
     font-size: 1.111rem;
     font-style: italic;
     font-weight: bold;
@@ -75,10 +77,13 @@ position: absolute;
     
 }
 &__category {
-    font-size: 0.778rem;
+    font-size: 0.722rem;
     font-weight: 800;
     text-transform: uppercase;
-    color: ${colors.darkGrey};
+    color: ${colors.categoryGrey};
+    @media screen and ${breakpoints.tabletS} {
+        font-size: 0.778rem;
+    }
 }
 &__venue {
     font-size: 0.778rem;

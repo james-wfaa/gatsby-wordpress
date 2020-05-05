@@ -1,5 +1,14 @@
 export const baseSize = '18px';
 
+export const fonts = {
+    eaves: 'mrs-eaves-xl-serif, serif',
+    eavesNarrow: 'mrs-eaves-xl-serif-narrow, serif',
+}
+export const sizes = {
+    s24: '1.333rem',
+    s32: '1.778rem',
+
+}
 export const baseColors = {
     black:   '#000',
     white:   '#FFF',
