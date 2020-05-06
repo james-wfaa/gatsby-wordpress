@@ -5,10 +5,16 @@ export const fonts = {
     eavesNarrow: 'mrs-eaves-xl-serif-narrow, serif',
 }
 export const sizes = {
-    s14: '.777rem',
-    s16: '.888rem',
+    s13: '0.722rem',
+    s14: '0.777rem',
+    s15: '0.0.8333rem',
+    s16: '0.888rem',
+    s20: '1.111rem',
     s24: '1.333rem',
+    s26: '1.444rem',
     s32: '1.778rem',
+    s36: '2rem',
+    s42: '2.333rem',
 
 }
 export const baseColors = {
@@ -65,4 +71,17 @@ export const breakpoints = {
     laptopL: `(min-width: ${size.laptopL})`,
     desktop: `(min-width: ${size.desktop})`,
     desktopL: `(min-width: ${size.desktop})`
+}
+
+export const mixins = {
+    cardTitle: `
+        font-family: ${fonts.eavesNarrow};
+        font-size: ${sizes.s24};
+        color: ${colors.titleColor};
+        font-weight: bold;
+        font-style: italic;
+        @media screen and ${breakpoints.tabletS} {
+            font-size: ${sizes.s32};
+        }
+    `
 }
