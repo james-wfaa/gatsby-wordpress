@@ -5,6 +5,8 @@ export const fonts = {
     eavesNarrow: 'mrs-eaves-xl-serif-narrow, serif',
 }
 export const sizes = {
+    s14: '.777rem',
+    s16: '.888rem',
     s24: '1.333rem',
     s32: '1.778rem',
 

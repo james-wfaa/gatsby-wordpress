@@ -55,10 +55,10 @@ position: absolute;
 
 
 &__date {
-    font-family: ${fonts.eavesNarrow};
+    font-family: ${fonts.eaves};
     font-weight: bold;
     font-size: ${sizes.s32};
-    font-style: none;
+    font-style: italic;
     color: ${colors.dateColor};
     margin-bottom: 0.667rem;
     @media screen and ${breakpoints.tabletS} {
@@ -67,8 +67,9 @@ position: absolute;
 }
 &__title {
     color: ${colors.titleColor};
-    font-family: ${fonts.eaves};
+    font-family: ${fonts.eavesNarrow};
     font-size: ${sizes.s24};
+    font-style: italic;
     font-weight: bold;
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s24};
@@ -76,7 +77,7 @@ position: absolute;
     
 }
 &__category {
-    font-size: 0.722rem;
+    font-size: ${sizes.s14};
     font-weight: 800;
     text-transform: uppercase;
     color: ${colors.categoryGrey};
@@ -85,10 +86,8 @@ position: absolute;
     }
 }
 &__venue {
-    font-size: 0.778rem;
 }
 &__location {
-    font-size: 0.778rem;
     font-weight: bold;
 }
 `
