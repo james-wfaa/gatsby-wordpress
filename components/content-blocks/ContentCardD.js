@@ -66,10 +66,20 @@ position: absolute;
     }
 }
 &__title {
+    position: relative;
     ${mixins.cardTitle}
     font-size: ${sizes.s20};
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s24};
+    }
+    &:after {
+        position: absolute; 
+        bottom: -1rem;
+        left: 0;
+        width: 2rem;
+        height: 0.5rem;
+        background-color: ${colors.titleColor};
+        content: '';
     }
 }
 &__category {
