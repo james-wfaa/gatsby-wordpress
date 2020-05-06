@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
 
-const PageSection = ({className, preHeading, heading, postHeading, excerpt, content, ctaSection}) => {
+const ContentCardA = ({ className, date, title, category, venue, location, excerpt, url, urlText }) => {
 
 
     return (
