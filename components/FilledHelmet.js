@@ -12,7 +12,7 @@ function FilledHelmet({title, img, desc, url}) {
   return (
     <Helmet titleTemplate="%s | Wisconsin Foundation &amp; Alumni Association">
       <title>{title}</title>
-      <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7708974/7337212/css/fonts.css" />
+      <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7708974/664088/css/fonts.css" />
       <link rel="stylesheet" href="https://use.typekit.net/suj0sae.css" />
       {cleanDesc && 
         <meta name="description" content={cleanDesc} />
