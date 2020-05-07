@@ -29,7 +29,7 @@ const ContentCardD = ({ className, date, title, category, venue, location, excer
                     <div className={`${className}__excerpt`}>
                         {excerpt}
                         { url && (
-                            <a href={url}>{moreLinkText}</a>
+                            <a href={url}>{urlText}</a>
                         )}
                     </div>
                 )}
@@ -42,11 +42,13 @@ const ContentCardD = ({ className, date, title, category, venue, location, excer
 const StyledContentCardD = styled(ContentCardD)`
 padding: 1rem;
 background-color: ${colors.bgWhite};
-height: 100%;
-position: absolute;
+min-height: 256px;
+width: 100%;
 
 @media screen and ${breakpoints.tabletS} {
     padding: 1.778rem;
+    min-height: 344px;
+
 }
 
 &_wrapper {

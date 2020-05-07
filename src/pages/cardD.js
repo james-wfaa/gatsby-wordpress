@@ -88,8 +88,7 @@ export default () => {
         location="Southeast Asia" 
         />
 
-        <p>Here's a Story Card D.</p>
-        <p>Padding should be 18px at mobile and 32px at desktop.</p>
+        <p>Now here are some story cards.</p>
         <ContentCardD 
         title="More than Madison and Milwaukee"
         category="story"
@@ -97,6 +96,58 @@ export default () => {
         Tito Diaz has worked to connect multicultural students with academic success."
         url="#"
         />
+        <p>Padding should be 18px at mobile and 32px at desktop.</p>
+        <ContentCardD 
+        title="One on One at One Alumni Place: Deborah Blum MA’82"
+        category="video"
+        excerpt="WAA chief alumni officer Sarah Schutt talks with author Deb Blum 
+        MA’82 about her latest book, Poison Squad. Blum is a former UW professor of 
+        journalism, and Poison Squad is the university’s 2019–20 selection for Go Big Read."
+        url="#"
+        />
+        <ContentCardD 
+        title="We Can Guess Your Generation Based on Your Snow-Day Schedule"
+        category="poll"
+        excerpt="Few gifts are better to UW students than a school-wide snow day. Tell us 
+        how you’d spend your snow day and we’ll guess your generation."
+        url="#"
+        />
+        <ContentCardD 
+        title="The Long and Winding Road from Major to Career"
+        category="story"
+        excerpt="From YouTube star to professional BMX rider, Badger alums have proven the versalitity of a UW diploma. "
+        urlText="Via On Wisconsin Magazine."
+        linkStyle="arrow"
+        url="#"
+        />
+        <ContentCardD 
+        title="Badgering: Sasanehsaeh Pyawasay ’07, MS’09"
+        category="story"
+        excerpt="As the University of Wisconsin System’s first Native American student success coordinator, Sasanehsaeh Pyawasay 
+        advocates on behalf of Native students — particularly those from within the 12 tribes resident in Wisconsin."
+        url="#"
+        />
+        <ContentCardD 
+        title="Proud to be a Badger: Roger Hamilton"
+        category="story"
+        excerpt="As we watched the procession of first responders pass at the memorial for Officer Garrett Swasey, my two boys 
+        and I were thrilled to see a University of Wisconsin Police vehicle. I’m proud to be a Badger!"
+        url="#"
+        />
+        <ContentCardD 
+        title="Academy Award Badgers"
+        category="story"
+        excerpt="The Academy Awards nominations were just announced. Are any Badgers on the list?"
+        url="#"
+        />
+        <ContentCardD 
+        title="Former Fox News anchor Greta Van Susteren featured in Wisconsin Alumni Association’s Thank You, 72 podcast and radio series"
+        category="podcast"
+        excerpt="Outagamie County native talks about life as an attorney, broadcaster, and the &lquo; trial of the century.&rquo;"
+        url="#"
+        urlText="listen"
+        />
+        
 
         <p>This is "Promo Card D" - the red card that functions more like an ad or promotion.</p>
         <PromoCardD

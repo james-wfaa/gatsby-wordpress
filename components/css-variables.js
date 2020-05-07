@@ -9,12 +9,14 @@ export const sizes = {
     s14: '0.777rem',
     s15: '0.0.8333rem',
     s16: '0.888rem',
+    s18: '1rem',
     s20: '1.111rem',
     s24: '1.333rem',
     s26: '1.444rem',
     s32: '1.778rem',
     s36: '2rem',
     s42: '2.333rem',
+    s52: '2.888rem',
 
 }
 export const baseColors = {
@@ -77,11 +79,22 @@ export const mixins = {
     cardTitle: `
         font-family: ${fonts.eavesNarrow};
         font-size: ${sizes.s24};
-        color: ${colors.titleColor};
         font-weight: bold;
         font-style: italic;
+        color: ${colors.titleColor};
         @media screen and ${breakpoints.tabletS} {
             font-size: ${sizes.s32};
         }
+    `,
+    cardDate: `
+        font-family: ${fonts.eaves};
+        font-size: ${sizes.s42};
+        font-weight: bold;
+        font-style: italic;
+        color:   ${colors.dateColor};
+        @media screen and ${breakpoints.tabletS} {
+            font-size: ${sizes.s52};
+        }
+
     `
 }
