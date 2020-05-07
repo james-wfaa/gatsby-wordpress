@@ -9,16 +9,18 @@ const ContentCardD = ({ className, date, title, category, venue, location, excer
     return (
         <CardD>
             <div className={className}>
-                <div className={`${className}__wrapper}`}>
+                <div className={`${className}__wrapper`}>
                 { date && (
                     <div className={`${className}__date`}>{date}</div>
                 )}
-                { title && (
-                    <h3 className={`${className}__title`}>{title}</h3>
-                )}
-                { category && (
-                    <div className={`${className}__category`}>{category}</div>
-                )}
+                <div className={`${className}__titlesection`}>
+                    { title && (
+                        <h3 className={`${className}__title`}>{title}</h3>
+                    )}
+                    { category && (
+                        <div className={`${className}__category`}>{category}</div>
+                    )}
+                </div>
                 { venue && (
                     <div className={`${className}__venue`}>{venue}</div>
                 )}
@@ -51,6 +53,15 @@ position: absolute;
 
 &_wrapper {
     position: relative;
+    &:after {
+        position: absolute; 
+        bottom: 0;
+        left: 0;
+        width: 2rem;
+        height: 0.5rem;
+        background-color: ${colors.titleColor};
+        content: '';
+    }
 }
 
 
@@ -65,12 +76,27 @@ position: absolute;
         font-size: ${sizes.s32};
     }
 }
+&__titlesection {
+    position: relative; 
+    margin-bottom: 1rem;
+    padding-bottom: 22px;
+    &:after {
+        position: absolute; 
+        bottom: 0;
+        left: 0;
+        width: 2rem;
+        height: 4px;
+        background-color: ${colors.titleColor};
+        content: '';
+    }
+}
 &__title {
     ${mixins.cardTitle}
     font-size: ${sizes.s20};
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s24};
     }
+    
 }
 &__category {
     font-size: ${sizes.s14};
