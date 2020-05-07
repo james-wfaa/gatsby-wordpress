@@ -96,5 +96,36 @@ export const mixins = {
             font-size: ${sizes.s52};
         }
 
-    `
+    `,
+    category: `
+        font-size: ${sizes.s13};
+        font-weight: 800;
+        color: ${colors.categoryGrey};
+        text-transform: uppercase; 
+        @media screen and ${breakpoints.tabletS} {
+            font-size: ${sizes.s14};
+        }   
+    `,
+    tag: `
+        font-size: ${sizes.s14};
+        color: ${colors.categoryGrey};
+        @media screen and ${breakpoints.tabletS} {
+            font-size: ${sizes.s15};
+        } 
+    `,
+    venue: `
+        font-size: ${sizes.s16};
+        color: ${colors.cardText};
+        @media screen and ${breakpoints.tabletS} {
+            font-size: ${sizes.s18};
+        } 
+    `,
+    location: `
+        font-weight: bold;
+        color: ${colors.cardText};
+        @media screen and ${breakpoints.tabletS} {
+            font-size: ${sizes.s18};
+        } 
+
+    `,
 }
