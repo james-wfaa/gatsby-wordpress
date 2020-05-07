@@ -12,6 +12,9 @@ export default () => <div>
         <li>
             <Link to="/cardE">Image with Caption (Card E)</Link>
         </li>
+        <li>
+            <Link to="/fonts">Text Styles</Link>
+        </li>
        
     </ul>
 
