@@ -64,21 +64,25 @@ width: 100%;
     font-size: ${sizes.s32};
     font-style: italic;
     color: ${colors.dateColor};
-    margin-bottom: 0.667rem;
+    margin-bottom: 0.888rem;
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s32};
+        margin-bottom: 1.334rem;
     }
 }
 &__titlesection {
     position: relative; 
-    margin-bottom: 1rem;
-    padding-bottom: 22px;
+    margin-bottom: .667rem;
+    padding-bottom: .889px;
+    @media screen and ${breakpoints.tabletS} {
+        margin-bottom: 1rem;
+        padding-bottom: 1.223rem;    }
     &:after {
         position: absolute; 
         bottom: 0;
         left: 0;
-        width: 2rem;
-        height: 4px;
+        width: 1.889rem;
+        height: .222rem;
         background-color: ${colors.titleColor};
         content: '';
     }
@@ -86,8 +90,10 @@ width: 100%;
 &__title {
     ${mixins.cardTitle}
     font-size: ${sizes.s20};
+    margin-bottom: .667rem;
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s24};
+        margin-bottom: 1rem;
     }
 }
 &__category {
