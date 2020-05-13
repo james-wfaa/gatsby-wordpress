@@ -80,6 +80,7 @@ export default () => {
         venue="Park Hotel"
         location="Madison" 
         />
+        <p>The date and title should be clickable links.</p>
 
         <ContentCardD 
         date="Mar. 22- Apr. 4" 
@@ -105,6 +106,7 @@ export default () => {
         journalism, and Poison Squad is the university’s 2019–20 selection for Go Big Read."
         url="#"
         />
+        <p>The title should be a clickable link, along with the "Read More" link after the excerpt.</p>
         <ContentCardD 
         title="We Can Guess Your Generation Based on Your Snow-Day Schedule"
         category="poll"

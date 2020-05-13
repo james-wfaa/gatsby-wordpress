@@ -31,7 +31,7 @@ const ContentCardD = ({ className, date, title, category, venue, location, excer
                     <div className={`${className}__excerpt`}>
                         {excerpt}
                         { url && (
-                            <a href={url}>{urlText}</a>
+                            <a href={url}>{moreLinkText}</a>
                         )}
                     </div>
                 )}
