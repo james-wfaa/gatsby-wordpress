@@ -43,6 +43,18 @@ a {
 
 }
 
+body {
+    background-image: repeating-linear-gradient(-45deg,
+        transparent,
+        transparent 20px,
+        black 20px,
+        black 40px);
+    /* with multiple color stop lengths */
+    background-image: repeating-linear-gradient(-45deg, 
+        transparent 0 20px, 
+        black 20px 40px);
+  }
+
 
 `
 export default StyledPromoCardD

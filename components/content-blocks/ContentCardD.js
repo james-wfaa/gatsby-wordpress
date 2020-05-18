@@ -48,7 +48,7 @@ min-height: 256px;
 width: 100%;
 
 @media screen and ${breakpoints.tabletS} {
-    padding: 1.778rem;
+    padding: ${sizes.s32};
     min-height: 344px;
 
 }
