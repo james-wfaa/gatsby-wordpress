@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
 
-const ContentCardA = ({ className, date, title, category, venue, location, excerpt, url, urlText }) => {
+const ContentCardA = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText }) => {
 
 
     return (
