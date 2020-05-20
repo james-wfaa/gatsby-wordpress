@@ -10,15 +10,10 @@ const ContentCardD = ({ className, startDate, endDate, title, category, venue, l
         <CardD>
             <div className={className}>
             <div className={`${className}__wrapper`}>
-<<<<<<< HEAD
-                { date && (
-                    <a className={`${className}__dateurl`} href={url}>
-                        <div className={`${className}__date`}>{date}</div>
-                    </a>
-=======
                 { startDate && (
-                    <div className={`${className}__date`}>{startDate}</div>
->>>>>>> 00d073d73478185491e4ab82afa4511f371f34ef
+                    <a className={`${className}__dateurl`} href={url}>
+                        <div className={`${className}__date`}>{startDate}</div>
+                    </a>
                 )}
                 <div className={`${className}__titlesection`}>
                     { title && (
