@@ -189,6 +189,8 @@ html {
   font: 112.5%/1.45em "Verlag A","Verlag B";
   box-sizing: border-box;
   overflow-y: scroll;
+  -webkit-text-size-adjust: 100%; /* 2 */
+    -ms-text-size-adjust: 100%; /* 2 */
 }
 * {
   box-sizing: inherit;

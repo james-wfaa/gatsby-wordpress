@@ -3,17 +3,22 @@ import styled from 'styled-components'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import CardD from './CardD'
 
-const ContentCardD = ({ className, date, title, category, venue, location, excerpt, url, urlText })=> {
+const ContentCardD = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText })=> {
 
     const moreLinkText = urlText ? urlText : 'Read More'
     return (
         <CardD>
             <div className={className}>
             <div className={`${className}__wrapper`}>
+<<<<<<< HEAD
                 { date && (
                     <a className={`${className}__dateurl`} href={url}>
                         <div className={`${className}__date`}>{date}</div>
                     </a>
+=======
+                { startDate && (
+                    <div className={`${className}__date`}>{startDate}</div>
+>>>>>>> 00d073d73478185491e4ab82afa4511f371f34ef
                 )}
                 <div className={`${className}__titlesection`}>
                     { title && (
@@ -67,7 +72,7 @@ width: 100%;
     font-weight: bold;
     font-size: ${sizes.s32};
     font-style: italic;
-    color: ${colors.dateColor};
+    color: ${colors.startDateColor};
     margin-bottom: 0.888rem;
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s32};
