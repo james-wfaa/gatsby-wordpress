@@ -9,9 +9,7 @@ export default () => <div>
         <li>
             <Link to="/cardD">Card D</Link>
         </li>
-        <li>
-            <Link to="/cardE">Image with Caption (Card E)</Link>
-        </li>
+      
         <li>
             <Link to="/fonts">Text Styles</Link>
         </li>
