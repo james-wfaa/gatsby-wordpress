@@ -11,7 +11,7 @@ export default () => {
    <h1>Here is a SimpleSlider demo</h1>
    <p>This one has a 1000ms transition speed</p>
    </PageSection>
-        <SimpleSlider  slidesToShow="1" initialSlide="4" centerMode variableWidth centerPadding="10px"> 
+        <SimpleSlider  className="center" slidesToShow="1" dots initialSlide="4" centerMode variableWidth centerPadding="10px"> 
             <ContentCardD 
         startDate="Feb. 23" 
         title="Wisconsin vs. Rutgers – Indianapolis Basketball Game Watch"

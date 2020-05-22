@@ -13,7 +13,6 @@ const CardD = ({ className, children }) => {
 const StyledCardD = styled(CardD)`
 width: 256px;
 min-height: 256px;
-margin: 30px;
 position: relative;
 @media screen and ${breakpoints.tabletS} {
     width: 344px;

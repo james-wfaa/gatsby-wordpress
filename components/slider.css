@@ -1,11 +1,20 @@
+.slick-slider {
+    margin-bottom: 2.5rem;
+}
 .slick-list {
     overflow: visible;
 }
+.slick-slide {
+    padding: 32px 16px;
+}
+
 .slick-arrow {
     z-index: 1001;
+    display: none !important;
 }
+
 .slick-prev {
-    left: 27px;
+    left: 12px;
    
 }
 .slick-prev:before,
@@ -15,4 +24,24 @@
 }
 .slick-next {
     right: 24px;
+}
+
+.slick-dots li button:before {
+    font-size: 11px;
+    color: #777777;
+}
+.slick-dots li.slick-active button:before {
+    font-size: 13px;
+    color: #c5050c;
+
+}
+
+@media screen and (min-width: 656px) {
+    .slick-arrow {
+        display: block !important;
+    }
+    .slick-dots {
+        display: none !important;
+    
+    }
 }
