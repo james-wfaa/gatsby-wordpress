@@ -24,7 +24,7 @@ export const baseColors = {
     white:   '#FFF',
     mainRed: '#c5050c',
     toneRed: '#A5050A',
-    deepRed: '#8100000',
+    deepRed: '#810000',
     flamingle: '#E8306E',
     offBlack: '#3C3C3C',
     darkerGrey: '#777777',
@@ -34,7 +34,7 @@ export const baseColors = {
     lightestGrey: '#F3F3F3',
 }
 export const colors = {
-    dateColor:      baseColors.offBlack,
+    startDateColor: baseColors.offBlack,
     titleColor:     baseColors.mainRed,
     cardTitleBg:    baseColors.lightestGrey,
     cardBorder:     baseColors.darkGrey,
@@ -47,6 +47,9 @@ export const colors = {
     categoryGrey:   baseColors.darkerGrey,
     tagGrey:        baseColors.darkerGrey,
     navcardGrey:    baseColors.lightestGrey,
+    readMoreText:   baseColors.mainRed,
+    linkTextHover:  baseColors.deepRed,
+    linkTextActive: baseColors.offBlack,
 }
 
 export const size = {

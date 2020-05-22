@@ -5,21 +5,21 @@ import CardD from './CardD'
 
 const ContentCardD = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText })=> {
 
-    const moreLinkText = urlText ? urlText : 'Read More'
+    const moreLinkText = urlText ? urlText : 'Read More >'
     return (
         <CardD>
             <div className={className}>
             <div className={`${className}__wrapper`}>
                 { startDate && (
-                    <a className={`${className}__dateurl`} href={url}>
-                        <div className={`${className}__date`}>{startDate}</div>
-                    </a>
+                    <div className={`${className}__date`}>
+                        <a href="url">{startDate}</a>
+                    </div>
                 )}
                 <div className={`${className}__titlesection`}>
                     { title && (
-                        <a className={`${className}__titleurl`} href={url}>
-                            <h3 className={`${className}__title`}>{title}</h3>
-                        </a>
+                        <h3 className={`${className}__title`}>
+                            <a href="url">{title}</a>
+                        </h3>
                     )}
                     { category && (
                         <div className={`${className}__category`}>{category}</div>
@@ -35,7 +35,7 @@ const ContentCardD = ({ className, startDate, endDate, title, category, venue, l
                     <div className={`${className}__excerpt`}>
                         {excerpt}
                         { url && (
-                            <a href={url}>{moreLinkText}</a>
+                            <a href={url}> {moreLinkText}</a>
                         )}
                     </div>
                 )}
@@ -73,6 +73,11 @@ width: 100%;
         font-size: ${sizes.s32};
         margin-bottom: 1.334rem;
     }
+
+    & a{
+        text-decoration: none;
+        color: ${colors.startDateColor};
+    }
 }
 &__dateurl {
     text-decoration: none;
@@ -99,13 +104,27 @@ width: 100%;
     ${mixins.cardTitle}
     font-size: ${sizes.s20};
     margin-bottom: .667rem;
+    text-decoration: none;
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s24};
         margin-bottom: 1rem;
     }
+
+    & a {
+        text-decoration: none;
+        color: ${colors.titleColor};
+
+        &:hover {
+            color: ${colors.linkTextHover};
+        }
+        &:active {
+            color: ${colors.linkTextActive};
+        }
+
+    }
 }
 &__titleurl {
-    text-decoration: none;
+    
 }
 &__category {
     font-size: ${sizes.s14};
@@ -120,6 +139,12 @@ width: 100%;
 }
 &__location {
     font-weight: bold;
+}
+&__excerpt {
+    & a{
+        text-decoration: none;
+        color: ${colors.readMoreText};
+    }
 }
 `
 
