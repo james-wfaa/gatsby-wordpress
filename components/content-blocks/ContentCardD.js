@@ -77,6 +77,16 @@ width: 100%;
     & a{
         text-decoration: none;
         color: ${colors.startDateColor};
+
+        &:hover {
+            color: ${colors.linkDateHover};
+            text-decoration: underline;
+        }
+        &:active {
+            color: ${colors.linkDateActive};
+            text-decoration: underline;
+            cursor:default;
+        }
     }
 }
 &__dateurl {
@@ -116,9 +126,12 @@ width: 100%;
 
         &:hover {
             color: ${colors.linkTextHover};
+            text-decoration: underline;
         }
         &:active {
             color: ${colors.linkTextActive};
+            text-decoration: underline;
+            cursor:default;
         }
 
     }
@@ -141,9 +154,21 @@ width: 100%;
     font-weight: bold;
 }
 &__excerpt {
-    & a{
+    & a {
         text-decoration: none;
-        color: ${colors.readMoreText};
+        color: ${colors.titleColor};
+
+        &:hover {
+            color: ${colors.linkTextHover};
+            text-decoration: underline;
+
+        }
+        &:active {
+            color: ${colors.linkTextActive};
+            text-decoration: underline;
+            cursor:default;
+        }
+
     }
 }
 `
