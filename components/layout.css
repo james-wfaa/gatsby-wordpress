@@ -189,6 +189,7 @@ html {
   font: 112.5%/1.45em "Verlag A","Verlag B";
   box-sizing: border-box;
   overflow-y: scroll;
+  overflow-x: hidden;
   -webkit-text-size-adjust: 100%; /* 2 */
     -ms-text-size-adjust: 100%; /* 2 */
 }
@@ -211,6 +212,8 @@ body {
   -ms-font-feature-settings: "kern", "liga", "clig", "calt";
   -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
   font-feature-settings: "kern", "liga", "clig", "calt";
+  overflow-x: hidden;
+  position: relative;
 }
 img {
   max-width: 100%;
