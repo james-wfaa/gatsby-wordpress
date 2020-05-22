@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/pages/event.js"],"names":[],"mappings":"6FAAA,gCAEe,4BAAM","file":"component---src-pages-event-js-4ec1f64c54f6c69db601.js","sourcesContent":["import React from \"react\"\n\nexport default () => <div>uwalumni.com | event</div>"],"sourceRoot":""}
