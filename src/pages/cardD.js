@@ -20,6 +20,7 @@ export default () => {
         category="GAME WATCH"
         venue="Keystone Sports Review" 
         location="Indianapolis, IN" 
+        url="/fonts"
         />
         <p>On mobile, these should be 256px wide, with an 18px padding.</p>
         <ContentCardD 
