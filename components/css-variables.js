@@ -50,6 +50,8 @@ export const colors = {
     readMoreText:   baseColors.mainRed,
     linkTextHover:  baseColors.deepRed,
     linkTextActive: baseColors.offBlack,
+    linkDateHover:  baseColors.mainRed,
+    linkDateActive: baseColors.deepRed,
 }
 
 export const size = {
