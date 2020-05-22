@@ -1,0 +1,12 @@
+.slick-list {
+    overflow: visible;
+}
+.slick-arrow {
+    z-index: 10;
+}
+.slick-prev {
+    left: 27px;
+}
+.slick-next {
+    right: 24px;
+}
