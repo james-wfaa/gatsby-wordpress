@@ -9,10 +9,10 @@ class SimpleSlider extends React.Component {
 
   static defaultProps = {
     dots: false,
-    infinite: false,
-    centerMode: true,
+    infinite: true,
     speed: 1000,
-    slidesToShow: 1,
+    initialSlide: 2,
+    slidesToShow: 3,
     slidesToScroll: 1
   }
 

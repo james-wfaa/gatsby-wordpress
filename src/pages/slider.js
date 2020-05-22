@@ -10,7 +10,8 @@ export default () => {
    <PageSection>
    <h1>Here is a SimpleSlider demo</h1>
    <p>This one has a 1000ms transition speed</p>
-        <SimpleSlider infinite slidesToShow="1" initialSlide="4" variableWidth centerPadding="10px"> 
+   </PageSection>
+        <SimpleSlider  slidesToShow="1" initialSlide="4" centerMode variableWidth centerPadding="10px"> 
             <ContentCardD 
         startDate="Feb. 23" 
         title="Wisconsin vs. Rutgers – Indianapolis Basketball Game Watch"
@@ -56,8 +57,11 @@ export default () => {
         location="Tucson, AZ" 
         />
         </SimpleSlider>
+        <PageSection>
         <p>This next one has a 500ms transition speed</p>
-        <SimpleSlider infinite speed="500" slidesToShow="1" initialSlide="3" variableWidth centerPadding="10px"> 
+        </PageSection>
+        
+        <SimpleSlider  speed="500" slidesToShow="1" initialSlide="3" centerMode variableWidth centerPadding="10px"> 
             <ContentCardD 
         startDate="Feb. 23" 
         title="Wisconsin vs. Rutgers – Indianapolis Basketball Game Watch"
@@ -105,7 +109,7 @@ export default () => {
         </SimpleSlider>
         
     
-   </PageSection>
+
    <PageSection><p>text after goes here</p></PageSection>
         
 </Layout>

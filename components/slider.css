@@ -2,10 +2,16 @@
     overflow: visible;
 }
 .slick-arrow {
-    z-index: 10;
+    z-index: 1001;
 }
 .slick-prev {
     left: 27px;
+   
+}
+.slick-prev:before,
+.slick-next:before {
+    color: #c5050c;
+    font-size: 2rem;
 }
 .slick-next {
     right: 24px;
