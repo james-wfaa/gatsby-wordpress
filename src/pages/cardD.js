@@ -16,6 +16,7 @@ export default () => {
         
         <ContentCardD 
         startDate="Feb. 23" 
+        endDate="Feb. 28"
         title="Wisconsin vs. Rutgers – Indianapolis Basketball Game Watch"
         category="GAME WATCH"
         venue="Keystone Sports Review" 

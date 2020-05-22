@@ -5,14 +5,17 @@ import CardD from './CardD'
 
 const ContentCardD = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText })=> {
 
-    const moreLinkText = urlText ? urlText : 'Read More >'
+    const moreLinkText = urlText ? urlText : <nobr> Read More ></nobr>
+    const dateLinkText = endDate ? startDate+"-"+endDate : startDate
     return (
         <CardD>
             <div className={className}>
             <div className={`${className}__wrapper`}>
                 { startDate && (
                     <div className={`${className}__date`}>
-                        <a href="url">{startDate}</a>
+                        <a href={url}>
+                            {dateLinkText}
+                        </a>
                     </div>
                 )}
                 <div className={`${className}__titlesection`}>
@@ -89,14 +92,10 @@ width: 100%;
         }
     }
 }
-&__dateurl {
-    text-decoration: none;
-}
-
 &__titlesection {
     position: relative; 
     margin-bottom: .667rem;
-    padding-bottom: .889px;
+    padding-bottom: .889rem;
     @media screen and ${breakpoints.tabletS} {
         margin-bottom: 1rem;
         padding-bottom: 1.223rem;    }
@@ -112,12 +111,15 @@ width: 100%;
 }
 &__title {
     ${mixins.cardTitle}
+    position: relative; 
+    margin-bottom: 0px;
+    top: -3px;
     font-size: ${sizes.s20};
-    margin-bottom: .667rem;
     text-decoration: none;
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s24};
-        margin-bottom: 1rem;
+        margin-bottom: 0px;
+        top: 0px;
     }
 
     & a {
@@ -143,9 +145,11 @@ width: 100%;
     font-size: ${sizes.s14};
     font-weight: 800;
     text-transform: uppercase;
+    margin-top: .667rem;
     color: ${colors.categoryGrey};
     @media screen and ${breakpoints.tabletS} {
         font-size: 0.778rem;
+        margin-top: 1rem;
     }
 }
 &__venue {
