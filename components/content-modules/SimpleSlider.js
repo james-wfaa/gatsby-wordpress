@@ -11,7 +11,6 @@ class SimpleSlider extends React.Component {
     dots: false,
     infinite: true,
     speed: 1000,
-    initialSlide: 2,
     slidesToShow: 3,
     slidesToScroll: 1
   }

@@ -2,11 +2,11 @@ import React from "react"
 import Layout from "../../components/Layout"
 import ContentCardD from "../../components/content-blocks/ContentCardD"
 import PromoCardD from "../../components/content-blocks/PromoCardD"
-import PageSection from '../../components/page-sections/PageSection'
+import PaddedPageSection from '../../components/page-sections/PaddedPageSection'
 export default () => {
     return (
 <Layout>
-    <PageSection>
+    <PaddedPageSection>
         <h1>Card D (square tile card)</h1>
         <p>This is Card 'D' - the square tile card. These are usually found in tile grids.</p>
 
@@ -21,7 +21,7 @@ export default () => {
         category="GAME WATCH"
         venue="Keystone Sports Review" 
         location="Indianapolis, IN" 
-        url="/"
+        url="#####"
         />
         <p>On mobile, these should be 256px wide, with an 18px padding.</p>
         <ContentCardD 
@@ -30,7 +30,7 @@ export default () => {
         category="UW NOW"
         venue="La Quinta Resort and Club" 
         location="La Quinta, CA" 
-        url="/"
+        url="######"
         />
         <p>On tablet and larger, these should be 344px wide, with 32px padding.</p>
 
@@ -126,6 +126,7 @@ export default () => {
         how you’d spend your snow day and we’ll guess your generation."
         url="#"
         />
+        <p>Excerpt copy should be 16px at mobile and 18px at desktop.</p>
         <ContentCardD 
         title="The Long and Winding Road from Major to Career"
         category="story"
@@ -134,6 +135,7 @@ export default () => {
         linkStyle="arrow"
         url="#"
         />
+        <p>&nbsp;</p>
         <ContentCardD 
         title="Badgering: Sasanehsaeh Pyawasay ’07, MS’09"
         category="story"
@@ -141,6 +143,8 @@ export default () => {
         advocates on behalf of Native students — particularly those from within the 12 tribes resident in Wisconsin."
         url="#"
         />
+                <p>&nbsp;</p>
+
         <ContentCardD 
         title="Proud to be a Badger: Roger Hamilton"
         category="story"
@@ -148,17 +152,21 @@ export default () => {
         and I were thrilled to see a University of Wisconsin Police vehicle. I’m proud to be a Badger!"
         url="#"
         />
+                <p>&nbsp;</p>
+
         <ContentCardD 
         title="Academy Award Badgers"
         category="story"
         excerpt="The Academy Awards nominations were just announced. Are any Badgers on the list?"
-        url="#"
+        url="#####"
         />
+                <p>&nbsp;</p>
+
         <ContentCardD 
         title="Former Fox News anchor Greta Van Susteren featured in Wisconsin Alumni Association’s Thank You, 72 podcast and radio series"
         category="podcast"
         excerpt="Outagamie County native talks about life as an attorney, broadcaster, and the &lquo; trial of the century.&rquo;"
-        url="#"
+        url="######"
         urlText="listen"
         />
         
@@ -174,7 +182,7 @@ export default () => {
         url="#"
         isNav
         />
-    </PageSection>
+    </PaddedPageSection>
     
 </Layout>
     )

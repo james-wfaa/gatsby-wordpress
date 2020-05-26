@@ -5,7 +5,7 @@
     overflow: visible;
 }
 .slick-slide {
-    padding: 32px 16px;
+    padding: 32px 12px;
 }
 
 .slick-arrow {
@@ -14,7 +14,7 @@
 }
 
 .slick-prev {
-    left: 12px;
+    left: 240px;
    
 }
 .slick-prev:before,
@@ -23,7 +23,7 @@
     font-size: 2rem;
 }
 .slick-next {
-    right: 24px;
+    right: 240px;
 }
 
 .slick-dots li button:before {
@@ -37,6 +37,9 @@
 }
 
 @media screen and (min-width: 656px) {
+    .slick-slide {
+        padding: 32px 58px;
+    }
     .slick-arrow {
         display: block !important;
     }

@@ -9,7 +9,9 @@ export default () => <div>
         <li>
             <Link to="/cardD">Card D</Link>
         </li>
-      
+        <li>
+            <Link to="/slider">Carousel</Link>
+        </li>
         <li>
             <Link to="/fonts">Text Styles</Link>
         </li>
