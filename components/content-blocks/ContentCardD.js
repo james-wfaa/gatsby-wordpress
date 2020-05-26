@@ -5,66 +5,62 @@ import CardD from './CardD'
 
 const ContentCardD = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText })=> {
 
-    const moreLinkText = urlText ? urlText : <nobr> Read More ></nobr>
+    const moreLinkText = urlText ? urlText : <nobr>Read More ></nobr>
     const dateLinkText = endDate ? startDate+"-"+endDate : startDate
     return (
         <CardD>
-            <div className={className}>
-            <div className={`${className}__wrapper`}>
-                { startDate && (
-                    <div className={`${className}__date`}>
-                        <a href={url}>
-                            {dateLinkText}
-                        </a>
-                    </div>
-                )}
-                <div className={`${className}__titlesection`}>
-                    { title && (
-                        <h3 className={`${className}__title`}>
-                            <a href="url">{title}</a>
-                        </h3>
+            <a href={url}className={className}>
+
+                <div className={`${className}__wrapper`}>
+                    { startDate && (
+                        <div className={`${className}__date date`}>
+                                {dateLinkText}
+                        </div>
                     )}
-                    { category && (
-                        <div className={`${className}__category`}>{category}</div>
-                    )}
-                </div>
-                { venue && (
-                    <div className={`${className}__venue`}>{venue}</div>
-                )}
-                { location && (
-                    <div className={`${className}__location`}>{location}</div>
-                )}
-                { excerpt && (
-                    <div className={`${className}__excerpt`}>
-                        {excerpt}
-                        { url && (
-                            <a href={url}> {moreLinkText}</a>
+                    <div className={`${className}__titlesection`}>
+                        { title && (
+                            <h3 className={`${className}__title title`}>
+                            {title}
+                            </h3>
+                        )}
+                        { category && (
+                            <div className={`${className}__category`}>{category}</div>
                         )}
                     </div>
-                )}
+                    { venue && (
+                        <div className={`${className}__venue`}>{venue}</div>
+                    )}
+                    { location && (
+                        <div className={`${className}__location`}>{location}</div>
+                    )}
+                    { excerpt && (
+                        <div className={`${className}__excerpt excerpt`}>
+                            {excerpt}&nbsp;
+                            { url && (
+                                <span className="readmore">{moreLinkText}</span>
+                            )}
+                        </div>
+                    )}
                 </div>
-                
-            </div>
+            </a>
         </CardD>
     )
 }
 const StyledContentCardD = styled(ContentCardD)`
+display: block;
 padding: 1rem;
+text-decoration: none;
 background-color: ${colors.bgWhite};
+color: ${colors.cardText};
 min-height: 256px;
 width: 100%;
-
 @media screen and ${breakpoints.tabletS} {
     padding: ${sizes.s32};
     min-height: 344px;
-
 }
-
 &_wrapper {
     position: relative;
 }
-
-
 &__date {
     font-family: ${fonts.eaves};
     font-weight: bold;
@@ -75,21 +71,6 @@ width: 100%;
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s32};
         margin-bottom: 1.334rem;
-    }
-
-    & a{
-        text-decoration: none;
-        color: ${colors.startDateColor};
-
-        &:hover {
-            color: ${colors.linkDateHover};
-            text-decoration: underline;
-        }
-        &:active {
-            color: ${colors.linkDateActive};
-            text-decoration: underline;
-            cursor:default;
-        }
     }
 }
 &__titlesection {
@@ -121,25 +102,6 @@ width: 100%;
         margin-bottom: 0px;
         top: 0px;
     }
-
-    & a {
-        text-decoration: none;
-        color: ${colors.titleColor};
-
-        &:hover {
-            color: ${colors.linkTextHover};
-            text-decoration: underline;
-        }
-        &:active {
-            color: ${colors.linkTextActive};
-            text-decoration: underline;
-            cursor:default;
-        }
-
-    }
-}
-&__titleurl {
-    
 }
 &__category {
     font-size: ${sizes.s14};
@@ -152,29 +114,43 @@ width: 100%;
         margin-top: 1rem;
     }
 }
-&__venue {
-}
 &__location {
     font-weight: bold;
 }
-&__excerpt {
-    & a {
-        text-decoration: none;
-        color: ${colors.titleColor};
-
-        &:hover {
-            color: ${colors.linkTextHover};
-            text-decoration: underline;
-
-        }
-        &:active {
-            color: ${colors.linkTextActive};
-            text-decoration: underline;
-            cursor:default;
-        }
-
+&:hover {
+    
+    .date {
+        color: ${colors.linkDateHover};
+        text-decoration: underline;
+    }
+    .title {
+        color: ${colors.linkTextHover};
+        text-decoration: underline;
+    }
+    
+    .readmore {
+        color: ${colors.linkTextHover};
+        text-decoration: underline;
     }
 }
+&:active {
+    .date {
+        color: ${colors.linkDateActive};
+        text-decoration: underline;
+        cursor:default;
+    }
+    .title {
+        color: ${colors.linkTextActive};
+        text-decoration: underline;
+        cursor:default;
+    }
+    .readmore {
+        color: ${colors.linkTextActive};
+        text-decoration: underline;
+        cursor:default;
+    }
+}
+
 `
 
 export default StyledContentCardD
