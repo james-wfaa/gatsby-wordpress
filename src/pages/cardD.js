@@ -90,7 +90,7 @@ export default () => {
         location="Madison" 
         url="/"
         />
-        <p>The date and title should be clickable links.</p>
+        <p>The date and title should present as clickable links, changing color and showing underline when the card is hovered over.</p>
 
         <ContentCardD 
         startDate="Mar. 22" 

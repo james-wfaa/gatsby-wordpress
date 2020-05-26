@@ -5,23 +5,23 @@ import CardD from './CardD'
 
 const ContentCardD = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText })=> {
 
-    const moreLinkText = urlText ? urlText : <nobr>Read More ></nobr>
-    const dateLinkText = endDate ? startDate+"-"+endDate : startDate
+    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
+    const dateLinkText = endDate ? `${startDate}&ndash;${endDate}` : startDate
     return (
         <CardD>
             <a href={url}className={className}>
 
                 <div className={`${className}__wrapper`}>
                     { startDate && (
-                        <div className={`${className}__date date`}>
-                                {dateLinkText}
-                        </div>
+                        <div 
+                            className={`${className}__date date`} 
+                            dangerouslySetInnerHTML={{ __html: dateLinkText }} 
+                        />
+                                
                     )}
                     <div className={`${className}__titlesection`}>
                         { title && (
-                            <h3 className={`${className}__title title`}>
-                            {title}
-                            </h3>
+                            <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />        
                         )}
                         { category && (
                             <div className={`${className}__category`}>{category}</div>
@@ -35,7 +35,8 @@ const ContentCardD = ({ className, startDate, endDate, title, category, venue, l
                     )}
                     { excerpt && (
                         <div className={`${className}__excerpt excerpt`}>
-                            {excerpt}&nbsp;
+                            <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
+                           &nbsp;
                             { url && (
                                 <span className="readmore">{moreLinkText}</span>
                             )}
