@@ -6,7 +6,7 @@ import CardD from './CardD'
 const ContentCardD = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText })=> {
 
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
-    const dateLinkText = endDate ? `${startDate}&ndash;${endDate}` : startDate
+    const dateLinkText = endDate ? `${startDate}&nbsp;&ndash;&nbsp;${endDate}` : startDate
     return (
         <CardD>
             <a href={url}className={className}>
@@ -36,9 +36,9 @@ const ContentCardD = ({ className, startDate, endDate, title, category, venue, l
                     { excerpt && (
                         <div className={`${className}__excerpt excerpt`}>
                             <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
-                           &nbsp;
+                            <span> </span>
                             { url && (
-                                <span className="readmore">{moreLinkText}</span>
+                                <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>
                             )}
                         </div>
                     )}

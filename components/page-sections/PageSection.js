@@ -13,7 +13,6 @@ const PageSection = ({className, children}) => {
 }
 
 const StyledPageSection = styled(PageSection)`
-    max-width: 1280px;
     margin: 0 auto;
     position: relative;
 `

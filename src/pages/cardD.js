@@ -3,9 +3,15 @@ import Layout from "../../components/Layout"
 import ContentCardD from "../../components/content-blocks/ContentCardD"
 import PromoCardD from "../../components/content-blocks/PromoCardD"
 import PaddedPageSection from '../../components/page-sections/PaddedPageSection'
+import PageSection from '../../components/page-sections/PageSection'
+import MobileHr from '../../components/parts/MobileHr'
+
 export default () => {
     return (
 <Layout>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
     <PaddedPageSection>
         <h1>Card D (square tile card)</h1>
         <p>This is Card 'D' - the square tile card. These are usually found in tile grids.</p>
@@ -23,6 +29,11 @@ export default () => {
         location="Indianapolis, IN" 
         url="#####"
         />
+    </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
         <p>On mobile, these should be 256px wide, with an 18px padding.</p>
         <ContentCardD 
         startDate="Feb. 26" 
@@ -32,6 +43,12 @@ export default () => {
         location="La Quinta, CA" 
         url="######"
         />
+        </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
+        
         <p>On tablet and larger, these should be 344px wide, with 32px padding.</p>
 
         <ContentCardD 
@@ -42,6 +59,11 @@ export default () => {
         location="Tucson, AZ" 
         url="/"
         />
+        </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
         <p>The date should be 24px font size in mobile, 32px at larger screen sizes.</p>
         <p>There should be 12px space between the date and title in mobile, 24px at larger sizes.</p>
         <ContentCardD 
@@ -52,6 +74,11 @@ export default () => {
         location="Long Beach, CA" 
         url="/"
         />
+        </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
         <p>There should be 12px (18px) spacing above and below the category text, and 12px (18px) above and below the red separator bar.</p>
         <p>Sometimes there is no category. If so, the red separator should go directly below the title text (same spacing rules apply).</p>
         <ContentCardD 
@@ -62,6 +89,11 @@ export default () => {
         location="Southeast Asia" 
         url="/"
         />
+        </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
         <p>The red title text should be Mrs. Eaves Narrow, Bold &amp; Italic - 20px/24px. </p>
 
         <ContentCardD 
@@ -72,6 +104,11 @@ export default () => {
         location="Madison" 
         url="/"
         />
+        </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
         <p>The category text should be 13px/14px, and boldness at "Black".</p>
         <ContentCardD 
         startDate="Apr. 3" 
@@ -81,6 +118,11 @@ export default () => {
         location="Madison" 
         url="/"
         />
+        </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
         <p>Venue &amp; location lines should be 16px/18px. Location should be bold. </p>
 
         <ContentCardD 
@@ -90,6 +132,11 @@ export default () => {
         location="Madison" 
         url="/"
         />
+        </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
         <p>The date and title should present as clickable links, changing color and showing underline when the card is hovered over.</p>
 
         <ContentCardD 
@@ -100,7 +147,11 @@ export default () => {
         location="Southeast Asia" 
         url="/"
         />
-
+</PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
         <p>Now here are some story cards.</p>
         <ContentCardD 
         title="More than Madison and Milwaukee"
@@ -109,6 +160,11 @@ export default () => {
         Tito Diaz has worked to connect multicultural students with academic success."
         url="#"
         />
+        </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
         <p>Padding should be 18px at mobile and 32px at desktop.</p>
         <ContentCardD 
         title="One on One at One Alumni Place: Deborah Blum MA’82"
@@ -118,7 +174,13 @@ export default () => {
         journalism, and Poison Squad is the university’s 2019–20 selection for Go Big Read."
         url="#"
         />
-        <p>The title should be a clickable link, along with the "Read More" link after the excerpt.</p>
+        </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
+        <p>The entire card is a clickable link; but the title should present as a clickable text link, 
+            along with the "Read More" text after the excerpt.</p>
         <ContentCardD 
         title="We Can Guess Your Generation Based on Your Snow-Day Schedule"
         category="poll"
@@ -126,6 +188,11 @@ export default () => {
         how you’d spend your snow day and we’ll guess your generation."
         url="#"
         />
+        </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
         <p>Excerpt copy should be 16px at mobile and 18px at desktop.</p>
         <ContentCardD 
         title="The Long and Winding Road from Major to Career"
@@ -135,6 +202,11 @@ export default () => {
         linkStyle="arrow"
         url="#"
         />
+        </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
         <p>&nbsp;</p>
         <ContentCardD 
         title="Badgering: Sasanehsaeh Pyawasay ’07, MS’09"
@@ -143,6 +215,11 @@ export default () => {
         advocates on behalf of Native students — particularly those from within the 12 tribes resident in Wisconsin."
         url="#"
         />
+        </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
                 <p>&nbsp;</p>
 
         <ContentCardD 
@@ -154,6 +231,11 @@ export default () => {
         />
                 <p>&nbsp;</p>
 
+                </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
         <ContentCardD 
         title="Academy Award Badgers"
         category="story"
@@ -162,21 +244,36 @@ export default () => {
         />
                 <p>&nbsp;</p>
 
+                </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
         <ContentCardD 
         title="Former Fox News anchor Greta Van Susteren featured in Wisconsin Alumni Association’s Thank You, 72 podcast and radio series"
         category="podcast"
-        excerpt="Outagamie County native talks about life as an attorney, broadcaster, and the &lquo; trial of the century.&rquo;"
+        excerpt="Outagamie County native talks about life as an attorney, broadcaster, and the &ldquo;trial of the century.&rdquo;"
         url="######"
         urlText="listen"
         />
         
 
+        </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
         <p>This is "Promo Card D" - the red card that functions more like an ad or promotion.</p>
         <PromoCardD
         title="Shop the UW Alumni Store"
         url="#" />
         <p>And finally, this is "Nav Card D" - a navigational element, which links to a site section.</p>
 
+        </PaddedPageSection>
+    <PageSection>
+        <MobileHr />
+    </PageSection>
+    <PaddedPageSection>
         <PromoCardD
         title="More About This Chapter" 
         url="#"
