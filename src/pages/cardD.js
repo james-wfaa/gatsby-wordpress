@@ -262,24 +262,9 @@ export default () => {
     <PageSection>
         <MobileHr />
     </PageSection>
-    <PaddedPageSection>
-        <p>This is "Promo Card D" - the red card that functions more like an ad or promotion.</p>
-        <PromoCardD
-        title="Shop the UW Alumni Store"
-        url="#" />
-        <p>And finally, this is "Nav Card D" - a navigational element, which links to a site section.</p>
-
-        </PaddedPageSection>
-    <PageSection>
-        <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
-        <PromoCardD
-        title="More About This Chapter" 
-        url="#"
-        isNav
-        />
-    </PaddedPageSection>
+   
+  
+   
     
 </Layout>
     )

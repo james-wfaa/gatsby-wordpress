@@ -129,6 +129,9 @@ width: 100%;
         font-size: ${sizes.s18};
         line-height: ${sizes.s26};
     }
+    &.readmore {
+        color: ${colors.titleColor};
+    }
 }
 
 &:visited {
