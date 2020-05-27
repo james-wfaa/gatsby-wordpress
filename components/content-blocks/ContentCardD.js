@@ -52,6 +52,7 @@ display: block;
 padding: 1rem;
 text-decoration: none;
 background-color: ${colors.bgWhite};
+opacity: 0.9;
 color: ${colors.cardText};
 min-height: 256px;
 width: 100%;
@@ -65,13 +66,13 @@ width: 100%;
 &__date {
     font-family: ${fonts.eaves};
     font-weight: bold;
-    font-size: ${sizes.s32};
+    font-size: ${sizes.s24};
     font-style: italic;
     color: ${colors.startDateColor};
-    margin-bottom: 0.888rem;
+    margin-bottom: ${sizes.s12};
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s32};
-        margin-bottom: 1.334rem;
+        margin-bottom: ${sizes.s24};
     }
 }
 &__titlesection {
@@ -101,7 +102,7 @@ width: 100%;
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s24};
         margin-bottom: 0px;
-        top: 0px;
+        top: -3px;
     }
 }
 &__category {
@@ -110,16 +111,45 @@ width: 100%;
     text-transform: uppercase;
     margin-top: .667rem;
     color: ${colors.categoryGrey};
+    line-height: ${sizes.s14};
     @media screen and ${breakpoints.tabletS} {
-        font-size: 0.778rem;
         margin-top: 1rem;
     }
 }
 &__location {
     font-weight: bold;
 }
+&__excerpt {
+    font-size: ${sizes.s16};
+    @media screen and ${breakpoints.tabletS} {
+        font-size: ${sizes.s18};
+    }
+}
+
+&:visited {
+    background-color: ${colors.bgActiveGrey};
+
+    .date {
+        color: ${colors.startDateColor};
+        text-decoration: underline;
+        cursor:default;
+    }
+    .title {
+        color: ${colors.titleColor};
+        text-decoration: underline;
+        cursor:default;
+    }
+    .readmore {
+        color: ${colors.titleColor};
+        text-decoration: underline;
+        cursor:default;
+    }
+}
+
 &:hover {
-    
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
+    opacity: 1;
+
     .date {
         color: ${colors.linkDateHover};
         text-decoration: underline;
@@ -135,6 +165,7 @@ width: 100%;
     }
 }
 &:active {
+    background-color: ${colors.bgActiveGrey};
     .date {
         color: ${colors.linkDateActive};
         text-decoration: underline;
