@@ -66,25 +66,28 @@ width: 100%;
 &__date {
     font-family: ${fonts.eaves};
     position: relative; 
-    top: -4px;
+    top: -5px;
     font-weight: bold;
     font-size: ${sizes.s24};
     font-style: italic;
     color: ${colors.startDateColor};
-    margin-bottom: ${sizes.s12};
+    margin-bottom: ${sizes.s7}; /* 12 - 5 for the upshift */
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s32};
-        margin-bottom: ${sizes.s24};
+        margin-bottom: ${sizes.s20}; /* 24 - 4 for the upshift */
+        top: -4px;
     }
 }
 &__titlesection {
     position: relative; 
-    top: -4px;
-    margin-bottom: ${sizes.s8};
-    padding-bottom: ${sizes.s16};
+    top: -3px;
+    margin-bottom: ${sizes.s9}; /* 12 - 3 for the up-shift */
+    padding-bottom: ${sizes.s13}; /* 12 - 3 for the up-shift + 4 for the red bar */
     @media screen and ${breakpoints.tabletS} {
-        margin-bottom: ${sizes.s14};
-        padding-bottom: ${sizes.s22};   }
+        margin-bottom: ${sizes.s17}; /* 18 - 1 for the up-shift */
+        padding-bottom: ${sizes.s21};   /* 18 + 4 for the red bar - 1 for the up-shift */
+        top: -1px;
+    }
     &:after {
         position: absolute; 
         bottom: 0;
@@ -97,6 +100,8 @@ width: 100%;
 }
 &__title {
     ${mixins.cardTitle}
+    position: relative; 
+    top: -3px;
     margin-bottom: 0px;
     font-size: ${sizes.s20};
     line-height: ${sizes.s24};
@@ -104,17 +109,20 @@ width: 100%;
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s24};
         line-height: ${sizes.s26};
+        top: -4px;
     }
 }
 &__category {
     font-size: ${sizes.s13};
     font-weight: 800;
     text-transform: uppercase;
-    margin-top: .667rem;
+    position: relative;
+    top: -3px;
+    margin-top: ${sizes.s8};
     color: ${colors.categoryGrey};
     line-height: ${sizes.s13};
     @media screen and ${breakpoints.tabletS} {
-        margin-top: 1rem;
+        margin-top: ${sizes.s15};
         font-size: ${sizes.s14};
         line-height: ${sizes.s14};
     }
