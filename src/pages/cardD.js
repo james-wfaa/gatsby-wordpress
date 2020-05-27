@@ -2,11 +2,11 @@ import React from "react"
 import Layout from "../../components/Layout"
 import ContentCardD from "../../components/content-blocks/ContentCardD"
 import PromoCardD from "../../components/content-blocks/PromoCardD"
-import PageSection from '../../components/page-sections/PageSection'
+import PaddedPageSection from '../../components/page-sections/PaddedPageSection'
 export default () => {
     return (
 <Layout>
-    <PageSection>
+    <PaddedPageSection>
         <h1>Card D (square tile card)</h1>
         <p>This is Card 'D' - the square tile card. These are usually found in tile grids.</p>
 
@@ -21,7 +21,7 @@ export default () => {
         category="GAME WATCH"
         venue="Keystone Sports Review" 
         location="Indianapolis, IN" 
-        url="/?"
+        url="#####"
         />
         <p>On mobile, these should be 256px wide, with an 18px padding.</p>
         <ContentCardD 
@@ -30,7 +30,7 @@ export default () => {
         category="UW NOW"
         venue="La Quinta Resort and Club" 
         location="La Quinta, CA" 
-        url="/!"
+        url="######"
         />
         <p>On tablet and larger, these should be 344px wide, with 32px padding.</p>
 
@@ -40,7 +40,7 @@ export default () => {
         category="Founder's Day"
         venue="The Lodge at Ventana Canyon" 
         location="Tucson, AZ" 
-        url="/?"
+        url="/"
         />
         <p>The date should be 24px font size in mobile, 32px at larger screen sizes.</p>
         <p>There should be 12px space between the date and title in mobile, 24px at larger sizes.</p>
@@ -50,7 +50,7 @@ export default () => {
         category="Global Hotspots"
         venue="Aquarium of the Pacific" 
         location="Long Beach, CA" 
-        url="/?"
+        url="/"
         />
         <p>There should be 12px (18px) spacing above and below the category text, and 12px (18px) above and below the red separator bar.</p>
         <p>Sometimes there is no category. If so, the red separator should go directly below the title text (same spacing rules apply).</p>
@@ -60,7 +60,7 @@ export default () => {
         title="Singapore, Thailand, Angkor Wat"
         category="Travel"
         location="Southeast Asia" 
-        url="/?"
+        url="/"
         />
         <p>The red title text should be Mrs. Eaves Narrow, Bold &amp; Italic - 20px/24px. </p>
 
@@ -70,7 +70,7 @@ export default () => {
         category="HEALTHY AGING SERIES"
         venue="Capitol Lakes Retirement Community"
         location="Madison" 
-        url="/?"
+        url="/"
         />
         <p>The category text should be 13px/14px, and boldness at "Black".</p>
         <ContentCardD 
@@ -90,7 +90,7 @@ export default () => {
         location="Madison" 
         url="/"
         />
-        <p>The date and title should be clickable links.</p>
+        <p>The date and title should present as clickable links, changing color and showing underline when the card is hovered over.</p>
 
         <ContentCardD 
         startDate="Mar. 22" 
@@ -126,6 +126,7 @@ export default () => {
         how you’d spend your snow day and we’ll guess your generation."
         url="#"
         />
+        <p>Excerpt copy should be 16px at mobile and 18px at desktop.</p>
         <ContentCardD 
         title="The Long and Winding Road from Major to Career"
         category="story"
@@ -134,6 +135,7 @@ export default () => {
         linkStyle="arrow"
         url="#"
         />
+        <p>&nbsp;</p>
         <ContentCardD 
         title="Badgering: Sasanehsaeh Pyawasay ’07, MS’09"
         category="story"
@@ -141,6 +143,8 @@ export default () => {
         advocates on behalf of Native students — particularly those from within the 12 tribes resident in Wisconsin."
         url="#"
         />
+                <p>&nbsp;</p>
+
         <ContentCardD 
         title="Proud to be a Badger: Roger Hamilton"
         category="story"
@@ -148,17 +152,21 @@ export default () => {
         and I were thrilled to see a University of Wisconsin Police vehicle. I’m proud to be a Badger!"
         url="#"
         />
+                <p>&nbsp;</p>
+
         <ContentCardD 
         title="Academy Award Badgers"
         category="story"
         excerpt="The Academy Awards nominations were just announced. Are any Badgers on the list?"
-        url="#"
+        url="#####"
         />
+                <p>&nbsp;</p>
+
         <ContentCardD 
         title="Former Fox News anchor Greta Van Susteren featured in Wisconsin Alumni Association’s Thank You, 72 podcast and radio series"
         category="podcast"
         excerpt="Outagamie County native talks about life as an attorney, broadcaster, and the &lquo; trial of the century.&rquo;"
-        url="#"
+        url="######"
         urlText="listen"
         />
         
@@ -174,7 +182,7 @@ export default () => {
         url="#"
         isNav
         />
-    </PageSection>
+    </PaddedPageSection>
     
 </Layout>
     )
