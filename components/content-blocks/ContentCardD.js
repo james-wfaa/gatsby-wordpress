@@ -65,6 +65,8 @@ width: 100%;
 }
 &__date {
     font-family: ${fonts.eaves};
+    position: relative; 
+    top: -4px;
     font-weight: bold;
     font-size: ${sizes.s24};
     font-style: italic;
@@ -73,6 +75,7 @@ width: 100%;
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s32};
         margin-bottom: ${sizes.s24};
+    
     }
 }
 &__titlesection {
@@ -96,24 +99,24 @@ width: 100%;
     ${mixins.cardTitle}
     position: relative; 
     margin-bottom: 0px;
-    top: -3px;
+    top: -4px;
     font-size: ${sizes.s20};
     text-decoration: none;
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s24};
-        margin-bottom: 0px;
-        top: -3px;
     }
 }
 &__category {
-    font-size: ${sizes.s14};
+    font-size: ${sizes.s13};
     font-weight: 800;
     text-transform: uppercase;
     margin-top: .667rem;
     color: ${colors.categoryGrey};
-    line-height: ${sizes.s14};
+    line-height: ${sizes.s13};
     @media screen and ${breakpoints.tabletS} {
         margin-top: 1rem;
+        font-size: ${sizes.s14};
+        line-height: ${sizes.s14};
     }
 }
 &__location {
@@ -121,8 +124,10 @@ width: 100%;
 }
 &__excerpt {
     font-size: ${sizes.s16};
+    line-height: ${sizes.s22};
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s18};
+        line-height: ${sizes.s26};
     }
 }
 
