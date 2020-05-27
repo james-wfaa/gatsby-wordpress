@@ -75,35 +75,35 @@ width: 100%;
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s32};
         margin-bottom: ${sizes.s24};
-    
     }
 }
 &__titlesection {
     position: relative; 
-    margin-bottom: .667rem;
-    padding-bottom: .889rem;
+    top: -4px;
+    margin-bottom: ${sizes.s8};
+    padding-bottom: ${sizes.s16};
     @media screen and ${breakpoints.tabletS} {
-        margin-bottom: 1rem;
-        padding-bottom: 1.223rem;    }
+        margin-bottom: ${sizes.s14};
+        padding-bottom: ${sizes.s22};   }
     &:after {
         position: absolute; 
         bottom: 0;
         left: 0;
-        width: 1.889rem;
-        height: .222rem;
+        width: ${sizes.s34};
+        height: ${sizes.s4};
         background-color: ${colors.titleColor};
         content: '';
     }
 }
 &__title {
     ${mixins.cardTitle}
-    position: relative; 
     margin-bottom: 0px;
-    top: -4px;
     font-size: ${sizes.s20};
+    line-height: ${sizes.s24};
     text-decoration: none;
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s24};
+        line-height: ${sizes.s26};
     }
 }
 &__category {
