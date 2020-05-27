@@ -12,6 +12,7 @@ export const sizes = {
     s16: '0.888rem',
     s18: '1rem',
     s20: '1.111rem',
+    s22: '1.222rem',
     s24: '1.333rem',
     s26: '1.444rem',
     s32: '1.778rem',
