@@ -5,6 +5,7 @@ export const fonts = {
     eavesNarrow: 'mrs-eaves-xl-serif-narrow, serif',
 }
 export const sizes = {
+    s12: '0.667rem',
     s13: '0.722rem',
     s14: '0.777rem',
     s15: '0.0.8333rem',
@@ -43,6 +44,7 @@ export const colors = {
     copyText:       baseColors.offBlack,
     titleWhite:     baseColors.white,
     bgWhite:        baseColors.white,
+    bgActiveGrey:   baseColors.lightGrey,
     promoRed:       baseColors.mainRed,
     categoryGrey:   baseColors.darkerGrey,
     tagGrey:        baseColors.darkerGrey,

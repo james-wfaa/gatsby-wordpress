@@ -21,7 +21,7 @@ export default () => {
         category="GAME WATCH"
         venue="Keystone Sports Review" 
         location="Indianapolis, IN" 
-        url="/"
+        url="/?"
         />
         <p>On mobile, these should be 256px wide, with an 18px padding.</p>
         <ContentCardD 
@@ -30,7 +30,7 @@ export default () => {
         category="UW NOW"
         venue="La Quinta Resort and Club" 
         location="La Quinta, CA" 
-        url="/"
+        url="/!"
         />
         <p>On tablet and larger, these should be 344px wide, with 32px padding.</p>
 
@@ -40,7 +40,7 @@ export default () => {
         category="Founder's Day"
         venue="The Lodge at Ventana Canyon" 
         location="Tucson, AZ" 
-        url="/"
+        url="/?"
         />
         <p>The date should be 24px font size in mobile, 32px at larger screen sizes.</p>
         <p>There should be 12px space between the date and title in mobile, 24px at larger sizes.</p>
@@ -50,7 +50,7 @@ export default () => {
         category="Global Hotspots"
         venue="Aquarium of the Pacific" 
         location="Long Beach, CA" 
-        url="/"
+        url="/?"
         />
         <p>There should be 12px (18px) spacing above and below the category text, and 12px (18px) above and below the red separator bar.</p>
         <p>Sometimes there is no category. If so, the red separator should go directly below the title text (same spacing rules apply).</p>
@@ -60,7 +60,7 @@ export default () => {
         title="Singapore, Thailand, Angkor Wat"
         category="Travel"
         location="Southeast Asia" 
-        url="/"
+        url="/?"
         />
         <p>The red title text should be Mrs. Eaves Narrow, Bold &amp; Italic - 20px/24px. </p>
 
@@ -70,7 +70,7 @@ export default () => {
         category="HEALTHY AGING SERIES"
         venue="Capitol Lakes Retirement Community"
         location="Madison" 
-        url="/"
+        url="/?"
         />
         <p>The category text should be 13px/14px, and boldness at "Black".</p>
         <ContentCardD 
