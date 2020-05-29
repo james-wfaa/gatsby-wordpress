@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { colors } from '../css-variables'
+import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import CardD from './CardD'
 
 const PromoCardD = ({ className, title, url, isNav = false })=> {
@@ -29,9 +29,35 @@ height: 100%;
 width: 100%;
 position: absolute;
 text-align: center;
+display: table;
+
+&__wrapper {
+    position: relative;
+
+    &:after {
+        position: absolute; 
+        bottom: -100px;
+        left: 230px;
+        width: 150px;
+        height: 150px;
+        background-image: repeating-linear-gradient(0deg,
+            transparent,
+            transparent 10px,
+            white 10px,
+            white 10.5px);
+        transform: rotate(-45deg);
+        overflow: hidden;
+        content: '';
+    }
+}
+
+
 a {
+    position: relative;
     color: ${colors.titleWhite};
     text-decoration: none;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 &__nav {
@@ -43,17 +69,6 @@ a {
 
 }
 
-body {
-    background-image: repeating-linear-gradient(-45deg,
-        transparent,
-        transparent 20px,
-        black 20px,
-        black 40px);
-    /* with multiple color stop lengths */
-    background-image: repeating-linear-gradient(-45deg, 
-        transparent 0 20px, 
-        black 20px 40px);
-  }
 
 
 `
