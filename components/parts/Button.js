@@ -20,14 +20,20 @@ padding: ${sizes.s16};
 text-align: center;
 text-transform: uppercase;
 text-decoration: none;
-margin: 0 ${sizes.s18};
+margin: ${sizes.s18} ${sizes.s18} 0 0 ;
+&:first-of-type {
+    margin-top: 0;
+}
+&:last-of-type {
+    margin-right: 0;
+}
 &:hover {
     background-color: ${colors.buttonHoverRed};
 }
 &:active {
     background-color: ${colors.buttonActiveGrey};
 }
-@media screen and ${breakpoints.laptopS} {
+@media screen and ${breakpoints.tabletS} {
     width: auto;
  }
 `
