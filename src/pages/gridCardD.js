@@ -3,17 +3,17 @@ import Layout from "../../components/Layout"
 import ContentCardD from "../../components/content-blocks/ContentCardD"
 import PromoCardD from "../../components/content-blocks/PromoCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
-import PaddedPageSection from '../../components/page-sections/PaddedPageSection'
-import PageSection from '../../components/page-sections/PageSection'
+import GenericPageSection from '../../components/page-sections/GenericPageSection'
+
 import MobileHr from '../../components/parts/MobileHr'
 
 export default () => {
     return (
 <Layout>
-    <PageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <GridCardD>
             <ContentCardD 
             startDate="Feb. 23" 
@@ -54,7 +54,7 @@ export default () => {
 
         </GridCardD>
        
-    </PaddedPageSection>
+    </GenericPageSection>
     
 </Layout>
     )

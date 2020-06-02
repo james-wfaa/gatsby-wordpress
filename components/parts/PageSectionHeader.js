@@ -2,10 +2,11 @@ import React from "react"
 import styled from 'styled-components'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 
-const PageSectionHeader = ({ className, heading }) => {
+const PageSectionHeader = ({ className, heading, bgimage }) => {
 
+    const classesList = bgimage ? `${className} ${className}--bgimage` : className
     return (
-        <div className={className}>
+        <div className={classesList}>
             <h2>{heading}</h2>
         </div>
     )
@@ -38,6 +39,15 @@ const StyledPageSectionHeader = styled(PageSectionHeader)`
         width: calc( ${sizes.s34} * 2 );
         background-color: ${colors.titleColor};
         content: '';
+    }
+
+    &--bgimage {
+        h2 {
+            color: ${colors.titleWhite}
+        }
+        &:after {
+            background-color: ${colors.bgWhite};
+        }
     }
 `
 

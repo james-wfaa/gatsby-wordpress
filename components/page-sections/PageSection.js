@@ -1,24 +1,58 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { colors, sizes, breakpoints } from '../css-variables'
+import BackgroundImage from 'gatsby-background-image'
+
 import PageSectionHeader from '../parts/PageSectionHeader'
 import PageSectionButtons from '../parts/PageSectionButtons'
 
-import { colors, sizes, breakpoints } from '../css-variables'
+
 
 const PageSection = ({className, preHeading, heading, buttons, alt, bgImage, children}) => {
 
-    const classes = alt ? `${className} ${className}--alt` : className
+            
+        
+    const background =  typeof bgImage !== "undefined" && bgImage !== null 
+
+    const classesList = alt ? `${className} ${className}--alt` : className
+   
     return (
-        <div className={classes}>
-             { heading && (
+        <div>
+            { ! background &&  (
+            <div className={classesList}>
+                 { heading && (
                 <PageSectionHeader heading={heading} />
-             )}
-             <div className={`${className}__content`}>
+            )}
+            <div className={`${className}__content`}>
                 {children}
-             </div>
-             { buttons && (<PageSectionButtons buttons={buttons} />
-             )}
+            </div>
+            { buttons && (<PageSectionButtons buttons={buttons} />
+            )}
+            </div>
+           
+        )}
+        { background && (
+            <BackgroundImage
+            Tag="div"
+            className={`${classesList} ${className}--bgimage`}
+            fluid={bgImage.childImageSharp.fluid}
+          >
+            
+            { heading && (
+                <PageSectionHeader heading={heading} bgimage />
+            )}
+            <div className={`${className}__content ${className}__content--bgimage`}>
+                {children}
+            </div>
+            { buttons && (<PageSectionButtons buttons={buttons} bgimage />
+            )}
+
+      </BackgroundImage>
+        )
+        }
+        
+            
         </div>
     )
 }
@@ -30,6 +64,8 @@ const StyledPageSection = styled(PageSection)`
     padding-top: 88px;
     padding-bottom: 88px;
     background-color: ${colors.bgWhite};
+
+   
     &--alt {
         background-color: ${colors.bgActiveGrey};
     }
@@ -46,6 +82,9 @@ const StyledPageSection = styled(PageSection)`
         }
         @media screen and ${breakpoints.laptopS} {
            padding: 0;
+        }
+        &--bgimage {
+            color: ${colors.bgWhite} !important;
         }
     }
    
