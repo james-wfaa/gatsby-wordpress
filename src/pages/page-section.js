@@ -9,6 +9,10 @@ const buttons1 = [
         link: '#',
         text: 'Learn More'
     },
+    {
+        link: '#',
+        text: 'Learn Even More'
+    },
     
 ]
 

@@ -11,11 +11,14 @@ const PageSection = ({className, preHeading, heading, buttons, alt, bgImage, chi
     const classes = alt ? `${className} ${className}--alt` : className
     return (
         <div className={classes}>
-             <PageSectionHeader heading={heading} />
+             { heading && (
+                <PageSectionHeader heading={heading} />
+             )}
              <div className={`${className}__content`}>
                 {children}
              </div>
-             <PageSectionButtons buttons={buttons} />
+             { buttons && (<PageSectionButtons buttons={buttons} />
+             )}
         </div>
     )
 }
