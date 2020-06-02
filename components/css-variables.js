@@ -90,6 +90,7 @@ export const breakpoints = {
     mobileM: `(min-width: ${size.mobileM})`,
     mobileL: `(min-width: ${size.mobileL})`,
     tabletS: `(min-width: ${size.tabletS})`,
+    tabletL: `(min-width: ${size.tabletL})`,
     tablet: `(min-width: ${size.tablet})`,
     laptopS: `(min-width: ${size.laptopS})`,
     laptop: `(min-width: ${size.laptop})`,

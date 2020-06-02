@@ -14,10 +14,34 @@ const GridCardD = ({className, children}) => {
 }
 
 const StyledGridCardD = styled(GridCardD)`
-Background-color: black;
-margin-right: ${sizes.s24};
-margin-left: ${sizes.s24};
 width: 256px;
+margin: 0 auto;
+display: grid;
+grid-row-gap: ${sizes.s24};
+div:nth-child(n+5) {
+    display: none;
+}
+
+@media screen and ${breakpoints.tabletS} {
+    width: 712px;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: ${sizes.s24};
+    div:nth-child(-n+6) {
+        display: block;
+    }
+    div:nth-child(n+7) {
+        display: none;
+    }
+  }
+
+@media screen and ${breakpoints.tabletL} {
+    width: 1080px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: ${sizes.s24};
+    div:nth-child(-n+9) {
+        display: block;
+    }
+}
 
 
 
