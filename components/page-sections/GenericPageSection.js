@@ -12,6 +12,7 @@ const GenericPageSection = ({className, pad, children}) => {
 }
 
 const StyledGenericPageSection = styled(GenericPageSection)`
+background-color: pink;
 &--pad {
     padding: 30px;
 }

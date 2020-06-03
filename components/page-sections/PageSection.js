@@ -37,8 +37,8 @@ const PageSection = ({className, preHeading, heading, buttons, alt, bgImage, chi
             Tag="div"
             className={`${classesList} ${className}--bgimage`}
             fluid={bgImage.childImageSharp.fluid}
-          >
-            
+            preserveStackingContext
+          ><div className="wrapper">
             { heading && (
                 <PageSectionHeader heading={heading} bgimage />
             )}
@@ -47,6 +47,9 @@ const PageSection = ({className, preHeading, heading, buttons, alt, bgImage, chi
             </div>
             { buttons && (<PageSectionButtons buttons={buttons} bgimage />
             )}
+          </div>
+            
+           
 
       </BackgroundImage>
         )
@@ -63,12 +66,20 @@ const StyledPageSection = styled(PageSection)`
     text-align: center;
     padding-top: 88px;
     padding-bottom: 88px;
-    background-color: ${colors.bgWhite};
+   
 
    
     &--alt {
         background-color: ${colors.bgActiveGrey};
     }
+    &--bgimage {
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        &:before,
+        &:after {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+        }
+    }
+       
 
     &__content {
         font-size: ${sizes.s26};
@@ -85,6 +96,7 @@ const StyledPageSection = styled(PageSection)`
         }
         &--bgimage {
             color: ${colors.bgWhite} !important;
+            
         }
     }
    
