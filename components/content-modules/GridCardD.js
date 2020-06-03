@@ -23,7 +23,7 @@ div:nth-child(n+5) {
 }
 
 @media screen and ${breakpoints.tabletS} {
-    width: 712px;
+    width: 536px;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: ${sizes.s24};
     div:nth-child(-n+6) {
@@ -35,6 +35,15 @@ div:nth-child(n+5) {
   }
 
 @media screen and ${breakpoints.tabletL} {
+    width: 816px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: ${sizes.s24};
+    div:nth-child(-n+9) {
+        display: block;
+    }
+}
+
+@media screen and ${breakpoints.laptopS} {
     width: 1080px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: ${sizes.s24};

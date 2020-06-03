@@ -106,7 +106,7 @@ export const mixins = {
         font-weight: bold;
         font-style: italic;
         color: ${colors.titleColor};
-        @media screen and ${breakpoints.tabletS} {
+        @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s32};
         }
     `,
@@ -116,7 +116,7 @@ export const mixins = {
         font-weight: bold;
         font-style: italic;
         color:   ${colors.dateColor};
-        @media screen and ${breakpoints.tabletS} {
+        @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s52};
         }
 
@@ -126,28 +126,28 @@ export const mixins = {
         font-weight: 800;
         color: ${colors.categoryGrey};
         text-transform: uppercase; 
-        @media screen and ${breakpoints.tabletS} {
+        @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s14};
         }   
     `,
     tag: `
         font-size: ${sizes.s14};
         color: ${colors.categoryGrey};
-        @media screen and ${breakpoints.tabletS} {
+        @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s15};
         } 
     `,
     venue: `
         font-size: ${sizes.s16};
         color: ${colors.cardText};
-        @media screen and ${breakpoints.tabletS} {
+        @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s18};
         } 
     `,
     location: `
         font-weight: bold;
         color: ${colors.cardText};
-        @media screen and ${breakpoints.tabletS} {
+        @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s18};
         } 
 
