@@ -14,7 +14,7 @@ const StyledCardD = styled(CardD)`
 width: 256px;
 min-height: 256px;
 position: relative;
-@media screen and ${breakpoints.tabletS} {
+@media screen and ${breakpoints.laptopS} {
     width: 344px;
     min-height: 344px;
   }

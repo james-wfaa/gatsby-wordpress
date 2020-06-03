@@ -92,12 +92,7 @@ export default () => {
 
         </GridCardD>
        
-<<<<<<< HEAD
-    </GenericPageSection>
-    
-=======
 </GenericPageSection>
->>>>>>> c9905784662cf235a3e31f813a680a2f4f47234f
 </Layout>
     )
 }
