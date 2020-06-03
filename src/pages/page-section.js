@@ -60,8 +60,13 @@ export default ({ data }) => {
        <p>Hovering over a button changes the background to #810000 and adds a drop shadow.</p>
     </PageSection>
     <PageSection heading="Background Image" buttons={buttons1} bgImage={data.gridBg} >
-        <p>The standard button style is background #c5050c, text white, 16px uppercase.</p>
-       <p>Hovering over a button changes the background to #810000 and adds a drop shadow.</p>
+        <p>A page section can also have a background image. That's pretty neat.</p>
+    </PageSection>
+    <PageSection alt buttons={buttons1} >
+        <p>Sometimes a page section doesn't have a title at all. It just goes straight into the content.</p>
+    </PageSection>
+    <PageSection heading="No Buttons"  >
+        <p>And sometimes a page section doesn't have any buttons. Just a heading and some content.</p>
     </PageSection>
 </Layout>
     )

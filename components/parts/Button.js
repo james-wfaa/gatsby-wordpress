@@ -44,6 +44,13 @@ margin: ${sizes.s24} 0 0 ;
  &--bgimage {
      border: 1px solid ${colors.bgWhite};
      background-color: transparent;
+     &:hover {
+         background-color: ${colors.buttonActiveGrey};
+     }
+     &:active {
+         color: ${colors.buttonActiveGrey};
+         background-color: ${colors.bgWhite};
+     }
  }
 `
 
