@@ -9,7 +9,7 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 
-const PageSection = ({className, preHeading, heading, buttons, alt, bgImage, children}) => {
+const PageSection = ({className, preHeading, heading, excerpt, buttons, alt, bgImage, children}) => {
 
             
         
@@ -22,7 +22,12 @@ const PageSection = ({className, preHeading, heading, buttons, alt, bgImage, chi
             { ! background &&  (
             <div className={classesList}>
                  { heading && (
-                <PageSectionHeader heading={heading} />
+                    <div className={`${className}__heading`}>
+                        <PageSectionHeader heading={heading} />
+                    </div>
+            )}
+            { excerpt && (
+                <div className={`${className}__excerpt`}  dangerouslySetInnerHTML={{ __html: excerpt }} />
             )}
             <div className={`${className}__content`}>
                 {children}
@@ -41,6 +46,9 @@ const PageSection = ({className, preHeading, heading, buttons, alt, bgImage, chi
           ><div className="wrapper">
             { heading && (
                 <PageSectionHeader heading={heading} bgimage />
+            )}
+             { excerpt && (
+                <div className={`${className}__excerpt ${className}__excerpt--bgimage`}  dangerouslySetInnerHTML={{ __html: excerpt }} />
             )}
             <div className={`${className}__content ${className}__content--bgimage`}>
                 {children}
@@ -73,15 +81,16 @@ const StyledPageSection = styled(PageSection)`
         background-color: ${colors.bgActiveGrey};
     }
     &--bgimage {
-        background-color: rgba(0, 0, 0, 0.3) !important;
+        padding-bottom: 128px;
+        /*background-color: rgba(0, 0, 0, 0.3) !important; */
         &:before,
         &:after {
-            background-color: rgba(0, 0, 0, 0.3) !important;
+            /*background-color: rgba(0, 0, 0, 0.3) !important;*/
         }
     }
        
 
-    &__content {
+    &__excerpt {
         font-size: ${sizes.s26};
         line-height: ${sizes.s36};
         max-width: 712px;
