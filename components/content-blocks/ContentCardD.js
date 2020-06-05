@@ -50,6 +50,7 @@ const ContentCardD = ({ className, startDate, endDate, title, category, venue, l
 const StyledContentCardD = styled(ContentCardD)`
 display: block;
 padding: 1rem;
+text-align: left;
 text-decoration: none;
 background-color: ${colors.bgWhite};
 opacity: 0.9;
