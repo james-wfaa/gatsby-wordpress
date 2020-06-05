@@ -2,6 +2,7 @@ import React from "react"
 import Layout from "../../components/Layout"
 import HeroIntroSection from '../../components/page-sections/HeroIntroSection'
 
+
 import MobileHr from '../../components/parts/MobileHr'
 
 
@@ -11,11 +12,10 @@ export default ({ data }) => {
 <Layout>
     <MobileHr />
     <HeroIntroSection  
-        redHeading="Basic Page Section" 
-        excerpt="<p>This Component is the main building block for most of the distinct sections of most of the top-level pages.</p>
-
-        <p>The Basic Page Section consists of a few optional header elements at the top,
-             and an optional buttons / CTA section at the end.
+        heroImage={data.heroBg}
+        jumbo
+        redHeading="Continue Your Wisconsin Experience" 
+        excerpt="<p>The Wisconsin Alumni Association is here for you to carry on as a proud Badger. It’s a community built on meeting the needs of today’s alumni. Whether you want to keep learning, celebrating traditions, or connecting with the UW, this is the place for you to Badger On.
         </p>"
         />
         
@@ -26,10 +26,11 @@ export default ({ data }) => {
 
 export const pageQuery = graphql`
 query {
-    gridBg: file(relativePath: { eq: "well-read-bucky-bg@2x.jpg" }) {
+    heroBg: file(relativePath: { eq: "pier-bg@2x.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 2000) {
+        fluid(maxWidth: 2000, quality: 100) {
           ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluidLimitPresentationSize
         }
       }
     }
