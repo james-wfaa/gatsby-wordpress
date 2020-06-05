@@ -15,6 +15,9 @@ export default () => <div>
             <Link to="/gridCardD">Card D Grid Format</Link>
         </li>
         <li>
+            <Link to="/cardA">Card A</Link>
+        </li>
+        <li>
             <Link to="/slider">Carousel</Link>
         </li>
         <li>

@@ -1,7 +1,8 @@
 import React from "react"
 import Layout from "../../components/Layout"
-import ContentCardA from "../../components/content-blocks/ContentCardD"
+import ContentCardA from "../../components/content-blocks/ContentCardA"
 import PageSection from '../../components/page-sections/PageSection'
+
 export default () => {
     return (
 <Layout>
