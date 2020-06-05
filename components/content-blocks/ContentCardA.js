@@ -13,15 +13,16 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
 
     return (
 
-        <div className={`${className}__wrapper`}>
-            { startDate && (
-                <div 
-                    className={`${className}__date date`} 
-                    dangerouslySetInnerHTML={{ __html: dateLinkText }} 
-                />
-                        
-            )}
-            <div className={`${className}__titlesection`}>
+        <div className={className}>
+            
+            <div className={`${className}__headersection`}>
+                { startDate && (
+                    <div 
+                        className={`${className}__date date`} 
+                        dangerouslySetInnerHTML={{ __html: dateLinkText }} 
+                    />
+                            
+                )}
                 { title && (
                     <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />        
                 )}
@@ -49,10 +50,27 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
 }
 
 const StyledContentCardA = styled(ContentCardA)`
+    display: block;
+    text-align: left;
+    background-color: ${colors.cardHeaderBGGrey};
     max-width: 712px;
+    min-height: 680px;
     margin: 0 auto;
-    text-align: center;
-    border: solid 1px black
+
+    &_wrapper {
+        position: relative;
+    }
+    &__date {
+        font-family: ${fonts.eaves};
+        position: relative; 
+        font-weight: bold;
+        font-size: ${sizes.s24};
+        font-style: italic;
+        color: ${colors.startDateColor};
+        @media screen and ${breakpoints.laptopS} {
+            font-size: ${sizes.s52};
+        }
+    }
 `
 
   export default StyledContentCardA

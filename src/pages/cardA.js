@@ -16,6 +16,7 @@ export default () => {
         
         <ContentCardA 
         startDate="Sept. 28" 
+        endDate="Sept. 30" 
         title="Madison Founders' Day Celebration"
         venue="One Alumni Place" 
         location="Madison" 

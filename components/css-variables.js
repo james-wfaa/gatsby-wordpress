@@ -70,6 +70,7 @@ export const colors = {
     linkTextActive: baseColors.offBlack,
     linkDateHover:  baseColors.mainRed,
     linkDateActive: baseColors.deepRed,
+    cardHeaderBGGrey: baseColors.lightestGrey,
 }
 
 export const size = {
