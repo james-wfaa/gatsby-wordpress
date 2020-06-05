@@ -1,6 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
+import {  sizes, breakpoints } from '../css-variables'
 
 
 import styled from 'styled-components'

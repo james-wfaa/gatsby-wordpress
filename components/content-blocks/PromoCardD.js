@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
+import { colors } from '../css-variables'
 import CardD from './CardD'
 
 const PromoCardD = ({ className, title, url, isNav = false })=> {

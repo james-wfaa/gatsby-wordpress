@@ -5,8 +5,11 @@ import { Link } from "gatsby"
 export default () => <div>
     <h2>Card Components</h2>
     <ul>
-    <li>
+        <li>
             <Link to="/page-section">Basic Page Section</Link>
+        </li>
+        <li>
+            <Link to="/intro-section">Intro Hero Section</Link>
         </li>
         <li>
             <Link to="/cardD">Card D</Link>

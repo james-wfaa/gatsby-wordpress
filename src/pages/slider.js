@@ -2,12 +2,12 @@ import React from "react"
 import Layout from "../../components/Layout"
 import SimpleSlider from "../../components/content-modules/SimpleSlider"
 import ContentCardD from "../../components/content-blocks/ContentCardD"
-import PageSection from '../../components/page-sections/PaddedPageSection'
+import GenericPageSection from '../../components/page-sections/GenericPageSection'
 export default () => {
     return (
 
 <Layout>
-   <PageSection>
+   <GenericPageSection>
    <h1>Here are some very preliminary carousel examples.</h1>
    <p>These carousels use a package called <a href="https://react-slick.neostack.com/docs/example/simple-slider">react-slick</a>, 
    which is a React port of <a href="http://kenwheeler.github.io/slick/">slick carousel</a>.</p>
@@ -15,7 +15,7 @@ export default () => {
    <p>By default Slide 1 is centered, which I think is probably what we want.</p>
    <p>All of the examples are using the "infinite" setting, meaning the slides continue in a loop.</p>
    <p>This first one has a 1000ms transition speed</p>
-   </PageSection>
+   </GenericPageSection>
         <SimpleSlider  className="center" slidesToShow="1" dots  centerMode variableWidth centerPadding="100px"> 
             <ContentCardD 
         startDate="Slide 1" 
@@ -62,9 +62,9 @@ export default () => {
         location="Tucson, AZ" 
         />
         </SimpleSlider>
-        <PageSection>
+        <GenericPageSection>
         <p>This next one has a 500ms transition speed</p>
-        </PageSection>
+        </GenericPageSection>
         
         <SimpleSlider  speed="500" slidesToShow="1" dots centerMode variableWidth centerPadding="10px"> 
             <ContentCardD 
@@ -115,14 +115,14 @@ export default () => {
         
     
 
-        <PageSection>
+        <GenericPageSection>
         <p>This next one has a 750ms transition speed. This one has a glitch - I have the initialSlide set to slide 5, which 
             doesn't seem to play well with the infinite scroll feature. The active slide is way offscreen, and when you click 
             the prev/next buttons it fast-forwards all the way to where the active slide is. I think the takeaway is that we 
             can't use that custom initial slide feature, and we need to just put the one we want centered as the first item 
             in the data we send.
         </p>
-        </PageSection>
+        </GenericPageSection>
         <SimpleSlider  speed="750" slidesToShow="1" initialSlide="4" centerMode dots variableWidth centerPadding="10px"> 
             <ContentCardD 
         startDate="Slide 1" 
@@ -169,7 +169,7 @@ export default () => {
         location="Tucson, AZ" 
         />
         </SimpleSlider>
-        <PageSection>
+        <GenericPageSection>
         <p>All of these are set up to show the dot navigation at mobile, and hide it at tablet+, and to hide the prev/next 
             arrow navigation at mobile and show it at tablet+.
         </p>
@@ -181,7 +181,7 @@ export default () => {
         <p>We are most likely NOT going to be able to vary the width between slides (adding extra room to accomodate the prev/next buttons, as the XD files show). We will need to work with even spacing.</p>
         <p>Other things... keyboard navigation works out of the box once you've set focus on a slide. Swiping works out of the box also. </p>
 
-        </PageSection>
+        </GenericPageSection>
         
 </Layout>
 
