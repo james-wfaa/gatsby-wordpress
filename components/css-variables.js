@@ -26,9 +26,14 @@ export const sizes = {
     s36: '2rem',
     s40: '2.222rem',
     s42: '2.333rem',
+    s45: '2.5rem',
+    s50: '2.778rem',
     s52: '2.889rem',
     s58: '3.222rem',
+    s60: '3.333rem',
+    s80: '4.444rem',
     s88: '4.889rem',
+    s100:'5.555rem',
 
 }
 export const baseColors = {

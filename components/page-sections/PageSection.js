@@ -91,8 +91,8 @@ const StyledPageSection = styled(PageSection)`
        
 
     &__excerpt {
-        font-size: ${sizes.s26};
-        line-height: ${sizes.s36};
+        font-size: ${sizes.s18};
+        line-height: ${sizes.s26};
         max-width: 712px;
         margin: 0 auto;
         padding: 0 ${sizes.s36};
@@ -102,6 +102,8 @@ const StyledPageSection = styled(PageSection)`
         }
         @media screen and ${breakpoints.laptopS} {
            padding: 0;
+           font-size: ${sizes.s26};
+           line-height: ${sizes.s36};
         }
         &--bgimage {
             color: ${colors.bgWhite} !important;
