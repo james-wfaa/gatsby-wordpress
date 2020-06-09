@@ -23,7 +23,6 @@ export default () => {
         />
         <p>On mobile, these should take the width of the screen, minus 120 pixels of margin. </p>
         <ContentCardA 
-        startDate="Feb. 26" 
         title="Coachella Valley"
         category="UW NOW"
         venue="La Quinta Resort and Club" 
