@@ -25,10 +25,12 @@ const StyledPageSectionHeader = styled(PageSectionHeader)`
         font-size: ${sizes.s36};
         line-height: ${sizes.s40};
         margin: 0;
+        padding: 0 1em;
 
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s42};
             line-height: ${sizes.s52};
+            padding: 0;
         }
     }
     &:after {
