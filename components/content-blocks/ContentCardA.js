@@ -60,8 +60,11 @@ const StyledContentCardA = styled(ContentCardA)`
     margin-right: 20px;
     border: 1px solid ${colors.cardBorder};
     border-top: 6px solid ${colors.cardBorder};
+    @media screen and ${breakpoints.tabletL} {
+        width: 528px;
+        min-height: 680px;
+    }
     @media screen and ${breakpoints.laptopS} {
-        margin: 0 auto;
         width: auto;
         max-width: 712px;
         min-height: 680px;
@@ -78,7 +81,6 @@ const StyledContentCardA = styled(ContentCardA)`
         margin: 0px;
         min-height: 80px;
         @media screen and ${breakpoints.laptopS} {
-            top: -1px;
         }
         &:after {
             position: absolute;
@@ -98,6 +100,15 @@ const StyledContentCardA = styled(ContentCardA)`
         line-height: ${sizes.s42};
         font-style: italic;
         color: ${colors.startDateColor};
+        @media screen and ${breakpoints.tabletL} {
+            font-size: ${sizes.s52};
+            top: -3px;
+            padding-top: ${sizes.s32};
+            padding-left: ${sizes.s32};
+            padding-right: ${sizes.s32};
+            padding-bottom: ${sizes.s32};
+    
+        }
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s52};
         }
@@ -113,9 +124,16 @@ const StyledContentCardA = styled(ContentCardA)`
         font-size: ${sizes.s24};
         line-height: ${sizes.s26};
         text-decoration: none;
+        @media screen and ${breakpoints.tabletL} {
+            font-size: ${sizes.s32};
+            line-height: ${sizes.s36};
+            top: -3px;
+            padding-left: ${sizes.s32};
+            padding-right: ${sizes.s32};    
+            padding-bottom: ${sizes.s32};
+    
+        }
         @media screen and ${breakpoints.laptopS} {
-            font-size: ${sizes.s24};
-            line-height: ${sizes.s26};
             top: -4px;
         }
     }
@@ -128,13 +146,12 @@ const StyledContentCardA = styled(ContentCardA)`
         position: relative;
         padding-top: ${sizes.s16};
         padding-left: ${sizes.s16};
-        padding-right: ${sizes.s16};
+        padding-right: ${sizes.s16};   
         padding-bottom: ${sizes.s16};           
         color: ${colors.categoryGrey};
-        @media screen and ${breakpoints.laptopS} {
-            margin-top: ${sizes.s15};
+        @media screen and ${breakpoints.tabletL} {
             font-size: ${sizes.s14};
-            line-height: ${sizes.s14};
+            line-height: ${sizes.s16};
         }
     }
 `
