@@ -2,10 +2,11 @@ html {
   font-family:  "Verlag A","Verlag B";
   -ms-text-size-adjust: 112.5%;
   -webkit-text-size-adjust: 112.5%;
+  scroll-behavior: smooth;
 }
 body {
   margin: 0;
-  background-color: #d0d0d0;
+  background-color: #FFF;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

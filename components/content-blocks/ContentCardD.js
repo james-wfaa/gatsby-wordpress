@@ -50,13 +50,14 @@ const ContentCardD = ({ className, startDate, endDate, title, category, venue, l
 const StyledContentCardD = styled(ContentCardD)`
 display: block;
 padding: 1rem;
+text-align: left;
 text-decoration: none;
 background-color: ${colors.bgWhite};
 opacity: 0.9;
 color: ${colors.cardText};
 min-height: 256px;
 width: 100%;
-@media screen and ${breakpoints.tabletS} {
+@media screen and ${breakpoints.laptopS} {
     padding: ${sizes.s32};
     min-height: 344px;
 }
@@ -72,7 +73,7 @@ width: 100%;
     font-style: italic;
     color: ${colors.startDateColor};
     margin-bottom: ${sizes.s7}; /* 12 - 5 for the upshift */
-    @media screen and ${breakpoints.tabletS} {
+    @media screen and ${breakpoints.laptopS} {
         font-size: ${sizes.s32};
         margin-bottom: ${sizes.s20}; /* 24 - 4 for the upshift */
         top: -4px;
@@ -83,7 +84,7 @@ width: 100%;
     top: -3px;
     margin-bottom: ${sizes.s9}; /* 12 - 3 for the up-shift */
     padding-bottom: ${sizes.s13}; /* 12 - 3 for the up-shift + 4 for the red bar */
-    @media screen and ${breakpoints.tabletS} {
+    @media screen and ${breakpoints.laptopS} {
         margin-bottom: ${sizes.s17}; /* 18 - 1 for the up-shift */
         padding-bottom: ${sizes.s21};   /* 18 + 4 for the red bar - 1 for the up-shift */
         top: -1px;
@@ -106,7 +107,7 @@ width: 100%;
     font-size: ${sizes.s20};
     line-height: ${sizes.s24};
     text-decoration: none;
-    @media screen and ${breakpoints.tabletS} {
+    @media screen and ${breakpoints.laptopS} {
         font-size: ${sizes.s24};
         line-height: ${sizes.s26};
         top: -4px;
@@ -121,7 +122,7 @@ width: 100%;
     margin-top: ${sizes.s8};
     color: ${colors.categoryGrey};
     line-height: ${sizes.s13};
-    @media screen and ${breakpoints.tabletS} {
+    @media screen and ${breakpoints.laptopS} {
         margin-top: ${sizes.s15};
         font-size: ${sizes.s14};
         line-height: ${sizes.s14};
@@ -133,7 +134,7 @@ width: 100%;
 &__excerpt {
     font-size: ${sizes.s16};
     line-height: ${sizes.s22};
-    @media screen and ${breakpoints.tabletS} {
+    @media screen and ${breakpoints.laptopS} {
         font-size: ${sizes.s18};
         line-height: ${sizes.s26};
     }
@@ -165,15 +166,6 @@ width: 100%;
 &:hover {
     box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
     opacity: 1;
-
-    .date {
-        color: ${colors.linkDateHover};
-        text-decoration: underline;
-    }
-    .title {
-        color: ${colors.linkTextHover};
-        text-decoration: underline;
-    }
     
     .readmore {
         color: ${colors.linkTextHover};

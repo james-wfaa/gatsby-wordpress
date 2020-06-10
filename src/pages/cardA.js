@@ -1,7 +1,8 @@
 import React from "react"
 import Layout from "../../components/Layout"
-import ContentCardA from "../../components/content-blocks/ContentCardD"
+import ContentCardA from "../../components/content-blocks/ContentCardA"
 import PageSection from '../../components/page-sections/PageSection'
+
 export default () => {
     return (
 <Layout>
@@ -15,13 +16,13 @@ export default () => {
         
         <ContentCardA 
         startDate="Sept. 28" 
+        endDate="Sept. 30" 
         title="Madison Founders' Day Celebration"
         venue="One Alumni Place" 
         location="Madison" 
         />
         <p>On mobile, these should take the width of the screen, minus 120 pixels of margin. </p>
         <ContentCardA 
-        startDate="Feb. 26" 
         title="Coachella Valley"
         category="UW NOW"
         venue="La Quinta Resort and Club" 

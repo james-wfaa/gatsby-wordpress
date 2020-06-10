@@ -2,17 +2,16 @@ import React from "react"
 import Layout from "../../components/Layout"
 import ContentCardD from "../../components/content-blocks/ContentCardD"
 import PromoCardD from "../../components/content-blocks/PromoCardD"
-import PaddedPageSection from '../../components/page-sections/PaddedPageSection'
-import PageSection from '../../components/page-sections/PageSection'
+import GenericPageSection from '../../components/page-sections/GenericPageSection'
 import MobileHr from '../../components/parts/MobileHr'
 
 export default () => {
     return (
 <Layout>
-    <PageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <h1>Card D (square tile card)</h1>
         <p>This is Card 'D' - the square tile card. These are usually found in tile grids.</p>
 
@@ -29,11 +28,11 @@ export default () => {
         location="Indianapolis, IN" 
         url="#####"
         />
-    </PaddedPageSection>
-    <PageSection>
+    </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <p>On mobile, these should be 256px wide, with an 18px padding.</p>
         <ContentCardD 
         startDate="Feb. 26" 
@@ -43,11 +42,11 @@ export default () => {
         location="La Quinta, CA" 
         url="######"
         />
-        </PaddedPageSection>
-    <PageSection>
+        </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         
         <p>On tablet and larger, these should be 344px wide, with 32px padding.</p>
 
@@ -59,11 +58,11 @@ export default () => {
         location="Tucson, AZ" 
         url="/"
         />
-        </PaddedPageSection>
-    <PageSection>
+    </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <p>The date should be 24px font size in mobile, 32px at larger screen sizes.</p>
         <p>There should be 12px space between the date and title in mobile, 24px at larger sizes.</p>
         <ContentCardD 
@@ -74,11 +73,11 @@ export default () => {
         location="Long Beach, CA" 
         url="/"
         />
-        </PaddedPageSection>
-    <PageSection>
+    </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <p>There should be 12px (18px) spacing above and below the category text, and 12px (18px) above and below the red separator bar.</p>
         <p>Sometimes there is no category. If so, the red separator should go directly below the title text (same spacing rules apply).</p>
         <ContentCardD 
@@ -89,11 +88,11 @@ export default () => {
         location="Southeast Asia" 
         url="/"
         />
-        </PaddedPageSection>
-    <PageSection>
+    </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <p>The red title text should be Mrs. Eaves Narrow, Bold &amp; Italic - 20px/24px. </p>
 
         <ContentCardD 
@@ -104,11 +103,11 @@ export default () => {
         location="Madison" 
         url="/"
         />
-        </PaddedPageSection>
-    <PageSection>
+        </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <p>The category text should be 13px/14px, and boldness at "Black".</p>
         <ContentCardD 
         startDate="Apr. 3" 
@@ -118,11 +117,11 @@ export default () => {
         location="Madison" 
         url="/"
         />
-        </PaddedPageSection>
-    <PageSection>
+        </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <p>Venue &amp; location lines should be 16px/18px. Location should be bold. </p>
 
         <ContentCardD 
@@ -132,11 +131,11 @@ export default () => {
         location="Madison" 
         url="/"
         />
-        </PaddedPageSection>
-    <PageSection>
+        </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <p>The date and title should present as clickable links, changing color and showing underline when the card is hovered over.</p>
 
         <ContentCardD 
@@ -147,11 +146,11 @@ export default () => {
         location="Southeast Asia" 
         url="/"
         />
-</PaddedPageSection>
-    <PageSection>
+</GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <p>Now here are some story cards.</p>
         <ContentCardD 
         title="More than Madison and Milwaukee"
@@ -160,11 +159,11 @@ export default () => {
         Tito Diaz has worked to connect multicultural students with academic success."
         url="#"
         />
-        </PaddedPageSection>
-    <PageSection>
+        </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <p>Padding should be 18px at mobile and 32px at desktop.</p>
         <ContentCardD 
         title="One on One at One Alumni Place: Deborah Blum MA’82"
@@ -174,11 +173,11 @@ export default () => {
         journalism, and Poison Squad is the university’s 2019–20 selection for Go Big Read."
         url="#"
         />
-        </PaddedPageSection>
-    <PageSection>
+        </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <p>The entire card is a clickable link; but the title should present as a clickable text link, 
             along with the "Read More" text after the excerpt.</p>
         <ContentCardD 
@@ -188,11 +187,11 @@ export default () => {
         how you’d spend your snow day and we’ll guess your generation."
         url="#"
         />
-        </PaddedPageSection>
-    <PageSection>
+        </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <p>Excerpt copy should be 16px at mobile and 18px at desktop.</p>
         <ContentCardD 
         title="The Long and Winding Road from Major to Career"
@@ -202,11 +201,11 @@ export default () => {
         linkStyle="arrow"
         url="#"
         />
-        </PaddedPageSection>
-    <PageSection>
+        </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <p>&nbsp;</p>
         <ContentCardD 
         title="Badgering: Sasanehsaeh Pyawasay ’07, MS’09"
@@ -215,11 +214,11 @@ export default () => {
         advocates on behalf of Native students — particularly those from within the 12 tribes resident in Wisconsin."
         url="#"
         />
-        </PaddedPageSection>
-    <PageSection>
+        </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
                 <p>&nbsp;</p>
 
         <ContentCardD 
@@ -231,11 +230,11 @@ export default () => {
         />
                 <p>&nbsp;</p>
 
-                </PaddedPageSection>
-    <PageSection>
+                </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <ContentCardD 
         title="Academy Award Badgers"
         category="story"
@@ -244,11 +243,11 @@ export default () => {
         />
                 <p>&nbsp;</p>
 
-                </PaddedPageSection>
-    <PageSection>
+                </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
-    <PaddedPageSection>
+    </GenericPageSection>
+    <GenericPageSection pad>
         <ContentCardD 
         title="Former Fox News anchor Greta Van Susteren featured in Wisconsin Alumni Association’s Thank You, 72 podcast and radio series"
         category="podcast"
@@ -258,10 +257,23 @@ export default () => {
         />
         
 
-        </PaddedPageSection>
-    <PageSection>
+        </GenericPageSection>
+    <GenericPageSection>
         <MobileHr />
-    </PageSection>
+    </GenericPageSection>
+
+
+    <GenericPageSection pad>
+        <PromoCardD 
+        title="Travel"
+        url="######"
+        />
+        
+
+        </GenericPageSection>
+    <GenericPageSection>
+        <MobileHr />
+    </GenericPageSection>
    
   
    

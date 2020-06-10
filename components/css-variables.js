@@ -11,9 +11,9 @@ export const sizes = {
     s9:  '0.5rem',
     s12: '0.667rem',
     s13: '0.722rem',
-    s14: '0.777rem',
+    s14: '0.778rem',
     s15: '0.8333rem',
-    s16: '0.888rem',
+    s16: '0.889rem',
     s17: '0.944rem',
     s18: '1rem',
     s20: '1.111rem',
@@ -24,8 +24,16 @@ export const sizes = {
     s32: '1.778rem',
     s34: '1.889rem',
     s36: '2rem',
+    s40: '2.222rem',
     s42: '2.333rem',
-    s52: '2.888rem',
+    s45: '2.5rem',
+    s50: '2.778rem',
+    s52: '2.889rem',
+    s58: '3.222rem',
+    s60: '3.333rem',
+    s80: '4.444rem',
+    s88: '4.889rem',
+    s100:'5.555rem',
 
 }
 export const baseColors = {
@@ -51,8 +59,13 @@ export const colors = {
     cardTags:       baseColors.darkGrey,
     copyText:       baseColors.offBlack,
     titleWhite:     baseColors.white,
+    buttonRed:      baseColors.mainRed,
+    buttonHoverRed: baseColors.deepRed,
+    buttonActiveGrey: baseColors.darkerGrey,
+    bgRed:          baseColors.mainRed,
     bgWhite:        baseColors.white,
     bgActiveGrey:   baseColors.lightGrey,
+    hoverRed:       baseColors.deepRed,
     promoRed:       baseColors.mainRed,
     categoryGrey:   baseColors.darkerGrey,
     tagGrey:        baseColors.darkerGrey,
@@ -62,6 +75,8 @@ export const colors = {
     linkTextActive: baseColors.offBlack,
     linkDateHover:  baseColors.mainRed,
     linkDateActive: baseColors.deepRed,
+    cardHeaderBGGrey: baseColors.lightestGrey,
+
 }
 
 export const size = {
@@ -82,6 +97,7 @@ export const breakpoints = {
     mobileM: `(min-width: ${size.mobileM})`,
     mobileL: `(min-width: ${size.mobileL})`,
     tabletS: `(min-width: ${size.tabletS})`,
+    tabletL: `(min-width: ${size.tabletL})`,
     tablet: `(min-width: ${size.tablet})`,
     laptopS: `(min-width: ${size.laptopS})`,
     laptop: `(min-width: ${size.laptop})`,
@@ -97,7 +113,7 @@ export const mixins = {
         font-weight: bold;
         font-style: italic;
         color: ${colors.titleColor};
-        @media screen and ${breakpoints.tabletS} {
+        @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s32};
         }
     `,
@@ -107,7 +123,7 @@ export const mixins = {
         font-weight: bold;
         font-style: italic;
         color:   ${colors.dateColor};
-        @media screen and ${breakpoints.tabletS} {
+        @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s52};
         }
 
@@ -117,28 +133,28 @@ export const mixins = {
         font-weight: 800;
         color: ${colors.categoryGrey};
         text-transform: uppercase; 
-        @media screen and ${breakpoints.tabletS} {
+        @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s14};
         }   
     `,
     tag: `
         font-size: ${sizes.s14};
         color: ${colors.categoryGrey};
-        @media screen and ${breakpoints.tabletS} {
+        @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s15};
         } 
     `,
     venue: `
         font-size: ${sizes.s16};
         color: ${colors.cardText};
-        @media screen and ${breakpoints.tabletS} {
+        @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s18};
         } 
     `,
     location: `
         font-weight: bold;
         color: ${colors.cardText};
-        @media screen and ${breakpoints.tabletS} {
+        @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s18};
         } 
 
