@@ -134,7 +134,7 @@ const StyledContentCardA = styled(ContentCardA)`
     
         }
         @media screen and ${breakpoints.laptopS} {
-            top: -4px;
+            top: -3px;
         }
     }
 
@@ -152,6 +152,8 @@ const StyledContentCardA = styled(ContentCardA)`
         @media screen and ${breakpoints.tabletL} {
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
+            padding-left: ${sizes.s32};
+            padding-right: ${sizes.s32};   
         }
     }
 `
