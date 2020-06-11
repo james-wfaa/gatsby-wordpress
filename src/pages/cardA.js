@@ -3,8 +3,8 @@ import Layout from "../../components/Layout"
 import ContentCardA from "../../components/content-blocks/ContentCardA"
 import PageSection from '../../components/page-sections/PageSection'
 
-export default () => {
-    return (
+export default ({ data }) => {
+return (
 <Layout>
     <PageSection>
         <h1>Card A (rectangular event/story card w/ 2-column bottom section)</h1>
@@ -20,13 +20,13 @@ export default () => {
         title="Madison Founders' Day Celebration"
         venue="One Alumni Place" 
         location="Madison" 
+        img={data.homeBg}
         />
         <p>On mobile, these should take the width of the screen, minus 120 pixels of margin. </p>
         <ContentCardA 
         title="Coachella Valley"
         category="UW NOW"
-        venue="La Quinta Resort and Club" 
-        location="La Quinta, CA" 
+        excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
         />
         <p>On tablet (656px) and larger, the bottom text content area (below the photo) splits to two-column. This is one of 
             the key differentiators between Card A and Card B. 
@@ -66,3 +66,15 @@ export default () => {
 </Layout>
     )
 }
+
+export const pageQuery = graphql`
+query {
+    homeBg: file(relativePath: { eq: "Feb_Richard_Davis_Web_01@2x.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 2000, quality: 100) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`

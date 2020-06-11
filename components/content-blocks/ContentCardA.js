@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
+import Img from 'gatsby-image'
 
 
 
 import styled from 'styled-components'
 
-const ContentCardA = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText }) => {
+const ContentCardA = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, caption }) => {
 
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
     const dateLinkText = endDate ? `${startDate}&nbsp;&ndash;&nbsp;${endDate}` : startDate
@@ -29,6 +30,16 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
                 )}
                 
             </div>
+            {img && (
+                <Img 
+                    className={`${className}__img`}
+                    fluid={img.childImageSharp.fluid}
+                />
+            )}
+            
+            { startDate && (
+                <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />
+            )}
             { startDate && (
                 <div className={`${className}__category`}>{category}</div>
             )}
@@ -124,6 +135,7 @@ const StyledContentCardA = styled(ContentCardA)`
         font-size: ${sizes.s24};
         line-height: ${sizes.s26};
         text-decoration: none;
+        margin: 0px;
         @media screen and ${breakpoints.tabletL} {
             font-size: ${sizes.s32};
             line-height: ${sizes.s36};
@@ -134,7 +146,7 @@ const StyledContentCardA = styled(ContentCardA)`
     
         }
         @media screen and ${breakpoints.laptopS} {
-            top: -3px;
+            top: -3Q1                               px;
         }
     }
 
@@ -154,6 +166,27 @@ const StyledContentCardA = styled(ContentCardA)`
             line-height: ${sizes.s16};
             padding-left: ${sizes.s32};
             padding-right: ${sizes.s32};   
+        }
+    }
+
+    &__excerpt {
+        font-size: ${sizes.s16};
+        line-height: ${sizes.s22};
+        padding: 32px;
+        @media screen and ${breakpoints.laptopS} {
+            font-size: ${sizes.s18};
+            line-height: ${sizes.s26};
+        }
+        &.readmore {
+            color: ${colors.titleColor};
+        }
+    }
+
+    &__img {
+        padding: 32px;
+        max-width: 344px;
+        max-height: 172px;
+        @media screen and ${breakpoints.laptopS} {
         }
     }
 `
