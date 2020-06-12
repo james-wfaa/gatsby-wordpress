@@ -65,7 +65,7 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
 const StyledContentCardA = styled(ContentCardA)`
     display: block;
     text-align: left;
-    width: 344px;
+    width: 256px;
     min-height: 503px;
     margin-left: 20px;
     margin-right: 20px;
@@ -184,9 +184,15 @@ const StyledContentCardA = styled(ContentCardA)`
 
     &__img {
         padding: 32px;
-        max-width: 344px;
+        width: 256px;
         max-height: 172px;
+        @media screen and ${breakpoints.tabletL} {
+            width: 528px;
+            min-height: 264px;
+        }
         @media screen and ${breakpoints.laptopS} {
+            width: 712px;
+            min-height: 356px;
         }
     }
 `
