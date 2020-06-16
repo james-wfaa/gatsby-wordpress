@@ -19,7 +19,8 @@ return (
         endDate="Sept. 30" 
         title="Madison Founders' Day Celebration"
         venue="One Alumni Place" 
-        location="Madison" 
+        location="Madison"         
+        category="Travel"
         img={data.homeBg}
         />
         <p>On mobile, these should take the width of the screen, minus 120 pixels of margin. </p>

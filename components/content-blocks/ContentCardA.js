@@ -38,27 +38,33 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
             )}
 
             <div className={`${className}__contentsection`}>
-                { startDate && (
-                    <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />
-                )}
-                { startDate && (
-                    <div className={`${className}__category`}>{category}</div>
-                )}
-                { venue && (
-                    <div className={`${className}__venue`}>{venue}</div>
-                )}
-                { location && (
-                    <div className={`${className}__location`}>{location}</div>
-                )}
-                { excerpt && (
-                    <div className={`${className}__excerpt excerpt`}>
-                        <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
-                        <span> </span>
-                        { url && (
-                            <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>
-                        )}
-                    </div>
-                )}
+                
+                <div className={`${className}__columnwrap`}>
+                    { startDate && (
+                        <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />
+                    )}
+                    { startDate && (
+                        <div className={`${className}__category`}>{category}</div>
+                    )}
+                    { excerpt && (
+                        <div className={`${className}__excerpt excerpt`}>
+                            <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
+                            <span> </span>
+                            { url && (
+                                <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>
+                            )}
+                        </div>
+                    )}
+                </div>
+                <div className={`${className}__columnwrap`}>
+                    { venue && (
+                        <div className={`${className}__venue`}>{venue}</div>
+                    )}
+                    { location && (
+                        <div className={`${className}__location`}>{location}</div>
+                    )}
+                </div>
+                
 
             </div>
             
@@ -84,6 +90,9 @@ const StyledContentCardA = styled(ContentCardA)`
         width: auto;
         max-width: 712px;
         min-height: 680px;
+        &__columnwrap:nth-child(1) {
+            border-right: 1px solid ${colors.cardBorder};
+        }
     }
 
     &_wrapper {
@@ -100,7 +109,7 @@ const StyledContentCardA = styled(ContentCardA)`
         min-height: 80px;
         @media screen and ${breakpoints.tabletL} {
             padding-left: ${sizes.s32};
-            padding-right: ${sizes.s32};    
+            padding-right: ${sizes.s32};
         }
         @media screen and ${breakpoints.laptopS} {
         }
@@ -169,16 +178,20 @@ const StyledContentCardA = styled(ContentCardA)`
     }
 
     &__contentsection {
-        position: relative; 
+        
         margin: 0px;
-        padding-left: ${sizes.s16};
-        padding-right: ${sizes.s16};
-        min-height: 80px;
+        padding-top: ${sizes.s16}; 
+        padding-bottom: ${sizes.s16}; 
         @media screen and ${breakpoints.tabletL} {
-            padding-left: ${sizes.s32};
-            padding-right: ${sizes.s32};    
+            padding-top: ${sizes.s32}; 
+            padding-bottom: ${sizes.s32}; 
         }
         @media screen and ${breakpoints.laptopS} {
+           padding-top: ${sizes.s32}; 
+           padding-bottom: ${sizes.s32}; 
+           display: grid;
+           grid-template-columns: 1fr 1fr;
+           grid-gap: 20px;
         }
         &:after {
             position: absolute;
@@ -186,10 +199,34 @@ const StyledContentCardA = styled(ContentCardA)`
         }
     }
 
+    &__columnwrap {
+        position: relative; 
+        padding-left: ${sizes.s16};
+        padding-right: ${sizes.s16};
+        @media screen and ${breakpoints.tabletL} {
+            padding-left: ${sizes.s32}; 
+            padding-right: ${sizes.s32};
+        }
+        @media screen and ${breakpoints.laptopS} {
+            padding-left: ${sizes.s32}; 
+            min-height: 109px;
+        }
+    }
+
+    &__venue {
+        position: ; 
+        font-size: ${sizes.s18};
+
+    }
+    &__location {
+        position: relative; 
+        font-size: ${sizes.s18};
+        font-weight: bold;
+    }
+
     &__excerpt {
         font-size: ${sizes.s16};
         line-height: ${sizes.s22};
-        padding: 32px;
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s18};
             line-height: ${sizes.s26};
