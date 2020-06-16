@@ -36,28 +36,33 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
                     fluid={img.childImageSharp.fluid}
                 />
             )}
+
+            <div className={`${className}__contentsection`}>
+                { startDate && (
+                    <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />
+                )}
+                { startDate && (
+                    <div className={`${className}__category`}>{category}</div>
+                )}
+                { venue && (
+                    <div className={`${className}__venue`}>{venue}</div>
+                )}
+                { location && (
+                    <div className={`${className}__location`}>{location}</div>
+                )}
+                { excerpt && (
+                    <div className={`${className}__excerpt excerpt`}>
+                        <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
+                        <span> </span>
+                        { url && (
+                            <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>
+                        )}
+                    </div>
+                )}
+
+            </div>
             
-            { startDate && (
-                <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />
-            )}
-            { startDate && (
-                <div className={`${className}__category`}>{category}</div>
-            )}
-            { venue && (
-                <div className={`${className}__venue`}>{venue}</div>
-            )}
-            { location && (
-                <div className={`${className}__location`}>{location}</div>
-            )}
-            { excerpt && (
-                <div className={`${className}__excerpt excerpt`}>
-                    <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
-                    <span> </span>
-                    { url && (
-                        <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>
-                    )}
-                </div>
-            )}
+            
         </div>
     )
 }
@@ -90,7 +95,13 @@ const StyledContentCardA = styled(ContentCardA)`
         position: relative; 
         background-color: ${colors.cardHeaderBGGrey};
         margin: 0px;
+        padding-left: ${sizes.s16};
+        padding-right: ${sizes.s16};
         min-height: 80px;
+        @media screen and ${breakpoints.tabletL} {
+            padding-left: ${sizes.s32};
+            padding-right: ${sizes.s32};    
+        }
         @media screen and ${breakpoints.laptopS} {
         }
         &:after {
@@ -103,8 +114,6 @@ const StyledContentCardA = styled(ContentCardA)`
         font-family: ${fonts.eaves};
         position: relative; 
         padding-top: ${sizes.s16};
-        padding-left: ${sizes.s16};
-        padding-right: ${sizes.s16};
         padding-bottom: ${sizes.s24};
         font-weight: bold;
         font-size: ${sizes.s42};
@@ -115,8 +124,6 @@ const StyledContentCardA = styled(ContentCardA)`
             font-size: ${sizes.s52};
             top: -3px;
             padding-top: ${sizes.s32};
-            padding-left: ${sizes.s32};
-            padding-right: ${sizes.s32};
             padding-bottom: ${sizes.s32};
     
         }
@@ -129,8 +136,6 @@ const StyledContentCardA = styled(ContentCardA)`
         ${mixins.cardTitle}
         position: relative; 
         top: -3px;
-        padding-left: ${sizes.s16};
-        padding-right: ${sizes.s16};
         padding-bottom: ${sizes.s24};        
         font-size: ${sizes.s24};
         line-height: ${sizes.s26};
@@ -140,13 +145,11 @@ const StyledContentCardA = styled(ContentCardA)`
             font-size: ${sizes.s32};
             line-height: ${sizes.s36};
             top: -3px;
-            padding-left: ${sizes.s32};
-            padding-right: ${sizes.s32};    
             padding-bottom: ${sizes.s32};
     
         }
         @media screen and ${breakpoints.laptopS} {
-            top: -3Q1                               px;
+            top: -3px;
         }
     }
 
@@ -157,15 +160,29 @@ const StyledContentCardA = styled(ContentCardA)`
         text-transform: uppercase;
         position: relative;
         padding-top: ${sizes.s16};
-        padding-left: ${sizes.s16};
-        padding-right: ${sizes.s16};   
         padding-bottom: ${sizes.s16};           
         color: ${colors.categoryGrey};
         @media screen and ${breakpoints.tabletL} {
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
+        }
+    }
+
+    &__contentsection {
+        position: relative; 
+        margin: 0px;
+        padding-left: ${sizes.s16};
+        padding-right: ${sizes.s16};
+        min-height: 80px;
+        @media screen and ${breakpoints.tabletL} {
             padding-left: ${sizes.s32};
-            padding-right: ${sizes.s32};   
+            padding-right: ${sizes.s32};    
+        }
+        @media screen and ${breakpoints.laptopS} {
+        }
+        &:after {
+            position: absolute;
+            content: '';
         }
     }
 
@@ -184,15 +201,12 @@ const StyledContentCardA = styled(ContentCardA)`
 
     &__img {
         padding: 32px;
-        width: 256px;
-        max-height: 172px;
+        max-width: 256px;
         @media screen and ${breakpoints.tabletL} {
-            width: 528px;
-            min-height: 264px;
+            max-width: 528px;
         }
         @media screen and ${breakpoints.laptopS} {
-            width: 712px;
-            min-height: 356px;
+            max-width: 712px;
         }
     }
 `
