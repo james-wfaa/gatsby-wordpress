@@ -7,7 +7,7 @@ import Img from 'gatsby-image'
 
 import styled from 'styled-components'
 
-const ContentCardA = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, caption }) => {
+const ContentCardA = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, caption, tags }) => {
 
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
     const dateLinkText = endDate ? `${startDate}&nbsp;&ndash;&nbsp;${endDate}` : startDate
@@ -62,6 +62,9 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
                     )}
                     { location && (
                         <div className={`${className}__location`}>{location}</div>
+                    )}
+                    { tags && (
+                        <div className={`${className}__tags`}>{tags}</div>
                     )}
                 </div>
                 
@@ -131,6 +134,7 @@ const StyledContentCardA = styled(ContentCardA)`
         color: ${colors.startDateColor};
         @media screen and ${breakpoints.tabletL} {
             font-size: ${sizes.s52};
+            line-height: ${sizes.s52};
             top: -3px;
             padding-top: ${sizes.s32};
             padding-bottom: ${sizes.s32};
@@ -138,6 +142,7 @@ const StyledContentCardA = styled(ContentCardA)`
         }
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s52};
+            line-height: ${sizes.s52};
         }
     }
 
@@ -197,6 +202,8 @@ const StyledContentCardA = styled(ContentCardA)`
             position: absolute;
             content: '';
         }
+
+        
     }
 
     &__columnwrap {
@@ -210,6 +217,9 @@ const StyledContentCardA = styled(ContentCardA)`
         @media screen and ${breakpoints.laptopS} {
             padding-left: ${sizes.s32}; 
             min-height: 109px;
+        }
+        .title {
+            padding-bottom: 0px;
         }
     }
 
