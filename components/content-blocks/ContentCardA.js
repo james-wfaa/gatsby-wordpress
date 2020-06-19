@@ -2,9 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import Img from 'gatsby-image'
-
-
-
+import TagList from "../../components/parts/TagList"
 import styled from 'styled-components'
 
 const ContentCardA = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, caption, tags }) => {
@@ -49,10 +47,6 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
                     { excerpt && (
                         <div className={`${className}__excerpt excerpt`}>
                             <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
-                            <span> </span>
-                            { url && (
-                                <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>
-                            )}
                         </div>
                     )}
                 </div>
@@ -63,8 +57,14 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
                     { location && (
                         <div className={`${className}__location`}>{location}</div>
                     )}
+                    { url && (
+                        <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>
+                    )}
                     { tags && (
-                        <div className={`${className}__tags`}>{tags}</div>
+                        <TagList
+                            className={`${className}__tag`}
+                            items={tags}
+                        />
                     )}
                 </div>
                 
@@ -80,7 +80,6 @@ const StyledContentCardA = styled(ContentCardA)`
     display: block;
     text-align: left;
     width: 256px;
-    min-height: 503px;
     margin-left: 20px;
     margin-right: 20px;
     border: 1px solid ${colors.cardBorder};
@@ -92,7 +91,6 @@ const StyledContentCardA = styled(ContentCardA)`
     @media screen and ${breakpoints.laptopS} {
         width: auto;
         max-width: 712px;
-        min-height: 680px;
         &__columnwrap:nth-child(1) {
             border-right: 1px solid ${colors.cardBorder};
         }
@@ -183,7 +181,7 @@ const StyledContentCardA = styled(ContentCardA)`
     }
 
     &__contentsection {
-        
+        position: relative;
         margin: 0px;
         padding-top: ${sizes.s16}; 
         padding-bottom: ${sizes.s16}; 
@@ -208,6 +206,9 @@ const StyledContentCardA = styled(ContentCardA)`
 
     &__columnwrap {
         position: relative; 
+        display: flex;
+        flex-flow: column;
+        height: 100%;
         padding-left: ${sizes.s16};
         padding-right: ${sizes.s16};
         @media screen and ${breakpoints.tabletL} {
@@ -232,6 +233,7 @@ const StyledContentCardA = styled(ContentCardA)`
         position: relative; 
         font-size: ${sizes.s18};
         font-weight: bold;
+        padding-bottom: ${sizes.s16};
     }
 
     &__excerpt {
@@ -255,6 +257,11 @@ const StyledContentCardA = styled(ContentCardA)`
         @media screen and ${breakpoints.laptopS} {
             max-width: 712px;
         }
+    }
+    &__tag {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
     }
 `
 

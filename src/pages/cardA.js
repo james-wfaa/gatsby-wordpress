@@ -3,6 +3,49 @@ import Layout from "../../components/Layout"
 import ContentCardA from "../../components/content-blocks/ContentCardA"
 import PageSection from '../../components/page-sections/PageSection'
 
+const taglist1 = [
+    
+  {
+      link: '#',
+      tag: 'Tag 1'
+  },
+  {
+      link: '#',
+      tag: 'Tag 2'
+  },
+  {
+      link: '#',
+      tag: 'Tag 3'
+  },
+  {
+      link: '#',
+      tag: 'Tag 4'
+  },
+  {
+      link: '#',
+      tag: 'Tag 5'
+  },
+  {
+    link: '#',
+    tag: 'Tag 6'
+  },
+  {
+    link: '#',
+    tag: 'Tag 7'
+  },
+  {
+    link: '#',
+    tag: 'Tag 8'
+  },
+  {
+    link: '#',
+    tag: 'Tag 9'
+  },
+
+
+
+]
+
 export default ({ data }) => {
 return (
 <Layout>
@@ -22,12 +65,16 @@ return (
         location="Madison"         
         category="Travel"
         img={data.homeBg}
+        tags={taglist1}
         />
         <p>On mobile, these should take the width of the screen, minus 120 pixels of margin. </p>
         <ContentCardA 
         title="Coachella Valley"
         category="UW NOW"
         excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
+        url="##"
+        tags={taglist1}
+
         />
         <p>On tablet (656px) and larger, the bottom text content area (below the photo) splits to two-column. This is one of 
             the key differentiators between Card A and Card B. 
