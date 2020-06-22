@@ -45,6 +45,30 @@ const taglist1 = [
 
 
 ]
+const taglist2 = [
+    
+  {
+      link: '#',
+      tag: 'Tag 1'
+  },
+  {
+      link: '#',
+      tag: 'Tag 2'
+  },
+  {
+      link: '#',
+      tag: 'Tag 3'
+  },
+  {
+      link: '#',
+      tag: 'Tag 4'
+  },
+
+  
+
+
+
+]
 
 export default ({ data }) => {
 return (
@@ -61,7 +85,7 @@ return (
         venue="One Alumni Place" 
         location="Madison"         
         category="Travel"
-        img={data.homeBg}
+        img={data.cardImage1}
         tags={taglist1}
         />
         <p>On mobile, these should be 256px wide and 502px tall.</p>
@@ -70,7 +94,7 @@ return (
         category="UW NOW"
         excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
         url="##"
-        tags={taglist1}
+        tags={taglist2}
 
         />
         <p>At tablet size, the card width expands to 536px. Height remains 502px. 
@@ -112,10 +136,11 @@ return (
 
 export const pageQuery = graphql`
 query {
-    homeBg: file(relativePath: { eq: "Feb_Richard_Davis_Web_01@2x.png" }) {
+    cardImage1: file(relativePath: { eq: "Feb_Richard_Davis_Web_01@2x.png" }) {
       childImageSharp {
-        fluid(maxWidth: 2000, quality: 100) {
+        fluid(maxWidth: 712, quality: 100) {
           ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluidLimitPresentationSize
         }
       }
     }
