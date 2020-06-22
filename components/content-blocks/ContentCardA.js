@@ -77,7 +77,8 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
 }
 
 const StyledContentCardA = styled(ContentCardA)`
-    display: block;
+    display: flex;
+    flex-flow: column;
     text-align: left;
     width: 256px;
     margin-left: 20px;
@@ -188,6 +189,10 @@ const StyledContentCardA = styled(ContentCardA)`
         @media screen and ${breakpoints.tabletL} {
             padding-top: ${sizes.s32}; 
             padding-bottom: ${sizes.s32}; 
+            display: flex;
+            flex-flow: column;
+            flex: 1 1 auto;
+
         }
         @media screen and ${breakpoints.laptopS} {
            padding-top: ${sizes.s32}; 
@@ -262,6 +267,7 @@ const StyledContentCardA = styled(ContentCardA)`
         display: flex;
         flex-wrap: wrap;
         align-items: flex-end;
+        margin-top: auto;
     }
 `
 
