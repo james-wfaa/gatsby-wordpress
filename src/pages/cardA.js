@@ -88,6 +88,15 @@ return (
         img={data.cardImage1}
         tags={taglist1}
         />
+        <ContentCardA 
+        startDate="Sept. 28" 
+        endDate="Sept. 30" 
+        title="Madison Founders' Day Celebration"
+        venue="One Alumni Place" 
+        location="Madison"         
+        category="Travel"
+        tags={taglist1}
+        />
         <p>On mobile, these should be 256px wide and 502px tall.</p>
         <ContentCardA 
         title="Coachella Valley"

@@ -52,10 +52,14 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
                 </div>
                 <div className={`${className}__columnwrap`}>
                     { venue && (
-                        <div className={`${className}__venue`}>{venue}</div>
-                    )}
-                    { location && (
-                        <div className={`${className}__location`}>{location}</div>
+                        <div className={`${className}__venuewrap`}>
+                        { venue && (
+                            <div className={`${className}__venue`}>{venue}</div>
+                        )}
+                        { location && (
+                            <div className={`${className}__location`}>{location}</div>
+                        )}
+                    </div>
                     )}
                     { url && (
                         <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>
@@ -199,6 +203,7 @@ const StyledContentCardA = styled(ContentCardA)`
            padding-bottom: ${sizes.s32}; 
            flex-flow: row;
         }
+        
         &:after {
             position: absolute;
             content: '';
@@ -220,10 +225,13 @@ const StyledContentCardA = styled(ContentCardA)`
         @media screen and ${breakpoints.laptopS} {
             padding-left: ${sizes.s32}; 
             width: 50%;
-            justify-content: space-between;
         }
         .title {
             padding-bottom: 0px;
+        }
+        :nth-last-child(1){
+            justify-content: space-between;
+            flex: 1 1 auto;
         }
     }
 
