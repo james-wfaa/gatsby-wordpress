@@ -197,9 +197,7 @@ const StyledContentCardA = styled(ContentCardA)`
         @media screen and ${breakpoints.laptopS} {
            padding-top: ${sizes.s32}; 
            padding-bottom: ${sizes.s32}; 
-           display: grid;
-           grid-template-columns: 1fr 1fr;
-           grid-gap: 20px;
+           flex-flow: row;
         }
         &:after {
             position: absolute;
@@ -213,7 +211,6 @@ const StyledContentCardA = styled(ContentCardA)`
         position: relative; 
         display: flex;
         flex-flow: column;
-        height: 100%;
         padding-left: ${sizes.s16};
         padding-right: ${sizes.s16};
         @media screen and ${breakpoints.tabletL} {
@@ -222,7 +219,8 @@ const StyledContentCardA = styled(ContentCardA)`
         }
         @media screen and ${breakpoints.laptopS} {
             padding-left: ${sizes.s32}; 
-            min-height: 109px;
+            width: 50%;
+            justify-content: space-between;
         }
         .title {
             padding-bottom: 0px;
@@ -263,12 +261,7 @@ const StyledContentCardA = styled(ContentCardA)`
             max-width: 712px;
         }
     }
-    &__tag {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: flex-end;
-        margin-top: auto;
-    }
+   
 `
 
   export default StyledContentCardA
