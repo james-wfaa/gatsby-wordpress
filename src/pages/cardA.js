@@ -103,7 +103,19 @@ return (
         category="UW NOW"
         excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
         url="##"
+        img={data.cardImage1}
         tags={taglist2}
+        
+
+        />
+        <p>On mobile, these should be 256px wide and 502px tall.</p>
+        <ContentCardA 
+        title="Coachella Valley"
+        category="UW NOW"
+        excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
+        url="##"
+        tags={taglist2}
+        
 
         />
         <p>At tablet size, the card width expands to 536px. Height remains 502px. 

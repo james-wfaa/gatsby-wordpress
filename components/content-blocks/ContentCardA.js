@@ -121,7 +121,19 @@ const StyledContentCardA = styled(ContentCardA)`
         }
         &:after {
             position: absolute;
+            top: 0;
+            right: -45px;
+            height: 80px;
+            width: 222px;
             content: '';
+            background-color: ${colors.bgRed} !important;
+            transform: skew(135deg);
+        }
+        &:before {
+            position: absolute;
+        
+            content: '';
+        
         }
     }
 
@@ -250,9 +262,14 @@ const StyledContentCardA = styled(ContentCardA)`
     &__excerpt {
         font-size: ${sizes.s16};
         line-height: ${sizes.s22};
+        padding-bottom: ${sizes.s16};
+        @media screen and ${breakpoints.tabletL} {
+            padding-bottom: ${sizes.s32};
+        }
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s18};
             line-height: ${sizes.s26};
+            padding-bottom: 0px;
         }
         &.readmore {
             color: ${colors.titleColor};
