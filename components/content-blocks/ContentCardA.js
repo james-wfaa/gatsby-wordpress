@@ -92,7 +92,7 @@ const StyledContentCardA = styled(ContentCardA)`
     margin-right: 20px;
     border: 1px solid ${colors.cardBorder};
     border-top: 6px solid ${colors.cardBorder};
-    @media screen and ${breakpoints.tabletL} {
+    @media screen and ${breakpoints.tabletS} {
         width: 528px;
         min-height: 680px;
     }
@@ -118,7 +118,7 @@ const StyledContentCardA = styled(ContentCardA)`
         min-height: 80px;
         overflow: hidden;
         overflow-y: visible;
-        @media screen and ${breakpoints.tabletL} {
+        @media screen and ${breakpoints.tabletS} {
             padding-left: ${sizes.s32};
             padding-right: ${sizes.s32};
         }
@@ -148,7 +148,7 @@ const StyledContentCardA = styled(ContentCardA)`
         line-height: ${sizes.s42};
         font-style: italic;
         color: ${colors.startDateColor};
-        @media screen and ${breakpoints.tabletL} {
+        @media screen and ${breakpoints.tabletS} {
             font-size: ${sizes.s52};
             line-height: ${sizes.s52};
             top: -3px;
@@ -171,7 +171,7 @@ const StyledContentCardA = styled(ContentCardA)`
         line-height: ${sizes.s26};
         text-decoration: none;
         margin: 0px;
-        @media screen and ${breakpoints.tabletL} {
+        @media screen and ${breakpoints.tabletS} {
             font-size: ${sizes.s32};
             line-height: ${sizes.s36};
             top: -3px;
@@ -192,7 +192,7 @@ const StyledContentCardA = styled(ContentCardA)`
         padding-top: ${sizes.s16};
         padding-bottom: ${sizes.s16};           
         color: ${colors.categoryGrey};
-        @media screen and ${breakpoints.tabletL} {
+        @media screen and ${breakpoints.tabletS} {
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
         }
@@ -204,18 +204,19 @@ const StyledContentCardA = styled(ContentCardA)`
         &:before {
             position: absolute;
             content: '';
-            top: -15px;
+            top: -11px;
             left: ${sizes.s24};
             height: 22px;
-            width: 10px;
+            width: 9px;
             z-index: 1;
-            border-left: 1px solid ${colors.bgRed};
-            border-right: 1px solid ${colors.bgRed};
+            border-left: 1.5px solid ${colors.bgRed};
+            border-right: 1.5px solid ${colors.bgRed};
             transform: skew(135deg);
-            @media screen and ${breakpoints.tabletL} {
+            @media screen and ${breakpoints.tabletS} {
+                top: -15px;
                 left: ${sizes.s45};
                 height: 30px;
-    
+                width: 14px;
             }
         }
     }
@@ -225,7 +226,7 @@ const StyledContentCardA = styled(ContentCardA)`
         margin: 0px;
         padding-top: ${sizes.s16}; 
         padding-bottom: ${sizes.s16}; 
-        @media screen and ${breakpoints.tabletL} {
+        @media screen and ${breakpoints.tabletS} {
             padding-top: ${sizes.s32}; 
             padding-bottom: ${sizes.s32}; 
             display: flex;
@@ -253,7 +254,7 @@ const StyledContentCardA = styled(ContentCardA)`
         flex-flow: column;
         padding-left: ${sizes.s16};
         padding-right: ${sizes.s16};
-        @media screen and ${breakpoints.tabletL} {
+        @media screen and ${breakpoints.tabletS} {
             padding-left: ${sizes.s32}; 
             padding-right: ${sizes.s32};
         }
@@ -286,7 +287,7 @@ const StyledContentCardA = styled(ContentCardA)`
         font-size: ${sizes.s16};
         line-height: ${sizes.s22};
         padding-bottom: ${sizes.s16};
-        @media screen and ${breakpoints.tabletL} {
+        @media screen and ${breakpoints.tabletS} {
             padding-bottom: ${sizes.s32};
         }
         @media screen and ${breakpoints.laptopS} {
@@ -302,7 +303,7 @@ const StyledContentCardA = styled(ContentCardA)`
     &__img {
         padding: 32px;
         max-width: 256px;
-        @media screen and ${breakpoints.tabletL} {
+        @media screen and ${breakpoints.tabletS} {
             max-width: 528px;
         }
         @media screen and ${breakpoints.laptopS} {
