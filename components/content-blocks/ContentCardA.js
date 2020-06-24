@@ -84,7 +84,8 @@ const StyledContentCardA = styled(ContentCardA)`
     display: flex;
     flex-flow: column;
     text-align: left;
-    width: 256px;
+    width: 253px;
+    min-height: 502px;
     margin-left: 20px;
     margin-right: 20px;
     border: 1px solid ${colors.cardBorder};
@@ -113,6 +114,8 @@ const StyledContentCardA = styled(ContentCardA)`
         padding-left: ${sizes.s16};
         padding-right: ${sizes.s16};
         min-height: 80px;
+        overflow: hidden;
+        overflow-y: visible;
         @media screen and ${breakpoints.tabletL} {
             padding-left: ${sizes.s32};
             padding-right: ${sizes.s32};
@@ -122,18 +125,27 @@ const StyledContentCardA = styled(ContentCardA)`
         &:after {
             position: absolute;
             top: 0;
-            right: -45px;
-            height: 80px;
-            width: 222px;
+            right: -102px;
+            height: 100%;
+            width: 300px;
             content: '';
-            background-color: ${colors.bgRed} !important;
+            background-color: ${colors.bgWhite} !important;
             transform: skew(135deg);
         }
         &:before {
             position: absolute;
-        
             content: '';
-        
+            top: 100px;
+            width: 40px;
+            height: 30px;
+            z-index: 1;
+            background-image: repeating-linear-gradient(-45deg,
+                transparent,
+                transparent 10px,
+                black 10px,
+                black 11px);
+            overflow: hidden;
+
         }
     }
 
