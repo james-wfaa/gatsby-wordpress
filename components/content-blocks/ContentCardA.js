@@ -28,54 +28,56 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
                 )}
                 
             </div>
-            {img && (
-                <Img 
-                    className={`${className}__img`}
-                    fluid={img.childImageSharp.fluid}
-                />
-            )}
+            <div className={`${className}__contentwrap`}>
+                {img && (
+                    <Img 
+                        className={`${className}__img`}
+                        fluid={img.childImageSharp.fluid}
+                    />
+                )}
 
-            <div className={`${className}__contentsection`}>
-                
-                <div className={`${className}__columnwrap`}>
-                    { startDate && (
-                        <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />
-                    )}
-                    { startDate && (
-                        <div className={`${className}__category`}>{category}</div>
-                    )}
-                    { excerpt && (
-                        <div className={`${className}__excerpt excerpt`}>
-                            <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
-                        </div>
-                    )}
-                </div>
-                <div className={`${className}__columnwrap`}>
-                    { venue && (
-                        <div className={`${className}__venuewrap`}>
-                        { venue && (
-                            <div className={`${className}__venue`}>{venue}</div>
+                <div className={`${className}__contentsection`}>
+                    
+                    <div className={`${className}__columnwrap`}>
+                        { startDate && (
+                            <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />
                         )}
-                        { location && (
-                            <div className={`${className}__location`}>{location}</div>
+                        { startDate && (
+                            <div className={`${className}__category`}>{category}</div>
+                        )}
+                        { excerpt && (
+                            <div className={`${className}__excerpt excerpt`}>
+                                <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
+                            </div>
                         )}
                     </div>
-                    )}
-                    { url && (
-                        <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>
-                    )}
-                    { tags && (
-                        <TagList
-                            className={`${className}__tag`}
-                            items={tags}
-                        />
-                    )}
+                    <div className={`${className}__columnwrap`}>
+                        { venue && (
+                            <div className={`${className}__venuewrap`}>
+                            { venue && (
+                                <div className={`${className}__venue`}>{venue}</div>
+                            )}
+                            { location && (
+                                <div className={`${className}__location`}>{location}</div>
+                            )}
+                        </div>
+                        )}
+                        { url && (
+                            <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>
+                        )}
+                        { tags && (
+                            <TagList
+                                className={`${className}__tag`}
+                                items={tags}
+                            />
+                        )}
+                    </div>
+                    
+
                 </div>
-                
 
             </div>
-            
-            
+ 
         </div>
     )
 }
@@ -121,32 +123,19 @@ const StyledContentCardA = styled(ContentCardA)`
             padding-right: ${sizes.s32};
         }
         @media screen and ${breakpoints.laptopS} {
+            &:after {
+                position: absolute;
+                top: 0;
+                right: -102px;
+                height: 100%;
+                width: 300px;
+                content: '';
+                background-color: ${colors.bgWhite} !important;
+                transform: skew(135deg);
+            }
         }
-        &:after {
-            position: absolute;
-            top: 0;
-            right: -102px;
-            height: 100%;
-            width: 300px;
-            content: '';
-            background-color: ${colors.bgWhite} !important;
-            transform: skew(135deg);
-        }
-        &:before {
-            position: absolute;
-            content: '';
-            top: 100px;
-            width: 40px;
-            height: 30px;
-            z-index: 1;
-            background-image: repeating-linear-gradient(-45deg,
-                transparent,
-                transparent 10px,
-                black 10px,
-                black 11px);
-            overflow: hidden;
-
-        }
+       
+       
     }
 
     &__date {
@@ -206,6 +195,28 @@ const StyledContentCardA = styled(ContentCardA)`
         @media screen and ${breakpoints.tabletL} {
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
+        }
+    }
+
+    &__contentwrap {
+        position: relative; 
+
+        &:before {
+            position: absolute;
+            content: '';
+            top: -15px;
+            left: ${sizes.s24};
+            height: 22px;
+            width: 10px;
+            z-index: 1;
+            border-left: 1px solid ${colors.bgRed};
+            border-right: 1px solid ${colors.bgRed};
+            transform: skew(135deg);
+            @media screen and ${breakpoints.tabletL} {
+                left: ${sizes.s45};
+                height: 30px;
+    
+            }
         }
     }
 
