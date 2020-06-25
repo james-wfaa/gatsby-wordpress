@@ -90,7 +90,8 @@ return (
         tags={taglist1}
         />
         <p>In order to be used as a "featured" card, an image must be included. If no image is present, the card 
-          can only display at the smaller mobile &amp; tablet sizes.</p>
+          can only display at the smaller mobile &amp; tablet sizes. (Note: currently the card IS rendering at 712px wide without an image. 
+          This will be modified in future deployments.</p>
         <ContentCardA 
         startDate="Sept. 28" 
         endDate="Sept. 30" 
@@ -131,7 +132,7 @@ return (
         venue="The Lodge at Ventana Canyon" 
         location="Tucson, AZ" 
         />
-        <p>At desktop (1200px) the card width expands to 712px and height becomes 680px.</p>
+        <p>At desktop (1200px) the card width expands to 712px and height remains 680px.</p>
         <ContentCardA 
         startDate="Feb. 27" 
         title="UW-Madison Nobel Prize Laureate – Jonathan Patz in Los Angeles"
@@ -139,7 +140,7 @@ return (
         venue="Aquarium of the Pacific" 
         location="Long Beach, CA" 
         />
-        <p>From that point on, the card should maintain a fixed width of 712px and the left &amp; right margins should expand evenly.</p>
+        
         
         <ContentCardA 
         startDate="Mar. 31" 
@@ -148,7 +149,7 @@ return (
         venue="Capitol Lakes Retirement Community"
         location="Madison" 
         />
-        <p>However, there is also a "super" variant that grows to a max-width of 1080px.</p>
+        <p>Not done yet: the 5/6 variant and the "1 full" variant.</p>
         
 
       
