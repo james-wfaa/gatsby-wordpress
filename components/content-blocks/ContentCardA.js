@@ -62,7 +62,7 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
                             )}
                         </div>
                         )}
-                        { url && (
+                        { excerpt && (
                             <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>
                         )}
                         { tags && (
@@ -86,7 +86,7 @@ const StyledContentCardA = styled(ContentCardA)`
     display: flex;
     flex-flow: column;
     text-align: left;
-    width: 253px;
+    width: 256px;
     min-height: 502px;
     margin-left: 20px;
     margin-right: 20px;
@@ -118,6 +118,8 @@ const StyledContentCardA = styled(ContentCardA)`
         min-height: 80px;
         overflow: hidden;
         overflow-y: visible;
+        border-bottom: 1px solid ${colors.cardHeaderBGGrey};
+
         @media screen and ${breakpoints.tabletS} {
             padding-left: ${sizes.s32};
             padding-right: ${sizes.s32};
@@ -195,12 +197,17 @@ const StyledContentCardA = styled(ContentCardA)`
         @media screen and ${breakpoints.tabletS} {
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
+            padding-bottom: ${sizes.s32};           
+
         }
     }
 
     &__contentwrap {
         position: relative; 
-
+        display: flex;
+        flex-flow: column;
+        flex: 1 1 auto;
+    
         &:before {
             position: absolute;
             content: '';
@@ -212,6 +219,7 @@ const StyledContentCardA = styled(ContentCardA)`
             border-left: 1.5px solid ${colors.bgRed};
             border-right: 1.5px solid ${colors.bgRed};
             transform: skew(135deg);
+            
             @media screen and ${breakpoints.tabletS} {
                 top: -15px;
                 left: ${sizes.s45};
@@ -224,14 +232,15 @@ const StyledContentCardA = styled(ContentCardA)`
     &__contentsection {
         position: relative;
         margin: 0px;
-        padding-top: ${sizes.s16}; 
-        padding-bottom: ${sizes.s16}; 
+        padding-top: ${sizes.s12}; 
+        padding-bottom: ${sizes.s12}; 
+        display: flex;
+        flex-flow: column;
+        flex: 1 1 auto;
         @media screen and ${breakpoints.tabletS} {
             padding-top: ${sizes.s32}; 
             padding-bottom: ${sizes.s32}; 
-            display: flex;
-            flex-flow: column;
-            flex: 1 1 auto;
+            
 
         }
         @media screen and ${breakpoints.laptopS} {
