@@ -15,12 +15,10 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
         <div className={className}>            
             <div className={`${className}__headersection`}>
                 { startDate && (
-                    <a href={url} >
-                        <div 
-                            className={`${className}__date date`} 
-                            dangerouslySetInnerHTML={{ __html: dateLinkText }} 
-                        />
-                    </a>
+                    
+                    <div className={`${className}__date date`}> 
+                        <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
+                    </div>
 
                 )}
                 { !startDate && (
@@ -46,7 +44,9 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
                     <div className={`${className}__columnwrap`}>
                         { startDate && (
                              <a href={url} >
-                                <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />
+                                <h3 className={`${className}__title title`}>
+                                    <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
+                                </h3>
                             </a>
                         )}
                         { startDate && (
@@ -70,7 +70,7 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
                         </div>
                         )}
                         { excerpt && (
-                            <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>
+                            <a href={url} className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</a>
                         )}
                         { tags && (
                             <TagList
@@ -173,17 +173,17 @@ const StyledContentCardA = styled(ContentCardA)`
             font-size: ${sizes.s52};
             line-height: ${sizes.s52};
         }
-        &:link {
+        & a:link {
             text-decoration: none;
         }
         
         /* visited link */
-        &:visited {
+        & a:visited {
             color: ${colors.linkVisitedGrey};
         }
         
         /* mouse over link */
-        &:hover {
+        & a:hover {
             color: ${colors.linkDateHover};
             text-decoration: underline;
             cursor:pointer;
@@ -191,7 +191,7 @@ const StyledContentCardA = styled(ContentCardA)`
         }
         
         /* selected link */
-        &:active {
+        & a:active {
             color: ${colors.linkDateActive};
             text-decoration: underline;
             cursor:default;
@@ -217,17 +217,17 @@ const StyledContentCardA = styled(ContentCardA)`
         @media screen and ${breakpoints.laptopS} {
             top: -3px;
         }
-        &:link {
+        & a:link {
             text-decoration: none;
         }
         
         /* visited link */
-        &:visited {
+        & a:visited {
             color: ${colors.linkVisitedGrey};
         }
         
         /* mouse over link */
-        &:hover {
+        & a:hover {
             color: ${colors.linkTextHover};
             text-decoration: underline;
             cursor:pointer;
@@ -235,7 +235,7 @@ const StyledContentCardA = styled(ContentCardA)`
         }
         
         /* selected link */
-        &:active {
+        & a:active {
             color: ${colors.linkActiveGrey};
             text-decoration: underline;
             cursor:default;
