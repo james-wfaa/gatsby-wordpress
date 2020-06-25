@@ -110,7 +110,8 @@ return (
         
 
         />
-        <p>On mobile, these should be 256px wide and 502px tall.</p>
+       <p>At tablet size, the card width expands to 528x. Height grows to 680px. 
+        </p>
         <ContentCardA 
         title="Coachella Valley"
         category="UW NOW"
@@ -120,8 +121,7 @@ return (
         
 
         />
-        <p>At tablet size, the card width expands to 536px. Height remains 502px. 
-        </p>
+ 
 
         <ContentCardA 
         startDate="Feb. 26" 
