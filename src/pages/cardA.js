@@ -74,9 +74,9 @@ export default ({ data }) => {
 return (
 <Layout>
     <PageSection>
-        <h1>Card A (rectangular event/story card w/ 2-column bottom section)</h1>
-        <p>This is Card 'A' - the largest of the Content Cards. </p>
+        <h1>Card A (feature card)</h1>
 
+<p>This Card variant is for events or stories that are "featured". On desktop screen sizes (1200px and larger), it is 712px wide by 680px tall.</p>
               
         <ContentCardA 
         startDate="Sept. 28" 
@@ -88,6 +88,8 @@ return (
         img={data.cardImage1}
         tags={taglist1}
         />
+        <p>In order to be used as a "featured" card, an image must be included. If no image is present, the card 
+          can only display at the smaller mobile &amp; tablet sizes.</p>
         <ContentCardA 
         startDate="Sept. 28" 
         endDate="Sept. 30" 
