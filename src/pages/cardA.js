@@ -86,6 +86,7 @@ return (
         location="Madison"         
         category="Travel"
         img={data.cardImage1}
+        url="##"
         tags={taglist1}
         />
         <p>In order to be used as a "featured" card, an image must be included. If no image is present, the card 

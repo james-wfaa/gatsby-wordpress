@@ -25,6 +25,7 @@ const StyledTagList = styled(TagList)`
     position: relative;
     display: inline-block;
     color: ${colors.categoryGrey};
+    text-decoration: underline;
     @media screen and ${breakpoints.tabletL} {
         font-size: ${sizes.s15};
         line-height: ${sizes.s22};

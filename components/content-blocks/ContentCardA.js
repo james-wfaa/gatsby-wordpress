@@ -15,10 +15,13 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
         <div className={className}>            
             <div className={`${className}__headersection`}>
                 { startDate && (
-                    <div 
-                        className={`${className}__date date`} 
-                        dangerouslySetInnerHTML={{ __html: dateLinkText }} 
-                    />
+                    <a href={url} >
+                        <div 
+                            className={`${className}__date date`} 
+                            dangerouslySetInnerHTML={{ __html: dateLinkText }} 
+                        />
+                    </a>
+
                 )}
                 { !startDate && (
                     <div className={`${className}__category`}>{category}</div>
@@ -30,17 +33,21 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
             </div>
             <div className={`${className}__contentwrap`}>
                 {img && (
-                    <Img 
-                        className={`${className}__img`}
-                        fluid={img.childImageSharp.fluid}
-                    />
+                    <a href={url} className={`${className}__imgzoomlink`} >
+                        <Img 
+                            className={`${className}__img`}
+                            fluid={img.childImageSharp.fluid}
+                        />
+                    </a>
                 )}
 
                 <div className={`${className}__contentsection`}>
                     
                     <div className={`${className}__columnwrap`}>
                         { startDate && (
-                            <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />
+                             <a href={url} >
+                                <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />
+                            </a>
                         )}
                         { startDate && (
                             <div className={`${className}__category`}>{category}</div>
@@ -104,6 +111,10 @@ const StyledContentCardA = styled(ContentCardA)`
         }
     }
 
+    & a{
+        text-decoration: none;
+    }
+
     &_wrapper {
         position: relative;
         
@@ -162,6 +173,29 @@ const StyledContentCardA = styled(ContentCardA)`
             font-size: ${sizes.s52};
             line-height: ${sizes.s52};
         }
+        &:link {
+            text-decoration: none;
+        }
+        
+        /* visited link */
+        &:visited {
+            color: ${colors.linkVisitedGrey};
+        }
+        
+        /* mouse over link */
+        &:hover {
+            color: ${colors.linkDateHover};
+            text-decoration: underline;
+            cursor:pointer;
+
+        }
+        
+        /* selected link */
+        &:active {
+            color: ${colors.linkDateActive};
+            text-decoration: underline;
+            cursor:default;
+        }
     }
 
     &__title {
@@ -182,6 +216,29 @@ const StyledContentCardA = styled(ContentCardA)`
         }
         @media screen and ${breakpoints.laptopS} {
             top: -3px;
+        }
+        &:link {
+            text-decoration: none;
+        }
+        
+        /* visited link */
+        &:visited {
+            color: ${colors.linkVisitedGrey};
+        }
+        
+        /* mouse over link */
+        &:hover {
+            color: ${colors.linkTextHover};
+            text-decoration: underline;
+            cursor:pointer;
+
+        }
+        
+        /* selected link */
+        &:active {
+            color: ${colors.linkActiveGrey};
+            text-decoration: underline;
+            cursor:default;
         }
     }
 
@@ -306,17 +363,71 @@ const StyledContentCardA = styled(ContentCardA)`
         }
         &.readmore {
             color: ${colors.titleColor};
+            &:link {
+                text-decoration: none;
+            }
+            
+            /* visited link */
+            &:visited {
+                color: ${colors.linkVisitedGrey};
+            }
+            
+            /* mouse over link */
+            &:hover {
+                color: ${colors.linkTextHover};
+                text-decoration: underline;
+                cursor:pointer;
+
+            }
+            
+            /* selected link */
+            &:active {
+                color: ${colors.linkActiveGrey};
+                text-decoration: underline;
+                cursor:default;
+            }
+        }
+    }
+
+    &__imgzoomlink{
+        max-width: 256px;
+        overflow: hidden;
+        @media screen and ${breakpoints.tabletS} {
+            max-width: 528px;
+        }
+        @media screen and ${breakpoints.laptopS} {
+            max-width: 712px;
         }
     }
 
     &__img {
         padding: 32px;
         max-width: 256px;
+        transition: transform .2s; /* Animation */
+        overflow: hidden;
         @media screen and ${breakpoints.tabletS} {
             max-width: 528px;
         }
         @media screen and ${breakpoints.laptopS} {
             max-width: 712px;
+        }
+        &:link {
+            text-decoration: none;
+        }
+        
+        /* visited link */
+        &:visited {
+        }
+        
+        /* mouse over link */
+        &:hover {
+            transform: scale(1.05);
+        }
+        
+        /* selected link */
+        &:active {
+            cursor:default;
+            filter: brightness(80%);
         }
     }
    
