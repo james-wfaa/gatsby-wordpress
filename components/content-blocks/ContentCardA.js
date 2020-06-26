@@ -22,7 +22,7 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
 
                 )}
                 { !startDate && (
-                    <div className={`${className}__category`}>{category}</div>
+                    <div className={`${className}__category category`}>{category}</div>
                 )}
                 { !startDate && (
                     <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />        
@@ -50,7 +50,7 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
                             </a>
                         )}
                         { startDate && (
-                            <div className={`${className}__category`}>{category}</div>
+                            <div className={`${className}__category category`}>{category}</div>
                         )}
                         { excerpt && (
                             <div className={`${className}__excerpt excerpt`}>
@@ -175,6 +175,7 @@ const StyledContentCardA = styled(ContentCardA)`
         }
         & a:link {
             text-decoration: none;
+            color: ${colors.startDateColor};
         }
         
         /* visited link */
@@ -219,6 +220,7 @@ const StyledContentCardA = styled(ContentCardA)`
         }
         & a:link {
             text-decoration: none;
+            color: ${colors.titleColor};
         }
         
         /* visited link */
@@ -254,7 +256,7 @@ const StyledContentCardA = styled(ContentCardA)`
         @media screen and ${breakpoints.tabletS} {
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
-            padding-bottom: ${sizes.s32};           
+            padding-bottom: ${sizes.s16};           
 
         }
     }
@@ -310,8 +312,6 @@ const StyledContentCardA = styled(ContentCardA)`
             position: absolute;
             content: '';
         }
-
-        
     }
 
     &__columnwrap {
@@ -331,6 +331,12 @@ const StyledContentCardA = styled(ContentCardA)`
         .title {
             padding-bottom: 0px;
         }
+        .category {
+            @media screen and ${breakpoints.tabletS} {
+                padding-bottom: ${sizes.s32};          
+            } 
+        }
+
         :nth-last-child(1){
             justify-content: space-between;
             flex: 1 1 auto;
@@ -363,6 +369,7 @@ const StyledContentCardA = styled(ContentCardA)`
         }
         &.readmore {
             color: ${colors.titleColor};
+            text-transform: uppercase;
             &:link {
                 text-decoration: none;
             }
