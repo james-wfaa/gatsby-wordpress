@@ -9,6 +9,9 @@ export default () => <div>
             <Link to="/cardA">Card A (1/3, 1/2, 2/3 sizes)</Link> (NEW)
         </li>
         <li>
+            <Link to="/communicationForm">Communication Form</Link> (NEW)
+        </li>
+        <li>
             <Link to="/page-section">Basic Page Section</Link> 
         </li>
         <li>
