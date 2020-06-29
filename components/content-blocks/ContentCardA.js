@@ -15,16 +15,14 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
         <div className={className}>            
             <div className={`${className}__headersection`}>
                 { startDate && (
-                    <a href={url} >
-                        <div 
-                            className={`${className}__date date`} 
-                            dangerouslySetInnerHTML={{ __html: dateLinkText }} 
-                        />
-                    </a>
+                    
+                    <div className={`${className}__date date`}> 
+                        <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
+                    </div>
 
                 )}
                 { !startDate && (
-                    <div className={`${className}__category`}>{category}</div>
+                    <div className={`${className}__category category`}>{category}</div>
                 )}
                 { !startDate && (
                     <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />        
@@ -46,11 +44,13 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
                     <div className={`${className}__columnwrap`}>
                         { startDate && (
                              <a href={url} >
-                                <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />
+                                <h3 className={`${className}__title title`}>
+                                    <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
+                                </h3>
                             </a>
                         )}
                         { startDate && (
-                            <div className={`${className}__category`}>{category}</div>
+                            <div className={`${className}__category category`}>{category}</div>
                         )}
                         { excerpt && (
                             <div className={`${className}__excerpt excerpt`}>
@@ -70,7 +70,7 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
                         </div>
                         )}
                         { excerpt && (
-                            <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>
+                            <a href={url} className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</a>
                         )}
                         { tags && (
                             <TagList
@@ -173,17 +173,18 @@ const StyledContentCardA = styled(ContentCardA)`
             font-size: ${sizes.s52};
             line-height: ${sizes.s52};
         }
-        &:link {
+        & a:link {
             text-decoration: none;
+            color: ${colors.startDateColor};
         }
         
         /* visited link */
-        &:visited {
+        & a:visited {
             color: ${colors.linkVisitedGrey};
         }
         
         /* mouse over link */
-        &:hover {
+        & a:hover {
             color: ${colors.linkDateHover};
             text-decoration: underline;
             cursor:pointer;
@@ -191,7 +192,7 @@ const StyledContentCardA = styled(ContentCardA)`
         }
         
         /* selected link */
-        &:active {
+        & a:active {
             color: ${colors.linkDateActive};
             text-decoration: underline;
             cursor:default;
@@ -217,17 +218,18 @@ const StyledContentCardA = styled(ContentCardA)`
         @media screen and ${breakpoints.laptopS} {
             top: -3px;
         }
-        &:link {
+        & a:link {
             text-decoration: none;
+            color: ${colors.titleColor};
         }
         
         /* visited link */
-        &:visited {
+        & a:visited {
             color: ${colors.linkVisitedGrey};
         }
         
         /* mouse over link */
-        &:hover {
+        & a:hover {
             color: ${colors.linkTextHover};
             text-decoration: underline;
             cursor:pointer;
@@ -235,7 +237,7 @@ const StyledContentCardA = styled(ContentCardA)`
         }
         
         /* selected link */
-        &:active {
+        & a:active {
             color: ${colors.linkActiveGrey};
             text-decoration: underline;
             cursor:default;
@@ -254,7 +256,7 @@ const StyledContentCardA = styled(ContentCardA)`
         @media screen and ${breakpoints.tabletS} {
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
-            padding-bottom: ${sizes.s32};           
+            padding-bottom: ${sizes.s16};           
 
         }
     }
@@ -310,8 +312,6 @@ const StyledContentCardA = styled(ContentCardA)`
             position: absolute;
             content: '';
         }
-
-        
     }
 
     &__columnwrap {
@@ -331,6 +331,12 @@ const StyledContentCardA = styled(ContentCardA)`
         .title {
             padding-bottom: 0px;
         }
+        .category {
+            @media screen and ${breakpoints.tabletS} {
+                padding-bottom: ${sizes.s32};          
+            } 
+        }
+
         :nth-last-child(1){
             justify-content: space-between;
             flex: 1 1 auto;
@@ -363,6 +369,7 @@ const StyledContentCardA = styled(ContentCardA)`
         }
         &.readmore {
             color: ${colors.titleColor};
+            text-transform: uppercase;
             &:link {
                 text-decoration: none;
             }

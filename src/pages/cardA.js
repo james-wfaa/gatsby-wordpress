@@ -99,6 +99,7 @@ return (
         venue="One Alumni Place" 
         location="Madison"         
         category="Travel"
+        url="###"
         tags={taglist1}
         />
         <p>On mobile, these should be 256px wide and 502px tall.</p>
@@ -118,7 +119,7 @@ return (
         title="Coachella Valley"
         category="UW NOW"
         excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
-        url="##"
+        url="####"
         tags={taglist2}
         
 
