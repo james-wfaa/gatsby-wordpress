@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import Img from 'gatsby-image'
-import TagList from "../../components/parts/TagList"
+import TagList from "../parts/TagList"
 import styled from 'styled-components'
 
-const ContentCardA = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, caption, tags }) => {
+const ContentCard = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, caption, tags, size }) => {
 
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
     const dateLinkText = endDate ? `${startDate}&nbsp;&ndash;&nbsp;${endDate}` : startDate
@@ -89,7 +89,7 @@ const ContentCardA = ({ className, startDate, endDate, title, category, venue, l
     )
 }
 
-const StyledContentCardA = styled(ContentCardA)`
+const StyledContentCard = styled(ContentCard)`
     display: flex;
     flex-flow: column;
     text-align: left;
@@ -440,4 +440,4 @@ const StyledContentCardA = styled(ContentCardA)`
    
 `
 
-  export default StyledContentCardA
+  export default StyledContentCard
