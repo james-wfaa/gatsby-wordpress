@@ -10,9 +10,13 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
     const dateLinkText = endDate ? `${startDate}&nbsp;&ndash;&nbsp;${endDate}` : startDate
 
+    if(!size){
+        size = "S";
+    }
+
     return (
 
-        <div className={className}>            
+        <div className={`${className} card__${size}`}>            
             <div className={`${className}__headersection`}>
                 { startDate && (
                     
