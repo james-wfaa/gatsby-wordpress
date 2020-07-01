@@ -102,6 +102,7 @@ return (
         category="Travel"
         url="###"
         tags={taglist1}
+        size="L"
         />
         <p>On mobile, these should be 256px wide and 502px tall.</p>
         <ContentCard 

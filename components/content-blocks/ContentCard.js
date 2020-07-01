@@ -7,111 +7,139 @@ import styled from 'styled-components'
 
 const ContentCard = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, caption, tags, size }) => {
 
-    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
-    const dateLinkText = endDate ? `${startDate}&nbsp;&ndash;&nbsp;${endDate}` : startDate
+    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>;
+    const dateLinkText = endDate ? `${startDate}&nbsp;&ndash;&nbsp;${endDate}` : startDate;
+    const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
 
-    if(!size){
+    if(!sizes.includes(size)){
         size = "S";
     }
 
+    var notSmall = (size != 'S') ? "notsmall" : "";
+
+
     return (
 
-        <div className={`${className} card__${size}`}>            
-            <div className={`${className}__headersection`}>
-                { startDate && (
-                    
-                    <div className={`${className}__date date`}> 
-                        <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
-                    </div>
+        <div className={`${className} ${className}__${size} ${className}__${notSmall}`}>  
+                <div className={`${className}__headersection`}>
+                    { startDate && (
+                        
+                        <div className={`${className}__date date`}> 
+                            <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
+                        </div>
 
-                )}
-                { !startDate && (
-                    <div className={`${className}__category category`}>{category}</div>
-                )}
-                { !startDate && (
-                    <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />        
-                )}
-                
-            </div>
-            <div className={`${className}__contentwrap`}>
-                {img && (
-                    <a href={url} className={`${className}__imgzoomlink`} >
-                        <Img 
-                            className={`${className}__img`}
-                            fluid={img.childImageSharp.fluid}
-                        />
-                    </a>
-                )}
-
-                <div className={`${className}__contentsection`}>
+                    )}
+                    { !startDate && (
+                        <div className={`${className}__category category`}>{category}</div>
+                    )}
+                    { !startDate && (
+                        <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />        
+                    )}
                     
-                    <div className={`${className}__columnwrap`}>
-                        { startDate && (
-                             <a href={url} >
-                                <h3 className={`${className}__title title`}>
-                                    <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
-                                </h3>
-                            </a>
-                        )}
-                        { startDate && (
-                            <div className={`${className}__category category`}>{category}</div>
-                        )}
-                        { excerpt && (
-                            <div className={`${className}__excerpt excerpt`}>
-                                <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
-                            </div>
-                        )}
-                    </div>
-                    <div className={`${className}__columnwrap`}>
-                        { venue && (
-                            <div className={`${className}__venuewrap`}>
-                            { venue && (
-                                <div className={`${className}__venue`}>{venue}</div>
+                </div>
+                <div className={`${className}__contentwrap`}>
+                    {img && (
+                        <a href={url} className={`${className}__imgzoomlink`} >
+                            <Img 
+                                className={`${className}__img`}
+                                fluid={img.childImageSharp.fluid}
+                            />
+                        </a>
+                    )}
+
+                    <div className={`${className}__contentsection`}>
+                        
+                        <div className={`${className}__columnwrap`}>
+                            { startDate && (
+                                <a href={url} >
+                                    <h3 className={`${className}__title title`}>
+                                        <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
+                                    </h3>
+                                </a>
                             )}
-                            { location && (
-                                <div className={`${className}__location`}>{location}</div>
+                            { startDate && (
+                                <div className={`${className}__category category`}>{category}</div>
+                            )}
+                            { excerpt && (
+                                <div className={`${className}__excerpt excerpt`}>
+                                    <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
+                                </div>
                             )}
                         </div>
-                        )}
-                        { excerpt && (
-                            <a href={url} className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</a>
-                        )}
-                        { tags && (
-                            <TagList
-                                className={`${className}__tag`}
-                                items={tags}
-                            />
-                        )}
+                        <div className={`${className}__columnwrap`}>
+                            { venue && (
+                                <div className={`${className}__venuewrap`}>
+                                { venue && (
+                                    <div className={`${className}__venue`}>{venue}</div>
+                                )}
+                                { location && (
+                                    <div className={`${className}__location`}>{location}</div>
+                                )}
+                            </div>
+                            )}
+                            { excerpt && (
+                                <a href={url} className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</a>
+                            )}
+                            { tags && (
+                                <TagList
+                                    className={`${className}__tag`}
+                                    items={tags}
+                                />
+                            )}
+                        </div>
+                        
+
                     </div>
-                    
 
                 </div>
-
-            </div>
  
         </div>
     )
 }
 
 const StyledContentCard = styled(ContentCard)`
+
+
+    @media screen and ${breakpoints.tabletS} {
+        &__columnwrap:nth-child(1) {
+            border-right: 1px solid ${colors.cardBorder};
+        }
+    }
+        
+
+    width: 256px;
+    min-height: 502px;
     display: flex;
     flex-flow: column;
     text-align: left;
-    width: 256px;
-    min-height: 502px;
     margin-left: 20px;
     margin-right: 20px;
     border: 1px solid ${colors.cardBorder};
     border-top: 6px solid ${colors.cardBorder};
-    @media screen and ${breakpoints.tabletS} {
-        width: 528px;
-        min-height: 680px;
+        
+    &__notsmall{
+        @media screen and ${breakpoints.tabletS} {
+            width: 528px;
+            min-height: 680px;
+
     }
-    @media screen and ${breakpoints.laptopS} {
-        width: auto;
-        max-width: 712px;
-        &__columnwrap:nth-child(1) {
-            border-right: 1px solid ${colors.cardBorder};
+    &__L{
+        }
+        @media screen and ${breakpoints.laptopS} {
+            width: auto;
+            max-width: 712px;
+        }
+    }
+    &__XL{
+        @media screen and ${breakpoints.laptopS} {
+            width: 896px;
+            max-width: 896px;
+        }
+    }
+    &__XXL{
+        @media screen and ${breakpoints.laptopS} {
+            width: 1080px;
+            max-width: 1080px;
         }
     }
 
@@ -150,9 +178,7 @@ const StyledContentCard = styled(ContentCard)`
                 background-color: ${colors.bgWhite} !important;
                 transform: skew(135deg);
             }
-        }
-       
-       
+        } 
     }
 
     &__date {
@@ -171,7 +197,7 @@ const StyledContentCard = styled(ContentCard)`
             top: -3px;
             padding-top: ${sizes.s32};
             padding-bottom: ${sizes.s32};
-    
+
         }
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s52};
@@ -217,7 +243,7 @@ const StyledContentCard = styled(ContentCard)`
             line-height: ${sizes.s36};
             top: -3px;
             padding-bottom: ${sizes.s32};
-    
+
         }
         @media screen and ${breakpoints.laptopS} {
             top: -3px;
@@ -270,7 +296,7 @@ const StyledContentCard = styled(ContentCard)`
         display: flex;
         flex-grow: 1;
         flex-direction: column;
-    
+
         &:before {
             position: absolute;
             content: '';
@@ -307,9 +333,9 @@ const StyledContentCard = styled(ContentCard)`
 
         }
         @media screen and ${breakpoints.laptopS} {
-           padding-top: ${sizes.s32}; 
-           padding-bottom: ${sizes.s32}; 
-           flex-flow: row;
+            padding-top: ${sizes.s32}; 
+            padding-bottom: ${sizes.s32}; 
+            flex-flow: row;
         }
         
         &:after {
