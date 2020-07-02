@@ -88,6 +88,7 @@ return (
         img={data.cardImage1}
         url="##"
         tags={taglist1}
+        size="XL"
         />
         <p>In order to be used as a "featured" card, an image must be included. If no image is present, the card 
           can only display at the smaller mobile &amp; tablet sizes. (Note: currently the card IS rendering at 712px wide without an image. 
@@ -101,6 +102,7 @@ return (
         category="Travel"
         url="###"
         tags={taglist1}
+        size="L"
         />
         <p>On mobile, these should be 256px wide and 502px tall.</p>
         <ContentCard 
