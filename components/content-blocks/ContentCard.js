@@ -20,20 +20,19 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
 
     return (
 
-        <div className={`${className} ${className}__${size} ${className}__${notSmall}`}>  
-                <div className={`${className}__headersection`}>
+        <div className={`${className} ${className}--${size} ${className}--${notSmall}`}>  
+                <div className={`${className}__headersection ${className}__headersection--${size} ${className}__headersection--${notSmall}`}>
                     { startDate && (
-                        
-                        <div className={`${className}__date date`}> 
+                        <div className={`${className}__date ${className}__date--${size} ${className}__date--${notSmall}`}> 
                             <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
                         </div>
 
                     )}
                     { !startDate && (
-                        <div className={`${className}__category category`}>{category}</div>
+                        <div className={`${className}__category category ${className}__category--${size} ${className}__category--${notSmall}`}>{category}</div>
                     )}
                     { !startDate && (
-                        <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />        
+                        <h3 className={`${className}__title title ${className}__title--${size} ${className}__title--${notSmall}`} dangerouslySetInnerHTML={{ __html: title }} />        
                     )}
                     
                 </div>
@@ -47,9 +46,9 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                         </a>
                     )}
 
-                    <div className={`${className}__contentsection`}>
+                    <div className={`${className}__contentsection ${className}__contentsection--${size} ${className}__contentsection--${notSmall}`}>
                         
-                        <div className={`${className}__columnwrap`}>
+                        <div className="columnwrap">
                             { startDate && (
                                 <a href={url} >
                                     <h3 className={`${className}__title title`}>
@@ -66,7 +65,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                                 </div>
                             )}
                         </div>
-                        <div className={`${className}__columnwrap`}>
+                        <div className="columnwrap">
                             { venue && (
                                 <div className={`${className}__venuewrap`}>
                                 { venue && (
@@ -99,14 +98,6 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
 
 const StyledContentCard = styled(ContentCard)`
 
-
-    @media screen and ${breakpoints.tabletS} {
-        &__columnwrap:nth-child(1) {
-            border-right: 1px solid ${colors.cardBorder};
-        }
-    }
-        
-
     width: 256px;
     min-height: 502px;
     display: flex;
@@ -116,27 +107,42 @@ const StyledContentCard = styled(ContentCard)`
     margin-right: 20px;
     border: 1px solid ${colors.cardBorder};
     border-top: 6px solid ${colors.cardBorder};
-        
-    &__notsmall{
+
+    &--notsmall{
         @media screen and ${breakpoints.tabletS} {
             width: 528px;
             min-height: 680px;
-
-    }
-    &__L{
+            .columnwrap:nth-child(1) {
+                border-right: 1px solid ${colors.cardBorder};
+            }
         }
+    }
+
+    &--S{
+        @media screen and ${breakpoints.tabletS} {
+            width: 344px;
+            max-width: 344px;
+        }
+    }  
+    &--M{
+        .columnwrap:nth-child(1) {
+            border-right: none;
+        }
+    }
+   
+    &--L{
         @media screen and ${breakpoints.laptopS} {
             width: auto;
             max-width: 712px;
         }
     }
-    &__XL{
+    &--XL{
         @media screen and ${breakpoints.laptopS} {
             width: 896px;
             max-width: 896px;
         }
     }
-    &__XXL{
+    &--XXL{
         @media screen and ${breakpoints.laptopS} {
             width: 1080px;
             max-width: 1080px;
@@ -164,20 +170,24 @@ const StyledContentCard = styled(ContentCard)`
         border-bottom: 1px solid ${colors.cardHeaderBGGrey};
 
         @media screen and ${breakpoints.tabletS} {
-            padding-left: ${sizes.s32};
-            padding-right: ${sizes.s32};
+            &--notsmall{
+                padding-left: ${sizes.s32};
+                padding-right: ${sizes.s32};
+            } 
         }
         @media screen and ${breakpoints.laptopS} {
-            &:after {
-                position: absolute;
-                top: 0;
-                right: -102px;
-                height: 100%;
-                width: 300px;
-                content: '';
-                background-color: ${colors.bgWhite} !important;
-                transform: skew(135deg);
-            }
+            &--notsmall{
+                &:after {
+                    position: absolute;
+                    top: 0;
+                    right: -102px;
+                    height: 100%;
+                    width: 300px;
+                    content: '';
+                    background-color: ${colors.bgWhite} !important;
+                    transform: skew(135deg);
+                }
+            } 
         } 
     }
 
@@ -192,16 +202,19 @@ const StyledContentCard = styled(ContentCard)`
         font-style: italic;
         color: ${colors.startDateColor};
         @media screen and ${breakpoints.tabletS} {
-            font-size: ${sizes.s52};
-            line-height: ${sizes.s52};
-            top: -3px;
-            padding-top: ${sizes.s32};
-            padding-bottom: ${sizes.s32};
-
+            &--notsmall{
+                font-size: ${sizes.s52};
+                line-height: ${sizes.s52};
+                top: -3px;
+                padding-top: ${sizes.s32};
+                padding-bottom: ${sizes.s32};
+            } 
         }
         @media screen and ${breakpoints.laptopS} {
-            font-size: ${sizes.s52};
-            line-height: ${sizes.s52};
+            &--notsmall{
+                font-size: ${sizes.s52};
+                line-height: ${sizes.s52};
+            } 
         }
         & a:link {
             text-decoration: none;
@@ -327,51 +340,60 @@ const StyledContentCard = styled(ContentCard)`
         flex-flow: column;
         flex: 1 1 auto;
         @media screen and ${breakpoints.tabletS} {
-            padding-top: ${sizes.s32}; 
-            padding-bottom: ${sizes.s32}; 
-            
+            &--notsmall{
+                padding-top: ${sizes.s32}; 
+                padding-bottom: ${sizes.s32};     
+            } 
 
         }
         @media screen and ${breakpoints.laptopS} {
-            padding-top: ${sizes.s32}; 
-            padding-bottom: ${sizes.s32}; 
-            flex-flow: row;
+            &--notsmall{
+                padding-top: ${sizes.s32}; 
+                padding-bottom: ${sizes.s32}; 
+                flex-flow: row;    
+            } 
         }
         
         &:after {
             position: absolute;
             content: '';
         }
-    }
 
-    &__columnwrap {
-        position: relative; 
-        display: flex;
-        flex-flow: column;
-        padding-left: ${sizes.s16};
-        padding-right: ${sizes.s16};
-        @media screen and ${breakpoints.tabletS} {
-            padding-left: ${sizes.s32}; 
-            padding-right: ${sizes.s32};
-        }
-        @media screen and ${breakpoints.laptopS} {
-            padding-left: ${sizes.s32}; 
-            width: 50%;
-        }
-        .title {
-            padding-bottom: 0px;
-        }
-        .category {
+        .columnwrap {
+            position: relative; 
+            display: flex;
+            flex-flow: column;
+            padding-left: ${sizes.s16};
+            padding-right: ${sizes.s16};
             @media screen and ${breakpoints.tabletS} {
-                padding-bottom: ${sizes.s32};          
-            } 
-        }
-
-        :nth-last-child(1){
-            justify-content: space-between;
-            flex: 1 1 auto;
+                &--notsmall{
+                    padding-left: ${sizes.s32}; 
+                    padding-right: ${sizes.s32};         
+                } 
+            }
+            @media screen and ${breakpoints.laptopS} {
+                &--notsmall{
+                    padding-left: ${sizes.s32}; 
+                    width: 50%;        
+                } 
+            }
+            .title {
+                padding-bottom: 0px;
+            }
+            .category {
+                @media screen and ${breakpoints.tabletS} {
+                    padding-bottom: ${sizes.s32};          
+                } 
+            }
+    
+            :nth-last-child(1){
+                justify-content: space-between;
+                flex: 1 1 auto;
+            }
         }
     }
+
+    
 
     &__venue {
         position: ; 
