@@ -1,12 +1,38 @@
 import React from 'react'
 import styled from 'styled-components'
-//import WfaaFooterMenu from './parts/WfaaFooterMenu'
+import WfaaFooterMenu from './parts/WfaaFooterMenuStatic'
 import Copyright from './parts/Copyright';
-import Crest from '../src/svg/crest.svg'
+//import Crest from '../src/svg/crest.svg'
 import { colors, mixins, sizes, breakpoints, fonts } from './css-variables'
 
 
 //import { breakpoints } from './parts/breakpoints'
+
+const navTemp = {
+  "name":"Careers at WFAA",
+  "items":[
+    {
+      "title":"Employee Benefits",
+      "url":"https://wp.advanceuw.org/benefits/"
+    },
+    {
+      "title": "Mission & Values",
+      "url": "https://wp.advanceuw.org/teams/"
+    },
+    {
+      "title":"Teams",
+      "url":"https://wp.advanceuw.org/teams/"
+    },
+    {
+      "title":"Behind the Scenes",
+      "url":"https://wp.advanceuw.org/btw/"
+    },
+    {
+      "title":"Jobs at WFAA",
+      "url":"https://wp.advanceuw.org/jobs/"
+    }
+]};
+  
 
 const StyledCrest = styled.div`
 margin: 0;
@@ -47,7 +73,9 @@ const WfaaFooter = ({ className }) =>  (
         </div>
       </div>
       <div className="footer__column">
-        
+        <WfaaFooterMenu menu={'${navTemp}'} pageLink="/about/" />
+        <WfaaFooterMenu menu={'${navTemp}'} pageLink="/careers/" />
+
       </div>
       <div className="footer__column">
         <p>
