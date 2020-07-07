@@ -64,12 +64,16 @@ const WfaaFooter = ({ className }) =>  (
           <img className="wfaa-uw-crest" src={Crest} alt="" />
         </StyledCrest>
         <div className="external-link">
-          <div>University of Wisconsin Foundation</div>
-          <a href="https://www.supportuw.org/?utm_source=advanceuw&utm_medium=referral&utm_content=footer">supportuw.org</a>
+          <div>University of Wisconsin-Madison</div>
+          <a href="https://www.wisc.edu/?utm_source=advanceuw&utm_medium=referral&utm_content=footer">wisc.edu</a>
         </div>
         <div className="external-link">
-          <div>Wisconsin Alumni Association</div>
-          <a href="https://www.uwalumni.com?utm_source=advanceuw&utm_medium=referral&utm_content=footer">uwalumni.com</a>
+          <div>University of Wisconsin Foundation and Alumni Association</div>
+          <a href="https://www.advanceuw.org?utm_source=advanceuw&utm_medium=referral&utm_content=footer">advanceuw.org</a>
+        </div>
+        <div className="external-link">
+          <div>University of Wisconsin Foundation</div>
+          <a href="https://www.supportuw.org?utm_source=advanceuw&utm_medium=referral&utm_content=footer">supportuw.org</a>
         </div>
       </div>
       <div className="footer__column">
