@@ -82,10 +82,10 @@ return (
           <li>1/2 (M): 528px wide, 2:1 image </li>
           <li>2/3 (L): 712px wide, 2:1 image</li>
           <li>5/6 (XL): 896px wide, 3:1 image</li>
-          <li>1-Full (XXL): 1200px wide, 3:1 image</li>
+          <li>1-Full (XXL): 1080px wide, 3:1 image</li>
         </ul>
         <p>At mobile (screens smaller than 656px wide), all Content Card sizes display identically at 256px wide.</p>
-        <p>At tablet (screens between 656px-199px wide), all Content Card sizes display identically at 528px wide with a 2:1 image (identical to the "M" size above)</p>
+        <p>At tablet (screens between 656px-1199px wide), all Content Card sizes display identically at 528px wide with a 2:1 image (identical to the "M" size above)</p>
         <p></p>
           <h2>1/3 (S) Content Card</h2>
           <p>This size card displays at 256px wide on mobile and 344px wide on all larger screens.</p>
@@ -191,56 +191,40 @@ return (
         <hr>
         
         </hr>
-<p></p>
+        <h2>5/6 (XL) Content Card</h2>
+<p>This size card displays at 256px wide on mobile, 528px wide at tablet, and 896px on all larger screens.</p>
+<p>At desktop size, this size has an image with a 3:1 aspect ratio (896 x 298). At smaller sizes, the card will use the standard 2:1 image size. </p>
+<p>Event Card (XL):</p>
+        <ContentCard 
+        startDate="Apr. 29" 
+        endDate="May 3"
+        title="The Kentucky Derby"
+        category="Athletic Travel"
+        venue="Churchill Downs"
+        location="Louisville, KY" 
+        img={data.cardImage5}
+        featureImg={data.cardImage4}
+        size="XL"
+        />
 
+
+<h2>1-Full (XXL) Content Card</h2>
+<p>This size card displays at 256px wide on mobile, 528px wide at tablet, and 1080px on all larger screens.</p>
+<p>At desktop size, this size has an image with a 3:1 aspect ratio (1080 x 360). At smaller sizes, the card will use the standard 2:1 image size. </p>
+<p>Event Card (XXL):</p>
+        <ContentCard 
+        startDate="Apr. 29" 
+        endDate="May 3"
+        title="The Kentucky Derby"
+        category="Athletic Travel"
+        venue="Churchill Downs"
+        location="Louisville, KY" 
+        img={data.cardImage5}
+        featureImg={data.cardImage4}
+        size="XXL"
+        />
       
         
-        <p>Not done yet: the 5/6 variant and the "1 full" variant.</p>
-        <h2>5/6 (XL) Content Card</h2>
-        <p>This size card displays at 256px wide on mobile, 528px wide at tablet, and 896px on all larger screens.</p>
-        <ContentCard 
-        title="Coachella Valley"
-        category="UW NOW"
-        excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
-        url="##"
-        img={data.cardImage1}
-        tags={taglist2}
-        size="XL"
-        />
-        <p>Event Card (L):</p>
-        <ContentCard 
-        startDate="Apr. 3" 
-        title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin and around the World"
-        category="Global Hot Spots"
-        venue="Fluno Center"
-        location="Madison" 
-        img={data.cardImage3}
-        size="XL"
-        />
-
-        <p></p>
-
-        <h2>1 full (XXL) Content Card</h2>
-        <p>This size card displays at 256px wide on mobile, 528px wide at tablet, and 1080px on all larger screens.</p>
-        <ContentCard 
-        title="Coachella Valley"
-        category="UW NOW"
-        excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
-        url="##"
-        img={data.cardImage1}
-        tags={taglist2}
-        size="XXL"
-        />
-        <p>Event Card (L):</p>
-        <ContentCard 
-        startDate="Apr. 3" 
-        title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin and around the World"
-        category="Global Hot Spots"
-        venue="Fluno Center"
-        location="Madison" 
-        img={data.cardImage3}
-        size="XXL"
-        />
         
 
       
@@ -254,22 +238,40 @@ export const pageQuery = graphql`
 query {
     cardImage1: file(relativePath: { eq: "Feb_Richard_Davis_Web_01@2x.png" }) {
       childImageSharp {
-        fluid(maxWidth: 1080, quality: 100) {
+        fluid(maxWidth: 720, quality: 100) {
           ...GatsbyImageSharpFluid
         }
       }
     }
     cardImage2: file(relativePath: { eq: "12_DutchWaterways_header@2x.png" }) {
       childImageSharp {
-        fluid(maxWidth: 1080, quality: 100) {
+        fluid(maxWidth: 720, quality: 100) {
           ...GatsbyImageSharpFluid
         }
       }
     }
     cardImage3: file(relativePath: { eq: "17LEARN_JakeWood_manis_29.png" }) {
       childImageSharp {
+        fluid(maxWidth: 720, quality: 100) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    cardImage4: file(relativePath: { eq: "lead_720_405@2x.png" }) {
+      childImageSharp {
         fluid(maxWidth: 1080, quality: 100) {
           ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluidLimitPresentationSize
+
+        }
+      }
+    }
+    cardImage5: file(relativePath: { eq: "lead_720_405-2-1-a@2x.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 712,  quality: 100) {
+          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluidLimitPresentationSize
+
         }
       }
     }
