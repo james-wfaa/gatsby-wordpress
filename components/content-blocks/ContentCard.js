@@ -197,13 +197,37 @@ const StyledContentCard = styled(ContentCard)`
             padding-right: ${sizes.s32};
         }
         @media screen and ${breakpoints.laptopS} {
-            &--L, &--XL, &--XXL{
+            &--L{
                 &:after {
                     position: absolute;
                     top: 0;
                     right: -102px;
                     height: 100%;
                     width: 300px;
+                    content: '';
+                    background-color: ${colors.bgWhite} !important;
+                    transform: skew(135deg);
+                }
+            } 
+            &--XL{
+                &:after {
+                    position: absolute;
+                    top: 0;
+                    right: -60px;
+                    height: 100%;
+                    width: 350px;
+                    content: '';
+                    background-color: ${colors.bgWhite} !important;
+                    transform: skew(135deg);
+                }
+            } 
+            &--XXL{
+                &:after {
+                    position: absolute;
+                    top: 0;
+                    right: -60px;
+                    height: 100%;
+                    width: 450px;
                     content: '';
                     background-color: ${colors.bgWhite} !important;
                     transform: skew(135deg);
