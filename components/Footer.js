@@ -73,8 +73,8 @@ const WfaaFooter = ({ className }) =>  (
         </div>
       </div>
       <div className="footer__column">
-        <WfaaFooterMenu menu={'${navTemp}'} pageLink="/about/" />
-        <WfaaFooterMenu menu={'${navTemp}'} pageLink="/careers/" />
+        <WfaaFooterMenu menu={navTemp} pageLink="/about/" />
+        <WfaaFooterMenu menu={navTemp} pageLink="/careers/" />
 
       </div>
       <div className="footer__column">

@@ -6,7 +6,7 @@ export default () => <div>
     <h2>Card Components</h2>
     <ul>
         <li>
-            <Link to="/cardA">Card A (1/3, 1/2, 2/3 sizes)</Link> (NEW)
+            <Link to="/contentCard">Content Card (1/3, 1/2, 2/3 sizes)</Link> (NEW)
         </li>
         <li>
             <Link to="/communicationForm">Communication Form</Link> (NEW)
