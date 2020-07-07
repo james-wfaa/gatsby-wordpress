@@ -48,40 +48,40 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
 
                     <div className={`${className}__contentsection ${className}__contentsection--${size} ${className}__contentsection--${notSmall}`}>
                         
-                        <div className="columnwrap">
+                        <div className={`${className}__columnwrap columnwrap columnwrap--${size} columnwrap--${notSmall}`}>
                             { startDate && (
                                 <a href={url} >
-                                    <h3 className={`${className}__title title`}>
+                                    <h3 className={`${className}__title title ${className}__title--${size} ${className}__title--${notSmall}`}>
                                         <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
                                     </h3>
                                 </a>
                             )}
                             { startDate && (
-                                <div className={`${className}__category category`}>{category}</div>
+                                <div className={`${className}__category category ${className}__category--${size} ${className}__category--${notSmall}`}>{category}</div>
                             )}
                             { excerpt && (
-                                <div className={`${className}__excerpt excerpt`}>
+                                <div className={`${className}__excerpt excerpt ${className}__excerpt--${size} ${className}__excerpt--${notSmall}`}>
                                     <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
                                 </div>
                             )}
                         </div>
-                        <div className="columnwrap">
+                        <div className={`${className}__columnwrap columnwrap columnwrap--${size} columnwrap--${notSmall}`}>
                             { venue && (
-                                <div className={`${className}__venuewrap`}>
+                                <div className={`${className}__venuewrap venuewrap ${className}__venuewrap--${size} ${className}__venuewrap--${notSmall}`}>
                                 { venue && (
-                                    <div className={`${className}__venue`}>{venue}</div>
+                                    <div className={`${className}__venue venue ${className}__venue--${size} ${className}__venue--${notSmall}`}>{venue}</div>
                                 )}
                                 { location && (
-                                    <div className={`${className}__location`}>{location}</div>
+                                    <div className={`${className}__location location ${className}__location--${size} ${className}__location--${notSmall}`}>{location}</div>
                                 )}
                             </div>
                             )}
                             { excerpt && (
-                                <a href={url} className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</a>
+                                <a href={url} className={`${className}__excerpt excerpt ${className}__excerpt--${size} ${className}__excerpt--${notSmall} readmore`}>{moreLinkText}</a>
                             )}
                             { tags && (
                                 <TagList
-                                    className={`${className}__tag`}
+                                    className={`${className}__tag tag ${className}__tag--${size} ${className}__tag--${notSmall}`}
                                     items={tags}
                                 />
                             )}
@@ -370,9 +370,10 @@ const StyledContentCard = styled(ContentCard)`
             }
             @media screen and ${breakpoints.laptopS} {
                 &--L, &--XL, &--XXL{
-                    padding-left: ${sizes.s32}; 
                     width: 50%;        
+                    padding-left: ${sizes.s32}; 
                 } 
+
             }
             .title {
                 padding-bottom: 0px;
