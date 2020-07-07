@@ -65,40 +65,40 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
 
                     <div className={`${className}__contentsection ${className}__contentsection--${size} ${className}__contentsection--${notSmall}`}>
                         
-                        <div className="columnwrap">
+                        <div className={`${className}__columnwrap columnwrap columnwrap--${size} columnwrap--${notSmall}`}>
                             { startDate && (
                                 <a href={url} >
-                                    <h3 className={`${className}__title title`}>
+                                    <h3 className={`${className}__title title ${className}__title--${size} ${className}__title--${notSmall}`}>
                                         <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
                                     </h3>
                                 </a>
                             )}
                             { startDate && (
-                                <div className={`${className}__category category`}>{category}</div>
+                                <div className={`${className}__category category ${className}__category--${size} ${className}__category--${notSmall}`}>{category}</div>
                             )}
                             { excerpt && (
-                                <div className={`${className}__excerpt excerpt`}>
+                                <div className={`${className}__excerpt excerpt ${className}__excerpt--${size} ${className}__excerpt--${notSmall}`}>
                                     <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
                                 </div>
                             )}
                         </div>
-                        <div className="columnwrap">
+                        <div className={`${className}__columnwrap columnwrap columnwrap--${size} columnwrap--${notSmall}`}>
                             { venue && (
-                                <div className={`${className}__venuewrap`}>
+                                <div className={`${className}__venuewrap venuewrap ${className}__venuewrap--${size} ${className}__venuewrap--${notSmall}`}>
                                 { venue && (
-                                    <div className={`${className}__venue`}>{venue}</div>
+                                    <div className={`${className}__venue venue ${className}__venue--${size} ${className}__venue--${notSmall}`}>{venue}</div>
                                 )}
                                 { location && (
-                                    <div className={`${className}__location`}>{location}</div>
+                                    <div className={`${className}__location location ${className}__location--${size} ${className}__location--${notSmall}`}>{location}</div>
                                 )}
                             </div>
                             )}
                             { excerpt && (
-                                <a href={url} className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</a>
+                                <a href={url} className={`${className}__excerpt excerpt ${className}__excerpt--${size} ${className}__excerpt--${notSmall} readmore`}>{moreLinkText}</a>
                             )}
                             { tags && (
                                 <TagList
-                                    className={`${className}__tag`}
+                                    className={`${className}__tag tag ${className}__tag--${size} ${className}__tag--${notSmall}`}
                                     items={tags}
                                 />
                             )}
@@ -124,6 +124,9 @@ const StyledContentCard = styled(ContentCard)`
     margin-right: 20px;
     border: 1px solid ${colors.cardBorder};
     border-top: 6px solid ${colors.cardBorder};
+    background-color: ${colors.bgWhite};
+    opacity: 0.9;
+
 
     &--notsmall{
         @media screen and ${breakpoints.tabletS} {
@@ -187,13 +190,11 @@ const StyledContentCard = styled(ContentCard)`
         border-bottom: 1px solid ${colors.cardHeaderBGGrey};
 
         @media screen and ${breakpoints.tabletS} {
-            &--notsmall{
-                padding-left: ${sizes.s32};
-                padding-right: ${sizes.s32};
-            } 
+            padding-left: ${sizes.s32};
+            padding-right: ${sizes.s32};
         }
         @media screen and ${breakpoints.laptopS} {
-            &--notsmall{
+            &--L, &--XL, &--XXL{
                 &:after {
                     position: absolute;
                     top: 0;
@@ -219,13 +220,11 @@ const StyledContentCard = styled(ContentCard)`
         font-style: italic;
         color: ${colors.startDateColor};
         @media screen and ${breakpoints.tabletS} {
-            &--notsmall{
-                font-size: ${sizes.s52};
-                line-height: ${sizes.s52};
-                top: -3px;
-                padding-top: ${sizes.s32};
-                padding-bottom: ${sizes.s32};
-            } 
+            font-size: ${sizes.s52};
+            line-height: ${sizes.s52};
+            top: -3px;
+            padding-top: ${sizes.s32};
+            padding-bottom: ${sizes.s32};
         }
         @media screen and ${breakpoints.laptopS} {
             &--notsmall{
@@ -276,7 +275,9 @@ const StyledContentCard = styled(ContentCard)`
 
         }
         @media screen and ${breakpoints.laptopS} {
-            top: -3px;
+            &--notsmall{
+                top: -3px;
+            }
         }
         & a:link {
             text-decoration: none;
@@ -316,7 +317,7 @@ const StyledContentCard = styled(ContentCard)`
         @media screen and ${breakpoints.tabletS} {
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
-            padding-bottom: ${sizes.s16};           
+            padding-bottom: ${sizes.s16};  
 
         }
     }
@@ -351,20 +352,18 @@ const StyledContentCard = styled(ContentCard)`
     &__contentsection {
         position: relative;
         margin: 0px;
-        padding-top: ${sizes.s12}; 
+        padding-top: ${sizes.s24}; 
         padding-bottom: ${sizes.s12}; 
         display: flex;
         flex-flow: column;
         flex: 1 1 auto;
         @media screen and ${breakpoints.tabletS} {
-            &--notsmall{
-                padding-top: ${sizes.s32}; 
-                padding-bottom: ${sizes.s32};     
-            } 
+            padding-top: ${sizes.s32}; 
+            padding-bottom: ${sizes.s32};     
 
         }
         @media screen and ${breakpoints.laptopS} {
-            &--notsmall{
+            &--L, &--XL, &--XXL{
                 padding-top: ${sizes.s32}; 
                 padding-bottom: ${sizes.s32}; 
                 flex-flow: row;    
@@ -383,30 +382,31 @@ const StyledContentCard = styled(ContentCard)`
             padding-left: ${sizes.s16};
             padding-right: ${sizes.s16};
             @media screen and ${breakpoints.tabletS} {
-                &--notsmall{
-                    padding-left: ${sizes.s32}; 
-                    padding-right: ${sizes.s32};         
-                } 
+                padding-left: ${sizes.s32}; 
+                padding-right: ${sizes.s32};         
             }
             @media screen and ${breakpoints.laptopS} {
-                &--notsmall{
-                    padding-left: ${sizes.s32}; 
+                &--L, &--XL, &--XXL{
                     width: 50%;        
+                    padding-left: ${sizes.s32}; 
                 } 
+
             }
             .title {
                 padding-bottom: 0px;
             }
             .category {
                 @media screen and ${breakpoints.tabletS} {
-                    padding-bottom: ${sizes.s32};          
+                    padding-bottom: ${sizes.s32};
                 } 
             }
-    
+            
             :nth-last-child(1){
                 justify-content: space-between;
                 flex: 1 1 auto;
             }
+    
+           
         }
     }
 
@@ -432,9 +432,11 @@ const StyledContentCard = styled(ContentCard)`
             padding-bottom: ${sizes.s32};
         }
         @media screen and ${breakpoints.laptopS} {
-            font-size: ${sizes.s18};
-            line-height: ${sizes.s26};
-            padding-bottom: 0px;
+            &--notsmall{
+                font-size: ${sizes.s18};
+                line-height: ${sizes.s26};
+                padding-bottom: 0px;
+            }
         }
         &.readmore {
             color: ${colors.titleColor};

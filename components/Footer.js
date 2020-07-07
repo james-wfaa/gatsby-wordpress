@@ -9,8 +9,8 @@ import { colors, mixins, sizes, breakpoints, fonts } from './css-variables'
 //import { breakpoints } from './parts/breakpoints'
 
 const navTemp = {
-  "name":"Careers at WFAA",
-  "items":[
+  name:"Careers at WFAA",
+  items:[
     {
       "title":"Employee Benefits",
       "url":"https://wp.advanceuw.org/benefits/"
@@ -74,10 +74,9 @@ const WfaaFooter = ({ className }) =>  (
       </div>
       <div className="footer__column">
         <WfaaFooterMenu menu={navTemp} pageLink="/about/" />
-        <WfaaFooterMenu menu={navTemp} pageLink="/careers/" />
-
       </div>
       <div className="footer__column">
+        <WfaaFooterMenu menu={navTemp} pageLink="/careers/" />
         <p>
           <span>Questions:</span>
           <span><a href="mailto:wfaa@supportuw.org">wfaa@supportuw.org</a></span>
@@ -146,18 +145,23 @@ const StyledFooter = styled(WfaaFooter)`
   }
   ul {
     padding: 0;
-    margin: 0 0 2em;
+    margin: 0;
+    margin-bottom: ${sizes.s20};
   }
   li {
     list-style-type: none;
+    margin: 0;
+    line-height: ${sizes.s18};
+    font-size: ${sizes.s14};
   }
   a {
     text-decoration: none;
+    color: ${colors.bgWhite};
   }
   .external-link {
     font-weight: bold;
     margin-bottom: 1.5em;
-    line-height: 1.2em;
+    line-height: ${sizes.s16};
     a {
       font-weight: normal;
     }
