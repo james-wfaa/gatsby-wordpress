@@ -132,6 +132,9 @@ const StyledContentCard = styled(ContentCard)`
         @media screen and ${breakpoints.tabletS} {
             width: 528px;
             min-height: 680px;
+            
+        }
+        @media screen and ${breakpoints.laptopS} {
             .columnwrap:nth-child(1) {
                 border-right: 1px solid ${colors.cardBorder};
             }
