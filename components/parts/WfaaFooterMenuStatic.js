@@ -29,4 +29,28 @@ const FooterMenu = ({ menu, pageLink="#" }) => {
       )
 }
 
+var navTemp = {"items":[
+  {
+    "title":"Employee Benefits",
+    "url":"https://wp.advanceuw.org/benefits/"
+  },
+  {
+    "title": "Mission & Values",
+    "url": "https://wp.advanceuw.org/teams/"
+  },
+  {
+    "title":"Teams",
+    "url":"https://wp.advanceuw.org/teams/"
+  },
+  {
+    "title":"Behind the Scenes",
+    "url":"https://wp.advanceuw.org/btw/"
+  },
+  {
+    "title":"Jobs at WFAA",
+    "url":"https://wp.advanceuw.org/jobs/"
+  }
+]};
+  
+
 export default FooterMenu
