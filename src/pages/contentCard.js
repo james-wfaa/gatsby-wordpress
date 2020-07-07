@@ -196,6 +196,51 @@ return (
       
         
         <p>Not done yet: the 5/6 variant and the "1 full" variant.</p>
+        <h2>5/6 (XL) Content Card</h2>
+        <p>This size card displays at 256px wide on mobile, 528px wide at tablet, and 896px on all larger screens.</p>
+        <ContentCard 
+        title="Coachella Valley"
+        category="UW NOW"
+        excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
+        url="##"
+        img={data.cardImage1}
+        tags={taglist2}
+        size="XL"
+        />
+        <p>Event Card (L):</p>
+        <ContentCard 
+        startDate="Apr. 3" 
+        title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin and around the World"
+        category="Global Hot Spots"
+        venue="Fluno Center"
+        location="Madison" 
+        img={data.cardImage3}
+        size="XL"
+        />
+
+        <p></p>
+
+        <h2>1 full (XXL) Content Card</h2>
+        <p>This size card displays at 256px wide on mobile, 528px wide at tablet, and 1080px on all larger screens.</p>
+        <ContentCard 
+        title="Coachella Valley"
+        category="UW NOW"
+        excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
+        url="##"
+        img={data.cardImage1}
+        tags={taglist2}
+        size="XXL"
+        />
+        <p>Event Card (L):</p>
+        <ContentCard 
+        startDate="Apr. 3" 
+        title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin and around the World"
+        category="Global Hot Spots"
+        venue="Fluno Center"
+        location="Madison" 
+        img={data.cardImage3}
+        size="XXL"
+        />
         
 
       
