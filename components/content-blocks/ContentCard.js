@@ -449,27 +449,16 @@ const StyledContentCard = styled(ContentCard)`
     }
 
     &__imgzoomlink{
-        max-width: 256px;
+        max-width: 100%;
         overflow: hidden;
-        @media screen and ${breakpoints.tabletS} {
-            max-width: 528px;
-        }
-        @media screen and ${breakpoints.laptopS} {
-            max-width: 712px;
-        }
     }
 
     &__img {
         padding: 32px;
-        max-width: 256px;
+        max-width: 100%;
         transition: transform .2s; /* Animation */
         overflow: hidden;
-        @media screen and ${breakpoints.tabletS} {
-            max-width: 528px;
-        }
-        @media screen and ${breakpoints.laptopS} {
-            max-width: 712px;
-        }
+       
         &:link {
             text-decoration: none;
         }
