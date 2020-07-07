@@ -5,9 +5,9 @@ import Img from 'gatsby-image'
 import TagList from "../parts/TagList"
 import styled from 'styled-components'
 
-const ContentCard = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, caption, tags, size }) => {
+const ContentCard = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, featureImg, caption, tags, size }) => {
 
-    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>;
+    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
     const dateLinkText = endDate ? `${startDate}&nbsp;&ndash;&nbsp;${endDate}` : startDate;
     const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
 
@@ -17,6 +17,23 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
 
     var notSmall = (size != 'S') ? "notsmall" : "";
 
+   
+
+  
+    const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
+        ? null
+        : (featureImg && typeof featureImg !== 'undefined' && featureImg.childImageSharp) ? 
+            [
+                img.childImageSharp.fluid,
+                {
+                    ...featureImg.childImageSharp.fluid,
+                    media: `(min-width: 1200px)`
+                }   
+            ]
+            :  img.childImageSharp.fluid
+
+            console.log(imgSources)
+   
 
     return (
 
@@ -37,11 +54,11 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                     
                 </div>
                 <div className={`${className}__contentwrap`}>
-                    {img && (
+                    {imgSources && (
                         <a href={url} className={`${className}__imgzoomlink`} >
                             <Img 
                                 className={`${className}__img`}
-                                fluid={img.childImageSharp.fluid}
+                                fluid={imgSources}
                             />
                         </a>
                     )}
