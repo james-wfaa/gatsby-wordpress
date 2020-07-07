@@ -85,7 +85,7 @@ return (
         venue="One Alumni Place" 
         location="Madison"         
         category="Travel"
-        img={data.cardImage1}
+        img={data.cardImage2}
         url="##"
         tags={taglist1}
         size="XL"
@@ -166,9 +166,15 @@ export const pageQuery = graphql`
 query {
     cardImage1: file(relativePath: { eq: "Feb_Richard_Davis_Web_01@2x.png" }) {
       childImageSharp {
-        fluid(maxWidth: 712, quality: 100) {
+        fluid(maxWidth: 1080, quality: 100) {
           ...GatsbyImageSharpFluid
-          ...GatsbyImageSharpFluidLimitPresentationSize
+        }
+      }
+    }
+    cardImage2: file(relativePath: { eq: "12_DutchWaterways_header@2x.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1080, quality: 100) {
+          ...GatsbyImageSharpFluid
         }
       }
     }
