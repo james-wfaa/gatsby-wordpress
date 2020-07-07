@@ -107,6 +107,9 @@ const StyledContentCard = styled(ContentCard)`
     margin-right: 20px;
     border: 1px solid ${colors.cardBorder};
     border-top: 6px solid ${colors.cardBorder};
+    background-color: ${colors.bgWhite};
+    opacity: 0.9;
+
 
     &--notsmall{
         @media screen and ${breakpoints.tabletS} {
@@ -170,13 +173,11 @@ const StyledContentCard = styled(ContentCard)`
         border-bottom: 1px solid ${colors.cardHeaderBGGrey};
 
         @media screen and ${breakpoints.tabletS} {
-            &--notsmall{
-                padding-left: ${sizes.s32};
-                padding-right: ${sizes.s32};
-            } 
+            padding-left: ${sizes.s32};
+            padding-right: ${sizes.s32};
         }
         @media screen and ${breakpoints.laptopS} {
-            &--notsmall{
+            &--L, &--XL, &--XXL{
                 &:after {
                     position: absolute;
                     top: 0;
@@ -202,13 +203,11 @@ const StyledContentCard = styled(ContentCard)`
         font-style: italic;
         color: ${colors.startDateColor};
         @media screen and ${breakpoints.tabletS} {
-            &--notsmall{
-                font-size: ${sizes.s52};
-                line-height: ${sizes.s52};
-                top: -3px;
-                padding-top: ${sizes.s32};
-                padding-bottom: ${sizes.s32};
-            } 
+            font-size: ${sizes.s52};
+            line-height: ${sizes.s52};
+            top: -3px;
+            padding-top: ${sizes.s32};
+            padding-bottom: ${sizes.s32};
         }
         @media screen and ${breakpoints.laptopS} {
             &--notsmall{
@@ -259,7 +258,9 @@ const StyledContentCard = styled(ContentCard)`
 
         }
         @media screen and ${breakpoints.laptopS} {
-            top: -3px;
+            &--notsmall{
+                top: -3px;
+            }
         }
         & a:link {
             text-decoration: none;
@@ -299,7 +300,7 @@ const StyledContentCard = styled(ContentCard)`
         @media screen and ${breakpoints.tabletS} {
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
-            padding-bottom: ${sizes.s16};           
+            padding-bottom: ${sizes.s16};  
 
         }
     }
@@ -334,20 +335,18 @@ const StyledContentCard = styled(ContentCard)`
     &__contentsection {
         position: relative;
         margin: 0px;
-        padding-top: ${sizes.s12}; 
+        padding-top: ${sizes.s24}; 
         padding-bottom: ${sizes.s12}; 
         display: flex;
         flex-flow: column;
         flex: 1 1 auto;
         @media screen and ${breakpoints.tabletS} {
-            &--notsmall{
-                padding-top: ${sizes.s32}; 
-                padding-bottom: ${sizes.s32};     
-            } 
+            padding-top: ${sizes.s32}; 
+            padding-bottom: ${sizes.s32};     
 
         }
         @media screen and ${breakpoints.laptopS} {
-            &--notsmall{
+            &--L, &--XL, &--XXL{
                 padding-top: ${sizes.s32}; 
                 padding-bottom: ${sizes.s32}; 
                 flex-flow: row;    
@@ -366,13 +365,11 @@ const StyledContentCard = styled(ContentCard)`
             padding-left: ${sizes.s16};
             padding-right: ${sizes.s16};
             @media screen and ${breakpoints.tabletS} {
-                &--notsmall{
-                    padding-left: ${sizes.s32}; 
-                    padding-right: ${sizes.s32};         
-                } 
+                padding-left: ${sizes.s32}; 
+                padding-right: ${sizes.s32};         
             }
             @media screen and ${breakpoints.laptopS} {
-                &--notsmall{
+                &--L, &--XL, &--XXL{
                     padding-left: ${sizes.s32}; 
                     width: 50%;        
                 } 
@@ -382,14 +379,16 @@ const StyledContentCard = styled(ContentCard)`
             }
             .category {
                 @media screen and ${breakpoints.tabletS} {
-                    padding-bottom: ${sizes.s32};          
+                    padding-bottom: ${sizes.s32};
                 } 
             }
-    
+            
             :nth-last-child(1){
                 justify-content: space-between;
                 flex: 1 1 auto;
             }
+    
+           
         }
     }
 
@@ -415,9 +414,11 @@ const StyledContentCard = styled(ContentCard)`
             padding-bottom: ${sizes.s32};
         }
         @media screen and ${breakpoints.laptopS} {
-            font-size: ${sizes.s18};
-            line-height: ${sizes.s26};
-            padding-bottom: 0px;
+            &--notsmall{
+                font-size: ${sizes.s18};
+                line-height: ${sizes.s26};
+                padding-bottom: 0px;
+            }
         }
         &.readmore {
             color: ${colors.titleColor};
