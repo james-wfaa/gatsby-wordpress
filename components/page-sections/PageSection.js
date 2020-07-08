@@ -9,18 +9,22 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 
-const PageSection = ({className, preHeading, heading, excerpt, buttons, alt, bgImage, children}) => {
-
+const PageSection = ({className, preheading, heading, excerpt, buttons, alt, bgImage, children}) => {
             
         
     const background =  typeof bgImage !== "undefined" && bgImage !== null 
 
     const classesList = alt ? `${className} ${className}--alt` : className
+    const altClass = alt ? ` ${className}--alt` : ''
+    const preheadingClass = preheading ?  ` ${className}--preheading` : ''
    
     return (
         <div>
             { ! background &&  (
-            <div className={classesList}>
+            <div className={`${className} ${altClass} ${preheadingClass}` }>
+                { preheading && (
+                <div className={`${className}__preheading`}>{preheading}</div>
+            )}
                  { heading && (
                     <div className={`${className}__heading`}>
                         <PageSectionHeader heading={heading} />
@@ -74,6 +78,10 @@ const StyledPageSection = styled(PageSection)`
     text-align: center;
     padding-top: 88px;
     padding-bottom: 88px;
+
+    &--preheading {
+        padding-top: 0;
+    }
    
 
    
@@ -87,6 +95,17 @@ const StyledPageSection = styled(PageSection)`
         &:after {
             /*background-color: rgba(0, 0, 0, 0.3) !important;*/
         }
+    }
+
+    &__preheading {
+        text-transform: uppercase;
+        font-size: ${sizes.s18};
+        line-height: ${sizes.s24};
+        font-weight: bold;
+        padding: 58px 0;
+        @media screen and ${breakpoints.laptopS} {
+            font-size: ${sizes.s20};
+         }
     }
        
 

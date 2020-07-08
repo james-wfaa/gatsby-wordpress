@@ -3,6 +3,7 @@ export const baseSize = '18px';
 export const fonts = {
     eaves: 'mrs-eaves-xl-serif, serif',
     eavesNarrow: 'mrs-eaves-xl-serif-narrow, serif',
+    verlag: 'Verlag A, Verlag B'
 }
 export const sizes = {
     s4:  '0.222rem',
@@ -27,6 +28,7 @@ export const sizes = {
     s40: '2.222rem',
     s42: '2.333rem',
     s45: '2.5rem',
+    s48: '2.6rem',
     s50: '2.778rem',
     s52: '2.889rem',
     s58: '3.222rem',
@@ -57,7 +59,7 @@ export const colors = {
     cardBorder:     baseColors.darkGrey,
     cardText:       baseColors.offBlack,
     cardTags:       baseColors.darkGrey,
-    copyText:       baseColors.offBlack,
+    copyText:       baseColors.offBlack,    
     titleWhite:     baseColors.white,
     buttonRed:      baseColors.mainRed,
     buttonHoverRed: baseColors.deepRed,
@@ -139,6 +141,7 @@ export const mixins = {
             font-size: ${sizes.s14};
         }   
     `,
+
     tag: `
         font-size: ${sizes.s14};
         color: ${colors.categoryGrey};
@@ -161,4 +164,49 @@ export const mixins = {
         } 
 
     `,
+    buttons: `
+    display: inline-block;
+    width: 100%;
+    min-width: 6.5rem;
+    background-color: ${colors.buttonRed};
+    font-family: ${fonts.verlag};
+    font-style: normal;
+    font-size: ${sizes.s16};
+    line-height: ${sizes.s26};
+    font-weight: bold;
+    color: ${colors.titleWhite};
+    padding: ${sizes.s16};
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin: ${sizes.s24} 0 0 ;
+    &:first-of-type {
+        margin-top: 0;
+    }
+    &:last-of-type {
+        margin-right: 0;
+    }
+    &:hover {
+        background-color: ${colors.buttonHoverRed};
+        box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
+    }
+    &:active {
+        background-color: ${colors.buttonActiveGrey};
+    }
+    @media screen and ${breakpoints.tabletS} {
+        width: auto;
+        margin-right: ${sizes.s24};
+     }
+     &--bgimage {
+         border: 1px solid ${colors.bgWhite};
+         background-color: transparent;
+         &:hover {
+             background-color: ${colors.buttonActiveGrey};
+         }
+         &:active {
+             color: ${colors.buttonActiveGrey};
+             background-color: ${colors.bgWhite};
+         }
+     }
+    `
 }

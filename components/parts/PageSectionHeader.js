@@ -7,6 +7,7 @@ const PageSectionHeader = ({ className, heading, bgimage }) => {
     const classesList = bgimage ? `${className} ${className}--bgimage` : className
     return (
         <div className={classesList}>
+            
             <h2>{heading}</h2>
         </div>
     )
@@ -16,6 +17,7 @@ const StyledPageSectionHeader = styled(PageSectionHeader)`
     position: relative;
     padding-bottom:  ${sizes.s40};
     margin-bottom: ${sizes.s58};
+    
     h2 {
        
         color: ${colors.titleColor};
