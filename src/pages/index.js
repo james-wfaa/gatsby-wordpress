@@ -12,6 +12,9 @@ export default () => <div>
             <Link to="/communicationForm">Communication Form</Link> (NEW)
         </li>
         <li>
+            <Link to="/footer">Footer </Link> (NEW)
+        </li>
+        <li>
             <Link to="/page-section">Basic Page Section</Link> 
         </li>
         <li>
