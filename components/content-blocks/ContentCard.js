@@ -10,6 +10,8 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
     const dateLinkText = endDate ? `${startDate}&nbsp;&ndash;&nbsp;${endDate}` : startDate;
     const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
+    const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
+    const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(1,maxLength) + '...' : excerpt
 
     if(!sizes.includes(size)){
         size = "S";
@@ -46,7 +48,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
 
                     )}
                     { !startDate && (
-                        <div className={`${className}__category category ${className}__category--${size} ${className}__category--${notSmall}`}>{category}</div>
+                        <div className={`${className}__category category category--${size} ${className}__category--${size} ${className}__category--${notSmall}`}>{category}</div>
                     )}
                     { !startDate && (
                         <h3 className={`${className}__title title ${className}__title--${size} ${className}__title--${notSmall}`} dangerouslySetInnerHTML={{ __html: title }} />        
@@ -74,11 +76,11 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                                 </a>
                             )}
                             { startDate && (
-                                <div className={`${className}__category category ${className}__category--${size} ${className}__category--${notSmall}`}>{category}</div>
+                                <div className={`${className}__category category category--${size} ${className}__category--${size} ${className}__category--${notSmall}`}>{category}</div>
                             )}
-                            { excerpt && (
+                            { shortenedExcerpt && (
                                 <div className={`${className}__excerpt excerpt ${className}__excerpt--${size} ${className}__excerpt--${notSmall}`}>
-                                    <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
+                                    <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
                                 </div>
                             )}
                         </div>
@@ -116,7 +118,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
 const StyledContentCard = styled(ContentCard)`
 
     width: 256px;
-    min-height: 502px;
+    height: 502px;
     display: flex;
     flex-flow: column;
     text-align: left;
@@ -131,7 +133,7 @@ const StyledContentCard = styled(ContentCard)`
     &--notsmall{
         @media screen and ${breakpoints.tabletS} {
             width: 528px;
-            min-height: 680px;
+            height: 680px;
             .columnwrap:nth-child(1) {
                 border-right: 1px solid ${colors.cardBorder};
             }
@@ -142,6 +144,7 @@ const StyledContentCard = styled(ContentCard)`
         @media screen and ${breakpoints.tabletS} {
             width: 344px;
             max-width: 344px;
+            height: 680px;
         }
     }  
     &--M{
@@ -152,20 +155,18 @@ const StyledContentCard = styled(ContentCard)`
    
     &--L{
         @media screen and ${breakpoints.laptopS} {
-            width: auto;
-            max-width: 712px;
+            width: 712px;
+            
         }
     }
     &--XL{
         @media screen and ${breakpoints.laptopS} {
             width: 896px;
-            max-width: 896px;
         }
     }
     &--XXL{
         @media screen and ${breakpoints.laptopS} {
             width: 1080px;
-            max-width: 1080px;
         }
     }
 
@@ -399,6 +400,14 @@ const StyledContentCard = styled(ContentCard)`
                 @media screen and ${breakpoints.tabletS} {
                     padding-bottom: ${sizes.s32};
                 } 
+                
+            }
+            .category--L, 
+            .category--XL,
+            .category--XXL {
+                @media screen and ${breakpoints.tabletS} {
+                    padding-bottom: ${sizes.s16};
+                } 
             }
             
             :nth-last-child(1){
@@ -473,7 +482,6 @@ const StyledContentCard = styled(ContentCard)`
     }
 
     &__img {
-        padding: 32px;
         max-width: 100%;
         transition: transform .2s; /* Animation */
         overflow: hidden;
