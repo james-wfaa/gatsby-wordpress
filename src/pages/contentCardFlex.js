@@ -111,7 +111,7 @@ return (
         />
         <br />
         <p>Even with the 150 character exerpt limit, a long title can push the limits of the card height. The following example has a title that spans 4 lines on mobile, 
-          and the result is that the header section looks cramped.
+          and the result is that <strike>the header section looks cramped</strike> the card height grows larger.
         </p>
            <ContentCard 
         title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin and around the World"
@@ -144,7 +144,8 @@ return (
         img={data.cardImage3}
         />
         <br />
-        <p>If we add an end date, this card still looks okay at mobile despite the long title. But at tablet and desktop, the two-line date plus the long title cause a breakdown. </p>      
+        <p>If we add an end date, this card still looks okay at mobile despite the long title. But at tablet and desktop, 
+          the two-line date plus the long title cause <strike>a breakdown</strike> the card height to increase. </p>      
         <ContentCard 
         startDate="Apr. 3" 
         endDate="Apr. 5"
@@ -234,7 +235,8 @@ return (
         size="L"
         />
         <p>Images are required for (L) size cards.</p>
-        <p>In the example above, the title is cut off at two lines and the content fits within the maximum height for the card. In the example below, the title is longer and the Card layout begins to break down (at desktop).</p>      
+        <p>In the example above, the title is cut off at two lines and the content fits within the maximum height for the card. In the example below, 
+          the title is longer and the Card <strike>layout begins to break down</strike> height increases (at desktop).</p>      
         <ContentCard 
         startDate="Apr. 3" 
         title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin and around the World"
@@ -245,7 +247,7 @@ return (
         size="L"
         />
         <br />
-        <p>When we use a very long title on a story, the layout begins to break down.</p>
+        <p>When we use a very long title on a story, the <strike>layout begins to break down</strike> card height increases.</p>
         <ContentCard 
         title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin and around the World"
         category="UW NOW"

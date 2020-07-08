@@ -58,7 +58,7 @@ export default class ActiveCommunicationForm extends Component {
             console.log('validating email because ', prevState.email, '...', this.props.email)
 
 
-            this.validateName('email', 'emailValid')
+            this.validateEmail('email', 'emailValid')
         }
         if (this.state.postalcode && prevState.postalcode !== this.state.postalcode) {
             console.log('validating postalcode')
@@ -81,6 +81,25 @@ export default class ActiveCommunicationForm extends Component {
         //console.log('handleNameChange results: ', this.state)
     
     }
+    validateEmail = (field, validationField) => {
+        const val = this.state[field]
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        let nameValid = true
+        let errorString = ''
+        if( !re.test(val)) {
+            nameValid = false;
+            errorString = ('Email validation failed.')
+        }
+        console.log('errorMsg: ', errorString)
+        
+
+        console.log(field, '  valid? ', nameValid)
+        
+        console.log('valid by fieldname (', validationField, '): ', this.state[validationField])
+        
+        this.setState({[validationField]: nameValid }, this.validateForm)
+    }
+    
     validateName = (field, validationField)  => {
         const val = this.state[field]
         console.log('validateName got this value from saved state for ' , field , ': ', val)
@@ -212,11 +231,15 @@ export default class ActiveCommunicationForm extends Component {
                         <input type="email" name="emailaddress" id="emailaddress" placeholder="Email"  value={this.state.email}  onChange={this.handleEmailChange} />
                         <label htmlFor="postalcode">My postal code is</label>
                         <input type="text" name="postalcode" id="postalcode" placeholder="postal code"  value={this.state.postalcode}  onChange={this.handlePostalcodeChange}/>
-                        <div>and I Badger On.</div>
+                    </fieldset>
+
+                        <div className="label">and I Badger On.</div>
+                    <fieldset className={this.shouldShowForm() ? "active" : "hiddenfields"}>    
                         <input type="submit" name="submitbutton" id="submitbutton" 
                         value="SUBMIT"  disabled={!this.state.formValid} 
                          />
                     </fieldset>
+                   
                 </form>
                 </StyledCommunicationForm>
             </PageSection>

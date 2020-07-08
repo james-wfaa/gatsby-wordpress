@@ -17,7 +17,8 @@ text-align: center;
 @media screen and ${breakpoints.tabletS} {
     font-size: ${sizes.s42};
 }
-label { 
+label,
+div.label { 
     display: block;
     margin-bottom: ${sizes.s24};
     @media screen and ${breakpoints.tabletS} {
