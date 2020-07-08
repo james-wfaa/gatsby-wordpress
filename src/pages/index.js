@@ -6,7 +6,10 @@ export default () => <div>
     <h2>Card Components</h2>
     <ul>
         <li>
-            <Link to="/contentCard">Content Card (1/3, 1/2, 2/3 sizes)</Link> (NEW)
+            <Link to="/contentCardFixed">Content Card (1/3, 1/2, 2/3 sizes) (FIXED HEIGHTS)</Link> (NEW)
+        </li>
+        <li>
+            <Link to="/contentCardFlex">Content Card (1/3, 1/2, 2/3 sizes) (FLEXIBLE HEIGHTS)</Link> (NEW)
         </li>
         <li>
             <Link to="/communicationForm">Communication Form</Link> (NEW)

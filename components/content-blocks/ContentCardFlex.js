@@ -118,7 +118,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
 const StyledContentCard = styled(ContentCard)`
 
     width: 256px;
-    height: 502px;
+    min-height: 502px;
     display: flex;
     flex-flow: column;
     text-align: left;
@@ -147,7 +147,7 @@ const StyledContentCard = styled(ContentCard)`
         @media screen and ${breakpoints.tabletS} {
             width: 344px;
             max-width: 344px;
-            height: 680px;
+            min-height: 680px;
         }
     }  
     &--M{
