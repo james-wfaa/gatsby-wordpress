@@ -22,6 +22,34 @@ const navTemp = {
     {
       "title":"Teams",
       "url":"https://wp.advanceuw.org/teams/"
+    }
+]};
+const navTempLong = {
+  name:"About WFAA",
+  items:[
+    {
+      "title":"Employee Benefits",
+      "url":"https://wp.advanceuw.org/benefits/"
+    },
+    {
+      "title": "Mission & Values",
+      "url": "https://wp.advanceuw.org/teams/"
+    },
+    {
+      "title":"Teams",
+      "url":"https://wp.advanceuw.org/teams/"
+    },
+    {
+      "title":"Behind the Scenes",
+      "url":"https://wp.advanceuw.org/btw/"
+    },
+    {
+      "title":"Jobs at WFAA",
+      "url":"https://wp.advanceuw.org/jobs/"
+    },
+    {
+      "title":"Teams",
+      "url":"https://wp.advanceuw.org/teams/"
     },
     {
       "title":"Behind the Scenes",
@@ -64,11 +92,11 @@ const WfaaFooter = ({ className }) =>  (
           <img className="wfaa-uw-crest" src={Crest} alt="" />
         </StyledCrest>
         <div className="external-link">
-          <div>University of Wisconsin-Madison</div>
+          <div>University of Wisconsin&#8212;Madison</div>
           <a href="https://www.wisc.edu/?utm_source=advanceuw&utm_medium=referral&utm_content=footer">wisc.edu</a>
         </div>
         <div className="external-link">
-          <div>University of Wisconsin Foundation and Alumni Association</div>
+          <div>University of Wisconsin Foundation<br/>and Alumni Association</div>
           <a href="https://www.advanceuw.org?utm_source=advanceuw&utm_medium=referral&utm_content=footer">advanceuw.org</a>
         </div>
         <div className="external-link">
@@ -77,11 +105,11 @@ const WfaaFooter = ({ className }) =>  (
         </div>
       </div>
       <div className="footer__column">
-        <WfaaFooterMenu menu={navTemp} pageLink="/about/" />
+        <WfaaFooterMenu menu={navTempLong} pageLink="/about/" />
         <WfaaFooterMenu menu={navTemp} pageLink="/about/" />
       </div>
       <div className="footer__column">
-        <WfaaFooterMenu menu={navTemp} pageLink="/careers/" />
+        <WfaaFooterMenu menu={navTempLong} pageLink="/careers/" />
         <p>
           <span>Questions:</span>
           <span><a href="mailto:wfaa@supportuw.org">wfaa@supportuw.org</a></span>
@@ -105,20 +133,27 @@ const StyledFooter = styled(WfaaFooter)`
   }
   .footer--border {
     border-bottom: .5px solid ${colors.bgWhite};
+    width: 100%;
+    margin: 0 auto;
+    max-width: 400px;
     @media screen and ${breakpoints.tablet} {
+      width: auto;
+      max-width: 900px;
       display: flex;
       justify-content: space-around;
+      padding-bottom: ${sizes.s58};
       }
   }
   }
   .footer__column {
     flex-grow: 1;
     width: 100%;
-    margin: 0 auto 2em;
+    margin: 0 auto ${sizes.s24};
     max-width: 400px;
     @media screen and ${breakpoints.tablet} {
       width: auto;
       max-width: auto;
+      margin-bottom: 0px;
     }
     &.footer__column--first {
       border-bottom: 2px solid ${colors.bgWhite};
@@ -128,7 +163,6 @@ const StyledFooter = styled(WfaaFooter)`
       }
     }
     &:last-child {
-      border-bottom: 2px solid ${colors.bgWhite};
       margin-bottom: 0;
       @media screen and ${breakpoints.tablet} {
         border-bottom: none;
@@ -156,6 +190,7 @@ const StyledFooter = styled(WfaaFooter)`
     margin: 0;
     line-height: ${sizes.s18};
     font-size: ${sizes.s14};
+    
   }
   a {
     text-decoration: none;
@@ -164,10 +199,12 @@ const StyledFooter = styled(WfaaFooter)`
   
   .external-link {
     font-weight: bold;
-    margin-bottom: 1.5em;
+    margin-bottom: ${sizes.s24};
     line-height: ${sizes.s16};
-    a {
-      font-weight: normal;
+    &:last-child {
+      @media screen and ${breakpoints.tablet} {
+        margin-bottom: 0;
+      }
     }
   }
 `
