@@ -17,8 +17,7 @@ text-align: center;
 @media screen and ${breakpoints.tabletS} {
     font-size: ${sizes.s42};
 }
-label,
-div.label { 
+label { 
     display: block;
     margin-bottom: ${sizes.s24};
     @media screen and ${breakpoints.tabletS} {
@@ -38,6 +37,9 @@ input {
 input[type="submit"] {
     ${mixins.buttons};
     margin-top: ${sizes.s58};
+    &:first-of-type {
+        margin-top: ${sizes.s58};
+    }
     &:disabled {
         color: grey;
     }
