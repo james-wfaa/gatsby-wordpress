@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import WfaaFooterMenu from './parts/WfaaFooterMenuStatic'
 import Copyright from './parts/Copyright';
-//import Crest from '../src/svg/crest.svg'
+import Crest from '../src/images/outline-UWcrest-web.png'
 import { colors, mixins, sizes, breakpoints, fonts } from './css-variables'
 
 
@@ -41,16 +41,15 @@ margin: 0;
  
   display: flex;
   align-items: left;  
-  padding-bottom: 1.5em;
   border-bottom: .5px solid ${colors.bgWhite};
   margin-bottom: 1.5em;
+  padding-bottom: ${sizes.s24};
   @media screen and ${breakpoints.tablet} {
     align-items: center; 
     max-width: 216px;
   }
   
-  svg {
-    width: 3.5em;  
+  img {
     margin: 0 auto;  
     @media screen and ${breakpoints.tablet} {
       margin: 0;
@@ -62,17 +61,23 @@ const WfaaFooter = ({ className }) =>  (
     <div className="footer--inner"><div className="footer--border">
       <div className="footer__column footer__column--first">
         <StyledCrest>
+          <img className="wfaa-uw-crest" src={Crest} alt="" />
         </StyledCrest>
         <div className="external-link">
-          <div>University of Wisconsin Foundation</div>
-          <a href="https://www.supportuw.org/?utm_source=advanceuw&utm_medium=referral&utm_content=footer">supportuw.org</a>
+          <div>University of Wisconsin-Madison</div>
+          <a href="https://www.wisc.edu/?utm_source=advanceuw&utm_medium=referral&utm_content=footer">wisc.edu</a>
         </div>
         <div className="external-link">
-          <div>Wisconsin Alumni Association</div>
-          <a href="https://www.uwalumni.com?utm_source=advanceuw&utm_medium=referral&utm_content=footer">uwalumni.com</a>
+          <div>University of Wisconsin Foundation and Alumni Association</div>
+          <a href="https://www.advanceuw.org?utm_source=advanceuw&utm_medium=referral&utm_content=footer">advanceuw.org</a>
+        </div>
+        <div className="external-link">
+          <div>University of Wisconsin Foundation</div>
+          <a href="https://www.supportuw.org?utm_source=advanceuw&utm_medium=referral&utm_content=footer">supportuw.org</a>
         </div>
       </div>
       <div className="footer__column">
+        <WfaaFooterMenu menu={navTemp} pageLink="/about/" />
         <WfaaFooterMenu menu={navTemp} pageLink="/about/" />
       </div>
       <div className="footer__column">
@@ -96,9 +101,7 @@ const StyledFooter = styled(WfaaFooter)`
   .footer--inner {
     max-width: 900px;
     margin: 0 auto;
-    padding: 3em 3em 0;
-    
-    
+    padding: ${sizes.s48} ${sizes.s48} 0; 
   }
   .footer--border {
     border-bottom: .5px solid ${colors.bgWhite};
@@ -158,6 +161,7 @@ const StyledFooter = styled(WfaaFooter)`
     text-decoration: none;
     color: ${colors.bgWhite};
   }
+  
   .external-link {
     font-weight: bold;
     margin-bottom: 1.5em;
@@ -167,6 +171,7 @@ const StyledFooter = styled(WfaaFooter)`
     }
   }
 `
+
 
 export default StyledFooter
 
