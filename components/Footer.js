@@ -121,7 +121,7 @@ const WfaaFooter = ({ className }) =>  (
   )
 
 const StyledFooter = styled(WfaaFooter)`
-  font-size: .75em;
+  font-size: ${sizes.s14};
   background-color: ${colors.bgRed};
   margin-top: 7.5em;
   color: ${colors.bgWhite};
@@ -172,6 +172,7 @@ const StyledFooter = styled(WfaaFooter)`
   .footer-menu__title {
     text-transform: uppercase;
     font-weight: bold;
+    font-size: ${sizes.s14};
   }
   p {
     max-width: 140px;
@@ -188,6 +189,7 @@ const StyledFooter = styled(WfaaFooter)`
   li {
     list-style-type: none;
     margin: 0;
+    padding-bottom: 4px;
     line-height: ${sizes.s18};
     font-size: ${sizes.s14};
     
