@@ -18,6 +18,7 @@ const StyledTagList = styled(TagList)`
 
 .tag__item{
     display: inline-block;
+    padding-left: 2px;
 }
 .tag__link {
     font-size: ${sizes.s14};

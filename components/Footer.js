@@ -69,7 +69,7 @@ margin: 0;
  
   display: flex;
   align-items: left;  
-  border-bottom: .5px solid ${colors.bgWhite};
+  border-bottom: 1px solid ${colors.bgWhite};
   margin-bottom: 1.5em;
   padding-bottom: ${sizes.s24};
   @media screen and ${breakpoints.tablet} {
@@ -132,7 +132,7 @@ const StyledFooter = styled(WfaaFooter)`
     padding: ${sizes.s48} ${sizes.s48} 0; 
   }
   .footer--border {
-    border-bottom: .5px solid ${colors.bgWhite};
+    border-bottom: 1px solid ${colors.bgWhite};
     width: 100%;
     margin: 0 auto;
     max-width: 400px;
@@ -156,7 +156,7 @@ const StyledFooter = styled(WfaaFooter)`
       margin-bottom: 0px;
     }
     &.footer__column--first {
-      border-bottom: 2px solid ${colors.bgWhite};
+      border-bottom: 1px solid ${colors.bgWhite};
       @media screen and ${breakpoints.tablet} {
         border-bottom: none;
         flex-grow: 2;
