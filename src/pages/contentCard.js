@@ -179,7 +179,7 @@ return (
         <p>Event Card (L):</p>
         <ContentCard 
         startDate="Apr. 3" 
-        title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin and around the World"
+        title="The Past, Present, and Future of Rainstorms "
         category="Global Hot Spots"
         venue="Fluno Center"
         location="Madison" 
@@ -187,7 +187,16 @@ return (
         size="L"
         />
         <p>Images are required for (L) size cards.</p>
-              
+        <p>In the example above, the title is cut off at two lines and the content fits within the maximum height for the card. In the example below, the title is longer and the Card layout begins to break down.</p>      
+        <ContentCard 
+        startDate="Apr. 3" 
+        title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin and around the World"
+        category="Global Hot Spots"
+        venue="Fluno Center"
+        location="Madison" 
+        img={data.cardImage3}
+        size="L"
+        />
         <hr>
         
         </hr>
