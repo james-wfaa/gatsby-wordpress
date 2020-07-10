@@ -10,34 +10,39 @@ const PromoCardD = ({ className, title, url, isNav = false })=> {
 
     return (
         <CardD>
-            <div className={classes}>
+            <div className={classes}> 
+            <div className={`${className}__wrapper`}>
                 <a href={url}>{title}</a>
+            </div>
             </div>
         </CardD>
     )
 }
 
 const StyledPromoCardD = styled(PromoCardD)`
-padding: 1.778rem;
 background-color: ${colors.promoRed};
-color: ${colors.titleWhite};
-font-size: 2.333rem;
-line-height: 3rem;
-font-weight: bold;
-font-style: italic;
 height: 100%;
 width: 100%;
 position: absolute;
-text-align: center;
-display: table;
 
 &__wrapper {
     position: relative;
+    overflow: hidden;
+    padding: 1.778rem;
+    height: 100%;
+    width: 100%;
+    color: ${colors.titleWhite};
+    font-size: 2.333rem;
+    line-height: 3rem;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    display: table;
 
     &:after {
         position: absolute; 
-        bottom: -100px;
-        left: 230px;
+        bottom: -80px;
+        left: 270px;
         width: 150px;
         height: 150px;
         background-image: repeating-linear-gradient(0deg,
@@ -46,7 +51,6 @@ display: table;
             white 10px,
             white 10.5px);
         transform: rotate(-45deg);
-        overflow: hidden;
         content: '';
     }
 }
