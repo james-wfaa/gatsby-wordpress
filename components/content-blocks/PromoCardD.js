@@ -39,6 +39,20 @@ position: absolute;
     text-align: center;
     display: table;
 
+    
+    &:before {
+        position: absolute; 
+        bottom: 271px;
+        left: -81px;
+        width: 150px;
+        height: 150px;
+        background-image: repeating-linear-gradient(-45deg,
+            transparent,
+            transparent 5px,
+            white 5px,
+            white 6px);
+        content: '';
+    }
     &:after {
         position: absolute; 
         bottom: -80px;
@@ -47,9 +61,9 @@ position: absolute;
         height: 150px;
         background-image: repeating-linear-gradient(0deg,
             transparent,
-            transparent 10px,
-            white 10px,
-            white 10.5px);
+            transparent 5px,
+            white 5px,
+            white 5.5px);
         transform: rotate(-45deg);
         content: '';
     }
