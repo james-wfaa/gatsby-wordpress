@@ -9,7 +9,7 @@ import Footer from "./Footer"
 
 import "./layout.css"
 
-const Layout = ({ children, title, img, url, excerpt }) => {
+const Layout = ({ children, img, url, excerpt }) => {
   
   return (
     <>
@@ -19,7 +19,7 @@ const Layout = ({ children, title, img, url, excerpt }) => {
       url={url}
       desc={excerpt} 
       />
-      <Header siteTitle="Wisconsin Alumni Association" />
+      <Header />
       <div>
         <Link to="/">home menu</Link>
         <main>{children}</main>
