@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{"2EUq":function(n,e,t){"use strict";t.r(e);var u=t("q1tI"),a=t.n(u);e.default=function(){return a.a.createElement("div",null,"uwalumni.com | event")}}}]);
-//# sourceMappingURL=component---src-pages-event-js-39c47faa997567fd2859.js.map
