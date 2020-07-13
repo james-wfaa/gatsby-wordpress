@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[14],{bJC4:function(e,n,t){"use strict";t.r(n);var a=t("q1tI"),l=t.n(a),u=t("5Yp1"),c=t("+q3T");n.default=function(){return l.a.createElement(u.a,null,l.a.createElement("div",null,"uwalumni.com | homepage"),l.a.createElement(c.a,{heading:"hello",content:"stuff and things"}))}}}]);
+//# sourceMappingURL=component---src-pages-homepage-js-c7648f6f297c31e4f7a4.js.map

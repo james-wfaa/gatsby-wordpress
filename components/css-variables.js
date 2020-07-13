@@ -80,6 +80,7 @@ export const colors = {
     linkVisitedGrey: baseColors.darkerGrey,
     linkActiveGrey:     baseColors.darkGrey,
     cardHeaderBGGrey: baseColors.lightestGrey,
+    toneRed: baseColors.toneRed,
 
 }
 
