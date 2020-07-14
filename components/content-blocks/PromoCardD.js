@@ -1,7 +1,12 @@
 import React from "react"
 import styled from 'styled-components'
-import { colors } from '../css-variables'
+import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import CardD from './CardD'
+import diagRightSVG from '../../src/svg/Diagonals_Card_Corners_White_bottom-rght_2x.svg'
+import diagLeftSVG from '../../src/svg/Diagonals_Card_Corners_White_top-left_2x.svg'
+import arrowSVG from '../../src/svg/Arrow_45-degrees_white_1x.svg'
+
+
 
 const PromoCardD = ({ className, title, url, isNav = false })=> {
 
@@ -10,11 +15,13 @@ const PromoCardD = ({ className, title, url, isNav = false })=> {
 
     return (
         <CardD>
-            <div className={classes}> 
-            <div className={`${className}__wrapper`}>
-                <a href={url}>{title}</a>
-            </div>
-            </div>
+            <a href={url}className={classes}>
+                <div className={`${className}__wrapper`}>
+                    <div className={`${className}__title`}>{title}</div>
+                    <span className={`${className}__arrow`}></span>
+                </div>
+
+            </a>
         </CardD>
     )
 }
@@ -37,45 +44,49 @@ position: absolute;
     font-weight: bold;
     font-style: italic;
     text-align: center;
-    display: table;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
 
-    
     &:before {
         position: absolute; 
-        bottom: 271px;
-        left: -81px;
+        bottom: 110px;
+        left: -1px;
         width: 150px;
         height: 150px;
-        background-image: repeating-linear-gradient(-45deg,
-            transparent,
-            transparent 5px,
-            white 5px,
-            white 6px);
+        background-color: ${colors.bgWhite};
+        -webkit-mask-image: url(${diagLeftSVG});
+        mask: url(${diagLeftSVG}) no-repeat;
         content: '';
+        @media screen and ${breakpoints.laptopS} {
+            bottom: 195px;
+            left: -1px;    
+        }
     }
     &:after {
         position: absolute; 
-        bottom: -80px;
-        left: 270px;
+        bottom: -15px;
+        left: 195px;
         width: 150px;
         height: 150px;
-        background-image: repeating-linear-gradient(0deg,
-            transparent,
-            transparent 5px,
-            white 5px,
-            white 5.5px);
-        transform: rotate(-45deg);
+        background-color: ${colors.bgWhite};
+        -webkit-mask-image: url(${diagRightSVG});
+        mask: url(${diagRightSVG}) no-repeat;
         content: '';
+        @media screen and ${breakpoints.laptopS} {
+            bottom: -15px;
+            left: 195px;       
+        }
     }
 }
 
 
-a {
+&__title {
     position: relative;
     color: ${colors.titleWhite};
     text-decoration: none;
-    display: table-cell;
-    vertical-align: middle;
 }
 
 &__nav {
@@ -84,7 +95,15 @@ a {
     a {
         color: ${colors.titleColor};
     }
+}
 
+&__arrow {
+    mask: url(${arrowSVG}) no-repeat;
+    display: table-cell;;
+    width: 30px;
+    height: 30px;
+    align-self: flex-end;
+    background: ${colors.bgWhite};
 }
 
 
