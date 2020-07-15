@@ -17,8 +17,8 @@ const PromoCardD = ({ className, title, url, isNav = false })=> {
         <CardD>
             <a href={url}className={classes}>
                 <div className={`${className}__wrapper`}>
-                    <div className={`${className}__title`}>{title}</div>
-                    <span className={`${className}__arrow`}></span>
+                    <div className={`${className}__title title`}>{title}</div>
+                    <span className={`${className}__arrow arrow`}></span>
                 </div>
 
             </a>
@@ -31,16 +31,18 @@ background-color: ${colors.promoRed};
 height: 100%;
 width: 100%;
 position: absolute;
+text-decoration: none;
+
 
 &__wrapper {
     position: relative;
     overflow: hidden;
-    padding: 1.778rem;
+    padding: ${sizes.s16};
     height: 100%;
     width: 100%;
     color: ${colors.titleWhite};
-    font-size: 2.333rem;
-    line-height: 3rem;
+    font-size: ${sizes.s36};
+    line-height: ${sizes.s40};
     font-weight: bold;
     font-style: italic;
     text-align: center;
@@ -48,12 +50,16 @@ position: absolute;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    justify-content: space-between;
+    @media screen and ${breakpoints.laptopS} {
+        padding: ${sizes.s24};
+        font-size: ${sizes.s42};
+        line-height: ${sizes.s58};
 
+    }
     &:before {
         position: absolute; 
-        bottom: 110px;
-        left: -1px;
+        bottom: 125px;
+        left: -15px;
         width: 150px;
         height: 150px;
         background-color: ${colors.bgWhite};
@@ -67,8 +73,8 @@ position: absolute;
     }
     &:after {
         position: absolute; 
-        bottom: -15px;
-        left: 195px;
+        bottom: -30px;
+        left: 125px;
         width: 150px;
         height: 150px;
         background-color: ${colors.bgWhite};
@@ -87,6 +93,12 @@ position: absolute;
     position: relative;
     color: ${colors.titleWhite};
     text-decoration: none;
+    margin-top: auto;
+    @media screen and ${breakpoints.laptopS} {
+        padding-left: ${sizes.s8};
+        padding-right: ${sizes.s8};         
+    }
+
 }
 
 &__nav {
@@ -104,6 +116,26 @@ position: absolute;
     height: 30px;
     align-self: flex-end;
     background: ${colors.bgWhite};
+    margin-top: auto;
+}
+
+&:visited {
+    .title{
+        color: ${colors.linkTextVisitedLight};
+    }
+    .arrow{
+        background: ${colors.linkTextVisitedLight};
+    }
+}
+
+&:hover {
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
+    .title{
+        text-decoration: underline;
+    }
+}
+&:active {
+    cursor:default;
 }
 
 
