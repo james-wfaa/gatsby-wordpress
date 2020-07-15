@@ -51,7 +51,7 @@ text-decoration: none;
     justify-content: center;
     flex-direction: column;
     @media screen and ${breakpoints.laptopS} {
-        padding: ${sizes.s24};
+        padding: ${sizes.s32};
         font-size: ${sizes.s42};
         line-height: ${sizes.s58};
 
@@ -93,11 +93,6 @@ text-decoration: none;
     position: relative;
     color: ${colors.titleWhite};
     text-decoration: none;
-    margin-top: auto;
-    @media screen and ${breakpoints.laptopS} {
-        padding-left: ${sizes.s8};
-        padding-right: ${sizes.s8};         
-    }
 
 }
 
@@ -110,13 +105,17 @@ text-decoration: none;
 }
 
 &__arrow {
+    position: absolute;
     mask: url(${arrowSVG}) no-repeat;
-    display: table-cell;;
+    bottom: ${sizes.s16};
+    right: ${sizes.s16};
     width: 30px;
     height: 30px;
-    align-self: flex-end;
     background: ${colors.bgWhite};
-    margin-top: auto;
+    @media screen and ${breakpoints.laptopS} {
+        bottom: ${sizes.s24};
+        right: ${sizes.s24};        
+    }
 }
 
 &:visited {
