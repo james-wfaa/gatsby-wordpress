@@ -2,7 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import WfaaFooterMenu from './parts/WfaaFooterMenuStatic'
 import Copyright from './parts/Copyright';
-import Crest from '../src/images/outline-UWcrest-web.png'
+import Crest from '../src/svg/uwa_crest_white_footer_2x.svg'
+import IconFB from '../src/svg/uwa__facebook_white_24x24.svg'
+import IconInsta from '../src/svg/uwa__instagram_white_24x24.svg'
+import IconTwitter from '../src/svg/uwa__twitter_white_24x24.svg'
+import IconWeChat from '../src/svg/uwa__WeChat_white_24x24.svg'
 import { colors, mixins, sizes, breakpoints, fonts } from './css-variables'
 
 
@@ -17,11 +21,11 @@ const navTemp = {
     },
     {
       "title": "Mission & Values",
-      "url": "https://wp.advanceuw.org/teams/"
+      "url": "https://wp.advanceuw.org/teams1/"
     },
     {
       "title":"Teams",
-      "url":"https://wp.advanceuw.org/teams/"
+      "url":"https://wp.advanceuw.org/teams2/"
     }
 ]};
 const navTempLong = {
@@ -29,38 +33,58 @@ const navTempLong = {
   items:[
     {
       "title":"Employee Benefits",
-      "url":"https://wp.advanceuw.org/benefits/"
+      "url":"https://wp.advanceuw.org/benefits2/"
     },
     {
       "title": "Mission & Values",
-      "url": "https://wp.advanceuw.org/teams/"
+      "url": "https://wp.advanceuw.org/teams3/"
     },
     {
       "title":"Teams",
-      "url":"https://wp.advanceuw.org/teams/"
+      "url":"https://wp.advanceuw.org/teams4/"
     },
     {
       "title":"Behind the Scenes",
-      "url":"https://wp.advanceuw.org/btw/"
+      "url":"https://wp.advanceuw.org/btw1/"
     },
     {
       "title":"Jobs at WFAA",
-      "url":"https://wp.advanceuw.org/jobs/"
+      "url":"https://wp.advanceuw.org/jobs1/"
     },
     {
       "title":"Teams",
-      "url":"https://wp.advanceuw.org/teams/"
+      "url":"https://wp.advanceuw.org/teams5/"
     },
     {
       "title":"Behind the Scenes",
-      "url":"https://wp.advanceuw.org/btw/"
+      "url":"https://wp.advanceuw.org/btw2/"
     },
     {
       "title":"Jobs at WFAA",
-      "url":"https://wp.advanceuw.org/jobs/"
+      "url":"https://wp.advanceuw.org/jobs2/"
     }
 ]};
   
+const navTempLong2 = {
+  name:"About WFAA",
+  items:[
+    {
+      "title":"Employee Benefits",
+      "url":"https://wp.advanceuw.org/benefits3/"
+    },
+    {
+      "title":"Behind the Scenes",
+      "url":"https://wp.advanceuw.org/btw3/"
+    },
+    {
+      "title":"Jobs at WFAA",
+      "url":"https://wp.advanceuw.org/jobs3/"
+    },
+    {
+      "title":"Teams",
+      "url":"https://wp.advanceuw.org/##/"
+    }
+]};
 
 const StyledCrest = styled.div`
 margin: 0;
@@ -109,14 +133,22 @@ const WfaaFooter = ({ className }) =>  (
         <WfaaFooterMenu menu={navTemp} pageLink="/about/" />
       </div>
       <div className="footer__column">
-        <WfaaFooterMenu menu={navTempLong} pageLink="/careers/" />
+        <WfaaFooterMenu menu={navTempLong2} pageLink="/careers/" />
         <p>
           <span>Questions:</span>
           <span><a href="mailto:wfaa@supportuw.org">wfaa@supportuw.org</a></span>
         </p>
       </div>
     </div> </div>
-    <Copyright />
+    <div className="footer--bottom">
+      <Copyright />
+      <ul className="footer--social">
+        <li className="footer--icon"><img className="iconImg" src={IconFB} alt="" /></li>
+        <li className="footer--icon"><img className="iconImg" src={IconTwitter} alt="" /></li>
+        <li className="footer--icon"><img className="iconImg" src={IconInsta} alt="" /></li>
+        <li className="footer--icon"><img className="iconImg" src={IconWeChat} alt="" /></li>
+      </ul>
+    </div>  
   </footer>
   )
 
@@ -209,6 +241,23 @@ const StyledFooter = styled(WfaaFooter)`
       }
     }
   }
+
+  .footer--bottom{
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+  }
+
+  .footer--social {
+    display: flex;
+    margin-top: ${sizes.s24};
+    .footer--icon{
+      width: ${sizes.s22};
+      height: ${sizes.s22};
+      margin: ${sizes.s9};
+    }
+  }
+  
 `
 
 
