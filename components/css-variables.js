@@ -84,6 +84,7 @@ export const colors = {
     navMenuBorderGrey: baseColors.grey,
     toneRed: baseColors.toneRed,
     badgerRed: baseColors.mainRed,
+    linkTextVisitedLight: baseColors.lightestGrey,
 
 }
 
