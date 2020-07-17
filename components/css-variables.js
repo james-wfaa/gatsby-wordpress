@@ -76,11 +76,14 @@ export const colors = {
     linkTextHover:  baseColors.deepRed,
     linkTextActive: baseColors.offBlack,
     linkDateHover:  baseColors.mainRed,
-    linkDateActive: baseColors.deepRed,
+    linkDateActive: baseColors.deepRed, 
     linkVisitedGrey: baseColors.darkerGrey,
     linkActiveGrey:     baseColors.darkGrey,
     cardHeaderBGGrey: baseColors.lightestGrey,
+    navMenuBlack:      baseColors.offBlack,
+    navMenuBorderGrey: baseColors.grey,
     toneRed: baseColors.toneRed,
+    badgerRed: baseColors.mainRed,
 
 }
 

@@ -21,7 +21,6 @@ const Layout = ({ children, img, url, excerpt }) => {
       />
       <Header />
       <div>
-        <Link to="/">home menu</Link>
         <main>{children}</main>
         <Footer />
       </div>
