@@ -64,7 +64,6 @@ const WfaaFooter = ({ className }) =>  (
 const StyledFooter = styled(WfaaFooter)`
   font-size: .75em;
   background-color: #f2f2f2;
-  margin-top: 7.5em;
   .footer--inner {
     max-width: 900px;
     margin: 0 auto;

@@ -164,7 +164,6 @@ const WfaaFooter = ({ className }) =>  (
 const StyledFooter = styled(WfaaFooter)`
   font-size: ${sizes.s14};
   background-color: ${colors.bgRed};
-  margin-top: 7.5em;
   color: ${colors.bgWhite};
   position: relative;
 
