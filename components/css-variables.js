@@ -44,6 +44,7 @@ export const baseColors = {
     mainRed: '#c5050c',
     toneRed: '#A5050A',
     deepRed: '#810000',
+    darkRed: '#A2020A',
     flamingle: '#E8306E',
     offBlack: '#3C3C3C',
     darkerGrey: '#777777',
@@ -85,6 +86,7 @@ export const colors = {
     toneRed: baseColors.toneRed,
     badgerRed: baseColors.mainRed,
     linkTextVisitedLight: baseColors.lightestGrey,
+    footerAccent: baseColors.darkRed,
 
 }
 

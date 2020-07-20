@@ -103,6 +103,8 @@ margin: 0;
   
   img {
     margin: 0 auto;  
+    width: 73px;
+    height: 73px;
     @media screen and ${breakpoints.tablet} {
       margin: 0;
     }
@@ -115,6 +117,13 @@ const WfaaFooter = ({ className }) =>  (
         <StyledCrest>
           <img className="wfaa-uw-crest" src={Crest} alt="" />
         </StyledCrest>
+
+        <ul className="footer--social">
+          <li className="footer--icon"><img className="iconImg" src={IconFB} alt="" /></li>
+          <li className="footer--icon"><img className="iconImg" src={IconTwitter} alt="" /></li>
+          <li className="footer--icon"><img className="iconImg" src={IconInsta} alt="" /></li>
+          <li className="footer--icon"><img className="iconImg" src={IconWeChat} alt="" /></li>
+        </ul>
         <div className="external-link">
           <div>University of Wisconsin&#8212;Madison</div>
           <a href="https://www.wisc.edu/?utm_source=advanceuw&utm_medium=referral&utm_content=footer">wisc.edu</a>
@@ -141,7 +150,7 @@ const WfaaFooter = ({ className }) =>  (
       </div>
     </div> </div>
     <div className="footer--bottom">
-      <Copyright />
+      <Copyright className="footer--copy" />
       <ul className="footer--social">
         <li className="footer--icon"><img className="iconImg" src={IconFB} alt="" /></li>
         <li className="footer--icon"><img className="iconImg" src={IconTwitter} alt="" /></li>
@@ -157,6 +166,19 @@ const StyledFooter = styled(WfaaFooter)`
   background-color: ${colors.bgRed};
   margin-top: 7.5em;
   color: ${colors.bgWhite};
+  position: relative;
+
+  .footer--social {
+    display: flex;
+    margin-top: ${sizes.s24};
+    z-index: 1;
+    .footer--icon{
+      width: ${sizes.s22};
+      height: ${sizes.s22};
+      margin: ${sizes.s9};
+    }
+  }
+
 
   .footer--inner {
     max-width: 900px;
@@ -168,6 +190,7 @@ const StyledFooter = styled(WfaaFooter)`
     width: 100%;
     margin: 0 auto;
     max-width: 400px;
+    z-index: 1;
     @media screen and ${breakpoints.tablet} {
       width: auto;
       max-width: 900px;
@@ -186,6 +209,12 @@ const StyledFooter = styled(WfaaFooter)`
       width: auto;
       max-width: auto;
       margin-bottom: 0px;
+    }
+
+    .footer--social{
+      @media screen and ${breakpoints.tablet} {
+        display: none;
+      }
     }
     &.footer__column--first {
       border-bottom: 1px solid ${colors.bgWhite};
@@ -246,16 +275,36 @@ const StyledFooter = styled(WfaaFooter)`
     max-width: 900px;
     margin: 0 auto;
     display: flex;
+    justify-content: space-between;
+    padding-left: ${sizes.s48};
+    padding-right: ${sizes.s48};
+
+    .footer--social{
+      display: none;
+      @media screen and ${breakpoints.tablet} {
+        display: flex;
+      }
+    }
+
+    @media screen and ${breakpoints.tablet} {
+      &:after {
+        position: absolute;
+        top: 0;
+        right: 175px;
+        height: 100%;
+        width: 200px;
+        content: '';
+        background-color: ${colors.footerAccent} !important;
+        opacity: .5;
+        transform: skew(135deg);  
+    }
   }
 
-  .footer--social {
-    display: flex;
-    margin-top: ${sizes.s24};
-    .footer--icon{
-      width: ${sizes.s22};
-      height: ${sizes.s22};
-      margin: ${sizes.s9};
-    }
+  }
+
+  .footer--copy{
+    margin: 0px;
+    padding-left: 0px;
   }
   
 `
