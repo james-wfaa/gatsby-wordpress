@@ -19,6 +19,7 @@ class Submenu extends React.Component {
       </ul>
     )
   }
+ 
   close() {
     this.setState({ open: false })
   }
@@ -41,13 +42,7 @@ class Menu extends React.Component {
     return (
       <StyledPrimaryMenu className={`primarymenu ${this.state.open ? "open" : ""}`}>
       
-        <div className="topNav">top nav<div
-        role="button"
-        tabIndex="0"
         
-        onClick={() => this.close()}
-        onKeyDown={() => this.close()}
-      >close</div></div>
         <div className="mainNav">
           <div>
           
@@ -111,13 +106,19 @@ class Menu extends React.Component {
     )
   }
   
- 
+  toggle() {
+    const val = this.state.open ? false : true
+    console.log(val)
+    this.setState({ open: val })
+  }
+  
 
   close() {
     this.setState({ open: false })
   }
 
   open() {
+    console.log('ooooo')
     this.setState({ open: true })
   }
   openSubMenu(num) {
@@ -166,6 +167,9 @@ export default React.forwardRef((props, ref) => {
     open() {
       menuRef.current.open()
     },
+    toggle() {
+      menuRef.current.toggle()
+    }
   }))
 
   return (
