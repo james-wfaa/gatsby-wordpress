@@ -87,6 +87,7 @@ export const colors = {
     badgerRed: baseColors.mainRed,
     linkTextVisitedLight: baseColors.lightestGrey,
     footerAccent: baseColors.darkRed,
+    iconGrey: baseColors.darkGrey,
 
 }
 
