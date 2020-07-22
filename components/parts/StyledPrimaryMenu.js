@@ -12,7 +12,6 @@ import LiIcon from "../../src/svg/linkedin_icon_gray.svg" // Tell webpack this J
 const StyledPrimaryMenu = styled.div`
 .primarymenu {
     position: fixed;
-    top: 118px;
     left: 0;
     height: 100%;
     width: 100%;
@@ -20,7 +19,7 @@ const StyledPrimaryMenu = styled.div`
     z-index: 1031;
     visibility: hidden;
     opacity: 0;
-    transition: all 0.35s;
+    transition: all ease 0.35s;
     cursor: pointer;
     padding: 0;
     @media screen and ${breakpoints.tabletS} {
@@ -29,9 +28,12 @@ const StyledPrimaryMenu = styled.div`
     @media screen and ${breakpoints.laptopS} {
         padding: 0 180px;
     }
+    top: -100%;
     &.open {
         visibility: visible;
         opacity: 1;
+        top: 114px;
+        z-index: 1001;
     }
     .topNav {
         height: 80px;

@@ -32,10 +32,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                     media: `(min-width: 1200px)`
                 }   
             ]
-            :  img.childImageSharp.fluid
-
-            console.log(imgSources)
-   
+            :  img.childImageSharp.fluid   
 
     return (
 

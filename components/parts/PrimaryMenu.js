@@ -11,6 +11,8 @@ class Submenu extends React.Component {
       open: false,
     }
   }
+
+ 
   
   render() {
     return (
@@ -108,7 +110,13 @@ class Menu extends React.Component {
   
   toggle() {
     const val = this.state.open ? false : true
-    console.log(val)
+    
+    if(this.state.open){
+      document.body.style.overflow = 'unset';
+    }  else {
+      document.body.style.overflow = 'hidden';
+    
+    }
     this.setState({ open: val })
   }
   
@@ -118,7 +126,6 @@ class Menu extends React.Component {
   }
 
   open() {
-    console.log('ooooo')
     this.setState({ open: true })
   }
   openSubMenu(num) {

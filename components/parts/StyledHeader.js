@@ -6,10 +6,21 @@ import Search from "../../src/svg/search.svg" // Tell webpack this JS file uses 
 import Menu from "../../src/svg/hamburger-text.svg" // Tell webpack this JS file uses this image
 
 const StyledHeader = styled.header`
+position: relative;
+&.sticky {
+  position: sticky;
+  height: 116px; 
+}
+&.open {
+  .mainnav .uberNav {
+    display: none;
+  }
+}
 .mainnav {
   width: 100%;
   height: 86px;
-  padding: ${sizes.s18} 0;
+  padding: ${sizes.s18} 0;  
+  
   .inner {
     display: grid;
     grid-template-columns: 112px auto 43px 32px;
@@ -107,7 +118,7 @@ const StyledHeader = styled.header`
   
   @media screen and ${breakpoints.tabletS} {
    
-    align-self: flex-end;
+   
   }
 
   a {
@@ -123,27 +134,102 @@ const StyledHeader = styled.header`
   }
 }  
   
- 
 .menu {
   width: 32px;
-  display: flex;
+  display: block;
   align-items: center;
-  @media screen and ${breakpoints.tabletS} {
-   
-    align-self: flex-end;
-  }
+  padding-top: 20px;
 
-  a {
+  
+  span {
     display: block;
-    width: 32px;
-    height: 36px;
-    margin-bottom: 4px;
     background-color: ${colors.navMenuBlack};
-    mask: url(${Menu});
-    &:hover {
+    height: 3px;
+    transition: all .3s linear;
+    align-self: center;
+    position: relative;
+    transform: ${props => (props.open ? "rotate(-45deg)" : "inherit")};
+
+    ::before,
+    ::after {
+      width: 32px;
+      height: 3px;
+      background-color: ${colors.navMenuBlack};
+      content: "";
+      position: absolute;
+      transition: all 0.3s linear;
+    }
+    ::before {
+      transform: rotate(0deg);
+      top: -9px;
+    }
+    ::after {
+      opacity: 1; 
+      transform: rotate(0deg);
+      top: 9px;
+    }
+
+  }
+  div {
+    font-size: ${sizes.s11};
+    margin-top: 7px;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+
+  }
+  &:hover {
+    span {
       background-color: ${colors.buttonRed};
+      ::before,
+      ::after {
+        background-color: ${colors.buttonRed};
+      }
+    }
+    div {
+      color: ${colors.buttonRed};
     }
   }
+  &:active {
+    span {
+      background-color: ${colors.toneRed};
+      ::before,
+      ::after {
+        background-color: ${colors.toneRed};
+      }
+    }
+    div {
+      color: ${colors.toneRed};
+    }
+  }
+  &.open {
+    width: 36px;
+    height: 36px;
+    margin-top: 10px;
+    border: 2px solid ${colors.buttonRed};
+
+
+    span {
+      top: -6px;
+      transform: rotate(-45deg);
+      background-color: ${colors.buttonRed};
+      ::before {
+        background-color: ${colors.buttonRed};
+        transform: rotate(-90deg) translate(-10px, 0px);
+      }
+      ::after {
+        
+        background-color: ${colors.buttonRed};
+        opacity: 0; 
+        transform: rotate(90deg);
+        top: 10px;
+      }
+    }
+    div {
+      display: none;
+    }
+  }
+
 }
 `
 

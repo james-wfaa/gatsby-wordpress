@@ -9,11 +9,16 @@ import Logo from "../src/svg/waa_logo.svg" // Tell webpack this JS file uses thi
 
 
 class Header extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      open: false,
+    }
+  }
 
   render() {
     return (
-      <StyledHeader>
-<header>
+      <StyledHeader className={`header ${this.state.open ? "open" : ""}`}>
         <nav > 
           <div className="__rednav">
             <div className="inner">
@@ -52,19 +57,24 @@ class Header extends React.Component {
                 </ul>
                </div>
                <span className="search"><a  href="#search"></a></span>
-               <span className="menu" onClick={() => this.toggleMenu()}><a href="#menu">menu</a></span>
+               <div className={`menu ${this.state.open ? "open" : ""}`} onClick={() => this.toggleMenu()}>
+                 <span></span>
+                 <div>menu</div>
+                 </div>
                </div>
              
            </div>
         </nav>
         <PrimaryMenu ref={el => (this.childMenu = el)} />
-      </header>
       </StyledHeader>
       
     )
   }
 
   toggleMenu() {
+    const val = this.state.open ? false : true
+    //console.log(val)
+    this.setState({ open: val })
     this.childMenu.toggle()
   }
   

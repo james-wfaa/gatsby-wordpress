@@ -10,6 +10,8 @@ export const sizes = {
     s7:  '0.389rem',
     s8:  '0.444rem',
     s9:  '0.5rem',
+    s10: '0.555rem',
+    s11: '0.611rem',
     s12: '0.667rem',
     s13: '0.722rem',
     s14: '0.778rem',
