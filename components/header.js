@@ -52,8 +52,8 @@ class Header extends React.Component {
                <span className="logo"><Link to="/"><img src={Logo} alt="Logo" /></Link></span>
                <div>
                 <ul className="uberNav">
-                  <li><Link to="/Lorem">Lorem</Link></li>
-                  <li><Link to="/Ipsum">Ipsum</Link></li>
+                  <li><Link to="/#Lorem">Lorem</Link></li>
+                  <li><Link to="/#Ipsum">Ipsum</Link></li>
                 </ul>
                </div>
                <span className="search"><a  href="#search"></a></span>

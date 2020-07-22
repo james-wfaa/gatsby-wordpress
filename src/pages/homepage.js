@@ -78,7 +78,7 @@ export default ({ data }) =>  {
 
 <CommunicationForm />
 
-<PageSection heading="Featured Stories" buttons={featuredbutton} alt="true">
+<PageSection heading="Featured Stories" buttons={featuredbutton} alt>
     <SimpleSlider  className="center" slidesToShow="1" dots  centerMode variableWidth centerPadding="100px"> 
         <ContentCard 
         title="All About That Bass"

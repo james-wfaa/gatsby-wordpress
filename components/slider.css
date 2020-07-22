@@ -14,16 +14,17 @@
 }
 
 .slick-prev {
-    left: 240px;
+    left: 0;
    
 }
 .slick-prev:before,
 .slick-next:before {
     color: #c5050c;
     font-size: 2rem;
+    background-color: white;
 }
 .slick-next {
-    right: 240px;
+    right: 16px;
 }
 
 .slick-dots li button:before {
@@ -35,10 +36,13 @@
     color: #c5050c;
 
 }
+.slick-slider {
+    margin-bottom: 0;
+}
 
 @media screen and (min-width: 656px) {
     .slick-slide {
-        padding: 32px 58px;
+        padding: 32px 58px 0;
     }
     .slick-arrow {
         display: block !important;

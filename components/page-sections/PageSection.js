@@ -9,19 +9,21 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 
-const PageSection = ({className, preheading, heading, excerpt, buttons, alt, bgImage, children}) => {
+const PageSection = ({className, preheading, heading, excerpt, buttons, alt, topBorder, bgImage, children}) => {
             
         
     const background =  typeof bgImage !== "undefined" && bgImage !== null 
 
     const classesList = alt ? `${className} ${className}--alt` : className
     const altClass = alt ? ` ${className}--alt` : ''
-    const preheadingClass = preheading ?  ` ${className}--preheading` : ''
+    const topBorderClass = topBorder ? ` ${className}--topborder` : ''
+    const hasPreHeading = preheading && !heading ?  ` ${className}--hasPreHeading` : ''
+    const hasNoHeading = !preheading && !heading ? ` ${className}--hasNoHeading` : ''
    
     return (
         <div>
             { ! background &&  (
-            <div className={`${className} ${altClass} ${preheadingClass}` }>
+            <div className={`${className} ${altClass} ${hasPreHeading} ${hasNoHeading} ${topBorderClass}` }>
                 { preheading && (
                 <div className={`${className}__preheading`}>{preheading}</div>
             )}
@@ -79,10 +81,15 @@ const StyledPageSection = styled(PageSection)`
     padding-top: 88px;
     padding-bottom: 88px;
 
-    &--preheading {
+    &--hasPreHeading {
         padding-top: 0;
     }
-   
+    &--hasNoHeading {
+        padding-top: 58px;
+    }
+    &--topborder {
+        border-top: 30px solid ${colors.sectionBorder};
+    }
 
    
     &--alt {

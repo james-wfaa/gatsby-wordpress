@@ -90,6 +90,7 @@ export const colors = {
     linkTextVisitedLight: baseColors.lightestGrey,
     footerAccent: baseColors.darkRed,
     iconGrey: baseColors.darkGrey,
+    sectionBorder: baseColors.lightestGrey,
 
 }
 

@@ -26,6 +26,7 @@ const StyledCardE = styled(CardE)`
 max-width: 254px;
 margin-left: ${sizes.s12};
 margin-right: ${sizes.s12};
+margin-bottom: 0;
 
 @media screen and ${breakpoints.laptopS} {
     max-width: 344px;

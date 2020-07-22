@@ -202,7 +202,7 @@ export default class ActiveCommunicationForm extends Component {
     render () {
        
         return (
-            <PageSection preheading="Sign up for WAA Communications">
+            <PageSection preheading="Sign up for WAA Communications" topBorder >
                 <StyledCommunicationForm>
                 <form onSubmit={this.handleSubmit}>
                     <fieldset>
