@@ -264,6 +264,10 @@ export default () => {
 
 
     <GenericPageSection pad>
+        <h1>Promo Card (square tile card)</h1>
+        <p>This is the Promotional variant of Card 'D'. These are usually found in tile grids as accents.</p>
+        <p>On mobile, these should be 256px wide.</p>
+
         <PromoCardD 
         title="Get Out And Travel"
         url="####"

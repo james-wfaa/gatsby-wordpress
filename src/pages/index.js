@@ -27,7 +27,7 @@ export default () => <div>
             <Link to="/intro-section">Intro Hero Section</Link>
         </li>
         <li>
-            <Link to="/cardD">Card D</Link>
+            <Link to="/cardD">Card D (NEW - Promo Card D Added)</Link>
         </li>
         <li>
             <Link to="/gridCardD">Card D Grid Format</Link>
