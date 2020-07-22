@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { sizes } from '../css-variables'
+import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 
 import Img from 'gatsby-image'
 
@@ -24,6 +24,14 @@ const CardE = ({ className, img, caption }) => {
 
 const StyledCardE = styled(CardE)`
 max-width: 254px;
+margin-left: ${sizes.s12};
+margin-right: ${sizes.s12};
+
+@media screen and ${breakpoints.laptopS} {
+    max-width: 344px;
+
+}
+
 img {
     
 }
