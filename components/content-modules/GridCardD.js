@@ -17,7 +17,7 @@ width: 256px;
 margin: 0 auto;
 display: grid;
 grid-row-gap: ${sizes.s24};
-div:nth-child(n+5) {
+> div:nth-child(n+5) {
     display: none;
 }
 
@@ -25,10 +25,10 @@ div:nth-child(n+5) {
     width: 536px;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: ${sizes.s24};
-    div:nth-child(-n+6) {
-        display: block;
+    > div:nth-child(-n+6) {
+        display: inherit;
     }
-    div:nth-child(n+7) {
+    > div:nth-child(n+7) {
         display: none;
     }
   }
@@ -37,8 +37,8 @@ div:nth-child(n+5) {
     width: 816px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: ${sizes.s24};
-    div:nth-child(-n+9) {
-        display: block;
+    > div:nth-child(-n+9) {
+        display: inherit;
     }
 }
 
@@ -46,8 +46,8 @@ div:nth-child(n+5) {
     width: 1080px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: ${sizes.s24};
-    div:nth-child(-n+9) {
-        display: block;
+    > div:nth-child(-n+9) {
+        display: inherit;
     }
 }
 

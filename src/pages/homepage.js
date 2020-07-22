@@ -6,8 +6,7 @@ import ContentCardD from "../../components/content-blocks/ContentCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
 import ContentCard from "../../components/content-blocks/ContentCardFlex"
 import CardE from "../../components/content-blocks/CardE"
-import Container from "../../components/parts/Container"
-import GenericPageSection from '../../components/page-sections/GenericPageSection'
+import PromoCardD from "../../components/content-blocks/PromoCardD"
 import HeroIntroSection from '../../components/page-sections/HeroIntroSection'
 import CommunicationForm from "../../components/content-blocks/CommunicationForm"
 import SimpleSlider from "../../components/content-modules/SimpleSlider"
@@ -177,13 +176,9 @@ export default ({ data }) =>  {
             url="/sdfghsdgfhsdf"
             />
 
-            <ContentCardD 
-            startDate="Mar. 31" 
-            title="Higher Education Cybersecurity: UW–Madison Is Moving FORWARD!"
-            category="HEALTHY AGING SERIES"
-            venue="Capitol Lakes Retirement Community"
-            location="Madison" 
-            url="/asfgasgasd"
+            <PromoCardD 
+            title="Shop The UW Alumni Store"
+            url="####"
             />
 
             <ContentCardD 
