@@ -6,19 +6,20 @@ export default () => <div>
     <h2>Card Components</h2>
     <ul>
         <li>
-            <Link to="/homepage">Homepage</Link> (NEW)
+            <Link to="/header">Header Nav Menu</Link> (NEW)
         </li>
         <li>
-            <Link to="/contentCardFixed">Content Card (1/3, 1/2, 2/3 sizes) (FIXED HEIGHTS)</Link> (NEW)
+            <Link to="/homepage">Full Homepage</Link> (NEW)
+        </li>
+       
+        <li>
+            <Link to="/contentCardFlex">Content Card (1/3, 1/2, 2/3 sizes) (FLEXIBLE HEIGHTS)</Link> 
         </li>
         <li>
-            <Link to="/contentCardFlex">Content Card (1/3, 1/2, 2/3 sizes) (FLEXIBLE HEIGHTS)</Link> (NEW)
+            <Link to="/communicationForm">Communication Form</Link> 
         </li>
         <li>
-            <Link to="/communicationForm">Communication Form</Link> (NEW)
-        </li>
-        <li>
-            <Link to="/footer">Footer </Link> (NEW)
+            <Link to="/footer">Footer </Link> (Updates)
         </li>
         <li>
             <Link to="/page-section">Basic Page Section</Link> 
