@@ -81,7 +81,7 @@ export default ({ data }) =>  {
 <PageSection heading="Featured Stories" buttons={featuredbutton} alt="true">
     <SimpleSlider  className="center" slidesToShow="1" dots  centerMode variableWidth centerPadding="100px"> 
         <ContentCard 
-        title="Coachella Valley"
+        title="All About That Bass"
         category="UW NOW"
         excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
         url="##"
@@ -90,11 +90,20 @@ export default ({ data }) =>  {
         size="L"
         />
         <ContentCard 
-        title="Coachella Valley"
+        title="Four Conversation Starters Beyond “How about Them Badgers?”"
         category="UW NOW"
         excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
         url="##"
-        img={data.cardImage1}
+        img={data.cardImage6}
+        tags={taglist2}
+        size="L"
+        />
+        <ContentCard 
+        title="More than Madison and Milwaukee"
+        category="UW NOW"
+        excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
+        url="##"
+        img={data.cardImage3}
         tags={taglist2}
         size="L"
         />
@@ -103,16 +112,7 @@ export default ({ data }) =>  {
         category="UW NOW"
         excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
         url="##"
-        img={data.cardImage1}
-        tags={taglist2}
-        size="L"
-        />
-        <ContentCard 
-        title="Coachella Valley"
-        category="UW NOW"
-        excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
-        url="##"
-        img={data.cardImage1}
+        img={data.cardImage7}
         tags={taglist2}
         size="L"
         />
@@ -122,7 +122,7 @@ export default ({ data }) =>  {
         category="UW NOW"
         excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
         url="##"
-        img={data.cardImage1}
+        img={data.cardImage5}
         tags={taglist2}
         size="L"
         />
