@@ -1,7 +1,5 @@
-
-import React from 'react'
 import styled from 'styled-components'
-import { breakpoints, fonts, sizes, colors, mixins } from '../css-variables'
+import { breakpoints,  sizes, colors, } from '../css-variables'
 import FbIcon from "../../src/svg/fb_icon_gray.svg" // Tell webpack this JS file uses this image
 import TwIcon from "../../src/svg/twitter_icon_gray.svg" // Tell webpack this JS file uses this image
 import IgIcon from "../../src/svg/instagram_icon_gray.svg" // Tell webpack this JS file uses this image

@@ -1,9 +1,6 @@
-
-import React from 'react'
 import styled from 'styled-components'
-import { breakpoints, fonts, sizes, colors, mixins } from '../css-variables'
+import { breakpoints,  sizes, colors } from '../css-variables'
 import Search from "../../src/svg/search.svg" // Tell webpack this JS file uses this image
-import Menu from "../../src/svg/hamburger-text.svg" // Tell webpack this JS file uses this image
 
 const StyledHeader = styled.header`
 position: relative;

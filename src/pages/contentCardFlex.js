@@ -107,7 +107,7 @@ return (
         excerpt="First played in 1902, the Rose Bowl is the nation’s oldest college football bowl game. This season, the Badgers will make their 10th trip to Pasadena for the big game and their first trip back since 2013.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
         url="##"
         img={data.cardImage6}
-        tags={taglist2}
+        tags={taglist1}
         />
         <br />
         <p>Even with the 150 character exerpt limit, a long title can push the limits of the card height. The following example has a title that spans 4 lines on mobile, 

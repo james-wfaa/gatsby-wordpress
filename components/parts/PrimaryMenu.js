@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, useRef, useEffect } from "react"
+import React, { useImperativeHandle, useRef } from "react"
 import { Link } from "gatsby"
 import HeaderSocialIcons from './HeaderSocialIcons'
 import StyledPrimaryMenu from "./StyledPrimaryMenu"

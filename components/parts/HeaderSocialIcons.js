@@ -1,6 +1,4 @@
 import React from "react"
-import styled from 'styled-components'
-import { colors, sizes, breakpoints } from '../css-variables'
 const HeaderSocialIcons = ({ classList }) => {
 
     return ( 
