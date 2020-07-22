@@ -22,6 +22,7 @@ const StyledPrimaryMenu = styled.div`
     transition: all ease 0.35s;
     cursor: pointer;
     padding: 0;
+    overflow-y: scroll;
     @media screen and ${breakpoints.tabletS} {
         padding: 0 60px;
     }
@@ -32,8 +33,11 @@ const StyledPrimaryMenu = styled.div`
     &.open {
         visibility: visible;
         opacity: 1;
-        top: 114px;
+        top: 84px;
         z-index: 1001;
+        @media screen and ${breakpoints.tabletS} {
+            top: 114px;
+        }
     }
     .topNav {
         height: 80px;
@@ -44,17 +48,20 @@ const StyledPrimaryMenu = styled.div`
         justify-content: center;
         align-items: center;
         min-width: 320px;
+        position: relative;
         
         > div {
             &:first-of-type {
                 width: calc(100% - 72px);
                 max-width: 299px;
                 margin: 0 auto;
-
+                
                 
                 @media screen and ${breakpoints.tabletS} {
+                    position: relative;
                     width: 396px;
                 }
+                
                 
                
             }
@@ -65,9 +72,44 @@ const StyledPrimaryMenu = styled.div`
                     display: block;
                 }
             }
+            &.opensub {
+                position: relative;
+                
+                max-width: none;
+               
+                ul.primary {
+                    position: relative;
+                    border-bottom: none;
+                    
+                    > li {
+                        &:hover {
+                            background-color: transparent;
+                        }
+                        
+                        > span {
+                            display: none;
+                        }
+                    }
+                    .secondary {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                    }
+                    
+                   
+                }
+                .supplemental,
+                    .socialLinks {
+                        display: none;
+                    }
+                @media screen and ${breakpoints.tabletS} {
+                    left: 0;
+                }
+            }
         }
-        ul.primary li,
-        ul.secondary li {
+        ul.primary > li,
+        ul.secondary > li {
             
             &:hover {
                 background-color: ${colors.navcardGrey};
@@ -87,16 +129,16 @@ const StyledPrimaryMenu = styled.div`
         font-size: ${sizes.s22};
         padding-bottom: ${sizes.s24};
         border-bottom: 1px solid ${colors.navMenuBorderGrey};
+        
 
         @media screen and ${breakpoints.tabletS} {
+            position: relative;
             font-size: ${sizes.s26};
-            
             border-right: 1px solid ${colors.navMenuBorderGrey};
         }
         li {
             width: auto;
-            position: relative;
-            //margin-bottom: ${sizes.s32};
+            
             margin: 0;
             padding: ${sizes.s16} 0;
             @media screen and ${breakpoints.tabletS} {
@@ -129,7 +171,9 @@ const StyledPrimaryMenu = styled.div`
             @media screen and ${breakpoints.tabletS} {
                 padding-left: ${sizes.s16};
             }
-            
+        }
+        &.opensub {
+            left: -200%;
         }
         
 
@@ -137,19 +181,52 @@ const StyledPrimaryMenu = styled.div`
     .secondary {
         display: none;
         list-style-type: none;
+        margin-left: 0;
         li {
             padding: ${sizes.s16} ${sizes.s32} ${sizes.s16} ${sizes.s42};
+            &.returnNav {
+                display: none;
+                &.opensub {
+                    display: block;
+                    span {
+                        &:before {
+                            position: absolute;
+                    content: '';
+                    left: -${sizes.s32};
+                    top: calc(50%  - 3px);
+                    width: 0;
+                    height: 0;
+                    border-top: 6px solid transparent;
+                    border-right: 12px solid ${colors.badgerRed};
+                    border-bottom: 6px solid transparent;
+
+                        }
+                        &:after {
+                            display: none;
+                        }
+                    }
+
+                }
+            }
         }
         &.open {
+            padding-left: ${sizes.s16};
             display: block;
             position: absolute;
             left: 300px;
-            padding-left: 24px;
+            @media screen and ${breakpoints.tabletS} {
+                
+               
+                left: 300px;
+                padding-left: 24px;
+                height: 100%;
+                min-width: 300px;
 
-            top: 0;
-            li {
-                margin-left: ${sizes.s36};
+                top: 0;
+                li {
+                    margin-left: ${sizes.s36};
 
+                } 
             }
             
         }
@@ -157,9 +234,9 @@ const StyledPrimaryMenu = styled.div`
             text-decoration: none;
             color: ${colors.navMenuBlack};
         }
+        
     }
     .supplemental {
-
         list-style-type: none;
         padding: ${sizes.s32} 0;
         margin: 0;
@@ -169,27 +246,23 @@ const StyledPrimaryMenu = styled.div`
         }
         li {
             margin: 0;
-            //margin-bottom: ${sizes.s32};
-            
-        }
-        li {
             padding: ${sizes.s16} 0;
             @media screen and ${breakpoints.tabletS} {
                 padding: ${sizes.s16} 0 ${sizes.s16} ${sizes.s16};
             }
-            
         }
         a {
             text-decoration: none;
             color: ${colors.navMenuBlack};
             &:hover {
+                color: ${colors.badgerRed};
+                text-decoration: underline;
+            }
+            &:active {
                 color: ${colors.hoverRed};
+                text-decoration: underline;
             }
         }
-        
-
-
-
     }
     .socialLinks {
         width: 160px;

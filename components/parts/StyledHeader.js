@@ -23,7 +23,7 @@ position: relative;
   
   .inner {
     display: grid;
-    grid-template-columns: 112px auto 43px 32px;
+    grid-template-columns: 112px auto 59px 32px;
     @media screen and ${breakpoints.tabletS} {
       grid-template-columns: 112px auto 43px 32px;
     }
@@ -58,6 +58,7 @@ position: relative;
 }
 .__rednav {
   display: none;
+  position: relative;
   width: 100%;
   color: ${colors.bgWhite};
   background-color: ${colors.bgRed};
@@ -66,6 +67,7 @@ position: relative;
   padding: 0 180px;
   font-size: ${sizes.s14};
   z-index: -2;
+  transition: all ease 0.35s;
   
   ul {
     position: relative;
@@ -91,6 +93,19 @@ position: relative;
   }
   @media screen and ${breakpoints.tabletS} {
     display: block;
+  }
+  &.suppress {
+    &:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      z-index: 0;
+      content: '';
+    }
+   
   }
 }
 .inner {
@@ -192,6 +207,7 @@ position: relative;
   }
   &:active {
     span {
+      
       background-color: ${colors.toneRed};
       ::before,
       ::after {
@@ -207,15 +223,23 @@ position: relative;
     height: 36px;
     margin-top: 10px;
     border: 2px solid ${colors.buttonRed};
+    border-radius: 50%;
 
 
     span {
-      top: -6px;
+      top: -5px;
+      left: 4px;
+      width: 24px;
       transform: rotate(-45deg);
       background-color: ${colors.buttonRed};
+      ::before, 
+      ::after {
+        width: 24px;
+      }
       ::before {
         background-color: ${colors.buttonRed};
         transform: rotate(-90deg) translate(-10px, 0px);
+        top: -10px;
       }
       ::after {
         

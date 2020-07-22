@@ -20,7 +20,7 @@ class Header extends React.Component {
     return (
       <StyledHeader className={`header ${this.state.open ? "open" : ""}`}>
         <nav > 
-          <div className="__rednav">
+          <div className={`__rednav ${this.state.open ? "suppress" : ""}`}>
             <div className="inner">
               <ul>
                 <li><Link
@@ -73,7 +73,6 @@ class Header extends React.Component {
 
   toggleMenu() {
     const val = this.state.open ? false : true
-    //console.log(val)
     this.setState({ open: val })
     this.childMenu.toggle()
   }
