@@ -109,6 +109,36 @@ margin: 0;
       margin: 0;
     }
   }`
+
+const navSection = ({ className }) =>(
+  <div className={className}>
+    <div className="external-link">
+    <div>University of Wisconsin&#8212;Madison</div>
+    <a href="https://www.wisc.edu/?utm_source=advanceuw&utm_medium=referral&utm_content=footer">wisc.edu</a>
+    </div>
+    <div className="external-link">
+    <div>University of Wisconsin Foundation<br/>and Alumni Association</div>
+    <a href="https://www.advanceuw.org?utm_source=advanceuw&utm_medium=referral&utm_content=footer">advanceuw.org</a>
+    </div>
+    <div className="external-link">
+    <div>University of Wisconsin Foundation</div>
+    <a href="https://www.supportuw.org?utm_source=advanceuw&utm_medium=referral&utm_content=footer">supportuw.org</a>
+    </div>
+  </div>
+)
+
+const StyledNavSection = styled(navSection)``
+
+const Social = ({className})=>(
+  <ul className={className}>
+    <li className="footer--icon"><img className="iconImg" src={IconFB} alt="" /></li>
+    <li className="footer--icon"><img className="iconImg" src={IconTwitter} alt="" /></li>
+    <li className="footer--icon"><img className="iconImg" src={IconInsta} alt="" /></li>
+    <li className="footer--icon"><img className="iconImg" src={IconWeChat} alt="" /></li>
+  </ul>
+)
+
+const StyledSocial = styled(Social)``
   
 const WfaaFooter = ({ className }) =>  (
   <footer className={className}>
@@ -118,24 +148,10 @@ const WfaaFooter = ({ className }) =>  (
           <img className="wfaa-uw-crest" src={Crest} alt="" />
         </StyledCrest>
 
-        <ul className="footer--social">
-          <li className="footer--icon"><img className="iconImg" src={IconFB} alt="" /></li>
-          <li className="footer--icon"><img className="iconImg" src={IconTwitter} alt="" /></li>
-          <li className="footer--icon"><img className="iconImg" src={IconInsta} alt="" /></li>
-          <li className="footer--icon"><img className="iconImg" src={IconWeChat} alt="" /></li>
-        </ul>
-        <div className="external-link">
-          <div>University of Wisconsin&#8212;Madison</div>
-          <a href="https://www.wisc.edu/?utm_source=advanceuw&utm_medium=referral&utm_content=footer">wisc.edu</a>
-        </div>
-        <div className="external-link">
-          <div>University of Wisconsin Foundation<br/>and Alumni Association</div>
-          <a href="https://www.advanceuw.org?utm_source=advanceuw&utm_medium=referral&utm_content=footer">advanceuw.org</a>
-        </div>
-        <div className="external-link">
-          <div>University of Wisconsin Foundation</div>
-          <a href="https://www.supportuw.org?utm_source=advanceuw&utm_medium=referral&utm_content=footer">supportuw.org</a>
-        </div>
+        <Social className="footer--social"></Social>
+
+        <StyledNavSection className="nav-section"></StyledNavSection>
+        
       </div>
       <div className="footer__column">
         <WfaaFooterMenu menu={navTempLong} pageLink="/about/" />
@@ -148,15 +164,14 @@ const WfaaFooter = ({ className }) =>  (
           <span><a href="mailto:wfaa@supportuw.org">wfaa@supportuw.org</a></span>
         </p>
       </div>
+      <div className="footer__column">
+        <StyledNavSection className="nav-section"></StyledNavSection>
+      </div>
+
     </div> </div>
     <div className="footer--bottom">
       <Copyright className="footer--copy" />
-      <ul className="footer--social">
-        <li className="footer--icon"><img className="iconImg" src={IconFB} alt="" /></li>
-        <li className="footer--icon"><img className="iconImg" src={IconTwitter} alt="" /></li>
-        <li className="footer--icon"><img className="iconImg" src={IconInsta} alt="" /></li>
-        <li className="footer--icon"><img className="iconImg" src={IconWeChat} alt="" /></li>
-      </ul>
+      <Social className="footer--social"></Social>
     </div>  
   </footer>
   )
@@ -166,6 +181,7 @@ const StyledFooter = styled(WfaaFooter)`
   background-color: ${colors.bgRed};
   color: ${colors.bgWhite};
   position: relative;
+  overflow: hidden;
 
   .footer--social {
     display: flex;
@@ -178,11 +194,13 @@ const StyledFooter = styled(WfaaFooter)`
     }
   }
 
-
   .footer--inner {
     max-width: 900px;
     margin: 0 auto;
-    padding: ${sizes.s48} ${sizes.s48} 0; 
+    padding: ${sizes.s36} ${sizes.s36} 0; 
+    @media screen and ${breakpoints.tablet} {
+      padding: ${sizes.s48} ${sizes.s48} 0; 
+    }
   }
   .footer--border {
     border-bottom: 1px solid ${colors.bgWhite};
@@ -211,21 +229,33 @@ const StyledFooter = styled(WfaaFooter)`
     }
 
     .footer--social{
+      justify-content: center;
+      border-bottom: 1px solid ${colors.bgWhite};
+      padding-bottom: ${sizes.s24};
       @media screen and ${breakpoints.tablet} {
         display: none;
       }
     }
     &.footer__column--first {
-      border-bottom: 1px solid ${colors.bgWhite};
       @media screen and ${breakpoints.tablet} {
-        border-bottom: none;
         flex-grow: 2;
+      }
+      .nav-section{
+        display: none;
+        @media screen and ${breakpoints.tablet} {
+          display: block;
+        }
       }
     }
     &:last-child {
       margin-bottom: 0;
+      border-top: 1px solid ${colors.bgWhite};
+      padding-top: ${sizes.s24};
       @media screen and ${breakpoints.tablet} {
         border-bottom: none;
+        border-top: none;
+        padding-top: 0;
+        display: none;
       }
     }
   }
@@ -271,12 +301,13 @@ const StyledFooter = styled(WfaaFooter)`
   }
 
   .footer--bottom{
-    max-width: 900px;
+    position: relative;
+    max-width: 400px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    padding-left: ${sizes.s48};
-    padding-right: ${sizes.s48};
+    z-index: 1;
+
 
     .footer--social{
       display: none;
@@ -285,25 +316,45 @@ const StyledFooter = styled(WfaaFooter)`
       }
     }
 
+    &:after {
+      position: absolute;
+      bottom: 0;
+      left: 375px;
+      height: 600px;
+      width: 200px;
+      content: '';
+      background-color: ${colors.footerAccent} !important;
+      opacity: .5;
+      transform: skew(135deg);  
+      z-index: 0;
+  }
+
     @media screen and ${breakpoints.tablet} {
+      max-width: 900px;
+      padding-left: ${sizes.s48};
+      padding-right: ${sizes.s48};
+  
+
       &:after {
         position: absolute;
-        top: 0;
-        right: 175px;
-        height: 100%;
+        bottom: 0;
+        left: 940px;
+        height: 600px;
         width: 200px;
         content: '';
         background-color: ${colors.footerAccent} !important;
         opacity: .5;
         transform: skew(135deg);  
+        z-index: 0;
+      }
     }
-  }
 
   }
 
   .footer--copy{
     margin: 0px;
     padding-left: 0px;
+    z-index: 1;
   }
   
 `
