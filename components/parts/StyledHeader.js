@@ -61,10 +61,14 @@ position: relative;
   background-color: ${colors.bgRed};
   height: 32px;
   text-align: right;
-  padding: 0 180px;
+  padding: 0;
   font-size: ${sizes.s14};
   z-index: -2;
   transition: all ease 0.35s;
+  @media screen and ${breakpoints.laptopS} {
+    padding: 0 180px;
+
+  }
   
   ul {
     position: relative;
@@ -108,10 +112,7 @@ position: relative;
 .inner {
   height: 100%;
   width: 90%;
-  @media screen and ${breakpoints.tabletS} {
-    width: 90%;
-    grid-template-columns: 112px auto 43px 32px;
-  }
+  
   @media screen and ${breakpoints.laptopS} {
     width: 1080px;
 
