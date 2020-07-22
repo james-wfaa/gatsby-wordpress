@@ -119,8 +119,7 @@ const StyledContentCard = styled(ContentCard)`
     display: flex;
     flex-flow: column;
     text-align: left;
-    margin-left: 20px;
-    margin-right: 20px;
+   
     border: 1px solid ${colors.cardBorder};
     border-top: 6px solid ${colors.cardBorder};
     background-color: ${colors.bgWhite};
