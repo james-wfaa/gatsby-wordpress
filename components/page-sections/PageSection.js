@@ -19,6 +19,8 @@ const PageSection = ({className, preheading, heading, excerpt, buttons, alt, top
     const topBorderClass = topBorder ? ` ${className}--topborder` : ''
     const hasPreHeading = preheading && !heading ?  ` ${className}--hasPreHeading` : ''
     const hasNoHeading = !preheading && !heading ? ` ${className}--hasNoHeading` : ''
+    console.log("background: ", background)
+    console.log("backgroundImg: ", BackgroundImage)
    
     return (
         <div>
@@ -101,6 +103,9 @@ const StyledPageSection = styled(PageSection)`
         &:before,
         &:after {
             /*background-color: rgba(0, 0, 0, 0.3) !important;*/
+        }
+        &:before {
+            z-index: 0;
         }
     }
 

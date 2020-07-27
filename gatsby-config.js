@@ -1,3 +1,12 @@
+require("dotenv").config({
+  path: `.env.GATSBY_CONCURRENT_DOWNLOAD`,
+})
+
+// require .env.development or .env.production
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -13,6 +22,34 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-source-wordpress-experimental`,
+      options: {
+        url:
+          process.env.WPGRAPHQL_URL ||
+          `https://uwalumni.wpengine.com/graphql`,
+        verbose: true,
+        develop: {
+          hardCacheMediaFiles: true,
+        },
+        debug: {
+          graphql: {
+            writeQueriesToDisk: true,
+          },
+        },
+        type: {
+          Post: {
+            limit:
+              process.env.NODE_ENV === `development`
+                ? // Lets just pull 50 posts in development to make it easy on ourselves.
+                  50
+                : // and we don't actually need more than 5000 in production for this particular site
+                  5000,
+          },
+        },
+      },
+    },
+    `gatsby-plugin-chakra-ui`,
     {
       resolve: "gatsby-plugin-react-svg",
       options: {
@@ -47,6 +84,7 @@ module.exports = {
         display: `minimal-ui`,
       },
     },
+    `gatsby-plugin-netlify-cache`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

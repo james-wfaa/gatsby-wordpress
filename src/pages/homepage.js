@@ -293,8 +293,8 @@ query {
 
       gridBg: file(relativePath: { eq: "well-read-bucky-bg@2x.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 2000) {
-            ...GatsbyImageSharpFluid
+          fluid(quality: 95, maxWidth: 2000) {
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
