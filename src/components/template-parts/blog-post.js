@@ -13,7 +13,7 @@ function BlogPost({ data }) {
   return (
     <Layout>
       <Heading as="h1" size="xl" mb={5}>
-        {title}
+        {title} /
       </Heading>
 
       {!!featuredImage?.node?.remoteFile?.childImageSharp && (
@@ -26,7 +26,9 @@ function BlogPost({ data }) {
 
       <br />
       {!!nextPage && (
-        <Link to={normalizePath(nextPage.uri)}>Next: {nextPage.title}</Link>
+        <Link to={normalizePath(nextPage.uri)}>Next: {nextPage.title} --
+         <p>....</p></Link>
+       
       )}
       <br />
       {!!previousPage && (
