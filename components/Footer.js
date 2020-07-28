@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import WfaaFooterMenu from './parts/WfaaFooterMenuStatic'
 import Copyright from './parts/Copyright';
 import Crest from '../src/svg/uwa_crest_white_footer_2x.svg'
-import IconFB from '../src/svg/uwa__facebook_white_24x24.svg'
-import IconInsta from '../src/svg/uwa__instagram_white_24x24.svg'
-import IconTwitter from '../src/svg/uwa__twitter_white_24x24.svg'
-import IconWeChat from '../src/svg/uwa__WeChat_white_24x24.svg'
+import FbIcon from '../src/svg/uwa__facebook_white_24x24.svg'
+import IgIcon from '../src/svg/uwa__instagram_white_24x24.svg'
+import LiIcon from '../src/svg/uwa__linkedin_white_24x24.svg'
+import TwIcon from '../src/svg/uwa__twitter_white_24x24.svg'
+import WcIcon from '../src/svg/uwa__WeChat_white_24x24.svg'
 import { colors, mixins, sizes, breakpoints, fonts } from './css-variables'
 
 
@@ -131,10 +132,11 @@ const StyledNavSection = styled(navSection)``
 
 const Social = ({className})=>(
   <ul className={className}>
-    <li className="footer--icon"><img className="iconImg" src={IconFB} alt="" /></li>
-    <li className="footer--icon"><img className="iconImg" src={IconTwitter} alt="" /></li>
-    <li className="footer--icon"><img className="iconImg" src={IconInsta} alt="" /></li>
-    <li className="footer--icon"><img className="iconImg" src={IconWeChat} alt="" /></li>
+    <li><a className="fb" title="Wisconsin Alumni Association Facebook Page" href="https://www.facebook.com"></a></li>
+    <li><a className="tw" title="Wisconsin Alumni Association Twitter Page" href="https://www.twitter.com"></a></li>
+    <li><a className="ig" title="Wisconsin Alumni Association Instagram Page" href="https://www.instagram.com"></a></li>
+    <li><a className="wc" title="Wisconsin Alumni Association WeChat Page" href="https://www.wechat.com"></a></li>
+    <li><a className="li" title="Wisconsin Alumni Association LinkedIn Page" href="https://www.linkedin.com"></a></li>
   </ul>
 )
 
@@ -187,10 +189,39 @@ const StyledFooter = styled(WfaaFooter)`
     display: flex;
     margin-top: ${sizes.s24};
     z-index: 1;
-    .footer--icon{
-      width: ${sizes.s22};
-      height: ${sizes.s22};
-      margin: ${sizes.s9};
+    li {
+      display: block;
+      width: ${sizes.s24};
+      height: ${sizes.s24};
+      margin: 0 ${sizes.s16} 0 0;
+         
+      a {
+          display: block;
+          width: ${sizes.s24};
+          height: ${sizes.s24};
+          background-color: ${colors.bgWhite};
+          &:hover {
+              transform: scale(1.1);
+          }
+          &:active {
+            transform: scale(1);
+          }
+          &.fb {
+              mask: url(${FbIcon});
+          }
+          &.tw {
+              mask: url(${TwIcon});
+          }
+          &.ig {
+              mask: url(${IgIcon});
+          }
+          &.wc {
+              mask: url(${WcIcon});
+          }
+          &.li {
+              mask: url(${LiIcon});
+          }
+      }
     }
   }
 
@@ -287,6 +318,9 @@ const StyledFooter = styled(WfaaFooter)`
   a {
     text-decoration: none;
     color: ${colors.bgWhite};
+    &:hover{
+      text-decoration: underline;
+    }
   }
   
   .external-link {
@@ -338,7 +372,7 @@ const StyledFooter = styled(WfaaFooter)`
       &:after {
         position: absolute;
         bottom: 0;
-        left: 940px;
+        left: 905px;
         height: 600px;
         width: 200px;
         content: '';

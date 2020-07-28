@@ -132,6 +132,9 @@ text-decoration: none;
     .title{
         text-decoration: underline;
     }
+    .arrow{
+        transform: scale(1.1);
+    }
 }
 &:active {
     cursor:default;

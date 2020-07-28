@@ -5,10 +5,10 @@ import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 
 const Copyright = ({ className }) => {
 
-  let d = new Date().getFullYear()
+  let d = new Date().getFullYear();
   return (
     <div className={className}>
-      <div>&copy; Copyright {`${d}`} Wisconsin Alumni Association. All rights reserved.</div>
+      <div> &copy; {`${d}`} Wisconsin Foundation & Alumni Association. All rights reserved.</div>
     </div>
   )
 } 
