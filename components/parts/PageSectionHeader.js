@@ -2,13 +2,17 @@ import React from "react"
 import styled from 'styled-components'
 import { colors, sizes, breakpoints, fonts } from '../css-variables'
 
-const PageSectionHeader = ({ className, heading, bgimage }) => {
+const PageSectionHeader = ({ className, heading, pageTitle, bgimage }) => {
 
     const classesList = bgimage ? `${className} ${className}--bgimage` : className
     return (
         <div className={classesList}>
-            
-            <h2>{heading}</h2>
+            { pageTitle && (
+                <h1>{heading}</h1>
+            )}
+            { (!pageTitle || typeof pageTitle === 'undefined') && (
+                <h2>{heading}</h2>
+            )}
         </div>
     )
 }
@@ -17,7 +21,7 @@ const StyledPageSectionHeader = styled(PageSectionHeader)`
     position: relative;
     padding-bottom:  ${sizes.s40};
     margin-bottom: ${sizes.s58};
-    
+    h1,
     h2 {
        
         color: ${colors.titleColor};

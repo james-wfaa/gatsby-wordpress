@@ -6,7 +6,7 @@ import Button from './Button'
 const PageSectionButtons = ({ className, buttons, bgimage }) => {
 
     const renderedButtons = buttons.map(item =>(
-        <Button link={item.link} text={item.text} bgimage={bgimage} />
+        <Button key={item.link} link={item.link} text={item.text} bgimage={bgimage} />
     ))
 
 

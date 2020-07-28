@@ -3,7 +3,7 @@ import React from "react"
 import { Link } from "gatsby"
 import { Box, Heading } from "@chakra-ui/core"
 import Img from "gatsby-image"
-import Layout from "../../components/layout"
+import Layout from "../layout"
 import { normalizePath } from "../../utils/get-url-path"
 
 function BlogPost({ data }) {
@@ -27,7 +27,7 @@ function BlogPost({ data }) {
       <br />
       {!!nextPage && (
         <Link to={normalizePath(nextPage.uri)}>Next: {nextPage.title} --
-         <p>....</p></Link>
+      </Link>
        
       )}
       <br />
