@@ -6,8 +6,6 @@ import Img from 'gatsby-image'
 
 const CardE = ({ className, img, caption }) => {
 
-    console.log(img)
-
     return (
         <figure className={className}>
             {img && (

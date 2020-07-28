@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import BlogPost from "../../components/template-parts/blog-post"
+import BlogPost from "../../components/template-parts/wordpress-post"
 
 export default ({ data }) => <BlogPost data={data} />
 

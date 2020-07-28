@@ -40,6 +40,9 @@ export default () => <div>
         <li>
             <Link to="/fonts">Text Styles</Link>
         </li>
+        <li>
+            <Link to="/wordpress-pages">WordPress Pages (new / in progress</Link>
+        </li>
        
     </ul>
 

@@ -14,16 +14,12 @@ class SimpleSlider extends React.Component {
     slidesToShow: 3,
     slidesToScroll: 1
   }
-
   
   render() {
-  
-    console.log(this.props)
     return (
         <Slider {...this.props}>
             {this.props.children}
         </Slider>
-      
     );
   }
 }

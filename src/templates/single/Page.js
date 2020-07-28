@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql } from "gatsby"
-import BlogPost from "../../components/template-parts/blog-post"
+import WpPage from "../../components/template-parts/wordpress-page"
 
-export default ({ data }) => <BlogPost data={data} />
+export default ({ data }) => <WpPage data={data} />
 
 export const query = graphql`
   query page($id: String!, $nextPage: String, $previousPage: String) {

@@ -24,6 +24,14 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /\.inline\.svg$/ // See below to configure properly
+        }
+      }
+    },
+    {
       resolve: `gatsby-source-wordpress-experimental`,
       options: {
         url:
@@ -50,28 +58,8 @@ module.exports = {
         },
       },
     },
-    `gatsby-plugin-chakra-ui`,
-    {
-      resolve: "gatsby-plugin-react-svg",
-      options: {
-        rule: {
-          include: /\.inline\.svg$/ // See below to configure properly
-        }
-      }
-    },
-    {
-      resolve: "gatsby-source-graphql",
-      options: {
-        // Remote schema query type. This is an arbitrary name.
-        typeName: "WPGraphQL",
-        // Field name under which it will be available. Used in your Gatsby query. This is also an arbitrary name.
-        fieldName: "wpcontent",
-        // GraphQL endpoint, relative to your WordPress home URL.
-        url: "https://uwalumni.wpengine.com/graphql",
-      },
-    },
+    
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-netlify-cache`,
     // this (optional) plugin enables Progressive Web App + Offline functionality

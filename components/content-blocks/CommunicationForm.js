@@ -43,7 +43,7 @@ export default class ActiveCommunicationForm extends Component {
 
     }
     componentDidUpdate(prevProps, prevState) {
-        console.log('did update: ', this.state)
+        //console.log('did update: ', this.state)
 
         if ( this.state.firstname && prevState.firstname !== this.state.firstname) {
             console.log('validating firstname because ', prevState.firstname, '...', this.props.firstname)
