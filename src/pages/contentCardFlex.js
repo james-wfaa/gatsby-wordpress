@@ -303,13 +303,26 @@ return (
         location="Louisville, KY" 
         img={data.cardImage5}
         featureImg={data.cardImage4}
+        alt
         size="XXL"
         />
-      
-        
-        
 
-      
+<h2>Horizontal Content Card</h2>
+<p>This size card displays at 1080px on all larger screens. The card reverts to a normal tablet or mobile sized card when on small screens</p>
+<p>Event Card Horizontal:</p>
+        <ContentCard 
+        startDate="Apr. 29" 
+        endDate="May 3"
+        title="The Kentucky Derby"
+        category="Athletic Travel"
+        venue="Churchill Downs"
+        location="Louisville, KY" 
+        img={data.cardImage5}
+        featureImg={data.cardImage4}
+        alt
+        size="XXL"
+        />
+
     </PageSection>
     
 </Layout>

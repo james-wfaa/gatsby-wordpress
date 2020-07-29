@@ -5,13 +5,15 @@ import Img from 'gatsby-image'
 import TagList from "../parts/TagList"
 import styled from 'styled-components'
 
-const ContentCard = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, featureImg, caption, tags, size }) => {
+const ContentCard = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, featureImg, caption, tags, alt, size }) => {
 
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
     const dateLinkText = endDate ? `<nobr>${startDate}</nobr>&nbsp;&ndash;&nbsp;<nobr>${endDate}</nobr>` : startDate;
     const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
     const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
-    const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt
+    const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt;
+    const altClass = alt ? ` ${className}--alt` : '';
+
 
     if(!sizes.includes(size)){
         size = "S";
@@ -39,7 +41,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
 
     return (
 
-        <div className={`${className} ${className}--${size} ${className}--${notSmall}`}>  
+        <div className={`${className} ${className}--${size} ${className}--${notSmall} ${altClass}`}>  
                 <div className={`${className}__headersection ${className}__headersection--${size} ${className}__headersection--${notSmall}`}>
                     { startDate && (
                         <div className={`${className}__date ${className}__date--${size} ${className}__date--${notSmall}`}> 
@@ -129,6 +131,9 @@ const StyledContentCard = styled(ContentCard)`
     background-color: ${colors.bgWhite};
     opacity: 0.9;
 
+    &--alt {
+        background-color: ${colors.bgActiveGrey};
+    }
 
     &--notsmall{
         @media screen and ${breakpoints.tabletS} {
