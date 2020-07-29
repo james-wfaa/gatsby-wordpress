@@ -1,4 +1,5 @@
 import React from "react"
+import { graphql } from 'gatsby'
 import Layout from "../../components/Layout"
 import ContentCard from "../../components/content-blocks/ContentCard"
 import PageSection from '../../components/page-sections/GenericPageSection'

@@ -1,5 +1,5 @@
 import React from "react"
-
+import { graphql } from 'gatsby'
 import Layout from "../../components/Layout"
 import PageSection from "../../components/page-sections/PageSection"
 import ContentCardD from "../../components/content-blocks/ContentCardD"
