@@ -89,6 +89,9 @@ position: relative;
       &:last-child {
         padding: 0;
       }
+      a {
+        color: ${colors.titleWhite};
+      }
     }
     
   }
@@ -96,17 +99,14 @@ position: relative;
     display: block;
   }
   &.suppress {
-    &:after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: white;
-      z-index: 0;
-      content: '';
+    background-color: ${colors.rednavGrey};
+    ul {
+      color: ${colors.sectionBorder};
+      background-color: ${colors.sectionBorder};
+      a {
+        color: ${colors.sectionBorder};
+      }
     }
-   
   }
 }
 .inner {

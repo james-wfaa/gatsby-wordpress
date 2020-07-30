@@ -8,7 +8,7 @@ import IgIcon from '../src/svg/uwa__instagram_white_24x24.svg'
 import LiIcon from '../src/svg/uwa__linkedin_white_24x24.svg'
 import TwIcon from '../src/svg/uwa__twitter_white_24x24.svg'
 import WcIcon from '../src/svg/uwa__WeChat_white_24x24.svg'
-import { colors, mixins, sizes, breakpoints, fonts } from './css-variables'
+import { colors, sizes, breakpoints } from './css-variables'
 
 
 //import { breakpoints } from './parts/breakpoints'
@@ -139,8 +139,6 @@ const Social = ({className})=>(
     <li><a className="li" title="Wisconsin Alumni Association LinkedIn Page" href="https://www.linkedin.com"></a></li>
   </ul>
 )
-
-const StyledSocial = styled(Social)``
   
 const WfaaFooter = ({ className }) =>  (
   <footer className={className}>

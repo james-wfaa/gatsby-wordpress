@@ -91,6 +91,7 @@ export const colors = {
     footerAccent: baseColors.darkRed,
     iconGrey: baseColors.darkGrey,
     sectionBorder: baseColors.lightestGrey,
+    rednavGrey: baseColors.lightGrey,
 
 }
 

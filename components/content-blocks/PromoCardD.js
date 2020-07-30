@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
+import { colors, sizes, breakpoints } from '../css-variables'
 import CardD from './CardD'
 import diagRightSVG from '../../src/svg/Diagonals_Card_Corners_White_bottom-rght_2x.svg'
 import diagLeftSVG from '../../src/svg/Diagonals_Card_Corners_White_top-left_2x.svg'
