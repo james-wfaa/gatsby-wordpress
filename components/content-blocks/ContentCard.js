@@ -5,15 +5,13 @@ import Img from 'gatsby-image'
 import TagList from "../parts/TagList"
 import styled from 'styled-components'
 
-const ContentCard = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, featureImg, caption, tags, alt, size }) => {
+const ContentCard = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, featureImg, caption, tags, size }) => {
 
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
     const dateLinkText = endDate ? `<nobr>${startDate}</nobr>&nbsp;&ndash;&nbsp;<nobr>${endDate}</nobr>` : startDate;
-    const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
+    const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];
     const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
-    const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt;
-    const altClass = alt ? ` ${className}--alt` : '';
-
+    const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt
 
     if(!sizes.includes(size)){
         size = "S";
@@ -34,14 +32,11 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                     media: `(min-width: 1200px)`
                 }   
             ]
-            :  img.childImageSharp.fluid
-
-            console.log(imgSources)
-   
+            :  img.childImageSharp.fluid   
 
     return (
 
-        <div className={`${className} ${className}--${size} ${className}--${notSmall} ${altClass}`}>  
+        <div className={`${className} ${className}--${size} ${className}--${notSmall}`}>  
                 <div className={`${className}__headersection ${className}__headersection--${size} ${className}__headersection--${notSmall}`}>
                     { startDate && (
                         <div className={`${className}__date ${className}__date--${size} ${className}__date--${notSmall}`}> 
@@ -54,6 +49,14 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                     )}
                     { !startDate && (
                         <h3 className={`${className}__title title ${className}__title--${size} ${className}__title--${notSmall}`} dangerouslySetInnerHTML={{ __html: title }} />        
+                    )}
+                    {imgSources && (
+                        <a href={url} className={`${className}__imgzoomlink`} >
+                            <Img 
+                                className={`${className}__img`}
+                                fluid={imgSources}
+                            />
+                        </a>
                     )}
                     
                 </div>
@@ -120,20 +123,16 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
 const StyledContentCard = styled(ContentCard)`
 
     width: 256px;
-    height: 502px;
+    min-height: 502px;
     display: flex;
     flex-flow: column;
     text-align: left;
-    margin-left: 20px;
-    margin-right: 20px;
+   
     border: 1px solid ${colors.cardBorder};
     border-top: 6px solid ${colors.cardBorder};
     background-color: ${colors.bgWhite};
     opacity: 0.9;
 
-    &--alt {
-        background-color: ${colors.bgActiveGrey};
-    }
 
     &--notsmall{
         @media screen and ${breakpoints.tabletS} {
@@ -152,7 +151,7 @@ const StyledContentCard = styled(ContentCard)`
         @media screen and ${breakpoints.tabletS} {
             width: 344px;
             max-width: 344px;
-            height: 680px;
+            min-height: 680px;
         }
     }  
     &--M{
@@ -175,6 +174,12 @@ const StyledContentCard = styled(ContentCard)`
     &--XXL{
         @media screen and ${breakpoints.laptopS} {
             width: 1080px;
+        }
+    }
+    &--Wide{
+        @media screen and ${breakpoints.laptopS} {
+            width: 1080px;
+            flex-flow: row;    
         }
     }
 
@@ -404,6 +409,9 @@ const StyledContentCard = styled(ContentCard)`
                 padding-bottom: ${sizes.s32}; 
                 flex-flow: row;    
             } 
+            &--Wide{
+                flex-flow: row;    
+            }
         }
         
         &:after {

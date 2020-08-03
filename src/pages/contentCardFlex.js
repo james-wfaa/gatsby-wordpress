@@ -1,6 +1,6 @@
 import React from "react"
 import Layout from "../../components/Layout"
-import ContentCard from "../../components/content-blocks/ContentCardFlex"
+import ContentCard from "../../components/content-blocks/ContentCard"
 import PageSection from '../../components/page-sections/GenericPageSection'
 
 const taglist1 = [
@@ -319,8 +319,7 @@ return (
         location="Louisville, KY" 
         img={data.cardImage5}
         featureImg={data.cardImage4}
-        alt
-        size="XXL"
+        size="Wide"
         />
 
     </PageSection>
