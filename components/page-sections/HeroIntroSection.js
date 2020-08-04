@@ -34,10 +34,9 @@ const HeroIntroSection = ({className, jumbo, heroImage, heroHeading, redHeading,
         }
             <a  className={`${className}__downscroll`} href={`#${className}__downscroll`} title="Scroll down to content"><div>down</div></a>
             <div className={redboxClass}>
-                <a className="downanchor" name={`${className}__downscroll`}>&nbsp;</a>
+                <div className="downanchor" id={`${className}__downscroll`}>&nbsp;</div>
                 <IntroRedPageSection excerpt={excerpt} heading={redHeading} />
             </div>
-            
         </div>
     )
 }
@@ -46,7 +45,6 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
 position: relative;
 scroll-behavior: smooth;
 margin-bottom: -80px;
-
 .downanchor {
    display: block;
    width: 1px;

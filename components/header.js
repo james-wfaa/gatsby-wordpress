@@ -1,7 +1,5 @@
 import { Link } from "gatsby"
 import React from "react"
-import styled from 'styled-components'
-import { colors, sizes, breakpoints } from './css-variables'
 import PrimaryMenu from "./parts/PrimaryMenu"
 import StyledHeader from "./parts/StyledHeader"
 import Logo from "../src/svg/waa_logo.svg" // Tell webpack this JS file uses this image
@@ -26,21 +24,21 @@ class Header extends React.Component {
                 <li><Link
                 to="/"
                 style={{
-                  color: `white`,
+                
                   textDecoration: `none`,
                 }}
               >Lorem Ipsum</Link></li>
                 <li><Link
                 to="/"
                 style={{
-                  color: `white`,
+                  
                   textDecoration: `none`,
                 }}
               >Email Login</Link></li>
                 <li><Link
                 to="/"
                 style={{
-                  color: `white`,
+                 
                   textDecoration: `none`,
                 }}
               >Update Your Info</Link></li>

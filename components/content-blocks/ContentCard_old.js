@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import Img from 'gatsby-image'
 import TagList from "../parts/TagList"
@@ -19,7 +18,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
         size = "S";
     }
 
-    var notSmall = (size != 'S') ? "notsmall" : "";
+    var notSmall = (size !== 'S') ? "notsmall" : "";
 
    
 

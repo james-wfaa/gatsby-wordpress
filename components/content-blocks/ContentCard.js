@@ -51,7 +51,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                         <h3 className={`${className}__title title ${className}__title--${size} ${className}__title--${notSmall}`} dangerouslySetInnerHTML={{ __html: title }} />        
                     )}
                     {imgSources && (
-                        <a href={url} className={`${className}__imgzoomlink`} >
+                        <a href={url} className={`${className}__imgzoomlink headerImg`} >
                             <Img 
                                 className={`${className}__img`}
                                 fluid={imgSources}
@@ -60,9 +60,9 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                     )}
                     
                 </div>
-                <div className={`${className}__contentwrap`}>
+                <div className={`${className}__contentwrap ${className}__contentwrap--${size}`}>
                     {imgSources && (
-                        <a href={url} className={`${className}__imgzoomlink`} >
+                        <a href={url} className={`${className}__imgzoomlink bodyImg`} >
                             <Img 
                                 className={`${className}__img`}
                                 fluid={imgSources}
@@ -179,7 +179,8 @@ const StyledContentCard = styled(ContentCard)`
     &--Wide{
         @media screen and ${breakpoints.laptopS} {
             width: 1080px;
-            flex-flow: row;    
+            flex-flow: row;  
+            min-height: 235px;  
         }
     }
 
@@ -202,6 +203,9 @@ const StyledContentCard = styled(ContentCard)`
         overflow: hidden;
         overflow-y: visible;
         border-bottom: 1px solid ${colors.cardHeaderBGGrey};
+        .headerImg{
+            display: none;
+        }
 
         @media screen and ${breakpoints.tabletS} {
             padding-left: ${sizes.s32};
@@ -244,6 +248,15 @@ const StyledContentCard = styled(ContentCard)`
                     transform: skew(135deg);
                 }
             } 
+            &--Wide{
+                padding-left: 0px;
+                padding-right: 0px;        
+                .headerImg{
+                    display: block;
+                    width: 344px;
+                    height: 172px;
+                }
+            } 
         } 
     }
 
@@ -269,6 +282,10 @@ const StyledContentCard = styled(ContentCard)`
                 font-size: ${sizes.s52};
                 line-height: ${sizes.s52};
             } 
+            &--Wide{
+                padding-left: ${sizes.s32};
+                padding-right: ${sizes.s32};
+            }
         }
         & a:link {
             text-decoration: none;
@@ -368,6 +385,15 @@ const StyledContentCard = styled(ContentCard)`
         display: flex;
         flex-grow: 1;
         flex-direction: column;
+        flex: 1;
+
+        @media screen and ${breakpoints.laptopS} {
+            &--Wide{
+                .bodyImg{
+                    display: none;
+                }
+            }
+        }
 
         &:before {
             position: absolute;
@@ -386,7 +412,9 @@ const StyledContentCard = styled(ContentCard)`
                 left: ${sizes.s45};
                 height: 30px;
                 width: 14px;
+
             }
+
         }
     }
 
@@ -434,6 +462,9 @@ const StyledContentCard = styled(ContentCard)`
                     width: 50%;        
                     padding-left: ${sizes.s32}; 
                 } 
+                &--Wide{
+                    flex:1;    
+                }
 
             }
             .title {
@@ -456,6 +487,13 @@ const StyledContentCard = styled(ContentCard)`
             :nth-last-child(1){
                 justify-content: space-between;
                 flex: 1 1 auto;
+
+                @media screen and ${breakpoints.laptopS} {
+                    &--Wide{
+                        flex:none;    
+                    }
+    
+                }
             }
     
            

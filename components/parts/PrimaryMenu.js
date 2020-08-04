@@ -185,25 +185,35 @@ class Menu extends React.Component {
   }
   openSubMenu(num) {
     switch(num) {
-      case 1: this.childMenu1.open()
+      case 1: 
+      this.childMenu1.open()
       this.childMenu2.close()
       this.childMenu3.close()
       this.childMenu4.close()
       break
-      case 2: this.childMenu2.open()
+      case 2: 
+      this.childMenu2.open()
       this.childMenu1.close()
       this.childMenu3.close()
       this.childMenu4.close()
       break
-      case 3: this.childMenu3.open()
+      case 3: 
+      this.childMenu3.open()
       this.childMenu1.close()
       this.childMenu2.close()
       this.childMenu4.close()
       break
-      case 4: this.childMenu4.open()
+      case 4: 
+      this.childMenu4.open()
       this.childMenu1.close()
       this.childMenu2.close()
       this.childMenu3.close()
+      break
+      default: 
+      this.childMenu1.open()
+      this.childMenu2.close()
+      this.childMenu3.close()
+      this.childMenu4.close()
       break
     }
   //this.setState({ openSub: true })
@@ -222,6 +232,9 @@ class Menu extends React.Component {
       case 3: this.childMenu3.close()
       break
       case 4: this.childMenu4.close()
+      break
+      default: this.childMenu1.close()
+      break
     }
    // this.setState({ openSub: false })
     

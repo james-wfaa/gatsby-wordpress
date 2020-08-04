@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
+import { sizes } from '../css-variables'
 
 
 const Copyright = ({ className }) => {

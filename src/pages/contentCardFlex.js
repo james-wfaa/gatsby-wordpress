@@ -317,8 +317,9 @@ return (
         category="Athletic Travel"
         venue="Churchill Downs"
         location="Louisville, KY" 
+        tags={taglist2}
         img={data.cardImage5}
-        featureImg={data.cardImage4}
+        featureImg={data.cardImage3}
         size="Wide"
         />
 
