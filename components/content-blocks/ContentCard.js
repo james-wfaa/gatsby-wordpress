@@ -249,6 +249,7 @@ const StyledContentCard = styled(ContentCard)`
                 }
             } 
             &--Wide{
+                border-bottom: none;
                 padding-left: 0px;
                 padding-right: 0px;
                 flex: 0 0 344px;        
@@ -286,6 +287,7 @@ const StyledContentCard = styled(ContentCard)`
             &--Wide{
                 padding-left: ${sizes.s32};
                 padding-right: ${sizes.s32};
+                padding-top: ${sizes.s28};
             }
         }
         & a:link {
@@ -334,6 +336,12 @@ const StyledContentCard = styled(ContentCard)`
             &--notsmall{
                 top: -3px;
             }
+            &--Wide{
+                padding-left: ${sizes.s32};
+                padding-right: ${sizes.s32};
+                padding-top: ${sizes.s28};
+            }
+
         }
         &--L {
             max-width: 450px;
@@ -376,7 +384,11 @@ const StyledContentCard = styled(ContentCard)`
         @media screen and ${breakpoints.tabletS} {
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
-            padding-bottom: ${sizes.s16};  
+            padding-bottom: ${sizes.s16};
+            
+            &--Wide{
+                padding-left: ${sizes.s32};
+            }
 
         }
     }
@@ -387,15 +399,6 @@ const StyledContentCard = styled(ContentCard)`
         flex-grow: 1;
         flex-direction: column;
         flex: 1;
-
-        @media screen and ${breakpoints.laptopS} {
-            &--Wide{
-                flex:2;        
-                .bodyImg{
-                    display: none;
-                }
-            }
-        }
 
         &:before {
             position: absolute;
@@ -418,6 +421,22 @@ const StyledContentCard = styled(ContentCard)`
             }
 
         }
+
+        @media screen and ${breakpoints.laptopS} {
+            &--Wide{
+                flex:2;        
+                .bodyImg{
+                    display: none;
+                }
+                &:before {
+                        top: 37px;
+                        left: -9px;
+                        height: 30px;
+                        width: 14px;        
+                }
+            }
+        }
+
     }
 
     &__contentsection {
