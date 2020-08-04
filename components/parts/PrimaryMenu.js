@@ -21,13 +21,13 @@ class Submenu extends React.Component {
     )
   }
  
-  close(num) {
+  close(num = 'unset') {
     console.log('submenu close(', num, ') ')
     this.setState({ open: false })
   }
 
-  open() {
-    console.log('submenu open() ')
+  open(num = 'unset') {
+    console.log('submenu open(', num, ') ')
   
     this.setState({ open: true })
   }
@@ -43,6 +43,10 @@ class Menu extends React.Component {
       open2: false,
       open3: false,
       open4: false,
+      clickOpen1: false,
+      clickOpen2: false,
+      clickOpen3: false,
+      clickOpen4: false,
     }
   }
 
@@ -58,7 +62,7 @@ class Menu extends React.Component {
           <ul className="primary">
             <li 
               onClick={() => this.toggleSubMenu(1)} 
-              onHover={() => this.openSubMenuHover(1)}
+              onMouseEnter={() => this.openSubMenuHover(1)}
               className={ this.state.open1 ? 'open' : ''}
             >
               <span>Alumni Communities</span>
@@ -75,7 +79,7 @@ class Menu extends React.Component {
               </li>
             <li 
               onClick={() => this.toggleSubMenu(2)} 
-              onHover={() => this.openSubMenu(2)} 
+              onMouseEnter={() => this.openSubMenu(2)} 
               className={ this.state.open2 ? 'open' : ''}
             >
               <span>Events and Activities</span>
@@ -91,7 +95,7 @@ class Menu extends React.Component {
               </li>
             <li 
               onClick={() => this.toggleSubMenu(3)}  
-              onHover={() => this.openSubMenu(3)} 
+              onMouseEnter={() => this.openSubMenu(3)} 
               className={ this.state.open3 ? 'open' : ''}
             >
               <span>Stories</span>
@@ -107,7 +111,7 @@ class Menu extends React.Component {
             </li>
             <li 
               onClick={() => this.toggleSubMenu(4)}  
-              onHover={() => this.openSubMenu(4)} 
+              onMouseEnter={() => this.openSubMenu(4)} 
               className={ this.state.open4 ? 'open' : ''}
             >
               <span>Ways to Support</span>
@@ -174,24 +178,30 @@ class Menu extends React.Component {
     console.log('openSubMenu:',num)
     switch(num) {
       case 1: 
-      this.childMenu1.open()
+      this.childMenu1.open(1)
       this.childMenu2.close(2)
       this.childMenu3.close(3)
       this.childMenu4.close(4)
       this.setState({ open1: true })
+      this.setState({ clickOpen3: false })
+      this.setState({ clickOpen2: false })
+      this.setState({ clickOpen4: false })
       
       break
       case 2: 
-      this.childMenu2.open()
+      this.childMenu2.open(2)
       this.childMenu1.close(1)
       this.childMenu3.close(3)
       this.childMenu4.close(4)
+      this.setState({ clickOpen1: false })
+      this.setState({ clickOpen3: false })
+      this.setState({ clickOpen4: false })
       
       this.setState({ open2: true })
      
       break
       case 3: 
-      this.childMenu3.open()
+      this.childMenu3.open(3)
       this.childMenu1.close(1)
       this.childMenu2.close(2)
       this.childMenu4.close(4)
@@ -199,9 +209,12 @@ class Menu extends React.Component {
       this.setState({ open2: false })
       this.setState({ open3: true })
       this.setState({ open4: false })
+      this.setState({ clickOpen1: false })
+      this.setState({ clickOpen2: false })
+      this.setState({ clickOpen4: false })
       break
       case 4: 
-      this.childMenu4.open()
+      this.childMenu4.open(4)
       this.childMenu1.close(1)
       this.childMenu2.close(2)
       this.childMenu3.close(3)
@@ -209,6 +222,9 @@ class Menu extends React.Component {
       this.setState({ open2: false })
       this.setState({ open3: false })
       this.setState({ open4: true })
+      this.setState({ clickOpen1: false })
+      this.setState({ clickOpen2: false })
+      this.setState({ clickOpen3: false })
       break
       default: 
       this.childMenu1.open()
@@ -217,10 +233,11 @@ class Menu extends React.Component {
       this.childMenu4.close(4)
       break
     }
+  
   this.setState({ openSub: true })
     
   }
-  openSubMenuHover(num) {
+  openSubMenuHover(num, click = false) {
     console.log('this was a hover trigger')
     this.openSubMenu(num)
   }
@@ -228,19 +245,25 @@ class Menu extends React.Component {
   closeSubMenu(num) {
     console.log('closeSubMenu:',num)
     switch(num) {
-      case 1: this.childMenu1.close()
+      case 1: this.childMenu1.close(1)
       this.setState({ open1: false })
+      this.setState({ clickOpen1: false })
       break
-      case 2: this.childMenu2.close()
+      case 2: this.childMenu2.close(2)
       this.setState({ open2: false })
+      this.setState({ clickOpen2: false })
       break
-      case 3: this.childMenu3.close()
+      case 3: this.childMenu3.close(3)
       this.setState({ open3: false })
+      this.setState({ clickOpen3: false })
       break
-      case 4: this.childMenu4.close()
+      case 4: this.childMenu4.close(4)
       this.setState({ open4: false })
+      this.setState({ clickOpen4: false })
       break
-      default: this.childMenu1.close()
+      default: this.childMenu1.close(1)
+      this.setState({ open1: false })
+      this.setState({ clickOpen1: false })
       break
     }
   
@@ -253,29 +276,39 @@ class Menu extends React.Component {
     switch(num) {
       case 1: 
       console.log('is menu1 open? ', this.childMenu1.state.open )
-        this.childMenu1.state.open 
+        this.childMenu1.state.open && this.state.clickOpen1
         ? 
           this.closeSubMenu(1)
-        : this.openSubMenu(1)
+        : 
+          this.openSubMenu(1, true)
+          this.setState({ clickOpen1: true })
 
       break
       case 2: 
       console.log('is menu2 open? ', this.childMenu1.state.open )
-      this.childMenu2.state.open 
+      this.childMenu2.state.open && this.state.clickOpen2
         ? this.closeSubMenu(2)
-        : this.openSubMenu(2)
+        : 
+          this.openSubMenu(2, true)
+          this.setState({ clickOpen2: true })
+
       break
       case 3: 
       console.log('is menu3 open? ', this.childMenu1.state.open )
-      this.childMenu3.state.open 
+      this.childMenu3.state.open && this.state.clickOpen3
       ? this.closeSubMenu(3)
-      : this.openSubMenu(3)
+      : 
+        this.openSubMenu(3)
+        this.setState({ clickOpen3: true })
+
       break
       case 4: 
       console.log('is menu4 open? ', this.childMenu1.state.open )
-      this.childMenu4.state.open 
+      this.childMenu4.state.open && this.state.clickOpen4
       ? this.closeSubMenu(4)
-      : this.openSubMenu(4)
+      : 
+        this.openSubMenu(4)
+        this.setState({ clickOpen4: true })
       break
       default: 
       this.childMenu1.close()

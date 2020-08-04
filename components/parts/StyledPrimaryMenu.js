@@ -50,13 +50,19 @@ const StyledPrimaryMenu = styled.div`
         height: 100%;
         
         > div {
+            
             &:first-of-type {
                 width: calc(100% - 72px);
                 max-width: 299px;
                 margin: 0 auto;
+                
+                left: 0;
+                transition-property: left;
+                transition-duration: 1s, 2s;
                 @media screen and ${breakpoints.tabletS} {
                     position: relative;
                     width: 396px;
+                    max-width: none;
                 }
             }
             &:last-of-type {
@@ -67,27 +73,33 @@ const StyledPrimaryMenu = styled.div`
                 }
             }
             &.opensub {
+                transition-property: left;
+                transition-duration: 1s;
                 
                 position: absolute;
                 width: 200%;
                 left: -100%;
+               
                 @media screen and ${breakpoints.tabletS} {
                     position: relative;
                     max-width: none;
-                    width: 100%;
+                    width: 396px;
                     left: 0;
                 }
                 max-width: none;
 
                 ul.primary {
                     position: relative;
-                    border-bottom: none;
+                    border-bottom: 1px solid transparent;
                     > li {
                         &:hover {
                             background-color: transparent;
                         }
                         span {
                             display: none;
+                            @media screen and ${breakpoints.tabletS} {
+                                display: inline;
+                            }
                         }
                         &.open {
                             span {
@@ -99,13 +111,7 @@ const StyledPrimaryMenu = styled.div`
                                 &:after {
                                     display: none;
                                 }
-                                @media screen and ${breakpoints.tabletS} {
-                                    position: relative;
-                                    max-width: none;
-                                    width: 100%;
-                                    left: 0;
-                                    padding-left: 0;
-                                }
+                                
                                 &:before {
                                     position: absolute;
                                     content: '';
@@ -117,6 +123,19 @@ const StyledPrimaryMenu = styled.div`
                                     border-right: 12px solid ${colors.badgerRed};
                                     border-bottom: 6px solid transparent;
                 
+                                }
+                                @media screen and ${breakpoints.tabletS} {
+                                    position: relative;
+                                    max-width: none;
+                                    width: 100%;
+                                    left: 0;
+                                    padding-left: 0;
+                                    &:after {
+                                        display: block;
+                                    }
+                                    &:before {
+                                        display: none;
+                                    }
                                 }
                             }
                         }
