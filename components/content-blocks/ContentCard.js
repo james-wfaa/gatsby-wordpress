@@ -180,7 +180,7 @@ const StyledContentCard = styled(ContentCard)`
         @media screen and ${breakpoints.laptopS} {
             width: 1080px;
             flex-flow: row;  
-            min-height: 235px;  
+            min-height: 230px;  
         }
     }
 
@@ -250,7 +250,8 @@ const StyledContentCard = styled(ContentCard)`
             } 
             &--Wide{
                 padding-left: 0px;
-                padding-right: 0px;        
+                padding-right: 0px;
+                flex: 0 0 344px;        
                 .headerImg{
                     display: block;
                     width: 344px;
@@ -389,6 +390,7 @@ const StyledContentCard = styled(ContentCard)`
 
         @media screen and ${breakpoints.laptopS} {
             &--Wide{
+                flex:2;        
                 .bodyImg{
                     display: none;
                 }
@@ -463,9 +465,8 @@ const StyledContentCard = styled(ContentCard)`
                     padding-left: ${sizes.s32}; 
                 } 
                 &--Wide{
-                    flex:1;    
+                    flex:1;        
                 }
-
             }
             .title {
                 padding-bottom: 0px;
@@ -483,17 +484,19 @@ const StyledContentCard = styled(ContentCard)`
                     padding-bottom: ${sizes.s16};
                 } 
             }
+
+            &--M, &--S{
+                :nth-last-child(1){
+                    justify-content: space-between;
+                    flex: 1 1 auto;
+                }    
+            }
             
             :nth-last-child(1){
                 justify-content: space-between;
-                flex: 1 1 auto;
-
-                @media screen and ${breakpoints.laptopS} {
-                    &--Wide{
-                        flex:none;    
-                    }
-    
-                }
+                @media screen and ${breakpoints.laptopSMax} {
+                    flex: 1 1 auto;
+                } 
             }
     
            
