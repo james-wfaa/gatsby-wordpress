@@ -47,21 +47,17 @@ const StyledPrimaryMenu = styled.div`
         align-items: center;
         min-width: 320px;
         position: relative;
+        height: 100%;
         
         > div {
             &:first-of-type {
                 width: calc(100% - 72px);
                 max-width: 299px;
                 margin: 0 auto;
-                
-                
                 @media screen and ${breakpoints.tabletS} {
                     position: relative;
                     width: 396px;
                 }
-                
-                
-               
             }
             &:last-of-type {
                 display: none;
@@ -71,36 +67,91 @@ const StyledPrimaryMenu = styled.div`
                 }
             }
             &.opensub {
-                position: relative;
                 
+                position: absolute;
+                width: 200%;
+                left: -100%;
+                @media screen and ${breakpoints.tabletS} {
+                    position: relative;
+                    max-width: none;
+                    width: 100%;
+                    left: 0;
+                }
                 max-width: none;
-               
+
                 ul.primary {
                     position: relative;
                     border-bottom: none;
-                    
                     > li {
                         &:hover {
                             background-color: transparent;
                         }
-                        
-                        > span {
+                        span {
                             display: none;
+                        }
+                        &.open {
+                            span {
+                                display: block;
+                                position: absolute;
+                                top: 0;
+                                left: 50%;
+                                padding-left: ${sizes.s16};
+                                &:after {
+                                    display: none;
+                                }
+                                @media screen and ${breakpoints.tabletS} {
+                                    position: relative;
+                                    max-width: none;
+                                    width: 100%;
+                                    left: 0;
+                                    padding-left: 0;
+                                }
+                                &:before {
+                                    position: absolute;
+                                    content: '';
+                                    left: -${sizes.s32};
+                                    top: calc(50%  - 3px);
+                                    width: 0;
+                                    height: 0;
+                                    border-top: 6px solid transparent;
+                                    border-right: 12px solid ${colors.badgerRed};
+                                    border-bottom: 6px solid transparent;
+                
+                                }
+                            }
                         }
                     }
                     .secondary {
                         position: absolute;
-                        left: 0;
-                        top: 0;
-                        width: 100%;
+                        left: 50%;
+                        top: 36px;
+                        width: 50%;
+                        @media screen and ${breakpoints.tabletS} {
+
+       
+                            left: 0;
+                            top: 36px;
+                            width: 100%;
+                
+               
+                            left: 300px;
+                            padding-left: 24px;
+                            height: 100%;
+                            min-width: 300px;
+            
+                            top: 0;
+                            li {
+                                margin-left: ${sizes.s36};
+            
+                            } 
+                        }
+                        
                     }
                     
                    
                 }
                 .supplemental,
-                    .socialLinks {
-                        display: none;
-                    }
+                    
                 @media screen and ${breakpoints.tabletS} {
                     left: 0;
                 }
