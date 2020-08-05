@@ -327,11 +327,11 @@ return (
         <ContentCard 
         startDate="Apr. 29" 
         endDate="May 3"
-        title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin and around the World"
+        title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin"
         category="Athletic Travel"
         venue="Churchill Downs"
         location="Louisville, KY" 
-        tags={taglist2}
+        tags={taglist1}
         img={data.cardImage5}
         featureImg={data.cardImage5}
         size="Wide"
@@ -349,7 +349,7 @@ return (
         tags={taglist2}
         size="Wide"
         />
-        
+
         <br />
         <p>Story Card Horizontal</p>
         <ContentCard 
@@ -359,6 +359,18 @@ return (
         url="#"
         tags={taglist2}
         img={data.cardImage7}
+        size="Wide"
+        />
+
+
+        <br />
+        <p>Story Card Horizontal: No Image</p>
+        <ContentCard 
+        title="The Past, Present, and Future of Rainstorms"
+        category="UW NOW"
+        excerpt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fermentum turpis vitae mauris volutpat dictum at amet felis. Ut tempor mauris vitae sem fringilla eleifend. (Max characters = 200)" 
+        url="#"
+        tags={taglist1}
         size="Wide"
 
         /> 
