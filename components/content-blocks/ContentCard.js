@@ -398,12 +398,15 @@ const StyledContentCard = styled(ContentCard)`
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
             padding-bottom: ${sizes.s16};
-            
+        }
+
+        @media screen and ${breakpoints.laptopS} {
             &--Wide{
                 padding-left: ${sizes.s32};
             }
 
         }
+
     }
 
     &__contentwrap {

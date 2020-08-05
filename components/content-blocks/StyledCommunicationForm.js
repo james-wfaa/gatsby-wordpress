@@ -14,7 +14,11 @@ font-weight: bold;
 font-style: italic;
 text-align: center;
 @media screen and ${breakpoints.tabletS} {
+}
+@media screen and ${breakpoints.laptopS} {
+    max-width: 712px;
     font-size: ${sizes.s42};
+
 }
 label { 
     display: block;
@@ -30,8 +34,13 @@ input {
     border: 0;
     border-bottom: 2px solid ${colors.bgRed};
     text-align: center;
+    font-size: ${sizes.s26};
     padding-bottom: ${sizes.s8};
     margin-bottom: ${sizes.s32};
+    @media screen and ${breakpoints.laptopS} {
+        font-size: ${sizes.s36};
+    }
+    
 }
 input[type="submit"] {
     ${mixins.buttons};
