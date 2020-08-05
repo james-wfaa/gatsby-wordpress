@@ -312,16 +312,56 @@ return (
 <p>Event Card Horizontal:</p>
         <ContentCard 
         startDate="Apr. 29" 
+        title="The Kentucky Derby"
+        category="Athletic Travel"
+        venue="Churchill Downs"
+        location="Louisville, KY" 
+        tags={taglist2}
+        img={data.cardImage3}
+        featureImg={data.cardImage3}
+        size="Wide"
+        />
+
+      <br />
+      <p>Event Card Horizontal: W/ end date</p>
+        <ContentCard 
+        startDate="Apr. 29" 
+        endDate="May 3"
+        title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin and around the World"
+        category="Athletic Travel"
+        venue="Churchill Downs"
+        location="Louisville, KY" 
+        tags={taglist2}
+        img={data.cardImage5}
+        featureImg={data.cardImage5}
+        size="Wide"
+        />
+
+        <br />
+        <p>Event Card Horizontal: No Image</p>
+        <ContentCard 
+        startDate="Apr. 29" 
         endDate="May 3"
         title="The Kentucky Derby"
         category="Athletic Travel"
         venue="Churchill Downs"
         location="Louisville, KY" 
         tags={taglist2}
-        img={data.cardImage5}
-        featureImg={data.cardImage3}
         size="Wide"
         />
+        
+        <br />
+        <p>Story Card Horizontal</p>
+        <ContentCard 
+        title="The Past, Present, and Future of Rainstorms"
+        category="UW NOW"
+        excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
+        url="#"
+        tags={taglist2}
+        img={data.cardImage7}
+        size="Wide"
+
+        /> 
 
     </PageSection>
     
