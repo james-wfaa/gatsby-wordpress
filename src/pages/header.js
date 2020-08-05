@@ -12,10 +12,9 @@ export default () => {
         
         <h3>Things that are working:</h3>
         <ul>
-            
-            <li>Red bar menu hidden at mobile, shown at larger sizes</li>
+            <li>Red bar menu turns grey at mobile</li>
             <li>Supplemental text nav ("Lorem, Ipsum") hidden at mobile, shown at larger sizes</li>
-            <li>Hamburger menu open/close toggle</li>
+            <li>Hamburger menu open/close toggle (including with keyboard)</li>
             <li>Dropdown "Large Main" menu item styles (fonts, colors, padding, hover/active interactions)</li>
             <li>Dropdown "Utility" menu item styles (fonts, colors, padding, hover/active interactions)</li>
             <li>Dropdown Social Network menu item styles (icons, colors, padding, hover/active interactions)</li>

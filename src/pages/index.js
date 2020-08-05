@@ -5,22 +5,24 @@ import { Link } from "gatsby"
 export default () => <div>
     <h2>Card Components</h2>
     <ul>
+    <li>
+            <Link to="/contentCardFlex">Content Card</Link>  (NEW Horizontal Cards)
+        </li>
         <li>
-            <Link to="/header">Header Nav Menu</Link> (NEW)
+            <Link to="/header">Header Nav Menu</Link> (Some updates)
+        </li>
+        <li>
+            <Link to="/footer">Footer </Link> (Updates)
         </li>
         <li>
             <Link to="/homepage">Full Homepage</Link> 
         </li>
        
-        <li>
-            <Link to="/contentCardFlex">Content Card (NEW Horizontal Cards)</Link> 
-        </li>
+       
         <li>
             <Link to="/communicationForm">Communication Form</Link> 
         </li>
-        <li>
-            <Link to="/footer">Footer </Link> (Updates)
-        </li>
+       
         <li>
             <Link to="/page-section">Basic Page Section</Link> 
         </li>

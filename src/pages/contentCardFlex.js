@@ -74,9 +74,7 @@ export default ({ data }) => {
 return (
 <Layout>
     <PageSection pad>
-        <h1>Content Card (FLEXIBLE HEIGHTS</h1>
-        <p><strong><em>Note: on this page, when there are references to layouts breaking down, it probably means that the card height is taller than the design due to excess content.</em></strong></p>
-
+        <h1>Content Card</h1>
         <p>Content Cards can be for either stories (Story Card) or events (Event Card). They come in the following sizes:</p>
         <ul>
           <li>1/3 (S): 344px wide, 2:1 image</li>
@@ -88,6 +86,75 @@ return (
         <p>At mobile (screens smaller than 656px wide), all Content Card sizes display identically at 256px wide.</p>
         <p>At tablet (screens between 656px-1199px wide), all Content Card sizes display identically at 528px wide with a 2:1 image (identical to the "M" size above)</p>
         <p></p>
+        <h2>Horizontal Content Card</h2>
+<p>This size card displays at 1080px on all larger screens. The card reverts to a normal tablet or mobile sized card when on small screens</p>
+<p>Event Card Horizontal:</p>
+        <ContentCard 
+        startDate="Apr. 29" 
+        title="The Kentucky Derby"
+        category="Athletic Travel"
+        venue="Churchill Downs"
+        location="Louisville, KY" 
+        tags={taglist2}
+        img={data.cardImage3}
+        featureImg={data.cardImage3}
+        size="Wide"
+        />
+
+      <br />
+      <p>Event Card Horizontal: W/ end date</p>
+        <ContentCard 
+        startDate="Apr. 29" 
+        endDate="May 3"
+        title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin"
+        category="Athletic Travel"
+        venue="Churchill Downs"
+        location="Louisville, KY" 
+        tags={taglist1}
+        img={data.cardImage5}
+        featureImg={data.cardImage5}
+        size="Wide"
+        />
+
+        <br />
+        <p>Event Card Horizontal: No Image</p>
+        <ContentCard 
+        startDate="Apr. 29" 
+        endDate="May 3"
+        title="The Kentucky Derby"
+        category="Athletic Travel"
+        venue="Churchill Downs"
+        location="Louisville, KY" 
+        tags={taglist2}
+        size="Wide"
+        />
+
+        <br />
+        <p>Story Card Horizontal</p>
+        <ContentCard 
+        title="The Past, Present, and Future of Rainstorms"
+        category="UW NOW"
+        excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
+        url="#"
+        tags={taglist2}
+        img={data.cardImage7}
+        size="Wide"
+        />
+
+
+        <br />
+        <p>Story Card Horizontal: No Image</p>
+        <ContentCard 
+        title="The Past, Present, and Future of Rainstorms"
+        category="UW NOW"
+        excerpt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fermentum turpis vitae mauris volutpat dictum at amet felis. Ut tempor mauris vitae sem fringilla eleifend. (Max characters = 200)" 
+        url="#"
+        tags={taglist1}
+        size="Wide"
+
+        /> 
+        <br />
+
           <h2>1/3 (S) Content Card</h2>
           <p>This size card displays at 256px wide on mobile and 344px wide on all larger screens.</p>
           <p>When an image is present, there is a 150 character limit on the excerpt.</p>
@@ -307,73 +374,6 @@ return (
         size="XXL"
         />
 
-<h2>Horizontal Content Card</h2>
-<p>This size card displays at 1080px on all larger screens. The card reverts to a normal tablet or mobile sized card when on small screens</p>
-<p>Event Card Horizontal:</p>
-        <ContentCard 
-        startDate="Apr. 29" 
-        title="The Kentucky Derby"
-        category="Athletic Travel"
-        venue="Churchill Downs"
-        location="Louisville, KY" 
-        tags={taglist2}
-        img={data.cardImage3}
-        featureImg={data.cardImage3}
-        size="Wide"
-        />
-
-      <br />
-      <p>Event Card Horizontal: W/ end date</p>
-        <ContentCard 
-        startDate="Apr. 29" 
-        endDate="May 3"
-        title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin"
-        category="Athletic Travel"
-        venue="Churchill Downs"
-        location="Louisville, KY" 
-        tags={taglist1}
-        img={data.cardImage5}
-        featureImg={data.cardImage5}
-        size="Wide"
-        />
-
-        <br />
-        <p>Event Card Horizontal: No Image</p>
-        <ContentCard 
-        startDate="Apr. 29" 
-        endDate="May 3"
-        title="The Kentucky Derby"
-        category="Athletic Travel"
-        venue="Churchill Downs"
-        location="Louisville, KY" 
-        tags={taglist2}
-        size="Wide"
-        />
-
-        <br />
-        <p>Story Card Horizontal</p>
-        <ContentCard 
-        title="The Past, Present, and Future of Rainstorms"
-        category="UW NOW"
-        excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
-        url="#"
-        tags={taglist2}
-        img={data.cardImage7}
-        size="Wide"
-        />
-
-
-        <br />
-        <p>Story Card Horizontal: No Image</p>
-        <ContentCard 
-        title="The Past, Present, and Future of Rainstorms"
-        category="UW NOW"
-        excerpt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fermentum turpis vitae mauris volutpat dictum at amet felis. Ut tempor mauris vitae sem fringilla eleifend. (Max characters = 200)" 
-        url="#"
-        tags={taglist1}
-        size="Wide"
-
-        /> 
 
     </PageSection>
     
