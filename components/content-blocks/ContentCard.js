@@ -394,6 +394,10 @@ const StyledContentCard = styled(ContentCard)`
                 .bodyImg{
                     display: none;
                 }
+                &:before {
+                    top: 2rem !important;
+                    left: -0.5rem !important;
+                }
             }
         }
 

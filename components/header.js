@@ -54,8 +54,12 @@ class Header extends React.Component {
                   <li><Link to="/#Ipsum">Ipsum</Link></li>
                 </ul>
                </div>
-               <span className="search"><a  href="#search"></a></span>
-               <div className={`menu ${this.state.open ? "open" : ""}`} onClick={() => this.toggleMenu()}>
+               <span className="search"><a tabindex="0" href="#search"></a></span>
+               <div 
+                className={`menu ${this.state.open ? "open" : ""}`} 
+                onClick={() => this.toggleMenu()}
+                onKeyPress={() => this.toggleMenu()}
+                tabindex="0">
                  <span></span>
                  <div>menu</div>
                  </div>

@@ -61,7 +61,9 @@ class Menu extends React.Component {
             
           <ul className="primary">
             <li 
+              tabindex="0"
               onClick={() => this.toggleSubMenu(1)} 
+              onKeyPress={() => this.toggleSubMenu(1)}
               onMouseEnter={() => this.openSubMenuHover(1)}
               className={ this.state.open1 ? 'open' : ''}
             >
@@ -78,7 +80,9 @@ class Menu extends React.Component {
               </Submenu>
               </li>
             <li 
+              tabindex="0"
               onClick={() => this.toggleSubMenu(2)} 
+              onKeyPress={() => this.toggleSubMenu(2)}
               onMouseEnter={() => this.openSubMenu(2)} 
               className={ this.state.open2 ? 'open' : ''}
             >
@@ -94,7 +98,9 @@ class Menu extends React.Component {
               </Submenu>
               </li>
             <li 
+              tabindex="0"
               onClick={() => this.toggleSubMenu(3)}  
+              onKeyPress={() => this.toggleSubMenu(3)}
               onMouseEnter={() => this.openSubMenu(3)} 
               className={ this.state.open3 ? 'open' : ''}
             >
@@ -110,7 +116,9 @@ class Menu extends React.Component {
               </Submenu>
             </li>
             <li 
-              onClick={() => this.toggleSubMenu(4)}  
+              tabindex="0"
+              onClick={() => this.toggleSubMenu(4)} 
+              onKeyPress={() => this.toggleSubMenu(4)}   
               onMouseEnter={() => this.openSubMenu(4)} 
               className={ this.state.open4 ? 'open' : ''}
             >
