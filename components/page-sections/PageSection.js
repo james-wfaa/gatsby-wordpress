@@ -9,7 +9,7 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 
-const PageSection = ({className, preheading, heading, excerpt, buttons, alt, topBorder, bgImage, children}) => {
+const PageSection = ({className, preheading, heading, pageTitle, excerpt, buttons, alt, topBorder, bgImage, children}) => {
             
         
     const background =  typeof bgImage !== "undefined" && bgImage !== null 
@@ -29,7 +29,7 @@ const PageSection = ({className, preheading, heading, excerpt, buttons, alt, top
             )}
                  { heading && (
                     <div className={`${className}__heading`}>
-                        <PageSectionHeader heading={heading} />
+                        <PageSectionHeader heading={heading} pageTitle={pageTitle} />
                     </div>
             )}
             { excerpt && (
@@ -102,6 +102,9 @@ const StyledPageSection = styled(PageSection)`
         &:after {
             /*background-color: rgba(0, 0, 0, 0.3) !important;*/
         }
+        &:before {
+            z-index: 0;
+        }
     }
 
     &__preheading {
@@ -136,6 +139,18 @@ const StyledPageSection = styled(PageSection)`
             
         }
     }
+    /* some wordpress content pieces */
+    &__content {
+        > p {
+            min-width: 300px;
+            width: 80%;
+            max-width: 897px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+    }
+   
    
 `
 

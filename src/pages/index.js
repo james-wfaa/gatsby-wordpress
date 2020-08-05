@@ -9,6 +9,9 @@ export default () => <div>
             <Link to="/contentCardFlex">Content Card</Link>  (NEW Horizontal Cards)
         </li>
         <li>
+            <Link to="/james-test">Image/Content Modules (1/3, 1/2, 2/3) from WordPress Pages </Link>(new / in progress)
+        </li>
+        <li>
             <Link to="/header">Header Nav Menu</Link> (Some updates)
         </li>
         <li>
@@ -42,6 +45,7 @@ export default () => <div>
         <li>
             <Link to="/fonts">Text Styles</Link>
         </li>
+    
        
     </ul>
 
