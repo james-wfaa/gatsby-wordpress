@@ -127,6 +127,7 @@ const StyledContentCard = styled(ContentCard)`
     display: flex;
     flex-flow: column;
     text-align: left;
+    position: relative;
    
     border: 1px solid ${colors.cardBorder};
     border-top: 6px solid ${colors.cardBorder};
@@ -181,6 +182,18 @@ const StyledContentCard = styled(ContentCard)`
             width: 1080px;
             flex-flow: row;  
             min-height: 230px;  
+            border-top: none;
+            &:before {
+                position: absolute;
+                content: "";
+                display: block;
+                width: 345px;
+                height: 6px;
+                top: -6px;
+                left: -1px;
+                background-color: ${colors.cardBorder};
+            }
+
         }
     }
 
@@ -252,7 +265,7 @@ const StyledContentCard = styled(ContentCard)`
                 border-bottom: none;
                 padding-left: 0px;
                 padding-right: 0px;
-                flex: 0 0 344px;        
+                flex: 0 0 344px; 
                 .headerImg{
                     display: block;
                     width: 344px;

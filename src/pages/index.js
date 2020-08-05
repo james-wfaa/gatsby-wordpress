@@ -9,11 +9,11 @@ export default () => <div>
             <Link to="/header">Header Nav Menu</Link> (NEW)
         </li>
         <li>
-            <Link to="/homepage">Full Homepage</Link> (NEW)
+            <Link to="/homepage">Full Homepage</Link> 
         </li>
        
         <li>
-            <Link to="/contentCardFlex">Content Card (1/3, 1/2, 2/3 sizes) (FLEXIBLE HEIGHTS)</Link> 
+            <Link to="/contentCardFlex">Content Card (NEW Horizontal Cards)</Link> 
         </li>
         <li>
             <Link to="/communicationForm">Communication Form</Link> 
