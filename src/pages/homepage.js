@@ -204,11 +204,6 @@ export default ({ data }) =>  {
             location="Southeast Asia" 
             url="/fadsfds"
             />
-
-            
-
-           
-
         </GridCardD>
     </PageSection>
 </Layout>
