@@ -24,15 +24,25 @@ text-align: left;
     
     
 }
+a {
+    ${mixins.textlink}
+}
 div.image-section {
     width: 100%;
     display: flex;
     flex-direction: column;
     padding-bottom: ${sizes.s58};
+    &--small {
+        .image-section__image {
+            width: calc(100% - 72px);
+            margin: 0 auto;
+        }
+
+    }
     @media screen and ${breakpoints.tabletS} {
         padding-top: ${sizes.s32};
         padding-bottom: ${sizes.s32};
-        border-bottom: 8px solid ${colors.sectionBorder};
+        
         width: 80%;
         
         max-width: 1080px;
@@ -59,6 +69,9 @@ div.image-section {
         }
         &:last-of-type {
             border-bottom: none;
+        }
+        &+div.image-section {
+            border-top: 8px solid ${colors.sectionBorder};
         }
     }
     &--right {
@@ -109,7 +122,19 @@ div.image-section {
         }
 
     }
+    
 }
+hr.wp-block-separator {
+    height: ${sizes.s36};
+    background-color: ${colors.sectionBorder};
+    margin: ${sizes.s36} 0;
+    @media screen and ${breakpoints.tabletS} {
+        margin: ${sizes.s52} 0;
+        
+    }
+}
+div.section-header {
+    ${mixins.sectionHeader}
 
 `
 export default StyledWordPressContent

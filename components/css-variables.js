@@ -45,8 +45,6 @@ export const baseColors = {
     white:   '#FFF',
     mainRed: '#c5050c',
     toneRed: '#A5050A',
-    deepRed: '#810000',
-    darkRed: '#A2020A',
     flamingle: '#E8306E',
     offBlack: '#3C3C3C',
     darkerGrey: '#777777',
@@ -65,21 +63,22 @@ export const colors = {
     copyText:       baseColors.offBlack,    
     titleWhite:     baseColors.white,
     buttonRed:      baseColors.mainRed,
-    buttonHoverRed: baseColors.deepRed,
+    buttonHoverRed: baseColors.toneRed,
     buttonActiveGrey: baseColors.darkerGrey,
     bgRed:          baseColors.mainRed,
     bgWhite:        baseColors.white,
     bgActiveGrey:   baseColors.lightGrey,
-    hoverRed:       baseColors.deepRed,
+    hoverRed:       baseColors.toneRed,
     promoRed:       baseColors.mainRed,
     categoryGrey:   baseColors.darkerGrey,
     tagGrey:        baseColors.darkerGrey,
     navcardGrey:    baseColors.lightestGrey,
     readMoreText:   baseColors.mainRed,
-    linkTextHover:  baseColors.deepRed,
+    linkText:       baseColors.mainRed,
+    linkTextHover:  baseColors.toneRed,
     linkTextActive: baseColors.offBlack,
     linkDateHover:  baseColors.mainRed,
-    linkDateActive: baseColors.deepRed, 
+    linkDateActive: baseColors.toneRed, 
     linkVisitedGrey: baseColors.darkerGrey,
     linkActiveGrey:     baseColors.darkGrey,
     cardHeaderBGGrey: baseColors.lightestGrey,
@@ -88,7 +87,7 @@ export const colors = {
     toneRed: baseColors.toneRed,
     badgerRed: baseColors.mainRed,
     linkTextVisitedLight: baseColors.lightestGrey,
-    footerAccent: baseColors.darkRed,
+    footerAccent: baseColors.toneRed,
     iconGrey: baseColors.darkGrey,
     sectionBorder: baseColors.lightestGrey,
     rednavGrey: baseColors.lightGrey,
@@ -153,6 +152,20 @@ export const mixins = {
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s14};
         }   
+    `,
+    textlink: `
+        &:link,
+        &:visited {
+            color: ${colors.linkText};
+        }
+        
+        &:hover {
+            color: ${colors.linkTextHover};
+        }
+        &:active {
+            color: ${colors.linkTextActive};
+        }
+
     `,
 
     tag: `
@@ -221,5 +234,48 @@ export const mixins = {
              background-color: ${colors.bgWhite};
          }
      }
-    `
+    `,
+    sectionHeader: ` {
+        text-align: center;
+        position: relative;
+           padding-bottom:  ${sizes.s40};
+           margin-bottom: ${sizes.s58};
+           h1,
+           h2 {
+           
+               color: ${colors.titleColor};
+               font-family: ${fonts.eaves};
+               font-weight: bold;
+               font-style: italic;
+               font-size: ${sizes.s36};
+               line-height: ${sizes.s40};
+               margin: 0;
+               padding: 0 1em;
+
+               @media screen and ${breakpoints.laptopS} {
+                   font-size: ${sizes.s42};
+                   line-height: ${sizes.s52};
+                   padding: 0;
+               }
+           }
+           &:after {
+               position: absolute;
+               bottom: 0;
+               right: calc( 50% - ${sizes.s34} );
+               height: ${sizes.s8};
+               width: calc( ${sizes.s34} * 2 );
+               background-color: ${colors.titleColor};
+               content: '';
+           }
+
+           &--bgimage {
+               h2 {
+                   color: ${colors.titleWhite}
+               }
+               &:after {
+                   background-color: ${colors.bgWhite};
+               }
+           }
+       }
+    }`
 }
