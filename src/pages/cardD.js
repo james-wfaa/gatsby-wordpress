@@ -270,7 +270,8 @@ export default () => {
 
         <PromoCardD 
         title="Get Out And Travel"
-        url="####"
+        url="#######"
+        isNav
         />
         
 

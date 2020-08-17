@@ -16,7 +16,7 @@ const PromoCardD = ({ className, title, url, isNav = false })=> {
     return (
         <CardD>
             <a href={url}className={classes}>
-                <div className={`${className}__wrapper`}>
+                <div className={`${className}__wrapper wrapper`}>
                     <div className={`${className}__title title`}>{title}</div>
                     <span className={`${className}__arrow arrow`}></span>
                 </div>
@@ -95,15 +95,6 @@ text-decoration: none;
     text-decoration: none;
 
 }
-
-&__nav {
-    background-color: ${colors.navcardGrey};
-    color: ${colors.titleColor};
-    a {
-        color: ${colors.titleColor};
-    }
-}
-
 &__arrow {
     position: absolute;
     mask: url(${arrowSVG}) no-repeat;
@@ -139,6 +130,92 @@ text-decoration: none;
 &:active {
     cursor:default;
 }
+
+&__nav {
+    background-color: ${colors.navcardGrey};
+    color: ${colors.titleColor};
+    .title {
+        color: ${colors.titleColor};
+    }
+    .wrapper{
+        .arrow{
+            display: none;
+        }
+        &:before {
+            position: absolute; 
+            bottom: 125px;
+            left: -15px;
+            width: 150px;
+            height: 150px;
+            background-color: ${colors.iconGrey};
+            -webkit-mask-image: url(${diagLeftSVG});
+            mask: url(${diagLeftSVG}) no-repeat;
+            content: '';
+            @media screen and ${breakpoints.laptopS} {
+                bottom: 195px;
+                left: -1px;    
+            }
+        }
+        &:after {
+            position: absolute; 
+            bottom: -30px;
+            left: 125px;
+            width: 150px;
+            height: 150px;
+            background-color: ${colors.iconGrey};
+            -webkit-mask-image: url(${diagRightSVG});
+            mask: url(${diagRightSVG}) no-repeat;
+            content: '';
+            @media screen and ${breakpoints.laptopS} {
+                bottom: -15px;
+                left: 195px;       
+            }
+        }
+    }
+    &:visited {
+        .title{
+            color: ${colors.linkVisitedGrey};
+        }
+    }
+    
+    &:hover {
+        box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
+        .wrapper{
+            &:before {
+                background-color: ${colors.bgRed};
+            }
+            &:after {
+                background-color: ${colors.bgRed};
+            }
+        }
+        .title{
+            color: ${colors.buttonHoverRed};
+            text-decoration: underline;
+        }
+    }
+    &:active {
+        cursor:default;
+        .wrapper{
+            &:before {
+                background-color: ${colors.bgRed};
+            }
+            &:after {
+                background-color: ${colors.bgRed};
+            }
+        }
+
+        .title{
+            color: ${colors.linkActiveGrey};
+            text-decoration: underline;
+        }
+
+    }
+    
+}
+
+
+
+
 
 
 
