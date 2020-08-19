@@ -122,6 +122,13 @@ position: relative;
 .logo {
   width: 112px;
   height: 54px;
+  img{
+    &:hover {
+      transform: scale(1.05);
+    }
+  
+  }
+
 }
 .search {
   width: 43px;

@@ -7,7 +7,7 @@ import styled from 'styled-components'
 const ContentCard = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, featureImg, caption, tags, size }) => {
 
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
-    const dateLinkText = endDate ? `<nobr>${startDate}</nobr>&nbsp;&ndash;&nbsp;<nobr>${endDate}</nobr>` : startDate;
+    const dateLinkText = endDate ? `<nobr>${startDate}</nobr> &ndash; <nobr>${endDate}</nobr>` : startDate;
     const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];
     const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt
@@ -355,8 +355,8 @@ const StyledContentCard = styled(ContentCard)`
             }
 
         }
-        &--L {
-            max-width: 450px;
+        &--L, &--XL, &--XXL {
+            z-index: 1;
         }
         & a:link {
             text-decoration: none;
