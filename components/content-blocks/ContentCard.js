@@ -47,7 +47,9 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                         <div className={`${className}__category category category--${size} ${className}__category--${size} ${className}__category--${notSmall}`}>{category}</div>
                     )}
                     { !startDate && (
-                        <h3 className={`${className}__title title ${className}__title--${size} ${className}__title--${notSmall}`} dangerouslySetInnerHTML={{ __html: title }} />        
+                        <h3 className={`${className}__title title ${className}__title--${size} ${className}__title--${notSmall}`}>   
+                            <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
+                        </h3>     
                     )}
                     {imgSources && (
                         <a href={url} className={`${className}__imgzoomlink headerImg`} >
