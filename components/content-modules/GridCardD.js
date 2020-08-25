@@ -4,10 +4,12 @@ import {  sizes, breakpoints } from '../css-variables'
 
 import styled from 'styled-components'
 
-const GridCardD = ({className, children}) => {
+const GridCardD = ({className, children, popOut = false}) => {
+
+    const popClass = popOut ? `${className}__popOut` : ''
 
     return (
-        <div className={className}>{children}
+        <div className={`${className} ${popClass}`}>{children}
         </div>
     )
 }
@@ -49,6 +51,11 @@ grid-row-gap: ${sizes.s24};
     > div:nth-child(-n+9) {
         display: inherit;
     }
+}
+
+&__popOut{
+    position: relative;
+    top: -58px;
 }
 
 
