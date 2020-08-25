@@ -38,6 +38,9 @@ export default () => <div>
         <li>
             <Link to="/gridCardD">Card D Grid Format</Link>
         </li>
+        <li>
+            <Link to="/contentBlockList">Horizontal Card List Format (NEW)</Link>
+        </li>
         
         <li>
             <Link to="/slider">Carousel</Link>

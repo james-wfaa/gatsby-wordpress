@@ -16,7 +16,7 @@ const StyledContentBlockList = styled(ContentBlockList)`
 margin: 0 auto;
 position: relative;
 display: block;
-width: 1080px;
+width: 256px;
 > div {
     margin: 0;
     margin-bottom: ${sizes.s48};
@@ -27,12 +27,11 @@ width: 1080px;
 
 
 @media screen and ${breakpoints.tabletS} {
-  }
-
-@media screen and ${breakpoints.tabletL} {
+    width: 528px;
 }
 
 @media screen and ${breakpoints.laptopS} {
+    width: 1080px;
 }
 
 

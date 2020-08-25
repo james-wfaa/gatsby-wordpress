@@ -149,6 +149,12 @@ export default ({ data }) =>  {
             url="adfhadsfhasfdhgas"
             />
 
+          <PromoCardD 
+            title="Shop The UW Alumni Store"
+            url="####"
+            />
+
+
             <ContentCardD 
             startDate="Feb. 26" 
             title="WAA: Tucson Chapter Founders’ Day Celebration"
@@ -174,11 +180,6 @@ export default ({ data }) =>  {
             category="Travel"
             location="Southeast Asia" 
             url="/sdfghsdgfhsdf"
-            />
-
-            <PromoCardD 
-            title="Shop The UW Alumni Store"
-            url="####"
             />
 
             <ContentCardD 
