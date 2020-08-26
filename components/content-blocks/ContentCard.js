@@ -4,22 +4,20 @@ import Img from 'gatsby-image'
 import TagList from "../parts/TagList"
 import styled from 'styled-components'
 
-const ContentCard = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, featureImg, caption, tags, size }) => {
+const ContentCard = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, featureImg, caption, tags, size, promo = false }) => {
 
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
     const dateLinkText = endDate ? `<nobr>${startDate}</nobr> &ndash; <nobr>${endDate}</nobr>` : startDate;
     const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];
     const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt
+    const promoClass = promo ? 'promo' : ''
 
     if(!sizes.includes(size)){
         size = "S";
     }
 
     var notSmall = (size !== 'S') ? "notsmall" : "";
-
-   
-
   
     const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
         ? null
@@ -35,7 +33,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
 
     return (
 
-        <div className={`${className} ${className}--${size} ${className}--${notSmall}`}>  
+        <div className={`${className} ${className}--${size} ${className}--${notSmall} ${className}--${promoClass}`}>  
                 <div className={`${className}__headersection ${className}__headersection--${size} ${className}__headersection--${notSmall}`}>
                     { startDate && (
                         <div className={`${className}__date ${className}__date--${size} ${className}__date--${notSmall}`}> 
@@ -197,6 +195,9 @@ const StyledContentCard = styled(ContentCard)`
 
         }
     }
+    &--promo{
+        background-color: ${colors.bgRed};
+    }  
 
     & a{
         text-decoration: none;

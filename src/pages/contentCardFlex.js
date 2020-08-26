@@ -239,6 +239,13 @@ return (
         url="#"
         tags={taglist2}
         />
+        <p></p>
+        <ContentCard 
+        title="Coachella Valley"
+        excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
+        url="#"
+        promo
+        />
 <br />
 <h2>1/2 (M) Content Card</h2>
 <p>This size card displays at 256px wide on mobile and 528px wide on all larger screens.</p>
