@@ -32,6 +32,7 @@ height: 100%;
 width: 100%;
 position: absolute;
 text-decoration: none;
+display: block;
 
 
 &__wrapper {

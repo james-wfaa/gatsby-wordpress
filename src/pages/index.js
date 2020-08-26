@@ -39,6 +39,9 @@ export default () => <div>
             <Link to="/gridCardD">Card D Grid Format</Link>
         </li>
         <li>
+            <Link to="/gridCardDPop">Card D Grid Alternative, pops out of section (NEW)</Link>
+        </li>
+        <li>
             <Link to="/contentBlockList">Horizontal Card List Format (NEW)</Link>
         </li>
         
