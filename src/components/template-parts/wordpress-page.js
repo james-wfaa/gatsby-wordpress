@@ -9,6 +9,7 @@ import WordPressContent from "../../../components/content-blocks/WordPressConten
 import { normalizePath } from "../../utils/get-url-path"
 
 function BlogPost({ data }) {
+  console.log( data )
   const { nextPage, previousPage, page } = data
   const { title, content, featuredImage } = page
 
@@ -17,14 +18,15 @@ function BlogPost({ data }) {
   return (
     <Layout>
       <PageSection heading={title} pageTitle>
-        <WordPressContent content={content} />
-      </PageSection>
-     
       {!!featuredImage?.node?.remoteFile?.childImageSharp && (
         <Box mb={5}>
           <Img fluid={featuredImage.node.remoteFile.childImageSharp.fluid} />
         </Box>
       )}
+        <WordPressContent content={content} />
+      </PageSection>
+     
+      
 
       
 
