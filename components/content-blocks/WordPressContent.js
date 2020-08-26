@@ -13,6 +13,8 @@ const WordPressContent = ({className, content}) => {
     )
 }
 const StyledWordPressContent = styled(WordPressContent)`
+max-width: 1080px;
+margin: 0 auto;
 text-align: left;
 > p, 
 > ul {
@@ -135,6 +137,31 @@ hr.wp-block-separator {
 }
 div.section-header {
     ${mixins.sectionHeader}
+
+}
+.callout-bold {
+    font-weight: bold;
+    background-color: ${colors.calloutGrey};
+    padding: ${sizes.s18};
+    @media screen and ${breakpoints.tabletS} {
+        width: 272px;
+        float: left;
+        margin: 16px 16px 16px 0;       
+    }
+}
+
+.wp-block-quote {
+    color: ${colors.badgerRed};
+    font-family: ${fonts.eavesNarrow};
+    font-style: italic; 
+    font-size: ${sizes.s24};
+    line-height: ${sizes.s36};
+    @media screen and ${breakpoints.tabletS} {
+        width: 252px;
+        float: right;
+        margin: 24px;       
+    }
+}
 
 `
 export default StyledWordPressContent

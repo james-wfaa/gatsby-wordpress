@@ -92,6 +92,7 @@ export const colors = {
     sectionBorder: baseColors.lightestGrey,
     rednavGrey: baseColors.lightGrey,
     navCardVisitedGrey: baseColors.darkerGrey,
+    calloutGrey: baseColors.lightestGrey,
 
 
 }

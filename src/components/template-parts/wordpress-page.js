@@ -1,11 +1,11 @@
 import React from "react"
 
 import { Link } from "gatsby"
-import { Box } from "@chakra-ui/core"
 import Img from "gatsby-image"
 import Layout from "../../../components/Layout"
 import PageSection from "../../../components/page-sections/PageSection"
 import WordPressContent from "../../../components/content-blocks/WordPressContent"
+import FeaturedImage from "../../../components/content-blocks/FeaturedImage"
 import { normalizePath } from "../../utils/get-url-path"
 
 function BlogPost({ data }) {
@@ -19,9 +19,7 @@ function BlogPost({ data }) {
     <Layout>
       <PageSection heading={title} pageTitle>
       {!!featuredImage?.node?.remoteFile?.childImageSharp && (
-        <Box mb={5}>
-          <Img fluid={featuredImage.node.remoteFile.childImageSharp.fluid} />
-        </Box>
+          <FeaturedImage featuredImage={featuredImage} />
       )}
         <WordPressContent content={content} />
       </PageSection>
