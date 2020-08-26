@@ -11,7 +11,7 @@ import { normalizePath } from "../../utils/get-url-path"
 function BlogPost({ data }) {
   console.log( data )
   const { nextPage, previousPage, page } = data
-  const { title, content, featuredImage } = page
+  const { title, content, blocks, featuredImage } = page
 
   console.log(content)
 
