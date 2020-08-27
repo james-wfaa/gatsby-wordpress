@@ -3,11 +3,11 @@ import React from "react"
 import { Link } from "gatsby"
 import { Box, Heading } from "@chakra-ui/core"
 import Img from "gatsby-image"
-import Layout from "../../../components/Layout"
+import Layout from "../Layout"
 import { normalizePath } from "../../utils/get-url-path"
-import WordPressContent from "../../../components/content-blocks/WordPressPostContent"
-import PageSection from "../../../components/page-sections/PageSection"
-import FeaturedImage from "../../../components/content-blocks/FeaturedImage"
+import WordPressContent from "../content-blocks/WordPressPostContent"
+import PageSection from "../page-sections/PageSection"
+import FeaturedImage from "../content-blocks/FeaturedImage"
 
 
 
