@@ -24,10 +24,6 @@ function BlogPost({ data }) {
         <WordPressContent content={content} />
       </PageSection>
      
-      
-
-      
-
       <br />
       {!!nextPage && (
         <Link to={normalizePath(nextPage.uri)}>Next: {nextPage.title} --

@@ -3,8 +3,13 @@ import React from "react"
 import { Link } from "gatsby"
 import { Box, Heading } from "@chakra-ui/core"
 import Img from "gatsby-image"
-import Layout from "../layout"
+import Layout from "../../../components/Layout"
 import { normalizePath } from "../../utils/get-url-path"
+import WordPressContent from "../../../components/content-blocks/WordPressPostContent"
+import PageSection from "../../../components/page-sections/PageSection"
+import FeaturedImage from "../../../components/content-blocks/FeaturedImage"
+
+
 
 function BlogPost({ data }) {
   const { nextPage, previousPage, page } = data
@@ -12,17 +17,13 @@ function BlogPost({ data }) {
 
   return (
     <Layout>
-      <Heading as="h1" size="xl" mb={5}>
-        {title} /
-      </Heading>
+      <PageSection heading={title} pageTitle>
+        {!!featuredImage?.node?.remoteFile?.childImageSharp && (
+            <FeaturedImage featuredImage={featuredImage} />
+        )}
+        <WordPressContent content={content} />
+      </PageSection>
 
-      {!!featuredImage?.node?.remoteFile?.childImageSharp && (
-        <Box mb={5}>
-          <Img fluid={featuredImage.node.remoteFile.childImageSharp.fluid} />
-        </Box>
-      )}
-
-      <p dangerouslySetInnerHTML={{ __html: content }} />
 
       <br />
       {!!nextPage && (
