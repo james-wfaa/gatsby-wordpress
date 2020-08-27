@@ -1,15 +1,15 @@
 import React from "react"
 import { graphql } from 'gatsby'
-import Layout from "../../components/Layout"
-import PageSection from "../../components/page-sections/PageSection"
-import ContentCardD from "../../components/content-blocks/ContentCardD"
-import GridCardD from "../../components/content-modules/GridCardD"
-import ContentCard from "../../components/content-blocks/ContentCard"
-import CardE from "../../components/content-blocks/CardE"
-import PromoCardD from "../../components/content-blocks/PromoCardD"
-import HeroIntroSection from '../../components/page-sections/HeroIntroSection'
-import CommunicationForm from "../../components/content-blocks/CommunicationForm"
-import SimpleSlider from "../../components/content-modules/SimpleSlider"
+import Layout from "../components/layout"
+import PageSection from "../components/page-sections/PageSection"
+import ContentCardD from "../components/content-blocks/ContentCardD"
+import GridCardD from "../components/content-modules/GridCardD"
+import ContentCard from "../components/content-blocks/ContentCard"
+import CardE from "../components/content-blocks/CardE"
+import PromoCardD from "../components/content-blocks/PromoCardD"
+import HeroIntroSection from '../components/page-sections/HeroIntroSection'
+import CommunicationForm from "../components/content-blocks/CommunicationForm"
+import SimpleSlider from "../components/content-modules/SimpleSlider"
 
 const taglist2 = [
     

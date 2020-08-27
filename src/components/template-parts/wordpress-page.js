@@ -1,17 +1,16 @@
 import React from "react"
 
 import { Link } from "gatsby"
-import Img from "gatsby-image"
-import Layout from "../../../components/Layout"
-import PageSection from "../../../components/page-sections/PageSection"
-import WordPressContent from "../../../components/content-blocks/WordPressContent"
-import FeaturedImage from "../../../components/content-blocks/FeaturedImage"
+import Layout from "../layout"
+import PageSection from "../page-sections/PageSection"
+import WordPressContent from "../content-blocks/WordPressContent"
+import FeaturedImage from "../content-blocks/FeaturedImage"
 import { normalizePath } from "../../utils/get-url-path"
 
 function BlogPost({ data }) {
   console.log( data )
   const { nextPage, previousPage, page } = data
-  const { title, content, blocks, featuredImage } = page
+  const { title, content, featuredImage } = page
 
   console.log(content)
 

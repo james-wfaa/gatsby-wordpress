@@ -1,8 +1,8 @@
 import React from "react"
-import Layout from "../../components/Layout"
-import ContentCardD from "../../components/content-blocks/ContentCardD"
-import GridCardD from "../../components/content-modules/GridCardD"
-import GenericPageSection from '../../components/page-sections/GenericPageSection'
+import Layout from "../components/layout"
+import ContentCardD from "../components/content-blocks/ContentCardD"
+import GridCardD from "../components/content-modules/GridCardD"
+import GenericPageSection from '../components/page-sections/GenericPageSection'
 
 export default () => {
     return (

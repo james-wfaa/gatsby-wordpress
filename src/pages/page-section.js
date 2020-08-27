@@ -1,11 +1,11 @@
 import React from "react"
 import { graphql } from 'gatsby'
-import Layout from "../../components/Layout"
-import PageSection from '../../components/page-sections/PageSection'
-import GridCardD from "../../components/content-modules/GridCardD"
-import ContentCardD from "../../components/content-blocks/ContentCardD"
+import Layout from "../components/layout"
+import PageSection from '../components/page-sections/PageSection'
+import GridCardD from "../components/content-modules/GridCardD"
+import ContentCardD from "../components/content-blocks/ContentCardD"
 
-import MobileHr from '../../components/parts/MobileHr'
+import MobileHr from '../components/parts/MobileHr'
 
 const buttons1 = [
     

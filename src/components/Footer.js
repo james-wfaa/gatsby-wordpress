@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import WfaaFooterMenu from './parts/WfaaFooterMenuStatic'
 import Copyright from './parts/Copyright';
-import Crest from '../src/svg/uwa_crest_white_footer_2x.svg'
-import FbIcon from '../src/svg/uwa__facebook_white_24x24.svg'
-import IgIcon from '../src/svg/uwa__instagram_white_24x24.svg'
-import LiIcon from '../src/svg/uwa__linkedin_white_24x24.svg'
-import TwIcon from '../src/svg/uwa__twitter_white_24x24.svg'
-import WcIcon from '../src/svg/uwa__WeChat_white_24x24.svg'
+import Crest from '../svg/uwa_crest_white_footer_2x.svg'
+import FbIcon from '../svg/uwa__facebook_white_24x24.svg'
+import IgIcon from '../svg/uwa__instagram_white_24x24.svg'
+import LiIcon from '../svg/uwa__linkedin_white_24x24.svg'
+import TwIcon from '../svg/uwa__twitter_white_24x24.svg'
+import WcIcon from '../svg/uwa__WeChat_white_24x24.svg'
 import { colors, sizes, breakpoints } from './css-variables'
 
 

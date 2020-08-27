@@ -2,9 +2,9 @@ import React from "react"
 import styled from 'styled-components'
 import { colors, sizes, breakpoints } from '../css-variables'
 import CardD from './CardD'
-import diagRightSVG from '../../src/svg/Diagonals_Card_Corners_White_bottom-rght_2x.svg'
-import diagLeftSVG from '../../src/svg/Diagonals_Card_Corners_White_top-left_2x.svg'
-import arrowSVG from '../../src/svg/Arrow_45-degrees_white_1x.svg'
+import diagRightSVG from '../../svg/Diagonals_Card_Corners_White_bottom-rght_2x.svg'
+import diagLeftSVG from '../../svg/Diagonals_Card_Corners_White_top-left_2x.svg'
+import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
 
 

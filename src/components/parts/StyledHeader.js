@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { breakpoints,  sizes, colors } from '../css-variables'
-import Search from "../../src/svg/search.svg" // Tell webpack this JS file uses this image
+import Search from "../../svg/search.svg" // Tell webpack this JS file uses this image
 
 const StyledHeader = styled.header`
 position: relative;

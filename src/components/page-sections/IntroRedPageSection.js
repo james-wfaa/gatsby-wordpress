@@ -1,7 +1,7 @@
 import styled from 'styled-components'  
 import { colors, sizes, breakpoints } from '../css-variables'
 
-import PageSection from '../../components/page-sections/PageSection'
+import PageSection from '../page-sections/PageSection'
 
 
 

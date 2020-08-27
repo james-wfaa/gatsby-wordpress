@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import { breakpoints,  sizes, colors, } from '../css-variables'
-import FbIcon from "../../src/svg/fb_icon_gray.svg" // Tell webpack this JS file uses this image
-import TwIcon from "../../src/svg/twitter_icon_gray.svg" // Tell webpack this JS file uses this image
-import IgIcon from "../../src/svg/instagram_icon_gray.svg" // Tell webpack this JS file uses this image
-import WcIcon from "../../src/svg/wechat_icon_gray.svg" // Tell webpack this JS file uses this image
-import LiIcon from "../../src/svg/linkedin_icon_gray.svg" // Tell webpack this JS file uses this image
+import FbIcon from "../../svg/fb_icon_gray.svg" // Tell webpack this JS file uses this image
+import TwIcon from "../../svg/twitter_icon_gray.svg" // Tell webpack this JS file uses this image
+import IgIcon from "../../svg/instagram_icon_gray.svg" // Tell webpack this JS file uses this image
+import WcIcon from "../../svg/wechat_icon_gray.svg" // Tell webpack this JS file uses this image
+import LiIcon from "../../svg/linkedin_icon_gray.svg" // Tell webpack this JS file uses this image
 
 
 const StyledPrimaryMenu = styled.div`
