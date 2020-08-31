@@ -26,8 +26,21 @@ const FeaturedImage = ({ className, featuredImage }) => {
 
 const StyledFeaturedImage = styled(FeaturedImage)`
 
+width: auto;
+min-width: 375px;
+margin: 0; 
+
 @media screen and ${breakpoints.tabletS} {
   width: 536px;
+  margin: ${sizes.s58} auto; 
+}
+@media screen and ${breakpoints.laptopS} {
+  width: 815px;
+  margin: ${sizes.s58} auto; 
+
+}
+@media screen and ${breakpoints.laptopL} {
+  width: 1080px;
   margin: ${sizes.s58} auto; 
 
 }

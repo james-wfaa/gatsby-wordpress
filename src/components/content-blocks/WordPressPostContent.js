@@ -23,9 +23,11 @@ text-align: left;
     max-width: 712px;
     margin-left: auto;
     margin-right: auto;
-
-    @media screen and ${breakpoints.laptopS} {
-        max-width: 536px;
+    @media screen and ${breakpoints.tabletS} {
+        width: 536px;
+    }
+    @media screen and ${breakpoints.laptopL} {
+        width: 712px;
     }
 }
 a {
@@ -145,6 +147,10 @@ div.section-header {
     font-weight: bold;
     background-color: ${colors.calloutGrey};
     padding: ${sizes.s18};
+    @media screen and ${breakpoints.tabletS} {
+        padding: ${sizes.s24};
+        width: 584px;
+    }
     @media screen and ${breakpoints.laptopL} {
         width: 272px;
         float: left;
