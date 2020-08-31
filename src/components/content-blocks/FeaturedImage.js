@@ -27,9 +27,8 @@ const FeaturedImage = ({ className, featuredImage }) => {
 const StyledFeaturedImage = styled(FeaturedImage)`
 
 @media screen and ${breakpoints.tabletS} {
-  width: 90%;
+  width: 536px;
   margin: ${sizes.s58} auto; 
-  max-width: 1080px;
 
 }
 `

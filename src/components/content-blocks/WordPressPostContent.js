@@ -20,11 +20,13 @@ text-align: left;
 > ul {
     min-width: 300px;
     width: 80%;
-    max-width: 900px;
+    max-width: 712px;
     margin-left: auto;
     margin-right: auto;
-    
-    
+
+    @media screen and ${breakpoints.laptopS} {
+        max-width: 536px;
+    }
 }
 a {
     ${mixins.textlink}
@@ -143,14 +145,14 @@ div.section-header {
     font-weight: bold;
     background-color: ${colors.calloutGrey};
     padding: ${sizes.s18};
-    @media screen and ${breakpoints.laptopS} {
+    @media screen and ${breakpoints.laptopL} {
         width: 272px;
         float: left;
         margin: 16px 16px 16px 0;
         
         &.has-text-align-right{
             float: right;
-            margin: 16px;       
+            margin: 16px 0px 16px 16px;      
         }
     
     }
@@ -166,15 +168,19 @@ div.section-header {
     margin-left: auto;
     margin-right: auto;
     width: 80%;
-    @media screen and ${breakpoints.laptopS} {
+    max-width: 712px;
+    @media screen and ${breakpoints.laptopL} {
         width: 252px;
         float: right;
-        margin: 24px;   
+        margin: 24px 0px 24px 24px;    
         
         &.has-text-align-left{
             float: left;
             margin: 24px 24px 24px 0;     
         }
+    }
+    @media screen and ${breakpoints.laptopS} {
+        max-width: 536px;
     }
 }
 
