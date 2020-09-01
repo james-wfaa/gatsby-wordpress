@@ -271,6 +271,14 @@ export default () => {
         <PromoCardD 
         title="Get Out And Travel"
         url="#######"
+        />
+
+        <h1>Nav Card (square tile card)</h1>
+        <p>This is a variant of the Promo card meant to be used as navigation. These are usually found in grids with other Nav cards. Example can be seen on the Individual Groups page in XD</p>
+
+        <PromoCardD 
+        title="New York BA Alumni"
+        url="#######"
         isNav
         />
         
