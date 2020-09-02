@@ -72,8 +72,20 @@ export default ({ data }) => {
     return (
 <Layout>
 
-<PageSection alt>
+<PageSection heading="Sifted Events" >
     <ContentBlockList>
+    <ContentCard 
+        startDate="Apr. 29" 
+        endDate="May 3"
+        title="The Kentucky Derby"
+        category="Athletic Travel"
+        venue="Churchill Downs"
+        location="Louisville, KY" 
+        img={data.cardImage5}
+        featureImg={data.cardImage4}
+        alt
+        size="XXL"
+        />
     <ContentCard 
         startDate="Apr. 29" 
         title="The Kentucky Derby"
@@ -95,6 +107,26 @@ export default ({ data }) => {
         tags={taglist1}
         img={data.cardImage5}
         featureImg={data.cardImage5}
+        size="Wide"
+        />
+        <ContentCard 
+        startDate="Apr. 29" 
+        endDate="May 3"
+        title="The Kentucky Derby"
+        category="Athletic Travel"
+        venue="Churchill Downs"
+        location="Louisville, KY" 
+        tags={taglist2}
+        size="Wide"
+        />
+        <ContentCard 
+        startDate="Apr. 29" 
+        endDate="May 3"
+        title="The Kentucky Derby"
+        category="Athletic Travel"
+        venue="Churchill Downs"
+        location="Louisville, KY" 
+        tags={taglist2}
         size="Wide"
         />
         <ContentCard 

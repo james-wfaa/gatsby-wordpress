@@ -17,6 +17,10 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
         size = "S";
     }
 
+    if(promo){
+        size = "S";
+    }
+
     var notSmall = (size !== 'S') ? "notsmall" : "";
   
     const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
@@ -34,7 +38,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
     return (
 
         <div className={`${className} ${className}--${size} ${className}--${notSmall} ${className}--${promoClass}`}>  
-                <div className={`${className}__headersection ${className}__headersection--${size} ${className}__headersection--${notSmall}`}>
+                <div className={`${className}__headersection ${className}__headersection--${size} ${className}__headersection--${notSmall} ${className}__headersection--${promoClass}`}>
                     { startDate && (
                         <div className={`${className}__date ${className}__date--${size} ${className}__date--${notSmall}`}> 
                             <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
@@ -45,7 +49,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                         <div className={`${className}__category category category--${size} ${className}__category--${size} ${className}__category--${notSmall}`}>{category}</div>
                     )}
                     { !startDate && (
-                        <h3 className={`${className}__title title ${className}__title--${size} ${className}__title--${notSmall}`}>   
+                        <h3 className={`${className}__title title ${className}__title--${size} ${className}__title--${notSmall} ${className}__title--${promoClass}`}>   
                             <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
                         </h3>     
                     )}
@@ -181,7 +185,7 @@ const StyledContentCard = styled(ContentCard)`
             width: 1080px;
             flex-flow: row;  
             min-height: 230px;  
-            border-top: none;
+            border-top: 1px solid ${colors.cardBorder};
             &:before {
                 position: absolute;
                 content: "";
@@ -197,6 +201,7 @@ const StyledContentCard = styled(ContentCard)`
     }
     &--promo{
         background-color: ${colors.bgRed};
+        border: 1px solid ${colors.bgRed};
     }  
 
     & a{
@@ -221,6 +226,11 @@ const StyledContentCard = styled(ContentCard)`
         .headerImg{
             display: none;
         }
+
+        &--promo{
+            background-color: ${colors.bgRed};
+            border-bottom: none;
+        }  
 
         @media screen and ${breakpoints.tabletS} {
             padding-left: ${sizes.s32};
@@ -358,6 +368,11 @@ const StyledContentCard = styled(ContentCard)`
             }
 
         }
+        &--promo{
+            font-size: ${sizes.s36};
+            color: ${colors.titleWhite};
+        }  
+
         &--L, &--XL, &--XXL {
             z-index: 1;
         }
