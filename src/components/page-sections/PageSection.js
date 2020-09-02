@@ -99,6 +99,7 @@ const StyledPageSection = styled(PageSection)`
         position: relative;
         top: -58px;
         padding-top: 0;
+        margin-bottom: -58px;
     }
 
    
