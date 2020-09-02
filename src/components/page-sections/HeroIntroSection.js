@@ -5,17 +5,40 @@ import BackgroundImage from 'gatsby-background-image'
 import IntroRedPageSection from './IntroRedPageSection'
 
 
-const HeroIntroSection = ({className, jumbo, heroImage, heroHeading, redHeading, excerpt}) => {
+const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeading, excerpt}) => {
 
     const background =  typeof heroImage !== "undefined" && heroImage !== null 
 
-    const heroClasses = jumbo ? `${className}__hero ${className}__hero--jumbo` : `${className}__hero`
-    const headingClasses = jumbo ? `${className}__heading ${className}__heading--jumbo` : `${className}__heading`
+    let classes = className;
 
-    const redboxClass = background ? `${className}__redbox ${className}__redbox--background` : `${className}__redbox`
+    let heroClasses = `${className}__hero`
+    
+    switch (heroSize) {
+        case 'jumbo':
+            heroClasses = `${className}__hero ${className}__hero--jumbo`
+            break
+        case 'slim':
+            heroClasses = `${className}__hero ${className}__hero--slim`
+            break
+        default:
+            break
+    }
+        
+    const headingClasses = (heroSize === "jumbo" ) ? `${className}__heading ${className}__heading--jumbo` : `${className}__heading`
+
+    let redboxClass = background ? `${className}__redbox ${className}__redbox--background` : `${className}__redbox`
+    let downscrollClass = `${className}__downscroll`
+    if (heroSize === "slim") {
+        redboxClass += ` ${className}__redbox--slim`
+        downscrollClass += ` ${className}__downscroll--slim`
+        classes += ` ${className}--slim`
+    }
+
+    
+  
 
     return (
-        <div className={className}>
+        <div className={classes}>
             { background && (
             <BackgroundImage
             Tag="div"
@@ -24,18 +47,18 @@ const HeroIntroSection = ({className, jumbo, heroImage, heroHeading, redHeading,
             fluid={heroImage.childImageSharp.fluid}
             preserveStackingContext
              >
-                 <div className="wrapper">
-                    { heroHeading && (
+                { heroHeading && (
+                    <div className="wrapper">
                         <div className={headingClasses} dangerouslySetInnerHTML={{ __html: heroHeading }} />
-                    )}
-                </div>
+                    </div>
+                )}
             </BackgroundImage>
             )
         }
-            <a  className={`${className}__downscroll`} href={`#${className}__downscroll`} title="Scroll down to content"><div>down</div></a>
+            <a  className={downscrollClass} href={`#${className}__downscroll`} title="Scroll down to content"><div>down</div></a>
             <div className={redboxClass}>
                 <div className="downanchor" id={`${className}__downscroll`}>&nbsp;</div>
-                <IntroRedPageSection excerpt={excerpt} heading={redHeading} />
+                <IntroRedPageSection excerpt={excerpt} heading={redHeading}  />
             </div>
         </div>
     )
@@ -45,6 +68,9 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
 position: relative;
 scroll-behavior: smooth;
 margin-bottom: -80px;
+&--slim {
+    margin-bottom: -40px;
+}
 .downanchor {
    display: block;
    width: 1px;
@@ -68,6 +94,16 @@ margin-bottom: -80px;
             min-height: 1097px;
          }
      }
+     &--slim {
+        min-height: 210px;
+        @media screen and ${breakpoints.tabletS} {
+            min-height: 320px;
+        }
+        @media screen and ${breakpoints.laptopS} {
+            min-height: 480px;
+        }
+     }
+     background-blend-mode: multiply;
 }
 &__downscroll {
     position: relative;
@@ -79,9 +115,11 @@ margin-bottom: -80px;
     height: 80px;
     width: 100%;
     background-color: transparent;
+    background-blend-mode: multiply;
     color: ${colors.titleWhite};
     text-align: center;
     text-decoration: none;
+    
     &:hover {
         &:before {
             opacity: 0.75;
@@ -101,6 +139,7 @@ margin-bottom: -80px;
         content: '';
     
     }
+    
 
     @media screen and ${breakpoints.tabletS} {
         &:before {
@@ -119,6 +158,7 @@ margin-bottom: -80px;
         
         }
         
+        
      }
 
      div {
@@ -129,6 +169,31 @@ margin-bottom: -80px;
          color: transparent;
          background-size: cover;
      }
+     &--slim {
+        height: 40px;
+        top: -40px;
+        div{
+            display: none;
+            @media screen and ${breakpoints.tabletS} {
+                display: block;
+            }
+        }
+        &:after {
+            position: absolute;
+            top: 0;
+            right: -45px;
+            height: 40px;
+            width: 161px;
+            content: '';
+            background-color: ${colors.bgRed} !important;
+            transform: skew(135deg);
+            @media screen and ${breakpoints.tabletS} {
+                width: 222px;
+            }
+         
+        
+        }
+    }
 
 }
 &__heading {
@@ -178,6 +243,9 @@ margin-bottom: -80px;
     position: relative;
     &--background {
         top: -80px;
+    }
+    &--slim {
+        top: -40px;
     }
 }
 

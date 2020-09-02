@@ -16,7 +16,7 @@ export default ({ data }) => {
     <p>Height is set to 696px at mobile, 800px at tablet (656), and 1097px at desktop (1200)</p>
     <HeroIntroSection  
         heroImage={data.homeBg}
-        jumbo
+        heroSize="jumbo"
         heroHeading="<span>Badger</span> ON"
         redHeading="Continue Your Wisconsin Experience" 
         excerpt="<p>The Wisconsin Alumni Association is here for you to carry on as a proud Badger. It’s a community built on meeting the needs of today’s alumni. Whether you want to keep learning, celebrating traditions, or connecting with the UW, this is the place for you to Badger On.

@@ -54,7 +54,7 @@ class Header extends React.Component {
                   <li><Link to="/#Ipsum">Ipsum</Link></li>
                 </ul>
                </div>
-               <span className="search"><a tabindex="0" href="#search"></a></span>
+               <span className="search"><a tabIndex="0" href="#search"></a></span>
                <div 
                 className={`menu ${this.state.open ? "open" : ""}`} 
                 onClick={() => this.toggleMenu()}

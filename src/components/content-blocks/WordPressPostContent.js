@@ -14,7 +14,8 @@ max-width: 1080px;
 margin: 0 auto;
 text-align: left;
 > p, 
-> ul {
+> ul,
+> h2 {
     min-width: 300px;
     width: 80%;
     max-width: 712px;
@@ -161,7 +162,9 @@ div.section-header {
     }
 
 }
-
+.wp-block-gallery {
+    display: none;
+}
 .wp-block-quote {
     color: ${colors.badgerRed};
     font-family: ${fonts.eavesNarrow};

@@ -280,6 +280,10 @@ export const mixins = {
                    background-color: ${colors.bgWhite};
                }
            }
+           &--social {
+            margin-bottom: ${sizes.s32};
+
+           }
        }
     }`
 }

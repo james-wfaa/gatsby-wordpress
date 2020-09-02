@@ -9,22 +9,23 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 
-const PageSection = ({className, preheading, heading, pageTitle, withSocial, excerpt, buttons, alt, topBorder, bgImage, children}) => {
+const PageSection = ({className, preheading, heading, pageTitle, withSocial, plainText, popOut, excerpt, buttons, alt, topBorder, bgImage, children}) => {
             
         
     const background =  typeof bgImage !== "undefined" && bgImage !== null 
 
     const classesList = alt ? `${className} ${className}--alt` : className
     const altClass = alt ? ` ${className}--alt` : ''
-    const socialClass = withSocial ? ` ${className}--withsocial` : ''
+    const plainTextContent = plainText ? ` plaintext` : ''
     const topBorderClass = topBorder ? ` ${className}--topborder` : ''
     const hasPreHeading = preheading && !heading ?  ` ${className}--hasPreHeading` : ''
     const hasNoHeading = !preheading && !heading ? ` ${className}--hasNoHeading` : ''
+    const popClass = popOut ? `${className}__popOut` : ''
    
     return (
         <div>
             { ! background &&  (
-            <div className={`${className} ${altClass} ${hasPreHeading} ${hasNoHeading} ${topBorderClass}` }>
+            <div className={`${className} ${altClass} ${hasPreHeading} ${hasNoHeading} ${topBorderClass} ${popClass}` }>
                 { preheading && (
                 <div className={`${className}__preheading`}>{preheading}</div>
             )}
@@ -36,7 +37,7 @@ const PageSection = ({className, preheading, heading, pageTitle, withSocial, exc
             { excerpt && (
                 <div className={`${className}__excerpt`}  dangerouslySetInnerHTML={{ __html: excerpt }} />
             )}
-            <div className={`${className}__content`}>
+            <div className={`${className}__content ${plainTextContent}`}>
                 {children}
             </div>
             { buttons && (<PageSectionButtons buttons={buttons} />
@@ -91,6 +92,14 @@ const StyledPageSection = styled(PageSection)`
     &--topborder {
         border-top: 30px solid ${colors.sectionBorder};
     }
+    &--addPad {
+        padding-bottom: 116px;
+    }
+    &__popOut{
+        position: relative;
+        top: -58px;
+        padding-top: 0;
+    }
 
    
     &--alt {
@@ -121,10 +130,11 @@ const StyledPageSection = styled(PageSection)`
        
 
     &__excerpt {
-        font-size: ${sizes.s18};
-        line-height: ${sizes.s26};
+        font-size: ${sizes.s24};
+        line-height: ${sizes.s36};
         max-width: 712px;
         margin: 0 auto;
+        margin-bottom: ${sizes.s32};
         padding: 0 ${sizes.s36};
 
         p:last-child {
@@ -133,11 +143,13 @@ const StyledPageSection = styled(PageSection)`
         @media screen and ${breakpoints.laptopS} {
            padding: 0;
            font-size: ${sizes.s26};
-           line-height: ${sizes.s36};
         }
         &--bgimage {
             color: ${colors.bgWhite} !important;
             
+        }
+        &.withsocial {
+           
         }
     }
     /* some wordpress content pieces */
@@ -149,6 +161,10 @@ const StyledPageSection = styled(PageSection)`
             margin-left: auto;
             margin-right: auto;
             text-align: left;
+        }
+        &.plaintext {
+            max-width: 712px;
+            margin: 0 auto;
         }
     }
    

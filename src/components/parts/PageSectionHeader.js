@@ -4,7 +4,9 @@ import { mixins } from '../css-variables'
 
 const PageSectionHeader = ({ className, heading, pageTitle, withSocial, bgimage }) => {
 
-    const classesList = bgimage ? `${className} ${className}--bgimage` : className
+    const classBgImage = bgimage ? `${className}--bgimage` : ''
+    const classSocialImage = withSocial ? `${className}--social` : ''
+    const classesList = `${className} ${classBgImage} ${classSocialImage}`
     return (
         <div className={classesList}>
             { pageTitle && (
