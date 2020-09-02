@@ -2,7 +2,7 @@ import React from "react"
 import styled from 'styled-components'
 import { mixins } from '../css-variables'
 
-const PageSectionHeader = ({ className, heading, pageTitle, bgimage }) => {
+const PageSectionHeader = ({ className, heading, pageTitle, withSocial, bgimage }) => {
 
     const classesList = bgimage ? `${className} ${className}--bgimage` : className
     return (

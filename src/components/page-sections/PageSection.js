@@ -9,13 +9,14 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 
-const PageSection = ({className, preheading, heading, pageTitle, excerpt, buttons, alt, topBorder, bgImage, children}) => {
+const PageSection = ({className, preheading, heading, pageTitle, withSocial, excerpt, buttons, alt, topBorder, bgImage, children}) => {
             
         
     const background =  typeof bgImage !== "undefined" && bgImage !== null 
 
     const classesList = alt ? `${className} ${className}--alt` : className
     const altClass = alt ? ` ${className}--alt` : ''
+    const socialClass = withSocial ? ` ${className}--withsocial` : ''
     const topBorderClass = topBorder ? ` ${className}--topborder` : ''
     const hasPreHeading = preheading && !heading ?  ` ${className}--hasPreHeading` : ''
     const hasNoHeading = !preheading && !heading ? ` ${className}--hasNoHeading` : ''
@@ -29,7 +30,7 @@ const PageSection = ({className, preheading, heading, pageTitle, excerpt, button
             )}
                  { heading && (
                     <div className={`${className}__heading`}>
-                        <PageSectionHeader heading={heading} pageTitle={pageTitle} />
+                        <PageSectionHeader heading={heading} pageTitle={pageTitle} withSocial={withSocial} />
                     </div>
             )}
             { excerpt && (
