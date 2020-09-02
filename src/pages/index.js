@@ -1,8 +1,12 @@
 import React from "react"
+import Layout from "../components/layout"
+import PageSection from "../components/page-sections/GenericPageSection"
+
 import { Link } from "gatsby"
 
 
-export default () => <div>
+export default () => <Layout>
+    <PageSection pad>
     <h1>uwalumni.com redesign - development work in progress</h1>
     <h2>Full Page Templates</h2>
     <li>
@@ -64,5 +68,9 @@ export default () => <div>
        
     </ul>
 
+
+    </PageSection>
     
-    </div>
+
+    
+    </Layout>

@@ -12,24 +12,27 @@ export default ({ data }) => {
     return (
 <Layout>
 
-<PageSection >
+
 
     <HeroIntroSection  
-            heroImage={data.homeBg}
-            jumbo
-            heroHeading="<span>Badger</span> ON"
-            redHeading="Continue Your Wisconsin Experience" 
-            excerpt="<p>The Wisconsin Alumni Association is here for you to carry on as a proud Badger. It’s a community built on meeting the needs of today’s alumni. Whether you want to keep learning, celebrating traditions, or connecting with the UW, this is the place for you to Badger On.
-            </p>"
-            />
+      heroImage={data.homeBg}
+      jumbo
+      heroHeading="<span>Badger</span> ON"
+      redHeading="Continue Your Wisconsin Experience" 
+      excerpt="<p>The Wisconsin Alumni Association is here for you to carry on as a proud Badger. It’s a community built on meeting the needs of today’s alumni. Whether you want to keep learning, celebrating traditions, or connecting with the UW, this is the place for you to Badger On.
+      </p>"
+    />
+    <PageSection popOut>
+    
+            
 
 
     <GridCardD popOut>
         <PromoCardD 
-            title="Shop The UW Alumni Store"
-            url="####"
-            isNav
-            />
+          title="Shop The UW Alumni Store"
+          url="####"
+          isNav
+        />
 
 
             <PromoCardD 
@@ -90,8 +93,6 @@ export default ({ data }) => {
 
     </PageSection>
        
-
-
 </Layout>
     )
 }
