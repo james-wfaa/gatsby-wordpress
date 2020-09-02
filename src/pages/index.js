@@ -3,11 +3,17 @@ import { Link } from "gatsby"
 
 
 export default () => <div>
-    <h2>Card Components</h2>
+    <h1>uwalumni.com redesign - development work in progress</h1>
+    <h2>Full Page Templates</h2>
+    <li>
+        <Link to="/wordpress-story">Story Page (NEW)</Link>
+    </li>
+    <li>
+        <Link to="/homepage">Full Homepage</Link> 
+    </li>
+    <h2>Page Sections &amp; Content Components</h2>
     <ul>
-        <li>
-            <Link to="/wordpress-story">Story Page (NEW)</Link>
-        </li>
+        
         <li>
             <Link to="/contentCardFlex">Content Card</Link> 
         </li>
@@ -20,9 +26,7 @@ export default () => <div>
         <li>
             <Link to="/footer">Footer </Link>
         </li>
-        <li>
-            <Link to="/homepage">Full Homepage</Link> 
-        </li>
+       
        
        
         <li>
