@@ -46,7 +46,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
 
                     )}
                     { !startDate && (
-                        <div className={`${className}__category category category--${size} ${className}__category--${size} ${className}__category--${notSmall}`}>{category}</div>
+                        <div className={`${className}__category category category--${size} ${className}__category--${size} ${className}__category--${notSmall} ${className}__category--${promoClass}`}>{category}</div>
                     )}
                     { !startDate && (
                         <h3 className={`${className}__title title ${className}__title--${size} ${className}__title--${notSmall} ${className}__title--${promoClass}`}>   
@@ -63,7 +63,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                     )}
                     
                 </div>
-                <div className={`${className}__contentwrap ${className}__contentwrap--${size}`}>
+                <div className={`${className}__contentwrap ${className}__contentwrap--${size} ${className}__contentwrap--${promoClass}`}>
                     {imgSources && (
                         <a href={url} className={`${className}__imgzoomlink bodyImg`} >
                             <Img 
@@ -87,7 +87,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                                 <div className={`${className}__category category category--${size} ${className}__category--${size} ${className}__category--${notSmall}`}>{category}</div>
                             )}
                             { shortenedExcerpt && (
-                                <div className={`${className}__excerpt excerpt ${className}__excerpt--${size} ${className}__excerpt--${notSmall}`}>
+                                <div className={`${className}__excerpt excerpt ${className}__excerpt--${size} ${className}__excerpt--${notSmall} ${className}__excerpt--${promoClass}`}>
                                     <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
                                 </div>
                             )}
@@ -104,7 +104,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                             </div>
                             )}
                             { excerpt && (
-                                <a href={url} className={`${className}__excerpt excerpt ${className}__excerpt--${size} ${className}__excerpt--${notSmall} readmore`}>{moreLinkText}</a>
+                                <a href={url} className={`${className}__excerpt excerpt ${className}__excerpt--${size} ${className}__excerpt--${notSmall} ${className}__excerpt--${promoClass} readmore`}>{moreLinkText}</a>
                             )}
                             { tags && (
                                 <TagList
@@ -368,10 +368,6 @@ const StyledContentCard = styled(ContentCard)`
             }
 
         }
-        &--promo{
-            font-size: ${sizes.s36};
-            color: ${colors.titleWhite};
-        }  
 
         &--L, &--XL, &--XXL {
             z-index: 1;
@@ -400,6 +396,32 @@ const StyledContentCard = styled(ContentCard)`
             text-decoration: underline;
             cursor:default;
         }
+
+        &--promo{
+            margin-top: ${sizes.s32};
+            font-size: ${sizes.s36};
+            line-height: ${sizes.s42};
+            color: ${colors.titleWhite};
+            & a:link {
+                text-decoration: none;
+                color: ${colors.titleWhite};
+            }
+            
+            /* visited link */
+            & a:visited {
+                color: ${colors.titleWhite};
+            }
+            
+            /* mouse over link */
+            & a:hover {
+                color: ${colors.titleWhite};    
+            }
+            
+            /* selected link */
+            & a:active {
+                color: ${colors.titleWhite};
+            }
+        }  
     }
 
     &__category {
@@ -411,6 +433,10 @@ const StyledContentCard = styled(ContentCard)`
         padding-top: ${sizes.s16};
         padding-bottom: ${sizes.s16};           
         color: ${colors.categoryGrey};
+
+        &--promo{
+            display: none;
+        }
         @media screen and ${breakpoints.tabletS} {
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
@@ -454,6 +480,15 @@ const StyledContentCard = styled(ContentCard)`
             }
 
         }
+
+        &--promo{
+            &:before {
+                border-left: 1.5px solid ${colors.bgWhite};
+                border-right: 1.5px solid ${colors.bgWhite};
+            }
+
+        }
+
 
         @media screen and ${breakpoints.laptopS} {
             &--Wide{
@@ -583,6 +618,7 @@ const StyledContentCard = styled(ContentCard)`
                 padding-bottom: 0px;
             }
         }
+
         &.readmore {
             color: ${colors.titleColor};
             text-transform: uppercase;
@@ -610,6 +646,17 @@ const StyledContentCard = styled(ContentCard)`
                 cursor:default;
             }
         }
+
+        &--promo{
+            font-size: ${sizes.s26};
+            line-height: ${sizes.s36};
+            color: ${colors.titleWhite};
+
+            &.readmore{
+                display: none;
+            }
+        }  
+
     }
 
     &__imgzoomlink{

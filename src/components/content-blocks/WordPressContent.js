@@ -1,8 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
-import Img from 'gatsby-image'
-import TagList from "../parts/TagList"
 import styled from 'styled-components'
 
 const WordPressContent = ({className, content}) => {

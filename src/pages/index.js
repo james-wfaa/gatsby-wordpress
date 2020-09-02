@@ -15,7 +15,7 @@ export default () => <div>
     <ul>
         
         <li>
-            <Link to="/contentCardFlex">Content Card</Link> 
+            <Link to="/contentCardFlex">Content Card (NEW - Promo Card S)</Link> 
         </li>
         <li>
             <Link to="/james-test">Image/Content Modules (1/3, 1/2, 2/3) from WordPress Pages </Link>(new / in progress)

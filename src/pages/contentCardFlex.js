@@ -87,6 +87,15 @@ return (
         <p>At mobile (screens smaller than 656px wide), all Content Card sizes display identically at 256px wide.</p>
         <p>At tablet (screens between 656px-1199px wide), all Content Card sizes display identically at 528px wide with a 2:1 image (identical to the "M" size above)</p>
         <p></p>
+        <h2>Promo Card</h2>
+        <p>This card always appears as a small content card (344px) It appears with other small content cards in carosels</p>
+        <ContentCard 
+        title="Plan your next Wisconsin Experience"
+        excerpt="With a broad array of programs, events, and activities offered throughout the year, WAA has exactly what you’re looking for to stay connected to fellow Badgers and to the UW."
+        url="#"
+        promo
+        />
+        <p></p>
         <h2>Horizontal Content Card</h2>
 <p>This size card displays at 1080px on all larger screens. The card reverts to a normal tablet or mobile sized card when on small screens</p>
 <p>Event Card Horizontal:</p>
@@ -240,12 +249,6 @@ return (
         tags={taglist2}
         />
         <p></p>
-        <ContentCard 
-        title="Coachella Valley"
-        excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere" 
-        url="#"
-        promo
-        />
 <br />
 <h2>1/2 (M) Content Card</h2>
 <p>This size card displays at 256px wide on mobile and 528px wide on all larger screens.</p>

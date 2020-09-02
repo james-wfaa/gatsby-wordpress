@@ -1,7 +1,6 @@
 import React from "react"
 import { graphql } from 'gatsby'
 import Layout from "../components/layout"
-import ContentCardD from "../components/content-blocks/ContentCardD"
 import GridCardD from "../components/content-modules/GridCardD"
 import PageSection from "../components/page-sections/PageSection"
 import HeroIntroSection from '../components/page-sections/HeroIntroSection'
