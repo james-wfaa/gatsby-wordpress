@@ -1,10 +1,11 @@
-import React from "react"
-export const onRenderBody = (
-  { setHeadComponents, setPostBodyComponents },
-  pluginOptions
-) => {
-  setPostBodyComponents([
-    <script type="text/javascript">{`
+import React, { useEffect } from "react"
+import { Helmet } from "react-helmet"
+
+const swiftype = props => {
+  return (
+    <>
+      <Helmet>
+        <script type="text/javascript">{`
 
         (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
           (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
@@ -13,6 +14,10 @@ export const onRenderBody = (
 
           _st('install','eyjN94XLv8vdiF3H87-P','2.0.0');
 
-        `}</script>,
-  ])
+        `}</script>
+      </Helmet>
+    </>
+  )
 }
+
+export default swiftype

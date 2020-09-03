@@ -1,6 +1,7 @@
 import React, { useState, useLayoutEffect } from "react"
 import styled from "styled-components"
 import { breakpoints, sizes, colors } from "../css-variables"
+import SwifType from "./SwifType"
 
 function useLockBodyScroll() {
   useLayoutEffect(() => {
@@ -25,6 +26,10 @@ const StyledDiv = styled.div`
 `
 
 const StyledInput = styled.input`
+  width: 96% !important;
+  border: none !important;
+  background: none !important;
+  padding-left: 7px !important;
   padding: 4px;
   border: none;
   &:focus {
@@ -43,12 +48,14 @@ const SearchModal = () => {
 
   return (
     <div>
+      <SwifType />
       <StyledDiv>
         <StyledInput
           type="text"
           placeholder="Search.."
           value={searchText}
           onChange={e => searchHandler(e)}
+          className="st-default-search-input"
         />
         <span className="search">
           <a style={{ backgroundColor: `${colors.buttonRed}` }}></a>
