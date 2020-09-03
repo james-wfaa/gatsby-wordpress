@@ -83,6 +83,7 @@ const Header = () => {
                 </li>
               </ul>
             </div>
+<<<<<<< HEAD
             {!open ? (
               opensearch ? (
                 <div
@@ -115,6 +116,33 @@ const Header = () => {
                 <div>menu</div>
               </div>
             ) : null}
+=======
+            <div
+              className={`menu ${open ? "open" : ""}`}
+              onClick={() => toggleMenu()}
+              onKeyPress={() => toggleMenu()}
+              tabIndex="0"
+            >
+              <span></span>
+              <div>menu</div>
+            </div>
+            {opensearch ? (
+              <div
+                className="menu open"
+                style={{ marginLeft: `20px` }}
+                onClick={e => toggleSearch(e)}
+              >
+                <span></span>
+              </div>
+            ) : (
+              <span className="search">
+                <a
+                  onClick={e => toggleSearch(e)}
+                  style={{ margin: `0 auto` }}
+                ></a>
+              </span>
+            )}
+>>>>>>> dfabe55c55d1b42c123af381e9cf4b7424d4ef49
           </div>
         </div>
       </nav>
