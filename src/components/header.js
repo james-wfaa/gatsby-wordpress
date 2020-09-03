@@ -83,69 +83,39 @@ const Header = () => {
                 </li>
               </ul>
             </div>
-            <div
-              className={`menu ${open ? "open" : ""}`}
-              onClick={() => toggleMenu()}
-              onKeyPress={() => toggleMenu()}
-              tabIndex="0"
-            >
-              <span></span>
-              <div>menu</div>
-            </div>
-            {opensearch ? (
+            {!open ? (
+              opensearch ? (
+                <div
+                  className="menu open"
+                  style={{ justifySelf: `center` }}
+                  onClick={e => toggleSearch(e)}
+                >
+                  <span></span>
+                </div>
+              ) : (
+                <span className="search" style={{ justifySelf: `center` }}>
+                  <a
+                    onClick={e => toggleSearch(e)}
+                    style={{ margin: `0 auto` }}
+                  ></a>
+                </span>
+              )
+            ) : (
+              <div></div>
+            )}
+
+            {!opensearch ? (
               <div
-                className="menu open"
-                style={{ marginLeft: `20px` }}
-                onClick={e => toggleSearch(e)}
+                className={`menu ${open ? "open" : ""}`}
+                onClick={() => toggleMenu()}
+                onKeyPress={() => toggleMenu()}
+                tabIndex="0"
               >
                 <span></span>
+                <div>menu</div>
               </div>
-            ) : (
-              <span className="search">
-                <a
-                  onClick={e => toggleSearch(e)}
-                  style={{ margin: `0 auto` }}
-                ></a>
-              </span>
-            )}
+            ) : null}
           </div>
-<<<<<<< HEAD
-           <div className="mainnav">
-             <div className="inner">
-               <span className="logo"><Link to="/"><img src={Logo} alt="Logo" /></Link></span>
-               <div>
-                <ul className="uberNav">
-                  <li><Link to="/#Lorem">Lorem</Link></li>
-                  <li><Link to="/#Ipsum">Ipsum</Link></li>
-                </ul>
-               </div>
-               <span className="search"><a tabIndex="0" href="#search"></a></span>
-               <div 
-                className={`menu ${this.state.open ? "open" : ""}`} 
-                onClick={() => this.toggleMenu()}
-                onKeyPress={() => this.toggleMenu()}
-                tabindex="0">
-                 <span></span>
-                 <div>menu</div>
-                 </div>
-               </div>
-             
-           </div>
-        </nav>
-        <PrimaryMenu ref={el => (this.childMenu = el)} />
-      </StyledHeader>
-      
-    )
-  }
-
-  toggleMenu() {
-    const val = this.state.open ? false : true
-    this.setState({ open: val })
-    this.childMenu.toggle()
-  }
-  
-} 
-=======
         </div>
       </nav>
       {transition.map(
@@ -172,6 +142,5 @@ const Header = () => {
     </StyledHeader>
   )
 }
->>>>>>> working desktop site search modal
 
 export default Header
