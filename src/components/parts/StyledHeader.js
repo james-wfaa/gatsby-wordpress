@@ -114,6 +114,12 @@ const StyledHeader = styled.header`
     }
     margin: 0 auto;
   }
+  .searchmodal {
+    top: 86px;
+    @media screen and ${breakpoints.tabletS} {
+      top: 118px;
+    }
+  }
   .logo {
     width: 112px;
     height: 54px;

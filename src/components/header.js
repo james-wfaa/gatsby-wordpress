@@ -126,13 +126,13 @@ const Header = () => {
               style={{
                 ...props,
                 position: `fixed`,
-                top: `118px`,
                 left: 0,
                 zIndex: 5,
                 width: `100vw`,
                 height: `100%`,
                 backgroundColor: `white`,
               }}
+              className="searchmodal"
             >
               <SearchModal />
             </animated.div>

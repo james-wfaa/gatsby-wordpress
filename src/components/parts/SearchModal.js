@@ -1,6 +1,7 @@
-import React, { useState, useLayoutEffect } from "react"
+import React, { useState, useLayoutEffect, useEffect } from "react"
 import styled from "styled-components"
 import { breakpoints, sizes, colors } from "../css-variables"
+import SwifType from "./SwifType"
 
 function useLockBodyScroll() {
   useLayoutEffect(() => {
@@ -14,14 +15,18 @@ function useLockBodyScroll() {
 }
 
 const StyledDiv = styled.div`
-  width: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 80%;
+  margin: 20px auto;
   display: grid;
   grid-template-columns: 1fr 30px;
   border: 1px solid grey;
+  @media screen and ${breakpoints.tabletS} {
+    position: absolute;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `
 
 const StyledInput = styled.input`
@@ -45,8 +50,13 @@ const SearchModal = () => {
 
   useLockBodyScroll()
 
+  useEffect(() => {
+    // _st("install", "eyjN94XLv8vdiF3H87-P", "2.0.0")
+  }, [])
+
   return (
     <div>
+      <SwifType />
       <StyledDiv>
         <StyledInput
           type="text"
