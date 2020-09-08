@@ -20,7 +20,9 @@ export default () => <Layout>
     </li>
     <h2>Page Sections &amp; Content Components</h2>
     <ul>
-        
+    <li>
+            <Link to="/testimonials">Testimonials (NEW - WP content)</Link> 
+        </li>
         <li>
             <Link to="/contentCardFlex">Content Card (NEW - Promo Card S)</Link> 
         </li>
