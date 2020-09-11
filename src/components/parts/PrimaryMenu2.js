@@ -1,7 +1,6 @@
 import { Link } from "gatsby"
 import React, { useState, useEffect } from "react"
 import { colors, sizes, breakpoints } from "../css-variables"
-import { useTransition, animated } from "react-spring"
 import styled, { css } from "styled-components"
 import HeaderSocialIcons from "./HeaderSocialIcons"
 import Header from "../header"
@@ -177,12 +176,6 @@ const PrimaryMenu2 = () => {
   const [select, setSelect] = useState(null)
   const [childLinks, setChildLinks] = useState([])
 
-  const transition = useTransition(select !== null, null, {
-    from: { opacity: 0, transform: `translate3d(0, 50%, 0)` },
-    enter: { opacity: 1, transform: `translate3d(0, 0, 0)` },
-    leave: { opacity: 0, transform: `translate3d(-100%, 0, 0)` },
-  })
-
   const modalClickHandler = () => {
     setSelect(null)
     setChildLinks([])
@@ -246,16 +239,16 @@ const PrimaryMenu2 = () => {
           <BottomLeft>
             <ul>
               <li>
-                <Link to="/##about">About WAA</Link>
+                <Link to="/about">About WAA</Link>
               </li>
               <li>
-                <Link to="/##contact">Contact WAA</Link>
+                <Link to="/contact">Contact WAA</Link>
               </li>
               <li>
-                <Link to="/##update">ABE Update</Link>
+                <Link to="/update">ABE Update</Link>
               </li>
               <li>
-                <Link to="/##email">Email Login</Link>
+                <Link to="/email">Email Login</Link>
               </li>
             </ul>
             <SocialLinks>
