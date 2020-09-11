@@ -1,6 +1,7 @@
 import { Link } from "gatsby"
 import React, { useState, useRef } from "react"
-import PrimaryMenu from "./parts/PrimaryMenu"
+// import PrimaryMenu from "./parts/PrimaryMenu"
+import PrimaryMenu from "./parts/PrimaryMenu2"
 import StyledHeader from "./parts/StyledHeader"
 import SearchModal from "./parts/SearchModal"
 import { useTransition, animated } from "react-spring"
@@ -9,9 +10,14 @@ import Logo from "../svg/waa_logo.svg" // Tell webpack this JS file uses this im
 const Header = () => {
   const [open, setOpen] = useState(false)
   const [opensearch, setOpenSearch] = useState(false)
-  const childMenu = useRef(null)
 
-  const transition = useTransition(opensearch, null, {
+  const transition1 = useTransition(open, null, {
+    from: { transform: `translate3d(100%, 0, 0)` },
+    enter: { transform: `translate3d(0,0,0)` },
+    leave: { transform: `translate3d(100%,0, 0)` },
+  })
+
+  const transition2 = useTransition(opensearch, null, {
     from: { transform: `translate3d(100%, 0, 0)` },
     enter: { transform: `translate3d(0,0,0)` },
     leave: { transform: `translate3d(100%,0, 0)` },
@@ -19,7 +25,6 @@ const Header = () => {
 
   const toggleMenu = () => {
     setOpen(!open)
-    childMenu.current.toggle()
   }
 
   const toggleSearch = e => {
@@ -118,7 +123,28 @@ const Header = () => {
           </div>
         </div>
       </nav>
-      {transition.map(
+
+      {transition1.map(
+        ({ item, key, props }) =>
+          item && (
+            <animated.div
+              key={key}
+              style={{
+                ...props,
+                position: `fixed`,
+                left: 0,
+                zIndex: 5,
+                width: `100vw`,
+                height: `100%`,
+                backgroundColor: `white`,
+              }}
+              className="searchmodal"
+            >
+              <PrimaryMenu />
+            </animated.div>
+          )
+      )}
+      {transition2.map(
         ({ item, key, props }) =>
           item && (
             <animated.div
@@ -138,7 +164,6 @@ const Header = () => {
             </animated.div>
           )
       )}
-      <PrimaryMenu ref={childMenu} />
     </StyledHeader>
   )
 }
