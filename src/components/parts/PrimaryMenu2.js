@@ -1,43 +1,15 @@
 import { Link } from "gatsby"
 import React, { useState, useEffect } from "react"
 import { colors, sizes, breakpoints } from "../css-variables"
-import styled from "styled-components"
-
-const MenuGrid = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 80%;
-  height: 80%;
-  transform: translate(-50%, -50%);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-`
-
-const LeftMenu = styled.div`
-  li {
-    list-style: none;
-  }
-`
-
-const RightMenu = styled.div`
-  position: relative;
-  display: grid;
-  ul {
-    justify-self: left;
-  }
-  li {
-    list-style: none;
-  }
-`
-
-const Logo = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.4;
-`
+import { useTransition, animated } from "react-spring"
+import styled, { css } from "styled-components"
+import HeaderSocialIcons from "./HeaderSocialIcons"
+import Header from "../header"
+import FbIcon from "../../svg/fb_icon_gray.svg" // Tell webpack this JS file uses this image
+import TwIcon from "../../svg/twitter_icon_gray.svg" // Tell webpack this JS file uses this image
+import IgIcon from "../../svg/instagram_icon_gray.svg" // Tell webpack this JS file uses this image
+import WcIcon from "../../svg/wechat_icon_gray.svg" // Tell webpack this JS file uses this image
+import LiIcon from "../../svg/linkedin_icon_gray.svg" // Tell webpack this JS file uses this image
 
 const menuItems = {
   "Test 1": [
@@ -65,9 +37,156 @@ const menuItems = {
   ],
 }
 
+const MenuGrid = styled.div`
+  position: relative;
+  top: 100px;
+  width: 60%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`
+
+const LeftMenu = styled.div`
+  border-collapse: collapse;
+  ul {
+    margin: 0;
+    li {
+      list-style: none;
+      margin-bottom: 0;
+      a {
+        text-decoration: none;
+        color: ${colors.navMenuBlack};
+      }
+      div {
+        font-size: ${sizes.s24};
+        p {
+          position: relative;
+          padding-top: ${sizes.s24};
+          padding-bottom: ${sizes.s24};
+          width: fit-content;
+        }
+      }
+    }
+  }
+  border-right: 1px solid ${colors.navMenuBorderGrey};
+`
+
+const RightMenu = styled.div`
+  position: relative;
+  display: grid;
+  ul {
+    justify-self: left;
+    margin-left: 0;
+  }
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 16px ${sizes.s24};
+    &:hover {
+      background-color: ${colors.navcardGrey};
+    }
+    a {
+      text-decoration: none;
+      color: ${colors.navMenuBlack};
+    }
+  }
+`
+
+const SocialLinks = styled.div`
+  .socialLinks {
+    width: 160px;
+    display: flex;
+    list-style-type: none;
+
+    margin: 0;
+
+    li {
+      display: block;
+      width: ${sizes.s24};
+      height: ${sizes.s24};
+      margin: 0 ${sizes.s16} 0 0;
+
+      a {
+        display: block;
+        width: ${sizes.s24};
+        height: ${sizes.s24};
+        background-color: ${colors.iconGrey};
+        &:hover {
+          background-color: ${colors.buttonRed};
+        }
+        &.fb {
+          mask: url(${FbIcon});
+        }
+        &.tw {
+          mask: url(${TwIcon});
+        }
+        &.ig {
+          mask: url(${IgIcon});
+        }
+        &.wc {
+          mask: url(${WcIcon});
+        }
+        &.li {
+          mask: url(${LiIcon});
+        }
+      }
+    }
+  }
+`
+
+const BottomLeft = styled.div`
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-size: ${sizes.s18};
+  li {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    a {
+      margin: 0;
+      padding: 0;
+    }
+  }
+`
+
+const SpanArrow = styled.span`
+  &:after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-left: 12px solid ${colors.badgerRed};
+    border-bottom: 6px solid transparent;
+    transition: 0.25s ease-in-out;
+    right: ${props => props.pxRight};
+  }
+`
+
+const Logo = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.4;
+`
+
 const PrimaryMenu2 = () => {
   const [select, setSelect] = useState(null)
   const [childLinks, setChildLinks] = useState([])
+
+  const transition = useTransition(select !== null, null, {
+    from: { opacity: 0, transform: `translate3d(0, 50%, 0)` },
+    enter: { opacity: 1, transform: `translate3d(0, 0, 0)` },
+    leave: { opacity: 0, transform: `translate3d(-100%, 0, 0)` },
+  })
+
+  const modalClickHandler = () => {
+    setSelect(null)
+    setChildLinks([])
+  }
 
   const parentEnterHandler = str => {
     setSelect(str)
@@ -85,9 +204,15 @@ const PrimaryMenu2 = () => {
           onClick={e => parentClickHandler(link, e)}
           style={{
             backgroundColor: select === link ? `${colors.navcardGrey}` : null,
+            paddingTop: `24px`,
+            paddingBottom: `24px`,
           }}
         >
-          {link}
+          <p style={{ paddingTop: 0, paddingBottom: 0 }}>
+            <SpanArrow pxRight={select === link ? `-40px` : `-25px`}>
+              {link}
+            </SpanArrow>
+          </p>
         </div>
       </li>
     )
@@ -98,7 +223,7 @@ const PrimaryMenu2 = () => {
       let links = menuItems[select].map(link => {
         return (
           <li>
-            <a href={link.url}>{link.tag}</a>
+            <Link to={link.url}>{link.tag}</Link>
           </li>
         )
       })
@@ -107,17 +232,43 @@ const PrimaryMenu2 = () => {
   }, [select])
 
   return (
-    <>
+    <div onClick={() => modalClickHandler()}>
       <MenuGrid>
         <LeftMenu>
-          <ul>{parentLinks}</ul>
+          <div
+            style={{
+              borderBottom: `1px solid ${colors.navMenuBorderGrey}`,
+              borderRight: `1px solid ${colors.navMenuBorderGrey}`,
+            }}
+          >
+            <ul>{parentLinks}</ul>
+          </div>
+          <BottomLeft>
+            <ul>
+              <li>
+                <Link to="/##about">About WAA</Link>
+              </li>
+              <li>
+                <Link to="/##contact">Contact WAA</Link>
+              </li>
+              <li>
+                <Link to="/##update">ABE Update</Link>
+              </li>
+              <li>
+                <Link to="/##email">Email Login</Link>
+              </li>
+            </ul>
+            <SocialLinks>
+              <HeaderSocialIcons />
+            </SocialLinks>
+          </BottomLeft>
         </LeftMenu>
         <RightMenu>
           <Logo>Logo</Logo>
-          {childLinks.length > 0 ? <ul>{childLinks}</ul> : null}
+          <ul>{childLinks.length > 0 ? childLinks : null}</ul>
         </RightMenu>
       </MenuGrid>
-    </>
+    </div>
   )
 }
 
