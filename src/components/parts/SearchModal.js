@@ -1,18 +1,8 @@
 import React, { useState, useLayoutEffect, useEffect } from "react"
 import styled from "styled-components"
 import { breakpoints, sizes, colors } from "../css-variables"
+import { useLockBodyScroll } from "../hooks"
 import SwifType from "./SwifType"
-
-function useLockBodyScroll() {
-  useLayoutEffect(() => {
-    // Get original body overflow
-    const originalStyle = window.getComputedStyle(document.body).overflow
-    // Prevent scrolling on mount
-    document.body.style.overflow = "hidden auto"
-    // Re-enable scrolling when component unmounts
-    return () => (document.body.style.overflow = originalStyle)
-  }, []) // Empty array ensures effect is only run on mount and unmount
-}
 
 const StyledDiv = styled.div`
   width: 80%;

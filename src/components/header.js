@@ -1,15 +1,18 @@
 import { Link } from "gatsby"
 import React, { useState, useRef } from "react"
-// import PrimaryMenu from "./parts/PrimaryMenu"
-import PrimaryMenu from "./parts/PrimaryMenu2"
+import PrimaryMenu from "./parts/PrimaryMenu"
+import PrimaryMenuMobile from "./parts/PrimaryMenuMobile"
 import StyledHeader from "./parts/StyledHeader"
 import SearchModal from "./parts/SearchModal"
 import { useTransition, animated } from "react-spring"
+import { useWindowSize } from "./hooks"
 import Logo from "../svg/waa_logo.svg" // Tell webpack this JS file uses this image
 
 const Header = () => {
   const [open, setOpen] = useState(false)
   const [opensearch, setOpenSearch] = useState(false)
+
+  const { width } = useWindowSize()
 
   const transition1 = useTransition(open, null, {
     from: { transform: `translate3d(100%, 0, 0)` },
@@ -140,7 +143,7 @@ const Header = () => {
               }}
               className="searchmodal"
             >
-              <PrimaryMenu />
+              {width > 414 ? <PrimaryMenu /> : <PrimaryMenuMobile />}
             </animated.div>
           )
       )}

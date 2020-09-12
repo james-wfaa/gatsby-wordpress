@@ -1,354 +1,270 @@
-import React, { useImperativeHandle, useRef } from "react"
 import { Link } from "gatsby"
-import HeaderSocialIcons from './HeaderSocialIcons'
-import StyledPrimaryMenu from "./StyledPrimaryMenu"
+import React, { useState, useEffect } from "react"
+import { colors, sizes, breakpoints } from "../css-variables"
+import styled, { css } from "styled-components"
+import HeaderSocialIcons from "./HeaderSocialIcons"
+import Header from "../header"
+import FbIcon from "../../svg/fb_icon_gray.svg" // Tell webpack this JS file uses this image
+import TwIcon from "../../svg/twitter_icon_gray.svg" // Tell webpack this JS file uses this image
+import IgIcon from "../../svg/instagram_icon_gray.svg" // Tell webpack this JS file uses this image
+import WcIcon from "../../svg/wechat_icon_gray.svg" // Tell webpack this JS file uses this image
+import LiIcon from "../../svg/linkedin_icon_gray.svg" // Tell webpack this JS file uses this image
 
-class Submenu extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      open: false,
-    }
-  }
-
- 
-  
-  render() {
-    return (
-      <ul className={`secondary ${this.state.open ? "open" : ""}`}>
-       {this.props.children}
-      </ul>
-    )
-  }
- 
-  close(num = 'unset') {
-    console.log('submenu close(', num, ') ')
-    this.setState({ open: false })
-  }
-
-  open(num = 'unset') {
-    console.log('submenu open(', num, ') ')
-  
-    this.setState({ open: true })
-  }
+const menuItems = {
+  "Test 1": [
+    { tag: "For Waa", url: "/waa" },
+    { tag: "Chapters and Groups", url: "/chapters" },
+    { tag: "Similar", url: "/similar" },
+    { tag: "Stories", url: "/stories" },
+  ],
+  "Test 2": [
+    { tag: "test 5", url: "/waa" },
+    { tag: "test 6", url: "/chapters" },
+  ],
+  "Test 3": [
+    { tag: "test 7", url: "/waa" },
+    { tag: "test 8", url: "/chapters" },
+    { tag: "test 9", url: "/chapters" },
+  ],
+  "Test 4": [
+    { tag: "L", url: "/waa" },
+    { tag: "Natural", url: "/chapters" },
+    { tag: "Lorem", url: "/chapters" },
+    { tag: "Ipsum et al verirtas unas", url: "/chapters" },
+    { tag: "Chapters and Groups", url: "/chapters" },
+    { tag: "Last line", url: "/chapters" },
+  ],
 }
 
-class Menu extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      open: false,
-      openSub: false,
-      open1: false,
-      open2: false,
-      open3: false,
-      open4: false,
-      clickOpen1: false,
-      clickOpen2: false,
-      clickOpen3: false,
-      clickOpen4: false,
+const MenuGrid = styled.div`
+  position: relative;
+  top: 100px;
+  width: 60%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`
+
+const LeftMenu = styled.div`
+  border-collapse: collapse;
+  border-right: 1px solid ${colors.navMenuBorderGrey};
+  ul {
+    margin: 0;
+    li {
+      list-style: none;
+      margin-bottom: 0;
+      a {
+        text-decoration: none;
+        color: ${colors.navMenuBlack};
+      }
+      div {
+        font-size: ${sizes.s24};
+        p {
+          position: relative;
+          padding-top: ${sizes.s24};
+          padding-bottom: ${sizes.s24};
+          width: fit-content;
+        }
+      }
     }
   }
+`
 
-  render() {
+const RightMenu = styled.div`
+  position: relative;
+  display: grid;
+  ul {
+    justify-self: left;
+    margin-left: 0;
+  }
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 16px ${sizes.s24};
+    &:hover {
+      background-color: ${colors.navcardGrey};
+    }
+    a {
+      text-decoration: none;
+      color: ${colors.navMenuBlack};
+    }
+  }
+`
+
+const SocialLinks = styled.div`
+  .socialLinks {
+    width: 160px;
+    display: flex;
+    list-style-type: none;
+
+    margin: 0;
+
+    li {
+      display: block;
+      width: ${sizes.s24};
+      height: ${sizes.s24};
+      margin: 0 ${sizes.s16} 0 0;
+
+      a {
+        display: block;
+        width: ${sizes.s24};
+        height: ${sizes.s24};
+        background-color: ${colors.iconGrey};
+        &:hover {
+          background-color: ${colors.buttonRed};
+        }
+        &.fb {
+          mask: url(${FbIcon});
+        }
+        &.tw {
+          mask: url(${TwIcon});
+        }
+        &.ig {
+          mask: url(${IgIcon});
+        }
+        &.wc {
+          mask: url(${WcIcon});
+        }
+        &.li {
+          mask: url(${LiIcon});
+        }
+      }
+    }
+  }
+`
+
+const BottomLeft = styled.div`
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-size: ${sizes.s18};
+  li {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    a {
+      margin: 0;
+      padding: 0;
+    }
+  }
+`
+
+const SpanArrow = styled.span`
+  &:after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-left: 12px solid ${colors.badgerRed};
+    border-bottom: 6px solid transparent;
+    transition: 0.25s ease-in-out;
+    right: ${props => props.pxRight};
+  }
+`
+
+const Logo = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.2;
+  height: 200px;
+  width: 200px;
+  background-color: lightgrey;
+  border-radius: 50%;
+`
+
+const PrimaryMenu2 = () => {
+  const [select, setSelect] = useState(null)
+  const [childLinks, setChildLinks] = useState([])
+
+  const modalClickHandler = () => {
+    setSelect(null)
+    setChildLinks([])
+  }
+
+  const parentEnterHandler = str => {
+    setSelect(str)
+  }
+  const parentClickHandler = (str, e) => {
+    e.stopPropagation()
+    setSelect(str)
+  }
+
+  const parentLinks = Object.keys(menuItems).map(link => {
     return (
-      <StyledPrimaryMenu className={`primarymenu ${this.state.open ? "open" : ""}`}>
-      
-        
-        <div className="mainNav">
-          <div className={`${this.state.openSub ? "opensub" : "x"}`}>
-          
-            
-          <ul className="primary">
-            <li 
-              tabindex="0"
-              onClick={() => this.toggleSubMenu(1)} 
-              onKeyPress={() => this.toggleSubMenu(1)}
-              onMouseEnter={() => this.openSubMenuHover(1)}
-              className={ this.state.open1 ? 'open' : ''}
-            >
-              <span>Alumni Communities</span>
-              <Submenu 
-                onMouseEnter={() => this.openSubMenu(1)} 
-                ref={el => (this.childMenu1 = el)} 
-              >
-                
-                <li><Link to="/#eenie">1Eenie</Link></li>
-                <li><Link to="/#meenie">2Meenie</Link></li>
-                <li><Link to="/#meinie">3Meinie</Link></li>
-                <li><Link to="/#mo">4Mo</Link></li>
-              </Submenu>
-              </li>
-            <li 
-              tabindex="0"
-              onClick={() => this.toggleSubMenu(2)} 
-              onKeyPress={() => this.toggleSubMenu(2)}
-              onMouseEnter={() => this.openSubMenu(2)} 
-              className={ this.state.open2 ? 'open' : ''}
-            >
-              <span>Events and Activities</span>
-              <Submenu 
-                onMouseEnter={() => this.openSubMenu(2)} 
-                ref={el => (this.childMenu2 = el)}
-              >
-                <li><Link to="/#eenie">5Eenie</Link></li>
-                <li><Link to="/#meenie">6Meenie</Link></li>
-                <li><Link to="/#meinie">7Meinie</Link></li>
-                <li><Link to="/#mo">8Mo</Link></li>
-              </Submenu>
-              </li>
-            <li 
-              tabindex="0"
-              onClick={() => this.toggleSubMenu(3)}  
-              onKeyPress={() => this.toggleSubMenu(3)}
-              onMouseEnter={() => this.openSubMenu(3)} 
-              className={ this.state.open3 ? 'open' : ''}
-            >
-              <span>Stories</span>
-              <Submenu 
-                ref={el => (this.childMenu3 = el)}
-                onMouseEnter={() => this.openSubMenu(3)} 
-              >
-                <li><Link to="/#eenie">9Eenie</Link></li>
-                <li><Link to="/#meenie">10Meenie</Link></li>
-                <li><Link to="/#meinie">11Meinie</Link></li>
-                <li><Link to="/#mo">12Mo</Link></li>
-              </Submenu>
-            </li>
-            <li 
-              tabindex="0"
-              onClick={() => this.toggleSubMenu(4)} 
-              onKeyPress={() => this.toggleSubMenu(4)}   
-              onMouseEnter={() => this.openSubMenu(4)} 
-              className={ this.state.open4 ? 'open' : ''}
-            >
-              <span>Ways to Support</span>
-              <Submenu 
-                ref={el => (this.childMenu4 = el)}
-                onMouseEnter={() => this.openSubMenu(4)} 
-              >
-                <li><Link to="/#eenie">13Eenie</Link></li>
-                <li><Link to="/#meenie">14Meenie</Link></li>
-                <li><Link to="/#meinie">15Meinie</Link></li>
-                <li><Link to="/#mo">16Mo</Link></li><li><Link to="/#eenie">13Eenie</Link></li>
-                <li><Link to="/#meenie">14Meenie</Link></li>
-                <li><Link to="/#meinie">15Meinie</Link></li>
-                <li><Link to="/#mo">16Mo</Link></li><li><Link to="/#eenie">13Eenie</Link></li>
-                <li><Link to="/#meenie">14Meenie</Link></li>
-                <li><Link to="/#meinie">15Meinie</Link></li>
-                <li><Link to="/#mo">16Mo</Link></li>
-              </Submenu>
-            </li>
-          </ul>
-
-          <ul className="supplemental">
-            <li><Link to="/##about">About WAA</Link></li>
-            <li><Link to="/##contact">Contact WAA</Link></li>
-            <li><Link to="/##update">ABE Update</Link></li>
-            <li><Link to="/##email">Email Login</Link></li>
-          </ul>
-          <HeaderSocialIcons />
-          </div>
-          <div></div>
-
-          
-        
+      <li>
+        <div
+          onMouseEnter={() => parentEnterHandler(link)}
+          onClick={e => parentClickHandler(link, e)}
+          style={{
+            backgroundColor: select === link ? `${colors.navcardGrey}` : null,
+          }}
+        >
+          <p>
+            <SpanArrow pxRight={select === link ? `-40px` : `-25px`}>
+              {link}
+            </SpanArrow>
+          </p>
         </div>
-        
-   
-      </StyledPrimaryMenu>
-      
+      </li>
     )
-  }
-  
-  toggle() {
-    const val = this.state.open ? false : true
-    /* this checks the "before" state and sets body overflow to what it
-       should be in the "after" state */
-    if(this.state.open){
-      document.body.style.overflow = 'unset';
-    }  else {
-      document.body.style.overflow = 'hidden';
-    
+  })
+
+  useEffect(() => {
+    if (select !== null) {
+      let links = menuItems[select].map(link => {
+        return (
+          <li>
+            <Link to={link.url}>{link.tag}</Link>
+          </li>
+        )
+      })
+      setChildLinks(links)
     }
-    this.setState({ open: val })
-  }
-  
-
-  close() {
-    this.setState({ open: false })
-  }
-
-  open() {
-    this.setState({ open: true })
-  }
-  openSubMenu(num) {
-    console.log('openSubMenu:',num)
-    switch(num) {
-      case 1: 
-      this.childMenu1.open(1)
-      this.childMenu2.close(2)
-      this.childMenu3.close(3)
-      this.childMenu4.close(4)
-      this.setState({ open1: true })
-      this.setState({ clickOpen3: false })
-      this.setState({ clickOpen2: false })
-      this.setState({ clickOpen4: false })
-      
-      break
-      case 2: 
-      this.childMenu2.open(2)
-      this.childMenu1.close(1)
-      this.childMenu3.close(3)
-      this.childMenu4.close(4)
-      this.setState({ clickOpen1: false })
-      this.setState({ clickOpen3: false })
-      this.setState({ clickOpen4: false })
-      
-      this.setState({ open2: true })
-     
-      break
-      case 3: 
-      this.childMenu3.open(3)
-      this.childMenu1.close(1)
-      this.childMenu2.close(2)
-      this.childMenu4.close(4)
-      this.setState({ open1: false })
-      this.setState({ open2: false })
-      this.setState({ open3: true })
-      this.setState({ open4: false })
-      this.setState({ clickOpen1: false })
-      this.setState({ clickOpen2: false })
-      this.setState({ clickOpen4: false })
-      break
-      case 4: 
-      this.childMenu4.open(4)
-      this.childMenu1.close(1)
-      this.childMenu2.close(2)
-      this.childMenu3.close(3)
-      this.setState({ open1: false })
-      this.setState({ open2: false })
-      this.setState({ open3: false })
-      this.setState({ open4: true })
-      this.setState({ clickOpen1: false })
-      this.setState({ clickOpen2: false })
-      this.setState({ clickOpen3: false })
-      break
-      default: 
-      this.childMenu1.open()
-      this.childMenu2.close(2)
-      this.childMenu3.close(3)
-      this.childMenu4.close(4)
-      break
-    }
-  
-  this.setState({ openSub: true })
-    
-  }
-  openSubMenuHover(num, click = false) {
-    console.log('this was a hover trigger')
-    this.openSubMenu(num)
-  }
-  
-  closeSubMenu(num) {
-    console.log('closeSubMenu:',num)
-    switch(num) {
-      case 1: this.childMenu1.close(1)
-      this.setState({ open1: false })
-      this.setState({ clickOpen1: false })
-      break
-      case 2: this.childMenu2.close(2)
-      this.setState({ open2: false })
-      this.setState({ clickOpen2: false })
-      break
-      case 3: this.childMenu3.close(3)
-      this.setState({ open3: false })
-      this.setState({ clickOpen3: false })
-      break
-      case 4: this.childMenu4.close(4)
-      this.setState({ open4: false })
-      this.setState({ clickOpen4: false })
-      break
-      default: this.childMenu1.close(1)
-      this.setState({ open1: false })
-      this.setState({ clickOpen1: false })
-      break
-    }
-  
-    
-  }
-  
- 
-  toggleSubMenu(num) {
-    console.log('toggleSubMenu:',num)
-    switch(num) {
-      case 1: 
-      console.log('is menu1 open? ', this.childMenu1.state.open )
-        this.childMenu1.state.open && this.state.clickOpen1
-        ? 
-          this.closeSubMenu(1)
-        : 
-          this.openSubMenu(1, true)
-          this.setState({ clickOpen1: true })
-
-      break
-      case 2: 
-      console.log('is menu2 open? ', this.childMenu1.state.open )
-      this.childMenu2.state.open && this.state.clickOpen2
-        ? this.closeSubMenu(2)
-        : 
-          this.openSubMenu(2, true)
-          this.setState({ clickOpen2: true })
-
-      break
-      case 3: 
-      console.log('is menu3 open? ', this.childMenu1.state.open )
-      this.childMenu3.state.open && this.state.clickOpen3
-      ? this.closeSubMenu(3)
-      : 
-        this.openSubMenu(3)
-        this.setState({ clickOpen3: true })
-
-      break
-      case 4: 
-      console.log('is menu4 open? ', this.childMenu1.state.open )
-      this.childMenu4.state.open && this.state.clickOpen4
-      ? this.closeSubMenu(4)
-      : 
-        this.openSubMenu(4)
-        this.setState({ clickOpen4: true })
-      break
-      default: 
-      this.childMenu1.close()
-      this.childMenu2.close()
-      this.childMenu3.close()
-      this.childMenu4.close()
-      break
-    }
-    this.setState({ openSub: !this.state.openSub })
-
-
-  }
-}
-
-export default React.forwardRef((props, ref) => {
-  const menuRef = useRef()
-
-  useImperativeHandle(ref, () => ({
-    open() {
-      menuRef.current.open()
-    },
-    toggle() {
-      menuRef.current.toggle()
-    },
-    toggleSubMenu() {
-      menuRef.current.toggleSubMenu()
-    }
-  }))
+  }, [select])
 
   return (
-    <StyledPrimaryMenu>
-      <Menu ref={menuRef} {...props} />
-    </StyledPrimaryMenu>
+    <div onClick={() => modalClickHandler()}>
+      <MenuGrid>
+        <LeftMenu>
+          <div
+            style={{
+              borderBottom: `1px solid ${colors.navMenuBorderGrey}`,
+            }}
+          >
+            <ul>{parentLinks}</ul>
+          </div>
+          <BottomLeft>
+            <ul>
+              <li>
+                <Link to="/about">About WAA</Link>
+              </li>
+              <li>
+                <Link to="/contact">Contact WAA</Link>
+              </li>
+              <li>
+                <Link to="/update">ABE Update</Link>
+              </li>
+              <li>
+                <Link to="/email">Email Login</Link>
+              </li>
+            </ul>
+            <SocialLinks>
+              <HeaderSocialIcons />
+            </SocialLinks>
+          </BottomLeft>
+        </LeftMenu>
+
+        <RightMenu>
+          <Logo />
+          <ul>{childLinks.length > 0 ? childLinks : null}</ul>
+        </RightMenu>
+      </MenuGrid>
+    </div>
   )
-})
+}
+
+export default PrimaryMenu2
