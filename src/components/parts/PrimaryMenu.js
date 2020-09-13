@@ -58,8 +58,12 @@ const LeftMenu = styled.div`
         text-decoration: none;
         color: ${colors.navMenuBlack};
       }
-      div {
+      button {
         font-size: ${sizes.s24};
+        border: none;
+        width: 100%;
+        background: none;
+        outline: none;
         p {
           position: relative;
           padding-top: ${sizes.s24};
@@ -185,10 +189,11 @@ const PrimaryMenu2 = () => {
     setChildLinks([])
   }
 
-  const parentEnterHandler = str => {
+  const parentEnterHandler = (str, e) => {
     setSelect(str)
   }
   const parentClickHandler = (str, e) => {
+    e.preventDefault()
     e.stopPropagation()
     setSelect(str)
   }
@@ -196,7 +201,7 @@ const PrimaryMenu2 = () => {
   const parentLinks = Object.keys(menuItems).map(link => {
     return (
       <li>
-        <div
+        <button
           onMouseEnter={() => parentEnterHandler(link)}
           onClick={e => parentClickHandler(link, e)}
           style={{
@@ -208,7 +213,7 @@ const PrimaryMenu2 = () => {
               {link}
             </SpanArrow>
           </p>
-        </div>
+        </button>
       </li>
     )
   })
