@@ -9,7 +9,7 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 
-const PageSection = ({className, preheading, heading, pageTitle, withSocial, plainText, popOut, excerpt, buttons, alt, topBorder, bgImage, children}) => {
+const PageSection = ({className, preheading, heading, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, alt, topBorder, bgImage, children}) => {
             
         
     const background =  typeof bgImage !== "undefined" && bgImage !== null 
@@ -40,7 +40,7 @@ const PageSection = ({className, preheading, heading, pageTitle, withSocial, pla
             <div className={`${className}__content ${plainTextContent}`}>
                 {children}
             </div>
-            { buttons && (<PageSectionButtons buttons={buttons} />
+            { buttons && (<PageSectionButtons buttons={buttons} buttonsAlt={buttonsAlt} />
             )}
             </div>
            
@@ -61,7 +61,7 @@ const PageSection = ({className, preheading, heading, pageTitle, withSocial, pla
             <div className={`${className}__content ${className}__content--bgimage`}>
                 {children}
             </div>
-            { buttons && (<PageSectionButtons buttons={buttons} bgimage />
+            { buttons && (<PageSectionButtons buttons={buttons} bgimage buttonsAlt/>
             )}
           </div>
             

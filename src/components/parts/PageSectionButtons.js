@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import { sizes, breakpoints } from '../css-variables'
 import Button from './Button'
 
-const PageSectionButtons = ({ className, buttons, bgimage }) => {
+const PageSectionButtons = ({ className, buttons, buttonsAlt, bgimage }) => {
 
     const renderedButtons = buttons.map(item =>(
-        <Button key={item.link} link={item.link} text={item.text} bgimage={bgimage} />
+        <Button key={item.link} alt={buttonsAlt} link={item.link} text={item.text} bgimage={bgimage} />
     ))
 
 

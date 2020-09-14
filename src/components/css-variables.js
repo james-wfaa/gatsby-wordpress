@@ -238,6 +238,20 @@ export const mixins = {
              background-color: ${colors.bgWhite};
          }
      }
+     &--alt {
+        color: ${colors.buttonRed};
+        background-color: ${colors.titleWhite};
+        &:hover {
+            color: ${colors.buttonActiveGrey};
+            background-color: ${colors.bgActiveGrey};
+            border: 1px solid ${colors.bgWhite};
+        }
+        &:active {
+            color: ${colors.buttonActiveGrey};
+            background-color: ${colors.bgWhite};
+        }
+
+     }
     `,
     sectionHeader: ` {
         text-align: center;
