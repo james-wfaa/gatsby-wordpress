@@ -14,6 +14,7 @@ export const query = graphql`
       title
       content
       date(formatString: "MMMM Do")
+      excerpt
       author {
         node {
           firstName
@@ -26,6 +27,11 @@ export const query = graphql`
       featuredImage {
         node {
           caption
+          author{
+            node{
+              name
+            }
+          }
           remoteFile {
             ...HeroImage
           }

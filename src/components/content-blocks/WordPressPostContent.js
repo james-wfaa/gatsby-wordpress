@@ -34,6 +34,12 @@ text-align: left;
     }
 }
 
+p{
+    font-family: ${fonts.eaves};
+    font-size: ${sizes.s18};
+    line-height: ${sizes.s26};
+}
+
 a {
     ${mixins.textlink}
 }
@@ -149,6 +155,7 @@ div.section-header {
 }
 .callout-bold {
     font-weight: bold;
+    font-family: ${fonts.verlag};
     background-color: ${colors.calloutGrey};
     padding: ${sizes.s18};
     @media screen and ${breakpoints.tabletS} {

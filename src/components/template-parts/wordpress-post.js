@@ -14,7 +14,7 @@ import { ShareButtonIconOnly, ShareBlockStandard } from "react-custom-share";
 
 function BlogPost({ data }) {
   const { nextPage, previousPage, page } = data
-  const { title, content, featuredImage, categories, author, date } = page
+  const { title, content, featuredImage, categories, author, date, excerpt } = page
   const shareBlockProps = {
     url: "https://localhost:8000/",
     button: ShareButtonIconOnly,
@@ -31,7 +31,7 @@ function BlogPost({ data }) {
   return (
     <Layout>
       <PageSection>
-        <StorySectionHeader heading={title} author={author} categories={categories} date={date}  />
+        <StorySectionHeader heading={title} author={author} categories={categories} date={date} excerpt={excerpt}  />
         {!!featuredImage?.node?.remoteFile?.childImageSharp && (
             <FeaturedImage featuredImage={featuredImage} />
         )}

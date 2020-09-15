@@ -74,6 +74,7 @@ export const colors = {
     promoRed:       baseColors.mainRed,
     categoryGrey:   baseColors.darkerGrey,
     tagGrey:        baseColors.darkerGrey,
+    captionGrey:   baseColors.darkerGrey,
     navcardGrey:    baseColors.lightestGrey,
     readMoreText:   baseColors.mainRed,
     linkText:       baseColors.mainRed,

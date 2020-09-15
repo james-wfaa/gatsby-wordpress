@@ -2,7 +2,7 @@ import React from "react"
 import styled from 'styled-components'
 import { sizes, colors, fonts, breakpoints } from '../css-variables'
 
-const PageSectionHeader = ({ className, heading, author, categories, date }) => {
+const PageSectionHeader = ({ className, heading, author, categories, date, excerpt }) => {
 
     const classesList = `${className}`
     const categoryList = categories.nodes.map((category) => (
@@ -24,8 +24,10 @@ const PageSectionHeader = ({ className, heading, author, categories, date }) => 
                 { categories && (
                     <div className={`${className}__category`}>{categoryList}<span> ></span></div>
                 )}
-                
             </div>
+            { excerpt && (
+                <div className={`${className}__excerpt`} dangerouslySetInnerHTML={{ __html: excerpt }} />       
+            )}
 
         </div>
     )
@@ -107,6 +109,13 @@ const StyledPageSectionHeader = styled(PageSectionHeader)`
             }
     
         }
+    }
+
+    &__excerpt{
+        text-align: left;
+        font-family: ${fonts.eaves};
+        font-size: ${sizes.s18};
+        line-height: ${sizes.s26};
     }
 `
 
