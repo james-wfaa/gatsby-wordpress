@@ -3,16 +3,38 @@ import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import styled from 'styled-components'
 
 const WordPressContent = ({className, content}) => {
-    console.log(content)
 
     return(
         <div className={className} dangerouslySetInnerHTML={{ __html: content }} />
     )
 }
 const StyledWordPressContent = styled(WordPressContent)`
-max-width: 1080px;
-margin: 0 auto;
+
 text-align: left;
+margin: 0 auto;
+position: relative;
+
+.page-section {
+    padding-top: 88px;
+    padding-bottom: 88px;
+    &:last-child {
+        padding-bottom: 128px;
+    }
+    &.border-top {
+        border-top: 36px solid ${colors.sectionBorder};
+        @media screen and ${breakpoints.tabletS} {
+           border-width: ${sizes.s52};
+            
+        }
+    }
+}
+
+.image-section,
+.testimonial {
+    max-width: 1080px;
+    margin: 0 auto;
+
+}
 > p, 
 > ul {
     min-width: 300px;
@@ -26,11 +48,19 @@ text-align: left;
 a {
     ${mixins.textlink}
 }
-div.image-section {
+.testimonial {
+    /* ANNE YOUR CODE GOES HERE */
+}
+.image-section {
     width: 100%;
     display: flex;
     flex-direction: column;
     padding-bottom: ${sizes.s58};
+    
+    &:last-child {
+        padding-bottom: 0;
+    }
+
     &--small {
         .image-section__image {
             width: calc(100% - 72px);
@@ -39,8 +69,13 @@ div.image-section {
 
     }
     @media screen and ${breakpoints.tabletS} {
-        padding-top: ${sizes.s32};
+        
         padding-bottom: ${sizes.s32};
+        
+        /* add top padding to all but the first one */
+        ~ .image-section {
+            padding-top: ${sizes.s32};
+        }
         
         width: 80%;
         

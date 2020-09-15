@@ -5,7 +5,7 @@
     overflow: visible;
 }
 .slick-slide {
-    padding: 32px 12px;
+    padding: 0 12px;
 }
 
 .slick-arrow {
@@ -41,9 +41,7 @@
 }
 
 @media screen and (min-width: 656px) {
-    .slick-slide {
-        padding: 32px 12px 0;
-    }
+    
     .slick-arrow {
         display: block !important;
     }

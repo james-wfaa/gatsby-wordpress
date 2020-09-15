@@ -5,8 +5,9 @@ import BackgroundImage from 'gatsby-background-image'
 import IntroRedPageSection from './IntroRedPageSection'
 
 
-const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeading, excerpt}) => {
+const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeading, excerpt, buttons}) => {
 
+    console.log(buttons)
     const background =  typeof heroImage !== "undefined" && heroImage !== null 
 
     let classes = className;
@@ -58,7 +59,7 @@ const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeadi
             <a  className={downscrollClass} href={`#${className}__downscroll`} title="Scroll down to content"><div>down</div></a>
             <div className={redboxClass}>
                 <div className="downanchor" id={`${className}__downscroll`}>&nbsp;</div>
-                <IntroRedPageSection excerpt={excerpt} heading={redHeading}  />
+                <IntroRedPageSection excerpt={excerpt} heading={redHeading} headingAlt headingCompact buttons={buttons} buttonsAlt buttonsCompact />
             </div>
         </div>
     )

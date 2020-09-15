@@ -239,52 +239,69 @@ export const mixins = {
              background-color: ${colors.bgWhite};
          }
      }
+     &--alt {
+        color: ${colors.buttonRed};
+        background-color: ${colors.titleWhite};
+        &:hover {
+            color: ${colors.buttonActiveGrey};
+            background-color: ${colors.bgActiveGrey};
+            border: 1px solid ${colors.bgWhite};
+        }
+        &:active {
+            color: ${colors.buttonActiveGrey};
+            background-color: ${colors.bgWhite};
+        }
+
+     }
     `,
     sectionHeader: ` {
         text-align: center;
         position: relative;
-           padding-bottom:  ${sizes.s40};
-           margin-bottom: ${sizes.s58};
-           h1,
-           h2 {
+        padding-bottom:  ${sizes.s40};
+        margin-bottom: ${sizes.s58};
+        h1,
+        h2 {
+        
+            color: ${colors.titleColor};
+            font-family: ${fonts.eaves};
+            font-weight: bold;
+            font-style: italic;
+            font-size: ${sizes.s36};
+            line-height: ${sizes.s40};
+            margin: 0;
+            padding: 0 1em;
+
+            @media screen and ${breakpoints.laptopS} {
+                font-size: ${sizes.s42};
+                line-height: ${sizes.s52};
+                padding: 0;
+            }
+        }
+        &:after {
+            position: absolute;
+            bottom: 0;
+            right: calc( 50% - ${sizes.s34} );
+            height: ${sizes.s8};
+            width: calc( ${sizes.s34} * 2 );
+            background-color: ${colors.titleColor};
+            content: '';
+        }
+
+        &.bgimage,
+        &.headingAlt {
+            h2 {
+                color: ${colors.titleWhite}
+            }
+            &:after {
+                background-color: ${colors.bgWhite};
+            }
+        }
            
-               color: ${colors.titleColor};
-               font-family: ${fonts.eaves};
-               font-weight: bold;
-               font-style: italic;
-               font-size: ${sizes.s36};
-               line-height: ${sizes.s40};
-               margin: 0;
-               padding: 0 1em;
-
-               @media screen and ${breakpoints.laptopS} {
-                   font-size: ${sizes.s42};
-                   line-height: ${sizes.s52};
-                   padding: 0;
-               }
-           }
-           &:after {
-               position: absolute;
-               bottom: 0;
-               right: calc( 50% - ${sizes.s34} );
-               height: ${sizes.s8};
-               width: calc( ${sizes.s34} * 2 );
-               background-color: ${colors.titleColor};
-               content: '';
-           }
-
-           &--bgimage {
-               h2 {
-                   color: ${colors.titleWhite}
-               }
-               &:after {
-                   background-color: ${colors.bgWhite};
-               }
-           }
-           &--social {
+        &.social,
+        &.compact {
             margin-bottom: ${sizes.s32};
 
-           }
+        }
        }
     }`
 }

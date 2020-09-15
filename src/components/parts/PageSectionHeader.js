@@ -2,11 +2,13 @@ import React from "react"
 import styled from 'styled-components'
 import { mixins } from '../css-variables'
 
-const PageSectionHeader = ({ className, heading, pageTitle, withSocial, bgimage }) => {
+const PageSectionHeader = ({ className, heading, headingAlt, headingCompact, pageTitle, withSocial, bgimage }) => {
 
-    const classBgImage = bgimage ? `${className}--bgimage` : ''
-    const classSocialImage = withSocial ? `${className}--social` : ''
-    const classesList = `${className} ${classBgImage} ${classSocialImage}`
+    const classBgImage = bgimage ? ' bgimage' : ''
+    const classSocialImage = withSocial ? ' social' : ''
+    const classAlt = headingAlt ? ' headingAlt' : ''
+    const classCompact = headingCompact ? ' compact' : ''
+    const classesList = `${className}${classAlt}${classCompact}${classBgImage}${classSocialImage}`
     return (
         <div className={classesList}>
             { pageTitle && (
