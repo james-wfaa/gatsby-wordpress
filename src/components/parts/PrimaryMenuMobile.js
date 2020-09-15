@@ -1,7 +1,8 @@
 import { Link } from "gatsby"
 import React, { useState, useEffect } from "react"
-import { colors, sizes, breakpoints } from "../css-variables"
+import { colors, sizes, size, breakpoints } from "../css-variables"
 import styled, { css } from "styled-components"
+import { useWindowSize } from "../hooks"
 import HeaderSocialIcons from "./HeaderSocialIcons"
 import Header from "../header"
 import FbIcon from "../../svg/fb_icon_gray.svg" // Tell webpack this JS file uses this image
@@ -38,19 +39,19 @@ const menuItems = {
 
 const MenuGrid = styled.div`
   position: relative;
-  top: 100px;
-  width: 60%;
+  top: 48px;
+  width: 90%;
   border-collapse: collapse;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 `
 
 const LeftMenu = styled.div`
   border-collapse: collapse;
-  border-right: 1px solid ${colors.navMenuBorderGrey};
   ul {
     margin: 0;
+
     li {
       list-style: none;
       margin-bottom: 0;
@@ -66,8 +67,8 @@ const LeftMenu = styled.div`
         outline: none;
         p {
           position: relative;
-          padding-top: ${sizes.s24};
-          padding-bottom: ${sizes.s24};
+          padding-top: ${sizes.s16};
+          padding-bottom: ${sizes.s16};
           width: fit-content;
         }
       }
@@ -142,6 +143,7 @@ const BottomLeft = styled.div`
   padding-top: 16px;
   padding-bottom: 16px;
   font-size: ${sizes.s18};
+  border-top: 1px solid ${colors.navMenuBorderGrey};
   li {
     padding-top: 16px;
     padding-bottom: 16px;
@@ -152,7 +154,16 @@ const BottomLeft = styled.div`
   }
 `
 
-const SpanArrow = styled.span`
+const BackLink = styled.div`
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  align-items: center;
+  padding: 0px ${sizes.s24} ${sizes.s32};
+  font-size: ${sizes.s24};
+  border-bottom: 1px solid ${colors.navMenuBorderGrey};
+`
+
+const SpanArrowRight = styled.span`
   &:after {
     position: absolute;
     content: "";
@@ -164,20 +175,22 @@ const SpanArrow = styled.span`
     border-left: 12px solid ${colors.badgerRed};
     border-bottom: 6px solid transparent;
     transition: 0.25s ease-in-out;
-    right: ${props => props.pxRight};
+    right: -30px;
   }
 `
 
-const Logo = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.2;
-  height: 200px;
-  width: 200px;
-  background-color: lightgrey;
-  border-radius: 50%;
+const SpanArrowLeft = styled.span`
+  &:before {
+    position: absolute;
+    content: "";
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg);
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-left: 12px solid ${colors.badgerRed};
+    border-bottom: 6px solid transparent;
+  }
 `
 
 const PrimaryMenu2 = () => {
@@ -189,9 +202,6 @@ const PrimaryMenu2 = () => {
     setChildLinks([])
   }
 
-  const parentEnterHandler = (str, e) => {
-    setSelect(str)
-  }
   const parentClickHandler = (str, e) => {
     e.preventDefault()
     e.stopPropagation()
@@ -202,16 +212,13 @@ const PrimaryMenu2 = () => {
     return (
       <li>
         <button
-          onMouseEnter={() => parentEnterHandler(link)}
           onClick={e => parentClickHandler(link, e)}
           style={{
             backgroundColor: select === link ? `${colors.navcardGrey}` : null,
           }}
         >
           <p>
-            <SpanArrow pxRight={select === link ? `-40px` : `-25px`}>
-              {link}
-            </SpanArrow>
+            <SpanArrowRight>{link}</SpanArrowRight>
           </p>
         </button>
       </li>
@@ -234,39 +241,53 @@ const PrimaryMenu2 = () => {
   return (
     <div onClick={() => modalClickHandler()}>
       <MenuGrid>
-        <LeftMenu>
-          <div
-            style={{
-              borderBottom: `1px solid ${colors.navMenuBorderGrey}`,
-            }}
-          >
-            <ul>{parentLinks}</ul>
-          </div>
-          <BottomLeft>
-            <ul>
-              <li>
-                <Link to="/about">About WAA</Link>
-              </li>
-              <li>
-                <Link to="/contact">Contact WAA</Link>
-              </li>
-              <li>
-                <Link to="/update">ABE Update</Link>
-              </li>
-              <li>
-                <Link to="/email">Email Login</Link>
-              </li>
-            </ul>
-            <SocialLinks>
-              <HeaderSocialIcons />
-            </SocialLinks>
-          </BottomLeft>
-        </LeftMenu>
+        {!select ? (
+          <LeftMenu>
+            <div style={{ marginBottom: `16px` }}>
+              <ul>{parentLinks}</ul>
+            </div>
+            <BottomLeft>
+              <ul>
+                <li>
+                  <Link to="/about">About WAA</Link>
+                </li>
+                <li>
+                  <Link to="/contact">Contact WAA</Link>
+                </li>
+                <li>
+                  <Link to="/update">ABE Update</Link>
+                </li>
+                <li>
+                  <Link to="/email">Email Login</Link>
+                </li>
+              </ul>
+              <SocialLinks>
+                <HeaderSocialIcons />
+              </SocialLinks>
+            </BottomLeft>
+          </LeftMenu>
+        ) : (
+          <RightMenu>
+            <BackLink>
+              <p
+                style={{
+                  position: `relative`,
+                  margin: 0,
+                }}
+              >
+                <SpanArrowLeft />
+              </p>
+              <p
+                onClick={() => modalClickHandler()}
+                style={{ marginBottom: 0 }}
+              >
+                {select}
+              </p>
+            </BackLink>
 
-        <RightMenu>
-          <Logo />
-          <ul>{childLinks.length > 0 ? childLinks : null}</ul>
-        </RightMenu>
+            <ul>{childLinks.length > 0 ? childLinks : null}</ul>
+          </RightMenu>
+        )}
       </MenuGrid>
     </div>
   )
