@@ -17,6 +17,7 @@ const StyledWordPressContent = styled(WordPressContent)`
 max-width: 1080px;
 margin: 0 auto;
 text-align: left;
+
 > p, 
 > ul,
 > h2 {
@@ -32,6 +33,7 @@ text-align: left;
         width: 712px;
     }
 }
+
 a {
     ${mixins.textlink}
 }

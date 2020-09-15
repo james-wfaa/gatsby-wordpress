@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import Layout from "../layout"
 import { normalizePath } from "../../utils/get-url-path"
 import WordPressContent from "../content-blocks/WordPressPostContent"
+import StorySectionHeader from '../parts/StorySectionHeader'
 import PageSection from "../page-sections/PageSection"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 import {TiSocialTwitter} from "react-icons/ti";
@@ -13,7 +14,7 @@ import { ShareButtonIconOnly, ShareBlockStandard } from "react-custom-share";
 
 function BlogPost({ data }) {
   const { nextPage, previousPage, page } = data
-  const { title, content, featuredImage } = page
+  const { title, content, featuredImage, categories, author, date } = page
   const shareBlockProps = {
     url: "https://localhost:8000/",
     button: ShareButtonIconOnly,
@@ -29,7 +30,8 @@ function BlogPost({ data }) {
 
   return (
     <Layout>
-      <PageSection heading={title} pageTitle>
+      <PageSection>
+        <StorySectionHeader heading={title} author={author} categories={categories} date={date}  />
         {!!featuredImage?.node?.remoteFile?.childImageSharp && (
             <FeaturedImage featuredImage={featuredImage} />
         )}

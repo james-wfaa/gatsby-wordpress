@@ -9,11 +9,24 @@ export const query = graphql`
     page: wpPost(id: { eq: $id }) {
       title
       content
+      date(formatString: "MMMM Do")
       featuredImage {
         node {
+          caption
           remoteFile {
             ...HeroImage
           }
+        }
+      }
+      categories {
+        nodes {
+          name
+          slug
+        }
+      }
+      author {
+        node {
+          name
         }
       }
     }
