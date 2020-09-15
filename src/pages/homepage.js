@@ -101,6 +101,7 @@ export default ({ data }) => {
           centerMode
           variableWidth
           centerPadding="100px"
+          {...settings}
         >
           <ContentCard
             title="All About That Bass"
