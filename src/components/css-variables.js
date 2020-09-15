@@ -96,6 +96,7 @@ export const colors = {
     rednavGrey: baseColors.lightGrey,
     navCardVisitedGrey: baseColors.darkerGrey,
     calloutGrey: baseColors.lightestGrey,
+    featureImageGrey: baseColors.darkGrey,
 
 
 }

@@ -35,6 +35,8 @@ const StyledFeaturedImage = styled(FeaturedImage)`
 width: auto;
 min-width: 375px;
 margin: 0; 
+position: relative;
+
 
 @media screen and ${breakpoints.tabletS} {
   width: 536px;
@@ -49,7 +51,38 @@ margin: 0;
   width: 1080px;
   margin: ${sizes.s58} auto; 
 
+  &:before {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    height: 30px;
+    width: 100%;
+    background-color: ${colors.featureImageGrey};
+    mix-blend-mode: multiply;
+    opacity: 0.7;
+    z-index: 1;
+    width: calc(100% - 122px);
+    content: '';
+  
+  }
+  
+  &:after {
+    position: absolute;
+    bottom: 0;
+    right: -50px;
+    height: 30px;
+    width: 222px;
+    z-index: 2;
+    content: '';
+    background-color: ${colors.bgWhite} !important;
+    transform: skew(135deg);
+  }
+  
+
 }
+
+  
+  
 
 &__captionSection{
   font-size: ${sizes.s16};
