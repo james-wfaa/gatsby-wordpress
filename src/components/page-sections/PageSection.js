@@ -9,7 +9,7 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 
-const PageSection = ({className, preheading, heading, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, alt, topBorder, bgImage, children}) => {
+const PageSection = ({className, preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, children }) => {
             
         
     const background =  typeof bgImage !== "undefined" && bgImage !== null 
@@ -21,7 +21,7 @@ const PageSection = ({className, preheading, heading, pageTitle, withSocial, pla
     const hasPreHeading = preheading && !heading ?  ` ${className}--hasPreHeading` : ''
     const hasNoHeading = !preheading && !heading ? ` ${className}--hasNoHeading` : ''
     const popClass = popOut ? `${className}__popOut` : ''
-   
+
     return (
         <div>
             { ! background &&  (
@@ -29,18 +29,16 @@ const PageSection = ({className, preheading, heading, pageTitle, withSocial, pla
                 { preheading && (
                 <div className={`${className}__preheading`}>{preheading}</div>
             )}
-                 { heading && (
-                    <div className={`${className}__heading`}>
-                        <PageSectionHeader heading={heading} pageTitle={pageTitle} withSocial={withSocial} />
-                    </div>
+                  { heading && (
+                <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} withSocial={withSocial} headingCompact={headingCompact} />
             )}
             { excerpt && (
-                <div className={`${className}__excerpt`}  dangerouslySetInnerHTML={{ __html: excerpt }} />
+                <div className="excerpt"  dangerouslySetInnerHTML={{ __html: excerpt }} />
             )}
-            <div className={`${className}__content ${plainTextContent}`}>
+            <div className={`content ${plainTextContent}`}>
                 {children}
             </div>
-            { buttons && (<PageSectionButtons buttons={buttons} buttonsAlt={buttonsAlt} />
+            { buttons && (<PageSectionButtons buttons={buttons} buttonsAlt={buttonsAlt} compact={buttonsCompact} />
             )}
             </div>
            
@@ -53,12 +51,12 @@ const PageSection = ({className, preheading, heading, pageTitle, withSocial, pla
             preserveStackingContext
           ><div className="wrapper">
             { heading && (
-                <PageSectionHeader heading={heading} bgimage />
+                <PageSectionHeader heading={heading} pageTitle={pageTitle} withSocial={withSocial} bgimage />
             )}
              { excerpt && (
                 <div className={`${className}__excerpt ${className}__excerpt--bgimage`}  dangerouslySetInnerHTML={{ __html: excerpt }} />
             )}
-            <div className={`${className}__content ${className}__content--bgimage`}>
+            <div className={`content content--bgimage`}>
                 {children}
             </div>
             { buttons && (<PageSectionButtons buttons={buttons} bgimage buttonsAlt/>
@@ -130,7 +128,7 @@ const StyledPageSection = styled(PageSection)`
     }
        
 
-    &__excerpt {
+    .excerpt {
         font-size: ${sizes.s24};
         line-height: ${sizes.s36};
         max-width: 712px;
@@ -154,7 +152,7 @@ const StyledPageSection = styled(PageSection)`
         }
     }
     /* some wordpress content pieces */
-    &__content {
+    .content {
         > p {
             min-width: 300px;
             width: 80%;

@@ -9,13 +9,11 @@ const StyledIntroRedPageSection = styled(PageSection)`
 position: relative;
 color: ${colors.titleWhite};
 background-color: ${colors.bgRed};
-padding-top: 88px;
+padding-top: 58px;
+padding-bottom: 58px;
 
-h2 {
-    color: ${colors.titleWhite};
-   
-}
-&__excerpt {
+
+.excerpt {
     font-size: ${sizes.s24};
     line-height: ${sizes.s36};
     max-width: 896px;
@@ -28,7 +26,7 @@ h2 {
 
 }
 
-&__heading {
+.heading {
     position: relative;
 
     &:after {

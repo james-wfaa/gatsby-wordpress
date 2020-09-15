@@ -1,7 +1,6 @@
 import React from "react"
 import Layout from "../layout"
 import HeroIntroSection from "../page-sections/HeroIntroSection"
-import PageSection from "../page-sections/PageSection"
 import WordPressContent from "../content-blocks/WordPressContent"
 
 function WordPressPage({ page }) {

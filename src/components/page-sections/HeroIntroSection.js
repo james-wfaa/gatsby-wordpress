@@ -59,7 +59,7 @@ const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeadi
             <a  className={downscrollClass} href={`#${className}__downscroll`} title="Scroll down to content"><div>down</div></a>
             <div className={redboxClass}>
                 <div className="downanchor" id={`${className}__downscroll`}>&nbsp;</div>
-                <IntroRedPageSection excerpt={excerpt} heading={redHeading} buttons={buttons} buttonsAlt  />
+                <IntroRedPageSection excerpt={excerpt} heading={redHeading} headingAlt headingCompact buttons={buttons} buttonsAlt buttonsCompact />
             </div>
         </div>
     )

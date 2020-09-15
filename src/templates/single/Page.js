@@ -11,11 +11,9 @@ export default ({ data }) => {
     switch (templateName ) {
       case "Product/General Page":
         return (<WpProductPage page={page} />)
-        break
       case "Default":
       default:
         return (<WpDefaultPage page={page} />)
-        break
     }
   }
   return (<WpDefaultPage page={page} />)
