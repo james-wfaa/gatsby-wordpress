@@ -283,7 +283,6 @@ const PrimaryMenu = () => {
                   height: `100%`,
                   backgroundColor: `white`,
                 }}
-                className="searchmodal"
               >
                 <LeftMenu>
                   <div style={{ marginBottom: `16px`, marginLeft: `16px` }}>
@@ -327,7 +326,6 @@ const PrimaryMenu = () => {
                   height: `100%`,
                   backgroundColor: `white`,
                 }}
-                className="searchmodal"
               >
                 <RightMenu>
                   <BackLink>
