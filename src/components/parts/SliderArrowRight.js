@@ -18,6 +18,10 @@ const RightArrow = styled.div`
     left: 50%;
     transform: translate(-50%, -50%) scale(1, 1.75);
   }
+  display: none;
+  @media screen and (min-width: 1200px) {
+    display: block !important;
+  }
 `
 
 const SliderArrowRight = props => {
