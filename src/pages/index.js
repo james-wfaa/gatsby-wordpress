@@ -10,7 +10,7 @@ export default () => <Layout>
     <h1>uwalumni.com redesign - development work in progress</h1>
     <h2>Full Page Templates</h2>
     <li>
-        <Link to="/wordpress-story">Story Page (NEW) (in progress)</Link>
+        <Link to="/wordpress-story">Story Page (NEW - ENHANCEMENTS)</Link>
     </li>
     <li>
         <Link to="/chapter-page">Individual Group Page (NEW) (in progress)</Link>
@@ -20,8 +20,8 @@ export default () => <Layout>
     </li>
     <h2>Page Sections &amp; Content Components</h2>
     <ul>
-    <li>
-            <Link to="/testimonials">Testimonials (NEW - WP content)</Link> 
+        <li>
+            <Link to="/slider">Carousel (ENHANCEMENTS)</Link>
         </li>
         <li>
             <Link to="/contentCardFlex">Content Card (NEW - Promo Card S)</Link> 
@@ -60,9 +60,7 @@ export default () => <Layout>
         <li>
             <Link to="/gridCardD">Card D Grid Format</Link>
         </li>
-        <li>
-            <Link to="/slider">Carousel</Link>
-        </li>
+        
         <li>
             <Link to="/fonts">Text Styles</Link>
         </li>

@@ -38,77 +38,77 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
     return (
 
         <div className={`${className} ${className}--${size} ${className}--${notSmall} ${className}--${promoClass}`}>  
-                <div className={`${className}__headersection ${className}__headersection--${size} ${className}__headersection--${notSmall} ${className}__headersection--${promoClass}`}>
+                <div className={`headersection headersection--${size} headersection--${notSmall} headersection--${promoClass}`}>
                     { startDate && (
-                        <div className={`${className}__date ${className}__date--${size} ${className}__date--${notSmall}`}> 
+                        <div className={`date date--${size} date--${notSmall}`}> 
                             <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
                         </div>
 
                     )}
                     { !startDate && (
-                        <div className={`${className}__category category category--${size} ${className}__category--${size} ${className}__category--${notSmall} ${className}__category--${promoClass}`}>{category}</div>
+                        <div className={`category category--${size} category--${notSmall} category--${promoClass}`}>{category}</div>
                     )}
                     { !startDate && (
-                        <h3 className={`${className}__title title ${className}__title--${size} ${className}__title--${notSmall} ${className}__title--${promoClass}`}>   
+                        <h3 className={`title title--${size} title--${notSmall} title--${promoClass}`}>   
                             <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
                         </h3>     
                     )}
                     {imgSources && (
-                        <a href={url} className={`${className}__imgzoomlink headerImg`} >
+                        <a href={url} className={`imgzoomlink headerImg`} >
                             <Img 
-                                className={`${className}__img`}
+                                className={`img`}
                                 fluid={imgSources}
                             />
                         </a>
                     )}
                     
                 </div>
-                <div className={`${className}__contentwrap ${className}__contentwrap--${size} ${className}__contentwrap--${promoClass}`}>
+                <div className={`contentwrap contentwrap--${size} contentwrap--${promoClass}`}>
                     {imgSources && (
-                        <a href={url} className={`${className}__imgzoomlink bodyImg`} >
+                        <a href={url} className={`imgzoomlink bodyImg`} >
                             <Img 
-                                className={`${className}__img`}
+                                className={`img`}
                                 fluid={imgSources}
                             />
                         </a>
                     )}
 
-                    <div className={`${className}__contentsection ${className}__contentsection--${size} ${className}__contentsection--${notSmall}`}>
+                    <div className={`contentsection contentsection--${size} contentsection--${notSmall}`}>
                         
-                        <div className={`${className}__columnwrap columnwrap columnwrap--${size} columnwrap--${notSmall}`}>
+                        <div className={`columnwrap columnwrap--${size} columnwrap--${notSmall}`}>
                             { startDate && (
                                 <a href={url} >
-                                    <h3 className={`${className}__title title ${className}__title--${size} ${className}__title--${notSmall}`}>
+                                    <h3 className={`title title--${size} title--${notSmall}`}>
                                         <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
                                     </h3>
                                 </a>
                             )}
                             { startDate && (
-                                <div className={`${className}__category category category--${size} ${className}__category--${size} ${className}__category--${notSmall}`}>{category}</div>
+                                <div className={`category category--${size} category--${notSmall}`}>{category}</div>
                             )}
                             { shortenedExcerpt && (
-                                <div className={`${className}__excerpt excerpt ${className}__excerpt--${size} ${className}__excerpt--${notSmall} ${className}__excerpt--${promoClass}`}>
+                                <div className={`excerpt excerpt--${size} excerpt--${notSmall} excerpt--${promoClass}`}>
                                     <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
                                 </div>
                             )}
                         </div>
-                        <div className={`${className}__columnwrap columnwrap columnwrap--${size} columnwrap--${notSmall}`}>
+                        <div className={`columnwrap columnwrap--${size} columnwrap--${notSmall}`}>
                             { venue && (
-                                <div className={`${className}__venuewrap venuewrap ${className}__venuewrap--${size} ${className}__venuewrap--${notSmall}`}>
+                                <div className={`venuewrap venuewrap--${size} venuewrap--${notSmall}`}>
                                 { venue && (
-                                    <div className={`${className}__venue venue ${className}__venue--${size} ${className}__venue--${notSmall}`}>{venue}</div>
+                                    <div className={`venue venue--${size} venue--${notSmall}`}>{venue}</div>
                                 )}
                                 { location && (
-                                    <div className={`${className}__location location ${className}__location--${size} ${className}__location--${notSmall}`}>{location}</div>
+                                    <div className={`location location--${size} location--${notSmall}`}>{location}</div>
                                 )}
                             </div>
                             )}
                             { excerpt && (
-                                <a href={url} className={`${className}__excerpt excerpt ${className}__excerpt--${size} ${className}__excerpt--${notSmall} ${className}__excerpt--${promoClass} readmore`}>{moreLinkText}</a>
+                                <a href={url} className={`excerpt excerpt--${size} excerpt--${notSmall} excerpt--${promoClass} readmore`}>{moreLinkText}</a>
                             )}
                             { tags && (
                                 <TagList
-                                    className={`${className}__tag tag ${className}__tag--${size} ${className}__tag--${notSmall}`}
+                                    className={`tag  tag--${size} tag--${notSmall}`}
                                     items={tags}
                                 />
                             )}
@@ -213,7 +213,7 @@ const StyledContentCard = styled(ContentCard)`
         
     }
 
-    &__headersection {
+    .headersection {
         position: relative; 
         background-color: ${colors.cardHeaderBGGrey};
         margin: 0px;
@@ -287,7 +287,7 @@ const StyledContentCard = styled(ContentCard)`
         } 
     }
 
-    &__date {
+    .date {
         font-family: ${fonts.eaves};
         position: relative; 
         padding-top: ${sizes.s16};
@@ -341,7 +341,7 @@ const StyledContentCard = styled(ContentCard)`
         }
     }
 
-    &__title {
+    .title {
         ${mixins.cardTitle}
         position: relative; 
         top: -3px;
@@ -424,7 +424,7 @@ const StyledContentCard = styled(ContentCard)`
         }  
     }
 
-    &__category {
+    .category {
         font-size: ${sizes.s13};
         line-height: ${sizes.s15};
         font-weight: 800;
@@ -452,7 +452,7 @@ const StyledContentCard = styled(ContentCard)`
 
     }
 
-    &__contentwrap {
+    .contentwrap {
         position: relative; 
         display: flex;
         flex-grow: 1;
@@ -507,7 +507,7 @@ const StyledContentCard = styled(ContentCard)`
 
     }
 
-    &__contentsection {
+    .contentsection {
         position: relative;
         margin: 0px;
         padding-top: ${sizes.s24}; 
@@ -592,19 +592,19 @@ const StyledContentCard = styled(ContentCard)`
 
     
 
-    &__venue {
+    .venue {
         position: ; 
         font-size: ${sizes.s18};
 
     }
-    &__location {
+    .location {
         position: relative; 
         font-size: ${sizes.s18};
         font-weight: bold;
         padding-bottom: ${sizes.s16};
     }
 
-    &__excerpt {
+    .excerpt {
         font-size: ${sizes.s16};
         line-height: ${sizes.s22};
         padding-bottom: ${sizes.s16};
@@ -659,12 +659,12 @@ const StyledContentCard = styled(ContentCard)`
 
     }
 
-    &__imgzoomlink{
+    .imgzoomlink{
         max-width: 100%;
         overflow: hidden;
     }
 
-    &__img {
+    .img {
         max-width: 100%;
         transition: transform .2s; /* Animation */
         overflow: hidden;
