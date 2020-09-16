@@ -2,6 +2,7 @@ import { Link } from "gatsby"
 import React, { useState, useEffect } from "react"
 import { colors, sizes, size, breakpoints } from "../css-variables"
 import styled, { css } from "styled-components"
+import { useTransition, animated } from "react-spring"
 import { useWindowSize } from "../hooks"
 import HeaderSocialIcons from "./HeaderSocialIcons"
 import Header from "../header"
@@ -49,6 +50,7 @@ const MenuGrid = styled.div`
 
 const LeftMenu = styled.div`
   border-collapse: collapse;
+
   ul {
     margin: 0;
 
@@ -142,6 +144,7 @@ const SocialLinks = styled.div`
 const BottomLeft = styled.div`
   padding-top: 16px;
   padding-bottom: 16px;
+  margin-left: 16px;
   font-size: ${sizes.s18};
   border-top: 1px solid ${colors.navMenuBorderGrey};
   li {
@@ -193,30 +196,54 @@ const SpanArrowLeft = styled.span`
   }
 `
 
-const PrimaryMenu2 = () => {
+const PrimaryMenu = () => {
   const [select, setSelect] = useState(null)
   const [childLinks, setChildLinks] = useState([])
+  const [showLeft, setShowLeft] = useState(true)
+
+  // const transition1 = useTransition(showLeft, null, {
+  //   from: { transform: `translate3d(-100%, 0, 0)` },
+  //   enter: { transform: `translate3d(0,0,0)` },
+  //   leave: { transform: `translate3d(-100%,0, 0)` },
+  // })
+  const transition1 = useTransition(showLeft, null, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+  })
+
+  const transition2 = useTransition(!showLeft, null, {
+    from: { transform: `translate3d(100%, 0, 0)` },
+    enter: { transform: `translate3d(0,0,0)` },
+    leave: { transform: `translate3d(100%,0, 0)` },
+  })
 
   const modalClickHandler = () => {
-    setSelect(null)
-    setChildLinks([])
+    setShowLeft(true)
   }
 
   const parentClickHandler = (str, e) => {
     e.preventDefault()
     e.stopPropagation()
-    setSelect(str)
+    if (str === select) {
+      let links = menuItems[select].map(link => {
+        return (
+          <li>
+            <Link to={link.url}>{link.tag}</Link>
+          </li>
+        )
+      })
+      setShowLeft(false)
+      setChildLinks(links)
+    } else {
+      setSelect(str)
+    }
   }
 
   const parentLinks = Object.keys(menuItems).map(link => {
     return (
       <li>
-        <button
-          onClick={e => parentClickHandler(link, e)}
-          style={{
-            backgroundColor: select === link ? `${colors.navcardGrey}` : null,
-          }}
-        >
+        <button onClick={e => parentClickHandler(link, e)}>
           <p>
             <SpanArrowRight>{link}</SpanArrowRight>
           </p>
@@ -234,6 +261,7 @@ const PrimaryMenu2 = () => {
           </li>
         )
       })
+      setShowLeft(false)
       setChildLinks(links)
     }
   }, [select])
@@ -241,56 +269,90 @@ const PrimaryMenu2 = () => {
   return (
     <div onClick={() => modalClickHandler()}>
       <MenuGrid>
-        {!select ? (
-          <LeftMenu>
-            <div style={{ marginBottom: `16px` }}>
-              <ul>{parentLinks}</ul>
-            </div>
-            <BottomLeft>
-              <ul>
-                <li>
-                  <Link to="/about">About WAA</Link>
-                </li>
-                <li>
-                  <Link to="/contact">Contact WAA</Link>
-                </li>
-                <li>
-                  <Link to="/update">ABE Update</Link>
-                </li>
-                <li>
-                  <Link to="/email">Email Login</Link>
-                </li>
-              </ul>
-              <SocialLinks>
-                <HeaderSocialIcons />
-              </SocialLinks>
-            </BottomLeft>
-          </LeftMenu>
-        ) : (
-          <RightMenu>
-            <BackLink>
-              <p
+        {transition1.map(
+          ({ item, key, props }) =>
+            item && (
+              <animated.div
+                key={key}
                 style={{
-                  position: `relative`,
-                  margin: 0,
+                  ...props,
+                  position: `fixed`,
+                  left: 0,
+                  zIndex: 5,
+                  width: `100vw`,
+                  height: `100%`,
+                  backgroundColor: `white`,
                 }}
               >
-                <SpanArrowLeft />
-              </p>
-              <p
-                onClick={() => modalClickHandler()}
-                style={{ marginBottom: 0 }}
-              >
-                {select}
-              </p>
-            </BackLink>
+                <LeftMenu>
+                  <div style={{ marginBottom: `16px`, marginLeft: `16px` }}>
+                    <ul>{parentLinks}</ul>
+                  </div>
+                  <BottomLeft>
+                    <ul>
+                      <li>
+                        <Link to="/about">About WAA</Link>
+                      </li>
+                      <li>
+                        <Link to="/contact">Contact WAA</Link>
+                      </li>
+                      <li>
+                        <Link to="/update">ABE Update</Link>
+                      </li>
+                      <li>
+                        <Link to="/email">Email Login</Link>
+                      </li>
+                    </ul>
+                    <SocialLinks>
+                      <HeaderSocialIcons />
+                    </SocialLinks>
+                  </BottomLeft>
+                </LeftMenu>
+              </animated.div>
+            )
+        )}
 
-            <ul>{childLinks.length > 0 ? childLinks : null}</ul>
-          </RightMenu>
+        {transition2.map(
+          ({ item, key, props }) =>
+            item && (
+              <animated.div
+                key={key}
+                style={{
+                  ...props,
+                  position: `fixed`,
+                  left: 0,
+                  zIndex: 5,
+                  width: `100vw`,
+                  height: `100%`,
+                  backgroundColor: `white`,
+                }}
+              >
+                <RightMenu>
+                  <BackLink>
+                    <p
+                      style={{
+                        position: `relative`,
+                        margin: 0,
+                      }}
+                    >
+                      <SpanArrowLeft />
+                    </p>
+                    <p
+                      onClick={() => modalClickHandler()}
+                      style={{ marginBottom: 0 }}
+                    >
+                      {select}
+                    </p>
+                  </BackLink>
+
+                  <ul>{childLinks.length > 0 ? childLinks : null}</ul>
+                </RightMenu>
+              </animated.div>
+            )
         )}
       </MenuGrid>
     </div>
   )
 }
 
-export default PrimaryMenu2
+export default PrimaryMenu
