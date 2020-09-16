@@ -4,6 +4,7 @@ import { colors, sizes, breakpoints } from "../css-variables"
 import styled, { css } from "styled-components"
 import HeaderSocialIcons from "./HeaderSocialIcons"
 import Header from "../header"
+import LogoImage from "../../assets/svg/menuclouds.svg"
 import FbIcon from "../../svg/fb_icon_gray.svg" // Tell webpack this JS file uses this image
 import TwIcon from "../../svg/twitter_icon_gray.svg" // Tell webpack this JS file uses this image
 import IgIcon from "../../svg/instagram_icon_gray.svg" // Tell webpack this JS file uses this image
@@ -39,7 +40,7 @@ const menuItems = {
 const MenuGrid = styled.div`
   position: relative;
   top: 100px;
-  width: 60%;
+  width: 70%;
   border-collapse: collapse;
   margin: 0 auto;
   display: grid;
@@ -171,13 +172,15 @@ const SpanArrow = styled.span`
 const Logo = styled.div`
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 70%;
   transform: translate(-50%, -50%);
-  opacity: 0.2;
-  height: 200px;
-  width: 200px;
-  background-color: lightgrey;
-  border-radius: 50%;
+  opacity: 0.4;
+  height: 300px;
+  width: 70%;
+  background-image: url(${LogoImage});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 `
 
 const PrimaryMenu2 = () => {
@@ -264,7 +267,9 @@ const PrimaryMenu2 = () => {
         </LeftMenu>
 
         <RightMenu>
-          <Logo />
+          <Logo>
+            {/* <svg src={LogoImage} alt="Logo" style={{ stroke: `black` }} /> */}
+          </Logo>
           <ul>{childLinks.length > 0 ? childLinks : null}</ul>
         </RightMenu>
       </MenuGrid>

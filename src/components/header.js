@@ -143,7 +143,7 @@ const Header = () => {
               }}
               className="searchmodal"
             >
-              {width > 414 ? <PrimaryMenu /> : <PrimaryMenuMobile />}
+              {width > 655 ? <PrimaryMenu /> : <PrimaryMenuMobile />}
             </animated.div>
           )
       )}
