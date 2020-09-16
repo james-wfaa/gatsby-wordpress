@@ -1,6 +1,8 @@
 import React from 'react'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import styled from 'styled-components'
+import quotationMarks from '../../svg/Testimonial_Quotation_Marks_2x.svg'
+
 
 const WordPressContent = ({className, content}) => {
 
@@ -49,7 +51,76 @@ a {
     ${mixins.textlink}
 }
 .testimonial {
-    /* ANNE YOUR CODE GOES HERE */
+    width: 256px;
+    min-height: 502px;
+    display: flex;
+    flex-flow: column;
+    text-align: left;
+    position: relative;
+   
+    border: 1px solid ${colors.cardBorder};
+    border-top: 6px solid ${colors.cardBorder};
+    background-color: ${colors.bgWhite};
+    opacity: 0.9;
+    @media screen and ${breakpoints.laptopS} {
+        width: 1080px;
+        min-height: 230px;  
+        border-top: 1px solid ${colors.cardBorder};
+        &:before {
+            position: absolute;
+            content: "";
+            display: block;
+            width: 345px;
+            height: 6px;
+            top: -6px;
+            left: -1px;
+            background-color: ${colors.cardBorder};
+        }
+        &:after {
+            position: absolute;
+            background: url(${quotationMarks}) no-repeat;
+            content: "";
+            display: block;
+            width: 345px;
+            min-height: 100%;  
+            top: 0px;
+            left: 0px;
+            background-color: ${colors.testimonialGrey};
+        }
+
+    }
+    blockquote{
+        
+        @media screen and ${breakpoints.tabletS} {
+            margin: 32px 32px 32px 376px;
+
+            &:before {
+                position: absolute;
+                content: '';
+                top: 32px;
+                left: 335px;
+                height: 30px;
+                width: 14px;
+                z-index: 1;
+                border-left: 1.5px solid ${colors.bgRed};
+                border-right: 1.5px solid ${colors.bgRed};
+                transform: skew(135deg);
+            }
+        }
+        
+    }
+    figCaption{
+        @media screen and ${breakpoints.tabletS} {
+            margin: 0px 32px 32px 376px;
+        }
+
+    }
+    &__name{
+
+    }
+    &__location{
+
+    }
 }
 .image-section {
     width: 100%;

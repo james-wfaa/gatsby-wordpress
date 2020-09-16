@@ -36,7 +36,7 @@ width: auto;
 min-width: 375px;
 margin: 0; 
 position: relative;
-
+margin: ${sizes.s58} 0 ${sizes.s58} 0; 
 
 @media screen and ${breakpoints.tabletS} {
   width: 536px;
