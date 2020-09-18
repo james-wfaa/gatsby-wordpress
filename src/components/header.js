@@ -97,11 +97,18 @@ const Header = () => {
                   className="menu open"
                   style={{ justifySelf: `center` }}
                   onClick={e => toggleSearch(e)}
+                  onKeyPress={e => toggleSearch(e)}
+                  tabIndex="0"
                 >
                   <span></span>
                 </div>
               ) : (
-                <span className="search" style={{ justifySelf: `center` }}>
+                <span
+                  className="search"
+                  onKeyPress={e => toggleSearch(e)}
+                  tabIndex="0"
+                  style={{ justifySelf: `center` }}
+                >
                   <a
                     onClick={e => toggleSearch(e)}
                     style={{ margin: `0 auto` }}
