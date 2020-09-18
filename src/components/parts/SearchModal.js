@@ -2,7 +2,7 @@ import React, { useState, useLayoutEffect, useEffect } from "react"
 import styled from "styled-components"
 import { breakpoints, sizes, colors } from "../css-variables"
 import { useLockBodyScroll } from "../hooks"
-import SwifType from "./SwifType"
+
 
 const StyledDiv = styled.div`
   width: 80%;
@@ -40,13 +40,8 @@ const SearchModal = () => {
 
   useLockBodyScroll()
 
-  useEffect(() => {
-    // _st("install", "eyjN94XLv8vdiF3H87-P", "2.0.0")
-  }, [])
-
   return (
     <div>
-      <SwifType />
       <StyledDiv>
         <StyledInput
           type="text"
