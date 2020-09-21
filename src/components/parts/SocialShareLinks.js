@@ -1,10 +1,10 @@
 import React from "react"
 import propTypes from "prop-types";
-import { colors, sizes, breakpoints } from '../css-variables'
+import { colors, breakpoints } from '../css-variables'
 import TiSocialTwitter from "../../svg/uwa__twitter_white_24x24.inline.svg";
 import TiSocialFacebook from "../../svg/uwa__facebook_white_24x24.inline.svg";
 import {AiFillMail} from "react-icons/ai";
-import { ShareBlockStandard, ShareButtonRectangle, ShareButtonIconOnly } from "react-custom-share";
+import { ShareBlockStandard, ShareButtonIconOnly } from "react-custom-share";
 import { css } from "emotion";
 
 

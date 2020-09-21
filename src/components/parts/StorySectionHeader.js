@@ -6,7 +6,7 @@ const PageSectionHeader = ({ className, heading, author, categories, date, excer
 
     const classesList = `${className}`
     const categoryList = categories.nodes.map((category) => (
-        <a className="category__item" href={'category/' + `${category.slug}`}>{category.name}</a>
+        <a className="category__item" href={`{category/${category.slug}}`}>{category.name}</a>
       ))
       
     return (

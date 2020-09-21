@@ -1,6 +1,6 @@
-import React, { useState, useLayoutEffect, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import { breakpoints, sizes, colors } from "../css-variables"
+import { breakpoints, colors } from "../css-variables"
 import { useLockBodyScroll } from "../hooks"
 import SwifType from "./SwifType"
 

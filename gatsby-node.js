@@ -45,6 +45,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       // this doesn't reflect what our hierarchy will look like.
       // this is for testing/demo purposes
       const templatePath = `${contentTypeTemplateDirectory}${nodeType}.js`
+      //console.log(templatePath)
 
       const contentTypeTemplate = contentTypeTemplates.find(
         (path) => path === templatePath
