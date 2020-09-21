@@ -1,28 +1,16 @@
 import React from "react"
 import { graphql } from "gatsby"
-import WpDefaultPage from "../../components/template-parts/wordpress-page"
-import WpProductPage from "../../components/template-parts/wordpress-product-page"
+import WpVenue from "../../components/template-parts/wordpress-venue"
 
 export default ({ data }) => {
-  const { page } = data
-  const { template } = page
-  if (template) {
-    const { templateName } = template
-    switch (templateName ) {
-      case "Product/General Page":
-        return (<WpProductPage page={page} />)
-      case "Default":
-      default:
-        return (<WpDefaultPage page={page} />)
-    }
-  }
-  return (<WpDefaultPage page={page} />)
-
+  const { venue } = data
+  console.log(venue)
+  return (<WpVenue venue={venue} />)
 }
 
 export const query = graphql`
   query venue($id: String!) {
-    page: wpVenue(id: { eq: $id }) {
+    venue: wpVenue(id: { eq: $id }) {
       title
       address
       city

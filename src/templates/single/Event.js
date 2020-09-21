@@ -1,12 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
-import WpDefaultPage from "../../components/template-parts/wordpress-page"
-import WpProductPage from "../../components/template-parts/wordpress-product-page"
+import WpEvent from "../../components/template-parts/wordpress-event"
 
 export default ({ data }) => {
   const { event } = data
   console.log( event )
-
+  return (<WpEvent page={event} />)
 }
 
 export const query = graphql`
@@ -15,20 +14,6 @@ export const query = graphql`
       title
       excerpt
       content
-      template {
-        ... on WpDefaultTemplate {
-          templateName
-        }
-        ... on WpHomePageTemplate {
-          templateName
-        }
-        ... on WpTopLevelPageTemplate {
-          templateName
-        }
-        ... on WpProductGeneralPageTemplate {
-          templateName
-        }
-      }
       featuredImage {
         node {
           remoteFile {
