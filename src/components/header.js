@@ -180,7 +180,10 @@ const Header = () => {
                 backgroundColor: `white`,
               }}
             >
-              <SearchModal />
+              <SearchModal
+                topOffset={topOffset}
+                isMobile={width > 655 ? false : true}
+              />
             </animated.div>
           )
       )}

@@ -13,7 +13,6 @@ const StyledDiv = styled.div`
   @media screen and ${breakpoints.tabletS} {
     position: absolute;
     width: 50%;
-    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
@@ -31,7 +30,7 @@ const StyledInput = styled.input`
   }
 `
 
-const SearchModal = () => {
+const SearchModal = ({ topOffset, isMobile }) => {
   const [searchText, setSearchText] = useState("")
 
   const searchHandler = e => {
@@ -42,7 +41,9 @@ const SearchModal = () => {
 
   return (
     <div>
-      <StyledDiv>
+      <StyledDiv
+        style={{  top: isMobile ? `10%` : `calc(50% - ${topOffset}px)`  }}
+      >
         <StyledInput
           type="text"
           placeholder="Search.."
