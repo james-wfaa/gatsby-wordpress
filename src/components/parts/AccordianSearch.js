@@ -5,6 +5,10 @@ import { colors, sizes, breakpoints } from "../css-variables"
 import StyledHeader from "./StyledHeader"
 import AccordianSearchBox from "./AccordianSearchBox"
 import WcIcon from "../../svg/wechat_icon_gray.svg"
+import DateImg from "../../assets/images/accordian_date.png"
+import CategoryImg from "../../assets/images/accordian_category.png"
+import FiltersImg from "../../assets/images/accordian_filters.png"
+import LocationImg from "../../assets/images/accordian_location.png"
 
 const StyledWrapper = styled.div`
   background-color: ${colors.navcardGrey};
@@ -51,33 +55,46 @@ const StyledButtonWrapper = styled.div`
 const FilterBox = styled.div`
   display: grid;
   grid-gap: 24px;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
   width: 80%;
   margin: 0 auto;
+  @media screen and ${breakpoints.tablet} {
+    grid-template-columns: 1fr;
+    grid-template-columns: repeat(4, 1fr);
+  }
 `
 const FilterButton = styled.button`
   position: relative;
   text-align: left;
-  padding-left: ${sizes.s48};
+  padding-left: ${sizes.s36};
   color: ${colors.titleWhite};
   width: 100%;
   background-color: ${colors.buttonRed};
-  height: 60px;
+  height: 48px;
   border: none;
   &:focus {
     outline: none;
   }
   cursor: pointer;
+  &.date:before {
+        content: url(${DateImg});
+    }
+    &.category:before {
+        content: url(${CategoryImg});
+    }
+    &.filters:before {
+        content: url(${FiltersImg});
+    }
+    &.location:before {
+        content: url(${LocationImg});
+    }
   &:before {
     position: absolute;
-    left: 24px;
+    left: 12px;
     top: 50%;
     transform: translateY(-50%);
     width: 14px;
     height: 14px;
-    background-color: ${colors.titleWhite};
-    mask: url(${WcIcon});
-    content: "";
   }
   span {
     width: 20px;
@@ -118,10 +135,10 @@ const AccordianSearch = () => {
           <animated.div style={searchstyles}>
             <AccordianSearchBox />
             <FilterBox>
-              <FilterButton>Date</FilterButton>
-              <FilterButton>Location</FilterButton>
-              <FilterButton>Category</FilterButton>
-              <FilterButton>Filters</FilterButton>
+              <FilterButton className="date">Date</FilterButton>
+              <FilterButton className="location">Location</FilterButton>
+              <FilterButton className="category">Category</FilterButton>
+              <FilterButton className="filters">Filters</FilterButton>
             </FilterBox>
           </animated.div>
         </StyledButtonWrapper>

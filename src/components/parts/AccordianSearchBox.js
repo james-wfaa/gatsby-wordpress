@@ -10,6 +10,7 @@ const StyledDiv = styled.div`
   grid-template-columns: 1fr 30px;
   border: 1px solid grey;
   background-color: white;
+  height: 48px;
 
   span {
     width: 43px;
