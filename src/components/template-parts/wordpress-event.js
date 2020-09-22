@@ -10,7 +10,7 @@ function WordPressPage({ page }) {
 
   return (
     <Layout>
-      <PageSection heading={title} pageTitle><div>Default template</div>
+      <PageSection heading={title} pageTitle><div>Event template</div>
       {!!featuredImage?.node?.remoteFile?.childImageSharp && (
           <FeaturedImage featuredImage={featuredImage} />
       )}

@@ -4,7 +4,7 @@ import HeroIntroSection from "../page-sections/HeroIntroSection"
 import WordPressContent from "../content-blocks/WordPressContent"
 
 function WordPressPage({ page }) {
-  const { title, content, excerpt, featuredImage, introButtons } = page
+  const { content, excerpt, featuredImage, introButtons } = page
   const { introButtons: buttons } = introButtons
   console.log(buttons)
   console.log(introButtons)

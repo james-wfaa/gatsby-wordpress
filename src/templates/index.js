@@ -91,7 +91,7 @@ export const query = graphql`
     allWpPost(
       limit: $perPage
       skip: $offset
-      filter: { nodeType: { in: ["Post", "Page", "Alot"] } }
+      filter: { nodeType: { in: ["Post", "Page", "Event"] } }
       sort: { fields: date, order: DESC }
     ) {
       nodes {
