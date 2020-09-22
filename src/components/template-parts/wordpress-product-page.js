@@ -2,12 +2,12 @@ import React from "react"
 import Layout from "../layout"
 import HeroIntroSection from "../page-sections/HeroIntroSection"
 import WordPressContent from "../content-blocks/WordPressContent"
+import WordPressContentBlocks from "../content-blocks/WordPressContentBlocks"
 
 function WordPressPage({ page }) {
-  const { content, excerpt, featuredImage, introButtons } = page
+  const { content, excerpt, featuredImage, introButtons, blocks } = page
   const { introButtons: buttons } = introButtons
-  console.log(buttons)
-  console.log(introButtons)
+  console.log(blocks)
   const normalizedButtons = buttons.map(item=>{
     return {
       link: item.link.uri,
@@ -31,6 +31,7 @@ function WordPressPage({ page }) {
       />
 
     <WordPressContent content={content} />
+    <WordPressContentBlocks blocks={blocks} />
 
      
     </Layout>

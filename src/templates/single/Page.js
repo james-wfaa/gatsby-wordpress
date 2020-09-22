@@ -6,6 +6,7 @@ import WpProductPage from "../../components/template-parts/wordpress-product-pag
 export default ({ data }) => {
   const { page } = data
   const { template } = page
+  console.log(page)
   if (template) {
     const { templateName } = template
     switch (templateName ) {
@@ -59,6 +60,22 @@ export const query = graphql`
             }
           }
         }
+      }
+      blocks {
+        name
+        originalContent
+        dynamicContent
+        innerBlocks {
+          name
+          originalContent
+          dynamicContent
+          innerBlocks {
+            name
+            originalContent 
+            dynamicContent
+          }
+        }
+
       }
     }
   }
