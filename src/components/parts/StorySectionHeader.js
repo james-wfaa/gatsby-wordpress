@@ -5,7 +5,7 @@ import { sizes, colors, fonts, breakpoints } from '../css-variables'
 const PageSectionHeader = ({ className, heading, author, categories, date, excerpt }) => {
 
     const classesList = `${className}`
-    const categoryList = categories.nodes.map((category) => (
+    const categoryList = !categories ? null : categories.nodes.map((category) => (
         <a className="category__item" href={`{category/${category.slug}}`}>{category.name}</a>
       ))
       
