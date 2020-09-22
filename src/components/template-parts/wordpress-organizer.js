@@ -21,4 +21,4 @@ function WpOrganizer({ organizer }) {
   )
 }
 
-export default WpVenue
+export default WpOrganizer
