@@ -72,60 +72,59 @@ const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeadi
 }
 
 const StyledHeroIntroSection = styled(HeroIntroSection)`
-position: relative;
-scroll-behavior: smooth;
-margin-bottom: -80px;
-.downscroll_after {
+  position: relative;
+  scroll-behavior: smooth;
+  margin-bottom: -80px;
+  .downscroll_after {
     @media screen and ${breakpoints.tabletS} {
-        position: absolute;
-        top: 0;
-        right: -45px;
-        height: 80px;
-        width: 222px;
-        z-index: 1000;
-        background-color: ${colors.bgRed} !important;
-        transform: skew(135deg);
-        background-image: none;
-     }
-}
-&--slim {
+      position: absolute;
+      top: 0;
+      right: -45px;
+      height: 80px;
+      width: 222px;
+      z-index: 4;
+      background-color: ${colors.bgRed} !important;
+      transform: skew(135deg);
+      background-image: none;
+    }
+  }
+  &--slim {
     margin-bottom: -40px;
-}
-.downanchor {
-   display: block;
-   width: 1px;
-   height: 0;
-
-}
-&__hero {
+  }
+  .downanchor {
+    display: block;
+    width: 1px;
+    height: 0;
+  }
+  &__hero {
     min-height: 375px;
     @media screen and ${breakpoints.tabletS} {
-        min-height: 500px;
+      min-height: 500px;
     }
     @media screen and ${breakpoints.laptopS} {
-        min-height: 720px;
-     }
-     &--jumbo {
-        min-height: 696px;
-        @media screen and ${breakpoints.tabletS} {
-            min-height: 800px;
-         }
-        @media screen and ${breakpoints.laptopS} {
-            min-height: 1097px;
-         }
-     }
-     &--slim {
-        min-height: 210px;
-        @media screen and ${breakpoints.tabletS} {
-            min-height: 320px;
-        }
-        @media screen and ${breakpoints.laptopS} {
-            min-height: 480px;
-        }
-     }
-     background-blend-mode: multiply;
-}
-&__downscroll {
+      min-height: 720px;
+    }
+    &--jumbo {
+      min-height: 696px;
+      @media screen and ${breakpoints.tabletS} {
+        min-height: 800px;
+      }
+      @media screen and ${breakpoints.laptopS} {
+        min-height: 1097px;
+      }
+    }
+    &--slim {
+      min-height: 210px;
+      @media screen and ${breakpoints.tabletS} {
+        min-height: 320px;
+      }
+      @media screen and ${breakpoints.laptopS} {
+        min-height: 480px;
+      }
+    }
+    background-blend-mode: multiply;
+  }
+  &__downscroll {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -141,71 +140,64 @@ margin-bottom: -80px;
     text-decoration: none;
 
     &:hover {
-        &:before {
-            opacity: 0.75;
-        }
+      &:before {
+        opacity: 0.75;
+      }
     }
 
     &:before {
-        position: absolute;
-        top: 0px;
-        left: 0;
-        height: 80px;
-        width: 100%;
-        background-color: ${colors.bgRed};
-        opacity: 0.7;
+      position: absolute;
+      top: 0px;
+      left: 0;
+      height: 80px;
+      width: 100%;
+      background-color: ${colors.bgRed};
+      opacity: 0.7;
 
-        content: '';
-        mix-blend-mode: multiply;
-
+      content: "";
+      mix-blend-mode: multiply;
     }
-
 
     @media screen and ${breakpoints.tabletS} {
-        &:before {
-            width: calc(100% - 122px);
-        }
-
-     }
-
-     .downscroll_main {
-         background-image: url(./down-carat@2x.png);
-         z-index: 3;
-         width: 50px;
-         height: 15px;
-         margin: 0 auto;
-         color: transparent;
-         background-size: cover;
-
-     }
-     &--slim {
-        height: 40px;
-        top: -40px;
-        div{
-            display: none;
-            @media screen and ${breakpoints.tabletS} {
-                display: block;
-            }
-        }
-        &:after {
-            position: absolute;
-            top: 0;
-            right: -45px;
-            height: 40px;
-            width: 161px;
-            content: '';
-            background-color: ${colors.bgRed} !important;
-            transform: skew(135deg);
-            @media screen and ${breakpoints.tabletS} {
-                width: 222px;
-            }
-
-
-        }
+      &:before {
+        width: calc(100% - 122px);
+      }
     }
 
-}
-&__heading {
+    .downscroll_main {
+      background-image: url(./down-carat@2x.png);
+      z-index: 3;
+      width: 50px;
+      height: 15px;
+      margin: 0 auto;
+      color: transparent;
+      background-size: cover;
+    }
+    &--slim {
+      height: 40px;
+      top: -40px;
+      div {
+        display: none;
+        @media screen and ${breakpoints.tabletS} {
+          display: block;
+        }
+      }
+      &:after {
+        position: absolute;
+        top: 0;
+        right: -45px;
+        height: 40px;
+        width: 161px;
+        content: "";
+        background-color: ${colors.bgRed} !important;
+        transform: skew(135deg);
+        @media screen and ${breakpoints.tabletS} {
+          width: 222px;
+        }
+      }
+    }
+  }
+  &__heading {
     position: absolute;
 
     width: 300px;
@@ -216,48 +208,45 @@ margin-bottom: -80px;
     color: white;
     font-size: ${sizes.s32};
     text-align: center;
-    text-shadow: 10px 10px 30px rgba(0,0,0,0.5);
+    text-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
     span {
-        font-weight: bold;
-        font-family: ${fonts.eaves};
-        font-size: ${sizes.s52};
-     }
+      font-weight: bold;
+      font-family: ${fonts.eaves};
+      font-size: ${sizes.s52};
+    }
     @media screen and ${breakpoints.tabletS} {
-        width: 450px;
-        left: calc(50% - 225px);
-        font-size: ${sizes.s60};
-        span {
-            font-size: ${sizes.s100};
-        }
-     }
+      width: 450px;
+      left: calc(50% - 225px);
+      font-size: ${sizes.s60};
+      span {
+        font-size: ${sizes.s100};
+      }
+    }
     @media screen and ${breakpoints.laptopS} {
-        width: 600px;
-        left: calc(50% - 300px);
-        top: calc(50% - 50px);
-        &--jumbo {
-            top: calc(50% - 70px);
-        }
-
-     }
-
-}
-&__heading--jumbo {
+      width: 600px;
+      left: calc(50% - 300px);
+      top: calc(50% - 50px);
+      &--jumbo {
+        top: calc(50% - 70px);
+      }
+    }
+  }
+  &__heading--jumbo {
     top: calc(50% - 70px);
     @media screen and ${breakpoints.tabletS} {
-        top: calc(50% - 100px) !important;
-     }
- }
+      top: calc(50% - 100px) !important;
+    }
+  }
 
-&__redbox {
+  &__redbox {
     position: relative;
     &--background {
-        top: -80px;
+      top: -80px;
     }
     &--slim {
-        top: -40px;
+      top: -40px;
     }
-}
-
+  }
 `
 
 export default StyledHeroIntroSection
