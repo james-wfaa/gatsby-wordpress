@@ -2,9 +2,9 @@ import React from "react"
 import styled from 'styled-components'
 import { sizes, colors, fonts, breakpoints } from '../css-variables'
 
-const PageSectionHeader = ({ className, heading, author, categories, date, excerpt }) => {
+const PageSectionHeader = ({ className, heading, author, categories, date, excerpt, series, event = false }) => {
 
-    const classesList = `${className}`
+    const classesList = !event ? `${className}` : `${className} ${className}--event`
     const categoryList = !categories ? null : categories.nodes.map((category) => (
         <a className="category__item" href={`{category/${category.slug}}`}>{category.name}</a>
       ))
@@ -24,6 +24,9 @@ const PageSectionHeader = ({ className, heading, author, categories, date, excer
                 { categories && (
                     <div className={`${className}__category`}>{categoryList}<span> ></span></div>
                 )}
+                { series && (
+                    <div className={`${className}__series`}>{series}</div>
+                )}
             </div>
             { excerpt && (
                 <div className={`${className}__excerpt`} dangerouslySetInnerHTML={{ __html: excerpt }} />       
@@ -36,7 +39,7 @@ const PageSectionHeader = ({ className, heading, author, categories, date, excer
 const StyledPageSectionHeader = styled(PageSectionHeader)`
     position: relative;
     min-width: 300px;
-    width: 80%;
+    width: 300px;
     max-width: 712px;
     margin-left: auto;
     margin-right: auto;
@@ -47,6 +50,22 @@ const StyledPageSectionHeader = styled(PageSectionHeader)`
     @media screen and ${breakpoints.laptopL} {
         width: 712px;
     }
+
+    &--event{
+        @media screen and ${breakpoints.tabletS} {
+            width: 536px;
+            max-width: 536px;
+          }
+          @media screen and ${breakpoints.laptopS} {
+            width: 815px;
+            max-width: 815px;
+          }
+        @media screen and ${breakpoints.laptopL} {
+            width: 1080px;
+            max-width: 1080px;
+        }
+    }
+
     h1 {
     
         color: ${colors.titleColor};
