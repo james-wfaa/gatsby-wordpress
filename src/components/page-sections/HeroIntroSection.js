@@ -1,19 +1,19 @@
 import React from 'react'
-import styled from 'styled-components'  
+import styled from 'styled-components'
 import { breakpoints, sizes, fonts, colors } from '../css-variables'
 import BackgroundImage from 'gatsby-background-image'
 import IntroRedPageSection from './IntroRedPageSection'
+import VimeoVideo from '../content-modules/VimeoVideo'
 
 
-const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeading, excerpt, buttons}) => {
+const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeading, excerpt, buttons, videoID}) => {
 
-    console.log(buttons)
-    const background =  typeof heroImage !== "undefined" && heroImage !== null 
+    const background =  typeof heroImage !== "undefined" && heroImage !== null
 
     let classes = className;
 
     let heroClasses = `${className}__hero`
-    
+
     switch (heroSize) {
         case 'jumbo':
             heroClasses = `${className}__hero ${className}__hero--jumbo`
@@ -24,7 +24,7 @@ const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeadi
         default:
             break
     }
-        
+
     const headingClasses = (heroSize === "jumbo" ) ? `${className}__heading ${className}__heading--jumbo` : `${className}__heading`
 
     let redboxClass = background ? `${className}__redbox ${className}__redbox--background` : `${className}__redbox`
@@ -35,16 +35,15 @@ const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeadi
         classes += ` ${className}--slim`
     }
 
-    
-  
 
     return (
         <div className={classes}>
-            { background && (
+            {videoID ?
+            <VimeoVideo videoID={videoID} />
+            : background ?
             <BackgroundImage
             Tag="div"
             className={heroClasses}
-
             fluid={heroImage.childImageSharp.fluid}
             preserveStackingContext
              >
@@ -54,13 +53,20 @@ const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeadi
                     </div>
                 )}
             </BackgroundImage>
-            )
-        }
-            <a  className={downscrollClass} href={`#${className}__downscroll`} title="Scroll down to content"><div>down</div></a>
+            : null}
+            <div style={{position: `relative`}}>
+
+            <a className={downscrollClass} href={`#${className}__downscroll`} title="Scroll down to content">
+                <div className="downscroll_main">down</div>
+                <div className="downscroll_after"></div>
+            </a>
+            </div>
+
             <div className={redboxClass}>
                 <div className="downanchor" id={`${className}__downscroll`}>&nbsp;</div>
                 <IntroRedPageSection excerpt={excerpt} heading={redHeading} headingAlt headingCompact buttons={buttons} buttonsAlt buttonsCompact />
             </div>
+
         </div>
     )
 }
@@ -69,6 +75,19 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
 position: relative;
 scroll-behavior: smooth;
 margin-bottom: -80px;
+.downscroll_after {
+    @media screen and ${breakpoints.tabletS} {
+        position: absolute;
+        top: 0;
+        right: -45px;
+        height: 80px;
+        width: 222px;
+        z-index: 1000;
+        background-color: ${colors.bgRed} !important;
+        transform: skew(135deg);
+        background-image: none;
+     }
+}
 &--slim {
     margin-bottom: -40px;
 }
@@ -120,7 +139,7 @@ margin-bottom: -80px;
     color: ${colors.titleWhite};
     text-align: center;
     text-decoration: none;
-    
+
     &:hover {
         &:before {
             opacity: 0.75;
@@ -135,40 +154,29 @@ margin-bottom: -80px;
         width: 100%;
         background-color: ${colors.bgRed};
         opacity: 0.7;
-        z-index: -1;
-    
+
         content: '';
-    
+        mix-blend-mode: multiply;
+
     }
-    
+
 
     @media screen and ${breakpoints.tabletS} {
         &:before {
             width: calc(100% - 122px);
         }
-        &:after {
-            position: absolute;
-            top: 0;
-            right: -45px;
-            height: 80px;
-            width: 222px;
-            content: '';
-            background-color: ${colors.bgRed} !important;
-            transform: skew(135deg);
-         
-        
-        }
-        
-        
+
      }
 
-     div {
+     .downscroll_main {
          background-image: url(./down-carat@2x.png);
+         z-index: 3;
          width: 50px;
          height: 15px;
          margin: 0 auto;
          color: transparent;
          background-size: cover;
+
      }
      &--slim {
         height: 40px;
@@ -191,20 +199,20 @@ margin-bottom: -80px;
             @media screen and ${breakpoints.tabletS} {
                 width: 222px;
             }
-         
-        
+
+
         }
     }
 
 }
 &__heading {
     position: absolute;
-    
+
     width: 300px;
     left: calc(50% - 150px);
     top: calc(50% - 50px);
     font-style: italic;
-   
+
     color: white;
     font-size: ${sizes.s32};
     text-align: center;
@@ -229,9 +237,9 @@ margin-bottom: -80px;
         &--jumbo {
             top: calc(50% - 70px);
         }
-        
+
      }
-     
+
 }
 &__heading--jumbo {
     top: calc(50% - 70px);
