@@ -30,7 +30,6 @@ function WordPressPage({ page }) {
       buttons={normalizedButtons}
       />
 
-    <WordPressContent content={content} />
     <WordPressContentBlocks blocks={blocks} />
 
      

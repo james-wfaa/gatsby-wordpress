@@ -9,7 +9,7 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 
-const PageSection = ({className, preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, children }) => {
+const PageSection = ({className, preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, fromBlocks, children }) => {
             
         
     const background =  typeof bgImage !== "undefined" && bgImage !== null 
@@ -23,14 +23,14 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
     const popClass = popOut ? `${className}__popOut` : ''
 
     return (
-        <div>
+        <div className={`${className}__wrapper`}>
             { ! background &&  (
             <div className={`${className} ${altClass} ${hasPreHeading} ${hasNoHeading} ${topBorderClass} ${popClass}` }>
                 { preheading && (
                 <div className={`${className}__preheading`}>{preheading}</div>
             )}
                   { heading && (
-                <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} withSocial={withSocial} headingCompact={headingCompact} />
+                <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} withSocial={withSocial} headingCompact={headingCompact} fromBlocks={fromBlocks} />
             )}
             { excerpt && (
                 <div className="excerpt"  dangerouslySetInnerHTML={{ __html: excerpt }} />
@@ -75,11 +75,18 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
 }
 
 const StyledPageSection = styled(PageSection)`
-    margin: 0 auto;
+   
     position: relative;
     text-align: center;
     padding-top: 88px;
-    padding-bottom: 88px;
+    &__wrapper {
+        margin: 0 auto;
+        
+        padding-bottom: 88px;
+        &:last-child {
+            padding-bottom: 128px;
+        }
+    }
 
     &--hasPreHeading {
         padding-top: 0;
@@ -88,7 +95,7 @@ const StyledPageSection = styled(PageSection)`
         padding-top: 58px;
     }
     &--topborder {
-        border-top: 30px solid ${colors.sectionBorder};
+        border-top: ${sizes.s36} solid ${colors.sectionBorder};
     }
     &--addPad {
         padding-bottom: 116px;
