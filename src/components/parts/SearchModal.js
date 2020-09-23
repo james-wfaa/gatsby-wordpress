@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { breakpoints, colors } from "../css-variables"
 import { useLockBodyScroll } from "../hooks"
-import SwifType from "./SwifType"
+
 
 const StyledDiv = styled.div`
   width: 80%;
@@ -13,7 +13,6 @@ const StyledDiv = styled.div`
   @media screen and ${breakpoints.tabletS} {
     position: absolute;
     width: 50%;
-    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
@@ -31,7 +30,7 @@ const StyledInput = styled.input`
   }
 `
 
-const SearchModal = () => {
+const SearchModal = ({ topOffset, isMobile }) => {
   const [searchText, setSearchText] = useState("")
 
   const searchHandler = e => {
@@ -40,14 +39,11 @@ const SearchModal = () => {
 
   useLockBodyScroll()
 
-  useEffect(() => {
-    // _st("install", "eyjN94XLv8vdiF3H87-P", "2.0.0")
-  }, [])
-
   return (
     <div>
-      <SwifType />
-      <StyledDiv>
+      <StyledDiv
+        style={{  top: isMobile ? `10%` : `calc(50% - ${topOffset}px)`  }}
+      >
         <StyledInput
           type="text"
           placeholder="Search.."

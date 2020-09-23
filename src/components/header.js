@@ -11,8 +11,11 @@ import Logo from "../svg/waa_logo.svg" // Tell webpack this JS file uses this im
 const Header = () => {
   const [open, setOpen] = useState(false)
   const [opensearch, setOpenSearch] = useState(false)
+  const [topOffset, setTopOffset] = useState(0)
 
   const { width } = useWindowSize()
+
+  const menuRef = useRef(null)
 
   const transition1 = useTransition(open, null, {
     from: { transform: `translate3d(100%, 0, 0)` },
@@ -27,17 +30,24 @@ const Header = () => {
   })
 
   const toggleMenu = () => {
+    getMenuHeight()
     setOpen(!open)
   }
 
   const toggleSearch = e => {
     e.preventDefault()
+    getMenuHeight()
     setOpenSearch(!opensearch)
+  }
+
+  const getMenuHeight = () => {
+    let pxToTop = menuRef.current.getBoundingClientRect().bottom
+    setTopOffset(pxToTop)
   }
 
   return (
     <StyledHeader className={`header ${open ? "open" : ""}`}>
-      <nav>
+      <nav ref={menuRef}>
         <div className={`__rednav ${open || opensearch ? "suppress" : ""}`}>
           <div className="inner">
             <ul>
@@ -97,11 +107,18 @@ const Header = () => {
                   className="menu open"
                   style={{ justifySelf: `center` }}
                   onClick={e => toggleSearch(e)}
+                  onKeyPress={e => toggleSearch(e)}
+                  tabIndex="0"
                 >
                   <span></span>
                 </div>
               ) : (
-                <span className="search" style={{ justifySelf: `center` }}>
+                <span
+                  className="search"
+                  onKeyPress={e => toggleSearch(e)}
+                  tabIndex="0"
+                  style={{ justifySelf: `center` }}
+                >
                   <a
                     onClick={e => toggleSearch(e)}
                     style={{ margin: `0 auto` }}
@@ -136,12 +153,12 @@ const Header = () => {
                 ...props,
                 position: `fixed`,
                 left: 0,
+                top: topOffset,
                 zIndex: 5,
                 width: `100vw`,
                 height: `100%`,
                 backgroundColor: `white`,
               }}
-              className="searchmodal"
             >
               {width > 655 ? <PrimaryMenu /> : <PrimaryMenuMobile />}
             </animated.div>
@@ -156,14 +173,17 @@ const Header = () => {
                 ...props,
                 position: `fixed`,
                 left: 0,
+                top: topOffset,
                 zIndex: 5,
                 width: `100vw`,
                 height: `100%`,
                 backgroundColor: `white`,
               }}
-              className="searchmodal"
             >
-              <SearchModal />
+              <SearchModal
+                topOffset={topOffset}
+                isMobile={width > 655 ? false : true}
+              />
             </animated.div>
           )
       )}
