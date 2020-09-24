@@ -57,6 +57,7 @@ const LeftMenu = styled.div`
     li {
       list-style: none;
       margin-bottom: 0;
+
       a {
         text-decoration: none;
         color: ${colors.navMenuBlack};
@@ -69,8 +70,7 @@ const LeftMenu = styled.div`
         outline: none;
         p {
           position: relative;
-          padding-top: ${sizes.s16};
-          padding-bottom: ${sizes.s16};
+          padding-bottom: ${sizes.s32};
           width: fit-content;
         }
       }
@@ -170,8 +170,7 @@ const SpanArrowRight = styled.span`
   &:after {
     position: absolute;
     content: "";
-    top: 50%;
-    transform: translateY(-50%);
+    top: 8px;
     width: 0;
     height: 0;
     border-top: 6px solid transparent;
