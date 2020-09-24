@@ -11,7 +11,6 @@ import EventRegistration from "../content-blocks/EventRegistration"
 function WordPressPage({ page }) {
   const { title, content, featuredImage, date, startDate, endDate, link } = page
 
-
   return (
     <Layout>
       <PageSection>

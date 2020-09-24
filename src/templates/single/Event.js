@@ -15,6 +15,7 @@ export const query = graphql`
       excerpt
       content
       link
+      url
       featuredImage {
         node {
           remoteFile {

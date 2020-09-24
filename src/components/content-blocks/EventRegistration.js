@@ -16,6 +16,8 @@ const EventRegistration = ({className, content, date, registrationLink}) => {
                 { date && (
                     <div className={`${className}__dateDay`}>{date}{registrationLink}</div>
                 )}
+                { registrationLink && (<RegistrationButtons buttonsAlt='reg' registrationLink={registrationLink} />
+                )}
             </div>
         </div>
     )

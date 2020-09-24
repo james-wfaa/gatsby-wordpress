@@ -7,9 +7,10 @@ const RegistrationButtons = ({ className, buttonsAlt, registrationLink }) => {
 
     const buttons = [
         {
-          link: {registrationLink},
-          text: "Registration",
-        },]
+            link: '"' + {registrationLink} + '"',
+            text: "Registration",
+        },
+        ]
 
 
     const renderedButtons = buttons.map(item =>(
