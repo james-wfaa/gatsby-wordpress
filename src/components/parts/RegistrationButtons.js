@@ -8,7 +8,7 @@ const RegistrationButtons = ({ className, buttonsAlt, registrationLink }) => {
     const buttons = [
         {
             link: '"' + {registrationLink} + '"',
-            text: "Registration",
+            text: "Register",
         },
         ]
 

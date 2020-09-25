@@ -14,11 +14,11 @@ function WordPressPage({ page }) {
   return (
     <Layout>
       <PageSection>
-      {!!featuredImage?.node?.remoteFile?.childImageSharp && (
-          <FeaturedImage featuredImage={featuredImage} />
-      )}
+        {!!featuredImage?.node?.remoteFile?.childImageSharp && (
+            <FeaturedImage featuredImage={featuredImage} />
+        )}
         <StorySectionHeader heading={title} />
-        <EventRegistration date={date} registrationLink={link}></EventRegistration>
+        <EventRegistration date={date} registrationLink={link} startDate={startDate} endDate={endDate}></EventRegistration>
         <WordPressContent content={content} />
       </PageSection>
     </Layout>
