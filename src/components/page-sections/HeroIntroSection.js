@@ -1,17 +1,40 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { breakpoints, sizes, fonts, colors } from '../css-variables'
 import BackgroundImage from 'gatsby-background-image'
-import IntroRedPageSection from './IntroRedPageSection'
+import IntroPageSection from "./IntroPageSection"
 import VimeoVideo from '../content-modules/VimeoVideo'
 
 
-const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeading, excerpt, buttons, videoURL}) => {
+const HeroIntroSection = ({
+  className,
+  videoURL,
+  variant,
+  heroSize,
+  heroImage,
+  heroHeading,
+  redHeading,
+  excerpt,
+  buttons,
+}) => {
   const background = typeof heroImage !== "undefined" && heroImage !== null
 
   let classes = className
 
   let heroClasses = `${className}__hero`
+
+  let variantObject = {
+    background_color: colors.bgRed,
+    color: colors.titleWhite,
+  };
+  switch (variant) {
+    case 'white':
+      variantObject['background_color'] = colors.bgWhite;
+      variantObject['color'] = colors.bgRed;
+      break;
+    default:
+      break;
+  }
 
   switch (heroSize) {
     case "jumbo":
@@ -39,6 +62,12 @@ const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeadi
     classes += ` ${className}--slim`
   }
 
+  let downscrollStyle = css`
+   &:before {
+    background-color: ${variantObject.background_color};
+   }
+  `
+
   return (
     <div className={classes}>
       {videoURL ? (
@@ -65,9 +94,10 @@ const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeadi
           className={downscrollClass}
           href={`#${className}__downscroll`}
           title="Scroll down to content"
+          css={downscrollStyle}
         >
           <div className="downscroll_main">down</div>
-          <div className="downscroll_after"></div>
+          <div className="downscroll_after" style={{backgroundColor: variantObject.background_color}}></div>
         </a>
       </div>
 
@@ -75,9 +105,10 @@ const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeadi
         <div className="downanchor" id={`${className}__downscroll`}>
           &nbsp;
         </div>
-        <IntroRedPageSection
+        <IntroPageSection
           excerpt={excerpt}
           heading={redHeading}
+          variantObject={variantObject}
           headingAlt
           headingCompact
           buttons={buttons}
@@ -101,7 +132,6 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
       height: 80px;
       width: 222px;
       z-index: 4;
-      background-color: ${colors.bgRed} !important;
       transform: skew(135deg);
       background-image: none;
     }
@@ -169,9 +199,7 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
       left: 0;
       height: 80px;
       width: 100%;
-      background-color: ${colors.bgRed};
       opacity: 0.7;
-
       content: "";
       mix-blend-mode: multiply;
     }
