@@ -31,6 +31,7 @@ const HeroIntroSection = ({
     case 'white':
       variantObject['background_color'] = colors.bgWhite;
       variantObject['color'] = colors.bgRed;
+      variantObject["scroll_color"] = "#9E9E9E"
       break;
     default:
       break;
@@ -63,9 +64,9 @@ const HeroIntroSection = ({
   }
 
   let downscrollStyle = css`
-   &:before {
-    background-color: ${variantObject.background_color};
-   }
+    &:before {
+      background-color: ${variantObject.scroll_color};
+    }
   `
 
   return (
@@ -235,7 +236,6 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
         height: 40px;
         width: 161px;
         content: "";
-        background-color: ${colors.bgRed} !important;
         transform: skew(135deg);
         @media screen and ${breakpoints.tabletS} {
           width: 222px;

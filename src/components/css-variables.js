@@ -131,7 +131,7 @@ export const breakpoints = {
 }
 
 export const mixins = {
-  cardTitle: `
+    cardTitle: `
         font-family: ${fonts.eavesNarrow};
         font-size: ${sizes.s24};
         font-weight: bold;
@@ -141,7 +141,7 @@ export const mixins = {
             font-size: ${sizes.s32};
         }
     `,
-  cardDate: `
+    cardDate: `
         font-family: ${fonts.eaves};
         font-size: ${sizes.s42};
         font-weight: bold;
@@ -152,7 +152,7 @@ export const mixins = {
         }
 
     `,
-  category: `
+    category: `
         font-size: ${sizes.s13};
         font-weight: 800;
         color: ${colors.categoryGrey};
@@ -161,7 +161,7 @@ export const mixins = {
             font-size: ${sizes.s14};
         }
     `,
-  textlink: `
+    textlink: `
         &:link,
         &:visited {
             color: ${colors.linkText};
@@ -176,21 +176,21 @@ export const mixins = {
 
     `,
 
-  tag: `
+    tag: `
         font-size: ${sizes.s14};
         color: ${colors.categoryGrey};
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s15};
         }
     `,
-  venue: `
+    venue: `
         font-size: ${sizes.s16};
         color: ${colors.cardText};
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s18};
         }
     `,
-  location: `
+    location: `
         font-weight: bold;
         color: ${colors.cardText};
         @media screen and ${breakpoints.laptopS} {
@@ -198,7 +198,7 @@ export const mixins = {
         }
 
     `,
-  buttons: `
+    buttons: `
     display: inline-block;
     width: 100%;
     min-width: 6.5rem;
@@ -257,7 +257,7 @@ export const mixins = {
 
      }
     `,
-  sectionHeader: ` {
+    sectionHeader: ` {
         text-align: center;
         position: relative;
         padding-bottom:  ${sizes.s40};
@@ -299,15 +299,6 @@ export const mixins = {
                 background-color: ${colors.bgWhite};
             }
         }
-        &.headingAlt_variant {
-            h2 {
-                color: ${colors.bgRed}
-            }
-            &:after {
-                background-color: ${colors.bgRed};
-            }
-        }
-
 
         &.social,
         &.compact {
@@ -315,5 +306,5 @@ export const mixins = {
 
         }
        }
-    }`,
+    }`
 }

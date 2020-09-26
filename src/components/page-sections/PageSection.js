@@ -10,68 +10,97 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 const PageSection = ({className, preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, variantObject, bgImage, fromBlocks, children }) => {
+  const background = typeof bgImage !== "undefined" && bgImage !== null
+
+  const classesList = alt ? `${className} ${className}--alt` : className
+  const altClass = alt ? ` ${className}--alt` : ""
+  const plainTextContent = plainText ? ` plaintext` : ""
+  const topBorderClass = topBorder ? ` ${className}--topborder` : ""
+  const hasPreHeading =
+    preheading && !heading ? ` ${className}--hasPreHeading` : ""
+  const hasNoHeading =
+    !preheading && !heading ? ` ${className}--hasNoHeading` : ""
+  const popClass = popOut ? `${className}__popOut` : ""
+  let passedColors;
+
+  if (variantObject) {
+    passedColors = variantObject
+  } else {
+      passedColors = {
+        background_color: colors.bgRed,
+        color: colors.titleWhite,
+      }
+  }
 
 
-    const background =  typeof bgImage !== "undefined" && bgImage !== null
-
-    const classesList = alt ? `${className} ${className}--alt` : className
-    const altClass = alt ? ` ${className}--alt` : ''
-    const plainTextContent = plainText ? ` plaintext` : ''
-    const topBorderClass = topBorder ? ` ${className}--topborder` : ''
-    const hasPreHeading = preheading && !heading ?  ` ${className}--hasPreHeading` : ''
-    const hasNoHeading = !preheading && !heading ? ` ${className}--hasNoHeading` : ''
-    const popClass = popOut ? `${className}__popOut` : ''
-
-    return (
-        <div className={`${className}__wrapper`}>
-            { ! background &&  (
-            <div className={`${className} ${altClass} ${hasPreHeading} ${hasNoHeading} ${topBorderClass} ${popClass}` }>
-                { preheading && (
-                <div className={`${className}__preheading`}>{preheading}</div>
+  return (
+    <div className={`${className}__wrapper`}>
+      {!background && (
+        <div
+          className={`${className} ${altClass} ${hasPreHeading} ${hasNoHeading} ${topBorderClass} ${popClass}`}
+        >
+          {preheading && (
+            <div className={`${className}__preheading`}>{preheading}</div>
+          )}
+          {heading && (
+            <PageSectionHeader
+              heading={heading}
+              headingAlt={headingAlt}
+              pageTitle={pageTitle}
+              withSocial={withSocial}
+              variantObject={passedColors}
+              headingCompact={headingCompact}
+              fromBlocks={fromBlocks}
+            />
+          )}
+          {excerpt && (
+            <div
+              className="excerpt"
+              dangerouslySetInnerHTML={{ __html: excerpt }}
+            />
+          )}
+          <div className={`content ${plainTextContent}`}>{children}</div>
+          {buttons && (
+            <PageSectionButtons
+              buttons={buttons}
+              buttonsAlt={buttonsAlt}
+              compact={buttonsCompact}
+            />
+          )}
+        </div>
+      )}
+      {background && (
+        <BackgroundImage
+          Tag="div"
+          className={`${classesList} ${className}--bgimage`}
+          fluid={bgImage.childImageSharp.fluid}
+          preserveStackingContext
+        >
+          <div className="wrapper">
+            {heading && (
+              <PageSectionHeader
+                heading={heading}
+                pageTitle={pageTitle}
+                withSocial={withSocial}
+                variantObject={variantObject}
+                bgimage
+              />
             )}
-                  { heading && (
-                <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} withSocial={withSocial} variantObject={variantObject} headingCompact={headingCompact} fromBlocks={fromBlocks} />
+            {excerpt && (
+              <div
+                className={`${className}__excerpt ${className}__excerpt--bgimage`}
+                dangerouslySetInnerHTML={{ __html: excerpt }}
+              />
             )}
-            { excerpt && (
-                <div className="excerpt"  dangerouslySetInnerHTML={{ __html: excerpt }} />
-            )}
-            <div className={`content ${plainTextContent}`}>
-                {children}
-            </div>
-            { buttons && (<PageSectionButtons buttons={buttons} buttonsAlt={buttonsAlt} compact={buttonsCompact} />
-            )}
-            </div>
-
-        )}
-        { background && (
-            <BackgroundImage
-            Tag="div"
-            className={`${classesList} ${className}--bgimage`}
-            fluid={bgImage.childImageSharp.fluid}
-            preserveStackingContext
-          ><div className="wrapper">
-            { heading && (
-                <PageSectionHeader heading={heading} pageTitle={pageTitle} withSocial={withSocial} variantObject={variantObject} bgimage />
-            )}
-             { excerpt && (
-                <div className={`${className}__excerpt ${className}__excerpt--bgimage`}  dangerouslySetInnerHTML={{ __html: excerpt }} />
-            )}
-            <div className={`content content--bgimage`}>
-                {children}
-            </div>
-            { buttons && (<PageSectionButtons buttons={buttons} bgimage buttonsAlt/>
+            <div className={`content content--bgimage`}>{children}</div>
+            {buttons && (
+              <PageSectionButtons buttons={buttons} bgimage buttonsAlt />
             )}
           </div>
-
-
-
-      </BackgroundImage>
-        )
-        }
-
-
-        </div>
-    )
+        </BackgroundImage>
+      )}
+    </div>
+  )
 }
 
 const StyledPageSection = styled(PageSection)`

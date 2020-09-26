@@ -50,8 +50,6 @@ export default ({ data }) => {
     prevArrow: <LeftArrow />,
   }
 
-  console.log(data.homeBg)
-
   return (
     <Layout>
       <PageSection
@@ -67,6 +65,7 @@ export default ({ data }) => {
       <HeroIntroSection
         heroImage={data.homeBg}
         heroSize="slim"
+        variant="white"
         excerpt="<p>Since 2020, we have a proud tradition of leadership, support, and advocacy for the UW. We advance the UW’s mission through an active scholarship program, social, and learning opportunities for area alumni, students, and friends.
   </p>"
       />
