@@ -9,105 +9,76 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 
-const PageSection = ({className, preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, variantObject, bgImage, fromBlocks, children }) => {
-  const background = typeof bgImage !== "undefined" && bgImage !== null
-
-  const classesList = alt ? `${className} ${className}--alt` : className
-  const altClass = alt ? ` ${className}--alt` : ""
-  const plainTextContent = plainText ? ` plaintext` : ""
-  const topBorderClass = topBorder ? ` ${className}--topborder` : ""
-  const hasPreHeading =
-    preheading && !heading ? ` ${className}--hasPreHeading` : ""
-  const hasNoHeading =
-    !preheading && !heading ? ` ${className}--hasNoHeading` : ""
-  const popClass = popOut ? `${className}__popOut` : ""
-  let passedColors;
-
-  if (variantObject) {
-    passedColors = variantObject
-  } else {
-      passedColors = {
-        background_color: colors.bgRed,
-        color: colors.titleWhite,
-      }
-  }
+const PageSection = ({className, preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, fromBlocks, children }) => {
 
 
-  return (
-    <div className={`${className}__wrapper`}>
-      {!background && (
-        <div
-          className={`${className} ${altClass} ${hasPreHeading} ${hasNoHeading} ${topBorderClass} ${popClass}`}
-        >
-          {preheading && (
-            <div className={`${className}__preheading`}>{preheading}</div>
-          )}
-          {heading && (
-            <PageSectionHeader
-              heading={heading}
-              headingAlt={headingAlt}
-              pageTitle={pageTitle}
-              withSocial={withSocial}
-              variantObject={passedColors}
-              headingCompact={headingCompact}
-              fromBlocks={fromBlocks}
-            />
-          )}
-          {excerpt && (
-            <div
-              className="excerpt"
-              dangerouslySetInnerHTML={{ __html: excerpt }}
-            />
-          )}
-          <div className={`content ${plainTextContent}`}>{children}</div>
-          {buttons && (
-            <PageSectionButtons
-              buttons={buttons}
-              buttonsAlt={buttonsAlt}
-              compact={buttonsCompact}
-            />
-          )}
-        </div>
-      )}
-      {background && (
-        <BackgroundImage
-          Tag="div"
-          className={`${classesList} ${className}--bgimage`}
-          fluid={bgImage.childImageSharp.fluid}
-          preserveStackingContext
-        >
-          <div className="wrapper">
-            {heading && (
-              <PageSectionHeader
-                heading={heading}
-                pageTitle={pageTitle}
-                withSocial={withSocial}
-                variantObject={variantObject}
-                bgimage
-              />
+    const background =  typeof bgImage !== "undefined" && bgImage !== null
+
+    const classesList = alt ? `${className} ${className}--alt` : className
+    const altClass = alt ? ` ${className}--alt` : ''
+    const plainTextContent = plainText ? ` plaintext` : ''
+    const topBorderClass = topBorder ? ` ${className}--topborder` : ''
+    const hasPreHeading = preheading && !heading ?  ` ${className}--hasPreHeading` : ''
+    const hasNoHeading = !preheading && !heading ? ` ${className}--hasNoHeading` : ''
+    const popClass = popOut ? `${className}__popOut` : ''
+
+    return (
+        <div className={`${className}__wrapper`}>
+            { ! background &&  (
+            <div className={`${className} ${altClass} ${hasPreHeading} ${hasNoHeading} ${topBorderClass} ${popClass}` }>
+                { preheading && (
+                <div className={`${className}__preheading`}>{preheading}</div>
             )}
-            {excerpt && (
-              <div
-                className={`${className}__excerpt ${className}__excerpt--bgimage`}
-                dangerouslySetInnerHTML={{ __html: excerpt }}
-              />
+                  { heading && (
+                <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} withSocial={withSocial} headingCompact={headingCompact} fromBlocks={fromBlocks} />
             )}
-            <div className={`content content--bgimage`}>{children}</div>
-            {buttons && (
-              <PageSectionButtons buttons={buttons} bgimage buttonsAlt />
+            { excerpt && (
+                <div className="excerpt"  dangerouslySetInnerHTML={{ __html: excerpt }} />
+            )}
+            <div className={`content ${plainTextContent}`}>
+                {children}
+            </div>
+            { buttons && (<PageSectionButtons buttons={buttons} buttonsAlt={buttonsAlt} compact={buttonsCompact} />
+            )}
+            </div>
+
+        )}
+        { background && (
+            <BackgroundImage
+            Tag="div"
+            className={`${classesList} ${className}--bgimage`}
+            fluid={bgImage.childImageSharp.fluid}
+            preserveStackingContext
+          ><div className="wrapper">
+            { heading && (
+                <PageSectionHeader heading={heading} pageTitle={pageTitle} withSocial={withSocial} bgimage />
+            )}
+             { excerpt && (
+                <div className={`${className}__excerpt ${className}__excerpt--bgimage`}  dangerouslySetInnerHTML={{ __html: excerpt }} />
+            )}
+            <div className={`content content--bgimage`}>
+                {children}
+            </div>
+            { buttons && (<PageSectionButtons buttons={buttons} bgimage buttonsAlt/>
             )}
           </div>
-        </BackgroundImage>
-      )}
-    </div>
-  )
+
+
+
+      </BackgroundImage>
+        )
+        }
+
+
+        </div>
+    )
 }
 
 const StyledPageSection = styled(PageSection)`
 
     position: relative;
     text-align: center;
-    /* padding-top: 88px; */
+    padding-top: 88px;
     &__wrapper {
         margin: 0 auto;
 

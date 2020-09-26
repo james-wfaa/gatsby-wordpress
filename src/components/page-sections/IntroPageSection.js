@@ -1,9 +1,9 @@
 import styled from "styled-components"
 import { colors, sizes, breakpoints } from "../css-variables"
 
-import PageSection from "./PageSection"
+import HeroData from "./HeroData"
 
-const StyledIntroPageSection = styled(PageSection)`
+const StyledIntroPageSection = styled(HeroData)`
   position: relative;
   color: ${props => props.variantObject.color};
   background-color: ${props => props.variantObject.background_color};

@@ -62,13 +62,16 @@ export default ({ data }) => {
         Connect with us to celebrate UW pride, enjoy Badger spirit and build
         community with each other and the UW.
       </PageSection>
-      <HeroIntroSection
-        heroImage={data.homeBg}
-        heroSize="slim"
-        variant="white"
-        excerpt="<p>Since 2020, we have a proud tradition of leadership, support, and advocacy for the UW. We advance the UW’s mission through an active scholarship program, social, and learning opportunities for area alumni, students, and friends.
-  </p>"
-      />
+      <div style={{maxWidth: `1080px`, margin: `0 auto`}}>
+
+        <HeroIntroSection
+          heroImage={data.homeBg}
+          heroSize="slim"
+          variant="white"
+          excerpt="<p>Since 2020, we have a proud tradition of leadership, support, and advocacy for the UW. We advance the UW’s mission through an active scholarship program, social, and learning opportunities for area alumni, students, and friends.
+    </p>"
+        />
+      </div>
       <PageSection popOut>
         <GridCardD>
           <PromoCardD title="Shop The UW Alumni Store" url="####" isNav />

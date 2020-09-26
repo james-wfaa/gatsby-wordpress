@@ -26,7 +26,8 @@ const HeroIntroSection = ({
   let variantObject = {
     background_color: colors.bgRed,
     color: colors.titleWhite,
-  };
+    scroll_color: colors.bgRed,
+  }
   switch (variant) {
     case 'white':
       variantObject['background_color'] = colors.bgWhite;
