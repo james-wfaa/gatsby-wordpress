@@ -6,7 +6,7 @@ import IntroRedPageSection from './IntroRedPageSection'
 import VimeoVideo from '../content-modules/VimeoVideo'
 
 
-const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeading, excerpt, buttons, videoID}) => {
+const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeading, excerpt, buttons, videoURL}) => {
 
     const background =  typeof heroImage !== "undefined" && heroImage !== null
 
@@ -35,11 +35,11 @@ const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeadi
         classes += ` ${className}--slim`
     }
 
-
+    console.log(classes)
     return (
         <div className={classes}>
-            {videoID ?
-            <VimeoVideo videoID={videoID} />
+            {videoURL ?
+            <VimeoVideo videoURL={videoURL} heroSize={heroSize}/>
             : background ?
             <BackgroundImage
             Tag="div"

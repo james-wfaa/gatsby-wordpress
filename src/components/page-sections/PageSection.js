@@ -10,9 +10,9 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 const PageSection = ({className, preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, fromBlocks, children }) => {
-            
-        
-    const background =  typeof bgImage !== "undefined" && bgImage !== null 
+
+
+    const background =  typeof bgImage !== "undefined" && bgImage !== null
 
     const classesList = alt ? `${className} ${className}--alt` : className
     const altClass = alt ? ` ${className}--alt` : ''
@@ -41,7 +41,7 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
             { buttons && (<PageSectionButtons buttons={buttons} buttonsAlt={buttonsAlt} compact={buttonsCompact} />
             )}
             </div>
-           
+
         )}
         { background && (
             <BackgroundImage
@@ -62,119 +62,112 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
             { buttons && (<PageSectionButtons buttons={buttons} bgimage buttonsAlt/>
             )}
           </div>
-            
-           
+
+
 
       </BackgroundImage>
         )
         }
-        
-            
+
+
         </div>
     )
 }
 
 const StyledPageSection = styled(PageSection)`
-   
+  position: relative;
+  text-align: center;
+  /* padding-top: 88px; */
+  &__wrapper {
+    margin: 0 auto;
+
+    padding-bottom: 88px;
+    &:last-child {
+      padding-bottom: 128px;
+    }
+  }
+
+  &--hasPreHeading {
+    padding-top: 0;
+  }
+  &--hasNoHeading {
+    padding-top: 58px;
+  }
+  &--topborder {
+    border-top: ${sizes.s36} solid ${colors.sectionBorder};
+  }
+  &--addPad {
+    padding-bottom: 116px;
+  }
+  &__popOut {
     position: relative;
-    text-align: center;
-    padding-top: 88px;
-    &__wrapper {
-        margin: 0 auto;
-        
-        padding-bottom: 88px;
-        &:last-child {
-            padding-bottom: 128px;
-        }
-    }
+    top: -58px;
+    padding-top: 0;
+    margin-bottom: -58px;
+  }
 
-    &--hasPreHeading {
-        padding-top: 0;
+  &--alt {
+    background-color: ${colors.bgActiveGrey};
+  }
+  &--bgimage {
+    padding-bottom: 128px;
+    /*background-color: rgba(0, 0, 0, 0.3) !important; */
+    &:before,
+    &:after {
+      /*background-color: rgba(0, 0, 0, 0.3) !important;*/
     }
-    &--hasNoHeading {
-        padding-top: 58px;
+    &:before {
+      z-index: 0;
     }
-    &--topborder {
-        border-top: ${sizes.s36} solid ${colors.sectionBorder};
-    }
-    &--addPad {
-        padding-bottom: 116px;
-    }
-    &__popOut{
-        position: relative;
-        top: -58px;
-        padding-top: 0;
-        margin-bottom: -58px;
-    }
+  }
 
-   
-    &--alt {
-        background-color: ${colors.bgActiveGrey};
+  &__preheading {
+    text-transform: uppercase;
+    font-size: ${sizes.s18};
+    line-height: ${sizes.s24};
+    font-weight: bold;
+    padding: 58px 0;
+    @media screen and ${breakpoints.laptopS} {
+      font-size: ${sizes.s20};
+    }
+  }
+
+  .excerpt {
+    font-size: ${sizes.s24};
+    line-height: ${sizes.s36};
+    max-width: 712px;
+    margin: 0 auto;
+    margin-bottom: ${sizes.s32};
+    padding: 0 ${sizes.s36};
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+    @media screen and ${breakpoints.laptopS} {
+      padding: 0;
+      font-size: ${sizes.s26};
     }
     &--bgimage {
-        padding-bottom: 128px;
-        /*background-color: rgba(0, 0, 0, 0.3) !important; */
-        &:before,
-        &:after {
-            /*background-color: rgba(0, 0, 0, 0.3) !important;*/
-        }
-        &:before {
-            z-index: 0;
-        }
+      color: ${colors.bgWhite} !important;
     }
-
-    &__preheading {
-        text-transform: uppercase;
-        font-size: ${sizes.s18};
-        line-height: ${sizes.s24};
-        font-weight: bold;
-        padding: 58px 0;
-        @media screen and ${breakpoints.laptopS} {
-            font-size: ${sizes.s20};
-         }
+    &.withsocial {
     }
-       
-
-    .excerpt {
-        font-size: ${sizes.s24};
-        line-height: ${sizes.s36};
-        max-width: 712px;
-        margin: 0 auto;
-        margin-bottom: ${sizes.s32};
-        padding: 0 ${sizes.s36};
-
-        p:last-child {
-            margin-bottom: 0;
-        }
-        @media screen and ${breakpoints.laptopS} {
-           padding: 0;
-           font-size: ${sizes.s26};
-        }
-        &--bgimage {
-            color: ${colors.bgWhite} !important;
-            
-        }
-        &.withsocial {
-           
-        }
+  }
+  /* some wordpress content pieces */
+  .content {
+    > p {
+      min-width: 300px;
+      width: 80%;
+      max-width: 897px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
     }
-    /* some wordpress content pieces */
-    .content {
-        > p {
-            min-width: 300px;
-            width: 80%;
-            max-width: 897px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: left;
-        }
-        &.plaintext {
-            max-width: 712px;
-            margin: 0 auto;
-        }
+    &.plaintext {
+      max-width: 712px;
+      margin: 0 auto;
     }
-   
-   
+  }
 `
 
 
