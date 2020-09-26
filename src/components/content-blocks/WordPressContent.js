@@ -24,10 +24,6 @@ position: relative;
     }
     &.border-top {
         border-top: 36px solid ${colors.sectionBorder};
-        @media screen and ${breakpoints.tabletS} {
-           border-width: ${sizes.s52};
-            
-        }
     }
 }
 
@@ -217,6 +213,7 @@ a {
         width: 100%;
         img {
             max-width: 100%;
+            height: auto;
         }
         
     }

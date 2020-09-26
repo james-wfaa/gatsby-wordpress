@@ -14,6 +14,8 @@ export const query = graphql`
       title
       excerpt
       content
+      link
+      url
       featuredImage {
         node {
           remoteFile {
@@ -21,8 +23,23 @@ export const query = graphql`
           }
         }
       }
-      startDate
+      date(formatString: "dddd, MMM. D")
       endDate
+      startDate
+      cost
+      organizers {
+        nodes {
+          title
+        }
+      }
+      timezone
+      venue {
+        address
+        city
+        state
+        zip
+        title
+      }    
     }
   }
 `

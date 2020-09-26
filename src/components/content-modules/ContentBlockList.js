@@ -14,27 +14,13 @@ const ContentBlockList = ({className, children, paged = false}) => {
 
 const StyledContentBlockList = styled(ContentBlockList)`
 margin: 0 auto;
-position: relative;
-display: block;
-width: 256px;
 > div {
-    margin: 0;
+    margin: 0 auto ${sizes.s48};
     margin-bottom: ${sizes.s48};
 }
 > div:last-child {
     margin-bottom: 0px;
 }
-
-
-@media screen and ${breakpoints.tabletS} {
-    width: 528px;
-}
-
-@media screen and ${breakpoints.laptopS} {
-    width: 1080px;
-}
-
-
 
 `
 
