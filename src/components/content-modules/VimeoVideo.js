@@ -16,9 +16,9 @@ const VimeoVideo = ({ videoURL, heroSize }) => {
     object-fit: cover;
   `
   let divCss = css`
-  height: ${size};
-  width: 100%;
-  overflow: hidden;
+    height: ${size};
+    width: 100%;
+    overflow: hidden;
   `
   return (
     <div css={divCss}>

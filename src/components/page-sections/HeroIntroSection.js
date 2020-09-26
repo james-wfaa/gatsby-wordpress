@@ -7,68 +7,86 @@ import VimeoVideo from '../content-modules/VimeoVideo'
 
 
 const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeading, excerpt, buttons, videoURL}) => {
+  const background = typeof heroImage !== "undefined" && heroImage !== null
 
-    const background =  typeof heroImage !== "undefined" && heroImage !== null
+  let classes = className
 
-    let classes = className;
+  let heroClasses = `${className}__hero`
 
-    let heroClasses = `${className}__hero`
+  switch (heroSize) {
+    case "jumbo":
+      heroClasses = `${className}__hero ${className}__hero--jumbo`
+      break
+    case "slim":
+      heroClasses = `${className}__hero ${className}__hero--slim`
+      break
+    default:
+      break
+  }
 
-    switch (heroSize) {
-        case 'jumbo':
-            heroClasses = `${className}__hero ${className}__hero--jumbo`
-            break
-        case 'slim':
-            heroClasses = `${className}__hero ${className}__hero--slim`
-            break
-        default:
-            break
-    }
+  const headingClasses =
+    heroSize === "jumbo"
+      ? `${className}__heading ${className}__heading--jumbo`
+      : `${className}__heading`
 
-    const headingClasses = (heroSize === "jumbo" ) ? `${className}__heading ${className}__heading--jumbo` : `${className}__heading`
+  let redboxClass = background
+    ? `${className}__redbox ${className}__redbox--background`
+    : `${className}__redbox`
+  let downscrollClass = `${className}__downscroll`
+  if (heroSize === "slim") {
+    redboxClass += ` ${className}__redbox--slim`
+    downscrollClass += ` ${className}__downscroll--slim`
+    classes += ` ${className}--slim`
+  }
 
-    let redboxClass = background ? `${className}__redbox ${className}__redbox--background` : `${className}__redbox`
-    let downscrollClass = `${className}__downscroll`
-    if (heroSize === "slim") {
-        redboxClass += ` ${className}__redbox--slim`
-        downscrollClass += ` ${className}__downscroll--slim`
-        classes += ` ${className}--slim`
-    }
-
-    console.log(classes)
-    return (
-        <div className={classes}>
-            {videoURL ?
-            <VimeoVideo videoURL={videoURL} heroSize={heroSize}/>
-            : background ?
-            <BackgroundImage
-            Tag="div"
-            className={heroClasses}
-            fluid={heroImage.childImageSharp.fluid}
-            preserveStackingContext
-             >
-                { heroHeading && (
-                    <div className="wrapper">
-                        <div className={headingClasses} dangerouslySetInnerHTML={{ __html: heroHeading }} />
-                    </div>
-                )}
-            </BackgroundImage>
-            : null}
-            <div style={{position: `relative`}}>
-
-            <a className={downscrollClass} href={`#${className}__downscroll`} title="Scroll down to content">
-                <div className="downscroll_main">down</div>
-                <div className="downscroll_after"></div>
-            </a>
+  return (
+    <div className={classes}>
+      {videoURL ? (
+        <VimeoVideo videoURL={videoURL} heroSize={heroSize} />
+      ) : background ? (
+        <BackgroundImage
+          Tag="div"
+          className={heroClasses}
+          fluid={heroImage.childImageSharp.fluid}
+          preserveStackingContext
+        >
+          {heroHeading && (
+            <div className="wrapper">
+              <div
+                className={headingClasses}
+                dangerouslySetInnerHTML={{ __html: heroHeading }}
+              />
             </div>
+          )}
+        </BackgroundImage>
+      ) : null}
+      <div style={{ position: `relative` }}>
+        <a
+          className={downscrollClass}
+          href={`#${className}__downscroll`}
+          title="Scroll down to content"
+        >
+          <div className="downscroll_main">down</div>
+          <div className="downscroll_after"></div>
+        </a>
+      </div>
 
-            <div className={redboxClass}>
-                <div className="downanchor" id={`${className}__downscroll`}>&nbsp;</div>
-                <IntroRedPageSection excerpt={excerpt} heading={redHeading} headingAlt headingCompact buttons={buttons} buttonsAlt buttonsCompact />
-            </div>
-
+      <div className={redboxClass}>
+        <div className="downanchor" id={`${className}__downscroll`}>
+          &nbsp;
         </div>
-    )
+        <IntroRedPageSection
+          excerpt={excerpt}
+          heading={redHeading}
+          headingAlt
+          headingCompact
+          buttons={buttons}
+          buttonsAlt
+          buttonsCompact
+        />
+      </div>
+    </div>
+  )
 }
 
 const StyledHeroIntroSection = styled(HeroIntroSection)`
