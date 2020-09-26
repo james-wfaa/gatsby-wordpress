@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { colors, sizes, breakpoints } from '../css-variables'
+import { colors, sizes, breakpoints, fonts } from "../css-variables"
 import BackgroundImage from 'gatsby-background-image'
 
 import PageSectionHeader from '../parts/PageSectionHeader'
@@ -21,20 +21,136 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
   const hasNoHeading =
     !preheading && !heading ? ` ${className}--hasNoHeading` : ""
   const popClass = popOut ? `${className}__popOut` : ""
-  let passedColors
 
-  if (variantObject) {
-    passedColors = variantObject
-  } else {
-    passedColors = {
-      background_color: colors.bgRed,
-      color: colors.titleWhite,
-      scroll_color: colors.bgRed,
+  const StyledPageSection = styled.div`
+  position: relative;
+  text-align: center;
+  .headingWrapper {
+    position: relative;
+    padding-bottom: 59px;
+    margin-bottom: 59px;
+    h1,
+    h2 {
+    color: ${variantObject.color};
+    font-family: ${fonts.eaves};
+    font-weight: bold;
+    font-style: italic;
+    font-size: ${sizes.s36};
+    line-height: ${sizes.s40};
+    margin: 0;
+    padding: 0 1em;
+
+    @media screen and ${breakpoints.laptopS} {
+      font-size: ${sizes.s42};
+      line-height: ${sizes.s52};
+      padding: 0;
+    }
+    &:after {
+      position: absolute;
+      bottom: 0;
+      right: calc(50% - ${sizes.s34});
+      height: ${sizes.s8};
+      width: calc(${sizes.s34} * 2);
+      background-color: ${variantObject.color};
+      content: "";
     }
   }
 
+  }
+  &__wrapper {
+    margin: 0 auto;
+
+    padding-bottom: 88px;
+    &:last-child {
+      padding-bottom: 128px;
+    }
+  }
+
+  &--hasPreHeading {
+    padding-top: 0;
+  }
+  &--hasNoHeading {
+    padding-top: 58px;
+  }
+  &--topborder {
+    border-top: ${sizes.s36} solid ${colors.sectionBorder};
+  }
+  &--addPad {
+    padding-bottom: 116px;
+  }
+  &__popOut {
+    position: relative;
+    top: -58px;
+    padding-top: 0;
+    margin-bottom: -58px;
+  }
+
+  &--alt {
+    background-color: ${colors.bgActiveGrey};
+  }
+  &--bgimage {
+    padding-bottom: 128px;
+    /*background-color: rgba(0, 0, 0, 0.3) !important; */
+    &:before,
+    &:after {
+      /*background-color: rgba(0, 0, 0, 0.3) !important;*/
+    }
+    &:before {
+      z-index: 0;
+    }
+  }
+
+  &__preheading {
+    text-transform: uppercase;
+    font-size: ${sizes.s18};
+    line-height: ${sizes.s24};
+    font-weight: bold;
+    padding: 58px 0;
+    @media screen and ${breakpoints.laptopS} {
+      font-size: ${sizes.s20};
+    }
+  }
+
+  .excerpt {
+    font-size: ${sizes.s24};
+    line-height: ${sizes.s36};
+    max-width: 712px;
+    margin: 0 auto;
+    margin-bottom: ${sizes.s32};
+    padding: 0 ${sizes.s36};
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+    @media screen and ${breakpoints.laptopS} {
+      padding: 0;
+      font-size: ${sizes.s26};
+    }
+    &--bgimage {
+      color: ${colors.bgWhite} !important;
+    }
+    &.withsocial {
+    }
+  }
+  /* some wordpress content pieces */
+  .content {
+    > p {
+      min-width: 300px;
+      width: 80%;
+      max-width: 897px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+    &.plaintext {
+      max-width: 712px;
+      margin: 0 auto;
+    }
+  }
+`
+
   return (
-    <div className={`${className}__wrapper`}>
+    <StyledPageSection className={`${className}__wrapper`}>
       {!background && (
         <div
           className={`${className} ${altClass} ${hasPreHeading} ${hasNoHeading} ${topBorderClass} ${popClass}`}
@@ -43,15 +159,11 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
             <div className={`${className}__preheading`}>{preheading}</div>
           )}
           {heading && (
-            <PageSectionHeader
-              heading={heading}
-              headingAlt={headingAlt}
-              pageTitle={pageTitle}
-              withSocial={withSocial}
-              variantObject={passedColors}
-              headingCompact={headingCompact}
-              fromBlocks={fromBlocks}
-            />
+            (
+            <div className="headingWrapper">
+              <h2>{heading}</h2>
+            </div>
+          )
           )}
           {excerpt && (
             <div
@@ -99,125 +211,10 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
           </div>
         </BackgroundImage>
       )}
-    </div>
+    </StyledPageSection>
   )
 }
 
-const StyledPageSection = styled(PageSection)`
-
-    position: relative;
-    text-align: center;
-    /* padding-top: 88px; */
-    &__wrapper {
-        margin: 0 auto;
-
-        padding-bottom: 88px;
-        &:last-child {
-            padding-bottom: 128px;
-        }
-    }
-
-    &--hasPreHeading {
-        padding-top: 0;
-    }
-    &--hasNoHeading {
-        padding-top: 58px;
-    }
-    &--topborder {
-        border-top: ${sizes.s36} solid ${colors.sectionBorder};
-    }
-    &--addPad {
-        padding-bottom: 116px;
-    }
-    &__popOut{
-        position: relative;
-        top: -58px;
-        padding-top: 0;
-        margin-bottom: -58px;
-    }
 
 
-    &--alt {
-        background-color: ${colors.bgActiveGrey};
-    }
-    &--bgimage {
-        padding-bottom: 128px;
-        /*background-color: rgba(0, 0, 0, 0.3) !important; */
-        &:before,
-        &:after {
-            /*background-color: rgba(0, 0, 0, 0.3) !important;*/
-        }
-        &:before {
-            z-index: 0;
-        }
-    }
-
-    &__preheading {
-        text-transform: uppercase;
-        font-size: ${sizes.s18};
-        line-height: ${sizes.s24};
-        font-weight: bold;
-        padding: 58px 0;
-        @media screen and ${breakpoints.laptopS} {
-            font-size: ${sizes.s20};
-         }
-    }
-
-
-    .excerpt {
-        font-size: ${sizes.s24};
-        line-height: ${sizes.s36};
-        max-width: 712px;
-        margin: 0 auto;
-        margin-bottom: ${sizes.s32};
-        padding: 0 ${sizes.s36};
-
-        p:last-child {
-            margin-bottom: 0;
-        }
-        @media screen and ${breakpoints.laptopS} {
-           padding: 0;
-           font-size: ${sizes.s26};
-        }
-        &--bgimage {
-            color: ${colors.bgWhite} !important;
-
-        }
-        &.withsocial {
-
-        }
-    }
-    /* some wordpress content pieces */
-    .content {
-        > p {
-            min-width: 300px;
-            width: 80%;
-            max-width: 897px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: left;
-        }
-        &.plaintext {
-            max-width: 712px;
-            margin: 0 auto;
-        }
-    }
-
-
-`
-
-
-PageSection.propTypes = {
-    preHeading: PropTypes.string,
-    heading: PropTypes.string,
-    postHeading: PropTypes.string,
-    excerpt: PropTypes.string,
-    content: PropTypes.string,
-    buttons: PropTypes.arrayOf(PropTypes.shape({
-        link: PropTypes.string,
-        text: PropTypes.string,
-    })
-    )
-  }
-
-  export default StyledPageSection
+  export default PageSection
