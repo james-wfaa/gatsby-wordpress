@@ -10,7 +10,7 @@ import { convertTime } from "../../utils/tools"
 
 
 
-const EventRegistration = ({className, content, date, startDate, endDate, registrationLink, venue, cost, organizers}) => {
+const EventRegistration = ({className, date, startDate, endDate, registrationLink, venue, cost, organizers}) => {
 
     const startDS = new Date(startDate);
     const endDS = new Date(endDate);
@@ -66,11 +66,17 @@ const EventRegistration = ({className, content, date, startDate, endDate, regist
 const StyledEventRegistration = styled(EventRegistration)`
 
 
+@media screen and ${breakpoints.laptopS} {
+    margin-left: 116px;
+}
 
 &__regHeader{
-    width: auto;
+    width: 100%;
     background-color: ${colors.calloutGrey};
     box-shadow: 0 -10px 10px -10px rgba(0 0 0 /29%);
+    position: fixed;
+    bottom: 0%
+    z-index: 1;
 
     .dateDay{
         padding: ${sizes.s16} 0 ${sizes.s16} 0;
@@ -91,6 +97,7 @@ const StyledEventRegistration = styled(EventRegistration)`
     font-size: ${sizes.s18};
     line-height: ${sizes.s26};
     margin-bottom: ${sizes.s32};
+    text-align: left;
 
     a{
         color: ${colors.linkText};
@@ -102,6 +109,14 @@ const StyledEventRegistration = styled(EventRegistration)`
             color: ${colors.linkTextActive};
         }
     }
+
+    @media screen and ${breakpoints.tabletS} {
+        width: 536px;
+    }
+    @media screen and ${breakpoints.laptopS} {
+        width: 187px ;
+    }
+
 }
 
 &__subHeader{
@@ -112,6 +127,7 @@ const StyledEventRegistration = styled(EventRegistration)`
 }
 &__subContent{
     margin: ${sizes.s8} 0 0 0;
+    font-weight: bold;
 }
 
 &__time{
