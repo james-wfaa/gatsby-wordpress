@@ -9,7 +9,7 @@ import EventRegistration from "../content-blocks/EventRegistration"
 
 
 function WordPressPage({ page }) {
-  const { title, content, featuredImage, date, startDate, endDate, link } = page
+  const { title, content, featuredImage, date, startDate, endDate, link, venue, cost, organizers } = page
 
   return (
     <Layout>
@@ -18,7 +18,7 @@ function WordPressPage({ page }) {
             <FeaturedImage featuredImage={featuredImage} />
         )}
         <StorySectionHeader heading={title} />
-        <EventRegistration date={date} registrationLink={link} startDate={startDate} endDate={endDate}></EventRegistration>
+        <EventRegistration date={date} registrationLink={link} startDate={startDate} endDate={endDate} venue={venue} cost={cost} organizers={organizers}></EventRegistration>
         <WordPressContent content={content} />
       </PageSection>
     </Layout>

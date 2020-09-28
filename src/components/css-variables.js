@@ -98,6 +98,8 @@ export const colors = {
     calloutGrey: baseColors.lightestGrey,
     featureImageGrey: baseColors.darkGrey,
     testimonialGrey: baseColors.lightestGrey,
+    borderGrey: baseColors.grey,
+
 
 
 }
