@@ -1,12 +1,13 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import { graphql } from 'gatsby'
 import Layout from "../components/layout"
 import PageSection from "../components/page-sections/PageSection"
 import ContentCard from "../components/content-blocks/ContentCard"
 import ContentBlockList from "../components/content-modules/ContentBlockList"
+import AccordianSearch from "../components/parts/AccordianSearch"
 
 const taglist1 = [
-    
+
     {
         link: '#',
         tag: 'Tag 1'
@@ -43,12 +44,12 @@ const taglist1 = [
       link: '#',
       tag: 'Tag 9'
     },
-  
-  
-  
+
+
+
   ]
   const taglist2 = [
-      
+
     {
         link: '#',
         tag: 'Tag 1'
@@ -67,84 +68,123 @@ const taglist1 = [
     },
 
 ]
+
+
+
 export default ({ data }) => {
+  const [filterString, setFilterString] = useState("")
+
+  const handleFilterString= (str) => {
+    setFilterString(str)
+  }
+  console.log(data)
+  const cardList = [
+    {
+      startDate: "Apr 29",
+      endDate: "May 3",
+      title: "The Kentucky Derby",
+      category: "Athletic Travel",
+      venue: "Churchill Downs",
+      location: "Louisville, KY",
+      img: data.cardImage5,
+      featureImg: data,cardImage4,
+      alt: true,
+      size: "XXL"
+    },
+    {
+      startDate: "Apr 29",
+      title: "The Kentucky Derby",
+      category: "Athletic Travel",
+      venue: "Churchill Downs",
+      location: "Louisville, KY",
+      tags: taglist2,
+      img: data.cardImage3,
+      featureImg: data,cardImage3,
+      size: "Wide"
+    },
+    {
+      startDate: "Apr 29",
+      endDate: "May 3",
+      title: "The Past, Present, and Future of Rainstorms and Floods in Wisconsin",
+      category: "Athletic Travel",
+      venue: "Churchill Downs",
+      location: "Louisville, KY",
+      tags: taglist1,
+      img: data.cardImage5,
+      featureImg: data,cardImage5,
+      size: "Wide"
+    },
+    {
+      startDate: "Apr 29",
+      endDate: "May 3",
+      title: "The Past, Present, and Future of Rainstorms and Floods in Wisconsin",
+      category: "Athletic Travel",
+      venue: "Churchill Downs",
+      location: "Louisville, KY",
+      tags: taglist2,
+      size: "Wide"
+    },
+    {
+      startDate: "Apr 29",
+      endDate: "May 3",
+      title: "The Past, Present, and Future of Rainstorms and Floods in Wisconsin",
+      category: "Athletic Travel",
+      venue: "Churchill Downs",
+      location: "Louisville, KY",
+      tags: taglist2,
+      size: "Wide"
+    },
+    {
+      startDate: "Apr 29",
+      endDate: "May 3",
+      title: "The Past, Present, and Future of Rainstorms and Floods in Wisconsin",
+      category: "Athletic Travel",
+      venue: "Churchill Downs",
+      location: "Louisville, KY",
+      tags: taglist2,
+      size: "Wide"
+    },
+    {
+      startDate: "Apr 29",
+      endDate: "May 3",
+      title: "The Past, Present, and Future of Rainstorms and Floods in Wisconsin",
+      category: "Athletic Travel",
+      venue: "Churchill Downs",
+      location: "Louisville, KY",
+      tags: taglist2,
+      size: "Wide"
+    },
+  ]
+
+  let contentCards = cardList.map(card => {
     return (
-<Layout>
+    <ContentCard
+      startDate={card.startDate}
+      endDate={card.endDate}
+      title={card.title}
+      category={card.category}
+      venue={card.venue}
+      location={card.location}
+      img={card.img}
+      featureImg={card.featureImg}
+      alt={card.alt}
+      size={card.size}
+    />)
+  })
 
-<PageSection heading="Sifted Events" >
-    <ContentBlockList>
-    <ContentCard 
-        startDate="Apr. 29" 
-        endDate="May 3"
-        title="The Kentucky Derby"
-        category="Athletic Travel"
-        venue="Churchill Downs"
-        location="Louisville, KY" 
-        img={data.cardImage5}
-        featureImg={data.cardImage4}
-        alt
-        size="XXL"
-        />
-    <ContentCard 
-        startDate="Apr. 29" 
-        title="The Kentucky Derby"
-        category="Athletic Travel"
-        venue="Churchill Downs"
-        location="Louisville, KY" 
-        tags={taglist2}
-        img={data.cardImage3}
-        featureImg={data.cardImage3}
-        size="Wide"
-        />
-        <ContentCard 
-        startDate="Apr. 29" 
-        endDate="May 3"
-        title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin"
-        category="Athletic Travel"
-        venue="Churchill Downs"
-        location="Louisville, KY" 
-        tags={taglist1}
-        img={data.cardImage5}
-        featureImg={data.cardImage5}
-        size="Wide"
-        />
-        <ContentCard 
-        startDate="Apr. 29" 
-        endDate="May 3"
-        title="The Kentucky Derby"
-        category="Athletic Travel"
-        venue="Churchill Downs"
-        location="Louisville, KY" 
-        tags={taglist2}
-        size="Wide"
-        />
-        <ContentCard 
-        startDate="Apr. 29" 
-        endDate="May 3"
-        title="The Kentucky Derby"
-        category="Athletic Travel"
-        venue="Churchill Downs"
-        location="Louisville, KY" 
-        tags={taglist2}
-        size="Wide"
-        />
-        <ContentCard 
-        startDate="Apr. 29" 
-        endDate="May 3"
-        title="The Kentucky Derby"
-        category="Athletic Travel"
-        venue="Churchill Downs"
-        location="Louisville, KY" 
-        tags={taglist2}
-        size="Wide"
-        />
-    </ContentBlockList>
-       
-</PageSection>
-
-       
-</Layout>
-    )
+  return (
+    <Layout>
+      <AccordianSearch
+        handleFilterString={(str) => handleFilterString(str)}
+        filterString={filterString}
+      />
+      <PageSection heading="Sifted Events" >
+        <ContentBlockList>
+          {contentCards}
+        </ContentBlockList>
+      </PageSection>
+    </Layout>
+  )
 }
 
 export const pageQuery = graphql`

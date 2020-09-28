@@ -103,7 +103,7 @@ const FilterButton = styled.button`
   }
 `
 
-const AccordianSearch = () => {
+const AccordianSearch = props => {
   const [open, setOpen] = useState(false)
 
   const searchstyles = useSpring({ opacity: open ? 1 : 0 })
@@ -133,7 +133,10 @@ const AccordianSearch = () => {
       {open ? (
         <StyledButtonWrapper>
           <animated.div style={searchstyles}>
-            <AccordianSearchBox />
+            <AccordianSearchBox
+              handleFilterString={(str) => props.handleFilterString(str)}
+              filterString={props.filterString}
+            />
             <FilterBox>
               <FilterButton className="date">Date</FilterButton>
               <FilterButton className="location">Location</FilterButton>
