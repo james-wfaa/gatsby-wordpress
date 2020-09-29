@@ -29,11 +29,17 @@ const StyledWordPressEventContent = styled(WordPressEventContent)`
 @media screen and ${breakpoints.laptopS} {
     width: 814px;
     margin: 0 auto;
-    column-count: 2;
-    column-gap: 116px;
+    display: flex;
 }
 @media screen and ${breakpoints.laptopL} {
     width: 1080px;
+}
+
+&__col1{
+    width: 712px;
+}
+&__col2{
+    margin-left: 116px;
 }
 
 &__header{
@@ -42,12 +48,10 @@ const StyledWordPressEventContent = styled(WordPressEventContent)`
 }
 &__reg{
     @media screen and ${breakpoints.laptopS} {
-
     }
 }
 &__content{
     @media screen and ${breakpoints.laptopS} {
-
     }
 }
 
