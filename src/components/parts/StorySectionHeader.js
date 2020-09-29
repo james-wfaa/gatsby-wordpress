@@ -61,8 +61,9 @@ const StyledPageSectionHeader = styled(PageSectionHeader)`
             max-width: 815px;
           }
         @media screen and ${breakpoints.laptopL} {
-            width: 1080px;
+            width: 712;
             max-width: 1080px;
+            margin-left: 0;
         }
     }
 
