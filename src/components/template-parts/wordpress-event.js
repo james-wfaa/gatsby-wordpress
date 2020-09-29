@@ -16,8 +16,7 @@ function WordPressPage({ page }) {
         {!!featuredImage?.node?.remoteFile?.childImageSharp && (
             <FeaturedImage featuredImage={featuredImage} />
         )}
-        <StorySectionHeader heading={title} />
-        <WordPressEventContent content={content} date={date} link={link} startDate={startDate} endDate={endDate} venue={venue} cost={cost} organizers={organizers} />
+        <WordPressEventContent content={content} date={date} link={link} startDate={startDate} endDate={endDate} venue={venue} cost={cost} organizers={organizers} title={title} />
       </PageSection>
     </Layout>
   )
