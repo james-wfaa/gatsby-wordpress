@@ -7,7 +7,6 @@ import ContentBlockList from "../components/content-modules/ContentBlockList"
 import AccordianSearch from "../components/parts/AccordianSearch"
 
 const taglist1 = [
-
     {
         link: '#',
         tag: 'Tag 1'
@@ -44,12 +43,8 @@ const taglist1 = [
       link: '#',
       tag: 'Tag 9'
     },
-
-
-
   ]
   const taglist2 = [
-
     {
         link: '#',
         tag: 'Tag 1'
@@ -66,59 +61,57 @@ const taglist1 = [
         link: '#',
         tag: 'Tag 4'
     },
-
 ]
 
 
 
 export default ({ data }) => {
+  const [filteredEvents, setFilteredEvents] = useState([])
   const [filterString, setFilterString] = useState("")
+  const [categoryList, setCategoryList] = useState([])
+  const [categoryFilters, setCategoryFilters] = useState([])
 
-  const handleFilterString= (str) => {
-    setFilterString(str)
-  }
-  console.log(data)
   const cardList = [
     {
       startDate: "Apr 29",
       endDate: "May 3",
       title: "The Kentucky Derby",
-      category: "Athletic Travel",
+      category: "Horse Racing",
       venue: "Churchill Downs",
       location: "Louisville, KY",
       img: data.cardImage5,
-      featureImg: data,cardImage4,
+      featureImg: data.cardImage4,
       alt: true,
       size: "XXL"
     },
     {
       startDate: "Apr 29",
       title: "The Kentucky Derby",
-      category: "Athletic Travel",
+      category: "Buggy Racing",
       venue: "Churchill Downs",
       location: "Louisville, KY",
       tags: taglist2,
       img: data.cardImage3,
-      featureImg: data,cardImage3,
+      featureImg: data.cardImage2,
       size: "Wide"
     },
     {
       startDate: "Apr 29",
       endDate: "May 3",
       title: "The Past, Present, and Future of Rainstorms and Floods in Wisconsin",
-      category: "Athletic Travel",
+      category: "Historical Tour",
       venue: "Churchill Downs",
       location: "Louisville, KY",
       tags: taglist1,
       img: data.cardImage5,
-      featureImg: data,cardImage5,
+      featureImg: data.cardImage1,
       size: "Wide"
     },
     {
       startDate: "Apr 29",
       endDate: "May 3",
-      title: "The Past, Present, and Future of Rainstorms and Floods in Wisconsin",
-      category: "Athletic Travel",
+      title: "Typewriter gluten-free occupy jianbing selvage, artisan neutra reprehenderit lomo est post-ironic ad 90's.",
+      category: "Historical Tour",
       venue: "Churchill Downs",
       location: "Louisville, KY",
       tags: taglist2,
@@ -127,8 +120,8 @@ export default ({ data }) => {
     {
       startDate: "Apr 29",
       endDate: "May 3",
-      title: "The Past, Present, and Future of Rainstorms and Floods in Wisconsin",
-      category: "Athletic Travel",
+      title: "Gentrify try-hard tacos, taiyaki small batch bespoke 90's hell of non hot chicken.",
+      category: "Food Trucks",
       venue: "Churchill Downs",
       location: "Louisville, KY",
       tags: taglist2,
@@ -137,8 +130,8 @@ export default ({ data }) => {
     {
       startDate: "Apr 29",
       endDate: "May 3",
-      title: "The Past, Present, and Future of Rainstorms and Floods in Wisconsin",
-      category: "Athletic Travel",
+      title: "Testing various titles here",
+      category: "Other",
       venue: "Churchill Downs",
       location: "Louisville, KY",
       tags: taglist2,
@@ -147,8 +140,8 @@ export default ({ data }) => {
     {
       startDate: "Apr 29",
       endDate: "May 3",
-      title: "The Past, Present, and Future of Rainstorms and Floods in Wisconsin",
-      category: "Athletic Travel",
+      title: "Lorem Ipsum Puget Sound",
+      category: "Food Trucks",
       venue: "Churchill Downs",
       location: "Louisville, KY",
       tags: taglist2,
@@ -156,9 +149,50 @@ export default ({ data }) => {
     },
   ]
 
-  let contentCards = cardList.map(card => {
+  const getCategories = () => {
+    let categorylist = cardList.map((card) => {
+      return card.category
+    })
+    let reducedlist = [...new Set(categorylist)]
+    reducedlist.sort()
+    return reducedlist
+  }
+
+  const handleFilterString = (str) => {
+    setFilterString(str)
+  }
+
+  const titleFilter = (str) => {
+    let updatedEvents = [...cardList];
+    if (filterString !== "") {
+      updatedEvents = updatedEvents.filter((evt) => {
+        return evt.title
+        .toUpperCase()
+        .includes(filterString.toUpperCase())
+      })
+    }
+    return updatedEvents;
+  };
+
+  const categoryFilter = (filterArray) => {
+    let filteredArray = [...categoryFilters]
+
+  }
+
+  useEffect(() => {
+    setCategoryList(getCategories());
+    setFilteredEvents(cardList);
+  }, [])
+
+  useEffect(() => {
+    setFilteredEvents(titleFilter(filterString))
+  }, [filterString])
+
+  let contentCards = filteredEvents.map(card => {
+
     return (
     <ContentCard
+      key={`${card.startDate}${card.venue}`}
       startDate={card.startDate}
       endDate={card.endDate}
       title={card.title}
@@ -177,8 +211,9 @@ export default ({ data }) => {
       <AccordianSearch
         handleFilterString={(str) => handleFilterString(str)}
         filterString={filterString}
+        categoryFilters={categoryList}
       />
-      <PageSection heading="Sifted Events" >
+      <PageSection heading="Sifted Events">
         <ContentBlockList>
           {contentCards}
         </ContentBlockList>
