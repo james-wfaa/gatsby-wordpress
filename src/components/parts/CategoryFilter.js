@@ -16,9 +16,9 @@ const CategoryFilter = props => {
     const isChecked = e.target.checked
     console.log(selectedCategories)
     if (isChecked) {
-      selectedCategories.set(item, isChecked)
+      selectedCategories.set(item, true)
     } else {
-      selectedCategories.set(item, !isChecked)
+      selectedCategories.set(item, false)
     }
   }
 

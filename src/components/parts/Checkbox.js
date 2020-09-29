@@ -19,8 +19,5 @@ const Checkbox = ({ label, value, checked, onChange }) => {
   )
 }
 
-Checkbox.defaultProps = {
-  checked: true,
-}
 
 export default Checkbox
