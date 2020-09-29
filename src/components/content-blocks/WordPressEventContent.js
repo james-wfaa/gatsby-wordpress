@@ -14,13 +14,12 @@ const WordPressEventContent = ({className, content, date, startDate, endDate, li
 
     return(
         <div className={className}>
-            <div className={`${className}__col1`}>
-                <StorySectionHeader className={`${className}__header`} heading={title} event />
-                <WordPressContent className={`${className}__content`} content={content} />
+            <div className="contentWrap">
+                <StorySectionHeader className="header" heading={title} event />
+                <WordPressContent className="content" content={content} />
             </div>
-            <div className={`${className}__col2`}>
-                <EventRegistration className={`${className}__reg`} date={date} registrationLink={link} startDate={startDate} endDate={endDate} venue={venue} cost={cost} organizers={organizers}></EventRegistration>
-            </div>
+            <EventRegistration className="reg" date={date} registrationLink={link} startDate={startDate} endDate={endDate} venue={venue} cost={cost} organizers={organizers}></EventRegistration>
+           
 
         </div>
     )
@@ -35,22 +34,18 @@ const StyledWordPressEventContent = styled(WordPressEventContent)`
     width: 1080px;
 }
 
-&__col1{
+.contentWrap{
     width: 712px;
 }
-&__col2{
+
+.header{
+    @media screen and ${breakpoints.laptopS} {
+    }
+}
+.reg{
     margin-left: 116px;
 }
-
-&__header{
-    @media screen and ${breakpoints.laptopS} {
-    }
-}
-&__reg{
-    @media screen and ${breakpoints.laptopS} {
-    }
-}
-&__content{
+.content{
     @media screen and ${breakpoints.laptopS} {
     }
 }
