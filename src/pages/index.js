@@ -17,7 +17,10 @@ export default () => (
         <Link to="/event/planarians">Event Page - NEW</Link>
       </li>
       <li>
-        <Link to="/event/badger-cafe-threats-to-peace-around-the-world">Event Page (no image) - NEW</Link>
+        <Link to="/event/badger-cafe-threats-to-peace-around-the-world/">Event Page (no image) - NEW</Link>
+      </li>
+      <li>
+        <Link to="/event/badger-football-badger-huddle-tailgate-at-the-rose-bowl/">Event Page (no image) - NEW</Link>
       </li>
       <li>
         <Link to="/wordpress-story">Story Page</Link>
