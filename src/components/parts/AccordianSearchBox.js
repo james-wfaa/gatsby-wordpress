@@ -43,14 +43,14 @@ const StyledInput = styled.input`
   }
 `
 
-const AccordianSearchBox = () => {
+const AccordianSearchBox = props => {
   return (
     <StyledDiv>
       <StyledInput
         type="text"
         placeholder="Search.."
-        // value={searchText}
-        // onChange={e => searchHandler(e)}
+        value={props.filterString}
+        onChange={e => props.handleFilterString(e.target.value)}
         className="st-default-search-input"
       />
       <span>

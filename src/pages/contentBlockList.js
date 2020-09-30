@@ -1,12 +1,12 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import { graphql } from 'gatsby'
 import Layout from "../components/layout"
 import PageSection from "../components/page-sections/PageSection"
 import ContentCard from "../components/content-blocks/ContentCard"
 import ContentBlockList from "../components/content-modules/ContentBlockList"
+import AccordianSearch from "../components/parts/AccordianSearch"
 
 const taglist1 = [
-    
     {
         link: '#',
         tag: 'Tag 1'
@@ -43,12 +43,8 @@ const taglist1 = [
       link: '#',
       tag: 'Tag 9'
     },
-  
-  
-  
   ]
   const taglist2 = [
-      
     {
         link: '#',
         tag: 'Tag 1'
@@ -65,86 +61,165 @@ const taglist1 = [
         link: '#',
         tag: 'Tag 4'
     },
-
 ]
+
+
+
 export default ({ data }) => {
+  const [filteredEvents, setFilteredEvents] = useState([])
+  const [filterString, setFilterString] = useState("")
+  const [categoryList, setCategoryList] = useState([])
+  const [categoryFilters, setCategoryFilters] = useState([])
+
+  const cardList = [
+    {
+      startDate: "Apr 29",
+      endDate: "May 3",
+      title: "The Kentucky Derby",
+      category: "Horse Racing",
+      venue: "Churchill Downs",
+      location: "Louisville, KY",
+      img: data.cardImage5,
+      featureImg: data.cardImage4,
+      alt: true,
+      size: "XXL"
+    },
+    {
+      startDate: "Apr 29",
+      title: "The Kentucky Derby",
+      category: "Buggy Racing",
+      venue: "Churchill Downs",
+      location: "Louisville, KY",
+      tags: taglist2,
+      img: data.cardImage3,
+      featureImg: data.cardImage2,
+      size: "Wide"
+    },
+    {
+      startDate: "Apr 29",
+      endDate: "May 3",
+      title: "The Past, Present, and Future of Rainstorms and Floods in Wisconsin",
+      category: "Historical Tour",
+      venue: "Churchill Downs",
+      location: "Louisville, KY",
+      tags: taglist1,
+      img: data.cardImage5,
+      featureImg: data.cardImage1,
+      size: "Wide"
+    },
+    {
+      startDate: "Apr 29",
+      endDate: "May 3",
+      title: "Typewriter gluten-free occupy jianbing selvage, artisan neutra reprehenderit lomo est post-ironic ad 90's.",
+      category: "Historical Tour",
+      venue: "Churchill Downs",
+      location: "Louisville, KY",
+      tags: taglist2,
+      size: "Wide"
+    },
+    {
+      startDate: "Apr 29",
+      endDate: "May 3",
+      title: "Gentrify try-hard tacos, taiyaki small batch bespoke 90's hell of non hot chicken.",
+      category: "Food Trucks",
+      venue: "Churchill Downs",
+      location: "Louisville, KY",
+      tags: taglist2,
+      size: "Wide"
+    },
+    {
+      startDate: "Apr 29",
+      endDate: "May 3",
+      title: "Testing various titles here",
+      category: "Other",
+      venue: "Churchill Downs",
+      location: "Louisville, KY",
+      tags: taglist2,
+      size: "Wide"
+    },
+    {
+      startDate: "Apr 29",
+      endDate: "May 3",
+      title: "Lorem Ipsum Puget Sound",
+      category: "Food Trucks",
+      venue: "Churchill Downs",
+      location: "Louisville, KY",
+      tags: taglist2,
+      size: "Wide"
+    },
+  ]
+
+  const getCategories = () => {
+    let categorylist = cardList.map((card) => {
+      return card.category
+    })
+    let reducedlist = [...new Set(categorylist)]
+    reducedlist.sort()
+    return reducedlist
+  }
+
+  const handleFilterString = (str) => {
+    setFilterString(str)
+  }
+
+  const titleFilter = (str) => {
+    let updatedEvents = [...cardList];
+    if (filterString !== "") {
+      updatedEvents = updatedEvents.filter((evt) => {
+        return evt.title
+        .toUpperCase()
+        .includes(filterString.toUpperCase())
+      })
+    }
+    return updatedEvents;
+  };
+
+  const categoryFilter = (filterArray) => {
+    let filteredArray = [...categoryFilters]
+
+  }
+
+  useEffect(() => {
+    setCategoryList(getCategories());
+    setFilteredEvents(cardList);
+  }, [])
+
+  useEffect(() => {
+    setFilteredEvents(titleFilter(filterString))
+  }, [filterString])
+
+  let contentCards = filteredEvents.map(card => {
+
     return (
-<Layout>
+    <ContentCard
+      key={`${card.startDate}${card.venue}`}
+      startDate={card.startDate}
+      endDate={card.endDate}
+      title={card.title}
+      category={card.category}
+      venue={card.venue}
+      location={card.location}
+      img={card.img}
+      featureImg={card.featureImg}
+      alt={card.alt}
+      size={card.size}
+    />)
+  })
 
-<PageSection heading="Sifted Events" >
-    <ContentBlockList>
-    <ContentCard 
-        startDate="Apr. 29" 
-        endDate="May 3"
-        title="The Kentucky Derby"
-        category="Athletic Travel"
-        venue="Churchill Downs"
-        location="Louisville, KY" 
-        img={data.cardImage5}
-        featureImg={data.cardImage4}
-        alt
-        size="XXL"
-        />
-    <ContentCard 
-        startDate="Apr. 29" 
-        title="The Kentucky Derby"
-        category="Athletic Travel"
-        venue="Churchill Downs"
-        location="Louisville, KY" 
-        tags={taglist2}
-        img={data.cardImage3}
-        featureImg={data.cardImage3}
-        size="Wide"
-        />
-        <ContentCard 
-        startDate="Apr. 29" 
-        endDate="May 3"
-        title="The Past, Present, and Future of Rainstorms and Floods in Wisconsin"
-        category="Athletic Travel"
-        venue="Churchill Downs"
-        location="Louisville, KY" 
-        tags={taglist1}
-        img={data.cardImage5}
-        featureImg={data.cardImage5}
-        size="Wide"
-        />
-        <ContentCard 
-        startDate="Apr. 29" 
-        endDate="May 3"
-        title="The Kentucky Derby"
-        category="Athletic Travel"
-        venue="Churchill Downs"
-        location="Louisville, KY" 
-        tags={taglist2}
-        size="Wide"
-        />
-        <ContentCard 
-        startDate="Apr. 29" 
-        endDate="May 3"
-        title="The Kentucky Derby"
-        category="Athletic Travel"
-        venue="Churchill Downs"
-        location="Louisville, KY" 
-        tags={taglist2}
-        size="Wide"
-        />
-        <ContentCard 
-        startDate="Apr. 29" 
-        endDate="May 3"
-        title="The Kentucky Derby"
-        category="Athletic Travel"
-        venue="Churchill Downs"
-        location="Louisville, KY" 
-        tags={taglist2}
-        size="Wide"
-        />
-    </ContentBlockList>
-       
-</PageSection>
-
-       
-</Layout>
-    )
+  return (
+    <Layout>
+      <AccordianSearch
+        handleFilterString={(str) => handleFilterString(str)}
+        filterString={filterString}
+        categoryFilters={categoryList}
+      />
+      <PageSection heading="Sifted Events">
+        <ContentBlockList>
+          {contentCards}
+        </ContentBlockList>
+      </PageSection>
+    </Layout>
+  )
 }
 
 export const pageQuery = graphql`

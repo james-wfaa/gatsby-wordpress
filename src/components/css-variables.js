@@ -62,7 +62,7 @@ export const colors = {
     cardBorder:     baseColors.darkGrey,
     cardText:       baseColors.offBlack,
     cardTags:       baseColors.darkGrey,
-    copyText:       baseColors.offBlack,    
+    copyText:       baseColors.offBlack,
     titleWhite:     baseColors.white,
     buttonRed:      baseColors.mainRed,
     buttonHoverRed: baseColors.toneRed,
@@ -81,7 +81,7 @@ export const colors = {
     linkTextHover:  baseColors.toneRed,
     linkTextActive: baseColors.offBlack,
     linkDateHover:  baseColors.mainRed,
-    linkDateActive: baseColors.toneRed, 
+    linkDateActive: baseColors.toneRed,
     linkVisitedGrey: baseColors.darkerGrey,
     linkActiveGrey:     baseColors.darkGrey,
     cardHeaderBGGrey: baseColors.lightestGrey,
@@ -158,17 +158,17 @@ export const mixins = {
         font-size: ${sizes.s13};
         font-weight: 800;
         color: ${colors.categoryGrey};
-        text-transform: uppercase; 
+        text-transform: uppercase;
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s14};
-        }   
+        }
     `,
     textlink: `
         &:link,
         &:visited {
             color: ${colors.linkText};
         }
-        
+
         &:hover {
             color: ${colors.linkTextHover};
         }
@@ -183,21 +183,21 @@ export const mixins = {
         color: ${colors.categoryGrey};
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s15};
-        } 
+        }
     `,
     venue: `
         font-size: ${sizes.s16};
         color: ${colors.cardText};
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s18};
-        } 
+        }
     `,
     location: `
         font-weight: bold;
         color: ${colors.cardText};
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s18};
-        } 
+        }
 
     `,
     buttons: `
@@ -266,7 +266,7 @@ export const mixins = {
         margin-bottom: ${sizes.s58};
         h1,
         h2 {
-        
+
             color: ${colors.titleColor};
             font-family: ${fonts.eaves};
             font-weight: bold;
@@ -301,7 +301,7 @@ export const mixins = {
                 background-color: ${colors.bgWhite};
             }
         }
-           
+
         &.social,
         &.compact {
             margin-bottom: ${sizes.s32};

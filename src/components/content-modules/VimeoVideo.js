@@ -1,23 +1,38 @@
 import React from "react"
+import { css } from "styled-components"
+import { useWindowSize } from "../hooks"
 
-const VimeoVideo = ({ videoID }) => {
-  let videoURL = `https://player.vimeo.com/video/${videoID}?title=0&byline=0&portrait=0&playsinline=0&autoplay=1&autopause=0&controls=0&loop=1&background=1`
+const VimeoVideo = ({ videoURL, heroSize }) => {
+  const { width } = useWindowSize();
+
+  let size = "720px";
+  if (heroSize === 'jumbo') {
+    size = width > 655 ? "calc(100vh - 118px)" : "calc(100vh - 86px)"
+  }
+
+  let wrapperCss = css`
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+  `
+  let divCss = css`
+    height: ${size};
+    width: 100%;
+    overflow: hidden;
+  `
   return (
-    <div style={{ padding: `46.88% 0 0 0`, position: `relative` }}>
-      <iframe
+    <div css={divCss}>
+      <video
         src={videoURL}
-        style={{
-          position: `absolute`,
-          top: 0,
-          left: 0,
-          width: `100%`,
-          height: `100%`,
-        }}
-        frameborder="0"
-        allow="autoplay; fullscreen"
-        allowfullscreen
-      />
+        autoPlay
+        muted
+        loop
+        preload
+        css={wrapperCss}
+      ></video>
+
     </div>
+
   )
 }
 

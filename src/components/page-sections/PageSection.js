@@ -10,9 +10,9 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 const PageSection = ({className, preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, fromBlocks, children }) => {
-            
-        
-    const background =  typeof bgImage !== "undefined" && bgImage !== null 
+
+
+    const background =  typeof bgImage !== "undefined" && bgImage !== null
 
     const classesList = alt ? `${className} ${className}--alt` : className
     const altClass = alt ? ` ${className}--alt` : ''
@@ -41,7 +41,7 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
             { buttons && (<PageSectionButtons buttons={buttons} buttonsAlt={buttonsAlt} compact={buttonsCompact} />
             )}
             </div>
-           
+
         )}
         { background && (
             <BackgroundImage
@@ -62,26 +62,26 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
             { buttons && (<PageSectionButtons buttons={buttons} bgimage buttonsAlt/>
             )}
           </div>
-            
-           
+
+
 
       </BackgroundImage>
         )
         }
-        
-            
+
+
         </div>
     )
 }
 
 const StyledPageSection = styled(PageSection)`
-   
+
     position: relative;
     text-align: center;
     padding-top: 88px;
     &__wrapper {
         margin: 0 auto;
-        
+
         padding-bottom: 88px;
         &:last-child {
             padding-bottom: 128px;
@@ -107,7 +107,7 @@ const StyledPageSection = styled(PageSection)`
         margin-bottom: -58px;
     }
 
-   
+
     &--alt {
         background-color: ${colors.bgActiveGrey};
     }
@@ -133,7 +133,7 @@ const StyledPageSection = styled(PageSection)`
             font-size: ${sizes.s20};
          }
     }
-       
+
 
     .excerpt {
         font-size: ${sizes.s24};
@@ -152,10 +152,10 @@ const StyledPageSection = styled(PageSection)`
         }
         &--bgimage {
             color: ${colors.bgWhite} !important;
-            
+
         }
         &.withsocial {
-           
+
         }
     }
     /* some wordpress content pieces */
@@ -173,8 +173,8 @@ const StyledPageSection = styled(PageSection)`
             margin: 0 auto;
         }
     }
-   
-   
+
+
 `
 
 

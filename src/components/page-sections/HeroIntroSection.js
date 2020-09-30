@@ -1,74 +1,125 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { breakpoints, sizes, fonts, colors } from '../css-variables'
 import BackgroundImage from 'gatsby-background-image'
-import IntroRedPageSection from './IntroRedPageSection'
+import IntroPageSection from "./IntroPageSection"
 import VimeoVideo from '../content-modules/VimeoVideo'
 
 
-const HeroIntroSection = ({className, heroSize, heroImage, heroHeading, redHeading, excerpt, buttons, videoID}) => {
+const HeroIntroSection = ({
+  className,
+  videoURL,
+  variant,
+  heroSize,
+  heroImage,
+  heroHeading,
+  redHeading,
+  excerpt,
+  buttons,
+}) => {
+  const background = typeof heroImage !== "undefined" && heroImage !== null
 
-    const background =  typeof heroImage !== "undefined" && heroImage !== null
+  let classes = className
 
-    let classes = className;
+  let heroClasses = `${className}__hero`
 
-    let heroClasses = `${className}__hero`
+  let variantObject = {
+    background_color: colors.bgRed,
+    color: colors.titleWhite,
+    scroll_color: colors.bgRed,
+  }
+  switch (variant) {
+    case 'white':
+      variantObject['background_color'] = colors.bgWhite;
+      variantObject['color'] = colors.bgRed;
+      variantObject["scroll_color"] = "#9E9E9E"
+      break;
+    default:
+      break;
+  }
 
-    switch (heroSize) {
-        case 'jumbo':
-            heroClasses = `${className}__hero ${className}__hero--jumbo`
-            break
-        case 'slim':
-            heroClasses = `${className}__hero ${className}__hero--slim`
-            break
-        default:
-            break
+  switch (heroSize) {
+    case "jumbo":
+      heroClasses = `${className}__hero ${className}__hero--jumbo`
+      break
+    case "slim":
+      heroClasses = `${className}__hero ${className}__hero--slim`
+      break
+    default:
+      break
+  }
+
+  const headingClasses =
+    heroSize === "jumbo"
+      ? `${className}__heading ${className}__heading--jumbo`
+      : `${className}__heading`
+
+  let redboxClass = background
+    ? `${className}__redbox ${className}__redbox--background`
+    : `${className}__redbox`
+  let downscrollClass = `${className}__downscroll`
+  if (heroSize === "slim") {
+    redboxClass += ` ${className}__redbox--slim`
+    downscrollClass += ` ${className}__downscroll--slim`
+    classes += ` ${className}--slim`
+  }
+
+  let downscrollStyle = css`
+    &:before {
+      background-color: ${variantObject.scroll_color};
     }
+  `
 
-    const headingClasses = (heroSize === "jumbo" ) ? `${className}__heading ${className}__heading--jumbo` : `${className}__heading`
-
-    let redboxClass = background ? `${className}__redbox ${className}__redbox--background` : `${className}__redbox`
-    let downscrollClass = `${className}__downscroll`
-    if (heroSize === "slim") {
-        redboxClass += ` ${className}__redbox--slim`
-        downscrollClass += ` ${className}__downscroll--slim`
-        classes += ` ${className}--slim`
-    }
-
-
-    return (
-        <div className={classes}>
-            {videoID ?
-            <VimeoVideo videoID={videoID} />
-            : background ?
-            <BackgroundImage
-            Tag="div"
-            className={heroClasses}
-            fluid={heroImage.childImageSharp.fluid}
-            preserveStackingContext
-             >
-                { heroHeading && (
-                    <div className="wrapper">
-                        <div className={headingClasses} dangerouslySetInnerHTML={{ __html: heroHeading }} />
-                    </div>
-                )}
-            </BackgroundImage>
-            : null}
-            <div style={{position: `relative`}}>
-
-            <a className={downscrollClass} href={`#${className}__downscroll`} title="Scroll down to content">
-                <div className="downscroll_main">down</div>
-                <div className="downscroll_after"></div>
-            </a>
+  return (
+    <div className={classes}>
+      {videoURL ? (
+        <VimeoVideo videoURL={videoURL} heroSize={heroSize} />
+      ) : background ? (
+        <BackgroundImage
+          Tag="div"
+          className={heroClasses}
+          fluid={heroImage.childImageSharp.fluid}
+          preserveStackingContext
+        >
+          {heroHeading && (
+            <div className="wrapper">
+              <div
+                className={headingClasses}
+                dangerouslySetInnerHTML={{ __html: heroHeading }}
+              />
             </div>
+          )}
+        </BackgroundImage>
+      ) : null}
+      <div style={{ position: `relative` }}>
+        <a
+          className={downscrollClass}
+          href={`#${className}__downscroll`}
+          title="Scroll down to content"
+          css={downscrollStyle}
+        >
+          <div className="downscroll_main">down</div>
+          <div className="downscroll_after" style={{backgroundColor: variantObject.background_color}}></div>
+        </a>
+      </div>
 
-            <div className={redboxClass}>
-                <div className="downanchor" id={`${className}__downscroll`}>&nbsp;</div>
-                <IntroRedPageSection excerpt={excerpt} heading={redHeading} headingAlt headingCompact buttons={buttons} buttonsAlt buttonsCompact />
-            </div>
-
+      <div className={redboxClass}>
+        <div className="downanchor" id={`${className}__downscroll`}>
+          &nbsp;
         </div>
-    )
+        <IntroPageSection
+          excerpt={excerpt}
+          heading={redHeading}
+          variantObject={variantObject}
+          headingAlt
+          headingCompact
+          buttons={buttons}
+          buttonsAlt
+          buttonsCompact
+        />
+      </div>
+    </div>
+  )
 }
 
 const StyledHeroIntroSection = styled(HeroIntroSection)`
@@ -83,7 +134,6 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
       height: 80px;
       width: 222px;
       z-index: 4;
-      background-color: ${colors.bgRed} !important;
       transform: skew(135deg);
       background-image: none;
     }
@@ -151,9 +201,7 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
       left: 0;
       height: 80px;
       width: 100%;
-      background-color: ${colors.bgRed};
       opacity: 0.7;
-
       content: "";
       mix-blend-mode: multiply;
     }
@@ -189,7 +237,6 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
         height: 40px;
         width: 161px;
         content: "";
-        background-color: ${colors.bgRed} !important;
         transform: skew(135deg);
         @media screen and ${breakpoints.tabletS} {
           width: 222px;
