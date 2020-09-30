@@ -33,24 +33,27 @@ export default () => (
       
       <h2>Page Sections &amp; Content Components</h2>
       <ul>
-        <li>
-          <Link to="/slider">Carousel (ENHANCEMENTS)</Link>
+      <li>
+          <Link to="/accordian-search">Accordion Search Component (NEW)</Link>
         </li>
         <li>
-          <Link to="/contentCardFlex">Content Card (NEW - Promo Card S)</Link>
+          <Link to="/slider">Carousel</Link>
+        </li>
+        <li>
+          <Link to="/contentCardFlex">Content Card</Link>
         </li>
         <li>
           <Link to="/james-test">
             Image/Content Modules (1/3, 1/2, 2/3) from WordPress Pages{" "}
           </Link>
-          (new / in progress)
+          
         </li>
         <li>
-          <Link to="/contentBlockList">Content Card List (NEW)</Link>
+          <Link to="/contentBlockList">Content Card List </Link>
         </li>
         <li>
           <Link to="/gridCardDPop">
-            Card D Grid Alternative, pops out of section (NEW)
+            Card D Grid Alternative, pops out of section 
           </Link>
         </li>
         <li>
@@ -81,9 +84,7 @@ export default () => (
           <Link to="/fonts">Text Styles</Link>
         </li>
 
-        <li>
-          <Link to="/accordian-search">Accordian Search Component</Link>
-        </li>
+       
       </ul>
     </PageSection>
   </Layout>
