@@ -34,10 +34,12 @@ position: relative;
 
 }
 > p, 
-> ul {
+> ul,
+> h2,
+> h3 {
     min-width: 300px;
     width: 80%;
-    max-width: 900px;
+    max-width: 712px;
     margin-left: auto;
     margin-right: auto;
     

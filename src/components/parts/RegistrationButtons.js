@@ -5,27 +5,16 @@ import Button from './Button'
 
 const RegistrationButtons = ({ className, buttonsAlt, registrationLink }) => {
 
-    const buttons = [
-        {
-            link: '"' + {registrationLink} + '"',
-            text: "Register",
-        },
-        ]
-
-
-    const renderedButtons = buttons.map(item =>(
-        <Button key={item.link} alt={buttonsAlt} link={item.link} text={item.text} />
-    ))
-
     return (
         <div className={`${className}`} >
-            <div>{renderedButtons}</div>
+            <Button alt={buttonsAlt} link={registrationLink} text="Register" fullwidth />
         </div>
     )
 }
 
 const StyledRegistrationButtons = styled(RegistrationButtons)`
     position: relative;
+    width: 100%;
     margin: ${sizes.s32} ${sizes.s36} 0;
 
     @media screen and ${breakpoints.laptopS} {

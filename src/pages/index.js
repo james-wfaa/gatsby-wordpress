@@ -11,6 +11,9 @@ export default () => (
       <h1>uwalumni.com redesign - development work in progress</h1>
       <h2>Full Page Templates</h2>
       <li>
+        <Link to="/homepage">Full Homepage</Link>
+      </li>
+      <li>
         <Link to="/wordpress-story">Story Page (NEW - ENHANCEMENTS)</Link>
       </li>
       <li>
@@ -18,9 +21,7 @@ export default () => (
           Individual Group Page (NEW) (in progress)
         </Link>
       </li>
-      <li>
-        <Link to="/homepage">Full Homepage</Link>
-      </li>
+      
       <h2>Page Sections &amp; Content Components</h2>
       <ul>
         <li>

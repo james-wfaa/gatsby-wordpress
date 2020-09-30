@@ -26,9 +26,7 @@ text-align: left;
     max-width: 712px;
     margin-left: auto;
     margin-right: auto;
-    @media screen and ${breakpoints.tabletS} {
-        width: 536px;
-    }
+    
     @media screen and ${breakpoints.laptopL} {
         width: 712px;
     }
