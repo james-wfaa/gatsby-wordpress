@@ -130,6 +130,9 @@ margin: ${sizes.s48} auto 0;
     ul {
         list-style-position: inside;
     }
+    a {
+        ${mixins.a}
+    }
     
 }
 h2 {

@@ -124,13 +124,7 @@ const StyledEventRegistration = styled(EventRegistration)`
         }
         
         a{
-            color: ${colors.linkText};
-            :hover{
-                color: ${colors.linkTextHover};
-            }
-            :active{
-                color: ${colors.linkTextActive};
-            }
+            ${mixins.a}
         }
     }
 

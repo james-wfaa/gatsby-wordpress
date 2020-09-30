@@ -133,6 +133,16 @@ export const breakpoints = {
 }
 
 export const mixins = {
+    a: `
+    {
+        color: ${colors.linkText};
+        :hover{
+            color: ${colors.linkTextHover};
+        }
+        :active{
+            color: ${colors.linkTextActive};
+        }
+    }`,
     cardTitle: `
         font-family: ${fonts.eavesNarrow};
         font-size: ${sizes.s24};
