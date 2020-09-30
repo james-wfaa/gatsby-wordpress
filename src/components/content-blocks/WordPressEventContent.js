@@ -46,12 +46,17 @@ const WordPressEventContent = ({className, content, date, startDate, endDate, li
 }
 const StyledWordPressEventContent = styled(WordPressEventContent)`
 padding-bottom: ${sizes.s58};
+margin: ${sizes.s48} auto 0;
 @media screen and ${breakpoints.laptopS} {
     display: flex;
     
     max-width: 1080px;
-    margin: 0 auto;
+    
     padding-bottom: ${sizes.s88};
+    
+}
+@media screen and ${breakpoints.laptopS} {
+    margin-top: ${sizes.s58};
 }
 @media screen and ${breakpoints.laptopL} {
     width: 1080px;
@@ -75,6 +80,7 @@ padding-bottom: ${sizes.s58};
     @media screen and ${breakpoints.laptopS} {
         display: block;
         margin-left: 116px;
+        margin-top: 12px; /* to align with the header in the janky font */
     }
     
 }
@@ -82,10 +88,11 @@ padding-bottom: ${sizes.s58};
     min-width: 300px;
     width: 100%;   
     max-width: 712px;
-    padding: 0 ${sizes.s36};
-    margin: 0 auto;
+    padding: 0 ${sizes.s36} ${sizes.s32};
+    margin: 0 auto ${sizes.s32};
+    border-bottom: 18px solid ${colors.sectionBorder};
     @media screen and ${breakpoints.tablet} {
-        padding: 0;
+        padding: 0 0 ${sizes.s32};
     }
     @media screen and ${breakpoints.laptopS} {
         display: none;
@@ -97,7 +104,9 @@ padding-bottom: ${sizes.s58};
     > p, 
     > ul,
     > h2,
-    > h3 {
+    > h3,
+    > div.callout,
+    > div.call-out {
         min-width: 300px;
         width: 100%;
         padding-left: ${sizes.s36};
@@ -117,6 +126,9 @@ padding-bottom: ${sizes.s58};
             max-width: 712px;
         }
         
+    }
+    ul {
+        list-style-position: inside;
     }
     
 }
