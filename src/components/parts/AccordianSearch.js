@@ -143,29 +143,52 @@ const AccordianSearch = props => {
         <StyledButtonWrapper>
           <animated.div style={searchstyles}>
             <AccordianSearchBox
-              handleFilterString={(str) => props.handleFilterString(str)}
+              handleFilterString={str => props.handleFilterString(str)}
               filterString={props.filterString}
             />
             <FilterBox>
               <FilteredDiv>
-                <FilterButton className="date" onClick={() => setDateOpen(!dateopen)}>Date</FilterButton>
+                <FilterButton
+                  className="date"
+                  onClick={() => setDateOpen(!dateopen)}
+                >
+                  Date
+                </FilterButton>
               </FilteredDiv>
               <FilteredDiv>
-                <FilterButton className="location" onClick={() => setLocationOpen(!locationopen)}>Location</FilterButton>
+                <FilterButton
+                  className="location"
+                  onClick={() => setLocationOpen(!locationopen)}
+                >
+                  Location
+                </FilterButton>
               </FilteredDiv>
               <FilteredDiv>
-                <FilterButton className="category" onClick={() => setCategoryOpen(!categoryopen)}>Category</FilterButton>
-                {categoryopen ? <CategoryFilter categories={props.categoryFilters} /> : null}
+                <FilterButton
+                  className="category"
+                  onClick={() => setCategoryOpen(!categoryopen)}
+                >
+                  Category
+                </FilterButton>
+                {categoryopen ? (
+                  <CategoryFilter
+                    categories={props.categoryFilters}
+                    handleCategoryFilters={props.handleCategoryFilters}
+                  />
+                ) : null}
               </FilteredDiv>
               <FilteredDiv>
-                <FilterButton className="filters" onClick={() => setFiltersOpen(!filtersopen)}>Filters</FilterButton>
+                <FilterButton
+                  className="filters"
+                  onClick={() => setFiltersOpen(!filtersopen)}
+                >
+                  Filters
+                </FilterButton>
               </FilteredDiv>
             </FilterBox>
           </animated.div>
         </StyledButtonWrapper>
-
       ) : null}
-
     </StyledWrapper>
   )
 }

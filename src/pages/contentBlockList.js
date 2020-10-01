@@ -162,21 +162,37 @@ export default ({ data }) => {
     setFilterString(str)
   }
 
-  const titleFilter = (str) => {
-    let updatedEvents = [...cardList];
+  const handleCategoryFilters = (obj) => {
+    setCategoryFilters(obj)
+  }
+
+  const titleFilter = data => {
     if (filterString !== "") {
-      updatedEvents = updatedEvents.filter((evt) => {
-        return evt.title
-        .toUpperCase()
-        .includes(filterString.toUpperCase())
+      return data.filter(evt => {
+         return evt.title.toUpperCase().includes(filterString.toUpperCase())
       })
     }
-    return updatedEvents;
-  };
+    return data
+  }
 
-  const categoryFilter = (filterArray) => {
-    let filteredArray = [...categoryFilters]
+  const categoryFilter = (data) => {
+    let updatedData = data
+    let filterArray = []
+    let keys = Object.keys(categoryFilters)
+    let filtered = keys.filter(key => categoryFilters[key])
+    filtered.forEach(filter => {
+      let cardArray = updatedData.filter(card => card.category === filter)
+      filterArray.push(cardArray)
+    })
+    return filterArray.flat()
+  }
 
+
+  const runFilters = () => {
+    let updatedData = [...cardList]
+    updatedData = titleFilter(updatedData)
+    updatedData = categoryFilter(updatedData)
+    setFilteredEvents(updatedData)
   }
 
   useEffect(() => {
@@ -185,8 +201,8 @@ export default ({ data }) => {
   }, [])
 
   useEffect(() => {
-    setFilteredEvents(titleFilter(filterString))
-  }, [filterString])
+    runFilters()
+  }, [filterString, categoryFilters])
 
   let contentCards = filteredEvents.map(card => {
 
@@ -210,6 +226,7 @@ export default ({ data }) => {
     <Layout>
       <AccordianSearch
         handleFilterString={(str) => handleFilterString(str)}
+        handleCategoryFilters={(obj) => handleCategoryFilters(obj)}
         filterString={filterString}
         categoryFilters={categoryList}
       />
