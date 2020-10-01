@@ -225,11 +225,10 @@ export default ({ data }) => {
 
   const runFilters = () => {
     let updatedData = [...cardList]
-    
     updatedData = titleFilter(updatedData)
-    console.log("before sending", updatedData)
     updatedData = locationFilter(updatedData)
     updatedData = categoryFilter(updatedData)
+    updatedData.sort((a,b) => (a.size > b.size) ? -1 : 1)
     setFilteredEvents(updatedData)
   }
 
