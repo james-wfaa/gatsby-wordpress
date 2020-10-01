@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import CheckBox from "./Checkbox"
+import CheckBox from "../Checkbox"
 
 const CategoryFilter = props => {
   const [categoryFilters, setCategoryFilters] = useState(props.categories)
@@ -13,17 +13,15 @@ const CategoryFilter = props => {
   `
   const handleFilter = e => {
     const item = e.target.name
-    const newObject = {...selectedCategories}
+    const newObject = { ...selectedCategories }
     newObject[item] = !selectedCategories[item]
     setSelectedCategories(newObject)
   }
 
-
-
   useEffect(() => {
-    let updatedObject = {};
+    let updatedObject = {}
     props.categories.forEach(category => {
-      updatedObject[`${category}`] = true;
+      updatedObject[`${category}`] = true
     })
     setSelectedCategories(updatedObject)
   }, [])

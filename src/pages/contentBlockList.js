@@ -68,8 +68,10 @@ const taglist1 = [
 export default ({ data }) => {
   const [filteredEvents, setFilteredEvents] = useState([])
   const [filterString, setFilterString] = useState("")
+  const [locationList, setLocationList] = useState([])
+  const [locationFilters, setLocationFilters] = useState(false)
   const [categoryList, setCategoryList] = useState([])
-  const [categoryFilters, setCategoryFilters] = useState([])
+  const [categoryFilters, setCategoryFilters] = useState(false)
 
   const cardList = [
     {
@@ -123,7 +125,7 @@ export default ({ data }) => {
       title: "Gentrify try-hard tacos, taiyaki small batch bespoke 90's hell of non hot chicken.",
       category: "Food Trucks",
       venue: "Churchill Downs",
-      location: "Louisville, KY",
+      location: "Des Moines, IA",
       tags: taglist2,
       size: "Wide"
     },
@@ -133,7 +135,7 @@ export default ({ data }) => {
       title: "Testing various titles here",
       category: "Other",
       venue: "Churchill Downs",
-      location: "Louisville, KY",
+      location: "Madison, WI",
       tags: taglist2,
       size: "Wide"
     },
@@ -143,7 +145,7 @@ export default ({ data }) => {
       title: "Lorem Ipsum Puget Sound",
       category: "Food Trucks",
       venue: "Churchill Downs",
-      location: "Louisville, KY",
+      location: "Dallas, TX",
       tags: taglist2,
       size: "Wide"
     },
@@ -158,8 +160,23 @@ export default ({ data }) => {
     return reducedlist
   }
 
+  const getLocations = () => {
+    let locationlist = cardList.map(card => {
+      return card.location
+    })
+    let reducedlist = [...new Set(locationlist)]
+    reducedlist.sort()
+    return reducedlist
+  }
+
+
+
   const handleFilterString = (str) => {
     setFilterString(str)
+  }
+
+  const handleLocationFilters = obj => {
+    setLocationFilters(obj)
   }
 
   const handleCategoryFilters = (obj) => {
@@ -175,34 +192,56 @@ export default ({ data }) => {
     return data
   }
 
+  const locationFilter = (data) => {
+    if (locationFilters) {
+      let updatedData = data
+      let filterArray = []
+      let keys = Object.keys(locationFilters)
+      let filtered = keys.filter(key => locationFilters[key])
+      filtered.forEach(filter => {
+        let cardArray = updatedData.filter(card => card.location === filter)
+        filterArray.push(cardArray)
+      })
+      return filterArray.flat()
+    }
+    return data
+  }
+
   const categoryFilter = (data) => {
-    let updatedData = data
-    let filterArray = []
-    let keys = Object.keys(categoryFilters)
-    let filtered = keys.filter(key => categoryFilters[key])
-    filtered.forEach(filter => {
-      let cardArray = updatedData.filter(card => card.category === filter)
-      filterArray.push(cardArray)
-    })
-    return filterArray.flat()
+    if (categoryFilters) {
+      let updatedData = data
+      let filterArray = []
+      let keys = Object.keys(categoryFilters)
+      let filtered = keys.filter(key => categoryFilters[key])
+      filtered.forEach(filter => {
+        let cardArray = updatedData.filter(card => card.category === filter)
+        filterArray.push(cardArray)
+      })
+      return filterArray.flat()
+    }
+    return data
   }
 
 
   const runFilters = () => {
     let updatedData = [...cardList]
+    
     updatedData = titleFilter(updatedData)
+    console.log("before sending", updatedData)
+    updatedData = locationFilter(updatedData)
     updatedData = categoryFilter(updatedData)
     setFilteredEvents(updatedData)
   }
 
   useEffect(() => {
     setCategoryList(getCategories());
+    setLocationList(getLocations())
     setFilteredEvents(cardList);
   }, [])
 
   useEffect(() => {
     runFilters()
-  }, [filterString, categoryFilters])
+  }, [filterString, locationFilters, categoryFilters])
 
   let contentCards = filteredEvents.map(card => {
 
@@ -225,15 +264,15 @@ export default ({ data }) => {
   return (
     <Layout>
       <AccordianSearch
-        handleFilterString={(str) => handleFilterString(str)}
-        handleCategoryFilters={(obj) => handleCategoryFilters(obj)}
+        handleFilterString={str => handleFilterString(str)}
+        handleCategoryFilters={obj => handleCategoryFilters(obj)}
+        handleLocationFilters={obj => handleLocationFilters(obj)}
         filterString={filterString}
+        locationFilters={locationList}
         categoryFilters={categoryList}
       />
       <PageSection heading="Sifted Events">
-        <ContentBlockList>
-          {contentCards}
-        </ContentBlockList>
+        <ContentBlockList>{contentCards}</ContentBlockList>
       </PageSection>
     </Layout>
   )

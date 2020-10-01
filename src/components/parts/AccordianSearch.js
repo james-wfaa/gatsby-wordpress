@@ -4,7 +4,8 @@ import { useSpring, animated } from "react-spring"
 import { colors, sizes, breakpoints } from "../css-variables"
 import StyledHeader from "./StyledHeader"
 import AccordianSearchBox from "./AccordianSearchBox"
-import CategoryFilter from "./CategoryFilter"
+import CategoryFilter from "./filters/CategoryFilter"
+import LocationFilter from "./filters/LocationFilter"
 import WcIcon from "../../svg/wechat_icon_gray.svg"
 import DateImg from "../../assets/images/accordian_date.png"
 import CategoryImg from "../../assets/images/accordian_category.png"
@@ -162,6 +163,12 @@ const AccordianSearch = props => {
                 >
                   Location
                 </FilterButton>
+                {locationopen ? (
+                  <LocationFilter
+                    locations={props.locationFilters}
+                    handleLocationFilters={props.handleLocationFilters}
+                  />
+                ) : null}
               </FilteredDiv>
               <FilteredDiv>
                 <FilterButton
