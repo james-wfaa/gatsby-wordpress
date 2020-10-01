@@ -36,20 +36,15 @@ width: auto;
 min-width: 375px;
 margin: 0; 
 position: relative;
-margin: ${sizes.s58} 0 ${sizes.s58} 0; 
+margin: ${sizes.s58} 0;
 
-@media screen and ${breakpoints.tabletS} {
-  width: 536px;
-  margin: ${sizes.s58} auto; 
-}
 @media screen and ${breakpoints.laptopS} {
-  width: 815px;
-  margin: ${sizes.s58} auto; 
-
+  max-width: 1080px;
+  margin: ${sizes.s58} auto;
+  
 }
 @media screen and ${breakpoints.laptopL} {
   width: 1080px;
-  margin: ${sizes.s58} auto; 
 
   &:before {
     position: absolute;
@@ -77,6 +72,9 @@ margin: ${sizes.s58} 0 ${sizes.s58} 0;
     background-color: ${colors.bgWhite} !important;
     transform: skew(135deg);
   }
+
+
+  
   
 
 }

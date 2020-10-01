@@ -2,7 +2,7 @@ import React from "react"
 import styled from 'styled-components'
 import { sizes, colors, fonts, breakpoints } from '../css-variables'
 
-const PageSectionHeader = ({ className, heading, author, categories, date, excerpt, series, event = false }) => {
+const TitleSection = ({ className, heading, author, categories, date, excerpt, series, event = false }) => {
 
     const classesList = !event ? `${className}` : `${className} ${className}--event`
     const categoryList = !categories ? null : categories.nodes.map((category) => (
@@ -11,10 +11,11 @@ const PageSectionHeader = ({ className, heading, author, categories, date, excer
       
     return (
         <div className={classesList}>
+            <div className="headersection">
             { heading && (
                 <h1>{heading}</h1>
             )}
-            <div className={`${className}__titlesection`}>
+            <div className="titlesection">
                 { author && (
                     <div className={`${className}__author`}>{author.node.name}</div>       
                 )}
@@ -28,42 +29,40 @@ const PageSectionHeader = ({ className, heading, author, categories, date, excer
                     <div className={`${className}__series`}>{series}</div>
                 )}
             </div>
+            </div>
+            
             { excerpt && (
-                <div className={`${className}__excerpt`} dangerouslySetInnerHTML={{ __html: excerpt }} />       
+                <div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />       
             )}
 
         </div>
     )
 }
 
-const StyledPageSectionHeader = styled(PageSectionHeader)`
+const StyledTitleSection = styled(TitleSection)`
     position: relative;
     min-width: 300px;
-    width: 300px;
+    width: 80%;
     max-width: 712px;
     margin-left: auto;
     margin-right: auto;
 
-    @media screen and ${breakpoints.tabletS} {
-        width: 536px;
-    }
-    @media screen and ${breakpoints.laptopL} {
-        width: 712px;
-    }
-
-    &--event{
-        @media screen and ${breakpoints.tabletS} {
-            width: 536px;
-            max-width: 536px;
-          }
-          @media screen and ${breakpoints.laptopS} {
-            width: 815px;
-            max-width: 815px;
-          }
-        @media screen and ${breakpoints.laptopL} {
-            width: 712;
-            max-width: 1080px;
-            margin-left: 0;
+    
+    &.header--event{
+        min-width: 300px;
+        width: 100%;
+        padding: 0 ${sizes.s36};
+       
+       
+        
+        @media screen and ${breakpoints.tablet} {
+            margin: 0 auto;
+            padding: 0;
+          
+        }
+        @media screen and ${breakpoints.laptopS} {
+        margin: 0;
+        max-width: 712px;
         }
     }
 
@@ -76,7 +75,9 @@ const StyledPageSectionHeader = styled(PageSectionHeader)`
         font-style: italic;
         font-size: ${sizes.s36};
         line-height: ${sizes.s40};
-        margin-bottom: ${sizes.s24};
+        width: 100%;
+        /*margin-bottom: ${sizes.s24};*/
+        margin-bottom: 0;
 
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s42};
@@ -84,7 +85,7 @@ const StyledPageSectionHeader = styled(PageSectionHeader)`
             padding: 0;
         }
     }
-    &__titlesection{
+    .titlesection{
         text-align: left;
         overflow-wrap: break-word;
         position: relative;
@@ -103,17 +104,10 @@ const StyledPageSectionHeader = styled(PageSectionHeader)`
         div:first-child{
             padding-left: 0px;
             border-left: none;
+            margin-top: ${sizes.s24};
 
         }
-        :after {
-            position: absolute;
-            bottom:0;
-            left: 0;
-            height: ${sizes.s8};
-            width: calc( 1.889rem * 2 );
-            background-color: #c5050c;
-            content: '';
-        }
+        
         
     }
 
@@ -131,12 +125,25 @@ const StyledPageSectionHeader = styled(PageSectionHeader)`
         }
     }
 
-    &__excerpt{
+    .headingexcerpt{
         text-align: left;
         font-family: ${fonts.eaves};
         font-size: ${sizes.s18};
         line-height: ${sizes.s26};
     }
+    .headersection {
+        position: relative;
+        :after {
+            position: absolute;
+            bottom:0;
+            left: 0;
+            height: ${sizes.s8};
+            width: calc( 1.889rem * 2 );
+            background-color: #c5050c;
+            content: '';
+        }
+    }
+    
 `
 
-export default StyledPageSectionHeader
+export default StyledTitleSection

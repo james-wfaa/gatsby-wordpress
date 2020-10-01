@@ -19,41 +19,32 @@ const EventRegistration = ({className, date, startDate, endDate, registrationLin
         }
     }
     const organizerList = !organizers ? null : organizers.nodes.map((org) => (
-         <div className={`${className}__organizer`}>{org.title}</div>
+         <div className="organizer">{org.title}</div>
       ))
 
     
 
     return(
         <div className={classesList}>
-            <div className={`${className}__regHeader regHeader`}>
+            <div className="regHeader">
                 { date && (
-                    <div className={`${className}__dateDay dateDay`}>{date}</div>
+                    <div className="dateDay">{date}</div>
                 )}
-                { registrationLink && (<RegistrationButtons className={`${className}__regButton regButton`} registrationLink={registrationLink} />
+                { registrationLink && (<RegistrationButtons className="regButton" registrationLink={registrationLink} />
                 )}
             </div>
-            <div className={`${className}__regWrapper regWrapper`}>
-                <div className={`${className}__time ${className}__regSection time regSection`}>
-                    <div className={`${className}__subHeader subHeader`}>WHEN</div>
-                    <div className={`${className}__dateDay dateDay`}>{date}</div>
-                    <div className={`${className}__dateTime dateTime`}>{convertTime(startDate, endDate)}</div>
-                    <a href="#" alt="Add to Calendar">Add to Calendar</a>
-                </div>
-                <div className={`${className}__location ${className}__regSection location regSection`}>
-                    <div className={`${className}__subHeader subHeader`}>WHERE</div>
-                    <div className={`${className}__venue ${className}__subContent subContent venue`}>{venue.address}<br></br>{venue.city}, {venue.state}</div>
-                    <a href="#" alt="View Map">View Map and Event Details</a>
-
-                </div>
-                <div className={`${className}__cost ${className}__regSection cost regSection`}>
-                    <div className={`${className}__subHeader subHeader`}>COST</div>
-                    <div className={`${className}__amount ${className}__subContent amount subContent`}>{costDisplay(cost)}</div>
-                </div>
-                <div className={`${className}__organizer ${className}__regSection organizer regSection`}>
-                    <div className={`${className}__subHeader subHeader`}>ORGANIZER</div>
-                    <div className={`${className}__orgName ${className}__subContent orgName subContent`}>{organizerList}</div>
-                </div>
+            <div className="regWrapper">
+                <div className="subHeader">WHEN</div>
+                <div>{date}</div>
+                <div className="dateTime">{convertTime(startDate, endDate)}</div>
+                <a href="#" alt="Add to Calendar">Add to Calendar</a>
+                <div className="subHeader">WHERE</div>
+                <div className=" venue">{venue.address}<br></br>{venue.city}, {venue.state}</div>
+                <a href="#" alt="View Map">View Map and Event Details</a>
+                <div className="subHeader">COST</div>
+                <div className="amount ">{costDisplay(cost)}</div>
+                <div className="subHeader">ORGANIZER</div>
+                <div className="orgName ">{organizerList}</div>
 
             </div>
         </div>
@@ -62,27 +53,21 @@ const EventRegistration = ({className, date, startDate, endDate, registrationLin
 const StyledEventRegistration = styled(EventRegistration)`
 
     
-    width: 303px;
     font-size: ${sizes.s18};
     line-height: ${sizes.s26};
     margin-bottom: ${sizes.s32};
     text-align: left;
 
-    @media screen and ${breakpoints.tabletS} {
-        width: 536px;
-    } 
     @media screen and ${breakpoints.laptopS} {
         width: 252px;
     }
-
     .regHeader {
         width: 100%;
         background-color: ${colors.calloutGrey};
-        box-shadow: 0 -10px 10px -10px rgba(0 0 0 /29%);
-        position: fixed;
-        bottom: 0%
-        z-index: 1;
-
+        /*box-shadow: 0 -10px 10px -10px rgba(0 0 0 /29%);*/
+        padding: 0 ${sizes.s36};
+        text-align: center;
+       
         .dateDay{   
             padding: ${sizes.s16} 0 ${sizes.s16} 0;
             font-size: ${sizes.s18};
@@ -91,7 +76,6 @@ const StyledEventRegistration = styled(EventRegistration)`
         }
 
         .regButton{
-            width: 304px;
             margin: 0 auto;
             padding: 0 0 ${sizes.s24} 0;
         }
@@ -100,15 +84,14 @@ const StyledEventRegistration = styled(EventRegistration)`
             position: static;
             background-color: transparent;
             box-shadow: none;
+            padding: 0;
 
             .dateDay{
                 display: none;
             }
-        
             .regButton{
+                width: 100%;
                 padding: 0 0 ${sizes.s32} 0;
-                width: 252px;
-
             }
         }
     }
@@ -118,8 +101,11 @@ const StyledEventRegistration = styled(EventRegistration)`
 
         .subHeader{
             position: relative;
-            padding-bottom: ${sizes.s8};
+            font-weight: 800;
+            margin-top: ${sizes.s32};
+            padding-bottom: ${sizes.s10};
             border-bottom: 2px solid ${colors.borderGrey};
+            margin-bottom: ${sizes.s8};
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
     
@@ -134,56 +120,12 @@ const StyledEventRegistration = styled(EventRegistration)`
                     background-color: ${colors.borderGrey};
                     content: '';
                 }
-                
             }
-    
-    
         }
-        .subContent{
-            margin-top: ${sizes.s8};
-            font-weight: bold;
-            @media screen and ${breakpoints.laptopS} {
-            }
         
+        a{
+            ${mixins.a}
         }
-    
-        .time{
-            border-top: 2px solid ${colors.borderGrey};
-            margin-top: ${sizes.s8};
-            padding-top: ${sizes.s8};
-            .subHeader{
-                display: none;
-            }
-            @media screen and ${breakpoints.laptopS} {
-                border-top: none;
-                margin-top: 0;
-                padding-top: 0;
-            
-                .dateDay{
-                    margin-top: ${sizes.s8};
-                }
-                .subHeader{
-                    display: block;
-                }
-            
-            }
-    
-        }
-        .regSection{
-            a{
-                color: ${colors.linkText};
-    
-                :hover{
-                    color: ${colors.linkTextHover};
-                }
-                :active{
-                    color: ${colors.linkTextActive};
-                }
-            }
-    
-        }
-    
-    
     }
 
 

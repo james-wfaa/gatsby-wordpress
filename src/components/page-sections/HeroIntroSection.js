@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { breakpoints, sizes, fonts, colors } from '../css-variables'
+import { breakpoints, mixins, colors } from '../css-variables'
 import BackgroundImage from 'gatsby-background-image'
 import IntroPageSection from "./IntroPageSection"
 import VimeoVideo from '../content-modules/VimeoVideo'
@@ -51,8 +51,8 @@ const HeroIntroSection = ({
 
   const headingClasses =
     heroSize === "jumbo"
-      ? `${className}__heading ${className}__heading--jumbo`
-      : `${className}__heading`
+      ? `heading heading--jumbo`
+      : `heading`
 
   let redboxClass = background
     ? `${className}__redbox ${className}__redbox--background`
@@ -73,7 +73,7 @@ const HeroIntroSection = ({
   return (
     <div className={classes}>
       {videoURL ? (
-        <VimeoVideo videoURL={videoURL} heroSize={heroSize} />
+        <VimeoVideo videoURL={videoURL} heroSize={heroSize} heroHeading={heroHeading}/>
       ) : background ? (
         <BackgroundImage
           Tag="div"
@@ -244,41 +244,10 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
       }
     }
   }
-  &__heading {
-    position: absolute;
-
-    width: 300px;
-    left: calc(50% - 150px);
-    top: calc(50% - 50px);
-    font-style: italic;
-
-    color: white;
-    font-size: ${sizes.s32};
-    text-align: center;
-    text-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
-    span {
-      font-weight: bold;
-      font-family: ${fonts.eaves};
-      font-size: ${sizes.s52};
-    }
-    @media screen and ${breakpoints.tabletS} {
-      width: 450px;
-      left: calc(50% - 225px);
-      font-size: ${sizes.s60};
-      span {
-        font-size: ${sizes.s100};
-      }
-    }
-    @media screen and ${breakpoints.laptopS} {
-      width: 600px;
-      left: calc(50% - 300px);
-      top: calc(50% - 50px);
-      &--jumbo {
-        top: calc(50% - 70px);
-      }
-    }
+  .heading {
+    ${mixins.introHeading}
   }
-  &__heading--jumbo {
+  .heading--jumbo {
     top: calc(50% - 70px);
     @media screen and ${breakpoints.tabletS} {
       top: calc(50% - 100px) !important;

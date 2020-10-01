@@ -3,8 +3,6 @@ import Layout from "../layout"
 import PageSection from "../page-sections/PageSection"
 import WordPressEventContent from "../content-blocks/WordPressEventContent"
 import FeaturedImage from "../content-blocks/FeaturedImage"
-import StorySectionHeader from '../parts/StorySectionHeader'
-
 
 
 function WordPressPage({ page }) {
@@ -12,12 +10,10 @@ function WordPressPage({ page }) {
 
   return (
     <Layout>
-      <PageSection>
         {!!featuredImage?.node?.remoteFile?.childImageSharp && (
-            <FeaturedImage featuredImage={featuredImage} />
+            <FeaturedImage featuredImage={featuredImage}  event/>
         )}
         <WordPressEventContent content={content} date={date} link={link} startDate={startDate} endDate={endDate} venue={venue} cost={cost} organizers={organizers} title={title} />
-      </PageSection>
     </Layout>
   )
 }

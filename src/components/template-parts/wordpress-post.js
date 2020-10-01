@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import Layout from "../layout"
 import { normalizePath } from "../../utils/get-url-path"
 import WordPressContent from "../content-blocks/WordPressPostContent"
-import StorySectionHeader from '../parts/StorySectionHeader'
+import TitleSection from '../parts/WordPressTitleSection'
 import SocialShareLinks from '../parts/SocialShareLinks'
 import PageSection from "../page-sections/PageSection"
 import FeaturedImage from "../content-blocks/FeaturedImage"
@@ -16,7 +16,7 @@ function BlogPost({ data }) {
   return (
     <Layout>
       <PageSection>
-        <StorySectionHeader heading={title} author={author} categories={categories} date={date} excerpt={excerpt}  />
+        <TitleSection heading={title} author={author} categories={categories} date={date} excerpt={excerpt}  />
         {!!featuredImage?.node?.remoteFile?.childImageSharp && (
             <FeaturedImage featuredImage={featuredImage} />
         )}
