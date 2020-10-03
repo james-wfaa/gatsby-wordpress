@@ -42,14 +42,26 @@
 .slick-slider {
   margin-bottom: 0;
 }
+.slick-track
+{
+    display: flex !important;
+}
+
+.slick-slide
+{
+    height: inherit !important;
+}
+.slick-slide > div {
+  height: 100% !important;
+}
 
 @media screen and (min-width: 1200px) {
-    
+
     .slick-arrow {
         display: block !important;
     }
     .slick-dots {
         display: none !important;
-    
+
     }
 }

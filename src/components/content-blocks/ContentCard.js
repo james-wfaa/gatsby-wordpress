@@ -36,90 +36,119 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
             :  img.childImageSharp.fluid
 
     return (
-
-        <div className={`${className} ${className}--${size} ${className}--${notSmall} ${className}--${promoClass}`}>
-                <div className={`headersection headersection--${size} headersection--${notSmall} headersection--${promoClass}`}>
-                    { startDate && (
-                        <div className={`date date--${size} date--${notSmall}`}>
-                            <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
-                        </div>
-
-                    )}
-                    { !startDate && (
-                        <div className={`category category--${size} category--${notSmall} category--${promoClass}`}>{category}</div>
-                    )}
-                    { !startDate && (
-                        <h3 className={`title title--${size} title--${notSmall} title--${promoClass}`}>
-                            <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
-                        </h3>
-                    )}
-                    {imgSources && (
-                        <a href={url} className={`imgzoomlink headerImg`} >
-                            <Img
-                                className={`img`}
-                                fluid={imgSources}
-                            />
-                        </a>
-                    )}
-
-                </div>
-                <div className={`contentwrap contentwrap--${size} contentwrap--${promoClass}`}>
-                    {imgSources && (
-                        <a href={url} className={`imgzoomlink bodyImg`} >
-                            <Img
-                                className={`img`}
-                                fluid={imgSources}
-                            />
-                        </a>
-                    )}
-
-                    <div className={`contentsection contentsection--${size} contentsection--${notSmall}`}>
-
-                        <div className={`columnwrap columnwrap--${size} columnwrap--${notSmall}`}>
-                            { startDate && (
-                                <a href={url} >
-                                    <h3 className={`title title--${size} title--${notSmall}`}>
-                                        <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
-                                    </h3>
-                                </a>
-                            )}
-                            { startDate && (
-                                <div className={`category category--${size} category--${notSmall}`}>{category}</div>
-                            )}
-                            { shortenedExcerpt && (
-                                <div className={`excerpt excerpt--${size} excerpt--${notSmall} excerpt--${promoClass}`}>
-                                    <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
-                                </div>
-                            )}
-                        </div>
-                        <div className={`columnwrap columnwrap--${size} columnwrap--${notSmall}`}>
-                            { venue && (
-                                <div className={`venuewrap venuewrap--${size} venuewrap--${notSmall}`}>
-                                { venue && (
-                                    <div className={`venue venue--${size} venue--${notSmall}`}>{venue}</div>
-                                )}
-                                { location && (
-                                    <div className={`location location--${size} location--${notSmall}`}>{location}</div>
-                                )}
-                            </div>
-                            )}
-                            { excerpt && (
-                                <a href={url} className={`excerpt excerpt--${size} excerpt--${notSmall} excerpt--${promoClass} readmore`}>{moreLinkText}</a>
-                            )}
-                            { tags && (
-                                <TagList
-                                    className={`tag  tag--${size} tag--${notSmall}`}
-                                    items={tags}
-                                />
-                            )}
-                        </div>
-
-
-                    </div>
-
-                </div>
-
+      <div
+        className={`${className} ${className}--${size} ${className}--${notSmall} ${className}--${promoClass}`}
+        style={{ height: `100%` }}
+      >
+        <div
+          className={`headersection headersection--${size} headersection--${notSmall} headersection--${promoClass}`}
+        >
+          {startDate && (
+            <div className={`date date--${size} date--${notSmall}`}>
+              <a
+                href={url}
+                dangerouslySetInnerHTML={{ __html: dateLinkText }}
+              />
+            </div>
+          )}
+          {!startDate && (
+            <div
+              className={`category category--${size} category--${notSmall} category--${promoClass}`}
+            >
+              {category}
+            </div>
+          )}
+          {!startDate && (
+            <h3
+              className={`title title--${size} title--${notSmall} title--${promoClass}`}
+            >
+              <a href={url} dangerouslySetInnerHTML={{ __html: title }} />
+            </h3>
+          )}
+          {imgSources && (
+            <a href={url} className={`imgzoomlink headerImg`}>
+              <Img className={`img`} fluid={imgSources} />
+            </a>
+          )}
         </div>
+        <div
+          className={`contentwrap contentwrap--${size} contentwrap--${promoClass}`}
+        >
+          {imgSources && (
+            <a href={url} className={`imgzoomlink bodyImg`}>
+              <Img className={`img`} fluid={imgSources} />
+            </a>
+          )}
+
+          <div
+            className={`contentsection contentsection--${size} contentsection--${notSmall}`}
+          >
+            <div
+              className={`columnwrap columnwrap--${size} columnwrap--${notSmall}`}
+            >
+              {startDate && (
+                <a href={url}>
+                  <h3 className={`title title--${size} title--${notSmall}`}>
+                    <a href={url} dangerouslySetInnerHTML={{ __html: title }} />
+                  </h3>
+                </a>
+              )}
+              {startDate && (
+                <div
+                  className={`category category--${size} category--${notSmall}`}
+                >
+                  {category}
+                </div>
+              )}
+              {shortenedExcerpt && (
+                <div
+                  className={`excerpt excerpt--${size} excerpt--${notSmall} excerpt--${promoClass}`}
+                >
+                  <span
+                    dangerouslySetInnerHTML={{ __html: shortenedExcerpt }}
+                  />
+                </div>
+              )}
+            </div>
+            <div
+              className={`columnwrap columnwrap--${size} columnwrap--${notSmall}`}
+            >
+              {venue && (
+                <div
+                  className={`venuewrap venuewrap--${size} venuewrap--${notSmall}`}
+                >
+                  {venue && (
+                    <div className={`venue venue--${size} venue--${notSmall}`}>
+                      {venue}
+                    </div>
+                  )}
+                  {location && (
+                    <div
+                      className={`location location--${size} location--${notSmall}`}
+                    >
+                      {location}
+                    </div>
+                  )}
+                </div>
+              )}
+              {excerpt && (
+                <a
+                  href={url}
+                  className={`excerpt excerpt--${size} excerpt--${notSmall} excerpt--${promoClass} readmore`}
+                >
+                  {moreLinkText}
+                </a>
+              )}
+              {tags && (
+                <TagList
+                  className={`tag  tag--${size} tag--${notSmall}`}
+                  items={tags}
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     )
 }
 

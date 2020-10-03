@@ -46,25 +46,25 @@ export default class ActiveCommunicationForm extends Component {
         //console.log('did update: ', this.state)
 
         if ( this.state.firstname && prevState.firstname !== this.state.firstname) {
-            console.log('validating firstname because ', prevState.firstname, '...', this.props.firstname)
+            // console.log('validating firstname because ', prevState.firstname, '...', this.props.firstname)
             this.validateName('firstname', 'firstnameValid')
         }
         if (this.state.lastname && prevState.lastname !== this.state.lastname) {
-            console.log('validating lastname because ', prevState.lastname, '...', this.props.lastname)
+            // console.log('validating lastname because ', prevState.lastname, '...', this.props.lastname)
 
             this.validateName('lastname', 'lastnameValid')
         }
         if (this.state.email && prevState.email !== this.state.email) {
-            console.log('validating email because ', prevState.email, '...', this.props.email)
+            // console.log('validating email because ', prevState.email, '...', this.props.email)
 
 
             this.validateEmail('email', 'emailValid')
         }
         if (this.state.postalcode && prevState.postalcode !== this.state.postalcode) {
-            console.log('validating postalcode')
-            console.log('validating postalcode because ', prevState.postalcode, '...', this.props.postalcode)
+            // console.log('validating postalcode')
+            // console.log('validating postalcode because ', prevState.postalcode, '...', this.props.postalcode)
 
-            this.validateName('postalcode', 'postalcodeValid')
+            this.validatePostalCode('postalcode', 'postalcodeValid')
         }
 
     }
@@ -90,21 +90,21 @@ export default class ActiveCommunicationForm extends Component {
             nameValid = false;
             errorString = ('Email validation failed.')
         }
-        console.log('errorMsg: ', errorString)
+        // console.log('errorMsg: ', errorString)
 
 
-        console.log(field, '  valid? ', nameValid)
+        // console.log(field, '  valid? ', nameValid)
 
-        console.log('valid by fieldname (', validationField, '): ', this.state[validationField])
+        // console.log('valid by fieldname (', validationField, '): ', this.state[validationField])
 
         this.setState({[validationField]: nameValid }, this.validateForm)
     }
 
     validateName = (field, validationField)  => {
         const val = this.state[field]
-        console.log('validateName got this value from saved state for ' , field , ': ', val)
+        // console.log('validateName got this value from saved state for ' , field , ': ', val)
         const touched = this.state.touched[field]
-        console.log('field: ', field,  ', touched: ', touched, 'new val: ', val)
+        // console.log('field: ', field,  ', touched: ', touched, 'new val: ', val)
 
         let nameValid = true
         var letters = /^[A-Za-z @-]+$/;
@@ -112,23 +112,23 @@ export default class ActiveCommunicationForm extends Component {
 
 
         if (val.length < 2) {
-            console.log("too short")
+            // console.log("too short")
             nameValid = false
             errorString = ('Must be at least 2 characters long')
         }
         if(!val.match(letters)) {
-            console.log("bad char found")
+            // console.log("bad char found")
             nameValid = false;
             errorString = ('Only letters, spaces and hyphens are allowed.')
 
         }
 
-        console.log('errorMsg: ', errorString)
+        // console.log('errorMsg: ', errorString)
 
 
-        console.log(field, '  valid? ', nameValid)
+        // console.log(field, '  valid? ', nameValid)
 
-        console.log('valid by fieldname (', validationField, '): ', this.state[validationField])
+        // console.log('valid by fieldname (', validationField, '): ', this.state[validationField])
 
         this.setState({[validationField]: nameValid }, this.validateForm)
        /* this.setState(prevState => ({
@@ -140,10 +140,19 @@ export default class ActiveCommunicationForm extends Component {
         ), this.validateForm
         )*/
     }
+    validatePostalCode = (field, validationField) => {
+        console.log("check postal")
+        const val = this.state[field]
+        if (val.length > 0) {
+            this.setState({[validationField]: true})
+        } else {
+            this.setState({[validationField]: false})
+        }
+    }
     validateForm = () => {
         const {firstnameValid, lastnameValid, emailValid, postalcodeValid } = this.state;
-        console.log('firstname valid: ', firstnameValid, ', lastname valid: ', lastnameValid);
-        console.log('are all fields valid? ', firstnameValid && lastnameValid)
+        // console.log('firstname valid: ', firstnameValid, ', lastname valid: ', lastnameValid);
+        // console.log('are all fields valid? ', firstnameValid && lastnameValid)
         this.setState({
             formValid: firstnameValid && lastnameValid && emailValid && postalcodeValid
         })
@@ -180,7 +189,7 @@ export default class ActiveCommunicationForm extends Component {
     }
     formIsValid = () => {
         const status = (this.valid.firstname && this.valid.lastname)
-        console.log('formIsValid: ', status)
+        // console.log('formIsValid: ', status)
         return status
 
     }
@@ -202,7 +211,7 @@ export default class ActiveCommunicationForm extends Component {
     }
 
     render () {
-        console.log(this.state)
+        // console.log(this.state)
         return (
           <PageSection preheading="Sign up for WAA Communications" topBorder>
             <StyledCommunicationForm>
