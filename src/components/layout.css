@@ -4,11 +4,14 @@ html {
   -webkit-text-size-adjust: 112.5%;
   scroll-behavior: smooth;
   height: 100%;
+  overflow-y: scroll;
 }
 body {
   height: 100%;
   margin: 0;
   background-color: #FFF;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
