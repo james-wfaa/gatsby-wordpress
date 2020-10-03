@@ -18,27 +18,27 @@ export default class ActiveCommunicationForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            firstname: '',
-            lastname: '',
-            email: '',
-            postalcode: '',
-            errorMsg: {},
-            touched: {
-                firstname: false,
-                lastname: false,
-                email: false,
-                postalcode: false,
-            },
-           
-            firstnameValid: false,
-            lastnameValid: false,
-            emailValid: false, 
-            postalcodeValid: false,
-            gnameValid: false,
-            formValid: false,
+          firstname: "",
+          lastname: "",
+          email: "",
+          postalcode: "",
+          errorMsg: {},
+          touched: {
+            firstname: false,
+            lastname: false,
+            email: false,
+            postalcode: false,
+          },
 
+          firstnameValid: false,
+          lastnameValid: false,
+          emailValid: false,
+          postalcodeValid: false,
+          gnameValid: false,
+          formValid: false,
+          hasTyped: false,
         }
-        this.shouldShowForm = this.shouldShowForm.bind(this)
+        this.handleShowForm = this.handleShowForm.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
 
     }
@@ -66,9 +66,9 @@ export default class ActiveCommunicationForm extends Component {
 
             this.validateName('postalcode', 'postalcodeValid')
         }
-        
+
     }
-   
+
     handleBlur = (field) => (evt) => {
         this.setState({
             touched: { ...this.state.touched, [field]: true }
@@ -79,7 +79,7 @@ export default class ActiveCommunicationForm extends Component {
            this.validateName(field, val)
         );
         //console.log('handleNameChange results: ', this.state)
-    
+
     }
     validateEmail = (field, validationField) => {
         const val = this.state[field]
@@ -91,15 +91,15 @@ export default class ActiveCommunicationForm extends Component {
             errorString = ('Email validation failed.')
         }
         console.log('errorMsg: ', errorString)
-        
+
 
         console.log(field, '  valid? ', nameValid)
-        
+
         console.log('valid by fieldname (', validationField, '): ', this.state[validationField])
-        
+
         this.setState({[validationField]: nameValid }, this.validateForm)
     }
-    
+
     validateName = (field, validationField)  => {
         const val = this.state[field]
         console.log('validateName got this value from saved state for ' , field , ': ', val)
@@ -109,8 +109,8 @@ export default class ActiveCommunicationForm extends Component {
         let nameValid = true
         var letters = /^[A-Za-z @-]+$/;
         let errorString = ''
-        
-       
+
+
         if (val.length < 2) {
             console.log("too short")
             nameValid = false
@@ -120,21 +120,21 @@ export default class ActiveCommunicationForm extends Component {
             console.log("bad char found")
             nameValid = false;
             errorString = ('Only letters, spaces and hyphens are allowed.')
-           
+
         }
-        
+
         console.log('errorMsg: ', errorString)
-        
+
 
         console.log(field, '  valid? ', nameValid)
-        
+
         console.log('valid by fieldname (', validationField, '): ', this.state[validationField])
-        
+
         this.setState({[validationField]: nameValid }, this.validateForm)
        /* this.setState(prevState => ({
-            valid: { 
+            valid: {
                 ...prevState.valid,
-                [field]: nameValid 
+                [field]: nameValid
             }
         }
         ), this.validateForm
@@ -152,35 +152,37 @@ export default class ActiveCommunicationForm extends Component {
     handleFirstnameChange = evt => {
         this.setState({ firstname: evt.target.value }
         );
-        
+
     };
     /* REMOVE */
     handleLastnameChange = evt => {
         this.setState({ lastname: evt.target.value });
-        
+
     };
     /* ADD VALIDATION */
     handleEmailChange = evt => {
         this.setState({ email: evt.target.value });
         // just for now
-        
+
     };
     /* ADD VALIDATION */
     handlePostalcodeChange = evt => {
         this.setState({ postalcode: evt.target.value });
         // just for now
-        
+
     };
 
     /* Show the rest of the form if user has started typing in FirstName */
-    shouldShowForm = () => {
-        return (this.state.firstname.length > 1)
+    handleShowForm = () => {
+      if (!this.state.hasTyped) {
+        this.setState({ hasTyped: true })
+      }
     }
     formIsValid = () => {
         const status = (this.valid.firstname && this.valid.lastname)
         console.log('formIsValid: ', status)
         return status
-    
+
     }
 
     handleSubmit = evt => {
@@ -198,51 +200,75 @@ export default class ActiveCommunicationForm extends Component {
         const isDisabled = Object.keys(errors).some(x => errors[x])
         return !isDisabled
     }
-    
-    render () {
-       
-        return (
-            <PageSection preheading="Sign up for WAA Communications" topBorder >
-                <StyledCommunicationForm>
-                <form onSubmit={this.handleSubmit}>
-                    <fieldset>
-                        <label htmlFor="firstname">My name is</label>
-                        <input 
-                            type="text" 
-                            onKeyPress={this.shouldShowForm}
-                            onChange={this.handleFirstnameChange} 
-                            onBlur={this.handleBlur('firstname')}
-                            value={this.state.firstname} 
-                            name="firstname" 
-                            id="firstname" 
-                            placeholder="First Name" />
-                    </fieldset>
-                    <fieldset className={this.shouldShowForm() ? "active" : "hiddenfields"} id="hiddenfields">
-                        <input 
-                            type="text" 
-                            name="lastname" 
-                            id="lastname" 
-                            placeholder="Last Name"  
-                            value={this.state.lastname}                          
-                            onChange={this.handleLastnameChange} 
-                            onBlur={this.handleBlur('lastname')}
-                        />
-                        <label htmlFor="emailaddress">My email is</label>
-                        <input type="email" name="emailaddress" id="emailaddress" placeholder="Email"  value={this.state.email}  onChange={this.handleEmailChange} />
-                        <label htmlFor="postalcode">My postal code is</label>
-                        <input type="text" name="postalcode" id="postalcode" placeholder="postal code"  value={this.state.postalcode}  onChange={this.handlePostalcodeChange}/>
-                    </fieldset>
 
-                        <div className="label">and I Badger On.</div>
-                    <fieldset className={this.shouldShowForm() ? "active" : "hiddenfields"}>    
-                        <input type="submit" name="submitbutton" id="submitbutton" 
-                        value="SUBMIT"  disabled={!this.state.formValid} 
-                         />
-                    </fieldset>
-                   
-                </form>
-                </StyledCommunicationForm>
-            </PageSection>
+    render () {
+        console.log(this.state)
+        return (
+          <PageSection preheading="Sign up for WAA Communications" topBorder>
+            <StyledCommunicationForm>
+              <form onSubmit={this.handleSubmit}>
+                <fieldset>
+                  <label htmlFor="firstname">My name is</label>
+                  <input
+                    type="text"
+                    onKeyPress={this.handleShowForm}
+                    onChange={this.handleFirstnameChange}
+                    onBlur={this.handleBlur("firstname")}
+                    value={this.state.firstname}
+                    name="firstname"
+                    id="firstname"
+                    placeholder="First Name"
+                  />
+                </fieldset>
+                {this.state.hasTyped ? <><fieldset
+                  className="hiddenfields"
+                  id="hiddenfields"
+                >
+                  <input
+                    type="text"
+                    name="lastname"
+                    id="lastname"
+                    placeholder="Last Name"
+                    value={this.state.lastname}
+                    onChange={this.handleLastnameChange}
+                    onBlur={this.handleBlur("lastname")}
+                  />
+                  <label htmlFor="emailaddress">My email is</label>
+                  <input
+                    type="email"
+                    name="emailaddress"
+                    id="emailaddress"
+                    placeholder="Email"
+                    value={this.state.email}
+                    onChange={this.handleEmailChange}
+                  />
+                  <label htmlFor="postalcode">My postal code is</label>
+                  <input
+                    type="text"
+                    name="postalcode"
+                    id="postalcode"
+                    placeholder="postal code"
+                    value={this.state.postalcode}
+                    onChange={this.handlePostalcodeChange}
+                  />
+                </fieldset>
+
+                <div className="label">and I Badger On.</div>
+                <fieldset
+                  className="hiddenfields"
+                >
+                  <input
+                    type="submit"
+                    name="submitbutton"
+                    id="submitbutton"
+                    value="SUBMIT"
+                    disabled={!this.state.formValid}
+                  />
+                </fieldset></> : null}
+
+              </form>
+            </StyledCommunicationForm>
+          </PageSection>
         )
     }
 }
