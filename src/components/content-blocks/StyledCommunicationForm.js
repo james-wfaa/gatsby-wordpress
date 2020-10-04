@@ -26,8 +26,16 @@ const StyledCommunicationForm = styled.div`
       margin-bottom: ${sizes.s32};
     }
   }
-
-  input {
+  select {
+    border: none;
+    text-align: center;
+    text-align-last: center;
+    option {
+      font-size: 16px;
+    }
+  }
+  input,
+  select {
     display: block;
     width: 100%;
     border: 0;
@@ -40,6 +48,7 @@ const StyledCommunicationForm = styled.div`
       font-size: ${sizes.s36};
     }
   }
+
   input[type="submit"] {
     ${mixins.buttons};
     margin-top: ${sizes.s58};

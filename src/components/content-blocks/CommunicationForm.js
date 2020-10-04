@@ -3,17 +3,19 @@ import { useForm } from "react-hook-form"
 import styled from "styled-components"
 import PageSection from "../page-sections/PageSection"
 import StyledCommunicationForm from "./StyledCommunicationForm"
+import postalCodes from "postal-codes-js"
+import countryList from "react-select-country-list"
 
 const CommunicationForm = () => {
   const { register, handleSubmit, watch, errors } = useForm({
     mode: "onChange",
   })
-  const [disableButton, setDisableButton] = useState(false)
+  const [countries, setCountries] = useState(countryList().getData())
+  const [selectedCountry, setSelectedCountry] = useState("US")
 
   const [formInteracted, setFormInteracted] = useState(false)
 
   const onSubmit = data => {
-    // canBeSubmitted()
     console.log(data)
   }
 
@@ -21,6 +23,14 @@ const CommunicationForm = () => {
     if (!formInteracted) {
       setFormInteracted(true)
     }
+  }
+
+  const handleCountryChange = e => {
+    setSelectedCountry(e.target.value)
+  }
+
+  const validatePostalCode = (value, country) => {
+    return postalCodes.validate(country, value)
   }
 
   const StyledError = styled.p`
@@ -32,6 +42,17 @@ const CommunicationForm = () => {
     position: relative;
     top: -30px;
   `
+
+  const countryOptions = countries.map(country => {
+    if (country.value === "US") {
+      return (
+        <option value={country.value} selected>
+          {country.label}
+        </option>
+      )
+    }
+    return <option value={country.value}>{country.label}</option>
+  })
 
   return (
     <PageSection preheading="Sign up for WAA Communications" topBorder>
@@ -103,14 +124,25 @@ const CommunicationForm = () => {
               {errors.emailaddress && (
                 <StyledError>{errors.emailaddress.message}</StyledError>
               )}
-              <label htmlFor="postalcode">My postal code is</label>
+              <label htmlFor="country">My country is</label>
+              <select name="country" onChange={e => handleCountryChange(e)}>
+                {countryOptions}
+              </select>
+
+              {errors.country && (
+                <StyledError>{errors.countrycode.message}</StyledError>
+              )}
+              <label htmlFor="postalcode">and my postal code is</label>
               <input
                 type="text"
                 name="postalcode"
                 id="postalcode"
-                placeholder="postal code"
+                placeholder="Postal Code"
                 ref={register({
                   required: { value: true, message: "Postal Code is required" },
+                  validate: {
+                    validCode: (value) => validatePostalCode(value, selectedCountry),
+                  },
                 })}
               />
               {errors.postalcode && (
