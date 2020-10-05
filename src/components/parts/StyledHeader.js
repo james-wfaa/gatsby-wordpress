@@ -61,7 +61,6 @@ const StyledHeader = styled.header`
     text-align: right;
     padding: 0;
     font-size: ${sizes.s14};
-    z-index: -2;
     transition: all ease 0.35s;
     @media screen and ${breakpoints.laptopS} {
       padding: 0 180px;

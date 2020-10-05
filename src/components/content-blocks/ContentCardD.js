@@ -2,11 +2,20 @@ import React from "react"
 import styled from 'styled-components'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import CardD from './CardD'
+import { shortDate } from "../../utils/tools"
 
 const ContentCardD = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText })=> {
 
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
-    const dateLinkText = endDate ? `${startDate}&nbsp;&ndash;&nbsp;${endDate}` : startDate
+    //const dateLinkText = endDate ? `${startDate}&nbsp;&ndash;&nbsp;${endDate}` : startDate
+
+    const fmtStartDate = shortDate(startDate)
+    let fmtEndDate = null
+    if (endDate && shortDate(endDate) !== fmtStartDate) {
+        fmtEndDate = shortDate(endDate)
+    }
+    console.log(fmtEndDate)
+    const dateLinkText = (fmtEndDate) ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
     return (
         <CardD>
             <a href={url}className={className}>

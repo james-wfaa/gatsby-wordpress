@@ -1,9 +1,7 @@
 import React from 'react'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import styled from 'styled-components'
-import quotationMarks from '../../svg/Testimonial_Quotation_Marks_2x.svg'
 import EventRegistration from "../content-blocks/EventRegistration"
-import WordPressContent from "../content-blocks/WordPressContent"
 import TitleSection from '../parts/WordPressTitleSection'
 
 

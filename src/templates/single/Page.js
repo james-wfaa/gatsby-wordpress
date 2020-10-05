@@ -2,9 +2,12 @@ import React from "react"
 import { graphql } from "gatsby"
 import WpDefaultPage from "../../components/template-parts/wordpress-page"
 import WpProductPage from "../../components/template-parts/wordpress-product-page"
+import WpEmailPage from "../../components/template-parts/wordpress-email-page"
+import WpEventsPage from "../../components/template-parts/wordpress-events-page"
+import WpNewsPage from "../../components/template-parts/wordpress-news-page"
 
 export default ({ data }) => {
-  const { page } = data
+  const { page, events } = data
   const { template } = page
   console.log(page)
   if (template) {
@@ -12,6 +15,12 @@ export default ({ data }) => {
     switch (templateName ) {
       case "Product/General Page":
         return (<WpProductPage page={page} />)
+      case "Email Login Page":
+        return (<WpEmailPage page={page} />)
+      case "Events Main Page":
+        return (<WpEventsPage page={page} events={events.edges} />)
+      case "News And Stories Page":
+        return (<WpNewsPage page={page} />)
       case "Default":
       default:
         return (<WpDefaultPage page={page} />)
@@ -22,7 +31,7 @@ export default ({ data }) => {
 }
 
 export const query = graphql`
-  query page($id: String!) {
+  query all($id: String!) {
     page: wpPage(id: { eq: $id }) {
       title
       excerpt
@@ -37,7 +46,16 @@ export const query = graphql`
         ... on WpTopLevelPageTemplate {
           templateName
         }
+        ... on WpEmailLoginPageTemplate {
+          templateName
+        }
         ... on WpProductGeneralPageTemplate {
+          templateName
+        }
+        ... on WpNewsAndStoriesPageTemplate {
+          templateName
+        }
+        ... on WpEventsMainPageTemplate {
           templateName
         }
       }
@@ -61,6 +79,38 @@ export const query = graphql`
           }
         }
       }
+      storyCategories {
+        categories {
+          category {
+            slug
+            name
+            posts {
+              nodes {
+                title
+                url: uri
+                excerpt
+                featuredImage {
+                  node {
+                    remoteFile {
+                      childImageSharp {
+                        fluid(maxWidth: 712) {
+                          base64
+                          tracedSVG
+                          srcWebp
+                          srcSetWebp
+                          originalImg
+                          originalName
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          numberToShow
+        }
+      }
       blocks {
         name
         originalContent
@@ -77,6 +127,26 @@ export const query = graphql`
         }
 
       }
+    },
+    events: allWpEvent(limit: 10, sort: {order: ASC, fields: startDate}) {
+      edges {
+        node {
+          id
+          title
+          url: uri
+          excerpt
+          date
+          startDate
+          endDate
+          eventsCategories {
+            nodes {
+              name
+              url: uri
+            }
+          }
+        }
+      }
     }
+    
   }
 `

@@ -33,7 +33,7 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
                 <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} withSocial={withSocial} headingCompact={headingCompact} fromBlocks={fromBlocks} />
             )}
             { excerpt && (
-                <div className="excerpt"  dangerouslySetInnerHTML={{ __html: excerpt }} />
+                <div className="sectionexcerpt"  dangerouslySetInnerHTML={{ __html: excerpt }} />
             )}
             <div className={`content ${plainTextContent}`}>
                 {children}
@@ -54,7 +54,7 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
                 <PageSectionHeader heading={heading} pageTitle={pageTitle} withSocial={withSocial} bgimage />
             )}
              { excerpt && (
-                <div className={`${className}__excerpt ${className}__excerpt--bgimage`}  dangerouslySetInnerHTML={{ __html: excerpt }} />
+                <div className={`sectionexcerpt ${className}__excerpt ${className}__excerpt--bgimage`}  dangerouslySetInnerHTML={{ __html: excerpt }} />
             )}
             <div className={`content content--bgimage`}>
                 {children}
@@ -135,7 +135,7 @@ const StyledPageSection = styled(PageSection)`
     }
 
 
-    .excerpt {
+    .sectionexcerpt {
         font-size: ${sizes.s24};
         line-height: ${sizes.s36};
         max-width: 712px;
