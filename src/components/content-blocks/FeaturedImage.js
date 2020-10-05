@@ -15,10 +15,11 @@ import Img from "gatsby-image"
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-const FeaturedImage = ({ className, featuredImage }) => {
-  
+const FeaturedImage = ({ className, featuredImage, event }) => {
+  const classes = (event) ? `${className} ${className}--event` : className
+
   return (
-    <div className={className}>
+    <div className={classes}>
       <Img fluid={featuredImage.node.remoteFile.childImageSharp.fluid} />
       { featuredImage.node.caption && (
         <div className={`${className}__captionSection`}>
@@ -37,11 +38,31 @@ min-width: 375px;
 margin: 0; 
 position: relative;
 margin: ${sizes.s58} 0;
+&--event {
+  margin: 0 0 48px;
+} 
+
+@media screen and ${breakpoints.tabletS} {
+  &--event {
+    max-width: 536px;
+    margin: ${sizes.s58} auto;  
+  }
+}
+
+
+@media screen and ${breakpoints.tabletL} {
+  &--event {
+    max-width: 814px;
+    margin: ${sizes.s58} auto;  
+  }
+}
 
 @media screen and ${breakpoints.laptopS} {
   max-width: 1080px;
   margin: ${sizes.s58} auto;
-  
+  &--event {
+    margin: 0 auto 52px;
+  }
 }
 @media screen and ${breakpoints.laptopL} {
   width: 1080px;

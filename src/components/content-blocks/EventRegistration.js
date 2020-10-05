@@ -58,7 +58,7 @@ const StyledEventRegistration = styled(EventRegistration)`
     margin-bottom: ${sizes.s32};
     text-align: left;
 
-    @media screen and ${breakpoints.laptopS} {
+    @media screen and ${breakpoints.tabletL} {
         width: 252px;
     }
     .regHeader {
@@ -80,7 +80,7 @@ const StyledEventRegistration = styled(EventRegistration)`
             padding: 0 0 ${sizes.s24} 0;
         }
 
-        @media screen and ${breakpoints.laptopS} {
+        @media screen and ${breakpoints.tabletL} {
             position: static;
             background-color: transparent;
             box-shadow: none;
@@ -109,7 +109,7 @@ const StyledEventRegistration = styled(EventRegistration)`
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
     
-            @media screen and ${breakpoints.laptopS} {
+            @media screen and ${breakpoints.tabletL} {
                 border-bottom: none;
                 &:after {
                     position: absolute; 
@@ -121,6 +121,10 @@ const StyledEventRegistration = styled(EventRegistration)`
                     content: '';
                 }
             }
+        }
+
+        .subHeader:first-child{
+            margin-top: 0;
         }
         
         a{

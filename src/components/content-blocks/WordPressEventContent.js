@@ -45,7 +45,7 @@ const WordPressEventContent = ({className, content, date, startDate, endDate, li
 const StyledWordPressEventContent = styled(WordPressEventContent)`
 padding-bottom: ${sizes.s58};
 margin: ${sizes.s48} auto 0;
-@media screen and ${breakpoints.laptopS} {
+@media screen and ${breakpoints.tabletL} {
     display: flex;
     
     max-width: 1080px;
@@ -53,7 +53,7 @@ margin: ${sizes.s48} auto 0;
     padding-bottom: ${sizes.s88};
     
 }
-@media screen and ${breakpoints.laptopS} {
+@media screen and ${breakpoints.tabletL} {
     margin-top: ${sizes.s58};
 }
 @media screen and ${breakpoints.laptopL} {
@@ -63,19 +63,19 @@ margin: ${sizes.s48} auto 0;
 .mobileWrap {
     display: flex;
     flex-direction: column-reverse;
-    @media screen and ${breakpoints.laptopS} {
+    @media screen and ${breakpoints.tabletL} {
         display: block;
     }
 }
 
 .header{
-    @media screen and ${breakpoints.laptopS} {
+    @media screen and ${breakpoints.tabletL} {
     }
 }
 
 .reg-desktop {
     display: none;
-    @media screen and ${breakpoints.laptopS} {
+    @media screen and ${breakpoints.tabletL} {
         display: block;
         margin-left: 116px;
         margin-top: 12px; /* to align with the header in the janky font */
@@ -92,7 +92,7 @@ margin: ${sizes.s48} auto 0;
     @media screen and ${breakpoints.tablet} {
         padding: 0 0 ${sizes.s32};
     }
-    @media screen and ${breakpoints.laptopS} {
+    @media screen and ${breakpoints.tabletL} {
         display: none;
     }
 
@@ -119,7 +119,7 @@ margin: ${sizes.s48} auto 0;
             margin-right: auto;
 
         }
-        @media screen and ${breakpoints.laptopS} {
+        @media screen and ${breakpoints.tabletL} {
             margin-left: 0;
             max-width: 712px;
         }

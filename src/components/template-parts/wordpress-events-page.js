@@ -1,5 +1,6 @@
 import React from "react"
 import Layout from "../layout"
+import PageIntro from "../page-sections/HeroIntroSection"
 import PageSection from "../page-sections/PageSection"
 import WordPressContent from "../content-blocks/WordPressContent"
 import FeaturedImage from "../content-blocks/FeaturedImage"
@@ -18,6 +19,7 @@ function WordPressPage({ page, events }) {
 
   return (
     <Layout>
+      
       <PageSection heading={title} pageTitle><div>Events Main template</div>
       {!!featuredImage?.node?.remoteFile?.childImageSharp && (
           <FeaturedImage featuredImage={featuredImage} />
