@@ -47,14 +47,14 @@ padding-bottom: ${sizes.s58};
 margin: ${sizes.s48} auto 0;
 @media screen and ${breakpoints.tabletL} {
     display: flex;
-    
-    max-width: 1080px;
-    
+    max-width: 814px;
     padding-bottom: ${sizes.s88};
+    margin-top: ${sizes.s58};
+
     
 }
-@media screen and ${breakpoints.tabletL} {
-    margin-top: ${sizes.s58};
+@media screen and ${breakpoints.laptopS} {
+    max-width: 1080px;
 }
 @media screen and ${breakpoints.laptopL} {
     width: 1080px;
@@ -73,13 +73,28 @@ margin: ${sizes.s48} auto 0;
     }
 }
 
+.desktopWrap{
+    @media screen and ${breakpoints.tabletL} {
+        max-width: 534px;
+    }
+    @media screen and ${breakpoints.laptopS} {
+        max-width: 712px;
+    }
+}
+
 .reg-desktop {
     display: none;
     @media screen and ${breakpoints.tabletL} {
         display: block;
-        margin-left: 116px;
+        margin-left: 93px;
         margin-top: 12px; /* to align with the header in the janky font */
+        max-width: 187px;
     }
+    @media screen and ${breakpoints.laptopS} {
+        margin-left: 116px;
+        max-width: 252px;
+    }
+
     
 }
 .reg-mobile {
@@ -119,7 +134,7 @@ margin: ${sizes.s48} auto 0;
             margin-right: auto;
 
         }
-        @media screen and ${breakpoints.tabletL} {
+        @media screen and ${breakpoints.laptopS} {
             margin-left: 0;
             max-width: 712px;
         }
