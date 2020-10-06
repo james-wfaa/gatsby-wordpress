@@ -23,6 +23,12 @@ export const query = graphql`
           }
         }
       }
+      eventDetails {
+        eventFullSoldOut
+        eventFullText
+        eventlocationDetails
+        registrationUrl
+      }
       date(formatString: "dddd, MMM. D")
       endDate
       startDate
