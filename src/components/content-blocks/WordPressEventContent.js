@@ -45,13 +45,16 @@ const WordPressEventContent = ({className, content, date, startDate, endDate, li
 const StyledWordPressEventContent = styled(WordPressEventContent)`
 padding-bottom: ${sizes.s58};
 margin: ${sizes.s48} auto 0;
+max-width: 303px;
+
+@media screen and ${breakpoints.tabletS} {
+    max-width: 536px;
+}
 @media screen and ${breakpoints.tabletL} {
     display: flex;
     max-width: 814px;
     padding-bottom: ${sizes.s88};
-    margin-top: ${sizes.s58};
-
-    
+    margin-top: ${sizes.s58}; 
 }
 @media screen and ${breakpoints.laptopS} {
     max-width: 1080px;
@@ -101,12 +104,9 @@ margin: ${sizes.s48} auto 0;
     min-width: 300px;
     width: 100%;   
     max-width: 712px;
-    padding: 0 ${sizes.s36} ${sizes.s32};
+    padding: 0 0 ${sizes.s32};
     margin: 0 auto ${sizes.s32};
     border-bottom: 18px solid ${colors.sectionBorder};
-    @media screen and ${breakpoints.tablet} {
-        padding: 0 0 ${sizes.s32};
-    }
     @media screen and ${breakpoints.tabletL} {
         display: none;
     }
@@ -122,11 +122,11 @@ margin: ${sizes.s48} auto 0;
     > div.call-out {
         min-width: 300px;
         width: 100%;
-        padding-left: ${sizes.s36};
-        padding-right: ${sizes.s36};
+        padding-left: 0;
+        padding-right: 0;
        
         
-        @media screen and ${breakpoints.tablet} {
+        @media screen and ${breakpoints.tabletS} {
             max-width: 712px;
             padding-left: 0;
             padding-right: 0;
