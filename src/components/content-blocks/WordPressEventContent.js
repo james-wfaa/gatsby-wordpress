@@ -3,9 +3,7 @@ import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import styled from 'styled-components'
 import EventRegistration from "../content-blocks/EventRegistration"
 import TitleSection from '../parts/WordPressTitleSection'
-
-
-
+import EventMapDetails from "../content-blocks/EventMapDetails"
 
 
 const WordPressEventContent = ({className, content, date, startDate, endDate, link, venue, cost, organizers, title}) => {
@@ -28,6 +26,11 @@ const WordPressEventContent = ({className, content, date, startDate, endDate, li
                         organizers={organizers} 
                     />
                 </div>
+                <EventMapDetails 
+                className="eventMap" 
+                venue={venue}
+                 />
+
             </div>
             <EventRegistration 
                 className="reg-desktop" 
@@ -38,6 +41,7 @@ const WordPressEventContent = ({className, content, date, startDate, endDate, li
                 venue={venue} cost={cost} 
                 organizers={organizers} 
             />
+
            
         </div>
     )
@@ -45,11 +49,7 @@ const WordPressEventContent = ({className, content, date, startDate, endDate, li
 const StyledWordPressEventContent = styled(WordPressEventContent)`
 padding-bottom: ${sizes.s58};
 margin: ${sizes.s48} auto 0;
-max-width: 303px;
 
-@media screen and ${breakpoints.tabletS} {
-    max-width: 536px;
-}
 @media screen and ${breakpoints.tabletL} {
     display: flex;
     max-width: 814px;
@@ -72,7 +72,8 @@ max-width: 303px;
 }
 
 .header{
-    @media screen and ${breakpoints.tabletL} {
+    @media screen and ${breakpoints.tabletS} {
+        max-width: 536px;
     }
 }
 
@@ -103,7 +104,6 @@ max-width: 303px;
 .reg-mobile {
     min-width: 300px;
     width: 100%;   
-    max-width: 712px;
     padding: 0 0 ${sizes.s32};
     margin: 0 auto ${sizes.s32};
     border-bottom: 18px solid ${colors.sectionBorder};
@@ -122,12 +122,12 @@ max-width: 303px;
     > div.call-out {
         min-width: 300px;
         width: 100%;
-        padding-left: 0;
-        padding-right: 0;
+        max-width: 303px;
+        margin-left: auto;
+        margin-right: auto;
        
-        
         @media screen and ${breakpoints.tabletS} {
-            max-width: 712px;
+            max-width: 536px;
             padding-left: 0;
             padding-right: 0;
             margin-left: auto;

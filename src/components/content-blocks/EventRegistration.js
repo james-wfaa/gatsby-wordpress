@@ -98,6 +98,8 @@ const StyledEventRegistration = styled(EventRegistration)`
 
     .regWrapper{
         position: relative;
+        max-width: 303px;
+        margin: 0 auto;
 
         .subHeader{
             position: relative;

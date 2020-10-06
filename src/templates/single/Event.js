@@ -45,6 +45,7 @@ export const query = graphql`
         state
         zip
         title
+        content
       }    
     }
   }

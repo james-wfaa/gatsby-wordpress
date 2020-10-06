@@ -54,6 +54,7 @@ export const baseColors = {
     grey: '#CCCCCC',
     lightGrey: '#E0E0E0',
     lightestGrey: '#F3F3F3',
+    evenlighterGrey: '#F8F8F8',
 }
 export const colors = {
     startDateColor: baseColors.offBlack,
@@ -99,6 +100,7 @@ export const colors = {
     featureImageGrey: baseColors.darkGrey,
     testimonialGrey: baseColors.lightestGrey,
     borderGrey: baseColors.grey,
+    bgLightGrey: baseColors.evenlighterGrey,
 
 
 

@@ -55,7 +55,7 @@ const StyledTitleSection = styled(TitleSection)`
        
        
         
-        @media screen and ${breakpoints.tablet} {
+        @media screen and ${breakpoints.tabletS} {
             margin: 0 auto;
             padding: 0;
           
