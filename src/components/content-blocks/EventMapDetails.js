@@ -34,13 +34,24 @@ const StyledEventMapDetails = styled(EventMapDetails)`
 
     @media screen and ${breakpoints.tabletS} {
         max-width: 534px;
+        flex-flow: row;
     }
     @media screen and ${breakpoints.laptopS} {
         max-width: 712px;
     }
 
     .venueContent{
-        padding: ${sizes.s32};
+        padding: ${sizes.s18};
+        padding-bottom: 0;
+
+        @media screen and ${breakpoints.tabletS} {
+            flex: 1 1 0px
+        }
+        @media screen and ${breakpoints.tabletL} {
+            padding: ${sizes.s32};
+            padding-bottom: 0;
+
+        }
 
         .address{
             font-size: ${sizes.s18};
@@ -64,6 +75,11 @@ const StyledEventMapDetails = styled(EventMapDetails)`
     
     }
 
+    .venueMap{
+        @media screen and ${breakpoints.tabletS} {
+            flex: 1 1 0px
+        }
+    }
 
 `
 
