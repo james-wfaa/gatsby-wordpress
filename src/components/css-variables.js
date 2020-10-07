@@ -101,6 +101,7 @@ export const colors = {
     testimonialGrey: baseColors.lightestGrey,
     borderGrey: baseColors.grey,
     bgLightGrey: baseColors.evenlighterGrey,
+    mapDetailsText: baseColors.offBlack,
 
 
 

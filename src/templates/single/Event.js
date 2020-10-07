@@ -46,6 +46,8 @@ export const query = graphql`
         zip
         title
         content
+        latitude
+        longitude
       }    
     }
   }
