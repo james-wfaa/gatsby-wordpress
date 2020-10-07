@@ -101,6 +101,10 @@ const StyledEventRegistration = styled(EventRegistration)`
         max-width: 303px;
         margin: 0 auto;
 
+        @media screen and ${breakpoints.tabletS} {
+            max-width: 536px;
+        }
+
         .subHeader{
             position: relative;
             font-weight: 800;
@@ -126,7 +130,9 @@ const StyledEventRegistration = styled(EventRegistration)`
         }
 
         .subHeader:first-child{
-            margin-top: 0;
+            @media screen and ${breakpoints.tabletL} {
+                margin-top: 0;
+            }
         }
         
         a{
