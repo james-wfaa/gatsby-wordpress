@@ -64,7 +64,7 @@ const StyledEventMapDetails = styled(EventMapDetails)`
         @media screen and ${breakpoints.tabletS} {
             flex: 1 1 0px
         }
-        @media screen and ${breakpoints.tabletL} {
+        @media screen and ${breakpoints.laptopS} {
             padding: ${sizes.s32};
             padding-bottom: 0;
 

@@ -42,7 +42,7 @@ class LocationMap extends Component {
     console.log(this._getZoom())
     return (
       // Important! Always set the container height explicitly
-      <div style={{ height: '364px', width: '100%' }}>
+      <div style={{ height: '435px', width: '100%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyA57hYRTUBC1pxd07EREa_t6_wQegZwjPA' }}
           defaultCenter={this.props.center}
