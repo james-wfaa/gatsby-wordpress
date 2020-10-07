@@ -39,7 +39,7 @@ const EventRegistration = ({className, date, startDate, endDate, registrationLin
                 <div className="dateTime">{convertTime(startDate, endDate)}</div>
                 <a href="#" alt="Add to Calendar">Add to Calendar</a>
                 <div className="subHeader">WHERE</div>
-                <div className=" venue">{venue.address}<br></br>{venue.city}, {venue.state}</div>
+                <div className=" venue">{venue.title}<br></br>{venue.address}<br></br>{venue.city}, {venue.state}</div>
                 <a href="#" alt="View Map">View Map and Event Details</a>
                 <div className="subHeader">COST</div>
                 <div className="amount ">{costDisplay(cost)}</div>
