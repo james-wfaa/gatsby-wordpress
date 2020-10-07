@@ -1,6 +1,7 @@
 import React from "react"
 import styled from 'styled-components'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
+import LocationMap from '../content-modules/LocationMap'
 
 const EventMapDetails = ({ className, venue }) => {
 
@@ -14,7 +15,7 @@ const EventMapDetails = ({ className, venue }) => {
 
             </div>
             <div className="venueMap">
-
+                <LocationMap />
             </div>
 
         </div>
