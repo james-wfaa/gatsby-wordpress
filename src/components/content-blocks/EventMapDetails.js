@@ -11,26 +11,39 @@ import WalkIcon from '../../svg/Transportation_icons_walk_blk_2x.svg'
 
 const EventMapDetails = ({ className, venue }) => {
 
-    const dirLink = 'https://www.google.com/maps/dir/?api=1&destination=' + venue.latitude + ',' + venue.longitude;
+    const addressString = venue.address ? venue.title + '<br />' + venue.address + '<br />' + venue.city + ',' + venue.state : '';
+    const dirLink = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(addressString);
 
     return (
         <div className={className}>
             <div className="venueContent">
-                <div className="address">{venue.title}<br></br>{venue.address}<br></br>{venue.city}, {venue.state}</div>
-                <div className="icons ">
-                    <ul className="travelIcons">
-                        <li><a className="car" title="Driving Directions" href={`${dirLink}&travelmode=driving`} target="_blank"></a></li>
-                        <li><a className="walk" title="Walking Directions" href={`${dirLink}&travelmode=walking`} target="_blank"></a></li>
-                        <li><a className="bus" title="Transit Directions" href={`${dirLink}&travelmode=transit`} target="_blank"></a></li>
-                        <li><a className="bike" title="Biking Directions" href={`${dirLink}&travelmode=bicycling`} target="_blank"></a></li>
-                    </ul>
-                </div>
-                <div className="subHeader">Event Details</div>
-                <div className="details" dangerouslySetInnerHTML={{ __html: venue.content }} />
+                { addressString && (
+                    <div className="addressWrap">
+                        <div className="address" dangerouslySetInnerHTML={{ __html: addressString }} />
+                        <div className="icons ">
+                            <ul className="travelIcons">
+                                <li><a className="car" title="Driving Directions" href={`${dirLink}&travelmode=driving`} target="_blank"></a></li>
+                                <li><a className="walk" title="Walking Directions" href={`${dirLink}&travelmode=walking`} target="_blank"></a></li>
+                                <li><a className="bus" title="Transit Directions" href={`${dirLink}&travelmode=transit`} target="_blank"></a></li>
+                                <li><a className="bike" title="Biking Directions" href={`${dirLink}&travelmode=bicycling`} target="_blank"></a></li>
+                            </ul>
+                        </div>
+                   </div>
+                )}
+
+                { !addressString && (
+                    <div className="address">{venue.title}</div>
+                )}
+                { venue.content && (
+                    <div className="detailsWrap">
+                        <div className="subHeader">Event Details</div>
+                        <div className="details" dangerouslySetInnerHTML={{ __html: venue.content }} />
+                    </div>
+                )}
 
             </div>
             <div className="venueMap">
-                <LocationMap />
+                <LocationMap lat={venue.latitude} lng={venue.longitude} />
             </div>
 
         </div>
