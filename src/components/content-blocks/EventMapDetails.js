@@ -13,6 +13,10 @@ const EventMapDetails = ({ className, venue }) => {
 
     const addressString = venue.address ? venue.title + '<br />' + venue.address + '<br />' + venue.city + ',' + venue.state : '';
     const dirLink = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(addressString);
+    const location = {
+        lat: venue.latitude,
+        lng: venue.longitude,
+    };
 
     return (
         <div className={className}>
@@ -42,9 +46,11 @@ const EventMapDetails = ({ className, venue }) => {
                 )}
 
             </div>
-            <div className="venueMap">
-                <LocationMap lat={venue.latitude} lng={venue.longitude} />
-            </div>
+            { (location.lat && location.lng) && (
+                <div className="venueMap">
+                    <LocationMap center={location} />
+                </div>
+            )}
 
         </div>
     )

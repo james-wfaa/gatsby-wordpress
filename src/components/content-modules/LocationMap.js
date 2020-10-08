@@ -50,24 +50,8 @@ class LocationMap extends Component {
           hoverDistance={20}
         >
           <LocationMapMarker
-            lat={43.07368}
-            lng={-89.417212} 
-            text="1"
-          />
-          <LocationMapMarker
-            lat={43.0768}
-            lng={-89.3978} 
-            text="2"
-          /> 
-          <LocationMapMarker
-            lat={43.0747355}
-            lng={-89.3999032} 
-            text="3"
-          />
-          <LocationMapMarker
-            lat={43.0756}
-            lng={-89.3821} 
-            text="4"
+            lat={this.props.center.lat}
+            lng={this.props.center.lng} 
           />
         </GoogleMapReact>
       </div>
