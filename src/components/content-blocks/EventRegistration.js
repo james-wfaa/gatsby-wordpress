@@ -78,6 +78,7 @@ const StyledEventRegistration = styled(EventRegistration)`
         .regButton{
             margin: 0 auto;
             padding: 0 0 ${sizes.s24} 0;
+            max-width: 304px;
         }
 
         @media screen and ${breakpoints.tabletL} {
