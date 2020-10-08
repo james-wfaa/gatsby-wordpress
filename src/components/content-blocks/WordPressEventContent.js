@@ -29,7 +29,7 @@ const WordPressEventContent = ({className, content, date, startDate, endDate, li
                 <EventMapDetails 
                     className="eventMap" 
                     venue={venue}
-                 />
+                />
 
             </div>
             <EventRegistration 

@@ -21,8 +21,7 @@ const EventRegistration = ({className, date, startDate, endDate, registrationLin
     const organizerList = !organizers ? null : organizers.nodes.map((org) => (
          <div className="organizer">{org.title}</div>
       ))
-
-    
+    const addressString = venue.address ? venue.title + '<br />' + venue.address + '<br />' + venue.city + ', ' + venue.state : venue.title;
 
     return(
         <div className={classesList}>
@@ -39,8 +38,10 @@ const EventRegistration = ({className, date, startDate, endDate, registrationLin
                 <div className="dateTime">{convertTime(startDate, endDate)}</div>
                 <a href="#" alt="Add to Calendar">Add to Calendar</a>
                 <div className="subHeader">WHERE</div>
-                <div className=" venue">{venue.title}<br></br>{venue.address}<br></br>{venue.city}, {venue.state}</div>
-                <a href="#" alt="View Map">View Map and Event Details</a>
+                <div className="venue" dangerouslySetInnerHTML={{ __html: addressString }} />
+                { venue.address && (
+                    <a href="#EventMap" alt="View Map">View Map and Event Details</a>
+                )}
                 <div className="subHeader">COST</div>
                 <div className="amount ">{costDisplay(cost)}</div>
                 <div className="subHeader">ORGANIZER</div>

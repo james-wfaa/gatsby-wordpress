@@ -19,7 +19,7 @@ const EventMapDetails = ({ className, venue }) => {
     };
 
     return (
-        <div className={className}>
+        <div className={className} id="EventMap">
             <div className="venueContent">
                 { addressString && (
                     <div className="addressWrap">
