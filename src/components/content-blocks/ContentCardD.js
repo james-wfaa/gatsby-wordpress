@@ -4,17 +4,19 @@ import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import CardD from './CardD'
 import { shortDate } from "../../utils/tools"
 
-const ContentCardD = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText })=> {
+const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, venue, excerpt, url, urlText })=> {
 
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
     //const dateLinkText = endDate ? `${startDate}&nbsp;&ndash;&nbsp;${endDate}` : startDate
 
+    const categories = (eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : null
+
+    const category = categories && categories[0].name ? categories[0].name : null
     const fmtStartDate = shortDate(startDate)
     let fmtEndDate = null
     if (endDate && shortDate(endDate) !== fmtStartDate) {
         fmtEndDate = shortDate(endDate)
     }
-    console.log(fmtEndDate)
     const dateLinkText = (fmtEndDate) ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
     return (
         <CardD>
@@ -36,13 +38,13 @@ const ContentCardD = ({ className, startDate, endDate, title, category, venue, l
                             <div className={`${className}__category`}>{category}</div>
                         )}
                     </div>
-                    { venue && (
-                        <div className={`${className}__venue`}>{venue}</div>
+                    { venue.title && (
+                        <div className={`${className}__venue`}>{venue.title}</div>
                     )}
-                    { location && (
-                        <div className={`${className}__location`}>{location}</div>
+                    { venue.city && venue.state && (
+                        <div className={`${className}__location`}>{venue.city},{venue.state}</div>
                     )}
-                    { excerpt && (
+                    { excerpt && (!startDate) && (
                         <div className={`${className}__excerpt excerpt`}>
                             <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
                             <span> </span>

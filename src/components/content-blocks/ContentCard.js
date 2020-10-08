@@ -3,11 +3,18 @@ import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import Img from 'gatsby-image'
 import TagList from "../parts/TagList"
 import styled from 'styled-components'
+import { shortDate } from "../../utils/tools"
 
-const ContentCard = ({ className, startDate, endDate, title, category, venue, location, excerpt, url, urlText, img, featureImg, caption, tags, size, promo = false }) => {
+
+const ContentCard = ({ className, startDate, endDate, title, category, venue, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size, promo = false }) => {
 
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
-    const dateLinkText = endDate ? `<nobr>${startDate}</nobr> &ndash; <nobr>${endDate}</nobr>` : startDate;
+    const fmtStartDate = shortDate(startDate)
+    let fmtEndDate = null
+    if (endDate && shortDate(endDate) !== fmtStartDate) {
+        fmtEndDate = shortDate(endDate)
+    }
+    const dateLinkText = fmtEndDate ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
     const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];
     const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt
@@ -23,6 +30,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
 
     var notSmall = (size !== 'S') ? "notsmall" : "";
 
+    console.log(img)
     const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
         ? null
         : (featureImg && typeof featureImg !== 'undefined' && featureImg.childImageSharp) ?
@@ -93,16 +101,14 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                             )}
                         </div>
                         <div className={`columnwrap columnwrap--${size} columnwrap--${notSmall}`}>
-                            { venue && (
-                                <div className={`venuewrap venuewrap--${size} venuewrap--${notSmall}`}>
-                                { venue && (
-                                    <div className={`venue venue--${size} venue--${notSmall}`}>{venue}</div>
-                                )}
-                                { location && (
-                                    <div className={`location location--${size} location--${notSmall}`}>{location}</div>
-                                )}
-                            </div>
+                            <div className={`venuewrap venuewrap--${size} venuewrap--${notSmall}`}>
+                            { venue && venue.title && (
+                                <div className={`${className}__venue`}>{venue.title}</div>
                             )}
+                            { venue && venue.city && venue.state && (
+                                <div className={`venue venue--${size} venue--${notSmall}`}>{venue.city},{venue.state}</div>
+                            )}
+                            </div>
                             { excerpt && (
                                 <a href={url} className={`excerpt excerpt--${size} excerpt--${notSmall} excerpt--${promoClass} readmore`}>{moreLinkText}</a>
                             )}
@@ -666,6 +672,7 @@ const StyledContentCard = styled(ContentCard)`
 
     .img {
         max-width: 100%;
+        height: auto;
         transition: transform .2s; /* Animation */
         overflow: hidden;
 

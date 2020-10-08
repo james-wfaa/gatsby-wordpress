@@ -128,13 +128,31 @@ export const query = graphql`
 
       }
     },
-    events: allWpEvent(limit: 10, sort: {order: ASC, fields: startDate}) {
+    events: allWpEvent(limit: 100, sort: {order: ASC, fields: startDate}) {
       edges {
         node {
           id
           title
           url: uri
           excerpt
+          featuredEvent
+          featuredImage {
+            node {
+              remoteFile {
+                childImageSharp {
+                  fluid(maxWidth: 712) {
+                    base64
+                    tracedSVG
+                    srcWebp
+                    srcSetWebp
+                    originalImg
+                    originalName
+                    aspectRatio
+                  }
+                }
+              }
+            }
+          }
           date
           startDate
           endDate
@@ -143,6 +161,11 @@ export const query = graphql`
               name
               url: uri
             }
+          }
+          venue {
+            title
+            state
+            city
           }
         }
       }
