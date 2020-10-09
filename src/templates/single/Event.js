@@ -23,6 +23,24 @@ export const query = graphql`
           }
         }
       }
+      eventsCategories {
+        nodes {
+          name
+          url: uri
+          events {
+            nodes {
+              title
+              excerpt
+              content
+              link
+              url
+              date(formatString: "dddd, MMM. D")
+              endDate
+              startDate
+            }
+          }
+        }
+      }
       eventDetails {
         eventFullSoldOut
         eventFullText
