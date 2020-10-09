@@ -4,6 +4,7 @@ import { useSpring, animated } from "react-spring"
 import { colors, sizes, breakpoints } from "../css-variables"
 import StyledHeader from "./StyledHeader"
 import AccordianSearchBox from "./AccordianSearchBox"
+import DateFilter from "./filters/DateFilter"
 import CategoryFilter from "./filters/CategoryFilter"
 import LocationFilter from "./filters/LocationFilter"
 import WcIcon from "../../svg/wechat_icon_gray.svg"
@@ -155,6 +156,12 @@ const AccordianSearch = props => {
                 >
                   Date
                 </FilterButton>
+                {dateopen ? (
+                  <DateFilter
+                    className="date"
+                    handleDateFilters={props.handleDateFilters}
+                  />
+                ) : null}
               </FilteredDiv>
               <FilteredDiv>
                 <FilterButton
