@@ -1,13 +1,9 @@
 import React from 'react'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import styled from 'styled-components'
-import quotationMarks from '../../svg/Testimonial_Quotation_Marks_2x.svg'
 import EventRegistration from "../content-blocks/EventRegistration"
-import WordPressContent from "../content-blocks/WordPressContent"
 import TitleSection from '../parts/WordPressTitleSection'
-
-
-
+import EventMapDetails from "../content-blocks/EventMapDetails"
 
 
 const WordPressEventContent = ({className, content, date, startDate, endDate, link, venue, cost, organizers, title}) => {
@@ -30,6 +26,11 @@ const WordPressEventContent = ({className, content, date, startDate, endDate, li
                         organizers={organizers} 
                     />
                 </div>
+                <EventMapDetails 
+                    className="eventMap" 
+                    venue={venue}
+                />
+
             </div>
             <EventRegistration 
                 className="reg-desktop" 
@@ -40,6 +41,7 @@ const WordPressEventContent = ({className, content, date, startDate, endDate, li
                 venue={venue} cost={cost} 
                 organizers={organizers} 
             />
+
            
         </div>
     )
@@ -47,16 +49,15 @@ const WordPressEventContent = ({className, content, date, startDate, endDate, li
 const StyledWordPressEventContent = styled(WordPressEventContent)`
 padding-bottom: ${sizes.s58};
 margin: ${sizes.s48} auto 0;
-@media screen and ${breakpoints.laptopS} {
+
+@media screen and ${breakpoints.tabletL} {
     display: flex;
-    
-    max-width: 1080px;
-    
+    max-width: 814px;
     padding-bottom: ${sizes.s88};
-    
+    margin-top: ${sizes.s58}; 
 }
 @media screen and ${breakpoints.laptopS} {
-    margin-top: ${sizes.s58};
+    max-width: 1080px;
 }
 @media screen and ${breakpoints.laptopL} {
     width: 1080px;
@@ -65,36 +66,48 @@ margin: ${sizes.s48} auto 0;
 .mobileWrap {
     display: flex;
     flex-direction: column-reverse;
-    @media screen and ${breakpoints.laptopS} {
+    @media screen and ${breakpoints.tabletL} {
         display: block;
     }
 }
 
 .header{
+    @media screen and ${breakpoints.tabletS} {
+        max-width: 536px;
+    }
+}
+
+.desktopWrap{
+    @media screen and ${breakpoints.tabletL} {
+        max-width: 534px;
+    }
     @media screen and ${breakpoints.laptopS} {
+        max-width: 712px;
     }
 }
 
 .reg-desktop {
     display: none;
-    @media screen and ${breakpoints.laptopS} {
+    @media screen and ${breakpoints.tabletL} {
         display: block;
-        margin-left: 116px;
+        margin-left: 93px;
         margin-top: 12px; /* to align with the header in the janky font */
+        max-width: 187px;
     }
+    @media screen and ${breakpoints.laptopS} {
+        margin-left: 116px;
+        max-width: 252px;
+    }
+
     
 }
 .reg-mobile {
     min-width: 300px;
     width: 100%;   
-    max-width: 712px;
-    padding: 0 ${sizes.s36} ${sizes.s32};
+    padding: 0 0 ${sizes.s32};
     margin: 0 auto ${sizes.s32};
     border-bottom: 18px solid ${colors.sectionBorder};
-    @media screen and ${breakpoints.tablet} {
-        padding: 0 0 ${sizes.s32};
-    }
-    @media screen and ${breakpoints.laptopS} {
+    @media screen and ${breakpoints.tabletL} {
         display: none;
     }
 
@@ -109,12 +122,12 @@ margin: ${sizes.s48} auto 0;
     > div.call-out {
         min-width: 300px;
         width: 100%;
-        padding-left: ${sizes.s36};
-        padding-right: ${sizes.s36};
+        max-width: 303px;
+        margin-left: auto;
+        margin-right: auto;
        
-        
-        @media screen and ${breakpoints.tablet} {
-            max-width: 712px;
+        @media screen and ${breakpoints.tabletS} {
+            max-width: 536px;
             padding-left: 0;
             padding-right: 0;
             margin-left: auto;

@@ -23,6 +23,12 @@ export const query = graphql`
           }
         }
       }
+      eventDetails {
+        eventFullSoldOut
+        eventFullText
+        eventlocationDetails
+        registrationUrl
+      }
       date(formatString: "dddd, MMM. D")
       endDate
       startDate
@@ -39,6 +45,9 @@ export const query = graphql`
         state
         zip
         title
+        content
+        latitude
+        longitude
       }    
     }
   }

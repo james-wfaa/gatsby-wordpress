@@ -16,3 +16,15 @@ export const formatAMPM = (date) => {
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return strTime;
 }
+
+export const shortDate = (date) => {
+  var tmpDate = new Date(date)
+
+  const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June",
+  "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
+];
+  var month = monthNames[tmpDate.getMonth()]
+  var dd = tmpDate.getDate()
+  return `${month} ${dd}`
+}
+

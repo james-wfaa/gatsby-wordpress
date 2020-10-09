@@ -21,8 +21,7 @@ const EventRegistration = ({className, date, startDate, endDate, registrationLin
     const organizerList = !organizers ? null : organizers.nodes.map((org) => (
          <div className="organizer">{org.title}</div>
       ))
-
-    
+    const addressString = venue.address ? venue.title + '<br />' + venue.address + '<br />' + venue.city + ', ' + venue.state : venue.title;
 
     return(
         <div className={classesList}>
@@ -39,8 +38,10 @@ const EventRegistration = ({className, date, startDate, endDate, registrationLin
                 <div className="dateTime">{convertTime(startDate, endDate)}</div>
                 <a href="#" alt="Add to Calendar">Add to Calendar</a>
                 <div className="subHeader">WHERE</div>
-                <div className=" venue">{venue.address}<br></br>{venue.city}, {venue.state}</div>
-                <a href="#" alt="View Map">View Map and Event Details</a>
+                <div className="venue" dangerouslySetInnerHTML={{ __html: addressString }} />
+                { venue.address && (
+                    <a href="#EventMap" alt="View Map">View Map and Event Details</a>
+                )}
                 <div className="subHeader">COST</div>
                 <div className="amount ">{costDisplay(cost)}</div>
                 <div className="subHeader">ORGANIZER</div>
@@ -58,7 +59,7 @@ const StyledEventRegistration = styled(EventRegistration)`
     margin-bottom: ${sizes.s32};
     text-align: left;
 
-    @media screen and ${breakpoints.laptopS} {
+    @media screen and ${breakpoints.tabletL} {
         width: 252px;
     }
     .regHeader {
@@ -78,9 +79,10 @@ const StyledEventRegistration = styled(EventRegistration)`
         .regButton{
             margin: 0 auto;
             padding: 0 0 ${sizes.s24} 0;
+            max-width: 304px;
         }
 
-        @media screen and ${breakpoints.laptopS} {
+        @media screen and ${breakpoints.tabletL} {
             position: static;
             background-color: transparent;
             box-shadow: none;
@@ -98,6 +100,12 @@ const StyledEventRegistration = styled(EventRegistration)`
 
     .regWrapper{
         position: relative;
+        max-width: 303px;
+        margin: 0 auto;
+
+        @media screen and ${breakpoints.tabletS} {
+            max-width: 536px;
+        }
 
         .subHeader{
             position: relative;
@@ -109,7 +117,7 @@ const StyledEventRegistration = styled(EventRegistration)`
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
     
-            @media screen and ${breakpoints.laptopS} {
+            @media screen and ${breakpoints.tabletL} {
                 border-bottom: none;
                 &:after {
                     position: absolute; 
@@ -120,6 +128,12 @@ const StyledEventRegistration = styled(EventRegistration)`
                     background-color: ${colors.borderGrey};
                     content: '';
                 }
+            }
+        }
+
+        .subHeader:first-child{
+            @media screen and ${breakpoints.tabletL} {
+                margin-top: 0;
             }
         }
         

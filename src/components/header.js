@@ -63,7 +63,7 @@ const Header = () => {
               </li>
               <li>
                 <Link
-                  to="/"
+                  to="/email"
                   style={{
                     textDecoration: `none`,
                   }}
@@ -94,10 +94,10 @@ const Header = () => {
             <div>
               <ul className="uberNav">
                 <li>
-                  <Link to="/#Lorem">Lorem</Link>
+                  <Link to="/news">News</Link>
                 </li>
                 <li>
-                  <Link to="/#Ipsum">Ipsum</Link>
+                  <Link to="/events">Events</Link>
                 </li>
               </ul>
             </div>

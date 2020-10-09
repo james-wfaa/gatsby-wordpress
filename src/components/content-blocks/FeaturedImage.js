@@ -15,10 +15,11 @@ import Img from "gatsby-image"
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-const FeaturedImage = ({ className, featuredImage }) => {
-  
+const FeaturedImage = ({ className, featuredImage, event }) => {
+  const classes = (event) ? `${className} ${className}--event` : className
+
   return (
-    <div className={className}>
+    <div className={classes}>
       <Img fluid={featuredImage.node.remoteFile.childImageSharp.fluid} />
       { featuredImage.node.caption && (
         <div className={`${className}__captionSection`}>
@@ -37,12 +38,59 @@ min-width: 375px;
 margin: 0; 
 position: relative;
 margin: ${sizes.s58} 0;
+&--event {
+  margin: 0 0 48px;
+} 
+
+@media screen and ${breakpoints.tabletS} {
+  &--event {
+    max-width: 536px;
+    margin: ${sizes.s58} auto;  
+  }
+
+
+@media screen and ${breakpoints.tabletL} {
+  &--event {
+    max-width: 814px;
+    margin: ${sizes.s58} auto;  
+    &:before {
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      height: 30px;
+      width: 100%;
+      background-color: ${colors.featureImageGrey};
+      mix-blend-mode: multiply;
+      opacity: 0.7;
+      z-index: 1;
+      width: calc(100% - 122px);
+      content: '';
+    
+    }
+    
+    &:after {
+      position: absolute;
+      bottom: 0;
+      right: -33px;
+      height: 30px;
+      width: 300px;
+      z-index: 2;
+      content: '';
+      background-color: ${colors.bgWhite} !important;
+      transform: skew(135deg);
+    }
+  
+  }
+}
 
 @media screen and ${breakpoints.laptopS} {
   max-width: 1080px;
   margin: ${sizes.s58} auto;
-  
+  &--event {
+    margin: 0 auto 52px;
+  }
 }
+
 @media screen and ${breakpoints.laptopL} {
   width: 1080px;
 
@@ -72,10 +120,12 @@ margin: ${sizes.s58} 0;
     background-color: ${colors.bgWhite} !important;
     transform: skew(135deg);
   }
-
-
-  
-  
+  &--event {
+    &:after {
+      right: -33px;
+      width: 300px;  
+    }
+  }  
 
 }
 
