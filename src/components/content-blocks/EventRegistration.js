@@ -24,6 +24,8 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
       ))
     const addressString = venue.address ? venue.title + '<br />' + venue.address + '<br />' + venue.city + ', ' + venue.state : venue.title;
     const registrationLink = eventDetails.registrationUrl ? eventDetails.registrationUrl : '';
+    const registrationText = eventDetails.eventFullSoldOut ? eventDetails.eventFullText : 'Register';
+    const regIsFull = eventDetails.eventFullSoldOut;
 
     return(
         <div className={classesList}>
@@ -33,7 +35,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
                 )}
                 {(registrationLink) && (
                     <div className="regButton" >
-                        <Button link={registrationLink} text="Register" fullwidth />
+                        <Button link={registrationLink} text={registrationText} fullwidth disabled={regIsFull} />
                     </div>
                 )}
             </div>
@@ -88,9 +90,6 @@ const StyledEventRegistration = styled(EventRegistration)`
             position: relative;
             width: 100%;
         
-            @media screen and ${breakpoints.laptopS} {
-                margin-top: ${sizes.s58};
-            }
             &.compact {
                 margin-top: ${sizes.s40};
             }
