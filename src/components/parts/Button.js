@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import styled from 'styled-components'
 import { mixins } from '../css-variables'
 
-const Button = ({ className, link, text, bgimage, alt, fullwidth }) => {
+const Button = ({ className, link, text, bgimage, alt, fullwidth, disabled = false }) => {
     let classesList = className
     if (bgimage) { 
         classesList += ` ${className}--bgimage`
@@ -17,7 +17,7 @@ const Button = ({ className, link, text, bgimage, alt, fullwidth }) => {
     
 
  return   (
-    <Link className={classesList} to={link}>{text}</Link>
+    <Link className={classesList} to={link} disabled={disabled}>{text} </Link>
 )
     }
 const StyledButton = styled(Button)`
