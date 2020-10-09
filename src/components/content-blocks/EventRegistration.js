@@ -5,6 +5,7 @@ import FaTwitter from "../../svg/twitter_icon_gray.svg";
 import FaFacebook from "../../svg/fb_icon_gray.svg";
 import { ShareButtonRectangle, ShareBlockStandard } from "react-custom-share";
 import RegistrationButtons from '../parts/RegistrationButtons'
+import Button from '../parts/Button'
 import { convertTime } from "../../utils/tools"
 
 const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails}) => {
@@ -22,7 +23,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
          <div className="organizer">{org.title}</div>
       ))
     const addressString = venue.address ? venue.title + '<br />' + venue.address + '<br />' + venue.city + ', ' + venue.state : venue.title;
-    const registrationLink = eventDetails ? eventDetails.registrationUrl : '#';
+    const registrationLink = eventDetails.registrationUrl ? eventDetails.registrationUrl : '';
 
     return(
         <div className={classesList}>
@@ -30,7 +31,10 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
                 { date && (
                     <div className="dateDay">{date}</div>
                 )}
-                { registrationLink && (<RegistrationButtons className="regButton" registrationLink={registrationLink} />
+                {(registrationLink) && (
+                    <div className="regButton" >
+                        <Button link={registrationLink} text="Register" fullwidth />
+                    </div>
                 )}
             </div>
             <div className="regWrapper">
@@ -81,6 +85,16 @@ const StyledEventRegistration = styled(EventRegistration)`
             margin: 0 auto;
             padding: 0 0 ${sizes.s24} 0;
             max-width: 304px;
+            position: relative;
+            width: 100%;
+        
+            @media screen and ${breakpoints.laptopS} {
+                margin-top: ${sizes.s58};
+            }
+            &.compact {
+                margin-top: ${sizes.s40};
+            }
+        
         }
 
         @media screen and ${breakpoints.tabletL} {
