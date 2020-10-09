@@ -7,7 +7,7 @@ import { ShareButtonRectangle, ShareBlockStandard } from "react-custom-share";
 import RegistrationButtons from '../parts/RegistrationButtons'
 import { convertTime } from "../../utils/tools"
 
-const EventRegistration = ({className, date, startDate, endDate, registrationLink, venue, cost, organizers}) => {
+const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails}) => {
 
     const classesList = `${className}`;
     const costDisplay = (cost) => {
@@ -22,6 +22,7 @@ const EventRegistration = ({className, date, startDate, endDate, registrationLin
          <div className="organizer">{org.title}</div>
       ))
     const addressString = venue.address ? venue.title + '<br />' + venue.address + '<br />' + venue.city + ', ' + venue.state : venue.title;
+    const registrationLink = eventDetails ? eventDetails.registrationUrl : '#';
 
     return(
         <div className={classesList}>

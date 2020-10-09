@@ -6,7 +6,7 @@ import TitleSection from '../parts/WordPressTitleSection'
 import EventMapDetails from "../content-blocks/EventMapDetails"
 
 
-const WordPressEventContent = ({className, content, date, startDate, endDate, link, venue, cost, organizers, title}) => {
+const WordPressEventContent = ({className, content, date, startDate, endDate, link, venue, cost, organizers, title, eventDetails}) => {
 
     return(
         <div className={className}>
@@ -18,12 +18,12 @@ const WordPressEventContent = ({className, content, date, startDate, endDate, li
                     <EventRegistration 
                         className="reg-mobile" 
                         date={date} 
-                        registrationLink={link} 
                         startDate={startDate} 
                         endDate={endDate} 
                         venue={venue} 
                         cost={cost} 
                         organizers={organizers} 
+                        eventDetails={eventDetails}
                     />
                 </div>
                 <EventMapDetails 
