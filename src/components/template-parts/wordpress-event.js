@@ -1,6 +1,5 @@
 import React from "react"
 import Layout from "../layout"
-import PageSection from "../page-sections/PageSection"
 import WordPressEventContent from "../content-blocks/WordPressEventContent"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 

@@ -9,7 +9,27 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 
-const PageSection = ({className, preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, fromBlocks, children }) => {
+const PageSection = ({
+    className, 
+    preheading, 
+    heading, 
+    headingAlt, 
+    headingCompact, 
+    pageTitle, 
+    withSocial, 
+    plainText, 
+    popOut, 
+    excerpt, 
+    buttons, 
+    buttonsAlt, 
+    buttonsCompact, 
+    alt, 
+    topBorder, 
+    bgImage, 
+    fromBlocks, 
+    children,
+    stagger
+ }) => {
 
 
     const background =  typeof bgImage !== "undefined" && bgImage !== null
@@ -21,9 +41,10 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
     const hasPreHeading = preheading && !heading ?  ` ${className}--hasPreHeading` : ''
     const hasNoHeading = !preheading && !heading ? ` ${className}--hasNoHeading` : ''
     const popClass = popOut ? `${className}__popOut` : ''
+    const staggerClass = (stagger) ? ' stagger' : '';
 
     return (
-        <div className={`${className}__wrapper`}>
+        <div className={`${className}__wrapper ${staggerClass}`}>
             { ! background &&  (
             <div className={`${className} ${altClass} ${hasPreHeading} ${hasNoHeading} ${topBorderClass} ${popClass}` }>
                 { preheading && (
@@ -85,6 +106,9 @@ const StyledPageSection = styled(PageSection)`
         padding-bottom: 88px;
         &:last-child {
             padding-bottom: 128px;
+        }
+        &.stagger:nth-child(odd) {
+            background-color: ${colors.bgActiveGrey};
         }
     }
 

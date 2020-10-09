@@ -1,8 +1,6 @@
 import React from "react"
 import Layout from "../layout"
-import PageIntro from "../page-sections/HeroIntroSection"
 import PageSection from "../page-sections/PageSection"
-import WordPressContent from "../content-blocks/WordPressContent"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 import ContentCard from "../content-blocks/ContentCard"
 import ContentCardD from "../content-blocks/ContentCardD"
@@ -14,15 +12,15 @@ import CardSet from "../content-modules/CardSet"
 
 
 function WordPressPage({ page, events }) {
-  const { title, content, featuredImage, blocks, eventCategories } = page
+  const { title, featuredImage, eventCategories } = page
   const { categories } = eventCategories
 
   const cats = categories.map((item) => {
-    const { category, numberToShow } = item
-    console.log(category)
+    const { categoryEvent, numberToShow } = item
+    console.log(categoryEvent)
     return (
-      <PageSection heading={category.name}>
-        <CardSet items={category.events.nodes} num={numberToShow} />
+      <PageSection heading={categoryEvent.name} stagger>
+        <CardSet items={categoryEvent.events.nodes} num={numberToShow} />
       </PageSection>
     )
   }

@@ -1,11 +1,10 @@
 import React from "react"
 import Layout from "../layout"
 import HeroIntroSection from "../page-sections/HeroIntroSection"
-import WordPressContent from "../content-blocks/WordPressContent"
 import WordPressContentBlocks from "../content-blocks/WordPressContentBlocks"
 
 function WordPressPage({ page }) {
-  const { content, excerpt, featuredImage, introButtons, blocks } = page
+  const {  excerpt, featuredImage, introButtons, blocks } = page
   const { introButtons: buttons } = introButtons
   console.log(blocks)
   const normalizedButtons = buttons.map(item=>{

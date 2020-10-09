@@ -5,7 +5,7 @@ import WordPressContent from "../content-blocks/WordPressContent"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 import CardSet from "../content-modules/CardSet"
 function WordPressPage({ page }) {
-  const { title, content, featuredImage, blocks, storyCategories } = page
+  const { title, content, featuredImage, storyCategories } = page
   const { categories } = storyCategories
 
   console.log(categories)
@@ -13,11 +13,16 @@ function WordPressPage({ page }) {
   const cats = categories.map((item) => {
     const { category, numberToShow } = item
     console.log(category)
-    return (
-      <PageSection heading={category.name}>
-        <CardSet items={category.posts.nodes} num={numberToShow} />
-      </PageSection>
-    )
+    if (category && category.name) {
+      return (
+      
+        <PageSection heading={category.name}>
+          <CardSet items={category.posts.nodes} num={numberToShow} />
+        </PageSection>
+      )
+    }
+    return (<div/>)
+    
   }
   )
 

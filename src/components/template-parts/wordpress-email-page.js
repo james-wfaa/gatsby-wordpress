@@ -5,7 +5,7 @@ import WordPressContent from "../content-blocks/WordPressContent"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 
 function WordPressEmailPage({ page }) {
-  const { title, content, featuredImage, blocks } = page
+  const { title, content, featuredImage } = page
 
   console.log(page)
 

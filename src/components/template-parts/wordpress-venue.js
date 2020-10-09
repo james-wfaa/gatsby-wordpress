@@ -7,11 +7,6 @@ function WpVenue({ venue }) {
   console.log(venue)
   const { 
     title,
-    address,
-    city,
-    state,
-    country,
-    zip,
     content 
   } = venue
 
