@@ -111,6 +111,53 @@ export const query = graphql`
           numberToShow
         }
       }
+      eventCategories {
+        categories {
+          category {
+            events {
+              nodes {
+                id
+                title
+                url: uri
+                excerpt
+                featuredEvent
+                featuredImage {
+                  node {
+                    remoteFile {
+                      childImageSharp {
+                        fluid(maxWidth: 712) {
+                          base64
+                          tracedSVG
+                          srcWebp
+                          srcSetWebp
+                          originalImg
+                          originalName
+                          aspectRatio
+                        }
+                      }
+                    }
+                  }
+                }
+                date
+                startDate
+                endDate
+                eventsCategories {
+                  nodes {
+                    name
+                    url: uri
+                  }
+                }
+                venue {
+                  title
+                  state
+                  city
+                }
+              }
+            }
+            name
+          }
+        }
+      }
       blocks {
         name
         originalContent

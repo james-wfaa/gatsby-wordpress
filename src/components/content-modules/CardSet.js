@@ -12,7 +12,9 @@ const CardSet = ({className, items, num }) => {
 
     let cards = items.map((item) => {
         console.log(item)
-        return (<ContentCard size="M" {...item} />)
+        const { featuredEvent, featuredImage: img } = item
+        const cardImg = (img && img.node && img.node.remoteFile) ? img.node.remoteFile : null
+        return (<ContentCard size="M" img={cardImg} {...item} />)
         
     })
 
@@ -40,14 +42,16 @@ justify-content: center;
     &:last-child {
         margin-bottom: 0;
     }
-    @media screen and ${breakpoints.laptopS} {
-        margin-right: ${sizes.s24};
+    
+}
+@media screen and ${breakpoints.laptopS} {
+    flex-direction: row;
+    > * {
+        margin: 0 ${sizes.s24} 0 0;
         &:last-child {
             margin-right: 0;
         }
     }
-    
-    
 }
 
 

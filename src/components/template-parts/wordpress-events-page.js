@@ -10,10 +10,23 @@ import GridCardD from "../content-modules/GridCardD"
 import SimpleSlider from "../content-modules/SimpleSlider"
 import LeftArrow from "../parts/SliderArrowLeft"
 import RightArrow from "../parts/SliderArrowRight"
+import CardSet from "../content-modules/CardSet"
 
 
 function WordPressPage({ page, events }) {
-  const { title, content, featuredImage, blocks } = page
+  const { title, content, featuredImage, blocks, eventCategories } = page
+  const { categories } = eventCategories
+
+  const cats = categories.map((item) => {
+    const { category, numberToShow } = item
+    console.log(category)
+    return (
+      <PageSection heading={category.name}>
+        <CardSet items={category.events.nodes} num={numberToShow} />
+      </PageSection>
+    )
+  }
+  )
 
 
   const settings = {
@@ -24,10 +37,11 @@ function WordPressPage({ page, events }) {
   let featuredEvents = events.map((event) => {
     console.log(event.node)
     const { featuredEvent, featuredImage: img } = event.node
+    const cardImg = (img && img.node && img.node.remoteFile) ? img.node.remoteFile : null
     console.log( featuredEvent )
     if (featuredEvent) {
         return (
-          <ContentCard size="L" img={img.node.remoteFile} {...event.node} />
+          <ContentCard size="L" img={cardImg} {...event.node} />
         )
     }
   })
@@ -36,7 +50,7 @@ function WordPressPage({ page, events }) {
  });
   console.log(featuredEvents)
 
-  
+
 
   const cardGridEvents = events.slice(0,9)
   let eventCards = cardGridEvents.map((event) => {
@@ -66,8 +80,7 @@ function WordPressPage({ page, events }) {
           >{featuredEvents}
         </SimpleSlider>
       </PageSection>
-     
-      <WordPressContent content={content} />
+      <>{cats}</>
       <PageSection heading="At a Glance">
         <GridCardD>{eventCards}</GridCardD>
       </PageSection>
