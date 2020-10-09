@@ -209,7 +209,7 @@ export default ({ data }) => {
 
   const dateFilter = data => {
     if (dateFilters) {
-      
+      // TODO: Adjust this to account for date is same as startdate rather than isBetween
       let updatedData = data.filter(card => {
         return (
           dayjs(card.startDate).isBetween(dateFilters.start_date, dateFilters.end_date)
