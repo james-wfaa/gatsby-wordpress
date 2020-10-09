@@ -40,6 +40,7 @@ const WordPressEventContent = ({className, content, date, startDate, endDate, li
                 endDate={endDate} 
                 venue={venue} cost={cost} 
                 organizers={organizers} 
+                eventDetails={eventDetails}
             />
 
            
