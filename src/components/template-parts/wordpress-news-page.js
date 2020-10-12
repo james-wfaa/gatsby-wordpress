@@ -4,8 +4,10 @@ import PageSection from "../page-sections/PageSection"
 import WordPressContent from "../content-blocks/WordPressContent"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 import CardSet from "../content-modules/CardSet"
+import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
+
 function WordPressPage({ page }) {
-  const { title, content, featuredImage, storyCategories } = page
+  const { title, content, featuredImage, storyCategories, excerpt } = page
   console.log(storyCategories) 
   const { storycategoriesinner: categories } = storyCategories
 
@@ -31,14 +33,14 @@ function WordPressPage({ page }) {
 
   return (
     <Layout>
-      <PageSection heading={title} pageTitle><div>News and Stories template</div>
-      {!!featuredImage?.node?.localFile?.childImageSharp && (
-          <FeaturedImage featuredImage={featuredImage} />
-      )}
-      </PageSection>
-        <WordPressContent content={content} />
+      <HeroIntroSection
+          heroImage={featuredImage.node.localFile}
+          heroHeading="<span>Badger</span> ON"
+          excerpt={excerpt}
+      />
+      <WordPressContent content={content} />
 
-        <>{cats}</>
+      <>{cats}</>
       
     </Layout>
   )

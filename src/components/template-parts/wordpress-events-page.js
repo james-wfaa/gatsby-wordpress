@@ -9,10 +9,12 @@ import SimpleSlider from "../content-modules/SimpleSlider"
 import LeftArrow from "../parts/SliderArrowLeft"
 import RightArrow from "../parts/SliderArrowRight"
 import CardSet from "../content-modules/CardSet"
+import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
+
 
 
 function WordPressPage({ page, events }) {
-  const { title, featuredImage, eventCategories } = page
+  const { title, featuredImage, eventCategories, excerpt } = page
   const { categories } = eventCategories
 
   const cats = categories.map((item) => {
@@ -60,12 +62,12 @@ function WordPressPage({ page, events }) {
 
   return (
     <Layout>
-      
-      <PageSection heading={title} pageTitle><div>Events Main template</div>
-      {!!featuredImage?.node?.remoteFile?.childImageSharp && (
-          <FeaturedImage featuredImage={featuredImage} />
-      )}
-      </PageSection>
+        <HeroIntroSection
+          heroImage={featuredImage.node.localFile}
+          heroHeading="<span>Badger</span> ON"
+          excerpt={excerpt}
+      />
+
         <PageSection>
         <SimpleSlider
             className="center"
