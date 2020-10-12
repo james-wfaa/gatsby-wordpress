@@ -43,6 +43,7 @@ export const query = graphql`
                           srcSetWebp
                           originalImg
                           originalName
+                          aspectRatio
                         }
                       }
                     }

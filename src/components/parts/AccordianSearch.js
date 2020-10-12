@@ -4,7 +4,9 @@ import { useSpring, animated } from "react-spring"
 import { colors, sizes, breakpoints } from "../css-variables"
 import StyledHeader from "./StyledHeader"
 import AccordianSearchBox from "./AccordianSearchBox"
-import CategoryFilter from "./CategoryFilter"
+import DateFilter from "./filters/DateFilter"
+import CategoryFilter from "./filters/CategoryFilter"
+import LocationFilter from "./filters/LocationFilter"
 import WcIcon from "../../svg/wechat_icon_gray.svg"
 import DateImg from "../../assets/images/accordian_date.png"
 import CategoryImg from "../../assets/images/accordian_category.png"
@@ -143,29 +145,64 @@ const AccordianSearch = props => {
         <StyledButtonWrapper>
           <animated.div style={searchstyles}>
             <AccordianSearchBox
-              handleFilterString={(str) => props.handleFilterString(str)}
+              handleFilterString={str => props.handleFilterString(str)}
               filterString={props.filterString}
             />
             <FilterBox>
               <FilteredDiv>
-                <FilterButton className="date" onClick={() => setDateOpen(!dateopen)}>Date</FilterButton>
+                <FilterButton
+                  className="date"
+                  onClick={() => setDateOpen(!dateopen)}
+                >
+                  Date
+                </FilterButton>
+                {dateopen ? (
+                  <DateFilter
+                    className="date"
+                    handleDateFilters={props.handleDateFilters}
+                  />
+                ) : null}
               </FilteredDiv>
               <FilteredDiv>
-                <FilterButton className="location" onClick={() => setLocationOpen(!locationopen)}>Location</FilterButton>
+                <FilterButton
+                  className="location"
+                  onClick={() => setLocationOpen(!locationopen)}
+                >
+                  Location
+                </FilterButton>
+                {locationopen ? (
+                  <LocationFilter
+                    locations={props.locationFilters}
+                    handleLocationFilters={props.handleLocationFilters}
+                  />
+                ) : null}
               </FilteredDiv>
               <FilteredDiv>
-                <FilterButton className="category" onClick={() => setCategoryOpen(!categoryopen)}>Category</FilterButton>
-                {categoryopen ? <CategoryFilter categories={props.categoryFilters} /> : null}
+                <FilterButton
+                  className="category"
+                  onClick={() => setCategoryOpen(!categoryopen)}
+                >
+                  Category
+                </FilterButton>
+                {categoryopen ? (
+                  <CategoryFilter
+                    categories={props.categoryFilters}
+                    handleCategoryFilters={props.handleCategoryFilters}
+                  />
+                ) : null}
               </FilteredDiv>
               <FilteredDiv>
-                <FilterButton className="filters" onClick={() => setFiltersOpen(!filtersopen)}>Filters</FilterButton>
+                <FilterButton
+                  className="filters"
+                  onClick={() => setFiltersOpen(!filtersopen)}
+                >
+                  Filters
+                </FilterButton>
               </FilteredDiv>
             </FilterBox>
           </animated.div>
         </StyledButtonWrapper>
-
       ) : null}
-
     </StyledWrapper>
   )
 }

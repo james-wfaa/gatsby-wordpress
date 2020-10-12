@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 
 const Checkbox = ({ label, value, checked, onChange }) => {
+  // console.log(label, checked, value)
   return (
     <>
       <label>

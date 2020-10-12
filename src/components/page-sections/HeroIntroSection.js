@@ -4,6 +4,7 @@ import { breakpoints, mixins, colors } from '../css-variables'
 import BackgroundImage from 'gatsby-background-image'
 import IntroPageSection from "./IntroPageSection"
 import VimeoVideo from '../content-modules/VimeoVideo'
+import downCaret from "../../../static/down-carat@2x.png"
 
 
 const HeroIntroSection = ({
@@ -213,7 +214,7 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
     }
 
     .downscroll_main {
-      background-image: url(./down-carat@2x.png);
+      background-image: url(${downCaret});
       z-index: 3;
       width: 50px;
       height: 15px;

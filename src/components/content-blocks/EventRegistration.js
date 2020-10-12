@@ -73,8 +73,13 @@ const StyledEventRegistration = styled(EventRegistration)`
         width: 100%;
         background-color: ${colors.calloutGrey};
         /*box-shadow: 0 -10px 10px -10px rgba(0 0 0 /29%);*/
+        box-shadow: 0 -3px 6px rgba(0 0 0 /16%);
         padding: 0 ${sizes.s36};
         text-align: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
        
         .dateDay{   
             padding: ${sizes.s16} 0 ${sizes.s16} 0;
