@@ -13,7 +13,7 @@ function WordPressEmailPage({ page }) {
   return (
     <Layout>
       <PageSection heading={title} pageTitle><div>Email login template</div>
-      {!!featuredImage?.node?.remoteFile?.childImageSharp && (
+      {!!featuredImage?.node?.localFile?.childImageSharp && (
           <FeaturedImage featuredImage={featuredImage} />
       )}
         <WordPressContent content={content} />

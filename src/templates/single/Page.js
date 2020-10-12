@@ -61,7 +61,7 @@ export const query = graphql`
       }
       featuredImage {
         node {
-          remoteFile {
+          localFile {
             ...HeroImage
           }
         }
@@ -80,7 +80,7 @@ export const query = graphql`
         }
       }
       storyCategories {
-        categories {
+        storycategoriesinner {
           category {
             slug
             name
@@ -91,7 +91,7 @@ export const query = graphql`
                 excerpt
                 featuredImage {
                   node {
-                    remoteFile {
+                    localFile {
                       childImageSharp {
                         fluid(maxWidth: 712) {
                           base64
@@ -123,7 +123,7 @@ export const query = graphql`
                 featuredEvent
                 featuredImage {
                   node {
-                    remoteFile {
+                    localFile {
                       childImageSharp {
                         fluid(maxWidth: 712) {
                           base64
@@ -185,7 +185,7 @@ export const query = graphql`
           featuredEvent
           featuredImage {
             node {
-              remoteFile {
+              localFile {
                 childImageSharp {
                   fluid(maxWidth: 712) {
                     base64

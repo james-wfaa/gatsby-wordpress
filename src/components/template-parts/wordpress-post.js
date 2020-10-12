@@ -17,7 +17,7 @@ function BlogPost({ data }) {
     <Layout>
       <PageSection>
         <TitleSection heading={title} author={author} categories={categories} date={date} excerpt={excerpt}  />
-        {!!featuredImage?.node?.remoteFile?.childImageSharp && (
+        {!!featuredImage?.node?.localFile?.childImageSharp && (
             <FeaturedImage featuredImage={featuredImage} />
         )}
         <WordPressContent content={content} />

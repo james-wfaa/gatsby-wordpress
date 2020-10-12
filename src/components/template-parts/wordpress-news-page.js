@@ -6,7 +6,8 @@ import FeaturedImage from "../content-blocks/FeaturedImage"
 import CardSet from "../content-modules/CardSet"
 function WordPressPage({ page }) {
   const { title, content, featuredImage, storyCategories } = page
-  const { categories } = storyCategories
+  console.log(storyCategories) 
+  const { storycategoriesinner: categories } = storyCategories
 
   console.log(categories)
 
@@ -31,7 +32,7 @@ function WordPressPage({ page }) {
   return (
     <Layout>
       <PageSection heading={title} pageTitle><div>News and Stories template</div>
-      {!!featuredImage?.node?.remoteFile?.childImageSharp && (
+      {!!featuredImage?.node?.localFile?.childImageSharp && (
           <FeaturedImage featuredImage={featuredImage} />
       )}
       </PageSection>

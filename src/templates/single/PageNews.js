@@ -4,6 +4,7 @@ import WpNewsPage from "../../components/template-parts/wordpress-news-page"
 
 export default ({ data }) => {
   const { page } = data
+  console.log(page)
   return (<WpNewsPage page={page} />)
 
 }
@@ -16,13 +17,13 @@ export const query = graphql`
       content
       featuredImage {
         node {
-          remoteFile {
+          localFile {
             ...HeroImage
           }
         }
       }
       storyCategories {
-        categories {
+        storycategoriesinner {
           category {
             slug
             name
@@ -33,7 +34,7 @@ export const query = graphql`
                 excerpt
                 featuredImage {
                   node {
-                    remoteFile {
+                    localFile {
                       childImageSharp {
                         fluid(maxWidth: 712) {
                           base64

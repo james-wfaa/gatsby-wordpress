@@ -13,7 +13,8 @@ const CardSet = ({className, items, num }) => {
     let cards = items.map((item) => {
         console.log(item)
         const { featuredEvent, featuredImage: img } = item
-        const cardImg = (img && img.node && img.node.remoteFile) ? img.node.remoteFile : null
+        const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
+        console.log(img)
         return (<ContentCard size="M" img={cardImg} {...item} />)
         
     })

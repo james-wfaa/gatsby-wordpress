@@ -23,7 +23,7 @@ function WordPressPage({ page }) {
   return (
     <Layout>
       <HeroIntroSection  
-      heroImage={featuredImage.node.remoteFile}
+      heroImage={featuredImage.node.localFile}
       heroSize="slim"
       excerpt={excerpt}
       buttons={normalizedButtons}

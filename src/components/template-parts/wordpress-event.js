@@ -9,7 +9,7 @@ function WordPressPage({ page }) {
 
   return (
     <Layout>
-        {!!featuredImage?.node?.remoteFile?.childImageSharp && (
+        {!!featuredImage?.node?.localFile?.childImageSharp && (
             <FeaturedImage featuredImage={featuredImage} event/>
         )}
         <WordPressEventContent content={content} date={date} link={link} startDate={startDate} endDate={endDate} venue={venue} cost={cost} organizers={organizers} title={title} eventDetails={eventDetails} />

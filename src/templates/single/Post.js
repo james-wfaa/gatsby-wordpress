@@ -32,7 +32,7 @@ export const query = graphql`
               name
             }
           }
-          remoteFile {
+          localFile {
             ...HeroImage
           }
         }

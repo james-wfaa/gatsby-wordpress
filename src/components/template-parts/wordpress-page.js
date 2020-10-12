@@ -13,7 +13,7 @@ function WordPressPage({ page }) {
   return (
     <Layout>
       <PageSection heading={title} pageTitle><div>Default template</div>
-      {!!featuredImage?.node?.remoteFile?.childImageSharp && (
+      {!!featuredImage?.node?.localFile?.childImageSharp && (
           <FeaturedImage featuredImage={featuredImage} />
       )}
         <WordPressContent content={content} />

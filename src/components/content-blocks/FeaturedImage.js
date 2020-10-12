@@ -17,10 +17,11 @@ import Img from "gatsby-image"
 
 const FeaturedImage = ({ className, featuredImage, event }) => {
   const classes = (event) ? `${className} ${className}--event` : className
+  console.log(featuredImage)
 
   return (
     <div className={classes}>
-      <Img fluid={featuredImage.node.remoteFile.childImageSharp.fluid} />
+      <Img fluid={featuredImage.node.localFile.childImageSharp.fluid} />
       { featuredImage.node.caption && (
         <div className={`${className}__captionSection`}>
           <div className={`${className}__caption`} dangerouslySetInnerHTML={{ __html: featuredImage.node.caption }} />
