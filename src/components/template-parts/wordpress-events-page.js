@@ -35,7 +35,7 @@ function WordPressPage({ page, events }) {
   let featuredEvents = events.map((event) => {
     console.log(event.node)
     const { featuredEvent, featuredImage: img } = event.node
-    const cardImg = (img && img.node && img.node.localFile) ? img.node.remoteFile : null
+    const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
     console.log( featuredEvent )
     if (featuredEvent) {
         return (

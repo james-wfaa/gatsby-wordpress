@@ -14,18 +14,12 @@ const CardSet = ({className, items, num }) => {
         console.log(item)
         const { featuredEvent, featuredImage: img } = item
         const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-        console.log(img)
-        return (<ContentCard size="M" img={cardImg} {...item} />)
+        console.log(cardImg)
+        return (num === 3) 
+            ? (<ContentCard size="S" img={cardImg} {...item} />)
+            : (<ContentCard size="M" img={cardImg} {...item} />)
         
     })
-
-    if (num === 3) {
-        cards = items.map((item) => {
-            return (<ContentCard size="S" {...item} />)
-            
-        })
-    }
-    
 
     return (
         <div className={className}>{cards}
