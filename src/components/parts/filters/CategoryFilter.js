@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import CheckBox from "./Checkbox"
+import CheckBox from "../Checkbox"
 
 const CategoryFilter = props => {
   const [categoryFilters, setCategoryFilters] = useState(props.categories)
-  const [selectedCategories, setSelectedCategories] = useState(new Map())
+  const [selectedCategories, setSelectedCategories] = useState({})
 
   const CategoryDiv = styled.div`
     input[type="checkbox"] {
@@ -13,20 +13,22 @@ const CategoryFilter = props => {
   `
   const handleFilter = e => {
     const item = e.target.name
-    const isChecked = e.target.checked
-    console.log(selectedCategories)
-    if (isChecked) {
-      selectedCategories.set(item, true)
-    } else {
-      selectedCategories.set(item, false)
-    }
+    const newObject = { ...selectedCategories }
+    newObject[item] = !selectedCategories[item]
+    setSelectedCategories(newObject)
   }
 
   useEffect(() => {
+    let updatedObject = {}
     props.categories.forEach(category => {
-      selectedCategories.set(category, true)
+      updatedObject[`${category}`] = true
     })
+    setSelectedCategories(updatedObject)
   }, [])
+
+  useEffect(() => {
+    props.handleCategoryFilters(selectedCategories)
+  }, [selectedCategories])
 
   let options = categoryFilters.map((filter, idx) => {
     return (
@@ -37,7 +39,7 @@ const CategoryFilter = props => {
         <CheckBox
           label={filter}
           value={filter}
-          checked={selectedCategories.get(filter)}
+          checked={selectedCategories[`${filter}`]}
           onChange={e => {
             handleFilter(e)
           }}
