@@ -36,6 +36,7 @@ function WordPressPage({ page }) {
       <HeroIntroSection
           heroImage={featuredImage.node.localFile}
           heroHeading="<span>Badger</span> ON"
+          redHeading="News and Stories"
           excerpt={excerpt}
       />
       <WordPressContent content={content} />
