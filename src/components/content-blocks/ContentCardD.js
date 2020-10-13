@@ -6,10 +6,11 @@ import { shortDate } from "../../utils/tools"
 
 const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, venue, excerpt, url, urlText })=> {
 
-    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
+    console.log(title)
+    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
     //const dateLinkText = endDate ? `${startDate}&nbsp;&ndash;&nbsp;${endDate}` : startDate
 
-    const categories = (eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : null
+    const categories = (eventsCategories && eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : null
 
     const category = categories && categories[0].name ? categories[0].name : null
     const fmtStartDate = shortDate(startDate)
@@ -38,10 +39,10 @@ const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, 
                             <div className={`${className}__category`}>{category}</div>
                         )}
                     </div>
-                    { venue.title && (
+                    { venue?.title && (
                         <div className={`${className}__venue`}>{venue.title}</div>
                     )}
-                    { venue.city && venue.state && (
+                    { venue?.city && venue.state && (
                         <div className={`${className}__location`}>{venue.city},{venue.state}</div>
                     )}
                     { excerpt && (!startDate) && (

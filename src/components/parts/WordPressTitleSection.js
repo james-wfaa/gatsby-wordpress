@@ -5,9 +5,8 @@ import { sizes, colors, fonts, breakpoints } from '../css-variables'
 const TitleSection = ({ className, heading, author, categories, date, excerpt, series, event = false }) => {
 
     const classesList = !event ? `${className}` : `${className} ${className}--event`
-    const categoryList = !categories ? null : categories.nodes.map((category) => (
-        <a className="category__item" href={`{category/${category.slug}}`}>{category.name}</a>
-      ))
+    const theCategory = !categories? null : categories.nodes[0]
+    console.log(theCategory)
       
     return (
         <div className={classesList}>
@@ -22,8 +21,10 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
                 { date && (
                     <div className={`${className}__date`}>{date}</div>
                 )}
-                { categories && (
-                    <div className={`${className}__category`}>{categoryList}<span> ></span></div>
+                { theCategory && (
+                    <div className={`${className}__category`}>
+                        <a className="category__item" href={`/category/${theCategory.slug}`}>{theCategory.name}</a>
+                        <span> &gt;</span></div>
                 )}
                 { series && (
                     <div className={`${className}__series`}>{series}</div>

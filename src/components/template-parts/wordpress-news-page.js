@@ -4,9 +4,14 @@ import PageSection from "../page-sections/PageSection"
 import WordPressContent from "../content-blocks/WordPressContent"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 import CardSet from "../content-modules/CardSet"
-function WordPressPage({ page }) {
+import ContentCardD from "../content-blocks/ContentCardD"
+
+import GridCardD from "../content-modules/GridCardD"
+
+function WordPressPage({ page, posts }) {
   const { title, content, featuredImage, storyCategories } = page
   console.log(storyCategories) 
+  console.log(posts.nodes)
   const { storycategoriesinner: categories } = storyCategories
 
   console.log(categories)
@@ -17,7 +22,7 @@ function WordPressPage({ page }) {
     if (category && category.name) {
       return (
       
-        <PageSection heading={category.name}>
+        <PageSection heading={category.name} stagger>
           <CardSet items={category.posts.nodes} num={numberToShow} />
         </PageSection>
       )
@@ -26,6 +31,15 @@ function WordPressPage({ page }) {
     
   }
   )
+
+  const cardGridPosts = posts.nodes.slice(0,9)
+  let postCards = cardGridPosts.map((post) => {
+    console.log(post)
+    return (
+      <ContentCardD {...post} />
+    )
+  })
+  console.log(postCards)
 
 
 
@@ -39,6 +53,9 @@ function WordPressPage({ page }) {
         <WordPressContent content={content} />
 
         <>{cats}</>
+        <PageSection heading="Most Recent">
+        <GridCardD>{postCards}</GridCardD>
+      </PageSection>
       
     </Layout>
   )

@@ -34,7 +34,7 @@ const taglist2 = [
 
 const eventbutton = [
   {
-    link: "#",
+    link: "/events",
     text: "Calendar",
   },
 ]
@@ -47,6 +47,15 @@ const featuredbutton = [
 ]
 
 export default ({ data }) => {
+  const { events } = data
+
+  const cardGridEvents = events.edges.slice(0,9)
+  let eventCards = cardGridEvents.map((event) => {
+    return (
+      <ContentCardD {...event.node} />
+    )
+  })
+  console.log(eventCards)
   const settings = {
     nextArrow: <RightArrow />,
     prevArrow: <LeftArrow />,
@@ -159,79 +168,7 @@ export default ({ data }) => {
         buttons={eventbutton}
         bgImage={data.gridBg}
       >
-        <GridCardD>
-          <ContentCardD
-            startDate="Feb. 23"
-            endDate="Feb. 28"
-            title="Wisconsin vs. Rutgers – Indianapolis Basketball Game Watch"
-            category="GAME WATCH"
-            venue="Keystone Sports Review"
-            location="Indianapolis, IN"
-            url="#sgjserthsdghsdr"
-          />
-
-          <ContentCardD
-            startDate="Feb. 26"
-            title="Coachella Valley"
-            category="UW NOW"
-            venue="La Quinta Resort and Club"
-            location="La Quinta, CA"
-            url="adfhadsfhasfdhgas"
-          />
-
-          <PromoCardD title="Shop The UW Alumni Store" url="####" />
-
-          <ContentCardD
-            startDate="Feb. 26"
-            title="WAA: Tucson Chapter Founders’ Day Celebration"
-            category="Founder's Day"
-            venue="The Lodge at Ventana Canyon"
-            location="Tucson, AZ"
-            url="/afhasfhsadf"
-          />
-
-          <ContentCardD
-            startDate="Feb. 27"
-            title="UW-Madison Nobel Prize Laureate – Jonathan Patz in Los Angeles"
-            category="Global Hotspots"
-            venue="Aquarium of the Pacific"
-            location="Long Beach, CA"
-            url="/afgasdfgdasg"
-          />
-
-          <ContentCardD
-            startDate="Mar. 22"
-            endDate="Apr. 4"
-            title="Singapore, Thailand, Angkor Wat"
-            category="Travel"
-            location="Southeast Asia"
-            url="/sdfghsdgfhsdf"
-          />
-
-          <ContentCardD
-            startDate="Apr. 3"
-            title="The Past, Present and Future of Rainstorms and Floods in Wisconsin and Around the World"
-            category="Global Hotspots"
-            venue="Fluno Center"
-            location="Madison"
-            url="/asdfgasdgasd"
-          />
-          <ContentCardD
-            startDate="Apr. 23"
-            title="UW–Madison Day at the State Capitol"
-            venue="Park Hotel"
-            location="Madison"
-            url="/asdgasdgdasg"
-          />
-          <ContentCardD
-            startDate="Mar. 22"
-            endDate="Apr. 4"
-            title="Singapore, Thailand, Angkor Wat"
-            category="Travel"
-            location="Southeast Asia"
-            url="/fadsfds"
-          />
-        </GridCardD>
+        <GridCardD>{eventCards}</GridCardD>
       </PageSection>
     </Layout>
   )
@@ -346,6 +283,48 @@ export const pageQuery = graphql`
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    events: allWpEvent(limit: 100, sort: {order: ASC, fields: startDate}) {
+      edges {
+        node {
+          id
+          title
+          url: uri
+          excerpt
+          featuredEvent
+          featuredImage {
+            node {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 712) {
+                    base64
+                    tracedSVG
+                    srcWebp
+                    srcSetWebp
+                    originalImg
+                    originalName
+                    aspectRatio
+                  }
+                }
+              }
+            }
+          }
+          date
+          startDate
+          endDate
+          eventsCategories {
+            nodes {
+              name
+              url: uri
+            }
+          }
+          venue {
+            title
+            state
+            city
+          }
         }
       }
     }
