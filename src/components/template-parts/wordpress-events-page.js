@@ -64,6 +64,7 @@ function WordPressPage({ page, events }) {
     <Layout>
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}
+          heroSize="jumbo"
           heroHeading="<span>Badger</span> ON"
           redHeading={title}
           excerpt={excerpt}
