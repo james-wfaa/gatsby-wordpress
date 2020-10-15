@@ -5,14 +5,23 @@ import WordPressContent from "../content-blocks/WordPressContent"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 import CardSet from "../content-modules/CardSet"
 import ContentCardD from "../content-blocks/ContentCardD"
-
 import GridCardD from "../content-modules/GridCardD"
+import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 
 function WordPressPage({ page, posts }) {
-  const { title, content, featuredImage, storyCategories } = page
-  console.log(storyCategories) 
-  console.log(posts.nodes)
+  const { title, excerpt, content, featuredImage, storyCategories, gridDetails } = page
+  
   const { storycategoriesinner: categories } = storyCategories
+  const { backgroundImage } = gridDetails
+  console.log(backgroundImage)
+
+  const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
+  const moreButton = [
+    {
+      link: "/news/all",
+      text: "See More",
+    },
+  ]
 
   console.log(categories)
 
@@ -44,19 +53,17 @@ function WordPressPage({ page, posts }) {
 
 
   return (
-    <Layout>
-      <PageSection heading={title} pageTitle><div>News and Stories template</div>
-      {!!featuredImage?.node?.localFile?.childImageSharp && (
-          <FeaturedImage featuredImage={featuredImage} />
-      )}
-      </PageSection>
-        <WordPressContent content={content} />
-
-        <>{cats}</>
-        <PageSection heading="Most Recent">
+    <Layout noborder>
+      <HeroIntroSection
+          heroImage={featuredImage.node.localFile}
+          heroHeading="<span>Badger</span> ON"
+          excerpt={excerpt}
+      />
+      <WordPressContent content={content} />
+      <>{cats}</>
+      <PageSection heading="Most Recent" bgImage={gridBgImage} buttons={moreButton}>
         <GridCardD>{postCards}</GridCardD>
       </PageSection>
-      
     </Layout>
   )
 }

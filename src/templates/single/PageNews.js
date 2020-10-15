@@ -71,6 +71,23 @@ export const query = graphql`
         }
 
       }
+      gridDetails {
+        backgroundImage {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 712) {
+                base64
+                tracedSVG
+                srcWebp
+                srcSetWebp
+                originalImg
+                originalName
+                
+              }
+            }
+          }
+        }
+      }
     },
     posts: allWpPost(limit: 100, sort: {order: ASC, fields: date}) {
       nodes {

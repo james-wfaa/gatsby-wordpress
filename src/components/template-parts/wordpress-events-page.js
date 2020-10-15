@@ -1,7 +1,6 @@
 import React from "react"
 import Layout from "../layout"
 import PageSection from "../page-sections/PageSection"
-import FeaturedImage from "../content-blocks/FeaturedImage"
 import ContentCard from "../content-blocks/ContentCard"
 import ContentCardD from "../content-blocks/ContentCardD"
 import GridCardD from "../content-modules/GridCardD"
@@ -9,11 +8,26 @@ import SimpleSlider from "../content-modules/SimpleSlider"
 import LeftArrow from "../parts/SliderArrowLeft"
 import RightArrow from "../parts/SliderArrowRight"
 import CardSet from "../content-modules/CardSet"
+import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
+import AccordianSearch from "../../components/parts/AccordianSearch"
+
+
 
 
 function WordPressPage({ page, events }) {
-  const { title, featuredImage, eventCategories } = page
+  const { title, featuredImage, eventCategories, excerpt, gridDetails  } = page
   const { categories } = eventCategories
+
+  const { backgroundImage } = gridDetails
+  console.log(backgroundImage)
+
+  const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
+  const moreButton = [
+    {
+      link: "/events/calendar",
+      text: "Calendar",
+    },
+  ]
 
   const cats = categories.map((item) => {
     const { categoryEvent, numberToShow } = item
@@ -59,13 +73,13 @@ function WordPressPage({ page, events }) {
   console.log(eventCards)
 
   return (
-    <Layout>
-      
-      <PageSection heading={title} pageTitle><div>Events Main template</div>
-      {!!featuredImage?.node?.remoteFile?.childImageSharp && (
-          <FeaturedImage featuredImage={featuredImage} />
-      )}
-      </PageSection>
+    <Layout noborder>
+        <HeroIntroSection
+          heroImage={featuredImage.node.localFile}
+          heroHeading="<span>Badger</span> ON"
+          excerpt={excerpt}
+        />
+        <AccordianSearch />
         <PageSection>
         <SimpleSlider
             className="center"
@@ -79,7 +93,7 @@ function WordPressPage({ page, events }) {
         </SimpleSlider>
       </PageSection>
       <>{cats}</>
-      <PageSection heading="At a Glance">
+      <PageSection heading="At a Glance" bgImage={gridBgImage} buttons={moreButton}>
         <GridCardD>{eventCards}</GridCardD>
       </PageSection>
       

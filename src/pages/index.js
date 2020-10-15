@@ -23,7 +23,7 @@ export default () => (
         <Link to="/event/badger-football-badger-huddle-tailgate-at-the-rose-bowl/">Event Page (no image) - NEW</Link>
       </li>
       <li>
-        <Link to="/wordpress-story">Story Page</Link>
+        <Link to="/news/wordpress-story">Story Page</Link>
       </li>
       <li>
         <Link to="/chapter-page">

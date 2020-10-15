@@ -59,7 +59,7 @@ const HeroIntroSection = ({
     ? `${className}__redbox ${className}__redbox--background`
     : `${className}__redbox`
   let downscrollClass = `${className}__downscroll`
-  if (heroSize === "slim") {
+  if (heroSize !== "jumbo") {
     redboxClass += ` ${className}__redbox--slim`
     downscrollClass += ` ${className}__downscroll--slim`
     classes += ` ${className}--slim`
@@ -154,6 +154,7 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
     }
     @media screen and ${breakpoints.laptopS} {
       min-height: 720px;
+      height: auto;
     }
     &--jumbo {
       min-height: 696px;

@@ -7,7 +7,9 @@ import FeaturedImage from "../content-blocks/FeaturedImage"
 function WordPressPage({ page }) {
   const { title, content, featuredImage, date, startDate, endDate, link, venue, cost, organizers, eventDetails } = page
 
-  const noborder = (featuredImage?.node?.localFile?.childImageSharp)
+  console.log(featuredImage)
+  const noborder = (featuredImage !== null)
+  console.log(noborder)
   return (
     <Layout noborder={noborder}>
         {!!featuredImage?.node?.localFile?.childImageSharp && (

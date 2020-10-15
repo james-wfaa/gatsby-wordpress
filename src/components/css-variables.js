@@ -88,6 +88,7 @@ export const colors = {
     cardHeaderBGGrey: baseColors.lightestGrey,
     navMenuBlack:      baseColors.offBlack,
     navMenuBorderGrey: baseColors.grey,
+    navMenuBottomBorder: baseColors.lightGrey,
     toneRed: baseColors.toneRed,
     badgerRed: baseColors.mainRed,
     linkTextVisitedLight: baseColors.lightestGrey,
@@ -117,6 +118,7 @@ export const size = {
     laptopS: '1200px',
     laptop:  '1280px',
     laptopL: '1440px',
+    desktopS: '1600px',
     desktop: '1920px',
     max: '2880px'
 }
@@ -131,8 +133,8 @@ export const breakpoints = {
     laptopSMax: `(max-width: ${size.laptopS})`,
     laptop: `(min-width: ${size.laptop})`,
     laptopL: `(min-width: ${size.laptopL})`,
-    desktop: `(min-width: ${size.desktop})`,
-    desktopL: `(min-width: ${size.desktop})`
+    desktopS: `(min-width: ${size.desktopS})`,
+    desktop: `(min-width: ${size.desktop})`
 }
 
 export const mixins = {
@@ -324,6 +326,27 @@ export const mixins = {
 
         }
        }
+    }`,
+    imageWithCaption: `{
+        figure {
+            max-width: 254px;
+            margin: 0;
+    
+            @media screen and ${breakpoints.laptopS} {
+                max-width: 344px;
+    
+            }
+    
+            img {
+                width: 100%;
+                
+            }
+            figcaption {
+                margin-top: ${sizes.s32};
+                font-weight: bold;
+            }
+        }
+        
     }`,
     introHeading: `{
         position: absolute;
