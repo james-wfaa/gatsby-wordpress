@@ -281,6 +281,7 @@ export const mixins = {
      &--disabled {
         pointer-events: none;
         cursor: default;
+        color: ${colors.titleWhite};
         background-color: ${colors.disabledGrey};
         }
     `,
