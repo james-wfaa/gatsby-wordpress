@@ -6,6 +6,8 @@ import IntroPageSection from "./IntroPageSection"
 import VimeoVideo from '../content-modules/VimeoVideo'
 import downCaret from "../../../static/down-carat@2x.png"
 
+import { useWindowSize } from "../hooks"
+
 
 const HeroIntroSection = ({
   className,
@@ -18,6 +20,13 @@ const HeroIntroSection = ({
   excerpt,
   buttons,
 }) => {
+
+  const { width } = useWindowSize();
+  let size
+  if (heroSize === 'jumbo') {
+    size = width > 655 ? "calc(100vh - 118px)" : "calc(100vh - 86px)"
+  }
+
   const background = typeof heroImage !== "undefined" && heroImage !== null
 
   let classes = className
@@ -59,13 +68,14 @@ const HeroIntroSection = ({
     ? `${className}__redbox ${className}__redbox--background`
     : `${className}__redbox`
   let downscrollClass = `${className}__downscroll`
-  if (heroSize === "slim") {
+  if (heroSize !== "jumbo") {
     redboxClass += ` ${className}__redbox--slim`
     downscrollClass += ` ${className}__downscroll--slim`
     classes += ` ${className}--slim`
   }
 
   let downscrollStyle = css`
+    margin-top: ${heroSize === "jumbo" && background ? "-11px" : 0};
     &:before {
       background-color: ${variantObject.scroll_color};
     }
@@ -76,6 +86,7 @@ const HeroIntroSection = ({
       {videoURL ? (
         <VimeoVideo videoURL={videoURL} heroSize={heroSize} heroHeading={heroHeading}/>
       ) : background ? (
+        <div style={{height: `${size}`}}>
         <BackgroundImage
           Tag="div"
           className={heroClasses}
@@ -91,6 +102,7 @@ const HeroIntroSection = ({
             </div>
           )}
         </BackgroundImage>
+        </div>
       ) : null}
       <div style={{ position: `relative` }}>
         <a
@@ -154,6 +166,7 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
     }
     @media screen and ${breakpoints.laptopS} {
       min-height: 720px;
+      height: auto;
     }
     &--jumbo {
       min-height: 696px;

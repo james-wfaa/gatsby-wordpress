@@ -8,7 +8,7 @@ import Footer from "./Footer"
 
 import "./layout.css"
 
-const Layout = ({ children, img, url, excerpt }) => {
+const Layout = ({ children, img, url, excerpt, noborder }) => {
   
   return (
     <>
@@ -18,7 +18,7 @@ const Layout = ({ children, img, url, excerpt }) => {
       url={url}
       desc={excerpt} 
       />
-      <Header />
+      <Header noborder={noborder} />
       <div>
         <main>{children}</main>
         <Footer />

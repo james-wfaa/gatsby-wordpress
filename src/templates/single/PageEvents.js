@@ -88,7 +88,22 @@ export const query = graphql`
             dynamicContent
           }
         }
-
+      }
+      gridDetails {
+        backgroundImage {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 712) {
+                base64
+                tracedSVG
+                srcWebp
+                srcSetWebp
+                originalImg
+                originalName
+              }
+            }
+          }
+        }
       }
     },
     events: allWpEvent(limit: 100, sort: {order: ASC, fields: startDate}) {

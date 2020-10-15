@@ -33,20 +33,20 @@ const PageSection = ({
 
 
     const background =  typeof bgImage !== "undefined" && bgImage !== null
-
+    const bgClass = (background) ? 'withBg' : ''
     const classesList = alt ? `${className} ${className}--alt` : className
-    const altClass = alt ? ` ${className}--alt` : ''
+    const altClass = alt ? 'alt' : ''
     const plainTextContent = plainText ? ` plaintext` : ''
     const topBorderClass = topBorder ? ` ${className}--topborder` : ''
     const hasPreHeading = preheading && !heading ?  ` ${className}--hasPreHeading` : ''
     const hasNoHeading = !preheading && !heading ? ` ${className}--hasNoHeading` : ''
     const popClass = popOut ? `${className}__popOut` : ''
-    const staggerClass = (stagger) ? ' stagger' : '';
+    const staggerClass = (stagger) ? ' stagger' : ''
 
     return (
-        <div className={`${className}__wrapper ${staggerClass}`}>
+        <div className={`${className}__wrapper ${staggerClass} ${altClass} ${bgClass}`} >
             { ! background &&  (
-            <div className={`${className} ${altClass} ${hasPreHeading} ${hasNoHeading} ${topBorderClass} ${popClass}` }>
+            <div className={`${className} ${hasPreHeading} ${hasNoHeading} ${topBorderClass} ${popClass}` }>
                 { preheading && (
                 <div className={`${className}__preheading`}>{preheading}</div>
             )}
@@ -110,6 +110,12 @@ const StyledPageSection = styled(PageSection)`
         &.stagger:nth-child(odd) {
             background-color: ${colors.bgActiveGrey};
         }
+        &.alt {
+            background-color: ${colors.bgActiveGrey};
+        }
+        &.withBg {
+            padding-bottom: 0;
+        }
     }
 
     &--hasPreHeading {
@@ -132,11 +138,8 @@ const StyledPageSection = styled(PageSection)`
     }
 
 
-    &--alt {
-        background-color: ${colors.bgActiveGrey};
-    }
+    
     &--bgimage {
-        padding-bottom: 128px;
         /*background-color: rgba(0, 0, 0, 0.3) !important; */
         &:before,
         &:after {

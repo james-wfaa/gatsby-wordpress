@@ -8,10 +8,11 @@ import { useTransition, animated } from "react-spring"
 import { useWindowSize } from "./hooks"
 import Logo from "../svg/waa_logo.svg" // Tell webpack this JS file uses this image
 
-const Header = () => {
+const Header = ({ noborder }) => {
   const [open, setOpen] = useState(false)
   const [opensearch, setOpenSearch] = useState(false)
   const [topOffset, setTopOffset] = useState(0)
+  const noborderClass = (noborder) ? 'noborder' : ''
 
   const { width } = useWindowSize()
 
@@ -46,7 +47,7 @@ const Header = () => {
   }
 
   return (
-    <StyledHeader className={`header ${open ? "open" : ""}`}>
+    <StyledHeader className={`header ${open ? "open" : ""} ${noborderClass}`}>
       <nav ref={menuRef}>
         <div className={`__rednav ${open || opensearch ? "suppress" : ""}`}>
           <div className="inner">

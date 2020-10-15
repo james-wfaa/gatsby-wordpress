@@ -6,11 +6,13 @@ import styled from 'styled-components'
 
 const CardSet = ({className, items, num }) => {
 
+    console.log(num)
     //const cards = items.map
     // trim array to the max size
-    items.slice(0, num)
+    const limitedItems = items.slice(0, num)
+    console.log(limitedItems)
 
-    let cards = items.map((item) => {
+    let cards = limitedItems.map((item) => {
         console.log(item)
         const { featuredEvent, featuredImage: img } = item
         const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null

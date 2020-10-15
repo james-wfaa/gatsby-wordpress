@@ -252,14 +252,9 @@ a {
     
 }
 hr.wp-block-separator {
-    height: ${sizes.s36};
-    background-color: ${colors.sectionBorder};
-    margin: ${sizes.s36} 0;
-    @media screen and ${breakpoints.tabletS} {
-        margin: ${sizes.s52} 0;
-        
-    }
+    ${mixins.separator}
 }
+
 div.section-header {
     ${mixins.sectionHeader}
 

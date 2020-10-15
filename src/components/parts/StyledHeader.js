@@ -8,14 +8,20 @@ const StyledHeader = styled.header`
     position: sticky;
     height: 116px;
   }
+  border-bottom: 2px solid ${colors.navMenuBottomBorder};
   &.open {
     .mainnav .uberNav {
       display: none;
     }
+    border-bottom: none;
   }
+  &.noborder {
+    border-color: transparent;
+  }
+  
   .mainnav {
     width: 100%;
-    height: 86px;
+    height: 84px;
     padding: ${sizes.s18} 0;
 
     .inner {

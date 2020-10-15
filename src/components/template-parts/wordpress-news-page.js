@@ -4,12 +4,24 @@ import PageSection from "../page-sections/PageSection"
 import WordPressContent from "../content-blocks/WordPressContent"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 import CardSet from "../content-modules/CardSet"
+import ContentCardD from "../content-blocks/ContentCardD"
+import GridCardD from "../content-modules/GridCardD"
 import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 
-function WordPressPage({ page }) {
-  const { title, content, featuredImage, storyCategories, excerpt } = page
-  console.log(storyCategories) 
+function WordPressPage({ page, posts }) {
+  const { title, excerpt, content, featuredImage, storyCategories, gridDetails } = page
+  
   const { storycategoriesinner: categories } = storyCategories
+  const { backgroundImage } = gridDetails
+  console.log(backgroundImage)
+
+  const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
+  const moreButton = [
+    {
+      link: "/news/all",
+      text: "See More",
+    },
+  ]
 
   console.log(categories)
 
@@ -19,7 +31,7 @@ function WordPressPage({ page }) {
     if (category && category.name) {
       return (
       
-        <PageSection heading={category.name}>
+        <PageSection heading={category.name} stagger>
           <CardSet items={category.posts.nodes} num={numberToShow} />
         </PageSection>
       )
@@ -29,10 +41,19 @@ function WordPressPage({ page }) {
   }
   )
 
+  const cardGridPosts = posts.nodes.slice(0,9)
+  let postCards = cardGridPosts.map((post) => {
+    console.log(post)
+    return (
+      <ContentCardD {...post} />
+    )
+  })
+  console.log(postCards)
+
 
 
   return (
-    <Layout>
+    <Layout noborder>
       <HeroIntroSection
           heroImage={featuredImage.node.localFile}
           heroHeading="<span>Badger</span> ON"
@@ -40,9 +61,10 @@ function WordPressPage({ page }) {
           excerpt={excerpt}
       />
       <WordPressContent content={content} />
-
       <>{cats}</>
-      
+      <PageSection heading="Most Recent" bgImage={gridBgImage} buttons={moreButton}>
+        <GridCardD>{postCards}</GridCardD>
+      </PageSection>
     </Layout>
   )
 }

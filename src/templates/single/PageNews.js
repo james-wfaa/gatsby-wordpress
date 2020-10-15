@@ -3,9 +3,9 @@ import { graphql } from "gatsby"
 import WpNewsPage from "../../components/template-parts/wordpress-news-page"
 
 export default ({ data }) => {
-  const { page } = data
+  const { page, posts } = data
   console.log(page)
-  return (<WpNewsPage page={page} />)
+  return (<WpNewsPage page={page} posts={posts} />)
 
 }
 
@@ -70,6 +70,37 @@ export const query = graphql`
           }
         }
 
+      }
+      gridDetails {
+        backgroundImage {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 712) {
+                base64
+                tracedSVG
+                srcWebp
+                srcSetWebp
+                originalImg
+                originalName
+                
+              }
+            }
+          }
+        }
+      }
+    },
+    posts: allWpPost(limit: 100, sort: {order: ASC, fields: date}) {
+      nodes {
+        title
+        excerpt
+        featuredImage {
+          node {
+            localFile {
+              ...HeroImage
+            }
+          }
+        }
+        url: uri
       }
     }
   }
