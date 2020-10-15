@@ -100,8 +100,10 @@ const StyledPageSection = styled(PageSection)`
     position: relative;
     text-align: center;
     padding-top: 88px;
-    a {
-        color: ${colors.bgRed};
+    .sectionexcerpt {
+        a {
+            color: ${colors.bgRed}
+        }
     }
     &__wrapper {
         margin: 0 auto;

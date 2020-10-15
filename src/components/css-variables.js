@@ -291,7 +291,7 @@ export const mixins = {
         margin: ${sizes.s36} 0;
         @media screen and ${breakpoints.tabletS} {
             margin: ${sizes.s52} 0;
-            
+
         }
     }`,
     sectionHeader: ` {
@@ -351,24 +351,24 @@ export const mixins = {
             @media screen and ${breakpoints.tabletS} {
                 max-width: 344px;
             }
-    
+
             @media screen and ${breakpoints.tabletL} {
                 &.size-full {
                     max-width: 712px;
                 }
-    
+
             }
-    
+
             img {
                 width: 100%;
-                
+
             }
             figcaption {
                 margin-top: ${sizes.s32};
                 font-weight: bold;
             }
         }
-        
+
     }`,
     introHeading: `{
         position: absolute;
