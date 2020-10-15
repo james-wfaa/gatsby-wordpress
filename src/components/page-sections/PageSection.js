@@ -10,23 +10,23 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 const PageSection = ({
-    className, 
-    preheading, 
-    heading, 
-    headingAlt, 
-    headingCompact, 
-    pageTitle, 
-    withSocial, 
-    plainText, 
-    popOut, 
-    excerpt, 
-    buttons, 
-    buttonsAlt, 
-    buttonsCompact, 
-    alt, 
-    topBorder, 
-    bgImage, 
-    fromBlocks, 
+    className,
+    preheading,
+    heading,
+    headingAlt,
+    headingCompact,
+    pageTitle,
+    withSocial,
+    plainText,
+    popOut,
+    excerpt,
+    buttons,
+    buttonsAlt,
+    buttonsCompact,
+    alt,
+    topBorder,
+    bgImage,
+    fromBlocks,
     children,
     stagger
  }) => {
@@ -100,10 +100,13 @@ const StyledPageSection = styled(PageSection)`
     position: relative;
     text-align: center;
     padding-top: 88px;
+    a {
+        color: ${colors.bgRed};
+    }
     &__wrapper {
         margin: 0 auto;
 
-        padding-bottom: 88px;
+        padding-bottom: 56px;
         &:last-child {
             padding-bottom: 128px;
         }
@@ -138,7 +141,7 @@ const StyledPageSection = styled(PageSection)`
     }
 
 
-    
+
     &--bgimage {
         /*background-color: rgba(0, 0, 0, 0.3) !important; */
         &:before,

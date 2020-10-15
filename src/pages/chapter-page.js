@@ -62,7 +62,7 @@ export default ({ data }) => {
         Connect with us to celebrate UW pride, enjoy Badger spirit and build
         community with each other and the UW.
       </PageSection>
-      <div style={{maxWidth: `1080px`, margin: `0 auto`}}>
+      <div style={{maxWidth: `1080px`, margin: `auto`, paddingBottom: `58px`}}>
 
         <HeroIntroSection
           heroImage={data.homeBg}

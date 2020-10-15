@@ -41,7 +41,7 @@ const HeroIntroSection = ({
   switch (variant) {
     case 'white':
       variantObject['background_color'] = colors.bgWhite;
-      variantObject['color'] = colors.bgRed;
+      variantObject['color'] = colors.navMenuBlack;
       variantObject["scroll_color"] = "#9E9E9E"
       break;
     default:
