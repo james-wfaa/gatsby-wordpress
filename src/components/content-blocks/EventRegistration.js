@@ -94,6 +94,9 @@ const StyledEventRegistration = styled(EventRegistration)`
             max-width: 304px;
             position: relative;
             width: 100%;
+            @media screen and ${breakpoints.tabletS} {
+                max-width: 536px;
+            }
         
             &.compact {
                 margin-top: ${sizes.s40};

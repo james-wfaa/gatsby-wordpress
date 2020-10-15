@@ -66,7 +66,23 @@ export const query = graphql`
         content
         latitude
         longitude
-      }    
+      }   
+      blocks {
+        name
+        originalContent
+        dynamicContent
+        innerBlocks {
+          name
+          originalContent
+          dynamicContent
+          innerBlocks {
+            name
+            originalContent 
+            dynamicContent
+          }
+        }
+
+      } 
     }
   }
 `

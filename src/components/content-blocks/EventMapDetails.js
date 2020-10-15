@@ -35,10 +35,10 @@ const EventMapDetails = ({ className, venue }) => {
                    </div>
                 )}
 
-                { !addressString && (
+                { !addressString && venue && venue.title && (
                     <div className="address">{venue.title}</div>
                 )}
-                { venue.content && (
+                { venue && venue.content && (
                     <div className="detailsWrap">
                         <div className="subHeader">Event Details</div>
                         <div className="details" dangerouslySetInnerHTML={{ __html: venue.content }} />
@@ -46,7 +46,7 @@ const EventMapDetails = ({ className, venue }) => {
                 )}
 
             </div>
-            { (location.lat && location.lng) && (
+            { (location && location.lat && location.lng) && (
                 <div className="venueMap">
                     <LocationMap center={location} />
                 </div>
