@@ -70,22 +70,19 @@ const StyledEventMapDetails = styled(EventMapDetails)`
 
     @media screen and ${breakpoints.tabletS} {
         max-width: 534px;
-        flex-flow: row;
     }
     @media screen and ${breakpoints.laptopS} {
         max-width: 712px;
+        flex-flow: row;
     }
 
     .venueContent{
         padding: ${sizes.s16};
-        padding-bottom: 0;
 
-        @media screen and ${breakpoints.tabletS} {
-            flex: 1 1 0px
-        }
         @media screen and ${breakpoints.laptopS} {
             padding: ${sizes.s32};
-            padding-bottom: 0;
+            flex: 1 1 0px
+
 
         }
 
@@ -152,11 +149,17 @@ const StyledEventMapDetails = styled(EventMapDetails)`
               }
             }
           }
+
+          .detailsWrap{
+              p:last-child{
+                  margin-bottom: 0;
+              }
+          }
     
     }
 
     .venueMap{
-        @media screen and ${breakpoints.tabletS} {
+        @media screen and ${breakpoints.laptopS} {
             flex: 1 1 0px
         }
     }

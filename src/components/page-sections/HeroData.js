@@ -27,8 +27,8 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
   text-align: center;
   .headingWrapper {
     position: relative;
-    padding-bottom: 59px;
-    margin-bottom: 59px;
+    padding-bottom: ${sizes.s32};
+    margin-bottom: ${sizes.s32};
     h1,
     h2 {
     color: ${variantObject.color};

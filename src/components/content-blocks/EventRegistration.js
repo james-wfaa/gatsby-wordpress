@@ -35,7 +35,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
                 )}
                 {(registrationLink) && (
                     <div className="regButton" >
-                        <Button link={registrationLink} text={registrationText} fullwidth disabled={regIsFull} />
+                        <Button link={registrationLink} text={registrationText} fullwidth disabled={regIsFull} external />
                     </div>
                 )}
             </div>

@@ -46,14 +46,14 @@ margin: ${sizes.s58} 0;
 @media screen and ${breakpoints.tabletS} {
   &--event {
     max-width: 536px;
-    margin: ${sizes.s58} auto;  
+    margin: 0 auto;  
   }
 
 
 @media screen and ${breakpoints.tabletL} {
   &--event {
     max-width: 814px;
-    margin: ${sizes.s58} auto;  
+    margin: 0 auto;  
     &:before {
       position: absolute;
       bottom: 0px;

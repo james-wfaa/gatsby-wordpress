@@ -103,6 +103,8 @@ export const colors = {
     borderGrey: baseColors.grey,
     bgLightGrey: baseColors.evenlighterGrey,
     mapDetailsText: baseColors.offBlack,
+    disabledGrey: baseColors.darkGrey,
+
 
 
 
@@ -276,6 +278,11 @@ export const mixins = {
         }
 
      }
+     &--disabled {
+        pointer-events: none;
+        cursor: default;
+        background-color: ${colors.disabledGrey};
+        }
     `,
     sectionHeader: ` {
         text-align: center;
