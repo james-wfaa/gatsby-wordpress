@@ -119,6 +119,8 @@ margin: ${sizes.s48} auto 0;
     > ul,
     > h2,
     > h3,
+    > div,
+    > table,
     > div.callout,
     > div.call-out {
         min-width: 300px;
