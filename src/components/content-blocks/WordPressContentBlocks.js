@@ -1,6 +1,7 @@
 import React from 'react'
 import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
-
+import styled from 'styled-components'
+import {  mixins } from '../css-variables'
 
 const WordPressContent = ({className, blocks}) => {
     console.log(blocks);
@@ -18,6 +19,9 @@ const WordPressContent = ({className, blocks}) => {
                     return (<PageSectionFromBlocks blocks={block.innerBlocks} gallery borderTop={borderTop} />)
                 }
                 break 
+            case "core/separator":
+                return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+                break
             default: 
                 console.log(block)
                 return (<PageSectionFromBlocks blocks={[block]}  />)
@@ -27,7 +31,14 @@ const WordPressContent = ({className, blocks}) => {
     )
 
     return(
-        <>{RenderedBlocks}</>
+        <div className={className}>{RenderedBlocks}</div>
     )
 }
-export default WordPressContent
+
+const StyledWordPressContent = styled(WordPressContent)`
+hr.wp-block-separator {
+    ${mixins.separator}
+}
+`
+
+export default StyledWordPressContent

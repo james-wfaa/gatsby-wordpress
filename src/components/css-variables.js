@@ -284,6 +284,15 @@ export const mixins = {
         background-color: ${colors.disabledGrey};
         }
     `,
+    separator: `{
+        height: ${sizes.s36};
+        background-color: ${colors.sectionBorder};
+        margin: ${sizes.s36} 0;
+        @media screen and ${breakpoints.tabletS} {
+            margin: ${sizes.s52} 0;
+            
+        }
+    }`,
     sectionHeader: ` {
         text-align: center;
         position: relative;
@@ -338,9 +347,14 @@ export const mixins = {
         figure {
             max-width: 254px;
             margin: 0;
-    
-            @media screen and ${breakpoints.laptopS} {
+            @media screen and ${breakpoints.tabletS} {
                 max-width: 344px;
+            }
+    
+            @media screen and ${breakpoints.tabletL} {
+                &.size-full {
+                    max-width: 712px;
+                }
     
             }
     

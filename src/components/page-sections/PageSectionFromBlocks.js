@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import PageSection from './PageSection'
 import Testimonial from '../content-blocks/Testimonial'
 import ImageSection from '../content-blocks/ImageSection'
@@ -48,11 +47,8 @@ const PageSectionFromBlocks = ({ blocks, gallery, borderTop }) => {
         centerPadding="100px"
         {...settings}>
             { blocks.map((block) => {
-                console.log(block)
                 const innerContent =  ((block.dynamicContent && block.dynamicContent !== "") ? block.dynamicContent : block.originalContent)
-                console.log(innerContent)
                 if (block.name === "core/image") {
-                    // send "large" prop
                     return (
                         <ImageWithCaption><div dangerouslySetInnerHTML={{__html: innerContent}} /></ImageWithCaption>
                     )
