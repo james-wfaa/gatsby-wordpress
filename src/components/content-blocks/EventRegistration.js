@@ -42,7 +42,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
             <div className="regWrapper">
                 <div className="subHeader">WHEN</div>
                 <div>{date}</div>
-                <div className="dateTime">{convertTime(startDate, endDate)}</div>
+                <div className="dateTime" dangerouslySetInnerHTML={{ __html: convertTime(startDate, endDate) }}></div>
                 <a href="#" alt="Add to Calendar">Add to Calendar</a>
                 <div className="subHeader">WHERE</div>
                 <div className="venue" dangerouslySetInnerHTML={{ __html: addressString }} />
