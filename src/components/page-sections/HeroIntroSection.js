@@ -37,12 +37,14 @@ const HeroIntroSection = ({
     background_color: colors.bgRed,
     color: colors.titleWhite,
     scroll_color: colors.bgRed,
+    text_align: `center`
   }
   switch (variant) {
     case 'white':
       variantObject['background_color'] = colors.bgWhite;
       variantObject['color'] = colors.navMenuBlack;
-      variantObject["scroll_color"] = "#9E9E9E"
+      variantObject["scroll_color"] = "#9E9E9E";
+      variantObject["text_align"] = `left`
       break;
     default:
       break;

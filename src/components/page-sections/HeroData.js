@@ -119,7 +119,7 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
     margin: 0 auto;
     margin-bottom: ${excerptBottom};
     padding: 0 ${sizes.s36};
-
+    text-align: ${variantObject.text_align};
     p:last-child {
       margin-bottom: 0;
     }
