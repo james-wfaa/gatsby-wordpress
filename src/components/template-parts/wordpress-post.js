@@ -36,7 +36,7 @@ function BlogPost({ data }) {
           Previous: {previousPage.title}
         </Link>
       )}
-      <SocialShareLinks/>
+      <SocialShareLinks text="Share This Story"/>
     </Layout>
   )
 }

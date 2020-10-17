@@ -6,10 +6,10 @@ export const convertTime = (startTime, endTime) => {
   var endTime = formatAMPM(endDS);
   var strTime = '';
   if(startTime[0].ampm == endTime[0].ampm){
-    strTime = startTime[0].time  + '-' + endTime[0].time + ' ' + endTime[0].ampm;
+    strTime = startTime[0].time  + '&ndash;' + endTime[0].time + ' ' + endTime[0].ampm;
   }
   else {
-    strTime = startTime[0].time + ' ' + startTime[0].ampm + '-' + endTime[0].time + ' ' + endTime[0].ampm;
+    strTime = startTime[0].time + ' ' + startTime[0].ampm + '&ndash;' + endTime[0].time + ' ' + endTime[0].ampm;
   }
   return strTime;
 }

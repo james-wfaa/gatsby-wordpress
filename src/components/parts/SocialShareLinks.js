@@ -1,6 +1,7 @@
 import React from "react"
 import propTypes from "prop-types";
-import { colors, breakpoints } from '../css-variables'
+import styled from 'styled-components'
+import { colors, breakpoints, sizes } from '../css-variables'
 import TiSocialTwitter from "../../svg/uwa__twitter_white_24x24.inline.svg";
 import TiSocialFacebook from "../../svg/uwa__facebook_white_24x24.inline.svg";
 import {AiFillMail} from "react-icons/ai";
@@ -9,7 +10,7 @@ import { css } from "emotion";
 
 
 const SocialShareLinks = props => {
-    const { url, title, excerpt } = props;
+    const { className, url, title, excerpt, text } = props;
 
     const customStyles = css`
     padding: 0;
@@ -52,7 +53,12 @@ const SocialShareLinks = props => {
       };
       
     return (
-        <ShareBlockStandard {...shareBlockProps} />
+        <div className = {className}>
+            { text && (
+                <div className="socialText">{text}</div>
+            )}
+            <ShareBlockStandard {...shareBlockProps} />
+        </div>
     )
 }
 
@@ -68,4 +74,22 @@ SocialShareLinks.propTypes = {
     excerpt: "Default value of excerpt"
   };
   
-export default SocialShareLinks
+const StyledSocialShareLinks = styled(SocialShareLinks)
+`
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    .socialText{
+        font-size: ${sizes.s16};
+        color: ${colors.toneRed};
+        font-weight: bold;
+        line-height: ${sizes.s26};
+        margin-top: 5px;
+        @media screen and ${breakpoints.laptopS} {
+            margin: 40px 0px 80px 0px;
+        }
+    }
+`
+
+export default StyledSocialShareLinks
