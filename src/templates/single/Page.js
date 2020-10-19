@@ -2,9 +2,6 @@ import React from "react"
 import { graphql } from "gatsby"
 import WpDefaultPage from "../../components/template-parts/wordpress-page"
 import WpProductPage from "../../components/template-parts/wordpress-product-page"
-import WpEmailPage from "../../components/template-parts/wordpress-email-page"
-import WpEventsPage from "../../components/template-parts/wordpress-events-page"
-import WpNewsPage from "../../components/template-parts/wordpress-news-page"
 
 export default ({ data }) => {
   const { page, events } = data
@@ -15,12 +12,6 @@ export default ({ data }) => {
     switch (templateName ) {
       case "Product/General Page":
         return (<WpProductPage page={page} />)
-      case "Email Login Page":
-        return (<WpEmailPage page={page} />)
-      case "Events Main Page":
-        return (<WpEventsPage page={page} events={events.edges} />)
-      case "News And Stories Page":
-        return (<WpNewsPage page={page} />)
       case "Default":
       default:
         return (<WpDefaultPage page={page} />)

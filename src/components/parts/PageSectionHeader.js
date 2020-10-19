@@ -2,23 +2,24 @@ import React from "react"
 import styled from 'styled-components'
 import { mixins } from '../css-variables'
 
-const PageSectionHeader = ({ className, heading, headingAlt, headingCompact, pageTitle, withSocial, bgimage, fromBlocks }) => {
+const PageSectionHeader = ({ className, heading, headingAlt, headingCompact, pageTitle, withSocial, bgimage, fromBlocks, leftAlign }) => {
 
     const classBgImage = bgimage ? ' bgimage' : ''
     const classSocialImage = withSocial ? ' social' : ''
     const classAlt = headingAlt ? ' headingAlt' : ''
     const classCompact = headingCompact ? ' compact' : ''
-    const classesList = `${className}${classAlt}${classCompact}${classBgImage}${classSocialImage}`
+    const classLeft = leftAlign ? ' leftAlign' : ''
+    const classesList = `${className}${classAlt}${classCompact}${classBgImage}${classSocialImage}${classLeft}`
     return (
         <div className={classesList}>
             { fromBlocks && (
                 <div dangerouslySetInnerHTML={{ __html: heading }} />
             )}
             { !fromBlocks && pageTitle && (
-                <h1>{heading}</h1>
+                <h1 className={classLeft}>{heading}</h1>
             )}
             { !fromBlocks && (!pageTitle || typeof pageTitle === 'undefined') && (
-                <h2>{heading}</h2>
+                <h2 className={classLeft}>{heading}</h2>
             )}
         </div>
     )

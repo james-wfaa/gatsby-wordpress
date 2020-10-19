@@ -15,6 +15,7 @@ const PageSection = ({
     heading, 
     headingAlt, 
     headingCompact, 
+    leftAlign,
     pageTitle, 
     withSocial, 
     plainText, 
@@ -51,7 +52,7 @@ const PageSection = ({
                 <div className={`${className}__preheading`}>{preheading}</div>
             )}
                   { heading && (
-                <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} withSocial={withSocial} headingCompact={headingCompact} fromBlocks={fromBlocks} />
+                <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} withSocial={withSocial} headingCompact={headingCompact} fromBlocks={fromBlocks} leftAlign={leftAlign} />
             )}
             { excerpt && (
                 <div className="sectionexcerpt"  dangerouslySetInnerHTML={{ __html: excerpt }} />
@@ -100,6 +101,9 @@ const StyledPageSection = styled(PageSection)`
     position: relative;
     text-align: center;
     padding-top: 88px;
+    &.leftAlign {
+        text-align: left;
+    }
     &__wrapper {
         margin: 0 auto;
 

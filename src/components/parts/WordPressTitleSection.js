@@ -47,7 +47,10 @@ const StyledTitleSection = styled(TitleSection)`
     max-width: 712px;
     margin-left: auto;
     margin-right: auto;
-
+    padding-top: ${sizes.s58};
+    @media screen and ${breakpoints.tabletS} {
+        padding-top: ${sizes.s88};
+    }
     
     &.header--event{
         min-width: 300px;
@@ -131,6 +134,13 @@ const StyledTitleSection = styled(TitleSection)`
         font-family: ${fonts.eaves};
         font-size: ${sizes.s18};
         line-height: ${sizes.s26};
+        margin-bottom: ${sizes.s32};
+        p {
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        
     }
     .headersection {
         position: relative;
