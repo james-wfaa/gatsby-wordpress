@@ -41,18 +41,18 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
 
     return (
 
-        <div className={`${className} ${className}--${size} ${notSmall} ${className}--${promoClass}`}>
-                <div className={`headersection headersection--${size} headersection--${promoClass}`}>
+        <div className={`${className} ${className}--${size} ${notSmall} ${promoClass}`}>
+                <div className={`headersection headersection--${size}`}>
                     { startDate && (
                         <>
                         <div className={`date date--${size}`}>
                             <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
                         </div>
-                        <div className={`category category--${size} category--${promoClass}`}>{category}</div>
+                        <div className={`category category--${size} `}>{category}</div>
                         </>
                     )}
                     { !startDate && (
-                        <h3 className={`title title--${size}  title--${promoClass}`}>
+                        <h3 className={`title title--${size}`}>
                             <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
                         </h3>
                     )}
@@ -65,7 +65,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                         </a>
                     )}
                 </div>
-                <div className={`contentwrap contentwrap--${size} contentwrap--${promoClass}`}>
+                <div className={`contentwrap contentwrap--${size}`}>
                     {imgSources && (
                         <a href={url} className={`imgzoomlink bodyImg`} >
                             <Img
@@ -85,7 +85,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                                 </>
                             )}
                             { shortenedExcerpt && (
-                                <div className={`excerpt excerpt--${size} excerpt--${promoClass}`}>
+                                <div className={`excerpt excerpt--${size}`}>
                                     <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
                                 </div>
                             )}
@@ -100,7 +100,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                             )}
                             </div>
                             { excerpt && (
-                                <a href={url} className={`excerpt excerpt--${size} excerpt--${promoClass} readmore`}>{moreLinkText}</a>
+                                <a href={url} className={`excerpt excerpt--${size} readmore`}>{moreLinkText}</a>
                             )}
                             { tags && (
                                 <TagList
@@ -203,9 +203,55 @@ const StyledContentCard = styled(ContentCard)`
 
         }
     }
-    &--promo{
+    &.promo{
         background-color: ${colors.bgRed};
         border: 1px solid ${colors.bgRed};
+        .headersection {
+            background-color: ${colors.bgRed};
+            border-bottom: none;
+        }
+        .title {
+            margin-top: ${sizes.s32};
+            font-size: ${sizes.s36};
+            line-height: ${sizes.s42};
+            color: ${colors.titleWhite};
+            & a:link {
+                text-decoration: none;
+                color: ${colors.titleWhite};
+            }
+            /* visited link */
+            & a:visited {
+                color: ${colors.titleWhite};
+            }
+            /* mouse over link */
+            & a:hover {
+                color: ${colors.titleWhite};
+            }
+            /* selected link */
+            & a:active {
+                color: ${colors.titleWhite};
+            }
+        }
+        .category {
+            display: none;
+        }
+        .contentwrap {
+            &:before {
+                border-left: 1.5px solid ${colors.bgWhite};
+                border-right: 1.5px solid ${colors.bgWhite};
+            }
+        }
+
+        .excerpt{
+            font-size: ${sizes.s26};
+            line-height: ${sizes.s36};
+            color: ${colors.titleWhite};
+
+            &.readmore{
+                display: none;
+            }
+        }
+
     }
 
     & a{
@@ -230,12 +276,6 @@ const StyledContentCard = styled(ContentCard)`
         .headerImg{
             display: none;
         }
-
-        &--promo{
-            background-color: ${colors.bgRed};
-            border-bottom: none;
-        }
-
         @media screen and ${breakpoints.tabletS} {
             padding-left: ${sizes.s32};
             padding-right: ${sizes.s32};
@@ -371,12 +411,10 @@ const StyledContentCard = styled(ContentCard)`
             text-decoration: none;
             color: ${colors.titleColor};
         }
-
         /* visited link */
         & a:visited {
             color: ${colors.linkVisitedGrey};
         }
-
         /* mouse over link */
         & a:hover {
             color: ${colors.linkTextHover};
@@ -384,38 +422,11 @@ const StyledContentCard = styled(ContentCard)`
             cursor:pointer;
 
         }
-
         /* selected link */
         & a:active {
             color: ${colors.linkActiveGrey};
             text-decoration: underline;
             cursor:default;
-        }
-
-        &--promo{
-            margin-top: ${sizes.s32};
-            font-size: ${sizes.s36};
-            line-height: ${sizes.s42};
-            color: ${colors.titleWhite};
-            & a:link {
-                text-decoration: none;
-                color: ${colors.titleWhite};
-            }
-
-            /* visited link */
-            & a:visited {
-                color: ${colors.titleWhite};
-            }
-
-            /* mouse over link */
-            & a:hover {
-                color: ${colors.titleWhite};
-            }
-
-            /* selected link */
-            & a:active {
-                color: ${colors.titleWhite};
-            }
         }
     }
 
@@ -429,9 +440,6 @@ const StyledContentCard = styled(ContentCard)`
         padding-bottom: ${sizes.s16};
         color: ${colors.categoryGrey};
 
-        &--promo{
-            display: none;
-        }
         @media screen and ${breakpoints.tabletS} {
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
@@ -475,15 +483,6 @@ const StyledContentCard = styled(ContentCard)`
             }
 
         }
-
-        &--promo{
-            &:before {
-                border-left: 1.5px solid ${colors.bgWhite};
-                border-right: 1.5px solid ${colors.bgWhite};
-            }
-
-        }
-
 
         @media screen and ${breakpoints.laptopS} {
             &--Wide{
@@ -633,17 +632,6 @@ const StyledContentCard = styled(ContentCard)`
                 cursor:default;
             }
         }
-
-        &--promo{
-            font-size: ${sizes.s26};
-            line-height: ${sizes.s36};
-            color: ${colors.titleWhite};
-
-            &.readmore{
-                display: none;
-            }
-        }
-
     }
 
     .imgzoomlink{
