@@ -41,20 +41,20 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
 
     return (
 
-        <div className={`${className} ${className}--${size} ${notSmall} ${promoClass}`}>
+        <div className={`${className} ${className}--${size} ${className}--${notSmall} ${promoClass}`}>
                 <div className={`headersection headersection--${size}`}>
                     { startDate && (
-                        <>
                         <div className={`date date--${size}`}>
                             <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
                         </div>
-                        <div className={`category category--${size} `}>{category}</div>
-                        </>
                     )}
                     { !startDate && (
-                        <h3 className={`title title--${size}`}>
-                            <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
-                        </h3>
+                        <>
+                            <div className={`category category--${size} `}>{category}</div>
+                            <h3 className={`title title--${size}`}>
+                                <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
+                            </h3>
+                        </>
                     )}
                     {imgSources && (
                         <a href={url} className={`imgzoomlink headerImg`} >
@@ -130,7 +130,7 @@ const StyledContentCard = styled(ContentCard)`
     opacity: 0.9;
 
 
-    &.notsmall{
+    &--notsmall{
         @media screen and ${breakpoints.tabletS} {
             width: 528px;
             min-height: 680px;
