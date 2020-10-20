@@ -19,16 +19,12 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
     const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt
     const promoClass = promo ? 'promo' : ''
+    const notSmall = (size !== 'S') ? "notsmall" : ""
 
-    if(!sizes.includes(size)){
+    if(!sizes.includes(size) || promo ){
         size = "S";
     }
 
-    if(promo){
-        size = "S";
-    }
-
-    var notSmall = (size !== 'S') ? "notsmall" : "";
 
     console.log(img)
     const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
@@ -45,19 +41,18 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
 
     return (
 
-        <div className={`${className} ${className}--${size} ${className}--${notSmall} ${className}--${promoClass}`}>
-                <div className={`headersection headersection--${size} headersection--${notSmall} headersection--${promoClass}`}>
+        <div className={`${className} ${className}--${size} ${notSmall} ${className}--${promoClass}`}>
+                <div className={`headersection headersection--${size} headersection--${promoClass}`}>
                     { startDate && (
-                        <div className={`date date--${size} date--${notSmall}`}>
+                        <>
+                        <div className={`date date--${size}`}>
                             <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
                         </div>
-
+                        <div className={`category category--${size} category--${promoClass}`}>{category}</div>
+                        </>
                     )}
                     { !startDate && (
-                        <div className={`category category--${size} category--${notSmall} category--${promoClass}`}>{category}</div>
-                    )}
-                    { !startDate && (
-                        <h3 className={`title title--${size} title--${notSmall} title--${promoClass}`}>
+                        <h3 className={`title title--${size}  title--${promoClass}`}>
                             <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
                         </h3>
                     )}
@@ -69,7 +64,6 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                             />
                         </a>
                     )}
-
                 </div>
                 <div className={`contentwrap contentwrap--${size} contentwrap--${promoClass}`}>
                     {imgSources && (
@@ -80,51 +74,43 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                             />
                         </a>
                     )}
-
-                    <div className={`contentsection contentsection--${size} contentsection--${notSmall}`}>
-
-                        <div className={`columnwrap columnwrap--${size} columnwrap--${notSmall}`}>
+                    <div className={`contentsection contentsection--${size}`}>
+                        <div className={`columnwrap columnwrap--${size}`}>
                             { startDate && (
-                                <a href={url} >
-                                    <h3 className={`title title--${size} title--${notSmall}`}>
+                                <>
+                                    <h3 className={`title title--${size}`}>
                                         <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
                                     </h3>
-                                </a>
-                            )}
-                            { startDate && (
-                                <div className={`category category--${size} category--${notSmall}`}>{category}</div>
+                                    <div className={`category category--${size}`}>{category}</div>
+                                </>
                             )}
                             { shortenedExcerpt && (
-                                <div className={`excerpt excerpt--${size} excerpt--${notSmall} excerpt--${promoClass}`}>
+                                <div className={`excerpt excerpt--${size} excerpt--${promoClass}`}>
                                     <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
                                 </div>
                             )}
                         </div>
-                        <div className={`columnwrap columnwrap--${size} columnwrap--${notSmall}`}>
-                            <div className={`venuewrap venuewrap--${size} venuewrap--${notSmall}`}>
+                        <div className={`columnwrap columnwrap--${size}`}>
+                            <div className={`venuewrap venuewrap--${size}`}>
                             { venue && venue.title && (
                                 <div className={`${className}__venue`}>{venue.title}</div>
                             )}
                             { venue && venue.city && venue.state && (
-                                <div className={`venue venue--${size} venue--${notSmall}`}>{venue.city},{venue.state}</div>
+                                <div className={`venue venue--${size}`}>{venue.city},{venue.state}</div>
                             )}
                             </div>
                             { excerpt && (
-                                <a href={url} className={`excerpt excerpt--${size} excerpt--${notSmall} excerpt--${promoClass} readmore`}>{moreLinkText}</a>
+                                <a href={url} className={`excerpt excerpt--${size} excerpt--${promoClass} readmore`}>{moreLinkText}</a>
                             )}
                             { tags && (
                                 <TagList
-                                    className={`tag  tag--${size} tag--${notSmall}`}
+                                    className={`tag  tag--${size}`}
                                     items={tags}
                                 />
                             )}
                         </div>
-
-
                     </div>
-
                 </div>
-
         </div>
     )
 }
@@ -144,7 +130,7 @@ const StyledContentCard = styled(ContentCard)`
     opacity: 0.9;
 
 
-    &--notsmall{
+    &.notsmall{
         @media screen and ${breakpoints.tabletS} {
             width: 528px;
             min-height: 680px;
@@ -153,6 +139,18 @@ const StyledContentCard = styled(ContentCard)`
         @media screen and ${breakpoints.laptopS} {
             .columnwrap:nth-child(1) {
                 border-right: 1px solid ${colors.cardBorder};
+            }
+            .title {
+                top: -3px;
+            }
+            .date {
+                font-size: ${sizes.s52};
+                line-height: ${sizes.s52};
+            }
+            .excerpt {
+                font-size: ${sizes.s18};
+                line-height: ${sizes.s26};
+                padding-bottom: 0px;
             }
         }
     }
@@ -311,10 +309,6 @@ const StyledContentCard = styled(ContentCard)`
             padding-bottom: ${sizes.s32};
         }
         @media screen and ${breakpoints.laptopS} {
-            &--notsmall{
-                font-size: ${sizes.s52};
-                line-height: ${sizes.s52};
-            }
             &--Wide{
                 padding-left: ${sizes.s32};
                 padding-right: ${sizes.s32};
@@ -364,17 +358,12 @@ const StyledContentCard = styled(ContentCard)`
 
         }
         @media screen and ${breakpoints.laptopS} {
-            &--notsmall{
-                top: -3px;
-            }
             &--Wide{
                 padding-left: ${sizes.s32};
                 padding-right: ${sizes.s32};
                 padding-top: ${sizes.s28};
             }
-
         }
-
         &--L, &--XL, &--XXL {
             z-index: 1;
         }
@@ -617,14 +606,6 @@ const StyledContentCard = styled(ContentCard)`
         @media screen and ${breakpoints.tabletS} {
             padding-bottom: ${sizes.s32};
         }
-        @media screen and ${breakpoints.laptopS} {
-            &--notsmall{
-                font-size: ${sizes.s18};
-                line-height: ${sizes.s26};
-                padding-bottom: 0px;
-            }
-        }
-
         &.readmore {
             color: ${colors.titleColor};
             text-transform: uppercase;
