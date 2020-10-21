@@ -19,7 +19,7 @@ export const query = graphql`
       featuredImage {
         node {
           localFile {
-            ...HeroImage
+            ...HeroImage  
           }
         }
       }
