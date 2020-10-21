@@ -10,7 +10,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
     console.log(blocks);
 
 
-    const RenderedBlocks = blocks.map((block) => {
+    const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
        
         switch(block.name) {
@@ -46,7 +46,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                 break
         }
         }
-    )
+    ) : ''
 
     return(
         <div className={className}>
