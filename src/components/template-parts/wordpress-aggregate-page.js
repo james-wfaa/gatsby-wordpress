@@ -7,27 +7,10 @@ function WordPressPage({ page }) {
   const {  excerpt, featuredImage, introButtons, blocks } = page
   const { introButtons: buttons } = introButtons
   console.log(blocks)
-  const normalizedButtons = buttons.map(item=>{
-    return {
-      link: item.link.uri,
-      text: item.text
-    }
   
-  }
-  )
-
-
-  console.log(buttons)
-  console.log(normalizedButtons)
 
   return (
     <Layout>
-      <HeroIntroSection  
-      heroImage={featuredImage.node.localFile}
-      heroSize="slim"
-      excerpt={excerpt}
-      buttons={normalizedButtons}
-      />
 
     <div>Aggregate Template</div>
     <WordPressContentBlocks blocks={blocks} />
