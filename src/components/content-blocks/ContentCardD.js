@@ -11,7 +11,7 @@ const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, 
 
     /* let's make this a helper available anywhere we need to nicely shorten an excerpt */
     const maxLength = (title.length <= 28) ? 200 : 160
-    const endIdx = excerpt.indexOf(' ', maxLength)
+    const endIdx = (excerpt) ? excerpt.indexOf(' ', maxLength) : null
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength && endIdx > 0) ? excerpt.substring(0,excerpt.indexOf(' ', maxLength)) + ' ...' : excerpt
     
 
