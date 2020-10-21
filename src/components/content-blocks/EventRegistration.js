@@ -6,7 +6,7 @@ import FaFacebook from "../../svg/fb_icon_gray.svg";
 import { ShareButtonRectangle, ShareBlockStandard } from "react-custom-share";
 import RegistrationButtons from '../parts/RegistrationButtons'
 import Button from '../parts/Button'
-import { convertTime } from "../../utils/tools"
+import { convertTime, compareDate } from "../../utils/tools"
 
 const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails}) => {
 
@@ -19,6 +19,16 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
             return "$" + cost
         }
     }
+    const calcDate = (date) => {
+        var compDateString = compareDate(startDate, endDate);
+        if (compDateString){
+            return compDateString;
+        }
+        else{
+            return date
+        }
+    }
+
     const organizerList = !organizers ? null : organizers.nodes.map((org) => (
          <div className="organizer">{org.title}</div>
       ))
@@ -41,7 +51,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
             </div>
             <div className="regWrapper">
                 <div className="subHeader">WHEN</div>
-                <div>{date}</div>
+                <div>{calcDate(date)}</div>
                 <div className="dateTime" dangerouslySetInnerHTML={{ __html: convertTime(startDate, endDate) }}></div>
                 <a href="#" alt="Add to Calendar">Add to Calendar</a>
                 <div className="subHeader">WHERE</div>
