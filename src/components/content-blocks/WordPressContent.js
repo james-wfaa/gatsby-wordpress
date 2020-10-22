@@ -298,5 +298,24 @@ div.section-header {
     }
 }
 
+.product-card{
+    ${mixins.contentCardBase}
+    ${mixins.contentCardSizes}
+
+    .headersection {
+        ${mixins.contentCardHeader}
+    }
+    .contentsection {
+        ${mixins.contentCardContent}
+    }
+
+    .title {
+        ${mixins.cardTitle}
+        ${mixins.contentCardTitle}
+        padding-top: ${sizes.s24};
+    }
+
+}
+
 `
 export default StyledWordPressContent
