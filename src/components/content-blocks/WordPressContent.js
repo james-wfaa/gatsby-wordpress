@@ -302,17 +302,43 @@ div.section-header {
     ${mixins.contentCardBase}
     ${mixins.contentCardSizes}
 
-    .headersection {
-        ${mixins.contentCardHeader}
-    }
-    .contentsection {
-        ${mixins.contentCardContent}
-    }
-
     .title {
         ${mixins.cardTitle}
-        ${mixins.contentCardTitle}
-        padding-top: ${sizes.s24};
+    }
+
+    &--XXL50{
+        @media screen and ${breakpoints.tabletL} {
+            width: 814px;
+            max-height: 398px;
+            min-height: 0;
+            display: flex;
+            flex-flow: column wrap;
+            align-content: stretch;
+
+            .jumbo-img{
+                flex: 1 0 100%;
+                width: 398px;
+            }
+
+            .headersection{
+                flex: 1 0 100%;
+            }
+
+            .contentwrap{
+                flex: 1 0 100%;
+                .attachment-full {
+                    display: none;
+                }
+            }
+        }
+        @media screen and ${breakpoints.laptopL} {
+            width: 1080px;
+            min-height: 528px;
+            max-height: 528px;
+            .jumbo-img{
+                width: 528px;
+            }
+        }
     }
 
 }

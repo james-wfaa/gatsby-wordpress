@@ -50,7 +50,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                     )}
                     { !startDate && (
                         <>
-                            <div className={`category category--${size} `}>{category}</div>
+                            { category && (<div className={`category category--${size} `}>{category}</div>)}
                             <h3 className={`title title--${size}`}>
                                 <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
                             </h3>
@@ -120,43 +120,8 @@ const StyledContentCard = styled(ContentCard)`
     ${mixins.contentCardBase}
     ${mixins.contentCardSizes}
 
-    .headersection {
-        ${mixins.contentCardHeader}
-    }
-
     .title {
         ${mixins.cardTitle}
-        ${mixins.contentCardTitle}
-    }
-
-    .contentwrap {
-        position: relative;
-        display: flex;
-        flex-grow: 1;
-        flex-direction: column;
-        flex: 1;
-        &:before {
-            position: absolute;
-            content: '';
-            top: -11px;
-            left: ${sizes.s24};
-            height: 22px;
-            width: 9px;
-            z-index: 1;
-            border-left: 1.5px solid ${colors.bgRed};
-            border-right: 1.5px solid ${colors.bgRed};
-            transform: skew(135deg);
-
-            @media screen and ${breakpoints.tabletS} {
-                top: -15px;
-                left: ${sizes.s45};
-                height: 30px;
-                width: 14px;
-            }
-        }
-    }
-    .contentsection {
-        ${mixins.contentCardContent}
     }
     
     &.promo{
