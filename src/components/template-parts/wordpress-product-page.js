@@ -8,15 +8,7 @@ function WordPressPage({ page }) {
 
   return (
     <Layout>
-      <HeroIntroSection  
-      heroImage={featuredImage.node.localFile}
-      heroSize="slim"
-      excerpt={excerpt}
-      />
-
-    <WordPressContentBlocks blocks={blocks} />
-
-     
+     <>product-page</>
     </Layout>
   )
 }
