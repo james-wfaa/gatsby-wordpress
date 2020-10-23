@@ -301,31 +301,41 @@ div.section-header {
 .product-card{
     ${mixins.contentCardBase}
     ${mixins.contentCardSizes}
-
+    display: flex;
+    flex-flow: column;
     .title {
         ${mixins.cardTitle}
     }
 
+    .button{
+        a {
+            ${mixins.buttons};
+        }
+    }
+
+    .columnwrap {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+    }
+
     &--XXL50{
+        .jumbo-img{
+            display: none;
+        }
+
         @media screen and ${breakpoints.tabletL} {
             width: 814px;
-            max-height: 398px;
-            min-height: 0;
-            display: flex;
-            flex-flow: column wrap;
-            align-content: stretch;
-
+            min-height: 398px;
+            flex-flow: row;
+            border-top: 1px solid ${colors.cardBorder};
             .jumbo-img{
-                flex: 1 0 100%;
+                display: block;
                 width: 398px;
             }
 
-            .headersection{
-                flex: 1 0 100%;
-            }
-
-            .contentwrap{
-                flex: 1 0 100%;
+            .jumbo-contentwrap{
+                width: 100%;
                 .attachment-full {
                     display: none;
                 }
@@ -334,7 +344,6 @@ div.section-header {
         @media screen and ${breakpoints.laptopL} {
             width: 1080px;
             min-height: 528px;
-            max-height: 528px;
             .jumbo-img{
                 width: 528px;
             }
