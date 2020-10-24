@@ -15,13 +15,13 @@ function BlogPost({ data }) {
 
   return (
     <Layout>
-      <PageSection>
+
         <TitleSection heading={title} author={author} categories={categories} date={date} excerpt={excerpt}  />
         {!!featuredImage?.node?.localFile?.childImageSharp && (
             <FeaturedImage featuredImage={featuredImage} />
         )}
         <WordPressContent content={content} />
-      </PageSection>
+
 
 
       <br />

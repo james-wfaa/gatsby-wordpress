@@ -299,6 +299,22 @@ export const mixins = {
         position: relative;
         padding-bottom:  ${sizes.s40};
         margin-bottom: ${sizes.s58};
+        
+        &:after {
+            position: absolute;
+            bottom: 0;
+            left: calc( 50% - ${sizes.s34} );
+            height: ${sizes.s8};
+            width: calc( ${sizes.s34} * 2 );
+            background-color: ${colors.titleColor};
+            content: '';
+        }
+        &.leftAlign {
+            text-align: left;
+            &:after {
+                left: 10%;
+            }
+        }
         h1,
         h2 {
 
@@ -308,8 +324,8 @@ export const mixins = {
             font-style: italic;
             font-size: ${sizes.s36};
             line-height: ${sizes.s40};
-            margin: 0;
-            padding: 0 1em;
+            margin: 0 auto;
+            max-width: 80%;
 
             @media screen and ${breakpoints.laptopS} {
                 font-size: ${sizes.s42};
@@ -317,15 +333,7 @@ export const mixins = {
                 padding: 0;
             }
         }
-        &:after {
-            position: absolute;
-            bottom: 0;
-            right: calc( 50% - ${sizes.s34} );
-            height: ${sizes.s8};
-            width: calc( ${sizes.s34} * 2 );
-            background-color: ${colors.titleColor};
-            content: '';
-        }
+        
 
         &.bgimage,
         &.headingAlt {

@@ -10,6 +10,7 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 const PageSection = ({
+<<<<<<< HEAD
     className,
     preheading,
     heading,
@@ -27,6 +28,26 @@ const PageSection = ({
     topBorder,
     bgImage,
     fromBlocks,
+=======
+    className,
+    preheading,
+    heading,
+    headingAlt,
+    headingCompact,
+    leftAlign,
+    pageTitle,
+    withSocial,
+    plainText,
+    popOut,
+    excerpt,
+    buttons,
+    buttonsAlt,
+    buttonsCompact,
+    alt,
+    topBorder,
+    bgImage,
+    fromBlocks,
+>>>>>>> 356824dc37f15d4d36625e8536a006420527c63f
     children,
     stagger
  }) => {
@@ -51,7 +72,7 @@ const PageSection = ({
                 <div className={`${className}__preheading`}>{preheading}</div>
             )}
                   { heading && (
-                <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} withSocial={withSocial} headingCompact={headingCompact} fromBlocks={fromBlocks} />
+                <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} withSocial={withSocial} headingCompact={headingCompact} fromBlocks={fromBlocks} leftAlign={leftAlign} />
             )}
             { excerpt && (
                 <div className="sectionexcerpt"  dangerouslySetInnerHTML={{ __html: excerpt }} />
@@ -104,6 +125,8 @@ const StyledPageSection = styled(PageSection)`
         a {
             color: ${colors.bgRed}
         }
+    &.leftAlign {
+        text-align: left;
     }
     &__wrapper {
         margin: 0 auto;

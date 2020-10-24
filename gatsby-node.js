@@ -48,6 +48,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       // get some exceptions
       console.log(uri)
       switch(uri) {
+        case '/email/':
+          templatePath = `${contentTypeTemplateDirectory}${nodeType}Email.js`
+          break
         case '/events/':
           templatePath = `${contentTypeTemplateDirectory}${nodeType}Events.js`
           break

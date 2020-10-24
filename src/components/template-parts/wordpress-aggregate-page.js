@@ -4,11 +4,18 @@ import HeroIntroSection from "../page-sections/HeroIntroSection"
 import WordPressContentBlocks from "../content-blocks/WordPressContentBlocks"
 
 function WordPressPage({ page }) {
-  const {  excerpt, featuredImage, blocks } = page
+  const {  excerpt, featuredImage, introButtons, blocks } = page
+  const { introButtons: buttons } = introButtons
+  console.log(blocks)
+  
 
   return (
     <Layout>
-     <>product-page</>
+
+    <div>Aggregate Template</div>
+    <WordPressContentBlocks blocks={blocks} />
+
+     
     </Layout>
   )
 }

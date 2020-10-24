@@ -41,7 +41,7 @@ const eventbutton = [
 
 const featuredbutton = [
   {
-    link: "#",
+    link: "/news",
     text: "See all news and stories",
   },
 ]
@@ -61,7 +61,7 @@ export default ({ data }) => {
     prevArrow: <LeftArrow />,
   }
   return (
-    <Layout>
+    <Layout noborder>
       <HeroIntroSection
           heroImage={data.homeBg}
           videoURL="https://player.vimeo.com/external/461136161.hd.mp4?s=281b7ccea86e048329dcfc896f384c27773db220&profile_id=175"

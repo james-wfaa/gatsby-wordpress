@@ -13,78 +13,58 @@ import { colors, sizes, breakpoints } from './css-variables'
 
 //import { breakpoints } from './parts/breakpoints'
 
-const navTemp = {
-  name:"Careers at WFAA",
+const navPrivacy = {
+  name:"Privacy",
   items:[
     {
-      "title":"Employee Benefits",
+      "title":"Terms & Conditions",
       "url":"https://wp.advanceuw.org/benefits/"
     },
     {
-      "title": "Mission & Values",
+      "title": "Event Cancellation Policy",
       "url": "https://wp.advanceuw.org/teams1/"
     },
     {
-      "title":"Teams",
+      "title":"Contact Us",
       "url":"https://wp.advanceuw.org/teams2/"
     }
 ]};
-const navTempLong = {
-  name:"About WFAA",
+const navAbout = {
+  name:"About WAA",
   items:[
     {
-      "title":"Employee Benefits",
+      "title":"Career Opportunities",
       "url":"https://wp.advanceuw.org/benefits2/"
     },
     {
-      "title": "Mission & Values",
+      "title": "For News Media",
       "url": "https://wp.advanceuw.org/teams3/"
     },
     {
-      "title":"Teams",
+      "title":"Ad Opportunities",
       "url":"https://wp.advanceuw.org/teams4/"
     },
     {
-      "title":"Behind the Scenes",
+      "title":"For Chapter, Affinity and Affilliate Leaders",
       "url":"https://wp.advanceuw.org/btw1/"
     },
-    {
-      "title":"Jobs at WFAA",
-      "url":"https://wp.advanceuw.org/jobs1/"
-    },
-    {
-      "title":"Teams",
-      "url":"https://wp.advanceuw.org/teams5/"
-    },
-    {
-      "title":"Behind the Scenes",
-      "url":"https://wp.advanceuw.org/btw2/"
-    },
-    {
-      "title":"Jobs at WFAA",
-      "url":"https://wp.advanceuw.org/jobs2/"
-    }
 ]};
   
-const navTempLong2 = {
-  name:"About WFAA",
+const navStudents = {
+  name:"Students",
   items:[
     {
-      "title":"Employee Benefits",
+      "title":"Commencement",
       "url":"https://wp.advanceuw.org/benefits3/"
     },
     {
-      "title":"Behind the Scenes",
+      "title":"WASB",
       "url":"https://wp.advanceuw.org/btw3/"
     },
     {
-      "title":"Jobs at WFAA",
+      "title":"HOCO (Student Group)",
       "url":"https://wp.advanceuw.org/jobs3/"
     },
-    {
-      "title":"Teams",
-      "url":"https://wp.advanceuw.org/##/"
-    }
 ]};
 
 const StyledCrest = styled.div`
@@ -154,11 +134,11 @@ const WfaaFooter = ({ className }) =>  (
         
       </div>
       <div className="footer__column">
-        <WfaaFooterMenu menu={navTempLong} pageLink="/about/" />
-        <WfaaFooterMenu menu={navTemp} pageLink="/about/" />
+        <WfaaFooterMenu menu={navAbout} pageLink="/about/" />
+        <WfaaFooterMenu menu={navStudents} pageLink="/students/" />
       </div>
       <div className="footer__column">
-        <WfaaFooterMenu menu={navTempLong2} pageLink="/careers/" />
+        <WfaaFooterMenu menu={navPrivacy} pageLink="/privacy/" />
         <p>
           <span>Questions:</span>
           <span><a href="mailto:wfaa@supportuw.org">wfaa@supportuw.org</a></span>

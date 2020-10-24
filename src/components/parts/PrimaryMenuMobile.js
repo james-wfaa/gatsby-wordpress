@@ -13,28 +13,37 @@ import WcIcon from "../../svg/wechat_icon_gray.svg" // Tell webpack this JS file
 import LiIcon from "../../svg/linkedin_icon_gray.svg" // Tell webpack this JS file uses this image
 
 const menuItems = {
-  "Test 1": [
-    { tag: "For Waa", url: "/waa" },
+  "Alumni Communities": [
+    { tag: "WAA Membership", url: "/membership" },
     { tag: "Chapters and Groups", url: "/chapters" },
-    { tag: "Similar", url: "/similar" },
-    { tag: "Stories", url: "/stories" },
+    { tag: "Badger Bridge Online Network", url: "/badger-bridge" },
+    { tag: "Recent UW Grads", url: "/recent-grads" },
   ],
-  "Test 2": [
-    { tag: "test 5", url: "/waa" },
-    { tag: "test 6", url: "/chapters" },
+  "Events & Activities": [
+    { tag: "Upcoming Events", url: "/upcoming-events" },
+    { tag: "Activities Near Me", url: "/near-me" },
+    { tag: "Pride Category Events", url: "/pride" },
+    { tag: "Discover & Learn with WAA", url: "/discover" },
+    { tag: "Badger Athletic Events", url: "/athletic-events" },
+    { tag: "Trips with WAA", url: "/trips" },
   ],
-  "Test 3": [
-    { tag: "test 7", url: "/waa" },
-    { tag: "test 8", url: "/chapters" },
-    { tag: "test 9", url: "/chapters" },
+  "Stories": [
+    { tag: "News & Stories", url: "/news" },
+    { tag: "Alumni Achievements", url: "/alumni-achievements" },
+    { tag: "Our Publications", url: "/publications" },
+    { tag: "News from the UW", url: "/news-from-uw" },
   ],
-  "Test 4": [
-    { tag: "L", url: "/waa" },
-    { tag: "Natural", url: "/chapters" },
-    { tag: "Lorem", url: "/chapters" },
-    { tag: "Ipsum et al verirtas unas", url: "/chapters" },
-    { tag: "Chapters and Groups", url: "/chapters" },
-    { tag: "Last line", url: "/chapters" },
+  "Ways to Support": [
+    { tag: "Advocate for the UW", url: "/advocate" },
+    { tag: "Get Involved", url: "/get-involved" },
+    { tag: "Make a Gift", url: "/give" },
+  ],
+  "Resources & Services": [
+    { tag: "Alumni Directory", url: "/alumni-directory" },
+    { tag: "Career Resources", url: "/career-resources" },
+    { tag: "Library Access", url: "/library-access" },
+    { tag: "Alumni Store", url: "/alumni-store" },
+    { tag: "Alumni Partners", url: "/alumni-partners" },
   ],
 }
 
@@ -296,10 +305,10 @@ const PrimaryMenu = () => {
                         <Link to="/contact">Contact WAA</Link>
                       </li>
                       <li>
-                        <Link to="/update">ABE Update</Link>
+                        <Link to="/update">Update My Info</Link>
                       </li>
                       <li>
-                        <Link to="/email">Email Login</Link>
+                        <Link to="/email">Log into Email</Link>
                       </li>
                     </ul>
                     <SocialLinks>

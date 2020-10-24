@@ -14,12 +14,27 @@ export const query = graphql`
       title
       excerpt
       content
+      blocks {
+        name
+        originalContent
+        dynamicContent
+        innerBlocks {
+          name
+          originalContent
+          dynamicContent
+          innerBlocks {
+            name
+            originalContent 
+            dynamicContent
+          }
+        }
+      } 
       link
       url
       featuredImage {
         node {
           localFile {
-            ...HeroImage
+            ...HeroImage  
           }
         }
       }
@@ -67,22 +82,7 @@ export const query = graphql`
         latitude
         longitude
       }   
-      blocks {
-        name
-        originalContent
-        dynamicContent
-        innerBlocks {
-          name
-          originalContent
-          dynamicContent
-          innerBlocks {
-            name
-            originalContent 
-            dynamicContent
-          }
-        }
-
-      } 
+      
     }
   }
 `
