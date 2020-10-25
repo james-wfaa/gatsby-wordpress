@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from "react"
-import algoliasearch from "algoliasearch/lite"
-import { InstantSearch } from "react-instantsearch-dom"
-import AlgoliaSearchBox from './AlgoliaSearchBox'
-import AlgoliaResults from './AlgoliaResults'
 import styled from "styled-components"
 import { breakpoints, colors } from "../css-variables"
 import { useLockBodyScroll } from "../hooks"
@@ -37,18 +33,10 @@ const StyledInput = styled.input`
 const SearchModal = ({ topOffset, isMobile }) => {
   const [searchText, setSearchText] = useState("")
 
-  const [query, setQuery] = useState()
-  const [hasFocus, setFocus] = useState(false)
-  const searchClient = algoliasearch(
-    process.env.GATSBY_ALGOLIA_APP_ID,
-    process.env.GATSBY_ALGOLIA_SEARCH_KEY
-  )
-
   const searchHandler = e => {
     setSearchText(e.target.value)
   }
 
-  const indices = [{name: 'Events'}]
 
   useLockBodyScroll()
 
@@ -68,19 +56,6 @@ const SearchModal = ({ topOffset, isMobile }) => {
           <a style={{ backgroundColor: `${colors.buttonRed}` }}></a>
         </span>
       </StyledDiv>
-      <div>
-        {/* <InstantSearch
-            searchClient={searchClient}
-            indexName={indices[0].name}
-            onSearchStateChange={({ query }) => setQuery(query)}
-          >
-            <AlgoliaSearchBox onFocus={() => setFocus(true)} hasFocus={hasFocus} />
-            <AlgoliaResults
-              show={query && query.length > 0 && hasFocus}
-              indices={indices}
-            />
-          </InstantSearch> */}
-      </div>
     </div>
   )
 }

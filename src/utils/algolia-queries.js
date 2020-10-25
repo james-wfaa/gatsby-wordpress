@@ -13,8 +13,18 @@ const eventQuery = `{
         startDate
         status
         title
-        uri
-        url
+        url: uri
+        excerpt
+        featuredEvent
+        date
+        startDate
+        endDate
+        eventsCategories {
+          nodes {
+            name
+            url: uri
+          }
+        }
         venue {
           id
           address
@@ -33,9 +43,10 @@ const eventQuery = `{
   }
 }`
 
-function eventToAlgoliaRecord({ node: { id, blocks, ...rest } }) {
+function eventToAlgoliaRecord({ node: { id, blocks, eventsCategories, ...rest } }) {
   let blockOriginalContent = [];
-  let blockDynamicContent = []
+  let blockDynamicContent = [];
+  let categories = eventsCategories.nodes;
   if (blocks) {
     blockOriginalContent = blocks.map(block => {
       return block.originalContent
@@ -48,6 +59,7 @@ function eventToAlgoliaRecord({ node: { id, blocks, ...rest } }) {
     objectID: id,
     blocksOriginal: blockOriginalContent,
     blocksDynamic: blockDynamicContent,
+    categories: categories,
     ...rest,
   }
 }
@@ -57,7 +69,7 @@ const queries = [
     query: eventQuery,
     transformer: ({ data }) => data.events.edges.map(eventToAlgoliaRecord),
     indexName,
-    settings: { attributesToSnippet: [`blocks.originalContent:20`] },
+    settings: { attributesToSnippet: [`blocksOriginal:20`, `excerpt`] },
   },
 ]
 

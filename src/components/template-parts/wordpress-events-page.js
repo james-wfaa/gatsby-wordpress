@@ -5,11 +5,9 @@ import ContentCard from "../content-blocks/ContentCard"
 import ContentCardD from "../content-blocks/ContentCardD"
 import GridCardD from "../content-modules/GridCardD"
 import SimpleSlider from "../content-modules/SimpleSlider"
-import LeftArrow from "../parts/SliderArrowLeft"
-import RightArrow from "../parts/SliderArrowRight"
 import CardSet from "../content-modules/CardSet"
 import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
-import AccordianSearch from "../../components/parts/AccordianSearch"
+import AccordianSearchAlgolia from "../../components/parts/AlgoliaSearch/AccordianSearchAlgolia"
 
 
 
@@ -74,7 +72,7 @@ function WordPressPage({ page, events }) {
           redHeading={title}
           excerpt={excerpt}
         />
-        <AccordianSearch />
+        <AccordianSearchAlgolia />
         <PageSection>
         <SimpleSlider
             className="center"
