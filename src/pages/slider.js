@@ -1,15 +1,9 @@
 import React from "react"
 import Layout from "../components/layout"
 import SimpleSlider from "../components/content-modules/SimpleSlider"
-import LeftArrow from "../components/parts/SliderArrowLeft"
-import RightArrow from "../components/parts/SliderArrowRight"
 import ContentCardD from "../components/content-blocks/ContentCardD"
 import GenericPageSection from "../components/page-sections/GenericPageSection"
 export default () => {
-  const settings = {
-    nextArrow: <RightArrow />,
-    prevArrow: <LeftArrow />,
-  }
   return (
     <Layout>
       <GenericPageSection>
@@ -43,7 +37,6 @@ export default () => {
         centerMode
         variableWidth
         centerPadding="100px"
-        {...settings}
       >
         <ContentCardD
           startDate="Slide 1"
@@ -101,7 +94,6 @@ export default () => {
         centerMode
         variableWidth
         centerPadding="10px"
-        {...settings}
       >
         <ContentCardD
           startDate="Slide 1"
@@ -168,7 +160,6 @@ export default () => {
         dots
         variableWidth
         centerPadding="10px"
-        {...settings}
       >
         <ContentCardD
           startDate="Slide 1"

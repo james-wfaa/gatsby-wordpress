@@ -40,12 +40,6 @@ function WordPressPage({ page, events }) {
   }
   )
 
-
-  const settings = {
-    nextArrow: <RightArrow />,
-    prevArrow: <LeftArrow />,
-  }
-  console.log(events)
   let featuredEvents = events.map((event) => {
     console.log(event.node)
     const { featuredEvent, featuredImage: img } = event.node
@@ -89,7 +83,6 @@ function WordPressPage({ page, events }) {
             centerMode
             variableWidth
             centerPadding="100px"
-            {...settings}
           >{featuredEvents}
         </SimpleSlider>
       </PageSection>
@@ -97,7 +90,7 @@ function WordPressPage({ page, events }) {
       <PageSection heading="At a Glance" bgImage={gridBgImage} buttons={moreButton}>
         <GridCardD>{eventCards}</GridCardD>
       </PageSection>
-      
+
     </Layout>
   )
 }
