@@ -10,25 +10,6 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 const PageSection = ({
-<<<<<<< HEAD
-    className,
-    preheading,
-    heading,
-    headingAlt,
-    headingCompact,
-    pageTitle,
-    withSocial,
-    plainText,
-    popOut,
-    excerpt,
-    buttons,
-    buttonsAlt,
-    buttonsCompact,
-    alt,
-    topBorder,
-    bgImage,
-    fromBlocks,
-=======
     className,
     preheading,
     heading,
@@ -47,7 +28,6 @@ const PageSection = ({
     topBorder,
     bgImage,
     fromBlocks,
->>>>>>> 356824dc37f15d4d36625e8536a006420527c63f
     children,
     stagger
  }) => {
