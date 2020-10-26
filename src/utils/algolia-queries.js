@@ -43,10 +43,13 @@ const eventQuery = `{
   }
 }`
 
-function eventToAlgoliaRecord({ node: { id, blocks, eventsCategories, ...rest } }) {
+function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, eventsCategories, ...rest } }) {
   let blockOriginalContent = [];
   let blockDynamicContent = [];
   let categories = eventsCategories.nodes;
+  let dateTimestamp = new Date(date).getTime() / 1000
+  let startDateTimestamp = new Date(startDate).getTime() / 1000
+  let endDateTimestamp = new Date(endDate).getTime() / 1000
   if (blocks) {
     blockOriginalContent = blocks.map(block => {
       return block.originalContent
@@ -60,6 +63,9 @@ function eventToAlgoliaRecord({ node: { id, blocks, eventsCategories, ...rest } 
     blocksOriginal: blockOriginalContent,
     blocksDynamic: blockDynamicContent,
     categories: categories,
+    date: dateTimestamp,
+    startDate: startDateTimestamp,
+    endDate: endDateTimestamp,
     ...rest,
   }
 }
@@ -69,7 +75,7 @@ const queries = [
     query: eventQuery,
     transformer: ({ data }) => data.events.edges.map(eventToAlgoliaRecord),
     indexName,
-    settings: { attributesToSnippet: [`blocksOriginal:20`, `excerpt`] },
+    settings: { attributesToSnippet: [`blocksOriginal:20`, `excerpt`], attributesForFaceting: [`categories.name`, `venue.address`, `filterOnly(startDate)`, `filterOnly(endDate)`] },
   },
 ]
 

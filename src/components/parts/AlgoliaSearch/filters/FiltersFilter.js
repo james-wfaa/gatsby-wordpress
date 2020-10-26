@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import CheckBox from "../../Checkbox"
 
-const CategoryFilter = props => {
-  const CategoryDiv = styled.div`
+const FiltersFilter = props => {
+  const FiltersDiv = styled.div`
     input[type="checkbox"] {
       margin: 4px;
     }
@@ -15,7 +15,7 @@ const CategoryFilter = props => {
   }
   `
 
-  return <CategoryDiv>{props.children}</CategoryDiv>
+  return <FiltersDiv>{props.children}</FiltersDiv>
 }
 
-export default CategoryFilter
+export default FiltersFilter
