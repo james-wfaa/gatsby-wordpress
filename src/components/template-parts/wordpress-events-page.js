@@ -72,7 +72,9 @@ function WordPressPage({ page, events }) {
           redHeading={title}
           excerpt={excerpt}
         />
-        <AccordianSearchAlgolia />
+        <AccordianSearchAlgolia
+          index="Events"
+        />
         <PageSection>
         <SimpleSlider
             className="center"

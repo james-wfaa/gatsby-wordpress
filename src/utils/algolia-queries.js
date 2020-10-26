@@ -1,5 +1,3 @@
-const indexName = `Events`
-
 const eventQuery = `{
   events: allWpEvent {
     edges {
@@ -43,6 +41,34 @@ const eventQuery = `{
   }
 }`
 
+const postQuery = `{
+  posts: allWpPost {
+    edges {
+      node {
+        id
+        url: uri
+        title
+        postFormats {
+          nodes {
+            id
+            name
+          }
+        }
+        date
+        blocks {
+          saveContent
+        }
+        categories {
+          nodes {
+            name
+            id
+          }
+        }
+      }
+    }
+  }
+}`
+
 function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, eventsCategories, ...rest } }) {
   let blockOriginalContent = [];
   let blockDynamicContent = [];
@@ -70,12 +96,36 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
   }
 }
 
+function postToAlgoliaRecord({ node: { id, blocks, date, categories, ...rest } }) {
+  let blockContent = [];
+  let convertedcategories = categories.nodes;
+  let dateTimestamp = new Date(date).getTime() / 1000
+  if (blocks) {
+    blockContent = blocks.map(block => {
+      return block.saveContent
+    })
+  }
+  return {
+    objectID: id,
+    blocks: blockContent,
+    categories: convertedcategories,
+    date: dateTimestamp,
+    ...rest,
+  }
+}
+
 const queries = [
   {
     query: eventQuery,
     transformer: ({ data }) => data.events.edges.map(eventToAlgoliaRecord),
-    indexName,
+    indexName: `Events`,
     settings: { attributesToSnippet: [`blocksOriginal:20`, `excerpt`], attributesForFaceting: [`categories.name`, `venue.address`, `filterOnly(startDate)`, `filterOnly(endDate)`] },
+  },
+  {
+    query: postQuery,
+    transformer: ({ data }) => data.posts.edges.map(postToAlgoliaRecord),
+    indexName: `Posts`,
+    settings: { attributesToSnippet: [`blocks:40`], attributesForFaceting: [`categories.name`, `filterOnly(date)`] },
   },
 ]
 

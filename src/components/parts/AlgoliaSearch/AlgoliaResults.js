@@ -39,6 +39,7 @@ const HitCount = connectStateResults(({ searchResults }) => {
 })
 
 const PageHit = ({ hit }) => {
+
   return (
     <div>
     <Link to={hit.url}>
@@ -46,7 +47,11 @@ const PageHit = ({ hit }) => {
         <Highlight attribute="title" hit={hit} tagName="mark" />
       </h4>
     </Link>
-    <Snippet attribute="excerpt" hit={hit} tagName="mark" />
+    {hit.excerpt ?
+    <Snippet attribute="excerpt" hit={hit} tagName="mark" /> :
+    <Snippet attribute="blocks[0]" hit={hit} tagName="mark" />
+    }
+
   </div>
   )
 }

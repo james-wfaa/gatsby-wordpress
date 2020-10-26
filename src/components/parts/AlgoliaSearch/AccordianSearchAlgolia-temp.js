@@ -133,14 +133,7 @@ const AccordianSearchAlgolia = props => {
   //
   const [open, setOpen] = useState(false)
   const [dateopen, setDateOpen] = useState(false);
-  const [locationopen, setLocationOpen] = useState(false);
-  const [categoryopen, setCategoryOpen] = useState(false);
-  const [filtersopen, setFiltersOpen] = useState(false);
 
-  // initial startDate set for 01/01/2020
-  const [startDate, setStartDate] = useState(1577836800)
-  // initial endDate set for 01/01/2030
-  const [endDate, setEndDate] = useState(1893456000)
 
   const searchstyles = useSpring({ opacity: open ? 1 : 0 })
 
@@ -148,26 +141,6 @@ const AccordianSearchAlgolia = props => {
     setOpen(!open)
   }
 
-  const handleDateOpen= () => {
-    if (dateopen) {
-      setStartDate(1577836800)
-      setEndDate(1893456000)
-      setDateOpen(false)
-    } else {
-      setDateOpen(true)
-    }
-  }
-
-  const filters = `startDate >= ${startDate} AND endDate <= ${endDate}`
-
-  const handleStartDate = (date) => {
-    let startDateTimestamp = new Date(date).getTime() / 1000
-    setStartDate(startDateTimestamp)
-  }
-  const handleEndDate = (date) => {
-    let endDateTimestamp = new Date(date).getTime() / 1000
-    setEndDate(endDateTimestamp)
-  }
 
   return (
     <StyledWrapper>
@@ -196,66 +169,9 @@ const AccordianSearchAlgolia = props => {
             onSearchStateChange={({ query }) => setQuery(query)}
             >
             <Configure
-              filters={filters}
               hitsPerPage={5}
             />
             <AccordianSearchBoxAlgolia onFocus={() => setFocus(true)} hasFocus={hasFocus} />
-            <FilterBox>
-              <FilteredDiv>
-                <FilterButton
-                  className="date"
-                  onClick={() => handleDateOpen()}
-                >
-                  Date
-                </FilterButton>
-                {dateopen ? (
-                  <DateFilter
-                    className="date"
-                    handleStartDate={(date) => handleStartDate(date)}
-                    handleEndDate={(date) => handleEndDate(date)}
-                  />
-                ) : null}
-              </FilteredDiv>
-              <FilteredDiv>
-                <FilterButton
-                  className="location"
-                  onClick={() => setLocationOpen(!locationopen)}
-                >
-                  Location
-                </FilterButton>
-                {locationopen ? (
-                  <LocationFilter>
-                    <RefinementList attribute="venue.address" />
-                  </LocationFilter>
-                ) : null}
-              </FilteredDiv>
-              <FilteredDiv>
-                <FilterButton
-                  className="category"
-                  onClick={() => setCategoryOpen(!categoryopen)}
-                >
-                  Category
-                </FilterButton>
-                {categoryopen ? (
-                  <CategoryFilter>
-                    <RefinementList attribute="categories.name" />
-                  </CategoryFilter>
-                ) : null}
-              </FilteredDiv>
-              <FilteredDiv>
-                <FilterButton
-                  className="filters"
-                  onClick={() => setFiltersOpen(!filtersopen)}
-                >
-                  Filters
-                </FilterButton>
-                {filtersopen ? (
-                  <FiltersFilter>
-                    <RefinementList attribute="filters" />
-                  </FiltersFilter>
-                ) : null}
-              </FilteredDiv>
-            </FilterBox>
             <ResultsBoxWrapper>
               <AlgoliaResults
                 show={query && query.length > 0 && hasFocus}
