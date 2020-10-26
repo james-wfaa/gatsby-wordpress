@@ -8,6 +8,7 @@ import { Configure } from "react-instantsearch-dom"
 import { colors, sizes, breakpoints } from "../../css-variables"
 import AccordianSearchBoxAlgolia from "./AccordianSearchBoxAlgolia"
 import AlgoliaResults from "./AlgoliaResults"
+import AlgoliaPagination from "./AlgoliaPagination"
 import DateFilter from "./filters/DateFilter"
 import CategoryFilter from "./filters/CategoryFilter"
 import LocationFilter from "./filters/LocationFilter"
@@ -114,6 +115,9 @@ const FilterButton = styled.button`
     mask: url(${WcIcon});
   }
 `
+const ResultsBoxWrapper = styled.div`
+  margin-top: 20px;
+`
 
 
 
@@ -142,6 +146,16 @@ const AccordianSearchAlgolia = props => {
 
   const clickHandler = () => {
     setOpen(!open)
+  }
+
+  const handleDateOpen= () => {
+    if (dateopen) {
+      setStartDate(1577836800)
+      setEndDate(1893456000)
+      setDateOpen(false)
+    } else {
+      setDateOpen(true)
+    }
   }
 
   const filters = `startDate >= ${startDate} AND endDate <= ${endDate}`
@@ -183,13 +197,14 @@ const AccordianSearchAlgolia = props => {
             >
             <Configure
               filters={filters}
+              hitsPerPage={5}
             />
             <AccordianSearchBoxAlgolia onFocus={() => setFocus(true)} hasFocus={hasFocus} />
             <FilterBox>
               <FilteredDiv>
                 <FilterButton
                   className="date"
-                  onClick={() => setDateOpen(!dateopen)}
+                  onClick={() => handleDateOpen()}
                 >
                   Date
                 </FilterButton>
@@ -241,10 +256,13 @@ const AccordianSearchAlgolia = props => {
                 ) : null}
               </FilteredDiv>
             </FilterBox>
-            <AlgoliaResults
-              show={query && query.length > 0 && hasFocus}
-              indices={indices}
-            />
+            <ResultsBoxWrapper>
+              <AlgoliaResults
+                show={query && query.length > 0 && hasFocus}
+                indices={indices}
+              />
+            </ResultsBoxWrapper>
+            <AlgoliaPagination />
           </InstantSearch>
 
           </animated.div>
