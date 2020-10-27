@@ -317,7 +317,15 @@ div.section-header {
         display: flex;
         flex-flow: column;
         justify-content: space-between;
+        height: 100%;
     }
+    .jumbo-contentwrap{
+        display: flex;
+        flex-flow: column;
+        width: 100%;
+        flex-grow: 1;
+    }
+
 
     &--XXL50{
         .jumbo-img{
@@ -335,7 +343,6 @@ div.section-header {
             }
 
             .jumbo-contentwrap{
-                width: 100%;
                 .attachment-full {
                     display: none;
                 }
