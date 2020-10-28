@@ -60,6 +60,7 @@ hr.wp-block-separator {
         justify-content: space-between;
         height: 100%;
     }
+
     .jumbo-contentwrap{
         display: flex;
         flex-flow: column;
@@ -69,10 +70,10 @@ hr.wp-block-separator {
 
 
     &--XXL50{
+        margin: 0 auto;
         .jumbo-img{
             display: none;
         }
-
         @media screen and ${breakpoints.tabletL} {
             width: 814px;
             min-height: 398px;
@@ -87,7 +88,11 @@ hr.wp-block-separator {
                 .attachment-full {
                     display: none;
                 }
+                .columnwrap{
+                    border-right: none;
+                }
             }
+        
         }
         @media screen and ${breakpoints.laptopL} {
             width: 1080px;
