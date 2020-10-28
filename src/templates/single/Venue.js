@@ -1,12 +1,27 @@
 import React from "react"
 import { graphql } from "gatsby"
-import WpVenue from "../../components/template-parts/wordpress-venue"
+import Layout from "../../components/layout"
+import PageSection from "../../components/page-sections/PageSection"
+import WordPressContent from "../../components/content-blocks/WordPressContent"
 
-export default ({ data }) => {
+function WpVenue({ data }) {
   const { venue } = data
   console.log(venue)
-  return (<WpVenue venue={venue} />)
+  const { 
+    title,
+    content 
+  } = venue
+
+  return (
+    <Layout>
+      <PageSection heading={title} pageTitle><div>Venue template</div>
+        <WordPressContent content={content} />
+      </PageSection>
+    </Layout>
+  )
 }
+
+export default WpVenue
 
 export const query = graphql`
   query venue($id: String!) {
