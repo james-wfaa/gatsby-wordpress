@@ -41,7 +41,7 @@ const eventbutton = [
 
 const featuredbutton = [
   {
-    link: "#",
+    link: "/news",
     text: "See all news and stories",
   },
 ]

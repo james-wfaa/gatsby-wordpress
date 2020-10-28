@@ -11,16 +11,22 @@ export default () => (
       <h1>uwalumni.com redesign - development work in progress</h1>
       <h2>Full Page Templates</h2>
       <li>
-        <Link to="/homepage">Full Homepage - ENHANCMENTS</Link>
+        <Link to="/homepage">Full Homepage - enhancements</Link>
       </li>
       <li>
-        <Link to="/event/planarians">Event Page - NEW</Link>
+        <Link to="/news">News/Stories Page - NEW</Link>
       </li>
       <li>
-        <Link to="/event/badger-cafe-threats-to-peace-around-the-world/">Event Page (no image) - NEW</Link>
+        <Link to="/events">Events Calendar Page - NEW</Link>
       </li>
       <li>
-        <Link to="/event/badger-football-badger-huddle-tailgate-at-the-rose-bowl/">Event Page (no image) - NEW</Link>
+        <Link to="/event/planarians">Event Page - Enhancements</Link>
+      </li>
+      <li>
+        <Link to="/event/badger-cafe-threats-to-peace-around-the-world/">Event Page (no image)</Link>
+      </li>
+      <li>
+        <Link to="/event/badger-football-badger-huddle-tailgate-at-the-rose-bowl/">Event Page </Link>
       </li>
       <li>
         <Link to="/news/wordpress-story">Story Page</Link>
