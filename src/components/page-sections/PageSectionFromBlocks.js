@@ -72,7 +72,8 @@ const PageSectionFromBlocks = ({ blocks, gallery, borderTop }) => {
                     case "acf/image-section":
                     const imagesection = ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
                     return (<ImageSection data={imagesection} />)
-                
+                case "acf/product-card":
+                    return (<div dangerouslySetInnerHTML={{__html: block.dynamicContent}} />)
                 default:
                     console.log(block)
                     return ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
