@@ -84,22 +84,24 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                                     <div className={`category category--${size}`}>{category}</div>
                                 </>
                             )}
-                            { shortenedExcerpt && (
+                            { (shortenedExcerpt && !startDate) && (
                                 <div className={`excerpt excerpt--${size}`}>
                                     <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
                                 </div>
                             )}
                         </div>
                         <div className={`columnwrap columnwrap--${size}`}>
+                        { venue && venue.title && (
                             <div className={`venuewrap venuewrap--${size}`}>
-                            { venue && venue.title && (
-                                <div className={`${className}__venue`}>{venue.title}</div>
-                            )}
-                            { venue && venue.city && venue.state && (
-                                <div className={`venue venue--${size}`}>{venue.city},{venue.state}</div>
-                            )}
+                                { venue && venue.title && (
+                                    <div className={`${className}__venue`}>{venue.title}</div>
+                                )}
+                                { venue && venue.city && venue.state && (
+                                    <div className={`venue venue--${size}`}>{venue.city},{venue.state}</div>
+                                )}
                             </div>
-                            { excerpt && (
+                        )}
+                            { (shortenedExcerpt && !startDate) && (
                                 <a href={url} className={`excerpt excerpt--${size} readmore`}>{moreLinkText}</a>
                             )}
                             { tags && (
