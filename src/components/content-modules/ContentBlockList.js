@@ -1,5 +1,5 @@
 import React from 'react'
-import {  sizes, breakpoints } from '../css-variables'
+import {  sizes } from '../css-variables'
 
 
 import styled from 'styled-components'

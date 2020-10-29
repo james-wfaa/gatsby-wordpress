@@ -3,9 +3,11 @@ import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
 import ContentCard from "../../components/content-blocks/ContentCard"
+import ContentBlockList from "../../components/content-modules/ContentBlockList"
 import AccordianSearch from "../../components/parts/AccordianSearch"
 
 function WordPressPage({ data }) {
+  console.log(data)
   const { page, events, allWp } = data
   const { edges: eventEdges } = events
   const { siteOptions } = allWp.nodes[0]
@@ -13,25 +15,31 @@ function WordPressPage({ data }) {
   const { sponsorUrl, sponsorAd21, sponsorAd31 } = ads
   
   const { title,  excerpt } = page
-  let featuredEvents = eventEdges.map((event) => {
+  
+  let allEvents = eventEdges.map((event) => {
     console.log(event.node)
     const { featuredEvent, featuredImage: img } = event.node
     const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
     console.log( featuredEvent )
-    if (featuredEvent) {
-        return (
-          <ContentCard size="L" img={cardImg} {...event.node} />
-        )
+    if (!featuredEvent) {
+      return (
+        <ContentCard size="Wide" img={cardImg} {...event.node} />
+      )
+    } else {
+      return (
+        <ContentCard size="XXL" img={cardImg} {...event.node} />
+      )
     }
   })
-  featuredEvents = featuredEvents.filter(function( element ) {
+  allEvents = allEvents.filter(function( element ) {
     return element !== undefined;
- });
-  console.log(featuredEvents)
-
+ })
   return (
     <Layout noborder>
         <AccordianSearch />
+        <PageSection>
+          <ContentBlockList>{allEvents}</ContentBlockList>
+        </PageSection>
       
     </Layout>
   )

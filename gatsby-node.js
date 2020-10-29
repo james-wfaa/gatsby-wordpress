@@ -41,9 +41,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   await Promise.all(
     contentNodes.map(async (node, i) => {
       const { nodeType, uri, id } = node
-      // this is a super super basic template hierarchy
-      // this doesn't reflect what our hierarchy will look like.
-      // this is for testing/demo purposes
+      
       let templatePath = `${contentTypeTemplateDirectory}${nodeType}.js`
       // get some exceptions
       console.log(uri)
@@ -96,6 +94,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   )
 
   // create the homepage
+  console.log('creating blog pages')
   const {
     data: { allWpPost },
   } = await graphql(/* GraphQL */ `
@@ -127,6 +126,43 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           offset: offset,
           totalPages: chunkedContentNodes.length,
           perPage,
+        },
+      })
+    })
+  )
+
+  // create the events archive
+  console.log('creating events pages')
+  const {
+    data: { allWpEvent },
+  } = await graphql(/* GraphQL */ `
+    {
+      allWpEvent(sort: {order: ASC, fields: startDate}) {
+        nodes {
+          uri
+          id
+        }
+      }
+    }
+  `)
+
+  const eventsPerPage = 4
+  const chunkedEventNodes = chunk(allWpEvent.nodes, eventsPerPage)
+
+  await Promise.all(
+    chunkedEventNodes.map(async (nodesChunk, index) => {
+      const page = index + 1
+      const offset = eventsPerPage * index
+
+      await actions.createPage({
+        component: resolve(`./src/templates/single/PageEventsSearch.js`),
+        path: page === 1 ? `/events/search/` : `/events/search/${page}/`,
+        context: {
+         
+          page: page,
+          offset: offset,
+          totalPages: chunkedEventNodes.length,
+          eventsPerPage,
         },
       })
     })

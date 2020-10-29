@@ -59,7 +59,9 @@ function WordPressPage({ data }) {
   })
   featuredEvents = featuredEvents.filter(function( element ) {
     return element !== undefined;
- });
+ })
+
+ 
   console.log(featuredEvents)
 
 
