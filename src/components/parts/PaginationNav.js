@@ -22,7 +22,11 @@ const PaginationNav = ({className, basepath, page, totalPages, isFirst, isLast }
                 </Link>
             )}
             {Array.from({ length: totalPages }, (_, i) => (
-                <Link key={`pagination-number${i + 1}`} to={`${basepath}${i === 0 ? "" : i + 1}`}>
+                <Link 
+                key={`pagination-number${i + 1}`} 
+                to={`${basepath}${i === 0 ? "" : i + 1}`}
+                activeClassName="active"
+                >
                 {i + 1}
                 </Link>
             ))}
@@ -45,8 +49,12 @@ a {
     margin-right: ${sizes.s13};
     text-decoration: none;
     &[rel=prev],
-    &[rel=next] {
+    &[rel=next],
+    &.active {
         color: ${colors.badgerRed};
+    }
+    &:hover {
+        text-decoration: underline;
     }
 }`
 export default StyledPaginationNav
