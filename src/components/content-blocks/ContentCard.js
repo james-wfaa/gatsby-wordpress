@@ -50,7 +50,9 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                     )}
                     { !startDate && (
                         <>
-                            { category && (<div className={`category category--${size} `}>{category}</div>)}
+                            { category && (
+                                <div className={`category category--${size} `}>{category}</div>
+                            )}
                             <h3 className={`title title--${size}`}>
                                 <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
                             </h3>
@@ -81,25 +83,29 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                                     <h3 className={`title title--${size}`}>
                                         <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
                                     </h3>
-                                    <div className={`category category--${size}`}>{category}</div>
+                                    { category && (
+                                        <div className={`category category--${size}`}>{category}</div>
+                                    )}
                                 </>
                             )}
-                            { shortenedExcerpt && (
+                            { (shortenedExcerpt && !startDate) && (
                                 <div className={`excerpt excerpt--${size}`}>
                                     <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
                                 </div>
                             )}
                         </div>
                         <div className={`columnwrap columnwrap--${size}`}>
+                        { venue && venue.title && (
                             <div className={`venuewrap venuewrap--${size}`}>
-                            { venue && venue.title && (
-                                <div className={`${className}__venue`}>{venue.title}</div>
-                            )}
-                            { venue && venue.city && venue.state && (
-                                <div className={`venue venue--${size}`}>{venue.city},{venue.state}</div>
-                            )}
+                                { venue && venue.title && (
+                                    <div className={`${className}__venue`}>{venue.title}</div>
+                                )}
+                                { venue && venue.city && venue.state && (
+                                    <div className={`venue venue--${size}`}>{venue.city},{venue.state}</div>
+                                )}
                             </div>
-                            { excerpt && (
+                        )}
+                            { (shortenedExcerpt && !startDate) && (
                                 <a href={url} className={`excerpt excerpt--${size} readmore`}>{moreLinkText}</a>
                             )}
                             { tags && (
