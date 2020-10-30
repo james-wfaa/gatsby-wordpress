@@ -4,7 +4,7 @@ import HeroIntroSection from "../page-sections/HeroIntroSection"
 import WordPressContentBlocks from "../content-blocks/WordPressContentBlocks"
 
 function WordPressPage({ page }) {
-  const {  excerpt, featuredImage, introButtons, blocks } = page
+  const {  title, excerpt, featuredImage, introButtons, blocks } = page
   const { introButtons: buttons } = introButtons
   console.log(blocks)
   const normalizedButtons = (buttons) ? buttons.map(item=>{
@@ -26,13 +26,13 @@ function WordPressPage({ page }) {
         <HeroIntroSection  
           heroImage={featuredImage.node.localFile}
           heroSize="slim"
+          redHeading={title}
           excerpt={excerpt}
           buttons={normalizedButtons}
         />
       )}
       
 
-    <div>Aggregate Template</div>
     <WordPressContentBlocks blocks={blocks} />
 
      

@@ -4,6 +4,7 @@ import Testimonial from '../content-blocks/Testimonial'
 import ImageSection from '../content-blocks/ImageSection'
 import ImageWithCaption from '../content-blocks/ImageWithCaption'
 import SimpleSlider from '../content-modules/SimpleSlider'
+import CardSet from "../content-modules/CardSet"
 
 import LeftArrow from "../parts/SliderArrowLeft"
 import RightArrow from "../parts/SliderArrowRight"
@@ -11,7 +12,7 @@ import RightArrow from "../parts/SliderArrowRight"
 
 
 
-const PageSectionFromBlocks = ({ blocks, gallery, borderTop }) => {
+const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop }) => {
     // preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, children
     
     // get the title
@@ -60,30 +61,38 @@ const PageSectionFromBlocks = ({ blocks, gallery, borderTop }) => {
             }
         </SimpleSlider>)
 
-        : blocks.map((block) => {
-            console.log(block.name)
-            
-            switch(block.name) {
-                case "acf/section-header":
-                    break
-                case "acf/testimonial":
-                    const testimonial = ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
-                    return (<Testimonial data={testimonial} />)
-                    case "acf/image-section":
-                    const imagesection = ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
-                    return (<ImageSection data={imagesection} />)
-                case "acf/product-card":
-                    return (<div dangerouslySetInnerHTML={{__html: block.dynamicContent}} />)
-                default:
-                    console.log(block)
-                    return ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
-                    break
-            }
-            
-        })
+        : (cardset) 
+            ? (<CardSet>{
+                blocks.map((block) => {
+                const innerContent =  ((block.dynamicContent && block.dynamicContent !== "") ? block.dynamicContent : block.originalContent)
+                return innerContent
+                
+                
+            })}</CardSet>)
+            : blocks.map((block) => {
+                console.log(block.name)
+                
+                switch(block.name) {
+                    case "acf/section-header":
+                        break
+                    case "acf/testimonial":
+                        const testimonial = ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
+                        return (<Testimonial data={testimonial} />)
+                        case "acf/image-section":
+                        const imagesection = ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
+                        return (<ImageSection data={imagesection} />)
+                    case "acf/product-card":
+                        return (<div dangerouslySetInnerHTML={{__html: block.dynamicContent}} />)
+                    default:
+                        console.log(block)
+                        return ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
+                        break
+                }
+                
+            })
         
     return (
-        <PageSection heading={title} topBorder={borderTop} fromBlocks>
+        <PageSection heading={title} topBorder={borderTop} fromBlocks stagger>
             {
                 innerContent
 

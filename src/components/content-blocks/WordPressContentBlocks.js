@@ -18,6 +18,10 @@ const WordPressContent = ({className, blocks}) => {
                 if (block.innerBlocks && block.originalContent.indexOf(' gallery') > 0) {
                     return (<PageSectionFromBlocks blocks={block.innerBlocks} gallery borderTop={borderTop} />)
                 }
+                if (block.innerBlocks && block.originalContent.indexOf(' card-set') > 0) {
+                    return (<PageSectionFromBlocks blocks={block.innerBlocks} cardset borderTop={borderTop} />)
+                }
+
                 break 
             case "core/separator":
                 return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
