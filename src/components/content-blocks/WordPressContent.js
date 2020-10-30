@@ -298,5 +298,66 @@ div.section-header {
     }
 }
 
+.product-card{
+    ${mixins.contentCardBase}
+    ${mixins.contentCardSizes}
+    display: flex;
+    flex-flow: column;
+    .title {
+        ${mixins.cardTitle}
+    }
+
+    .button{
+        a {
+            ${mixins.buttons};
+        }
+    }
+
+    .columnwrap {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+    .jumbo-contentwrap{
+        display: flex;
+        flex-flow: column;
+        width: 100%;
+        flex-grow: 1;
+    }
+
+
+    &--XXL50{
+        .jumbo-img{
+            display: none;
+        }
+
+        @media screen and ${breakpoints.tabletL} {
+            width: 814px;
+            min-height: 398px;
+            flex-flow: row;
+            border-top: 1px solid ${colors.cardBorder};
+            .jumbo-img{
+                display: block;
+                width: 398px;
+            }
+
+            .jumbo-contentwrap{
+                .attachment-full {
+                    display: none;
+                }
+            }
+        }
+        @media screen and ${breakpoints.laptopL} {
+            width: 1080px;
+            min-height: 528px;
+            .jumbo-img{
+                width: 528px;
+            }
+        }
+    }
+
+}
+
 `
 export default StyledWordPressContent

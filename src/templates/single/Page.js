@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import WpDefaultPage from "../../components/template-parts/wordpress-page"
 import WpProductPage from "../../components/template-parts/wordpress-product-page"
+import WpAggregatePage from "../../components/template-parts/wordpress-aggregate-page"
 
 export default ({ data }) => {
   const { page, events } = data
@@ -10,11 +11,16 @@ export default ({ data }) => {
   if (template) {
     const { templateName } = template
     switch (templateName ) {
-      case "Product/General Page":
+      case "Aggregate (Product) Page":
+        return (<WpAggregatePage page={page} />)
+        break
+        case "Product/General Page":
         return (<WpProductPage page={page} />)
+        break
       case "Default":
       default:
         return (<WpDefaultPage page={page} />)
+        break
     }
   }
   return (<WpDefaultPage page={page} />)
@@ -29,6 +35,9 @@ export const query = graphql`
       content
       template {
         ... on WpDefaultTemplate {
+          templateName
+        }
+        ... on WpAggregateProductPageTemplate {
           templateName
         }
         ... on WpHomePageTemplate {
