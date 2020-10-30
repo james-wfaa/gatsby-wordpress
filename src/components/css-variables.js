@@ -841,7 +841,9 @@ export const mixins = {
                     .headerImg{
                         display: block;
                         width: 344px;
-                        height: 172px;
+                        img {
+                            margin-bottom: 0;
+                        }
                     }
                 }
                 .date {
