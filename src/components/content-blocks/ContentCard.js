@@ -50,7 +50,9 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                     )}
                     { !startDate && (
                         <>
-                            <div className={`category category--${size} `}>{category}</div>
+                            { category && (
+                                <div className={`category category--${size} `}>{category}</div>
+                            )}
                             <h3 className={`title title--${size}`}>
                                 <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
                             </h3>
@@ -81,7 +83,9 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                                     <h3 className={`title title--${size}`}>
                                         <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
                                     </h3>
-                                    <div className={`category category--${size}`}>{category}</div>
+                                    { category && (
+                                        <div className={`category category--${size}`}>{category}</div>
+                                    )}
                                 </>
                             )}
                             { (shortenedExcerpt && !startDate) && (
@@ -541,8 +545,6 @@ const StyledContentCard = styled(ContentCard)`
                 flex: 0 0 344px;
                 .headerImg{
                     display: block;
-                    width: 344px;
-                    height: 172px;
                 }
             }
             .date {
