@@ -24,8 +24,8 @@ function WordPressPage({ data }) {
   const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
   const moreButton = [
     {
-      link: "/events/calendar",
-      text: "Calendar",
+      link: "/events/search",
+      text: "All Events",
     },
   ]
 
