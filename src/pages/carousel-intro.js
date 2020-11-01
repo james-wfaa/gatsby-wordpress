@@ -2,14 +2,7 @@ import React from "react"
 import { graphql } from 'gatsby'
 import Layout from "../components/layout"
 import HeroIntroSection from '../components/page-sections/HeroIntroSection'
-import CarouselIntroSection from '../components/page-sections/HeroCarousel'
-import styled from 'styled-components'
-import BackgroundImage from 'gatsby-background-image'
 
-const ImageDiv = styled.div`
-  width: 100%;
-  height: 90vh;
-`
 
 const CarouselIntro = ({ data }) => {
   return (
