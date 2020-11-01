@@ -38,8 +38,17 @@ const eventQuery = `{
         }
         featuredImage {
           node {
+            sourceUrl
             localFile {
-              publicURL
+              childImageSharp {
+                fluid {
+                  src
+                  srcSet
+                  base64
+                  aspectRatio
+                  sizes
+                }
+              }
             }
           }
         }

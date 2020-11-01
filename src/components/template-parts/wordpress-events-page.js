@@ -29,7 +29,6 @@ function WordPressPage({ page, events }) {
 
   const cats = categories.map((item) => {
     const { categoryEvent, numberToShow } = item
-    console.log(categoryEvent)
     return (
       <PageSection heading={categoryEvent.name} stagger>
         <CardSet items={categoryEvent.events.nodes} num={numberToShow} />
@@ -39,10 +38,8 @@ function WordPressPage({ page, events }) {
   )
 
   let featuredEvents = events.map((event) => {
-    console.log(event.node)
     const { featuredEvent, featuredImage: img } = event.node
     const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-    console.log( featuredEvent )
     if (featuredEvent) {
         return (
           <ContentCard size="L" img={cardImg} {...event.node} />
@@ -52,7 +49,7 @@ function WordPressPage({ page, events }) {
   featuredEvents = featuredEvents.filter(function( element ) {
     return element !== undefined;
  });
-  console.log(featuredEvents)
+
 
 
 
@@ -74,6 +71,7 @@ function WordPressPage({ page, events }) {
         />
         <AccordianSearchAlgolia
           index="Events"
+          results={true}
         />
         <PageSection>
         <SimpleSlider

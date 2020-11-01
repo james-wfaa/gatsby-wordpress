@@ -1,10 +1,8 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { useSpring, animated } from "react-spring"
 import algoliasearch from "algoliasearch/lite"
-import { InstantSearch } from "react-instantsearch-dom"
-import { RefinementList } from "react-instantsearch-dom"
-import { Configure } from "react-instantsearch-dom"
+import { InstantSearch, RefinementList, Configure, connectHits } from "react-instantsearch-dom"
 import { colors, sizes, breakpoints } from "../../css-variables"
 import AccordianSearchBoxAlgolia from "./AccordianSearchBoxAlgolia"
 import AlgoliaResults from "./AlgoliaResults"
@@ -120,8 +118,8 @@ const ResultsBoxWrapper = styled.div`
 `
 
 
-
 const AccordianSearchAlgolia = props => {
+
   // Algolia
   const [query, setQuery] = useState()
   const [hasFocus, setFocus] = useState(false)
@@ -136,6 +134,7 @@ const AccordianSearchAlgolia = props => {
   const [locationopen, setLocationOpen] = useState(false);
   const [categoryopen, setCategoryOpen] = useState(false);
   const [filtersopen, setFiltersOpen] = useState(false);
+
 
   // initial startDate set for 01/01/2020
   const [startDate, setStartDate] = useState(1577836800)
@@ -168,6 +167,17 @@ const AccordianSearchAlgolia = props => {
     let endDateTimestamp = new Date(date).getTime() / 1000
     setEndDate(endDateTimestamp)
   }
+
+  // Hits Return if rendering results outside of Accordian
+  useEffect(() => {
+    if (!props.results) {
+      let index = searchClient.initIndex('Events')
+      index.search(query).then(({hits}) => {
+        props.callback(hits)
+      })
+    }
+  }, [query])
+  //
 
   return (
     <StyledWrapper>
@@ -256,13 +266,18 @@ const AccordianSearchAlgolia = props => {
                 ) : null}
               </FilteredDiv>
             </FilterBox>
-            <ResultsBoxWrapper>
-              <AlgoliaResults
-                show={query && query.length > 0 && hasFocus}
-                indices={indices}
-              />
-            </ResultsBoxWrapper>
-            <AlgoliaPagination />
+            {props.results ?
+              <>
+                <ResultsBoxWrapper>
+                <AlgoliaResults
+                  show={query && query.length > 0 && hasFocus}
+                  indices={indices}
+                />
+              </ResultsBoxWrapper>
+              <AlgoliaPagination />
+              </>
+            : null}
+
           </InstantSearch>
 
           </animated.div>
@@ -273,3 +288,4 @@ const AccordianSearchAlgolia = props => {
 }
 
 export default AccordianSearchAlgolia
+
