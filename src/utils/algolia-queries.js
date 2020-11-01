@@ -36,6 +36,13 @@ const eventQuery = `{
           state
           status
         }
+        featuredImage {
+          node {
+            localFile {
+              publicURL
+            }
+          }
+        }
       }
     }
   }
