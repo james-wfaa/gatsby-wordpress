@@ -30,6 +30,7 @@ let headingCss = css`
     speed:1000,
     slidesToShow:1,
     slidesToScroll:1,
+    pauseOnHover: false,
     pauseOnDotsHover: true,
     dotsClass: "slick-dots carousel-dots"
   }
