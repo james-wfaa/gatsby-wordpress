@@ -37,6 +37,7 @@ const SearchModal = ({ topOffset, isMobile }) => {
     setSearchText(e.target.value)
   }
 
+
   useLockBodyScroll()
 
   return (

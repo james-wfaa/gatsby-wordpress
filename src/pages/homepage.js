@@ -10,8 +10,6 @@ import PromoCardD from "../components/content-blocks/PromoCardD"
 import HeroIntroSection from "../components/page-sections/HeroIntroSection"
 import CommunicationForm from "../components/content-blocks/CommunicationForm"
 import SimpleSlider from "../components/content-modules/SimpleSlider"
-import LeftArrow from "../components/parts/SliderArrowLeft"
-import RightArrow from "../components/parts/SliderArrowRight"
 
 const taglist2 = [
   {
@@ -55,11 +53,6 @@ export default ({ data }) => {
       <ContentCardD {...event.node} />
     )
   })
-  console.log(eventCards)
-  const settings = {
-    nextArrow: <RightArrow />,
-    prevArrow: <LeftArrow />,
-  }
   return (
     <Layout noborder>
       <HeroIntroSection
@@ -81,7 +74,6 @@ export default ({ data }) => {
           centerMode
           variableWidth
           centerPadding="100px"
-          {...settings}
         >
           <CardE
             img={data.asset29}
@@ -112,7 +104,6 @@ export default ({ data }) => {
           centerMode
           variableWidth
           centerPadding="100px"
-          {...settings}
         >
           <ContentCard
             title="All About That Bass"

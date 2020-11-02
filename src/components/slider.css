@@ -7,6 +7,10 @@
 .slick-slide {
     padding: 0 12px;
 }
+.heroCarousel .slick-slide {
+  padding: 0;
+}
+
 
 .slick-arrow {
   z-index: 1001;
@@ -35,6 +39,11 @@
   font-size: 11px;
   color: #777777;
 }
+.slick-dots.carousel-dots li button:before {
+  font-size: 11px;
+  color: white;
+  opacity: 1;
+}
 .slick-dots li.slick-active button:before {
   font-size: 13px;
   color: #c5050c;
@@ -55,13 +64,18 @@
   height: 100% !important;
 }
 
-@media screen and (min-width: 1200px) {
+.carousel-dots {
+  position: absolute;
+  bottom: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
+@media screen and (min-width: 1200px) {
     .slick-arrow {
         display: block !important;
     }
-    .slick-dots {
+    .slick-dots:not(.carousel-dots) {
         display: none !important;
-
     }
 }

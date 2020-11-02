@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 require("dotenv").config({
   path: `.env.GATSBY_CONCURRENT_DOWNLOAD`,
 })
@@ -31,6 +33,15 @@ module.exports = {
         }
       }
     },
+    // Uncomment to index to Algolia on gatsby build command
+    // {
+    //   resolve: `gatsby-plugin-algolia`,
+    //   options: {
+    //     appId: process.env.GATSBY_ALGOLIA_APP_ID,
+    //     apiKey: process.env.ALGOLIA_ADMIN_KEY,
+    //     queries: require("./src/utils/algolia-queries")
+    //   },
+    // },
     {
       resolve: `gatsby-source-wordpress-experimental`,
       options: {
@@ -58,7 +69,7 @@ module.exports = {
         },
       },
     },
-    
+
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-netlify-cache`,

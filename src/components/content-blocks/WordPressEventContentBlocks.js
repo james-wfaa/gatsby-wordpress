@@ -6,11 +6,11 @@ import EventRegistration from "../content-blocks/EventRegistration"
 import TitleSection from '../parts/WordPressTitleSection'
 import EventMapDetails from "../content-blocks/EventMapDetails"
 
-const WordPressEventContentBlocks = ({className, date, startDate, endDate, link, venue, cost, organizers, title, eventDetails, blocks}) => {
+const WordPressEventContentBlocks = ({className, date, startDate, endDate, link, venue, cost, organizers, title, eventDetails, blocks, content}) => {
     console.log(blocks);
 
 
-    const RenderedBlocks = blocks.map((block) => {
+    const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
        
         switch(block.name) {
@@ -46,7 +46,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                 break
         }
         }
-    )
+    ) : null
 
     return(
         <div className={className}>
@@ -54,7 +54,13 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             <div className="desktopWrap">
                 <TitleSection className="header" heading={title} event />
                 <div className="mobileWrap">
-                <div className="content">{RenderedBlocks}</div>
+                { RenderedBlocks && (
+                    <div className="content">{RenderedBlocks}</div>
+                )}
+                { !RenderedBlocks && (
+                    <div className="content" dangerouslySetInnerHTML={{ __html: content }} />
+                )}
+                
                     <EventRegistration 
                         className="reg-mobile" 
                         date={date} 
@@ -121,9 +127,11 @@ margin: ${sizes.s48} auto 0;
 
 .desktopWrap{
     @media screen and ${breakpoints.tabletL} {
+        width: 534px;
         max-width: 534px;
     }
     @media screen and ${breakpoints.laptopS} {
+        width: 712px;
         max-width: 712px;
     }
 }

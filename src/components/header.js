@@ -54,12 +54,22 @@ const Header = ({ noborder }) => {
             <ul>
               <li>
                 <Link
-                  to="/"
+                  to="/near-me"
                   style={{
                     textDecoration: `none`,
                   }}
                 >
-                  Lorem Ipsum
+                  Activities Near Me
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/update-info"
+                  style={{
+                    textDecoration: `none`,
+                  }}
+                >
+                  Update My Info
                 </Link>
               </li>
               <li>
@@ -69,19 +79,10 @@ const Header = ({ noborder }) => {
                     textDecoration: `none`,
                   }}
                 >
-                  Email Login
+                  Log into Email
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/"
-                  style={{
-                    textDecoration: `none`,
-                  }}
-                >
-                  Update Your Info
-                </Link>
-              </li>
+              
             </ul>
           </div>
         </div>
@@ -94,12 +95,13 @@ const Header = ({ noborder }) => {
             </span>
             <div>
               <ul className="uberNav">
-                <li>
-                  <Link to="/news">News</Link>
+              <li>
+                  <Link to="/events">Upcoming Events</Link>
                 </li>
                 <li>
-                  <Link to="/events">Events</Link>
+                  <Link to="/news">News &amp; Stories</Link>
                 </li>
+                
               </ul>
             </div>
             {!open ? (

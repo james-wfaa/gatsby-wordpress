@@ -4,6 +4,7 @@ import { breakpoints, mixins, colors } from '../css-variables'
 import BackgroundImage from 'gatsby-background-image'
 import IntroPageSection from "./IntroPageSection"
 import VimeoVideo from '../content-modules/VimeoVideo'
+import HeroCarousel from '../page-sections/HeroCarousel'
 import downCaret from "../../../static/down-carat@2x.png"
 
 import { useWindowSize } from "../hooks"
@@ -19,8 +20,8 @@ const HeroIntroSection = ({
   redHeading,
   excerpt,
   buttons,
+  carouselItems
 }) => {
-
   const { width } = useWindowSize();
   let size
   if (heroSize === 'jumbo') {
@@ -37,12 +38,14 @@ const HeroIntroSection = ({
     background_color: colors.bgRed,
     color: colors.titleWhite,
     scroll_color: colors.bgRed,
+    text_align: `center`
   }
   switch (variant) {
     case 'white':
       variantObject['background_color'] = colors.bgWhite;
-      variantObject['color'] = colors.bgRed;
-      variantObject["scroll_color"] = "#9E9E9E"
+      variantObject['color'] = colors.navMenuBlack;
+      variantObject["scroll_color"] = "#9E9E9E";
+      variantObject["text_align"] = `left`
       break;
     default:
       break;
@@ -103,7 +106,20 @@ const HeroIntroSection = ({
           )}
         </BackgroundImage>
         </div>
-      ) : null}
+      ) :
+      carouselItems?.length > 0 ?
+        <>
+          <HeroCarousel carouselItems={carouselItems} width={width} />
+          {heroHeading && (
+            <div className="wrapper">
+              <div
+                className={headingClasses}
+                dangerouslySetInnerHTML={{ __html: heroHeading }}
+              />
+            </div>
+          )}
+        </>
+      : null}
       <div style={{ position: `relative` }}>
         <a
           className={downscrollClass}

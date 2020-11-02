@@ -1,14 +1,11 @@
 import React, {useState, useEffect} from "react"
 import { graphql } from 'gatsby'
-import * as dayjs from "dayjs"
-import isBetween from 'dayjs/plugin/isBetween'
 import Layout from "../components/layout"
 import PageSection from "../components/page-sections/PageSection"
 import ContentCard from "../components/content-blocks/ContentCard"
 import ContentBlockList from "../components/content-modules/ContentBlockList"
-import AccordianSearch from "../components/parts/AccordianSearch"
+import AccordianSearchAlgolia from "../components/parts/AlgoliaSearch/AccordianSearchAlgolia"
 
-dayjs.extend(isBetween)
 
 const taglist1 = [
     {
@@ -70,239 +67,105 @@ const taglist1 = [
 
 
 export default ({ data }) => {
-  const [filteredEvents, setFilteredEvents] = useState([])
-  const [filterString, setFilterString] = useState("")
-  const [dateFilters, setDateFilters] = useState(false)
-  const [locationList, setLocationList] = useState([])
-  const [locationFilters, setLocationFilters] = useState(false)
-  const [categoryList, setCategoryList] = useState([])
-  const [categoryFilters, setCategoryFilters] = useState(false)
+  const [events, setEvents] = useState([])
 
-  const cardList = [
-    {
-      startDate: "04-29-2020",
-      title: "The Kentucky Derby",
-      category: "Horse Racing",
-      venue: "Churchill Downs",
-      location: "Louisville, KY",
-      img: data.cardImage5,
-      featureImg: data.cardImage4,
-      alt: true,
-      size: "XXL"
-    },
-    {
-      startDate: "05-01-2020",
-      title: "The Kentucky Derby",
-      category: "Buggy Racing",
-      venue: "Churchill Downs",
-      location: "Louisville, KY",
-      tags: taglist2,
-      img: data.cardImage3,
-      featureImg: data.cardImage2,
-      size: "Wide"
-    },
-    {
-      startDate: "02-03-2020",
-      endDate: "05-13-2020",
-      title: "The Past, Present, and Future of Rainstorms and Floods in Wisconsin",
-      category: "Historical Tour",
-      venue: "Churchill Downs",
-      location: "Louisville, KY",
-      tags: taglist1,
-      img: data.cardImage5,
-      featureImg: data.cardImage1,
-      size: "Wide"
-    },
-    {
-      startDate: "07-04-2020",
-      title: "Typewriter gluten-free occupy jianbing selvage, artisan neutra reprehenderit lomo est post-ironic ad 90's.",
-      category: "Historical Tour",
-      venue: "Churchill Downs",
-      location: "Louisville, KY",
-      tags: taglist2,
-      size: "Wide"
-    },
-    {
-      startDate: "12-30-2020",
-      endDate: "12-31-2020",
-      title: "Gentrify try-hard tacos, taiyaki small batch bespoke 90's hello of non hot chicken.",
-      category: "Food Trucks",
-      venue: "Churchill Downs",
-      location: "Des Moines, IA",
-      tags: taglist2,
-      size: "Wide"
-    },
-    {
-      startDate: "01-04-2020",
-      endDate: "03-26-2020",
-      title: "Testing various titles here",
-      category: "Other",
-      venue: "Churchill Downs",
-      location: "Madison, WI",
-      tags: taglist2,
-      size: "Wide"
-    },
-    {
-      startDate: "05-15-2020",
-      endDate: "07-15-2020",
-      title: "Lorem Ipsum Puget Sound",
-      category: "Food Trucks",
-      venue: "Churchill Downs",
-      location: "Dallas, TX",
-      tags: taglist2,
-      size: "Wide"
-    },
-  ]
-
-  const getCategories = () => {
-    let categorylist = cardList.map((card) => {
-      return card.category
-    })
-    let reducedlist = [...new Set(categorylist)]
-    reducedlist.sort()
-    return reducedlist
-  }
-
-  const getLocations = () => {
-    let locationlist = cardList.map(card => {
-      return card.location
-    })
-    let reducedlist = [...new Set(locationlist)]
-    reducedlist.sort()
-    return reducedlist
-  }
-
-
-
-  const handleFilterString = (str) => {
-    setFilterString(str)
-  }
-
-  const handleDateFilters = obj => {
-    setDateFilters(obj)
-  }
-
-  const handleLocationFilters = obj => {
-    setLocationFilters(obj)
-  }
-
-  const handleCategoryFilters = (obj) => {
-    setCategoryFilters(obj)
-  }
-
-  const dateSort = (arr) => {
-    let newarr = [...arr]
-    newarr.sort((a,b) => {
-      return dayjs(a.startDate) - dayjs(b.startDate)
-    })
-    return newarr
-  }
-
-  const titleFilter = data => {
-    if (filterString !== "") {
-      return data.filter(evt => {
-         return evt.title.toUpperCase().includes(filterString.toUpperCase())
-      })
-    }
-    return data
-  }
-
-  const dateFilter = data => {
-    if (dateFilters) {
-      // TODO: Adjust this to account for date is same as startdate rather than isBetween
-      let updatedData = data.filter(card => {
-        return (
-          dayjs(card.startDate).isBetween(dateFilters.start_date, dateFilters.end_date)
-        )
-      })
-      return updatedData
-    }
-    return data
-  }
-
-  const locationFilter = (data) => {
-    if (locationFilters) {
-      let updatedData = data
-      let filterArray = []
-      let keys = Object.keys(locationFilters)
-      let filtered = keys.filter(key => locationFilters[key])
-      filtered.forEach(filter => {
-        let cardArray = updatedData.filter(card => card.location === filter)
-        filterArray.push(cardArray)
-      })
-      return filterArray.flat()
-    }
-    return data
-  }
-
-  const categoryFilter = (data) => {
-    if (categoryFilters) {
-      let updatedData = data
-      let filterArray = []
-      let keys = Object.keys(categoryFilters)
-      let filtered = keys.filter(key => categoryFilters[key])
-      filtered.forEach(filter => {
-        let cardArray = updatedData.filter(card => card.category === filter)
-        filterArray.push(cardArray)
-      })
-      return filterArray.flat()
-    }
-    return data
-  }
-
-
-  const runFilters = () => {
-    let updatedData = [...cardList]
-    updatedData = titleFilter(updatedData)
-    updatedData = dateFilter(updatedData)
-    updatedData = locationFilter(updatedData)
-    updatedData = categoryFilter(updatedData)
-    updatedData = dateSort(updatedData)
-    updatedData.sort((a, b) => (a.size > b.size ? -1 : 1))
-    setFilteredEvents(updatedData)
-  }
-
-  useEffect(() => {
-    let firstsortcardList = dateSort(cardList)
-    setCategoryList(getCategories());
-    setLocationList(getLocations())
-    setFilteredEvents(firstsortcardList);
-  }, [])
-
-  useEffect(() => {
-    
-    runFilters()
-  }, [filterString, dateFilters, locationFilters, categoryFilters])
-
-  let contentCards = filteredEvents.map(card => {
-
+  // const cardList = [
+  //   {
+  //     startDate: "04-29-2020",
+  //     title: "The Kentucky Derby",
+  //     category: "Horse Racing",
+  //     venue: "Churchill Downs",
+  //     location: "Louisville, KY",
+  //     img: data.cardImage5,
+  //     featureImg: data.cardImage4,
+  //     alt: true,
+  //     size: "XXL"
+  //   },
+  //   {
+  //     startDate: "05-01-2020",
+  //     title: "The Kentucky Derby",
+  //     category: "Buggy Racing",
+  //     venue: "Churchill Downs",
+  //     location: "Louisville, KY",
+  //     tags: taglist2,
+  //     img: data.cardImage3,
+  //     featureImg: data.cardImage2,
+  //     size: "Wide"
+  //   },
+  //   {
+  //     startDate: "02-03-2020",
+  //     endDate: "05-13-2020",
+  //     title: "The Past, Present, and Future of Rainstorms and Floods in Wisconsin",
+  //     category: "Historical Tour",
+  //     venue: "Churchill Downs",
+  //     location: "Louisville, KY",
+  //     tags: taglist1,
+  //     img: data.cardImage5,
+  //     featureImg: data.cardImage1,
+  //     size: "Wide"
+  //   },
+  //   {
+  //     startDate: "07-04-2020",
+  //     title: "Typewriter gluten-free occupy jianbing selvage, artisan neutra reprehenderit lomo est post-ironic ad 90's.",
+  //     category: "Historical Tour",
+  //     venue: "Churchill Downs",
+  //     location: "Louisville, KY",
+  //     tags: taglist2,
+  //     size: "Wide"
+  //   },
+  //   {
+  //     startDate: "12-30-2020",
+  //     endDate: "12-31-2020",
+  //     title: "Gentrify try-hard tacos, taiyaki small batch bespoke 90's hello of non hot chicken.",
+  //     category: "Food Trucks",
+  //     venue: "Churchill Downs",
+  //     location: "Des Moines, IA",
+  //     tags: taglist2,
+  //     size: "Wide"
+  //   },
+  //   {
+  //     startDate: "01-04-2020",
+  //     endDate: "03-26-2020",
+  //     title: "Testing various titles here",
+  //     category: "Other",
+  //     venue: "Churchill Downs",
+  //     location: "Madison, WI",
+  //     tags: taglist2,
+  //     size: "Wide"
+  //   },
+  //   {
+  //     startDate: "05-15-2020",
+  //     endDate: "07-15-2020",
+  //     title: "Lorem Ipsum Puget Sound",
+  //     category: "Food Trucks",
+  //     venue: "Churchill Downs",
+  //     location: "Dallas, TX",
+  //     tags: taglist2,
+  //     size: "Wide"
+  //   },
+  // ]
+  let contentCards = events.map(card => {
     return (
     <ContentCard
       key={`${card.startDate}${card.venue}`}
-      startDate={dayjs(card.startDate).format("MMM DD")}
-      endDate={card.endDate ? dayjs(card.endDate).format("MMM DD") : null}
+      startDate={card.startDate}
+      endDate={card.endDate ? card.endDate : null}
       title={card.title}
       category={card.category}
       venue={card.venue}
       location={card.location}
-      img={card.img}
-      featureImg={card.featureImg}
+      img={card.featuredImage ? card.featuredImage.node.localFile: null}
+      featureImg={card.featuredImage ? card.featuredImage.node.localFile : null}
       alt={card.alt}
-      size={card.size}
+      url={card.url}
+      // temp sizing until size added to WP
+      size={"XXL"}
+      //
     />)
   })
-
   return (
     <Layout>
-      <AccordianSearch
-        handleFilterString={str => handleFilterString(str)}
-        handleDateFilters={obj => handleDateFilters(obj)}
-        handleCategoryFilters={obj => handleCategoryFilters(obj)}
-        handleLocationFilters={obj => handleLocationFilters(obj)}
-        filterString={filterString}
-        locationFilters={locationList}
-        categoryFilters={categoryList}
-      />
+      <AccordianSearchAlgolia index="Events" results={false} callback={(arr) => setEvents(arr)} />
       <PageSection heading="Sifted Events">
         <ContentBlockList>{contentCards}</ContentBlockList>
       </PageSection>

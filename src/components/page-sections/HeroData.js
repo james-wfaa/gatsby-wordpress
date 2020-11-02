@@ -11,6 +11,7 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 const PageSection = ({className, preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, variantObject, bgImage, fromBlocks, children }) => {
   const background = typeof bgImage !== "undefined" && bgImage !== null
+  const excerptBottom = variantObject.scroll_color === '#9E9E9E'? 0 : sizes.s32
 
   const classesList = alt ? `${className} ${className}--alt` : className
   const altClass = alt ? ` ${className}--alt` : ""
@@ -116,9 +117,9 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
     line-height: ${sizes.s36};
     max-width: 712px;
     margin: 0 auto;
-    margin-bottom: ${sizes.s32};
+    margin-bottom: ${excerptBottom};
     padding: 0 ${sizes.s36};
-
+    text-align: ${variantObject.text_align};
     p:last-child {
       margin-bottom: 0;
     }

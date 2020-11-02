@@ -8,8 +8,6 @@ import CardE from "../components/content-blocks/CardE"
 import PromoCardD from "../components/content-blocks/PromoCardD"
 import HeroIntroSection from "../components/page-sections/HeroIntroSection"
 import SimpleSlider from "../components/content-modules/SimpleSlider"
-import LeftArrow from "../components/parts/SliderArrowLeft"
-import RightArrow from "../components/parts/SliderArrowRight"
 
 const taglist2 = [
   {
@@ -45,10 +43,6 @@ const featuredbutton = [
 ]
 
 export default ({ data }) => {
-  const settings = {
-    nextArrow: <RightArrow />,
-    prevArrow: <LeftArrow />,
-  }
 
   return (
     <Layout>
@@ -62,7 +56,7 @@ export default ({ data }) => {
         Connect with us to celebrate UW pride, enjoy Badger spirit and build
         community with each other and the UW.
       </PageSection>
-      <div style={{maxWidth: `1080px`, margin: `0 auto`}}>
+      <div style={{maxWidth: `1080px`, margin: `auto`, paddingBottom: `58px`}}>
 
         <HeroIntroSection
           heroImage={data.homeBg}
@@ -94,7 +88,6 @@ export default ({ data }) => {
           centerMode
           variableWidth
           centerPadding="100px"
-          {...settings}
         >
           <ContentCard
             startDate="Apr. 29"
@@ -128,7 +121,6 @@ export default ({ data }) => {
           centerMode
           variableWidth
           centerPadding="100px"
-          {...settings}
         >
           <CardE
             img={data.asset29}
@@ -156,7 +148,6 @@ export default ({ data }) => {
           centerMode
           variableWidth
           centerPadding="100px"
-          {...settings}
         >
           <ContentCard
             title="All About That Bass"

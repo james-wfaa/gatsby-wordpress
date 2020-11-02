@@ -89,6 +89,12 @@ export default () => (
         <li>
           <Link to="/fonts">Text Styles</Link>
         </li>
+        <li>
+          <Link to="/carousel-intro">Carousel Hero Section</Link>
+        </li>
+        <li>
+          <Link to="/modal">Generic Modal</Link>
+        </li>
 
        
       </ul>

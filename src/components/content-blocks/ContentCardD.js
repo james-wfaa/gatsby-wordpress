@@ -8,7 +8,12 @@ const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, 
 
     console.log(title)
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
-    //const dateLinkText = endDate ? `${startDate}&nbsp;&ndash;&nbsp;${endDate}` : startDate
+
+    /* let's make this a helper available anywhere we need to nicely shorten an excerpt */
+    const maxLength = (title.length <= 28) ? 200 : 160
+    const endIdx = (excerpt) ? excerpt.indexOf(' ', maxLength) : null
+    const shortenedExcerpt = (excerpt && excerpt.length > maxLength && endIdx > 0) ? excerpt.substring(0,excerpt.indexOf(' ', maxLength)) + ' ...' : excerpt
+    
 
     const categories = (eventsCategories && eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : null
 
@@ -47,7 +52,7 @@ const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, 
                     )}
                     { excerpt && (!startDate) && (
                         <div className={`${className}__excerpt excerpt`}>
-                            <span  dangerouslySetInnerHTML={{ __html: excerpt }} />
+                            <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
                             <span> </span>
                             { url && (
                                 <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>

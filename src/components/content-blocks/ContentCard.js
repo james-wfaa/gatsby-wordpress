@@ -7,7 +7,6 @@ import { shortDate } from "../../utils/tools"
 
 
 const ContentCard = ({ className, startDate, endDate, title, category, venue, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size, promo = false }) => {
-
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
     const fmtStartDate = shortDate(startDate)
     let fmtEndDate = null
@@ -26,7 +25,6 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
     }
 
 
-    console.log(img)
     const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
         ? null
         : (featureImg && typeof featureImg !== 'undefined' && featureImg.childImageSharp) ?
@@ -38,7 +36,6 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                 }
             ]
             :  img.childImageSharp.fluid
-
     return (
 
         <div className={`${className} ${className}--${size} ${className}--${notSmall} ${promoClass}`}>
