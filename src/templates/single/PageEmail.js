@@ -74,7 +74,7 @@ margin: 0 auto;
     }
     :after {
       position: absolute; 
-      bottom: 22px;
+      bottom: 38%;
       left: calc( 50% + ${sizes.s34} );
       width: ${sizes.s12};
       height: ${sizes.s12};
