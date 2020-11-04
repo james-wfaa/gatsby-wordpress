@@ -7,6 +7,8 @@ import Button from "../../components/parts/Button"
 import PageSection from "../../components/page-sections/PageSection"
 import WordPressContent from "../../components/content-blocks/WordPressContent"
 import BackgroundImage from 'gatsby-background-image'
+import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
+
 
 
 
@@ -66,8 +68,20 @@ margin: 0 auto;
 .button{
   a{
     width: 100%;
+    position: relative;
     @media screen and ${breakpoints.tabletL} {
       width: 50%;
+    }
+    :after {
+      position: absolute; 
+      bottom: 22px;
+      left: calc( 50% + ${sizes.s34} );
+      width: ${sizes.s12};
+      height: ${sizes.s12};
+      background-color: ${colors.bgWhite};
+      -webkit-mask-image: url(${arrowSVG});
+      mask: url(${arrowSVG}) no-repeat;
+      content: '';
     }
   }
 }
@@ -120,6 +134,9 @@ div{
         background-color:rgb(255,255,255,0.1);
         border: 1px solid ${colors.titleWhite};
         width: min-content;
+        :after{
+          content: none;
+        }
       }
     }
   }
