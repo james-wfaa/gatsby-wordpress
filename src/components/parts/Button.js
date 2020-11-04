@@ -4,13 +4,16 @@ import { Link } from "gatsby"
 import styled from 'styled-components'
 import { mixins } from '../css-variables'
 
-const Button = ({ className, link, text, bgimage, alt, fullwidth, disabled = false, external = false }) => {
+const Button = ({ className, link, text, bgimage, alt, altborder = false, fullwidth, disabled = false, external = false }) => {
     let classesList = className
     if (bgimage) { 
         classesList += ` ${className}--bgimage`
     }
     if (alt) {
         classesList += ` ${className}--alt`
+    }
+    if (altborder) {
+        classesList += ` ${className}--altborder`
     }
     if (disabled) {
         classesList += ` ${className}--disabled`

@@ -45,9 +45,16 @@ position: relative;
     
     
 }
+
 a {
     ${mixins.textlink}
 }
+.button{
+    a {
+        ${mixins.buttons};
+    }
+}
+
 .testimonial {
     width: 256px;
     display: flex;

@@ -278,6 +278,9 @@ export const mixins = {
         }
 
      }
+     &--altborder {
+        border: 1px solid ${colors.buttonRed};
+     }
      &--disabled {
         pointer-events: none;
         cursor: default;
