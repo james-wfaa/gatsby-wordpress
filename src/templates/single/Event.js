@@ -16,14 +16,17 @@ export const query = graphql`
       content
       blocks {
         name
+        isDynamic
         originalContent
         dynamicContent
         innerBlocks {
           name
+          isDynamic
           originalContent
           dynamicContent
           innerBlocks {
             name
+            isDynamic
             originalContent 
             dynamicContent
           }
