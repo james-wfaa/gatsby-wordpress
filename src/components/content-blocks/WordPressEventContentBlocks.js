@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
 import styled from 'styled-components'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
@@ -7,12 +7,21 @@ import TitleSection from '../parts/WordPressTitleSection'
 import EventMapDetails from "../content-blocks/EventMapDetails"
 import SocialShareLinks from "../parts/SocialShareLinks"
 import Button from "../parts/Button"
+import GenericModal from '../content-modules/GenericModal'
+
 
 
 const WordPressEventContentBlocks = ({className, date, startDate, endDate, link, venue, cost, organizers, title, eventDetails, blocks, content}) => {
     console.log(blocks);
 
+    const [show, setShow] = useState(false);
 
+    const handleModal = () => {
+      let currentshow = show;
+      setShow(!currentshow)
+      console.log("Is Shown" + show);
+    }
+  
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
        
@@ -100,7 +109,15 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     eventDetails={eventDetails}
                 />
                 <div className="social-desktop">
-                    <Button link="#" text="Questions" fullwidth alt altborder />
+                    {show ?
+                    <GenericModal
+                    data={<div>Test</div>}
+                    opacity={0.9}
+                    closeCallback={() => handleModal()}/>
+                    : null}
+                    <div className="buttonWrap" onClick={() => handleModal()}>
+                        <Button link="#" text="Questions" fullwidth alt altborder />
+                    </div>
                     <h2>Invite Others</h2>
                     <SocialShareLinks></SocialShareLinks>
                 </div>
