@@ -5,6 +5,9 @@ import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import EventRegistration from "../content-blocks/EventRegistration"
 import TitleSection from '../parts/WordPressTitleSection'
 import EventMapDetails from "../content-blocks/EventMapDetails"
+import SocialShareLinks from "../parts/SocialShareLinks"
+import Button from "../parts/Button"
+
 
 const WordPressEventContentBlocks = ({className, date, startDate, endDate, link, venue, cost, organizers, title, eventDetails, blocks, content}) => {
     console.log(blocks);
@@ -72,22 +75,37 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                         eventDetails={eventDetails}
                     />
                 </div>
+                <div className="social-mobile">
+                    <Button link="#" text="Questions" fullwidth alt altborder />
+                    <h2>Invite Others</h2>
+                    <SocialShareLinks></SocialShareLinks>
+                </div>
+
                 <EventMapDetails 
                     className="eventMap" 
                     venue={venue}
                 />
 
             </div>
-            <EventRegistration 
-                className="reg-desktop" 
-                date={date}
-                registrationLink={link} 
-                startDate={startDate} 
-                endDate={endDate} 
-                venue={venue} cost={cost} 
-                organizers={organizers} 
-                eventDetails={eventDetails}
-            />
+            <div className="reg-desktop">
+
+                <EventRegistration 
+                    className="reg-Wrap" 
+                    date={date}
+                    registrationLink={link} 
+                    startDate={startDate} 
+                    endDate={endDate} 
+                    venue={venue} cost={cost} 
+                    organizers={organizers} 
+                    eventDetails={eventDetails}
+                />
+                <div className="social-desktop">
+                    <Button link="#" text="Questions" fullwidth alt altborder />
+                    <h2>Invite Others</h2>
+                    <SocialShareLinks></SocialShareLinks>
+                </div>
+
+            </div>
 
            
         </div>
@@ -143,11 +161,18 @@ margin: ${sizes.s48} auto 0;
         margin-left: 93px;
         margin-top: 12px; /* to align with the header in the janky font */
         max-width: 187px;
+        .reg-Wrap{
+            max-width: 187px;
+        }
     }
     @media screen and ${breakpoints.laptopS} {
         margin-left: 116px;
         max-width: 252px;
+        .reg-Wrap{
+            max-width: 252px;
+        }
     }
+
 
     
 }
@@ -162,6 +187,38 @@ margin: ${sizes.s48} auto 0;
     }
 
 }
+
+.social-mobile{
+    min-width: 300px;
+    width: 100%;   
+    max-width: 303px;
+    margin: 0 auto;
+    text-align: center;
+    margin: ${sizes.s40} auto ${sizes.s48} auto;
+    h2{
+        padding-top: ${sizes.s40};
+    }
+    @media screen and ${breakpoints.tabletS} {
+        max-width: 536px;
+    }
+    @media screen and ${breakpoints.tabletL} {
+        display: none;
+    }
+}
+
+.social-desktop{
+    display: none;
+    width: 100%;  
+    text-align: center;
+    margin: ${sizes.s40} auto ${sizes.s48} auto;
+    h2{
+        padding-top: ${sizes.s40};
+    }
+    @media screen and ${breakpoints.tabletL} {
+        display: block;
+    }
+}
+
     
 .content{
     > p, 
