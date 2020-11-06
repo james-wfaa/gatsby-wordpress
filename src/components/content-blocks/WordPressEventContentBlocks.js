@@ -61,8 +61,14 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
     ) : null
 
     return(
-        <div className={className}>
-           
+        <div className={className} id="Top">
+            {show ?
+            <GenericModal
+            data={<div>Test</div>}
+            opacity={0.9}
+            closeCallback={() => handleModal()}/>
+            : null}
+
             <div className="desktopWrap">
                 <TitleSection className="header" heading={title} event />
                 <div className="mobileWrap">
@@ -85,7 +91,9 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     />
                 </div>
                 <div className="social-mobile">
-                    <Button link="#" text="Questions" fullwidth alt altborder />
+                    <div className="buttonWrap" onClick={() => handleModal()}>
+                        <Button link="#Top" text="Questions" fullwidth alt altborder />
+                    </div>
                     <h2>Invite Others</h2>
                     <SocialShareLinks></SocialShareLinks>
                 </div>
@@ -109,14 +117,8 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     eventDetails={eventDetails}
                 />
                 <div className="social-desktop">
-                    {show ?
-                    <GenericModal
-                    data={<div>Test</div>}
-                    opacity={0.9}
-                    closeCallback={() => handleModal()}/>
-                    : null}
                     <div className="buttonWrap" onClick={() => handleModal()}>
-                        <Button link="#" text="Questions" fullwidth alt altborder />
+                        <Button link="#Top" text="Questions" fullwidth alt altborder />
                     </div>
                     <h2>Invite Others</h2>
                     <SocialShareLinks></SocialShareLinks>
