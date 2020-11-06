@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import styled from 'styled-components'
 import FaTwitter from "../../svg/twitter_icon_gray.svg";
@@ -7,6 +7,8 @@ import { ShareButtonRectangle, ShareBlockStandard } from "react-custom-share";
 import RegistrationButtons from '../parts/RegistrationButtons'
 import Button from '../parts/Button'
 import { convertTime, compareDate } from "../../utils/tools"
+import GenericModal from '../content-modules/GenericModal'
+
 
 const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails}) => {
 
@@ -36,9 +38,23 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
     const registrationLink = eventDetails.registrationUrl ? eventDetails.registrationUrl : '';
     const registrationText = eventDetails.eventFullSoldOut ? eventDetails.eventFullText : 'Register';
     const regIsFull = eventDetails.eventFullSoldOut;
+    const [show, setShow] = useState(false);
+
+    const handleModal = () => {
+      let currentshow = show;
+      setShow(!currentshow)
+      console.log("Is Shown" + show);
+    }
+
 
     return(
         <div className={classesList}>
+            {show ?
+            <GenericModal
+            data={<div>Add Temp</div>}
+            opacity={0.9}
+            closeCallback={() => handleModal()}/>
+            : null}
             <div className="regHeader">
                 { date && (
                     <div className="dateDay">{date}</div>
@@ -53,7 +69,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
                 <div className="subHeader">WHEN</div>
                 <div>{calcDate(date)}</div>
                 <div className="dateTime" dangerouslySetInnerHTML={{ __html: convertTime(startDate, endDate) }}></div>
-                <a href="#" alt="Add to Calendar">Add to Calendar</a>
+                <a href="#" alt="Add to Calendar" onClick={() => handleModal()}>Add to Calendar</a>
                 <div className="subHeader">WHERE</div>
                 <div className="venue" dangerouslySetInnerHTML={{ __html: addressString }} />
                 { venue.address && (
