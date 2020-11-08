@@ -46,22 +46,24 @@ const StyledInput = styled.input`
 `
 
 export default connectSearchBox(
-  ({ refine, currentRefinement, onFocus }) => (
-    <StyledDiv>
-      <form>
-      <StyledInput
-        type="text"
-        placeholder="Search.."
-        aria-label="Search"
-        onChange={e => refine(e.target.value)}
-        value={currentRefinement}
-        onFocus={onFocus}
-      />
-    </form>
-    <span>
-        <a style={{ backgroundColor: `${colors.buttonRed}` }}></a>
-      </span>
-    </StyledDiv>
+  ({ refine, currentRefinement, onFocus}) => {
+    return (
+      <StyledDiv>
+        <form>
+        <StyledInput
+          type="text"
+          placeholder="Search..."
+          aria-label="Search"
+          onChange={e => refine(e.target.value)}
+          value={currentRefinement}
+          onFocus={onFocus}
+        />
+      </form>
+      <span>
+          <a style={{ backgroundColor: `${colors.buttonRed}` }}></a>
+        </span>
+      </StyledDiv>
+    )
 
-  )
+  }
 )
