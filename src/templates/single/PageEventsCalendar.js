@@ -7,20 +7,17 @@ import ContentBlockList from "../../components/content-modules/ContentBlockList"
 import AccordianSearch from "../../components/parts/AccordianSearch"
 
 function WordPressPage({ data }) {
-  console.log(data)
   const { page, events, allWp } = data
   const { edges: eventEdges } = events
   const { siteOptions } = allWp.nodes[0]
   const { ads } = siteOptions
   const { sponsorUrl, sponsorAd21, sponsorAd31 } = ads
-  
+
   const { title,  excerpt } = page
-  
+
   let allEvents = eventEdges.map((event) => {
-    console.log(event.node)
     const { featuredEvent, featuredImage: img } = event.node
     const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-    console.log( featuredEvent )
     if (!featuredEvent) {
       return (
         <ContentCard size="Wide" img={cardImg} {...event.node} />
@@ -40,7 +37,7 @@ function WordPressPage({ data }) {
         <PageSection>
           <ContentBlockList>{allEvents}</ContentBlockList>
         </PageSection>
-      
+
     </Layout>
   )
 }
@@ -123,6 +120,6 @@ export const query = graphql`
         }
       }
     }
-    
+
   }
 `

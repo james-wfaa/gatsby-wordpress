@@ -19,7 +19,6 @@ function WordPressPage({ data }) {
   const { categories } = eventCategories
 
   const { backgroundImage } = gridDetails
-  console.log(backgroundImage)
 
   const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
   const moreButton = [
@@ -31,7 +30,6 @@ function WordPressPage({ data }) {
 
   const cats = categories.map((item) => {
     const { categoryEvent, numberToShow } = item
-    console.log(categoryEvent)
     return (
       <PageSection heading={categoryEvent.name} stagger>
         <CardSet items={categoryEvent.events.nodes} num={numberToShow} />
@@ -45,12 +43,10 @@ function WordPressPage({ data }) {
     nextArrow: <RightArrow />,
     prevArrow: <LeftArrow />,
   }
-  console.log(events)
+
   let featuredEvents = eventEdges.map((event) => {
-    console.log(event.node)
     const { featuredEvent, featuredImage: img } = event.node
     const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-    console.log( featuredEvent )
     if (featuredEvent) {
         return (
           <ContentCard size="L" img={cardImg} {...event.node} />
@@ -61,8 +57,7 @@ function WordPressPage({ data }) {
     return element !== undefined;
  })
 
- 
-  console.log(featuredEvents)
+
 
 
 
@@ -72,7 +67,7 @@ function WordPressPage({ data }) {
       <ContentCardD {...event.node} />
     )
   })
-  console.log(eventCards)
+
 
   return (
     <Layout noborder>
@@ -99,7 +94,7 @@ function WordPressPage({ data }) {
       <PageSection heading="At a Glance" bgImage={gridBgImage} buttons={moreButton}>
         <GridCardD>{eventCards}</GridCardD>
       </PageSection>
-      
+
     </Layout>
   )
 }
@@ -127,7 +122,7 @@ export const query = graphql`
           }
         }
       }
-      
+
       eventCategories {
         categories {
           categoryEvent: category {
@@ -185,7 +180,7 @@ export const query = graphql`
           dynamicContent
           innerBlocks {
             name
-            originalContent 
+            originalContent
             dynamicContent
           }
         }
@@ -249,6 +244,6 @@ export const query = graphql`
         }
       }
     }
-    
+
   }
 `

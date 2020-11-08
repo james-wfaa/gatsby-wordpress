@@ -4,7 +4,6 @@ import WpEvent from "../../components/template-parts/wordpress-event"
 
 export default ({ data }) => {
   const { event } = data
-  console.log( event )
   return (<WpEvent page={event} />)
 }
 
@@ -27,17 +26,17 @@ export const query = graphql`
           innerBlocks {
             name
             isDynamic
-            originalContent 
+            originalContent
             dynamicContent
           }
         }
-      } 
+      }
       link
       url
       featuredImage {
         node {
           localFile {
-            ...HeroImage  
+            ...HeroImage
           }
         }
       }
@@ -84,8 +83,8 @@ export const query = graphql`
         content
         latitude
         longitude
-      }   
-      
+      }
+
     }
   }
 `

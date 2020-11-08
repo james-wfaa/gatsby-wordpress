@@ -20,30 +20,29 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
 
     var notSmall = (size !== 'S') ? "notsmall" : "";
 
-   
 
-  
+
+
     const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
         ? null
-        : (featureImg && typeof featureImg !== 'undefined' && featureImg.childImageSharp) ? 
+        : (featureImg && typeof featureImg !== 'undefined' && featureImg.childImageSharp) ?
             [
                 img.childImageSharp.fluid,
                 {
                     ...featureImg.childImageSharp.fluid,
                     media: `(min-width: 1200px)`
-                }   
+                }
             ]
             :  img.childImageSharp.fluid
 
-            console.log(imgSources)
-   
+
 
     return (
 
-        <div className={`${className} ${className}--${size} ${className}--${notSmall} ${altClass}`}>  
+        <div className={`${className} ${className}--${size} ${className}--${notSmall} ${altClass}`}>
                 <div className={`${className}__headersection ${className}__headersection--${size} ${className}__headersection--${notSmall}`}>
                     { startDate && (
-                        <div className={`${className}__date ${className}__date--${size} ${className}__date--${notSmall}`}> 
+                        <div className={`${className}__date ${className}__date--${size} ${className}__date--${notSmall}`}>
                             <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
                         </div>
 
@@ -52,14 +51,14 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                         <div className={`${className}__category category category--${size} ${className}__category--${size} ${className}__category--${notSmall}`}>{category}</div>
                     )}
                     { !startDate && (
-                        <h3 className={`${className}__title title ${className}__title--${size} ${className}__title--${notSmall}`} dangerouslySetInnerHTML={{ __html: title }} />        
+                        <h3 className={`${className}__title title ${className}__title--${size} ${className}__title--${notSmall}`} dangerouslySetInnerHTML={{ __html: title }} />
                     )}
-                    
+
                 </div>
                 <div className={`${className}__contentwrap`}>
                     {imgSources && (
                         <a href={url} className={`${className}__imgzoomlink`} >
-                            <Img 
+                            <Img
                                 className={`${className}__img`}
                                 fluid={imgSources}
                             />
@@ -67,7 +66,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                     )}
 
                     <div className={`${className}__contentsection ${className}__contentsection--${size} ${className}__contentsection--${notSmall}`}>
-                        
+
                         <div className={`${className}__columnwrap columnwrap columnwrap--${size} columnwrap--${notSmall}`}>
                             { startDate && (
                                 <a href={url} >
@@ -106,12 +105,12 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, lo
                                 />
                             )}
                         </div>
-                        
+
 
                     </div>
 
                 </div>
- 
+
         </div>
     )
 }
@@ -138,7 +137,7 @@ const StyledContentCard = styled(ContentCard)`
         @media screen and ${breakpoints.tabletS} {
             width: 528px;
             min-height: 680px;
-            
+
         }
         @media screen and ${breakpoints.laptopS} {
             .columnwrap:nth-child(1) {
@@ -153,17 +152,17 @@ const StyledContentCard = styled(ContentCard)`
             max-width: 344px;
             height: 680px;
         }
-    }  
+    }
     &--M{
         .columnwrap:nth-child(1) {
             border-right: none;
         }
     }
-   
+
     &--L{
         @media screen and ${breakpoints.laptopS} {
             width: 712px;
-            
+
         }
     }
     &--XL{
@@ -183,11 +182,11 @@ const StyledContentCard = styled(ContentCard)`
 
     &_wrapper {
         position: relative;
-        
+
     }
 
     &__headersection {
-        position: relative; 
+        position: relative;
         background-color: ${colors.cardHeaderBGGrey};
         margin: 0px;
         padding-left: ${sizes.s16};
@@ -213,7 +212,7 @@ const StyledContentCard = styled(ContentCard)`
                     background-color: ${colors.bgWhite} !important;
                     transform: skew(135deg);
                 }
-            } 
+            }
             &--XL{
                 &:after {
                     position: absolute;
@@ -225,7 +224,7 @@ const StyledContentCard = styled(ContentCard)`
                     background-color: ${colors.bgWhite} !important;
                     transform: skew(135deg);
                 }
-            } 
+            }
             &--XXL{
                 &:after {
                     position: absolute;
@@ -237,13 +236,13 @@ const StyledContentCard = styled(ContentCard)`
                     background-color: ${colors.bgWhite} !important;
                     transform: skew(135deg);
                 }
-            } 
-        } 
+            }
+        }
     }
 
     &__date {
         font-family: ${fonts.eaves};
-        position: relative; 
+        position: relative;
         padding-top: ${sizes.s16};
         padding-bottom: ${sizes.s24};
         font-weight: bold;
@@ -262,18 +261,18 @@ const StyledContentCard = styled(ContentCard)`
             &--notsmall{
                 font-size: ${sizes.s52};
                 line-height: ${sizes.s52};
-            } 
+            }
         }
         & a:link {
             text-decoration: none;
             color: ${colors.startDateColor};
         }
-        
+
         /* visited link */
         & a:visited {
             color: ${colors.linkVisitedGrey};
         }
-        
+
         /* mouse over link */
         & a:hover {
             color: ${colors.linkDateHover};
@@ -281,7 +280,7 @@ const StyledContentCard = styled(ContentCard)`
             cursor:pointer;
 
         }
-        
+
         /* selected link */
         & a:active {
             color: ${colors.linkDateActive};
@@ -292,9 +291,9 @@ const StyledContentCard = styled(ContentCard)`
 
     &__title {
         ${mixins.cardTitle}
-        position: relative; 
+        position: relative;
         top: -3px;
-        padding-bottom: ${sizes.s24};        
+        padding-bottom: ${sizes.s24};
         font-size: ${sizes.s24};
         line-height: ${sizes.s26};
         text-decoration: none;
@@ -318,12 +317,12 @@ const StyledContentCard = styled(ContentCard)`
             text-decoration: none;
             color: ${colors.titleColor};
         }
-        
+
         /* visited link */
         & a:visited {
             color: ${colors.linkVisitedGrey};
         }
-        
+
         /* mouse over link */
         & a:hover {
             color: ${colors.linkTextHover};
@@ -331,7 +330,7 @@ const StyledContentCard = styled(ContentCard)`
             cursor:pointer;
 
         }
-        
+
         /* selected link */
         & a:active {
             color: ${colors.linkActiveGrey};
@@ -347,18 +346,18 @@ const StyledContentCard = styled(ContentCard)`
         text-transform: uppercase;
         position: relative;
         padding-top: ${sizes.s16};
-        padding-bottom: ${sizes.s16};           
+        padding-bottom: ${sizes.s16};
         color: ${colors.categoryGrey};
         @media screen and ${breakpoints.tabletS} {
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
-            padding-bottom: ${sizes.s16};  
+            padding-bottom: ${sizes.s16};
 
         }
     }
 
     &__contentwrap {
-        position: relative; 
+        position: relative;
         display: flex;
         flex-grow: 1;
         flex-direction: column;
@@ -374,7 +373,7 @@ const StyledContentCard = styled(ContentCard)`
             border-left: 1.5px solid ${colors.bgRed};
             border-right: 1.5px solid ${colors.bgRed};
             transform: skew(135deg);
-            
+
             @media screen and ${breakpoints.tabletS} {
                 top: -15px;
                 left: ${sizes.s45};
@@ -387,44 +386,44 @@ const StyledContentCard = styled(ContentCard)`
     &__contentsection {
         position: relative;
         margin: 0px;
-        padding-top: ${sizes.s24}; 
-        padding-bottom: ${sizes.s12}; 
+        padding-top: ${sizes.s24};
+        padding-bottom: ${sizes.s12};
         display: flex;
         flex-flow: column;
         flex: 1 1 auto;
         @media screen and ${breakpoints.tabletS} {
-            padding-top: ${sizes.s32}; 
-            padding-bottom: ${sizes.s32};     
+            padding-top: ${sizes.s32};
+            padding-bottom: ${sizes.s32};
 
         }
         @media screen and ${breakpoints.laptopS} {
             &--L, &--XL, &--XXL{
-                padding-top: ${sizes.s32}; 
-                padding-bottom: ${sizes.s32}; 
-                flex-flow: row;    
-            } 
+                padding-top: ${sizes.s32};
+                padding-bottom: ${sizes.s32};
+                flex-flow: row;
+            }
         }
-        
+
         &:after {
             position: absolute;
             content: '';
         }
 
         .columnwrap {
-            position: relative; 
+            position: relative;
             display: flex;
             flex-flow: column;
             padding-left: ${sizes.s16};
             padding-right: ${sizes.s16};
             @media screen and ${breakpoints.tabletS} {
-                padding-left: ${sizes.s32}; 
-                padding-right: ${sizes.s32};         
+                padding-left: ${sizes.s32};
+                padding-right: ${sizes.s32};
             }
             @media screen and ${breakpoints.laptopS} {
                 &--L, &--XL, &--XXL{
-                    width: 50%;        
-                    padding-left: ${sizes.s32}; 
-                } 
+                    width: 50%;
+                    padding-left: ${sizes.s32};
+                }
 
             }
             .title {
@@ -433,35 +432,35 @@ const StyledContentCard = styled(ContentCard)`
             .category {
                 @media screen and ${breakpoints.tabletS} {
                     padding-bottom: ${sizes.s32};
-                } 
-                
+                }
+
             }
-            .category--L, 
+            .category--L,
             .category--XL,
             .category--XXL {
                 @media screen and ${breakpoints.tabletS} {
                     padding-bottom: ${sizes.s16};
-                } 
+                }
             }
-            
+
             :nth-last-child(1){
                 justify-content: space-between;
                 flex: 1 1 auto;
             }
-    
-           
+
+
         }
     }
 
-    
+
 
     &__venue {
-        position: ; 
+        position: ;
         font-size: ${sizes.s18};
 
     }
     &__location {
-        position: relative; 
+        position: relative;
         font-size: ${sizes.s18};
         font-weight: bold;
         padding-bottom: ${sizes.s16};
@@ -487,12 +486,12 @@ const StyledContentCard = styled(ContentCard)`
             &:link {
                 text-decoration: none;
             }
-            
+
             /* visited link */
             &:visited {
                 color: ${colors.linkVisitedGrey};
             }
-            
+
             /* mouse over link */
             &:hover {
                 color: ${colors.linkTextHover};
@@ -500,7 +499,7 @@ const StyledContentCard = styled(ContentCard)`
                 cursor:pointer;
 
             }
-            
+
             /* selected link */
             &:active {
                 color: ${colors.linkActiveGrey};
@@ -519,27 +518,27 @@ const StyledContentCard = styled(ContentCard)`
         max-width: 100%;
         transition: transform .2s; /* Animation */
         overflow: hidden;
-       
+
         &:link {
             text-decoration: none;
         }
-        
+
         /* visited link */
         &:visited {
         }
-        
+
         /* mouse over link */
         &:hover {
             transform: scale(1.05);
         }
-        
+
         /* selected link */
         &:active {
             cursor:default;
             filter: brightness(80%);
         }
     }
-   
+
 `
 
   export default StyledContentCard

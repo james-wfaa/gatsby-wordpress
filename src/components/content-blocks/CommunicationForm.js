@@ -16,7 +16,7 @@ const CommunicationForm = () => {
   const [formInteracted, setFormInteracted] = useState(false)
 
   const onSubmit = data => {
-    console.log(data)
+
   }
 
   const handleShowForm = () => {

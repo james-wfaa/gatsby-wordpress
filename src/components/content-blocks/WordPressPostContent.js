@@ -7,7 +7,7 @@ import { ShareButtonRectangle, ShareBlockStandard } from "react-custom-share";
 
 
 const WordPressContent = ({className, content}) => {
-    console.log(content)
+
 
     return(
         <div className={className} dangerouslySetInnerHTML={{ __html: content }} />
@@ -18,7 +18,7 @@ max-width: 1080px;
 margin: 0 auto;
 text-align: left;
 
-> p, 
+> p,
 > ul,
 > h2 {
     min-width: 300px;
@@ -26,7 +26,7 @@ text-align: left;
     max-width: 712px;
     margin-left: auto;
     margin-right: auto;
-    
+
     @media screen and ${breakpoints.laptopL} {
         width: 712px;
     }
@@ -56,9 +56,9 @@ div.image-section {
     @media screen and ${breakpoints.tabletS} {
         padding-top: ${sizes.s32};
         padding-bottom: ${sizes.s32};
-        
+
         width: 80%;
-        
+
         max-width: 1080px;
         margin-left: auto;
         margin-right: auto;
@@ -67,19 +67,19 @@ div.image-section {
             .image-section__image {
                 width: 33.3%;
             }
-    
+
         }
         &--medium {
             .image-section__image {
                 width: 50%;
             }
-    
+
         }
         &--large {
             .image-section__image {
                 width: 66.6%;
             }
-    
+
         }
         &:last-of-type {
             border-bottom: none;
@@ -104,9 +104,9 @@ div.image-section {
         img {
             max-width: 100%;
         }
-        
+
     }
-    
+
     &__text {
         padding-top: ${sizes.s32};
         min-width: 250px;
@@ -136,7 +136,7 @@ div.image-section {
         }
 
     }
-    
+
 }
 hr.wp-block-separator {
     height: ${sizes.s36};
@@ -144,7 +144,7 @@ hr.wp-block-separator {
     margin: ${sizes.s36} 0;
     @media screen and ${breakpoints.tabletS} {
         margin: ${sizes.s52} 0;
-        
+
     }
 }
 div.section-header {
@@ -164,12 +164,12 @@ div.section-header {
         width: 272px;
         float: left;
         margin: 16px 16px 16px 0;
-        
+
         &.has-text-align-right{
             float: right;
-            margin: 16px 0px 16px 16px;      
+            margin: 16px 0px 16px 16px;
         }
-    
+
     }
 
 }
@@ -179,7 +179,7 @@ div.section-header {
 .wp-block-quote {
     color: ${colors.badgerRed};
     font-family: ${fonts.eavesNarrow};
-    font-style: italic; 
+    font-style: italic;
     font-size: ${sizes.s24};
     line-height: ${sizes.s38};
     margin-left: auto;
@@ -189,11 +189,11 @@ div.section-header {
     @media screen and ${breakpoints.laptopL} {
         width: 252px;
         float: right;
-        margin: 24px 0px 24px 24px;    
-        
+        margin: 24px 0px 24px 24px;
+
         &.has-text-align-left{
             float: left;
-            margin: 24px 24px 24px 0;     
+            margin: 24px 24px 24px 0;
         }
     }
     @media screen and ${breakpoints.laptopS} {

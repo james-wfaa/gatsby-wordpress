@@ -11,8 +11,6 @@ const WordPressEmailPage = ({ className, data }) => {
   const { page } = data
   const { title, content, HalfPageAd } = page
 
-  console.log(page)
-
 
   return (
     <Layout>
@@ -74,7 +72,7 @@ export const query = graphql`
           dynamicContent
           innerBlocks {
             name
-            originalContent 
+            originalContent
             dynamicContent
           }
         }

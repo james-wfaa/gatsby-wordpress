@@ -7,7 +7,6 @@ import Container from "../components/parts/Container"
 import PageSection from '../components/page-sections/PageSection'
 export default ({ data }) => {
 
-console.log(data)
     return (
 <Layout>
     <PageSection>
@@ -30,12 +29,12 @@ console.log(data)
     <Container>
         <CardE img={data.squareBucky} caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut." />
     </Container>
-    <p>As for the spacing between two of these cards, or the total spacing between these cards and the element beneath them, that 
-        is a subject for a different time.  This page just shows what they should look like by themselves. The outside padding is just for 
+    <p>As for the spacing between two of these cards, or the total spacing between these cards and the element beneath them, that
+        is a subject for a different time.  This page just shows what they should look like by themselves. The outside padding is just for
         visual separation between examples.</p>
-        
+
     </PageSection>
-    
+
 </Layout>
     )
 }
@@ -69,7 +68,7 @@ query {
           }
         }
       }
-    
+
   }
 `
 
