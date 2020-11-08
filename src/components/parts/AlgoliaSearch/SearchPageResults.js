@@ -5,11 +5,14 @@ import { breakpoints, colors } from "../../css-variables"
 import {
   connectStateResults,
   Highlight,
-  Hits,
   Index,
   Snippet,
+  connectHits
 } from "react-instantsearch-dom"
+import Hits from './SearchHits'
 import ResultCard from './cards/EventCard'
+
+const CustomHits = connectHits(Hits)
 
 const ResultsWrapper = styled.div`
   width: 80%;
@@ -35,20 +38,12 @@ const HitCount = connectStateResults(({ searchResults }) => {
   ) : null
 })
 
-const PageHit = ({ hit }) => {
 
-  return (
-    <ResultCard
-      url={hit.url}
-      title={hit.title}
-    />
-  )
-}
 
 const HitsInIndex = ({ index }) => (
   <Index indexName={index.name}>
     <HitCount />
-    <Hits className="Hits" hitComponent={PageHit} />
+    <CustomHits />
   </Index>
 )
 

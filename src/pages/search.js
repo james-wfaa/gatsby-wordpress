@@ -5,14 +5,13 @@ import StaticSearchAlgolia from '../components/parts/AlgoliaSearch/StaticSearchA
 
 
 const Search = ({location}) => {
-  const [events, setEvents] = useState([])
   const [searchString, setSearchString] = useState(location?.state?.string ? location.state.string : null)
+
   return (
     <Layout>
       <StaticSearchAlgolia
-      indices={[{name: "Events"}, {name: "Posts"}]}
+      indices={[{name: "All"}]}
       results={false}
-      callback={(arr) => setEvents(arr)}
       searchString={searchString}
       />
     </Layout>

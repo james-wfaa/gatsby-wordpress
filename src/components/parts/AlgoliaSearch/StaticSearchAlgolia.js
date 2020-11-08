@@ -8,16 +8,26 @@ import SearchPageResults from "./SearchPageResults"
 import AlgoliaPagination from "./AlgoliaPagination"
 
 const StyledWrapper = styled.div`
+
+`
+
+const SelectionsWrapper = styled.div`
+  padding-top: 58px;
   background-color: ${colors.navcardGrey};
-  /* margin-bottom: 88px; */
 `
-
-
-const StyledButtonWrapper = styled.div`
-padding-top: 58px;
-padding-bottom: 58px;
+const RefinementChoices = styled.div`
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  ul {
+    list-style-type: none;
+    li {
+      margin: 20px;
+      text-decoration: none;
+      display: inline-block;
+    }
+  }
 `
-
 
 
 const AccordianSearchAlgolia = props => {
@@ -34,26 +44,29 @@ const AccordianSearchAlgolia = props => {
 
   return (
     <StyledWrapper>
-        <StyledButtonWrapper>
-          <div>
-            <InstantSearch
-            searchClient={searchClient}
-            indexName={props.indices[0].name}
-            onSearchStateChange={({ query }) => setQuery(query)}
-            >
-            <Configure
-              // filters={filters}
-              hitsPerPage={5}
-            />
-            <AccordianSearchBoxAlgolia defaultRefinement={props.searchString} onFocus={() => setFocus(true)} hasFocus={hasFocus} />
-            <SearchPageResults
-            show={query && query.length > 0 && hasFocus}
-            indices={props.indices}
-            />
-            <AlgoliaPagination />
-          </InstantSearch>
-          </div>
-        </StyledButtonWrapper>
+      <div>
+        <InstantSearch
+        searchClient={searchClient}
+        indexName={props.indices[0].name}
+        onSearchStateChange={({ query }) => setQuery(query)}
+        >
+        <Configure
+          // filters={filters}
+          hitsPerPage={5}
+        />
+        <SelectionsWrapper>
+          <AccordianSearchBoxAlgolia defaultRefinement={props.searchString} onFocus={() => setFocus(true)} hasFocus={hasFocus} />
+          <RefinementChoices>
+            <RefinementList attribute="type" />
+          </RefinementChoices>
+        </SelectionsWrapper>
+        <SearchPageResults
+        show={query && query.length > 0 && hasFocus}
+        indices={props.indices}
+        />
+        <AlgoliaPagination />
+      </InstantSearch>
+      </div>
     </StyledWrapper>
   )
 }

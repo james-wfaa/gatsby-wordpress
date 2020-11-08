@@ -69,7 +69,7 @@ function WordPressPage({ page, events }) {
           excerpt={excerpt}
         />
         <AccordianSearchAlgolia
-          index="Events"
+          index="All"
           results={true}
         />
         <PageSection>
