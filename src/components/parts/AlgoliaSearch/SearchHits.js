@@ -13,6 +13,10 @@ const SearchHits = ({ hits, hitHandler }) => {
   }, [loaded])
 
   let cards = hits.map(hit => {
+    let topResult = false;
+    if (hit.__position === 1) {
+      topResult = true;
+    }
     switch (hit.type) {
       case "Event":
         return (
@@ -24,6 +28,7 @@ const SearchHits = ({ hits, hitHandler }) => {
           excerpt={hit.excerpt}
           date={hit.date}
           location={hit.venue.address}
+          topResult={topResult}
         />
         )
       case "Post":
@@ -33,6 +38,7 @@ const SearchHits = ({ hits, hitHandler }) => {
           url={hit.url}
           title={hit.title}
           initialBlock={hit.blocks[0]}
+          topResult={topResult}
         />
         )
       default:

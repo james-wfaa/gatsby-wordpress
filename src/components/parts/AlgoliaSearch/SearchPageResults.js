@@ -51,7 +51,6 @@ const TotalWrapper = (props) => {
 }
 
 const HitCount = connectStateResults(({ searchResults, firstHit, lastHit }) => {
-  console.log(searchResults)
   const hitCount = searchResults && searchResults.nbHits
   return hitCount > 0 ? (
     <HitCounterWrapper>
