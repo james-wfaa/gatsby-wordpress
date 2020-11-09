@@ -11,7 +11,7 @@ const GenericModal = ({data, opacity, button, closeCallback}) => {
   const OuterWrapper = styled.div`
   height: 100vh;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1001;
