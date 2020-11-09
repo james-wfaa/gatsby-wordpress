@@ -17,6 +17,7 @@ const SelectionsWrapper = styled.div`
 `
 const RefinementChoices = styled.div`
   width: 80%;
+  max-width: 760px;
   margin: 0 auto;
   display: grid;
   ul {
@@ -52,7 +53,7 @@ const AccordianSearchAlgolia = props => {
         >
         <Configure
           // filters={filters}
-          hitsPerPage={5}
+          hitsPerPage={10}
         />
         <SelectionsWrapper>
           <AccordianSearchBoxAlgolia defaultRefinement={props.searchString} onFocus={() => setFocus(true)} hasFocus={hasFocus} />

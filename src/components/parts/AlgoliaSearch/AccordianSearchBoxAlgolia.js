@@ -6,6 +6,7 @@ import Search from "../../../svg/search.svg"
 
 const StyledDiv = styled.div`
   width: 80%;
+  max-width: 760px;
   margin: 0px auto 24px;
   display: grid;
   grid-template-columns: 1fr 30px;

@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { breakpoints, colors } from "../../css-variables"
@@ -10,12 +10,12 @@ import {
   connectHits
 } from "react-instantsearch-dom"
 import Hits from './SearchHits'
-import ResultCard from './cards/EventCard'
 
 const CustomHits = connectHits(Hits)
 
 const ResultsWrapper = styled.div`
   width: 80%;
+  max-width: 760px;
   margin: 0 auto;
   a {
     text-decoration: none;
@@ -26,26 +26,34 @@ const ResultsWrapper = styled.div`
   }
 `
 
+const HitCounterWrapper = styled.div`
+  margin-top: 54px;
+  p {
+    text-align: center;
+  }
+`
+
 
 
 const HitCount = connectStateResults(({ searchResults }) => {
   const hitCount = searchResults && searchResults.nbHits
-
   return hitCount > 0 ? (
-    <div className="HitCount">
-      {hitCount} result{hitCount !== 1 ? `s` : ``}
-    </div>
+    <HitCounterWrapper>
+      <p>Displaying 10 of {hitCount} result{hitCount !== 1 ? `s` : ``}</p>
+    </HitCounterWrapper>
   ) : null
 })
 
 
 
-const HitsInIndex = ({ index }) => (
-  <Index indexName={index.name}>
-    <HitCount />
-    <CustomHits />
-  </Index>
-)
+const HitsInIndex = ({ index }) => {
+  return (
+    <Index indexName={index.name}>
+      <HitCount />
+      <CustomHits />
+    </Index>
+  )
+}
 
 const SearchResult = ({ indices, className }) => {
   return (

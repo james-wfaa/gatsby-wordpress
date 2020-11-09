@@ -42,24 +42,22 @@ const CardWrapper = styled.div`
   }
 `
 
-const EventCard = ({date, excerpt, hit, location, title, type, url}) => {
-  let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  let parsedDate = new Date(date * 1000).toLocaleDateString('en-US', options)
-  let parsedTime = new Date(date * 1000).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})
+const PostCard = ({excerpt, hit, initialBlock, title,  url}) => {
+
+  let truncatedText = initialBlock.length < 325 ? initialBlock : initialBlock.substr(0, 326) + "..."
 
   return (
     <CardWrapper>
       <Link to={url}>
-        <p><span>{type.toUpperCase()}</span></p>
+        <p><span>STORY</span></p>
         <h3>{title}</h3>
-        <p className="datetime">{parsedDate}, {parsedTime} | {location}</p>
         <p><span>Tag 1, tag 2, tag 3</span></p>
-        {excerpt ?
-        <div dangerouslySetInnerHTML={{__html: excerpt}}></div>
+        {initialBlock ?
+        <div dangerouslySetInnerHTML={{__html: truncatedText}}></div>
         : null}
       </Link>
     </CardWrapper>
   )
 }
 
-export default EventCard
+export default PostCard
