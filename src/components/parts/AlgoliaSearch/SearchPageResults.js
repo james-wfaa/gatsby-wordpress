@@ -33,13 +33,33 @@ const HitCounterWrapper = styled.div`
   }
 `
 
+const TotalWrapper = (props) => {
+  const [firstHit, setFirstHit] = useState(1)
+  const [lastHit, setLastHit] = useState(1)
 
+  const hitHandler = (first, last) => {
+    setFirstHit(first);
+    setLastHit(last);
+  }
 
-const HitCount = connectStateResults(({ searchResults }) => {
+  return (
+    <>
+      <HitCount firstHit={firstHit} lastHit={lastHit} />
+      <CustomHits hitHandler={(first, last) => hitHandler(first, last)} />
+    </>
+  )
+}
+
+const HitCount = connectStateResults(({ searchResults, firstHit, lastHit }) => {
+  console.log(searchResults)
   const hitCount = searchResults && searchResults.nbHits
   return hitCount > 0 ? (
     <HitCounterWrapper>
-      <p>Displaying 10 of {hitCount} result{hitCount !== 1 ? `s` : ``}</p>
+      {firstHit === 1 ?
+        <p>Displaying {searchResults.hitsPerPage} of {hitCount} result{hitCount !== 1 ? `s` : ``}</p>
+        :
+        <p>Displaying {firstHit}-{lastHit} of {hitCount} result{hitCount !== 1 ? `s` : ``}</p>
+      }
     </HitCounterWrapper>
   ) : null
 })
@@ -49,8 +69,8 @@ const HitCount = connectStateResults(({ searchResults }) => {
 const HitsInIndex = ({ index }) => {
   return (
     <Index indexName={index.name}>
-      <HitCount />
-      <CustomHits />
+      <TotalWrapper />
+
     </Index>
   )
 }
