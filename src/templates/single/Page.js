@@ -66,6 +66,25 @@ export const query = graphql`
           }
         }
       }
+      introButtons {
+        introButtons {
+          buttonLink {
+            ... on WpPage {
+              id
+              uri
+            }
+            ... on WpPost {
+              id
+              uri
+            }
+            ... on WpEvent {
+              id
+              uri
+            }
+          }
+          buttonExternalLinkUrl
+        }
+      }
       storyCategories {
         storycategoriesinner {
           category {

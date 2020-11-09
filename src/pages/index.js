@@ -11,16 +11,19 @@ export default () => (
       <h1>uwalumni.com redesign - development work in progress</h1>
       <h2>Full Page Templates</h2>
       <li>
+        <Link to="/homepage">Product Aggregate - NEW</Link>
+      </li>
+      <li>
         <Link to="/homepage">Full Homepage - enhancements</Link>
       </li>
       <li>
-        <Link to="/news">News/Stories Page - NEW</Link>
+        <Link to="/news">News/Stories Page</Link>
       </li>
       <li>
-        <Link to="/events">Events Calendar Page - NEW</Link>
+        <Link to="/events">Events Calendar Page </Link>
       </li>
       <li>
-        <Link to="/event/planarians">Event Page - Enhancements</Link>
+        <Link to="/event/planarians">Event Page</Link>
       </li>
       <li>
         <Link to="/event/badger-cafe-threats-to-peace-around-the-world/">Event Page (no image)</Link>
