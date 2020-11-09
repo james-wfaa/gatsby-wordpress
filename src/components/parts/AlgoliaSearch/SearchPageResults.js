@@ -56,7 +56,7 @@ const HitCount = connectStateResults(({ searchResults, firstHit, lastHit }) => {
   return hitCount > 0 ? (
     <HitCounterWrapper>
       {firstHit === 1 ?
-        <p>Displaying {searchResults.hitsPerPage} of {hitCount} result{hitCount !== 1 ? `s` : ``}</p>
+        <p>Displaying {searchResults.hitsPerPage < hitCount ? searchResults.hitsPerPage : hitCount} of {hitCount} result{hitCount !== 1 ? `s` : ``}</p>
         :
         <p>Displaying {firstHit}-{lastHit} of {hitCount} result{hitCount !== 1 ? `s` : ``}</p>
       }

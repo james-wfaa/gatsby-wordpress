@@ -3,13 +3,14 @@ import EventCard from './cards/EventCard'
 import PostCard from './cards/PostCard'
 
 const SearchHits = ({ hits, hitHandler }) => {
-
-  let firstHit = hits[0].__position
-  let secondHit = hits[hits.length - 1].__position
-
+  const [loaded, setLoaded] = useState(hits.length > 0)
   useEffect(() => {
-    hitHandler(firstHit, secondHit)
-  })
+    if (loaded) {
+      let firstHit = hits[0].__position
+      let secondHit = hits[hits.length - 1].__position
+      hitHandler(firstHit, secondHit)
+    }
+  }, [loaded])
 
   let cards = hits.map(hit => {
     switch (hit.type) {
