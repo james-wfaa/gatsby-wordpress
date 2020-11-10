@@ -1,14 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
 import styled from 'styled-components'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import EventRegistration from "../content-blocks/EventRegistration"
 import TitleSection from '../parts/WordPressTitleSection'
 import EventMapDetails from "../content-blocks/EventMapDetails"
+import SocialShareLinks from "../parts/SocialShareLinks"
+import Button from "../parts/Button"
+import GenericModal from '../content-modules/GenericModal'
+
+
 
 const WordPressEventContentBlocks = ({className, date, startDate, endDate, link, venue, cost, organizers, title, eventDetails, blocks, content}) => {
     console.log(blocks);
 
+    const [show, setShow] = useState(false);
+
+    const handleModal = () => {
+      let currentshow = show;
+      setShow(!currentshow)
+      console.log("Is Shown" + show);
+    }
+  
+    const EventLinksContent = (blocks) ? blocks.map((block) => {
+        switch(block.name) {
+            case "tribe/event-links":
+                const blockContent = (block.isDynamic) ? block.dynamicContent : block.originalContent
+                return (<div className={block.name.replace('/', '-')} dangerouslySetInnerHTML={{__html: blockContent}} />)
+                break
+            default:
+                break
+        }
+    } )
+    : null
+    
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
@@ -48,14 +73,22 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
         }
     ) : null
 
+    console.log(RenderedBlocks)
+
     return(
-        <div className={className}>
-           
+        <div className={className} id="Top">
+            {show ?
+            <GenericModal
+            data={<div>TestX</div>}
+            opacity={0.9}
+            closeCallback={() => handleModal()}/>
+            : null}
+
             <div className="desktopWrap">
                 <TitleSection className="header" heading={title} event />
                 <div className="mobileWrap">
                 { RenderedBlocks && (
-                    <div className="content">{RenderedBlocks}</div>
+                    <div className="content">234342{RenderedBlocks}</div>
                 )}
                 { !RenderedBlocks && (
                     <div className="content" dangerouslySetInnerHTML={{ __html: content }} />
@@ -70,24 +103,45 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                         cost={cost} 
                         organizers={organizers} 
                         eventDetails={eventDetails}
+                        calendarLinks={EventLinksContent}
                     />
                 </div>
+                <div className="social-mobile">
+                    <div className="buttonWrap" onClick={() => handleModal()}>
+                        <Button link="#Top" text="Questions" fullwidth alt altborder />
+                    </div>
+                    <h2>Invite Others</h2>
+                    <SocialShareLinks></SocialShareLinks>
+                </div>
+
                 <EventMapDetails 
                     className="eventMap" 
                     venue={venue}
                 />
 
             </div>
-            <EventRegistration 
-                className="reg-desktop" 
-                date={date}
-                registrationLink={link} 
-                startDate={startDate} 
-                endDate={endDate} 
-                venue={venue} cost={cost} 
-                organizers={organizers} 
-                eventDetails={eventDetails}
-            />
+            <div className="reg-desktop">
+
+                <EventRegistration 
+                    className="reg-Wrap" 
+                    date={date}
+                    registrationLink={link} 
+                    startDate={startDate} 
+                    endDate={endDate} 
+                    venue={venue} cost={cost} 
+                    organizers={organizers} 
+                    eventDetails={eventDetails}
+                    calendarLinks={EventLinksContent}
+                />
+                <div className="social-desktop">
+                    <div className="buttonWrap" onClick={() => handleModal()}>
+                        <Button link="#Top" text="Questions" fullwidth alt altborder />
+                    </div>
+                    <h2>Invite Others</h2>
+                    <SocialShareLinks></SocialShareLinks>
+                </div>
+
+            </div>
 
            
         </div>
@@ -143,11 +197,18 @@ margin: ${sizes.s48} auto 0;
         margin-left: 93px;
         margin-top: 12px; /* to align with the header in the janky font */
         max-width: 187px;
+        .reg-Wrap{
+            max-width: 187px;
+        }
     }
     @media screen and ${breakpoints.laptopS} {
         margin-left: 116px;
         max-width: 252px;
+        .reg-Wrap{
+            max-width: 252px;
+        }
     }
+
 
     
 }
@@ -162,6 +223,38 @@ margin: ${sizes.s48} auto 0;
     }
 
 }
+
+.social-mobile{
+    min-width: 300px;
+    width: 100%;   
+    max-width: 303px;
+    margin: 0 auto;
+    text-align: center;
+    margin: ${sizes.s40} auto ${sizes.s48} auto;
+    h2{
+        padding-top: ${sizes.s40};
+    }
+    @media screen and ${breakpoints.tabletS} {
+        max-width: 536px;
+    }
+    @media screen and ${breakpoints.tabletL} {
+        display: none;
+    }
+}
+
+.social-desktop{
+    display: none;
+    width: 100%;  
+    text-align: center;
+    margin: ${sizes.s40} auto ${sizes.s48} auto;
+    h2{
+        padding-top: ${sizes.s40};
+    }
+    @media screen and ${breakpoints.tabletL} {
+        display: block;
+    }
+}
+
     
 .content{
     > p, 

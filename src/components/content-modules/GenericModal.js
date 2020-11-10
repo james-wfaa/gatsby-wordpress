@@ -2,20 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import { useLockBodyScroll } from "../hooks"
 
-
-
-
-const GenericModal = ({data, opacity, button, closeCallback}) => {
-  let wrapperOpacity = `rgba(0,0,0,${opacity})`
+const GenericModal = ({data, button, closeCallback}) => {
 
   const OuterWrapper = styled.div`
   height: 100vh;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1001;
-  background-color: ${wrapperOpacity};
+  background-color: rgba(0,0,0,.58);
+  backdrop-filter: blur(0);
+  
   `
 
   const ContentWrapper = styled.div`
@@ -23,14 +21,18 @@ const GenericModal = ({data, opacity, button, closeCallback}) => {
     width: 80%;
     top: 50%;
     left: 50%;
-    position: absolute;
+    position: relative;
     transform: translate(-50%, -50%);
     background-color: white;
+    z-index: 1002;
+    
   `
 
   const PropData = styled.div`
-    width: 80%;
-    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
   `
   const DefaultClose = styled.button`
     position: absolute;
