@@ -5,12 +5,14 @@ import FaTwitter from "../../svg/twitter_icon_gray.svg";
 import FaFacebook from "../../svg/fb_icon_gray.svg";
 import { ShareButtonRectangle, ShareBlockStandard } from "react-custom-share";
 import RegistrationButtons from '../parts/RegistrationButtons'
+import EventLinksBlock from "./EventLinks"
+
 import Button from '../parts/Button'
 import { convertTime, compareDate } from "../../utils/tools"
 import GenericModal from '../content-modules/GenericModal'
 
 
-const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails}) => {
+const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails, calendarLinks}) => {
 
     const classesList = `${className}`;
     const costDisplay = (cost) => {
@@ -46,12 +48,11 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
       console.log("Is Shown" + show);
     }
 
-
     return(
         <div className={classesList}>
             {show ?
             <GenericModal
-            data={<div>Add Temp</div>}
+            data={<EventLinksBlock>{calendarLinks}</EventLinksBlock>}
             opacity={0.9}
             closeCallback={() => handleModal()}/>
             : null}

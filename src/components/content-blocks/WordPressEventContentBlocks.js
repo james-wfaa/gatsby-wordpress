@@ -22,6 +22,19 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
       console.log("Is Shown" + show);
     }
   
+    const EventLinksContent = (blocks) ? blocks.map((block) => {
+        switch(block.name) {
+            case "tribe/event-links":
+                const blockContent = (block.isDynamic) ? block.dynamicContent : block.originalContent
+                return (<div className={block.name.replace('/', '-')} dangerouslySetInnerHTML={{__html: blockContent}} />)
+                break
+            default:
+                break
+        }
+    } )
+    : null
+    
+
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
        
@@ -60,11 +73,13 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
         }
     ) : null
 
+    console.log(RenderedBlocks)
+
     return(
         <div className={className} id="Top">
             {show ?
             <GenericModal
-            data={<div>Test</div>}
+            data={<div>TestX</div>}
             opacity={0.9}
             closeCallback={() => handleModal()}/>
             : null}
@@ -73,7 +88,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                 <TitleSection className="header" heading={title} event />
                 <div className="mobileWrap">
                 { RenderedBlocks && (
-                    <div className="content">{RenderedBlocks}</div>
+                    <div className="content">234342{RenderedBlocks}</div>
                 )}
                 { !RenderedBlocks && (
                     <div className="content" dangerouslySetInnerHTML={{ __html: content }} />
@@ -88,6 +103,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                         cost={cost} 
                         organizers={organizers} 
                         eventDetails={eventDetails}
+                        calendarLinks={EventLinksContent}
                     />
                 </div>
                 <div className="social-mobile">
@@ -115,6 +131,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     venue={venue} cost={cost} 
                     organizers={organizers} 
                     eventDetails={eventDetails}
+                    calendarLinks={EventLinksContent}
                 />
                 <div className="social-desktop">
                     <div className="buttonWrap" onClick={() => handleModal()}>
