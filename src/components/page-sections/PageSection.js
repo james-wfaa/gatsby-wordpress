@@ -30,7 +30,8 @@ const PageSection = ({
     fromBlocks,
     children,
     stagger,
-    desktopOnly
+    desktopOnly,
+    onlyChild
  }) => {
 
 
@@ -41,13 +42,14 @@ const PageSection = ({
     const altClass = alt ? 'alt' : ''
     const plainTextContent = plainText ? ` plaintext` : ''
     const topBorderClass = topBorder ? 'topborder' : ''
-    const hasPreHeading = preheading && !heading ?  'hasPreHeading' : ''
-    const hasNoHeading = !preheading && !heading ? 'hasNoHeading' : ''
+    const onlyChildClass = onlyChild ? ' onlychild' : ''
+    const hasPreHeading = preheading && !heading ?  ' hasPreHeading' : ''
+    const hasNoHeading = !preheading && !heading ? ' hasNoHeading' : ''
     const popClass = popOut ? `${className}__popOut` : ''
     const staggerClass = (stagger) ? ' stagger' : ''
 
     return (
-        <div className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass} ${hasPreHeading} ${hasNoHeading} ${bgClass}`} >
+        <div className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading} ${bgClass}`} >
             { ! background &&  (
             <div className={`${className}__innerwrap   ${popClass}` }>
                 { preheading && (
@@ -120,14 +122,14 @@ const StyledPageSection = styled(PageSection)`
         &:last-child {
             padding-bottom: 128px;
         }
-        &:first-child {
-            padding-bottom: 88px;
+        &.onlychild {
+            &:last-child {
+                padding-bottom: 88px;
+            }
         }
+        
     }
     
-    
-
-        
     &.stagger:nth-child(odd) {
         background-color: ${colors.bgActiveGrey};
     }
@@ -138,7 +140,6 @@ const StyledPageSection = styled(PageSection)`
         padding-top: 0;
         padding-bottom: 0;
     }
-         
     &.topborder {
         border-top: ${sizes.s36} solid ${colors.sectionBorder};
     }
@@ -149,8 +150,6 @@ const StyledPageSection = styled(PageSection)`
     &.leftAlign {
         text-align: left;
     }
-    
-
     &.hasPreHeading {
         padding-top: 0;
     }
