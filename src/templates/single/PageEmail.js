@@ -5,6 +5,8 @@ import { breakpoints, sizes, colors, mixins } from '../../components/css-variabl
 import Layout from "../../components/layout"
 import Button from "../../components/parts/Button"
 import PageSection from "../../components/page-sections/PageSection"
+import SimpleSlider from "../../components/content-modules/SimpleSlider"
+import ContentCard from "../../components/content-blocks/ContentCard"
 import WordPressContent from "../../components/content-blocks/WordPressContent"
 import BackgroundImage from 'gatsby-background-image'
 import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
@@ -13,19 +15,25 @@ import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
 
 const WordPressEmailPage = ({ className, data }) => {
-  const { page } = data
+  const { page, posts } = data
+  console.log(posts)
   const { title, content, HalfPageAd } = page
 
-  console.log(page)
-  console.log(HalfPageAd.adImage.localFile);
+  let postCards = posts.nodes.map((post) => {
+    console.log(post)
+    return (
+      <ContentCard {...post} />
+    )
+  })
+
 
   return (
     <Layout>
-      <div className={`${className} foobar`}>
-        <div className="col">
-        <PageSection heading={title} leftAlign headingCompact/>
+      <div className={`${className}`}>
+        <div className="col col--copy">
+        <PageSection heading={title} leftAlign headingCompact onlyChild>
         <WordPressContent content={content} />
-        
+        </PageSection>
         </div>
         <div className="col col--ad">
           <BackgroundImage
@@ -47,6 +55,27 @@ const WordPressEmailPage = ({ className, data }) => {
         </div>
 
       </div>
+      <PageSection 
+        heading="Featured News and Stories" 
+        buttons={[
+          {
+            link: "/news/all",
+            text: "See All News and Stories",
+          },
+        ]} 
+        topBorder 
+        desktopOnly
+      >
+          <SimpleSlider 
+          className="center"
+          slidesToShow="1"
+          dots
+          centerMode
+          variableWidth>
+            {postCards}
+          </SimpleSlider>
+        </PageSection>
+      
     </Layout>
   )
 }
@@ -110,6 +139,12 @@ div{
     }
   }
 }
+.supplemental {
+  display: none;
+  @media screen and ${breakpoints.tabletL} {
+    display: block;
+  }
+}
 .col--ad {
   display: none;
   @media screen and ${breakpoints.tabletL} {
@@ -119,6 +154,7 @@ div{
       height: 885px;
       font-size: ${sizes.s26};
       color: ${colors.titleWhite};
+      background-size: cover;
 
       .AdTitle{
         font-weight: bold;
@@ -141,6 +177,12 @@ div{
     }
   }
 
+}
+.col-copy {
+  padding-bottom: ${sizes.s58};
+  @media screen and ${breakpoints.tabletL} {
+    padding-bottom: ${sizes.s88};
+  }
 }
 `
 export default StyledWordPressEmailPage
@@ -200,6 +242,20 @@ export const query = graphql`
             ...HeroImage
           }
         }
+      }
+    },
+    posts: allWpPost(limit: 6, sort: {order: ASC, fields: date}) {
+      nodes {
+        title
+        excerpt
+        featuredImage {
+          node {
+            localFile {
+              ...HeroImage
+            }
+          }
+        }
+        url: uri
       }
     }
   }

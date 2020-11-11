@@ -31,14 +31,7 @@ const StyledPageSectionButtons = styled(PageSectionButtons)`
     &.compact {
         margin-top: ${sizes.s40};
     }
-    &.bgImage {
-        padding-bottom: 88px;
-        // this is supposed to be logic for PageSection, to ensure larger bottom padding on last PageSection
-        // but I think we only ever use a bgimage on the last page section, so it's an effective hack I guess
-        &:last-child {
-            padding-bottom: 128px;
-        }
-    }
+    
     
     
 `

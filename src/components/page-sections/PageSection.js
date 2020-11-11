@@ -29,25 +29,29 @@ const PageSection = ({
     bgImage,
     fromBlocks,
     children,
-    stagger
+    stagger,
+    desktopOnly,
+    onlyChild
  }) => {
 
 
     const background =  typeof bgImage !== "undefined" && bgImage !== null
     const bgClass = (background) ? 'withBg' : ''
+    const desktopOnlyClass = (desktopOnly) ? 'desktopOnly' : ''
     const classesList = alt ? `${className} ${className}--alt` : className
     const altClass = alt ? 'alt' : ''
     const plainTextContent = plainText ? ` plaintext` : ''
-    const topBorderClass = topBorder ? ` ${className}--topborder` : ''
-    const hasPreHeading = preheading && !heading ?  ` ${className}--hasPreHeading` : ''
-    const hasNoHeading = !preheading && !heading ? ` ${className}--hasNoHeading` : ''
+    const topBorderClass = topBorder ? 'topborder' : ''
+    const onlyChildClass = onlyChild ? ' onlychild' : ''
+    const hasPreHeading = preheading && !heading ?  ' hasPreHeading' : ''
+    const hasNoHeading = !preheading && !heading ? ' hasNoHeading' : ''
     const popClass = popOut ? `${className}__popOut` : ''
     const staggerClass = (stagger) ? ' stagger' : ''
 
     return (
-        <div className={`${className}__wrapper ${staggerClass} ${altClass} ${bgClass}`} >
+        <div className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading} ${bgClass}`} >
             { ! background &&  (
-            <div className={`${className} ${hasPreHeading} ${hasNoHeading} ${topBorderClass} ${popClass}` }>
+            <div className={`${className}__innerwrap   ${popClass}` }>
                 { preheading && (
                 <div className={`${className}__preheading`}>{preheading}</div>
             )}
@@ -71,7 +75,7 @@ const PageSection = ({
             className={`${classesList} ${className}--bgimage`}
             fluid={bgImage.childImageSharp.fluid}
             preserveStackingContext
-          ><div className="wrapper">
+          >
             { heading && (
                 <PageSectionHeader heading={heading} pageTitle={pageTitle} withSocial={withSocial} bgimage />
             )}
@@ -83,7 +87,7 @@ const PageSection = ({
             </div>
             { buttons && (<PageSectionButtons buttons={buttons} bgimage buttonsAlt/>
             )}
-          </div>
+         
 
 
 
@@ -98,9 +102,47 @@ const PageSection = ({
 
 const StyledPageSection = styled(PageSection)`
 
+    &.desktopOnly {
+        display: none;
+        @media screen and ${breakpoints.laptopS} {
+           display: block;
+        }
+    }
     position: relative;
+    margin: 0 auto;
     text-align: center;
-    padding-top: 88px;
+    padding-top: 58px;
+    padding-bottom: 58px;
+    &:last-child {
+        padding-bottom: 88px;
+    }
+    @media screen and ${breakpoints.tabletS} {
+        padding-top: 88px;
+        padding-bottom: 88px;
+        &:last-child {
+            padding-bottom: 128px;
+        }
+        &.onlychild {
+            &:last-child {
+                padding-bottom: 88px;
+            }
+        }
+        
+    }
+    
+    &.stagger:nth-child(odd) {
+        background-color: ${colors.bgActiveGrey};
+    }
+    &.alt {
+        background-color: ${colors.bgActiveGrey};
+    }
+    &.withBg {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    &.topborder {
+        border-top: ${sizes.s36} solid ${colors.sectionBorder};
+    }
     .sectionexcerpt {
         a {
             color: ${colors.bgRed}
@@ -108,33 +150,13 @@ const StyledPageSection = styled(PageSection)`
     &.leftAlign {
         text-align: left;
     }
-    &__wrapper {
-        margin: 0 auto;
-
-        padding-bottom: 56px;
-        &:last-child {
-            padding-bottom: 128px;
-        }
-        &.stagger:nth-child(odd) {
-            background-color: ${colors.bgActiveGrey};
-        }
-        &.alt {
-            background-color: ${colors.bgActiveGrey};
-        }
-        &.withBg {
-            padding-bottom: 0;
-        }
-    }
-
-    &--hasPreHeading {
+    &.hasPreHeading {
         padding-top: 0;
     }
-    &--hasNoHeading {
+    &.hasNoHeading {
         padding-top: 58px;
     }
-    &--topborder {
-        border-top: ${sizes.s36} solid ${colors.sectionBorder};
-    }
+    
     &--addPad {
         padding-bottom: 116px;
     }
