@@ -83,6 +83,7 @@ export const query = graphql`
             }
           }
           buttonExternalLinkUrl
+          buttonText
         }
       }
       storyCategories {
