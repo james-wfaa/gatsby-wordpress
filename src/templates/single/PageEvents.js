@@ -75,12 +75,13 @@ function WordPressPage({ data }) {
 
   return (
     <Layout noborder>
+      { featuredImage && featuredImage.node && (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}
           heroHeading="<span>Badger</span> ON"
           redHeading={title}
           excerpt={excerpt}
-        />
+        />)}
         <AccordianSearch />
         <PageSection>
         <SimpleSlider

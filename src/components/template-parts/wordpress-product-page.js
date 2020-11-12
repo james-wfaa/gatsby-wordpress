@@ -23,12 +23,15 @@ function WordPressPage({ page }) {
 
   return (
     <Layout>
-      <HeroIntroSection  
-      heroImage={featuredImage.node.localFile}
-      heroSize="slim"
-      excerpt={excerpt}
-      buttons={normalizedButtons}
-      />
+      { featuredImage && featuredImage.node && (
+        <HeroIntroSection  
+          heroImage={featuredImage.node.localFile}
+          heroSize="slim"
+          excerpt={excerpt}
+          buttons={normalizedButtons}
+        />
+      )}
+      
 
     <WordPressContentBlocks blocks={blocks} />
 
