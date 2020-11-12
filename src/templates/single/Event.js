@@ -64,6 +64,7 @@ export const query = graphql`
         eventFullText
         eventlocationDetails
         registrationUrl
+        questions
       }
       date(formatString: "dddd, MMM. D")
       endDate

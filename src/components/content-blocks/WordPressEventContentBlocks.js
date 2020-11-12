@@ -79,7 +79,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
         <div className={className} id="Top">
             {show ?
             <GenericModal
-            data={<div>TestX</div>}
+            data={eventDetails.questions}
             opacity={0.9}
             closeCallback={() => handleModal()}/>
             : null}

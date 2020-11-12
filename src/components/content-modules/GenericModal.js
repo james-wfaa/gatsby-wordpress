@@ -45,7 +45,7 @@ const GenericModal = ({data, button, closeCallback}) => {
   return (
     <OuterWrapper>
       <ContentWrapper>
-        {data ? <PropData>{data}</PropData> : null}
+        {data ? <PropData dangerouslySetInnerHTML={{ __html: data }}></PropData> : null}
         {button ? button : <DefaultClose onClick={closeCallback}>Close</DefaultClose>}
       </ContentWrapper>
     </OuterWrapper>
