@@ -45,7 +45,7 @@ function WordPressPage({ data }) {
 
   const cardGridPosts = posts.nodes.slice(0,9)
   let postCards = cardGridPosts.map((post) => {
-    console.log(post)
+    console.log('post tiles post: ',post)
     return (
       <ContentCardD {...post} />
     )

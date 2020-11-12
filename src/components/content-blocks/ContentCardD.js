@@ -6,7 +6,7 @@ import { shortDate } from "../../utils/tools"
 
 const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, venue, excerpt, url, urlText })=> {
 
-    console.log(title)
+    console.log('ContentCardD title: ',title)
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
 
     /* let's make this a helper available anywhere we need to nicely shorten an excerpt */
