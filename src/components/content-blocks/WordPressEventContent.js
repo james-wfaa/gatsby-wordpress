@@ -158,6 +158,7 @@ margin: ${sizes.s48} auto 0;
     margin: ${sizes.s40} auto ${sizes.s48} auto;
     h2{
         padding-top: ${sizes.s40};
+        margin-bottom: 0px;
     }
     @media screen and ${breakpoints.tabletL} {
         display: block;

@@ -14,8 +14,8 @@ const SocialShareLinks = props => {
 
     const customStyles = css`
     padding: 0;
-    @media screen and ${breakpoints.laptopS} {
-        margin: 40px 0px 88px 0px;
+    @media screen and ${breakpoints.mobileZero} {
+        margin: 0px 0px 48px 0px;
     }
     &:hover{
         background: none;
@@ -80,6 +80,7 @@ const StyledSocialShareLinks = styled(SocialShareLinks)
     width: 100%;
     align-items: center;
     justify-content: center;
+    padding-right: 12px;
     .socialText{
         font-size: ${sizes.s16};
         color: ${colors.toneRed};
