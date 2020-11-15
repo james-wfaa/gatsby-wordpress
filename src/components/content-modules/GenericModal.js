@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import CloseButton from '../parts/CloseButton'
 import { useLockBodyScroll } from "../hooks"
 
 
@@ -11,11 +12,12 @@ const GenericModal = ({data, opacity, button, closeCallback}) => {
   const OuterWrapper = styled.div`
   height: 100vh;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1001;
   background-color: ${wrapperOpacity};
+  backdrop-filter: blur(15px);
   `
 
   const ContentWrapper = styled.div`
@@ -32,11 +34,7 @@ const GenericModal = ({data, opacity, button, closeCallback}) => {
     width: 80%;
     margin: 0 auto;
   `
-  const DefaultClose = styled.button`
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  `
+
 
   useLockBodyScroll();
 
@@ -44,7 +42,12 @@ const GenericModal = ({data, opacity, button, closeCallback}) => {
     <OuterWrapper>
       <ContentWrapper>
         {data ? <PropData>{data}</PropData> : null}
-        {button ? button : <DefaultClose onClick={closeCallback}>Close</DefaultClose>}
+        {button ? button :
+         <CloseButton
+          callback={closeCallback}
+          styleProps={{position: `absolute`, top: `8px`, right: `8px`}}
+         />
+        }
       </ContentWrapper>
     </OuterWrapper>
   )
