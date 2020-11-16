@@ -885,5 +885,12 @@ export const mixins = {
     
             }
         }
+    }`,
+    socialStyles: `{
+        width: 100%;  
+        margin: ${sizes.s40} auto ${sizes.s48} auto;
+        h2{
+            padding-top: ${sizes.s40};
+        }
     }`
 }

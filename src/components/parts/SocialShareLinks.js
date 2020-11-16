@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import styled from 'styled-components'
 import { colors, breakpoints, sizes } from '../css-variables'
 import TiSocialTwitter from "../../svg/uwa__twitter_white_24x24.inline.svg";
-import TiSocialFacebook from "../../svg/uwa__facebook_white_24x24.inline.svg";
+import {FaFacebookF} from "react-icons/fa";
 import {AiFillMail} from "react-icons/ai";
 import { ShareBlockStandard, ShareButtonIconOnly } from "react-custom-share";
 import { css } from "emotion";
@@ -15,12 +15,13 @@ const SocialShareLinks = props => {
     const customStyles = css`
     padding: 0;
     @media screen and ${breakpoints.mobileZero} {
-        margin: 0px 0px 48px 0px;
+        margin: 0px 10px 48px 10px;
+        width: 24px;
     }
     &:hover{
         background: none;
         box-shadow: none;
-
+        
         svg{
             path{
                 fill: ${colors.toneRed};
@@ -43,8 +44,8 @@ const SocialShareLinks = props => {
         url: url,
         button: ShareButtonIconOnly,
         buttons: [
-          { network: "Facebook", icon: TiSocialFacebook },
           { network: "Twitter", icon: TiSocialTwitter },
+          { network: "Facebook", icon: FaFacebookF },
           { network: "Email", icon: AiFillMail },
         ],
         text: title,
@@ -80,7 +81,14 @@ const StyledSocialShareLinks = styled(SocialShareLinks)
     width: 100%;
     align-items: center;
     justify-content: center;
-    padding-right: 12px;
+    @media screen and ${breakpoints.tabletL} {
+        align-items: flex-start;
+        justify-content: flex-start;
+        button:first-child{
+            margin-left: 0px;
+        }
+    
+    }
     .socialText{
         font-size: ${sizes.s16};
         color: ${colors.toneRed};
