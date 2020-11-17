@@ -13,7 +13,7 @@ function WordPressPage({ page }) {
 
   // TODO: filter out the array of blocks to remove all the default Event ones and only show the content ones
   // TODO: then pass that filtered list of blocks in lieu of the content
-  
+
   return (
     <Layout noborder={noborder}>
         {!!featuredImage?.node?.localFile?.childImageSharp && (

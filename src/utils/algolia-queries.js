@@ -108,6 +108,7 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
     date: dateTimestamp,
     startDate: startDateTimestamp,
     endDate: endDateTimestamp,
+    type: 'Event',
     ...rest,
   }
 }
@@ -126,6 +127,7 @@ function postToAlgoliaRecord({ node: { id, blocks, date, categories, ...rest } }
     blocks: blockContent,
     categories: convertedcategories,
     date: dateTimestamp,
+    type: 'Post',
     ...rest,
   }
 }
@@ -134,14 +136,14 @@ const queries = [
   {
     query: eventQuery,
     transformer: ({ data }) => data.events.edges.map(eventToAlgoliaRecord),
-    indexName: `Events`,
-    settings: { attributesToSnippet: [`blocksOriginal:20`, `excerpt`], attributesForFaceting: [`categories.name`, `venue.address`, `filterOnly(startDate)`, `filterOnly(endDate)`] },
+    indexName: `All`,
+    settings: { attributesToSnippet: [`blocksOriginal:20`, `excerpt`], attributesForFaceting: [`categories.name`, `venue.address`, `type`, `filterOnly(startDate)`, `filterOnly(endDate)`] },
   },
   {
     query: postQuery,
     transformer: ({ data }) => data.posts.edges.map(postToAlgoliaRecord),
-    indexName: `Posts`,
-    settings: { attributesToSnippet: [`blocks:40`], attributesForFaceting: [`categories.name`, `filterOnly(date)`] },
+    indexName: `All`,
+    settings: { attributesToSnippet: [`blocks:40`], attributesForFaceting: [`categories.name`, `type`, `filterOnly(date)`] },
   },
 ]
 
