@@ -111,6 +111,7 @@ export const colors = {
 }
 
 export const size = {
+    min: '0px',
     mobileS: '320px',
     mobileM: '375px',
     mobileL: '414px',
@@ -125,6 +126,7 @@ export const size = {
     max: '2880px'
 }
 export const breakpoints = {
+    mobileZero: `(min-width: ${size.min})`, 
     mobileS: `(min-width: ${size.mobileS})`,
     mobileM: `(min-width: ${size.mobileM})`,
     mobileL: `(min-width: ${size.mobileL})`,
@@ -882,6 +884,13 @@ export const mixins = {
                 }
     
             }
+        }
+    }`,
+    socialStyles: `{
+        width: 100%;  
+        margin: ${sizes.s40} auto ${sizes.s48} auto;
+        h2{
+            padding-top: ${sizes.s40};
         }
     }`
 }
