@@ -70,9 +70,10 @@ const AccordianSearchAlgolia = props => {
         <SelectionsWrapper>
           <AccordianSearchBoxAlgolia defaultRefinement={props.searchString} onFocus={() => setFocus(true)} hasFocus={hasFocus} />
           <RefinementChoices>
-            <p>Further filter results:</p>
+            <p>Included in Results:</p>
             <RefinementList
             attribute="type"
+            defaultRefinement={['Event', 'Post']}
             />
           </RefinementChoices>
         </SelectionsWrapper>
