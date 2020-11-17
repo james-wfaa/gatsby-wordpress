@@ -88,7 +88,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                 <TitleSection className="header" heading={title} event />
                 <div className="mobileWrap">
                 { RenderedBlocks && (
-                    <div className="content">234342{RenderedBlocks}</div>
+                    <div className="content">{RenderedBlocks}</div>
                 )}
                 { !RenderedBlocks && (
                     <div className="content" dangerouslySetInnerHTML={{ __html: content }} />

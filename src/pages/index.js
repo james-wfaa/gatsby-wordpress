@@ -11,7 +11,7 @@ export default () => (
       <h1>uwalumni.com redesign - development work in progress</h1>
       <h2>Full Page Templates</h2>
       <li>
-        <Link to="/homepage">Product Aggregate - NEW</Link>
+        <Link to="/product-aggregate">Product Aggregate - NEW</Link>
       </li>
       <li>
         <Link to="/homepage">Full Homepage - enhancements</Link>

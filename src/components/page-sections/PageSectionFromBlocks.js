@@ -10,7 +10,7 @@ import CardSet from "../content-modules/CardSet"
 
 
 
-const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop }) => {
+const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger }) => {
     // preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, children
 
     // get the title
@@ -84,11 +84,8 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop }) => {
             })
         
     return (
-        <PageSection heading={title} topBorder={borderTop} fromBlocks stagger>
-            {
-                innerContent
-
-            }
+        <PageSection heading={title} topBorder={borderTop} fromBlocks stagger={stagger} >
+            { innerContent }
         </PageSection>
     )
 
