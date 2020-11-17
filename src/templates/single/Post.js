@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import BlogPost from "../../components/template-parts/wordpress-post"
 
 export default ({ data }) => {
-console.log(data)
+console.log('Post.js data:',data)
 
 return (<BlogPost data={data} />)
 }

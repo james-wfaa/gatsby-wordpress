@@ -4,7 +4,7 @@ import WpEvent from "../../components/template-parts/wordpress-event"
 
 export default ({ data }) => {
   const { event } = data
-  console.log( event )
+  console.log( 'event object:',event )
   return (<WpEvent page={event} />)
 }
 
