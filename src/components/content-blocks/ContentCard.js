@@ -7,7 +7,7 @@ import { shortDate } from "../../utils/tools"
 
 
 const ContentCard = ({ className, startDate, endDate, title, category, venue, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size, promo = false }) => {
-    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More ></nobr>
+    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
     const fmtStartDate = shortDate(startDate)
     let fmtEndDate = null
     if (endDate && shortDate(endDate) !== fmtStartDate) {

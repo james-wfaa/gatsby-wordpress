@@ -45,7 +45,7 @@ function WordPressPage({ data }) {
 
   const cardGridPosts = posts.nodes.slice(0,9)
   let postCards = cardGridPosts.map((post) => {
-    console.log(post)
+    console.log('post tiles post: ',post)
     return (
       <ContentCardD {...post} />
     )
@@ -56,12 +56,13 @@ function WordPressPage({ data }) {
 
   return (
     <Layout noborder>
+      { featuredImage && featuredImage.node && (
       <HeroIntroSection
           heroImage={featuredImage.node.localFile}
           heroHeading="<span>Badger</span> ON"
           redHeading={title}
           excerpt={excerpt}
-      />
+      />)}
       <WordPressContent content={content} />
       <>{cats}</>
       <PageSection heading="Most Recent" bgImage={gridBgImage} buttons={moreButton}>

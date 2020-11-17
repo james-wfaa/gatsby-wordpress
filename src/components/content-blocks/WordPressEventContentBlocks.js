@@ -12,7 +12,7 @@ import GenericModal from '../content-modules/GenericModal'
 
 
 const WordPressEventContentBlocks = ({className, date, startDate, endDate, link, venue, cost, organizers, title, eventDetails, blocks, content}) => {
-    console.log(blocks);
+    console.log('WordPressEventContentBlocks - blocks:',blocks)
 
     const [show, setShow] = useState(false);
 
@@ -73,7 +73,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
         }
     ) : null
 
-    console.log(RenderedBlocks)
+    console.log('RenderedBlocks:',RenderedBlocks)
 
     return(
         <div className={className} id="Top">
@@ -88,7 +88,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                 <TitleSection className="header" heading={title} event />
                 <div className="mobileWrap">
                 { RenderedBlocks && (
-                    <div className="content">234342{RenderedBlocks}</div>
+                    <div className="content">{RenderedBlocks}</div>
                 )}
                 { !RenderedBlocks && (
                     <div className="content" dangerouslySetInnerHTML={{ __html: content }} />

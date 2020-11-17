@@ -55,12 +55,13 @@ function WordPressPage({ page, posts }) {
 
   return (
     <Layout noborder>
+      { featuredImage && featuredImage.node && (
       <HeroIntroSection
           heroImage={featuredImage.node.localFile}
           heroHeading="<span>Badger</span> ON"
           redHeading={title}
           excerpt={excerpt}
-      />
+      />)}
       <AccordianSearchAlgolia index="Posts" />
       <WordPressContent content={content} />
       <>{cats}</>
