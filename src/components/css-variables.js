@@ -771,11 +771,11 @@ export const mixins = {
     contentCardSizes:`{
         &--notsmall{
             @media screen and ${breakpoints.tabletS} {
-                width: 528px;
+                width: 536px;
                 min-height: 680px;
     
             }
-            @media screen and ${breakpoints.laptopS} {
+            @media screen and ${breakpoints.tabletL} {
                 .columnwrap:nth-child(1) {
                     border-right: 1px solid ${colors.cardBorder};
                 }
@@ -807,9 +807,8 @@ export const mixins = {
         }
     
         &--L{
-            @media screen and ${breakpoints.laptopS} {
+            @media screen and ${breakpoints.tabletL} {
                 width: 712px;
-    
             }
         }
         &--XL{
