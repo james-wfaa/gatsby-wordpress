@@ -13,6 +13,7 @@ const StyledWrapper = styled.div`
 
 const SelectionsWrapper = styled.div`
   padding-top: 58px;
+  padding-bottom: 58px;
   background-color: ${colors.navcardGrey};
 `
 const RefinementChoices = styled.div`
@@ -20,12 +21,23 @@ const RefinementChoices = styled.div`
   max-width: 760px;
   margin: 0 auto;
   display: grid;
+  p {
+    text-align: center;
+  }
   ul {
     list-style-type: none;
+    margin-left: 0;
+    margin-bottom: 0;
     li {
-      margin: 20px;
+      margin: 0 20px;
       text-decoration: none;
       display: inline-block;
+      .ais-RefinementList-labelText {
+        margin-left: 12px;
+      }
+      .ais-RefinementList-count {
+        display: none;
+      }
     }
   }
 `
@@ -58,7 +70,10 @@ const AccordianSearchAlgolia = props => {
         <SelectionsWrapper>
           <AccordianSearchBoxAlgolia defaultRefinement={props.searchString} onFocus={() => setFocus(true)} hasFocus={hasFocus} />
           <RefinementChoices>
-            <RefinementList attribute="type" />
+            <p>Further filter results:</p>
+            <RefinementList
+            attribute="type"
+            />
           </RefinementChoices>
         </SelectionsWrapper>
         <SearchPageResults

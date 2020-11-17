@@ -3,14 +3,14 @@ import EventCard from './cards/EventCard'
 import PostCard from './cards/PostCard'
 
 const SearchHits = ({ hits, hitHandler }) => {
-  const [loaded, setLoaded] = useState(hits.length > 0)
+
   useEffect(() => {
-    if (loaded) {
+    if (hits.length > 0) {
       let firstHit = hits[0].__position
       let secondHit = hits[hits.length - 1].__position
       hitHandler(firstHit, secondHit)
     }
-  }, [loaded])
+  }, [hits])
 
   let cards = hits.map(hit => {
     let topResult = false;
