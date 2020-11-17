@@ -4,10 +4,7 @@ import WpEvent from "../../components/template-parts/wordpress-event"
 
 export default ({ data }) => {
   const { event } = data
-<<<<<<< HEAD
   console.log( 'event object:',event )
-=======
->>>>>>> fisher/sprint-11-02_branch
   return (<WpEvent page={event} />)
 }
 

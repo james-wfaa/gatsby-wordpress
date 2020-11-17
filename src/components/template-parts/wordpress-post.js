@@ -6,7 +6,6 @@ import { normalizePath } from "../../utils/get-url-path"
 import WordPressContent from "../content-blocks/WordPressPostContent"
 import TitleSection from '../parts/WordPressTitleSection'
 import SocialShareLinks from '../parts/SocialShareLinks'
-import PageSection from "../page-sections/PageSection"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 
 function BlogPost({ data }) {

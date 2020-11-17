@@ -40,10 +40,7 @@ function WordPressPage({ data }) {
 
   const cardGridPosts = posts.nodes.slice(0,9)
   let postCards = cardGridPosts.map((post) => {
-<<<<<<< HEAD
     console.log('post tiles post: ',post)
-=======
->>>>>>> fisher/sprint-11-02_branch
     return (
       <ContentCardD {...post} />
     )

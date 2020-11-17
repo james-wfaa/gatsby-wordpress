@@ -3,7 +3,6 @@ import { graphql } from "gatsby"
 import styled from 'styled-components'
 import { breakpoints, sizes, colors, mixins } from '../../components/css-variables'
 import Layout from "../../components/layout"
-import Button from "../../components/parts/Button"
 import PageSection from "../../components/page-sections/PageSection"
 import SimpleSlider from "../../components/content-modules/SimpleSlider"
 import ContentCard from "../../components/content-blocks/ContentCard"
