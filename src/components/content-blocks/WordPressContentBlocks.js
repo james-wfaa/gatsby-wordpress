@@ -4,12 +4,10 @@ import styled from 'styled-components'
 import {  colors, sizes, breakpoints, mixins } from '../css-variables'
 
 const WordPressContent = ({className, blocks}) => {
-    console.log(blocks);
-
 
     const RenderedBlocks = blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-       
+
         switch(block.name) {
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
@@ -22,12 +20,11 @@ const WordPressContent = ({className, blocks}) => {
                     return (<PageSectionFromBlocks blocks={block.innerBlocks} cardset borderTop={borderTop} />)
                 }
 
-                break 
+                break
             case "core/separator":
                 return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
                 break
-            default: 
-                console.log(block)
+            default:
                 return (<PageSectionFromBlocks blocks={[block]}  />)
                 break
         }
@@ -96,7 +93,7 @@ hr.wp-block-separator {
                     border-right: none;
                 }
             }
-        
+
         }
         @media screen and ${breakpoints.tabletL} {
             width: 1080px;

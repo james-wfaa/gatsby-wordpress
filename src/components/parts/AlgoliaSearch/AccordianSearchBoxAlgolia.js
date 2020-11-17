@@ -6,6 +6,7 @@ import Search from "../../../svg/search.svg"
 
 const StyledDiv = styled.div`
   width: 80%;
+  max-width: 760px;
   margin: 0px auto 24px;
   display: grid;
   grid-template-columns: 1fr 30px;
@@ -46,22 +47,24 @@ const StyledInput = styled.input`
 `
 
 export default connectSearchBox(
-  ({ refine, currentRefinement, onFocus }) => (
-    <StyledDiv>
-      <form>
-      <StyledInput
-        type="text"
-        placeholder="Search.."
-        aria-label="Search"
-        onChange={e => refine(e.target.value)}
-        value={currentRefinement}
-        onFocus={onFocus}
-      />
-    </form>
-    <span>
-        <a style={{ backgroundColor: `${colors.buttonRed}` }}></a>
-      </span>
-    </StyledDiv>
+  ({ refine, currentRefinement, onFocus}) => {
+    return (
+      <StyledDiv>
+        <form>
+        <StyledInput
+          type="text"
+          placeholder="Search..."
+          aria-label="Search"
+          onChange={e => refine(e.target.value)}
+          value={currentRefinement}
+          onFocus={onFocus}
+        />
+      </form>
+      <span>
+          <a style={{ backgroundColor: `${colors.buttonRed}` }}></a>
+        </span>
+      </StyledDiv>
+    )
 
-  )
+  }
 )

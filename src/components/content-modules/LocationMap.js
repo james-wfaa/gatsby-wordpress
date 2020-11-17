@@ -6,7 +6,7 @@ import shouldPureComponentUpdate from 'react-pure-render/function';
 import GoogleMapReact from 'google-map-react';
 import LocationMapMarker from './LocationMapMarker'
 
- 
+
 class LocationMap extends Component {
   static propTypes = {
     center: PropTypes.object,
@@ -32,14 +32,14 @@ class LocationMap extends Component {
   }
 
   _getZoom() {
-    return (typeof window !== 'undefined' && window.innerWidth < this.props.breakpoint) 
+    return (typeof window !== 'undefined' && window.innerWidth < this.props.breakpoint)
     ? this.props.mobileZoom
     : this.props.zoom
   }
 
- 
+
   render() {
-    console.log(this._getZoom())
+
     return (
       // Important! Always set the container height explicitly
       <div style={{ height: '435px', width: '100%' }}>
@@ -51,12 +51,12 @@ class LocationMap extends Component {
         >
           <LocationMapMarker
             lat={this.props.center.lat}
-            lng={this.props.center.lng} 
+            lng={this.props.center.lng}
           />
         </GoogleMapReact>
       </div>
     );
   }
 }
- 
+
 export default LocationMap;

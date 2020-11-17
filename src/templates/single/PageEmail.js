@@ -210,7 +210,7 @@ export const query = graphql`
           dynamicContent
           innerBlocks {
             name
-            originalContent 
+            originalContent
             dynamicContent
           }
         }

@@ -27,17 +27,17 @@ export const query = graphql`
           innerBlocks {
             name
             isDynamic
-            originalContent 
+            originalContent
             dynamicContent
           }
         }
-      } 
+      }
       link
       url
       featuredImage {
         node {
           localFile {
-            ...HeroImage  
+            ...HeroImage
           }
         }
       }
@@ -84,8 +84,8 @@ export const query = graphql`
         content
         latitude
         longitude
-      }   
-      
+      }
+
     }
   }
 `

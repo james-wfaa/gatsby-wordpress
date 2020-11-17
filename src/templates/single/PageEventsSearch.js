@@ -8,7 +8,7 @@ import AccordianSearch from "../../components/parts/AccordianSearch"
 import PaginationNav from "../../components/parts/PaginationNav"
 
 class EventsList extends React.Component {
-  
+
   render() {
     console.log('PageEventsSearch - props - ',this.props)
 
@@ -44,14 +44,14 @@ class EventsList extends React.Component {
    })
 
     return(
-   
+
     <Layout noborder>
         <AccordianSearch />
         <PageSection>
           <ContentBlockList>{allEvents}</ContentBlockList>
           <PaginationNav basepath={baseUri} page={page} totalPages={totalPages} isFirst={isFirst} isLast={isLast} />
         </PageSection>
-      
+
     </Layout>
     )
   }
@@ -63,7 +63,7 @@ export default EventsList
 export const query = graphql`
   query eventsSearch($offset: Int!, $eventsPerPage: Int!) {
     events: allWpEvent(
-      limit: $eventsPerPage, 
+      limit: $eventsPerPage,
       skip: $offset,
       sort: {order: ASC, fields: startDate}) {
       edges {
@@ -126,6 +126,6 @@ export const query = graphql`
         }
       }
     }
-    
+
   }
 `

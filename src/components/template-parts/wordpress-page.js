@@ -7,8 +7,6 @@ import FeaturedImage from "../content-blocks/FeaturedImage"
 function WordPressPage({ page }) {
   const { title, content, featuredImage } = page
 
-  console.log(page)
-
 
   return (
     <Layout>
