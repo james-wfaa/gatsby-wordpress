@@ -167,7 +167,17 @@ export const query = graphql`
           }
         }
         url: uri
+        terms {
+          nodes {
+            ... on WpPostFormat {
+              id
+              name
+              slug
+            }
+          }
+        }
       }
     }
+
   }
 `

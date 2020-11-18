@@ -4,20 +4,54 @@ import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import CardD from './CardD'
 import { shortDate } from "../../utils/tools"
 
-const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, venue, excerpt, url, urlText })=> {
+const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, venue, excerpt, url, urlText, terms })=> {
 
     console.log('ContentCardD title: ',title)
-    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
+    let moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
 
     /* let's make this a helper available anywhere we need to nicely shorten an excerpt */
     const maxLength = (title.length <= 28) ? 200 : 160
     const endIdx = (excerpt) ? excerpt.indexOf(' ', maxLength) : null
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength && endIdx > 0) ? excerpt.substring(0,excerpt.indexOf(' ', maxLength)) + ' ...' : excerpt
     
-
+    
     const categories = (eventsCategories && eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : null
+    const postTypes = (terms && terms.nodes && terms.nodes.length > 0) ? terms.nodes : null
+    
+    let category = null;
+    if (categories && categories[0].name){
+        category = categories[0].name
+    } else if (postTypes != null){
+        terms.nodes.map((node)=>{
+            if (node.name){
+                return category = node.name
+            } /*else if (node.name){
+                console.log(node.name)
+                return category = 'Story'
+            }*/
+        })
+    }
+    //check if (postTypes && terms.nodes[0].name), has to map?
 
-    const category = categories && categories[0].name ? categories[0].name : null
+    //if post, update fields based on post type
+    if(postTypes != null){
+        switch(category){
+            case 'Podcast': 
+                moreLinkText = <nobr>Listen &gt;</nobr>
+                break;
+            case 'Video':
+                moreLinkText = <nobr>Watch Video &gt;</nobr>
+                break;
+            case 'Link':
+                moreLinkText = <nobr>Via &gt;</nobr>
+                break;
+                
+            default:
+    }
+            
+    }
+
+    //const category = categories && categories[0].name ? categories[0].name : null
     const fmtStartDate = shortDate(startDate)
     let fmtEndDate = null
     if (endDate && shortDate(endDate) !== fmtStartDate) {
