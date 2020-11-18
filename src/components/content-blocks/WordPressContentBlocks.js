@@ -3,30 +3,39 @@ import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
 import styled from 'styled-components'
 import {  colors, sizes, breakpoints, mixins } from '../css-variables'
 
-const WordPressContent = ({className, blocks}) => {
+const WordPressContent = ({className, blocks, stagger}) => {
 
-    const RenderedBlocks = blocks.map((block) => {
+
+    const staggerBlocks = (stagger) 
+        ? blocks.map((block) => {
+            block.stagger = true
+            return block
+        })
+        : blocks
+
+    const RenderedBlocks = staggerBlocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
+        const stagger = block.stagger
 
         switch(block.name) {
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
-                    return (<PageSectionFromBlocks blocks={block.innerBlocks} borderTop={borderTop} />)
+                    return (<PageSectionFromBlocks blocks={block.innerBlocks} borderTop={borderTop} stagger={stagger} />)
                 }
                 if (block.innerBlocks && block.originalContent.indexOf(' gallery') > 0) {
-                    return (<PageSectionFromBlocks blocks={block.innerBlocks} gallery borderTop={borderTop} />)
+                    return (<PageSectionFromBlocks blocks={block.innerBlocks} gallery borderTop={borderTop} stagger={stagger} />)
                 }
                 if (block.innerBlocks && block.originalContent.indexOf(' card-set') > 0) {
-                    return (<PageSectionFromBlocks blocks={block.innerBlocks} cardset borderTop={borderTop} />)
+                    return (<PageSectionFromBlocks blocks={block.innerBlocks} cardset borderTop={borderTop} stagger={stagger} />)
                 }
 
                 break
             case "core/separator":
                 return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
-                break
+                
             default:
-                return (<PageSectionFromBlocks blocks={[block]}  />)
-                break
+                return (<PageSectionFromBlocks blocks={[block]} stagger={stagger} />)
+                
         }
         }
     )
