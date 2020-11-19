@@ -115,11 +115,6 @@ export const query = graphql`
       title
       excerpt
       content
-      template {
-        ... on WpEventsMainPageTemplate {
-          templateName
-        }
-      }
       featuredImage {
         node {
           localFile {

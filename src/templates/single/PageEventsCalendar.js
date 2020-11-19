@@ -53,11 +53,6 @@ export const query = graphql`
       title
       excerpt
       content
-      template {
-        ... on WpEventsMainPageTemplate {
-          templateName
-        }
-      }
     },
     events: allWpEvent(limit: 100, sort: {order: ASC, fields: startDate}) {
       edges {

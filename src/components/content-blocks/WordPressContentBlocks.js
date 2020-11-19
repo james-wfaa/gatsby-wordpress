@@ -63,6 +63,11 @@ hr.wp-block-separator {
             ${mixins.buttons};
         }
     }
+    .button--alt{
+        a {
+            ${mixins.buttonAlt};
+        }
+    }
 
     .columnwrap {
         display: flex;

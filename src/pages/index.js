@@ -14,6 +14,9 @@ export default () => (
         <Link to="/email">Email Login - NEW</Link>
       </li>
       <li>
+        <Link to="/jamess-product">Product Page - NEW</Link>
+      </li>
+      <li>
         <Link to="/product-aggregate">Product Aggregate - NEW</Link>
       </li>
       <li>
