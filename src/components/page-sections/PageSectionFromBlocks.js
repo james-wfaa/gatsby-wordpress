@@ -16,13 +16,11 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger })
     // get the title
     let title = null
     blocks.map((block) => {
-        console.log(block.name)
         switch(block.name) {
             case "acf/section-header":
                 title = (block.dynamicContent) ? block.dynamicContent : block.originalContent
                 break
             default:
-                console.log(block)
                 //return ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
                 break
         }
@@ -53,17 +51,16 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger })
             }
         </SimpleSlider>)
 
-        : (cardset) 
+        : (cardset)
             ? (<CardSet>{
                 blocks.map((block) => {
                 const innerContent =  ((block.dynamicContent && block.dynamicContent !== "") ? block.dynamicContent : block.originalContent)
                 return innerContent
-                
-                
+
+
             })}</CardSet>)
             : blocks.map((block) => {
-                console.log(block.name)
-                
+
                 switch(block.name) {
                     case "acf/section-header":
                         break
@@ -76,13 +73,12 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger })
                     case "acf/product-card":
                         return (<div dangerouslySetInnerHTML={{__html: block.dynamicContent}} />)
                     default:
-                        console.log(block)
                         return ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
                         break
                 }
-                
+
             })
-        
+
     return (
         <PageSection heading={title} topBorder={borderTop} fromBlocks stagger={stagger} >
             { innerContent }

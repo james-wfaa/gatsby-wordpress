@@ -165,7 +165,7 @@ export default ({ data }) => {
   })
   return (
     <Layout>
-      <AccordianSearchAlgolia index="Events" results={false} callback={(arr) => setEvents(arr)} />
+      <AccordianSearchAlgolia index="All" results={false} callback={(arr) => setEvents(arr)} />
       <PageSection heading="Sifted Events">
         <ContentBlockList>{contentCards}</ContentBlockList>
       </PageSection>

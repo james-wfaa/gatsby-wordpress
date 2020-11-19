@@ -7,7 +7,6 @@ import WpAggregatePage from "../../components/template-parts/wordpress-aggregate
 export default ({ data }) => {
   const { page } = data
   const { template } = page
-  console.log(page)
   if (template) {
     const { templateName } = template
     switch (templateName ) {
@@ -35,25 +34,16 @@ export const query = graphql`
         ... on WpDefaultTemplate {
           templateName
         }
-        ... on WpAggregateProductPageTemplate {
+        ... on WpTemplate_AggregateProductPage {
           templateName
         }
-        ... on WpHomePageTemplate {
+        ... on WpTemplate_HomePage {
           templateName
         }
-        ... on WpTopLevelPageTemplate {
+        ... on WpTemplate_TopLevelPage {
           templateName
         }
-        ... on WpEmailLoginPageTemplate {
-          templateName
-        }
-        ... on WpProductGeneralPageTemplate {
-          templateName
-        }
-        ... on WpNewsAndStoriesPageTemplate {
-          templateName
-        }
-        ... on WpEventsMainPageTemplate {
+        ... on WpTemplate_ProductGeneralPage {
           templateName
         }
       }
@@ -173,7 +163,7 @@ export const query = graphql`
           dynamicContent
           innerBlocks {
             name
-            originalContent 
+            originalContent
             dynamicContent
           }
         }

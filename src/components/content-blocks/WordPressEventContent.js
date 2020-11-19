@@ -134,15 +134,11 @@ margin: ${sizes.s48} auto 0;
 }
 
 .social-mobile{
+    ${mixins.socialStyles}
     min-width: 300px;
-    width: 100%;   
     max-width: 303px;
     margin: 0 auto;
     text-align: center;
-    margin: ${sizes.s40} auto ${sizes.s48} auto;
-    h2{
-        padding-top: ${sizes.s40};
-    }
     @media screen and ${breakpoints.tabletS} {
         max-width: 536px;
     }
@@ -152,12 +148,11 @@ margin: ${sizes.s48} auto 0;
 }
 
 .social-desktop{
+    ${mixins.socialStyles}
     display: none;
-    width: 100%;  
-    text-align: center;
-    margin: ${sizes.s40} auto ${sizes.s48} auto;
+    text-align: left;
     h2{
-        padding-top: ${sizes.s40};
+        margin-bottom: 0px;
     }
     @media screen and ${breakpoints.tabletL} {
         display: block;

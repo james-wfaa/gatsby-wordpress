@@ -6,23 +6,23 @@ import styled from 'styled-components'
 
 const CardSet = ({className, items, children, num }) => {
 
-    console.log(children)
-    console.log(num)
+
+
     //const cards = items.map
     // trim array to the max size
     const limitedItems = (items) ? items.slice(0, num) : null
-    console.log(limitedItems)
 
-    let cards = (children) 
+
+    let cards = (children)
         ? children.map((child) => {
             return (<div dangerouslySetInnerHTML={{__html: child}} />)
         })
         : limitedItems.map((item) => {
-            console.log(item)
+
             const { featuredEvent, featuredImage: img } = item
             const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-            console.log(cardImg)
-            return (num === 3) 
+
+            return (num === 3)
                 ? (<ContentCard size="S" img={cardImg} {...item} />)
                 : (<ContentCard size="M" img={cardImg} {...item} />)
             })
@@ -43,7 +43,7 @@ justify-content: center;
     &:last-child {
         margin-bottom: 0;
     }
-    
+
 }
 @media screen and ${breakpoints.laptopS} {
     flex-direction: row;

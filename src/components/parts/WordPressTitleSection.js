@@ -6,8 +6,7 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
 
     const classesList = !event ? `${className}` : `${className} ${className}--event`
     const theCategory = !categories? null : categories.nodes[0]
-    console.log(theCategory)
-      
+
     return (
         <div className={classesList}>
             <div className="headersection">
@@ -16,7 +15,7 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
             )}
             <div className="titlesection">
                 { author && (
-                    <div className={`${className}__author`}>{author.node.name}</div>       
+                    <div className={`${className}__author`}>{author.node.name}</div>
                 )}
                 { date && (
                     <div className={`${className}__date`}>{date}</div>
@@ -31,9 +30,9 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
                 )}
             </div>
             </div>
-            
+
             { excerpt && (
-                <div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />       
+                <div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
             )}
 
         </div>
@@ -51,18 +50,18 @@ const StyledTitleSection = styled(TitleSection)`
     @media screen and ${breakpoints.tabletS} {
         padding-top: ${sizes.s88};
     }
-    
+
     &.header--event{
         min-width: 300px;
         width: 100%;
         padding: 0 ${sizes.s36};
-       
-       
-        
+
+
+
         @media screen and ${breakpoints.tabletS} {
             margin: 0 auto;
             padding: 0;
-          
+
         }
         @media screen and ${breakpoints.laptopS} {
         margin: 0;
@@ -71,7 +70,7 @@ const StyledTitleSection = styled(TitleSection)`
     }
 
     h1 {
-    
+
         color: ${colors.titleColor};
         text-align: left;
         font-family: ${fonts.eaves};
@@ -111,8 +110,8 @@ const StyledTitleSection = styled(TitleSection)`
             margin-top: ${sizes.s24};
 
         }
-        
-        
+
+
     }
 
     &__category{
@@ -125,7 +124,7 @@ const StyledTitleSection = styled(TitleSection)`
             &:active{
                 color: ${colors.linkTextActive};
             }
-    
+
         }
     }
 
@@ -140,7 +139,7 @@ const StyledTitleSection = styled(TitleSection)`
                 margin-bottom: 0;
             }
         }
-        
+
     }
     .headersection {
         position: relative;
@@ -154,7 +153,7 @@ const StyledTitleSection = styled(TitleSection)`
             content: '';
         }
     }
-    
+
 `
 
 export default StyledTitleSection

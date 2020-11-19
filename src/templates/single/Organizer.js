@@ -6,8 +6,7 @@ import WordPressContent from "../../components/content-blocks/WordPressContent"
 
 function WpOrganizerPage({ data }) {
   const { organizer } = data
-  console.log(organizer)
-  const { 
+  const {
     title,
   } = organizer
 

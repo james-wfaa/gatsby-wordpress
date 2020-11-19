@@ -20,8 +20,10 @@ const WordPressEmailPage = ({ className, data }) => {
 
   let postCards = posts.nodes.map((post) => {
     console.log(post)
+    const { featuredImage: img } = post
+    const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
     return (
-      <ContentCard {...post} />
+      <ContentCard img={cardImg} {...post} />
     )
   })
 
@@ -210,7 +212,7 @@ export const query = graphql`
           dynamicContent
           innerBlocks {
             name
-            originalContent 
+            originalContent
             dynamicContent
           }
         }

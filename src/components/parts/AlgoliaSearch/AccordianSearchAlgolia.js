@@ -171,9 +171,10 @@ const AccordianSearchAlgolia = props => {
   // Hits Return if rendering results outside of Accordian
   useEffect(() => {
     if (!props.results) {
-      let index = searchClient.initIndex('Events')
+      let index = searchClient.initIndex('All')
       index.search(query).then(({hits}) => {
-        props.callback(hits)
+        const returnedHits = hits.filter(hit => hit.type === "Event")
+        props.callback(returnedHits)
       })
     }
   }, [query])

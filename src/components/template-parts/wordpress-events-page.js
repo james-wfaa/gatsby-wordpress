@@ -17,7 +17,7 @@ function WordPressPage({ page, events }) {
   const { categories } = eventCategories
 
   const { backgroundImage } = gridDetails
-  console.log(backgroundImage)
+
 
   const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
   const moreButton = [
@@ -54,12 +54,12 @@ function WordPressPage({ page, events }) {
 
 
   const cardGridEvents = events.slice(0,9)
+  console.log('cardGridEvents:',cardGridEvents)
   let eventCards = cardGridEvents.map((event) => {
     return (
       <ContentCardD {...event.node} />
     )
   })
-  console.log(eventCards)
 
   return (
     <Layout noborder>
@@ -72,7 +72,7 @@ function WordPressPage({ page, events }) {
         />
       )}
         <AccordianSearchAlgolia
-          index="Events"
+          index="All"
           results={true}
         />
         <PageSection>
