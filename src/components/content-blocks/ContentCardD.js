@@ -19,16 +19,16 @@ const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, 
     const postTypes = (terms && terms.nodes && terms.nodes.length > 0) ? terms.nodes : null
     
     let category = null;
+
+    //refactor this
     if (categories && categories[0].name){
         category = categories[0].name
     } else if (postTypes != null){
         terms.nodes.map((node)=>{
             if (node.name){
-                return category = node.name
-            } /*else if (node.name){
-                console.log(node.name)
-                return category = 'Story'
-            }*/
+                category = node.name
+                return category
+            }
         })
     }
     //check if (postTypes && terms.nodes[0].name), has to map?
@@ -40,10 +40,11 @@ const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, 
                 moreLinkText = <nobr>Listen &gt;</nobr>
                 break;
             case 'Video':
-                moreLinkText = <nobr>Watch Video &gt;</nobr>
+                moreLinkText = <nobr>Watch Video <span class="arrow"></span></nobr>
                 break;
             case 'Link':
-                moreLinkText = <nobr>Via &gt;</nobr>
+                moreLinkText = <nobr>Via {} <span class="arrow"></span></nobr>
+                category = 'Story'
                 break;
                 
             default:
@@ -108,6 +109,28 @@ opacity: 0.9;
 color: ${colors.cardText};
 min-height: 256px;
 width: 100%;
+.arrow {
+    border: solid #c5050c;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 4px;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    margin-left: 9px;
+    margin-bottom: 5px;
+  }
+  
+  .arrow:before{
+      content:'';
+    width:20px;
+    height:2px;
+    background: #c5050c;
+    left:-8px;
+    bottom:5px;
+    position:absolute;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
 @media screen and ${breakpoints.laptopS} {
     padding: ${sizes.s32};
     min-height: 344px;

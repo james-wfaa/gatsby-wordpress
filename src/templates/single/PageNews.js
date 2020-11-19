@@ -173,6 +173,14 @@ export const query = graphql`
               id
               name
               slug
+              posts {
+                nodes {
+                  linkFormat {
+                    linkAuthor
+                    linkUrl
+                  }
+                }
+              }
             }
           }
         }
