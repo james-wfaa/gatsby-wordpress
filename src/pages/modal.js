@@ -23,7 +23,7 @@ const Modal = () => {
         {show ?
         <GenericModal
           data={<CommunicationForm />}
-          opacity={0.9}
+          opacity={0.58}
           closeCallback={() => handleModal()}/>
         : null}
         <ShowButton onClick={() => handleModal()}>Open Modal</ShowButton>

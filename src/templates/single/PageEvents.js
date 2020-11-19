@@ -99,7 +99,7 @@ function WordPressPage({ data }) {
       <PageSection heading="At a Glance" bgImage={gridBgImage} buttons={moreButton}>
         <GridCardD>{eventCards}</GridCardD>
       </PageSection>
-      
+
     </Layout>
   )
 }
@@ -115,11 +115,6 @@ export const query = graphql`
       title
       excerpt
       content
-      template {
-        ... on WpEventsMainPageTemplate {
-          templateName
-        }
-      }
       featuredImage {
         node {
           localFile {
@@ -127,7 +122,7 @@ export const query = graphql`
           }
         }
       }
-      
+
       eventCategories {
         categories {
           categoryEvent: category {
@@ -185,7 +180,7 @@ export const query = graphql`
           dynamicContent
           innerBlocks {
             name
-            originalContent 
+            originalContent
             dynamicContent
           }
         }
@@ -249,6 +244,6 @@ export const query = graphql`
         }
       }
     }
-    
+
   }
 `

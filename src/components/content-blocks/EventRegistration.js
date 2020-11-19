@@ -36,7 +36,11 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
     const organizerList = !organizers ? null : organizers.nodes.map((org) => (
          <div className="organizer">{org.title}</div>
       ))
-    const addressString = venue.address ? venue.title + '<br />' + venue.address + '<br />' + venue.city + ', ' + venue.state : venue.title;
+    const addressString = (venue && venue.address) 
+        ? venue.title + '<br />' + venue.address + '<br />' + venue.city + ', ' + venue.state 
+        : (venue)
+            ? venue.title
+            : null;
     const registrationLink = eventDetails.registrationUrl ? eventDetails.registrationUrl : '';
     const registrationText = eventDetails.eventFullSoldOut ? eventDetails.eventFullText : 'Register';
     const regIsFull = eventDetails.eventFullSoldOut;
@@ -73,7 +77,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
                 <a href="#" alt="Add to Calendar" onClick={() => handleModal()}>Add to Calendar</a>
                 <div className="subHeader">WHERE</div>
                 <div className="venue" dangerouslySetInnerHTML={{ __html: addressString }} />
-                { venue.address && (
+                { (venue && venue.address) && (
                     <a href="#EventMap" alt="View Map">View Map and Event Details</a>
                 )}
                 <div className="subHeader">COST</div>

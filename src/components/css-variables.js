@@ -290,6 +290,21 @@ export const mixins = {
         background-color: ${colors.disabledGrey};
         }
     `,
+    buttonAlt: `{
+        color: ${colors.buttonRed};
+        background-color: ${colors.titleWhite};
+        border: 1px solid ${colors.buttonRed};
+        &:hover {
+            color: ${colors.buttonActiveGrey};
+            background-color: ${colors.bgActiveGrey};
+            border: 1px solid ${colors.bgWhite};
+        }
+        &:active {
+            color: ${colors.buttonActiveGrey};
+            background-color: ${colors.bgWhite};
+        }
+    
+    }`,
     separator: `{
         height: ${sizes.s36};
         background-color: ${colors.sectionBorder};

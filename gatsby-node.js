@@ -41,10 +41,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   await Promise.all(
     contentNodes.map(async (node, i) => {
       const { nodeType, uri, id } = node
-      
+
       let templatePath = `${contentTypeTemplateDirectory}${nodeType}.js`
       // get some exceptions
-      console.log(uri)
       switch(uri) {
         case '/email/':
           templatePath = `${contentTypeTemplateDirectory}${nodeType}Email.js`
@@ -94,7 +93,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   )
 
   // create the homepage
-  console.log('creating blog pages')
+
   const {
     data: { allWpPost },
   } = await graphql(/* GraphQL */ `
@@ -132,7 +131,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   )
 
   // create the events archive
-  console.log('creating events pages')
+
   const {
     data: { allWpEvent },
   } = await graphql(/* GraphQL */ `
@@ -158,7 +157,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         component: resolve(`./src/templates/single/PageEventsSearch.js`),
         path: page === 1 ? `/events/search/` : `/events/search/${page}/`,
         context: {
-         
+
           page: page,
           offset: offset,
           totalPages: chunkedEventNodes.length,

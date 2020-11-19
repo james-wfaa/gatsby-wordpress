@@ -6,24 +6,23 @@ import WordPressContentBlocks from "../content-blocks/WordPressContentBlocks"
 function WordPressPage({ page }) {
   const {  title, excerpt, featuredImage, introButtons, blocks } = page
   const { introButtons: buttons } = introButtons
-  console.log(blocks)
   const normalizedButtons = (buttons) ? buttons.map(item=>{
     return {
       link: item.link.uri,
       text: item.text
     }
-  
+
   }
   ) : null
 
 
-  console.log(buttons)
-  console.log(normalizedButtons)
+
+
 
   return (
     <Layout>
       { featuredImage && (
-        <HeroIntroSection  
+        <HeroIntroSection
           heroImage={featuredImage.node.localFile}
           heroSize="slim"
           redHeading={title}
@@ -31,11 +30,11 @@ function WordPressPage({ page }) {
           buttons={normalizedButtons}
         />
       )}
-      
 
-    <WordPressContentBlocks blocks={blocks} />
 
-     
+    <WordPressContentBlocks blocks={blocks} stagger />
+
+
     </Layout>
   )
 }

@@ -27,17 +27,17 @@ export const query = graphql`
           innerBlocks {
             name
             isDynamic
-            originalContent 
+            originalContent
             dynamicContent
           }
         }
-      } 
+      }
       link
       url
       featuredImage {
         node {
           localFile {
-            ...HeroImage  
+            ...HeroImage
           }
         }
       }
@@ -64,6 +64,7 @@ export const query = graphql`
         eventFullText
         eventlocationDetails
         registrationUrl
+        questions
       }
       date(formatString: "dddd, MMM. D")
       endDate
@@ -84,8 +85,8 @@ export const query = graphql`
         content
         latitude
         longitude
-      }   
-      
+      }
+
     }
   }
 `

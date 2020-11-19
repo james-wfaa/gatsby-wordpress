@@ -37,7 +37,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-       
+
         switch(block.name) {
             case "tribe/event-datetime":
             case "tribe/featured-image":
@@ -61,12 +61,11 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                 if (block.innerBlocks && block.originalContent.indexOf(' gallery') > 0) {
                     return (<PageSectionFromBlocks blocks={block.innerBlocks} gallery borderTop={borderTop} />)
                 }
-                break 
+                break
             case "core/separator":
                 return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
                 break
-            default: 
-                console.log(block)
+            default:
                 return (<PageSectionFromBlocks blocks={[block]}  />)
                 break
         }
@@ -74,12 +73,13 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
     ) : null
 
     console.log('RenderedBlocks:',RenderedBlocks)
+    const questionsDiv = <div dangerouslySetInnerHTML={{__html: eventDetails.questions}} />
 
     return(
         <div className={className} id="Top">
             {show ?
             <GenericModal
-            data={<div>TestX</div>}
+            data={questionsDiv}
             opacity={0.9}
             closeCallback={() => handleModal()}/>
             : null}
@@ -93,15 +93,15 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                 { !RenderedBlocks && (
                     <div className="content" dangerouslySetInnerHTML={{ __html: content }} />
                 )}
-                
-                    <EventRegistration 
-                        className="reg-mobile" 
-                        date={date} 
-                        startDate={startDate} 
-                        endDate={endDate} 
-                        venue={venue} 
-                        cost={cost} 
-                        organizers={organizers} 
+
+                    <EventRegistration
+                        className="reg-mobile"
+                        date={date}
+                        startDate={startDate}
+                        endDate={endDate}
+                        venue={venue}
+                        cost={cost}
+                        organizers={organizers}
                         eventDetails={eventDetails}
                         calendarLinks={EventLinksContent}
                     />
@@ -143,7 +143,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
 
             </div>
 
-           
+
         </div>
     )
 }
@@ -156,7 +156,7 @@ margin: ${sizes.s48} auto 0;
     display: flex;
     max-width: 814px;
     padding-bottom: ${sizes.s88};
-    margin-top: ${sizes.s58}; 
+    margin-top: ${sizes.s58};
 }
 @media screen and ${breakpoints.laptopS} {
     max-width: 1080px;
@@ -210,11 +210,14 @@ margin: ${sizes.s48} auto 0;
     }
 
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> fisher/sprint-11-02_branch
 }
 .reg-mobile {
     min-width: 300px;
-    width: 100%;   
+    width: 100%;
     padding: 0 0 ${sizes.s32};
     margin: 0 auto ${sizes.s32};
     border-bottom: 18px solid ${colors.sectionBorder};
@@ -255,7 +258,7 @@ margin: ${sizes.s48} auto 0;
 
     
 .content{
-    > p, 
+    > p,
     > ul,
     > h2,
     > h3,
@@ -263,7 +266,7 @@ margin: ${sizes.s48} auto 0;
     > table,
     > div.callout,
     > div.call-out,
-    .core-freeform > p, 
+    .core-freeform > p,
     .core-freeform > ul,
     .core-freeform > h2,
     .core-freeform > h3,
@@ -277,7 +280,7 @@ margin: ${sizes.s48} auto 0;
         max-width: 303px;
         margin-left: auto;
         margin-right: auto;
-       
+
         @media screen and ${breakpoints.tabletS} {
             max-width: 536px;
             padding-left: 0;
@@ -290,7 +293,7 @@ margin: ${sizes.s48} auto 0;
             margin-left: 0;
             max-width: 712px;
         }
-        
+
     }
     ul {
         list-style-position: inside;
@@ -301,7 +304,7 @@ margin: ${sizes.s48} auto 0;
     .core-freeform {
         margin-bottom: ${sizes.s32};
     }
-    
+
 }
 h2 {
     font-size: ${sizes.s18};
