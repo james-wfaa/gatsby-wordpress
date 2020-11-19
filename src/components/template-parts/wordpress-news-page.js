@@ -14,7 +14,7 @@ function WordPressPage({ page, posts }) {
 
   const { storycategoriesinner: categories } = storyCategories
   const { backgroundImage } = gridDetails
-  console.log(backgroundImage)
+
 
   const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
   const moreButton = [
@@ -24,11 +24,11 @@ function WordPressPage({ page, posts }) {
     },
   ]
 
-  console.log(categories)
+
 
   const cats = categories.map((item) => {
     const { category, numberToShow } = item
-    console.log(category)
+
     if (category && category.name) {
       return (
 
@@ -44,23 +44,24 @@ function WordPressPage({ page, posts }) {
 
   const cardGridPosts = posts.nodes.slice(0,9)
   let postCards = cardGridPosts.map((post) => {
-    console.log(post)
+
     return (
       <ContentCardD {...post} />
     )
   })
-  console.log(postCards)
+
 
 
 
   return (
     <Layout noborder>
+      { featuredImage && featuredImage.node && (
       <HeroIntroSection
           heroImage={featuredImage.node.localFile}
           heroHeading="<span>Badger</span> ON"
           redHeading={title}
           excerpt={excerpt}
-      />
+      />)}
       <AccordianSearchAlgolia index="Posts" />
       <WordPressContent content={content} />
       <>{cats}</>

@@ -5,22 +5,19 @@ import WpProductPage from "../../components/template-parts/wordpress-product-pag
 import WpAggregatePage from "../../components/template-parts/wordpress-aggregate-page"
 
 export default ({ data }) => {
-  const { page, events } = data
+  const { page } = data
   const { template } = page
-  console.log(page)
   if (template) {
     const { templateName } = template
     switch (templateName ) {
       case "Aggregate (Product) Page":
         return (<WpAggregatePage page={page} />)
-        break
         case "Product/General Page":
         return (<WpProductPage page={page} />)
-        break
+    
       case "Default":
       default:
         return (<WpDefaultPage page={page} />)
-        break
     }
   }
   return (<WpDefaultPage page={page} />)
@@ -37,25 +34,16 @@ export const query = graphql`
         ... on WpDefaultTemplate {
           templateName
         }
-        ... on WpAggregateProductPageTemplate {
+        ... on WpTemplate_AggregateProductPage {
           templateName
         }
-        ... on WpHomePageTemplate {
+        ... on WpTemplate_HomePage {
           templateName
         }
-        ... on WpTopLevelPageTemplate {
+        ... on WpTemplate_TopLevelPage {
           templateName
         }
-        ... on WpEmailLoginPageTemplate {
-          templateName
-        }
-        ... on WpProductGeneralPageTemplate {
-          templateName
-        }
-        ... on WpNewsAndStoriesPageTemplate {
-          templateName
-        }
-        ... on WpEventsMainPageTemplate {
+        ... on WpTemplate_ProductGeneralPage {
           templateName
         }
       }
@@ -83,6 +71,7 @@ export const query = graphql`
             }
           }
           buttonExternalLinkUrl
+          buttonText
         }
       }
       storyCategories {
@@ -174,55 +163,12 @@ export const query = graphql`
           dynamicContent
           innerBlocks {
             name
-            originalContent 
+            originalContent
             dynamicContent
           }
         }
 
       }
-    },
-    events: allWpEvent(limit: 100, sort: {order: ASC, fields: startDate}) {
-      edges {
-        node {
-          id
-          title
-          url: uri
-          excerpt
-          featuredEvent
-          featuredImage {
-            node {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 712) {
-                    base64
-                    tracedSVG
-                    srcWebp
-                    srcSetWebp
-                    originalImg
-                    originalName
-                    aspectRatio
-                  }
-                }
-              }
-            }
-          }
-          date
-          startDate
-          endDate
-          eventsCategories {
-            nodes {
-              name
-              url: uri
-            }
-          }
-          venue {
-            title
-            state
-            city
-          }
-        }
-      }
     }
-    
   }
 `

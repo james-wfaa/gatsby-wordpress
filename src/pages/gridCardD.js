@@ -5,6 +5,7 @@ import GridCardD from "../components/content-modules/GridCardD"
 import GenericPageSection from '../components/page-sections/GenericPageSection'
 
 export default () => {
+    console.log('gridCardD page')
     return (
 <Layout>
 

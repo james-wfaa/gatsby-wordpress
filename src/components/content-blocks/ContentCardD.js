@@ -6,14 +6,14 @@ import { shortDate } from "../../utils/tools"
 
 const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, venue, excerpt, url, urlText })=> {
 
-    console.log(title)
+    console.log('ContentCardD title: ',title)
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
 
     /* let's make this a helper available anywhere we need to nicely shorten an excerpt */
     const maxLength = (title.length <= 28) ? 200 : 160
     const endIdx = (excerpt) ? excerpt.indexOf(' ', maxLength) : null
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength && endIdx > 0) ? excerpt.substring(0,excerpt.indexOf(' ', maxLength)) + ' ...' : excerpt
-    
+
 
     const categories = (eventsCategories && eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : null
 
@@ -30,15 +30,15 @@ const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, 
 
                 <div className={`${className}__wrapper`}>
                     { startDate && (
-                        <div 
-                            className={`${className}__date date`} 
-                            dangerouslySetInnerHTML={{ __html: dateLinkText }} 
+                        <div
+                            className={`${className}__date date`}
+                            dangerouslySetInnerHTML={{ __html: dateLinkText }}
                         />
-                                
+
                     )}
                     <div className={`${className}__titlesection`}>
                         { title && (
-                            <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />        
+                            <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />
                         )}
                         { category && (
                             <div className={`${className}__category`}>{category}</div>
@@ -83,7 +83,7 @@ width: 100%;
 }
 &__date {
     font-family: ${fonts.eaves};
-    position: relative; 
+    position: relative;
     top: -5px;
     font-weight: bold;
     font-size: ${sizes.s24};
@@ -97,7 +97,7 @@ width: 100%;
     }
 }
 &__titlesection {
-    position: relative; 
+    position: relative;
     top: -3px;
     margin-bottom: ${sizes.s9}; /* 12 - 3 for the up-shift */
     padding-bottom: ${sizes.s13}; /* 12 - 3 for the up-shift + 4 for the red bar */
@@ -107,7 +107,7 @@ width: 100%;
         top: -1px;
     }
     &:after {
-        position: absolute; 
+        position: absolute;
         bottom: 0;
         left: 0;
         width: ${sizes.s34};
@@ -118,7 +118,7 @@ width: 100%;
 }
 &__title {
     ${mixins.cardTitle}
-    position: relative; 
+    position: relative;
     top: -3px;
     margin-bottom: 0px;
     font-size: ${sizes.s20};
@@ -183,7 +183,7 @@ width: 100%;
 &:hover {
     box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
     opacity: 1;
-    
+
     .readmore {
         color: ${colors.linkTextHover};
         text-decoration: underline;

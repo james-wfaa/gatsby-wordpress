@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "gatsby"
+import { navigate } from "gatsby"
 import styled from "styled-components"
 import { breakpoints, colors } from "../css-variables"
 import { useLockBodyScroll } from "../hooks"
@@ -7,8 +9,6 @@ import { useLockBodyScroll } from "../hooks"
 const StyledDiv = styled.div`
   width: 80%;
   margin: 20px auto;
-  display: grid;
-  grid-template-columns: 1fr 30px;
   border: 1px solid grey;
   @media screen and ${breakpoints.tabletS} {
     position: absolute;
@@ -16,6 +16,11 @@ const StyledDiv = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
   }
+`
+
+const StyledForm = styled.form`
+  display: grid;
+  grid-template-columns: 1fr 30px;
 `
 
 const StyledInput = styled.input`
@@ -45,17 +50,29 @@ const SearchModal = ({ topOffset, isMobile }) => {
       <StyledDiv
         style={{  top: isMobile ? `10%` : `calc(50% - ${topOffset}px)`  }}
       >
-        <StyledInput
-          type="text"
-          placeholder="Search.."
-          value={searchText}
-          onChange={e => searchHandler(e)}
-          className="st-default-search-input"
-        />
-        <span className="search">
-          <a style={{ backgroundColor: `${colors.buttonRed}` }}></a>
-        </span>
+        <StyledForm
+          onSubmit={event => {
+            event.preventDefault()
+            navigate(
+              "/search",
+              {
+                state: {string: searchText}
+              })
+          }}
+        >
+          <StyledInput
+            type="text"
+            placeholder="Search.."
+            value={searchText}
+            onChange={e => searchHandler(e)}
+            className="st-default-search-input"
+          />
+          <span className="search">
+            <Link to="/search" state={{string: searchText}} style={{ backgroundColor: `${colors.buttonRed}` }}></Link>
+          </span>
+        </StyledForm>
       </StyledDiv>
+
     </div>
   )
 }

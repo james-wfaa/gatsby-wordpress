@@ -1,5 +1,5 @@
 import React from "react"
-import styled from 'styled-components'  
+import styled from 'styled-components'
 import { sizes, colors, fonts, breakpoints } from '../css-variables'
 
 import Img from "gatsby-image"
@@ -17,7 +17,7 @@ import Img from "gatsby-image"
 
 const FeaturedImage = ({ className, featuredImage, event }) => {
   const classes = (event) ? `${className} ${className}--event` : className
-  console.log(featuredImage)
+
 
   return (
     <div className={classes}>
@@ -25,7 +25,7 @@ const FeaturedImage = ({ className, featuredImage, event }) => {
       { featuredImage.node.caption && (
         <div className={`${className}__captionSection`}>
           <div className={`${className}__caption`} dangerouslySetInnerHTML={{ __html: featuredImage.node.caption }} />
-          <div className={`${className}__author`} dangerouslySetInnerHTML={{ __html: featuredImage.node.author.node.name }} />              
+          <div className={`${className}__author`} dangerouslySetInnerHTML={{ __html: featuredImage.node.author.node.name }} />
         </div>
       )}
     </div>
@@ -36,24 +36,24 @@ const StyledFeaturedImage = styled(FeaturedImage)`
 
 width: auto;
 min-width: 375px;
-margin: 0; 
+margin: 0;
 position: relative;
 margin: ${sizes.s58} 0;
 &--event {
   margin: 0 0 48px;
-} 
+}
 
 @media screen and ${breakpoints.tabletS} {
   &--event {
     max-width: 536px;
-    margin: 0 auto;  
+    margin: 0 auto;
   }
 
 
 @media screen and ${breakpoints.tabletL} {
   &--event {
     max-width: 814px;
-    margin: 0 auto;  
+    margin: 0 auto;
     &:before {
       position: absolute;
       bottom: 0px;
@@ -66,9 +66,9 @@ margin: ${sizes.s58} 0;
       z-index: 1;
       width: calc(100% - 122px);
       content: '';
-    
+
     }
-    
+
     &:after {
       position: absolute;
       bottom: 0;
@@ -80,7 +80,7 @@ margin: ${sizes.s58} 0;
       background-color: ${colors.bgWhite} !important;
       transform: skew(135deg);
     }
-  
+
   }
 }
 
@@ -107,9 +107,9 @@ margin: ${sizes.s58} 0;
     z-index: 1;
     width: calc(100% - 122px);
     content: '';
-  
+
   }
-  
+
   &:after {
     position: absolute;
     bottom: 0;
@@ -124,14 +124,14 @@ margin: ${sizes.s58} 0;
   &--event {
     &:after {
       right: -33px;
-      width: 300px;  
+      width: 300px;
     }
-  }  
+  }
 
 }
 
-  
-  
+
+
 
 &__captionSection{
   font-size: ${sizes.s16};

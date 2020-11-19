@@ -10,19 +10,17 @@ import CardSet from "../content-modules/CardSet"
 
 
 
-const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop }) => {
+const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger }) => {
     // preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, children
 
     // get the title
     let title = null
     blocks.map((block) => {
-        console.log(block.name)
         switch(block.name) {
             case "acf/section-header":
                 title = (block.dynamicContent) ? block.dynamicContent : block.originalContent
                 break
             default:
-                console.log(block)
                 //return ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
                 break
         }
@@ -53,17 +51,16 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop }) => {
             }
         </SimpleSlider>)
 
-        : (cardset) 
+        : (cardset)
             ? (<CardSet>{
                 blocks.map((block) => {
                 const innerContent =  ((block.dynamicContent && block.dynamicContent !== "") ? block.dynamicContent : block.originalContent)
                 return innerContent
-                
-                
+
+
             })}</CardSet>)
             : blocks.map((block) => {
-                console.log(block.name)
-                
+
                 switch(block.name) {
                     case "acf/section-header":
                         break
@@ -76,19 +73,15 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop }) => {
                     case "acf/product-card":
                         return (<div dangerouslySetInnerHTML={{__html: block.dynamicContent}} />)
                     default:
-                        console.log(block)
                         return ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
                         break
                 }
-                
-            })
-        
-    return (
-        <PageSection heading={title} topBorder={borderTop} fromBlocks stagger>
-            {
-                innerContent
 
-            }
+            })
+
+    return (
+        <PageSection heading={title} topBorder={borderTop} fromBlocks stagger={stagger} >
+            { innerContent }
         </PageSection>
     )
 

@@ -10,12 +10,10 @@ import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 
 function WordPressPage({ data }) {
   const { page, posts } = data
-  console.log(page)
   const { title, excerpt, content, featuredImage, storyCategories, gridDetails } = page
-  
+
   const { storycategoriesinner: categories } = storyCategories
   const { backgroundImage } = gridDetails
-  console.log(backgroundImage)
 
   const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
   const moreButton = [
@@ -25,43 +23,40 @@ function WordPressPage({ data }) {
     },
   ]
 
-  console.log(categories)
-
   const cats = categories.map((item) => {
     const { category, numberToShow } = item
-    console.log(category)
     if (category && category.name) {
       return (
-      
+
         <PageSection heading={category.name} stagger>
           <CardSet items={category.posts.nodes} num={numberToShow} />
         </PageSection>
       )
     }
     return (<div/>)
-    
+
   }
   )
 
   const cardGridPosts = posts.nodes.slice(0,9)
   let postCards = cardGridPosts.map((post) => {
-    console.log(post)
+    console.log('post tiles post: ',post)
     return (
       <ContentCardD {...post} />
     )
   })
-  console.log(postCards)
 
 
 
   return (
     <Layout noborder>
+      { featuredImage && featuredImage.node && (
       <HeroIntroSection
           heroImage={featuredImage.node.localFile}
           heroHeading="<span>Badger</span> ON"
           redHeading={title}
           excerpt={excerpt}
-      />
+      />)}
       <WordPressContent content={content} />
       <>{cats}</>
       <PageSection heading="Most Recent" bgImage={gridBgImage} buttons={moreButton}>
@@ -130,7 +125,7 @@ export const query = graphql`
           dynamicContent
           innerBlocks {
             name
-            originalContent 
+            originalContent
             dynamicContent
           }
         }
@@ -147,7 +142,7 @@ export const query = graphql`
                 srcSetWebp
                 originalImg
                 originalName
-                
+
               }
             }
           }

@@ -6,10 +6,9 @@ import WordPressContent from "../../components/content-blocks/WordPressContent"
 
 function WpVenue({ data }) {
   const { venue } = data
-  console.log(venue)
-  const { 
+  const {
     title,
-    content 
+    content
   } = venue
 
   return (
