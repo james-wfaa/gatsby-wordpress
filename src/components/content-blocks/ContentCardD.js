@@ -14,42 +14,55 @@ const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, 
     const endIdx = (excerpt) ? excerpt.indexOf(' ', maxLength) : null
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength && endIdx > 0) ? excerpt.substring(0,excerpt.indexOf(' ', maxLength)) + ' ...' : excerpt
 
+    //need to rename 'categories'?
+    const categories = (eventsCategories && eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : (terms && terms.nodes && terms.nodes.length > 0) ? terms.nodes : null
 
-    const categories = (eventsCategories && eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : null
-    const postTypes = (terms && terms.nodes && terms.nodes.length > 0) ? terms.nodes : null
+    let linkInfo = null;
+    /*let category = (categories && categories[0].name ) ? categories[0].name : (categories && terms.nodes) ? terms.nodes.map((node) => {
+        if (node.name){
+            category = node.name
+            linkInfo = node.posts.nodes[0] //add check if linkInfo exists, also - why do some have multiple linkformats? just grabbing first for now
+            return category
+        }
+        
+   }) : null
     
+    console.log(category)*/
+   
     let category = null;
-
     //refactor this
     if (categories && categories[0].name){
         category = categories[0].name
-    } else if (postTypes != null){
+    } else if (categories != null){
         terms.nodes.map((node)=>{
             if (node.name){
                 category = node.name
+                linkInfo = node.posts.nodes[0] //add check if linkInfo exists, also - why do some have multiple linkformats? just grabbing first for now
                 return category
             }
         })
     }
-    //check if (postTypes && terms.nodes[0].name), has to map?
-
+  
+    console.log(category)
     //if post, update fields based on post type
-    if(postTypes != null){
+    if(categories != null && terms?.nodes ){
         switch(category){
             case 'Podcast': 
                 moreLinkText = <nobr>Listen &gt;</nobr>
                 break;
             case 'Video':
-                moreLinkText = <nobr>Watch Video <span class="arrow"></span></nobr>
+                //should video have a read more or something else?
+                //moreLinkText = <nobr>Watch Video &gt;</nobr>
                 break;
             case 'Link':
-                moreLinkText = <nobr>Via {} <span class="arrow"></span></nobr>
+                moreLinkText = <nobr>Via {linkInfo.linkFormat.linkAuthor} <span class="arrow"></span></nobr>
                 category = 'Story'
+                url = linkInfo.linkFormat.linkUrl //should the external links override the url??
                 break;
                 
             default:
-    }
-            
+                //category = 'Story' //Should it be blank or should this happen if it doesnt have a post type?
+        }      
     }
 
     //const category = categories && categories[0].name ? categories[0].name : null
@@ -111,21 +124,21 @@ min-height: 256px;
 width: 100%;
 .arrow {
     border: solid #c5050c;
-    border-width: 0 2px 2px 0;
+    border-width: 0 1px 1px 0;
     display: inline-block;
-    padding: 4px;
+    padding: 3px;
     transform: rotate(-90deg);
     -webkit-transform: rotate(-90deg);
-    margin-left: 9px;
+    margin-left: 8px;
     margin-bottom: 5px;
   }
   
   .arrow:before{
       content:'';
-    width:20px;
-    height:2px;
+    width:15px;
+    height:1px;
     background: #c5050c;
-    left:-8px;
+    left:-7px;
     bottom:5px;
     position:absolute;
     transform: rotate(45deg);
