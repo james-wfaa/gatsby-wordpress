@@ -4,7 +4,7 @@ import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import CardD from './CardD'
 import { shortDate } from "../../utils/tools"
 
-const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, venue, excerpt, url, urlText, terms })=> {
+const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, venue, excerpt, url, urlText, terms, linkFormat })=> {
 
     console.log('ContentCardD title: ',title)
     let moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
@@ -14,58 +14,25 @@ const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, 
     const endIdx = (excerpt) ? excerpt.indexOf(' ', maxLength) : null
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength && endIdx > 0) ? excerpt.substring(0,excerpt.indexOf(' ', maxLength)) + ' ...' : excerpt
 
-    //need to rename 'categories'?
+    //determine if event or post - then if post, what type?
     const categories = (eventsCategories && eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : (terms && terms.nodes && terms.nodes.length > 0) ? terms.nodes : null
-
-    let linkInfo = null;
-    /*let category = (categories && categories[0].name ) ? categories[0].name : (categories && terms.nodes) ? terms.nodes.map((node) => {
-        if (node.name){
-            category = node.name
-            linkInfo = node.posts.nodes[0] //add check if linkInfo exists, also - why do some have multiple linkformats? just grabbing first for now
-            return category
-        }
-        
-   }) : null
+    //let category = (categories && categories[0].name ) ? categories[0].name : (categories && terms.nodes) ? terms.nodes.map((node) => (node?.name) ? node.name : null) : null
+    let category = (categories && categories[0].name ) ? categories[0].name : (categories && categories.length > 2 ) ? categories[2].name : null
     
-    console.log(category)*/
-   
-    let category = null;
-    //refactor this
-    if (categories && categories[0].name){
-        category = categories[0].name
-    } else if (categories != null){
-        terms.nodes.map((node)=>{
-            if (node.name){
-                category = node.name
-                linkInfo = node.posts.nodes[0] //add check if linkInfo exists, also - why do some have multiple linkformats? just grabbing first for now
-                return category
-            }
-        })
-    }
-  
-    console.log(category)
     //if post, update fields based on post type
-    if(categories != null && terms?.nodes ){
+    if(category){
         switch(category){
             case 'Podcast': 
                 moreLinkText = <nobr>Listen &gt;</nobr>
                 break;
-            case 'Video':
-                //should video have a read more or something else?
-                //moreLinkText = <nobr>Watch Video &gt;</nobr>
-                break;
             case 'Link':
-                moreLinkText = <nobr>Via {linkInfo.linkFormat.linkAuthor} <span class="arrow"></span></nobr>
+                moreLinkText = <nobr>Via {linkFormat.linkAuthor} <span class="arrow"></span></nobr>
                 category = 'Story'
-                url = linkInfo.linkFormat.linkUrl //should the external links override the url??
+                url = linkFormat.linkUrl //should the external links override the url??
                 break;
-                
-            default:
-                //category = 'Story' //Should it be blank or should this happen if it doesnt have a post type?
         }      
     }
 
-    //const category = categories && categories[0].name ? categories[0].name : null
     const fmtStartDate = shortDate(startDate)
     let fmtEndDate = null
     if (endDate && shortDate(endDate) !== fmtStartDate) {
@@ -130,16 +97,16 @@ width: 100%;
     transform: rotate(-90deg);
     -webkit-transform: rotate(-90deg);
     margin-left: 8px;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
   }
   
   .arrow:before{
       content:'';
-    width:15px;
+    width:13px;
     height:1px;
     background: #c5050c;
-    left:-7px;
-    bottom:5px;
+    left:-5px;
+    bottom:4px;
     position:absolute;
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
