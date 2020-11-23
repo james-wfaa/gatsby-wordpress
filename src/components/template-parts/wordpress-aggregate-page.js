@@ -32,7 +32,7 @@ function WordPressPage({ page }) {
       )}
 
 
-    <WordPressContentBlocks blocks={blocks} />
+    <WordPressContentBlocks blocks={blocks} stagger />
 
 
     </Layout>

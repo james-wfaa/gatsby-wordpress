@@ -33,7 +33,7 @@
     "gatsby-plugin-styled-components": "^3.4.0",
     "gatsby-source-filesystem": "^2.5.0",
     "gatsby-source-graphql": "^2.8.0",
-    "gatsby-source-wordpress-experimental": "3.0.0",
+    "gatsby-source-wordpress-experimental": "3.0.1",
     "gatsby-transformer-sharp": "^2.6.0",
     "gatsby-wordpress-experimental-inline-images": "^0.0.3",
     "google-map-react": "^2.1.9",

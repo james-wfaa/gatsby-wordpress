@@ -73,12 +73,13 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
     ) : null
 
     console.log('RenderedBlocks:',RenderedBlocks)
+    const questionsDiv = <div dangerouslySetInnerHTML={{__html: eventDetails.questions}} />
 
     return(
         <div className={className} id="Top">
             {show ?
             <GenericModal
-            data={<div>TestX</div>}
+            data={questionsDiv}
             opacity={0.9}
             closeCallback={() => handleModal()}/>
             : null}

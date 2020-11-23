@@ -34,25 +34,16 @@ export const query = graphql`
         ... on WpDefaultTemplate {
           templateName
         }
-        ... on WpAggregateProductPageTemplate {
+        ... on WpTemplate_AggregateProductPage {
           templateName
         }
-        ... on WpHomePageTemplate {
+        ... on WpTemplate_HomePage {
           templateName
         }
-        ... on WpTopLevelPageTemplate {
+        ... on WpTemplate_TopLevelPage {
           templateName
         }
-        ... on WpEmailLoginPageTemplate {
-          templateName
-        }
-        ... on WpProductGeneralPageTemplate {
-          templateName
-        }
-        ... on WpNewsAndStoriesPageTemplate {
-          templateName
-        }
-        ... on WpEventsMainPageTemplate {
+        ... on WpTemplate_ProductGeneralPage {
           templateName
         }
       }

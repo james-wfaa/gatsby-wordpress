@@ -54,6 +54,7 @@ function WordPressPage({ page, events }) {
 
 
   const cardGridEvents = events.slice(0,9)
+  console.log('cardGridEvents:',cardGridEvents)
   let eventCards = cardGridEvents.map((event) => {
     return (
       <ContentCardD {...event.node} />

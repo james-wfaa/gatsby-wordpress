@@ -11,12 +11,14 @@ import WalkIcon from '../../svg/Transportation_icons_walk_blk_2x.svg'
 
 const EventMapDetails = ({ className, venue }) => {
 
-    const addressString = venue.address ? venue.title + '<br />' + venue.address + '<br />' + venue.city + ',' + venue.state : '';
+    const addressString = (venue && venue.address) ? venue.title + '<br />' + venue.address + '<br />' + venue.city + ',' + venue.state : '';
     const dirLink = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(addressString);
-    const location = {
+    const location = (venue && venue.latitude && venue.longitude) 
+        ? {
         lat: venue.latitude,
         lng: venue.longitude,
-    };
+        }
+        : null
 
     return (
         <div className={className} id="EventMap">
