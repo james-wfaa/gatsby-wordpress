@@ -17,18 +17,20 @@ const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, 
     //determine if event or post - then if post, what type?
     const categories = (eventsCategories && eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : (terms && terms.nodes && terms.nodes.length > 0) ? terms.nodes : null
     //let category = (categories && categories[0].name ) ? categories[0].name : (categories && terms.nodes) ? terms.nodes.map((node) => (node?.name) ? node.name : null) : null
-    let category = (categories && categories[0].name ) ? categories[0].name : (categories && categories.length > 2 ) ? categories[2].name : null
+    let category = (categories && categories[0].name ) ? categories[0].name : (categories && categories.length > 2 ) ? categories[2].name : null //always the 3rd node??
     
     //if post, update fields based on post type
-    if(category){
+    if(category && terms){
         switch(category){
-            case 'Podcast': 
-                moreLinkText = <nobr>Listen &gt;</nobr>
+            case 'Video':
                 break;
             case 'Link':
                 moreLinkText = <nobr>Via {linkFormat.linkAuthor} <span class="arrow"></span></nobr>
                 category = 'Story'
-                url = linkFormat.linkUrl //should the external links override the url??
+                url = linkFormat.linkUrl
+                break;
+            case 'Podcast': 
+                moreLinkText = <nobr>Listen <span class="arrow"></span></nobr>
                 break;
         }      
     }
