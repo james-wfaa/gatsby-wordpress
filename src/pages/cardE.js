@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import Layout from "../components/layout"
 import CardE from "../components/content-blocks/CardE"
 import Container from "../components/parts/Container"
+import SponsorAd from "../components/content-blocks/SponsorAd"
 
 import PageSection from '../components/page-sections/PageSection'
 export default ({ data }) => {
