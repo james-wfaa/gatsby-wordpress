@@ -106,26 +106,6 @@ export const query = graphql`
           }
         }
       }
-    },
-    allWp {
-      nodes {
-        siteOptions {
-          ads {
-            sponsorUrl
-            sponsorAd21 {
-              localFile {
-                ...HeroImage
-              }
-            }
-            sponsorAd31 {
-              localFile {
-                ...HeroImage
-              }
-            }
-          }
-        }
-      }
     }
-
   }
 `
