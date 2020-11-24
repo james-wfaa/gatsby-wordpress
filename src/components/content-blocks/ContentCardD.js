@@ -4,20 +4,53 @@ import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import CardD from './CardD'
 import { shortDate } from "../../utils/tools"
 
-const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, venue, excerpt, url, urlText })=> {
+const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, venue, excerpt, url, urlText, terms, linkFormat })=> {
 
     console.log('ContentCardD title: ',title)
-    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
+    let moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
 
     /* let's make this a helper available anywhere we need to nicely shorten an excerpt */
     const maxLength = (title.length <= 28) ? 200 : 160
     const endIdx = (excerpt) ? excerpt.indexOf(' ', maxLength) : null
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength && endIdx > 0) ? excerpt.substring(0,excerpt.indexOf(' ', maxLength)) + ' ...' : excerpt
 
+    //get events
+    const categories = (eventsCategories && eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : null;
+    //get posts
+    const postTypes = (terms && terms.nodes && terms.nodes.length > 0) ? terms.nodes : null;
+    //set category if it exists
+    let category = null;
+    if (categories && categories[0].name){
+        category = categories[0].name
+    } else if (postTypes){
+        terms.nodes.map((node)=>{
+            if (node.name){
+                return category = node.name
+            }
+        })
+        console.log(category)
+        //if post but doesnt have category, set as Story
+        if (postTypes && category === null){
+            category = 'Story'
+        }
+    }
+    
+    //if post, update fields based on post type
+    if(category && postTypes){
+        switch(category){
+            case 'Video':
+                break;
+            case 'Link':
+                moreLinkText = <nobr>Via {linkFormat.linkAuthor} <span class="arrow"></span></nobr>
+                category = 'Story'
+                url = linkFormat.linkUrl
+                break;
+            case 'Podcast': 
+                moreLinkText = <nobr>Listen <span class="arrow"></span></nobr>
+                break;
+        }   
+    }
 
-    const categories = (eventsCategories && eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : null
-
-    const category = categories && categories[0].name ? categories[0].name : null
     const fmtStartDate = shortDate(startDate)
     let fmtEndDate = null
     if (endDate && shortDate(endDate) !== fmtStartDate) {
@@ -74,6 +107,28 @@ opacity: 0.9;
 color: ${colors.cardText};
 min-height: 256px;
 width: 100%;
+.arrow {
+    border: solid #c5050c;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    margin-left: 8px;
+    margin-bottom: 4px;
+  }
+  
+  .arrow:before{
+      content:'';
+    width:13px;
+    height:1px;
+    background: #c5050c;
+    left:-5px;
+    bottom:4px;
+    position:absolute;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
 @media screen and ${breakpoints.laptopS} {
     padding: ${sizes.s32};
     min-height: 344px;

@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import styled from 'styled-components'
-import FaTwitter from "../../svg/twitter_icon_gray.svg";
-import FaFacebook from "../../svg/fb_icon_gray.svg";
-import { ShareButtonRectangle, ShareBlockStandard } from "react-custom-share";
-import RegistrationButtons from '../parts/RegistrationButtons'
 import EventLinksBlock from "./EventLinks"
 
 import Button from '../parts/Button'
