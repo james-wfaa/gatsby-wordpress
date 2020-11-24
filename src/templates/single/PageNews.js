@@ -4,7 +4,7 @@ import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
 import WordPressContent from "../../components/content-blocks/WordPressContent"
 import CardSet from "../../components/content-modules/CardSet"
-import ContentCardD from "../../components/content-blocks/ContentCardD"
+import StoryCardD from "../../components/content-blocks/StoryCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
 import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 
@@ -43,7 +43,7 @@ function WordPressPage({ data }) {
   let postCards = cardGridPosts.map((post) => {
     console.log('post tiles post: ',post)
     return (
-      <ContentCardD {...post} />
+      <StoryCardD {...post} />
     )
   })
 
@@ -162,6 +162,19 @@ export const query = graphql`
           }
         }
         url: uri
+        terms {
+          nodes {
+            ... on WpPostFormat {
+              id
+              name
+              slug
+            }
+          }
+        }
+        linkFormat {
+          linkAuthor
+          linkUrl
+        }
       }
     }
   }

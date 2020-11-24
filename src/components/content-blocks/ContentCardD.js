@@ -2,28 +2,11 @@ import React from "react"
 import styled from 'styled-components'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import CardD from './CardD'
-import { shortDate } from "../../utils/tools"
 
-const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, venue, excerpt, url, urlText })=> {
+const ContentCardD = ({ className, startDate, title, venue, excerpt, url, label, moreLinkText, shortenedExcerpt, dateLinkText })=> {
 
     console.log('ContentCardD title: ',title)
-    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
 
-    /* let's make this a helper available anywhere we need to nicely shorten an excerpt */
-    const maxLength = (title.length <= 28) ? 200 : 160
-    const endIdx = (excerpt) ? excerpt.indexOf(' ', maxLength) : null
-    const shortenedExcerpt = (excerpt && excerpt.length > maxLength && endIdx > 0) ? excerpt.substring(0,excerpt.indexOf(' ', maxLength)) + ' ...' : excerpt
-
-
-    const categories = (eventsCategories && eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : null
-
-    const category = categories && categories[0].name ? categories[0].name : null
-    const fmtStartDate = shortDate(startDate)
-    let fmtEndDate = null
-    if (endDate && shortDate(endDate) !== fmtStartDate) {
-        fmtEndDate = shortDate(endDate)
-    }
-    const dateLinkText = (fmtEndDate) ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
     return (
         <CardD>
             <a href={url}className={className}>
@@ -40,8 +23,8 @@ const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, 
                         { title && (
                             <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />
                         )}
-                        { category && (
-                            <div className={`${className}__category`}>{category}</div>
+                        { label && (
+                            <div className={`${className}__category`}>{label}</div>
                         )}
                     </div>
                     { venue?.title && (
@@ -74,6 +57,28 @@ opacity: 0.9;
 color: ${colors.cardText};
 min-height: 256px;
 width: 100%;
+.arrow {
+    border: solid #c5050c;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    margin-left: 8px;
+    margin-bottom: 4px;
+  }
+  
+  .arrow:before{
+      content:'';
+    width:13px;
+    height:1px;
+    background: #c5050c;
+    left:-5px;
+    bottom:4px;
+    position:absolute;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
 @media screen and ${breakpoints.laptopS} {
     padding: ${sizes.s32};
     min-height: 344px;
