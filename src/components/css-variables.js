@@ -104,6 +104,7 @@ export const colors = {
     bgLightGrey: baseColors.evenlighterGrey,
     mapDetailsText: baseColors.offBlack,
     disabledGrey: baseColors.darkGrey,
+    sponsorAdBG: baseColors.darkerGrey,
 
 
 

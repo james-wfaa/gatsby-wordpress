@@ -6,6 +6,8 @@ import ContentCard from "../../components/content-blocks/ContentCard"
 import ContentBlockList from "../../components/content-modules/ContentBlockList"
 import AccordianSearch from "../../components/parts/AccordianSearch"
 import PaginationNav from "../../components/parts/PaginationNav"
+import SponsorAd from "../../components/content-blocks/SponsorAd"
+
 
 class EventsList extends React.Component {
 
@@ -50,6 +52,9 @@ class EventsList extends React.Component {
         <PageSection>
           <ContentBlockList>{allEvents}</ContentBlockList>
           <PaginationNav basepath={baseUri} page={page} totalPages={totalPages} isFirst={isFirst} isLast={isLast} />
+        </PageSection>
+        <PageSection>
+          <SponsorAd/>
         </PageSection>
 
     </Layout>

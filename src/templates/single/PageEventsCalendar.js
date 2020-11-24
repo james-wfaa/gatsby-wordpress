@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
 import ContentCard from "../../components/content-blocks/ContentCard"
+import SponsorAd from "../../components/content-blocks/SponsorAd"
 import ContentBlockList from "../../components/content-modules/ContentBlockList"
 import AccordianSearch from "../../components/parts/AccordianSearch"
 
@@ -36,6 +37,9 @@ function WordPressPage({ data }) {
         <AccordianSearch />
         <PageSection>
           <ContentBlockList>{allEvents}</ContentBlockList>
+        </PageSection>
+        <PageSection>
+          <SponsorAd/>
         </PageSection>
 
     </Layout>

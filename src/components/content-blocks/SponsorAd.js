@@ -1,96 +1,102 @@
 import React from "react"
 import styled from 'styled-components'
-import { StaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import { sizes, breakpoints } from '../css-variables'
 import Img from 'gatsby-image'
+import SponsorAdStyled from "./SponsorAdStyled"
 
-const SponsorAd = ({className}) => {
-  
-    return (
-        <StaticQuery
-        query={graphql`
-          query HeadingQuery {
-            allWp {
-                nodes {
-                  siteOptions {
-                    SponsorAd {
-                        adCopy
-                        adHeading
-                        adLink {
-                          ... on WpPage {
-                            id
-                            uri
-                          }
+  const SponsorAd = ({className}) => {
+    const data = useStaticQuery(graphql`
+    query HeadingQuery {
+        allWp {
+            nodes {
+              siteOptions {
+                SponsorAd {
+                    adCopy
+                    adHeading
+                    adLink {
+                      ... on WpPage {
+                        id
+                        uri
+                      }
+                    }
+                    fieldGroupName
+                    logoImage1 {
+                      localFile {
+                        ...HeroImage
+                      }
+                    }
+                    logoImage2 {
+                        localFile {
+                          ...HeroImage
                         }
-                        fieldGroupName
-                        logoImage1 {
-                          localFile {
+                      }
+                    logoImage3 {
+                        localFile {
                             ...HeroImage
-                          }
-                        }
-                        logoImage2 {
-                            localFile {
-                              ...HeroImage
-                            }
-                          }
-                        logoImage3 {
-                            localFile {
-                                ...HeroImage
-                            }
-                        }
-                        logoImage4 {
-                            localFile {
-                              ...HeroImage
-                            }
                         }
                     }
-                  }
+                    logoImage4 {
+                        localFile {
+                          ...HeroImage
+                        }
+                    }
                 }
               }
+            }
           }
-        `}
-        render={data => (
-            <div className={className}>
-                {data.allWp.nodes && data.allWP.nodes[0].siteOptions.SponsorAd &&(
-                    <a className="SponsorAd_Link" href={data.allWP.nodes[0].siteOptions.SponsorAd.adLink.uri}>
-                        <div className="AdTitle" dangerouslySetInnerHTML={{ __html: data.allWP.nodes[0].siteOptions.SponsorAd.adHeading }}/>
-                        <div className="AdContent" dangerouslySetInnerHTML={{ __html: data.allWP.nodes[0].siteOptions.SponsorAd.adCopy }}/>
-                    </a>
-                )}
-            </div>
-        )}
-      />
+      }
+    `);
+  
+    console.log('Data? ' + data);
+    const { allWp } = data
+    const { siteOptions } = allWp.nodes[0]
+    const { SponsorAd } = siteOptions
+    const { adHeading, adCopy, adLink, logoImage1, logoImage2, logoImage3, logoImage4} = SponsorAd
+
+  
+    return (
+        <SponsorAdStyled>
+            {siteOptions && (
+                <a className="SponsorAd_Link" href={adLink.uri}>
+                    <div className="contentWrap">
+                        <div className="AdTitle" dangerouslySetInnerHTML={{ __html: adHeading }}/>
+                        <div className="AdContent" dangerouslySetInnerHTML={{ __html: adCopy }}/>
+                    </div>
+                    <div className="LogoList">
+                        <div className="LogoLeft LogoColumn" >
+                            <div className="LogoWrap">
+                                <Img
+                                    className="Logo_AmFam LogoIcon"
+                                    fluid={logoImage1.localFile.childImageSharp.fluid}
+                                />
+                            </div>
+                            <div className="LogoWrap">
+                                <Img
+                                    className="Logo_UWCU LogoIcon"
+                                    fluid={logoImage3.localFile.childImageSharp.fluid}
+                                />
+                            </div>
+                        </div>
+                        <div className="LogoRight LogoColumn">
+                            <div className="LogoWrap">
+                                <Img
+                                    className="Logo_WPS LogoIcon"
+                                    fluid={logoImage4.localFile.childImageSharp.fluid}
+                                />
+                            </div>
+                            <div className="LogoWrap">
+                                <Img
+                                    className="Logo_CapLake LogoIcon"
+                                    fluid={logoImage2.localFile.childImageSharp.fluid}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            )}
+        </SponsorAdStyled>
     )
-  }
-
-const StyledSponsorAd = styled(SponsorAd)`
-figure {
-    max-width: 302px;
-    margin: 0 auto;
-
-    @media screen and ${breakpoints.mobileL} {
-        max-width: 1080px;
-    }
-
-    Img {
-        width: 100%;
-    }
-    a {
-        .imgSmall{
-            @media screen and ${breakpoints.mobileL} {
-                display: none;
-            }    
-        }
-        .imgLarge{
-            display: none;
-    
-            @media screen and ${breakpoints.mobileL} {
-                display: block;
-            }    
-        }
-    
-    }
-}
-
-`
-export default StyledSponsorAd
+  };
+  
+  export default SponsorAd;
