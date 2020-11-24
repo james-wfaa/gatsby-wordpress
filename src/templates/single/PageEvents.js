@@ -17,6 +17,7 @@ function WordPressPage({ data }) {
   const { edges: eventEdges } = events
   const { title, featuredImage, eventCategories, excerpt, gridDetails  } = page
   const { categories } = eventCategories
+  console.log(eventCategories)
 
   const { backgroundImage } = gridDetails
 
@@ -30,6 +31,7 @@ function WordPressPage({ data }) {
 
   const cats = categories.map((item) => {
     const { categoryEvent, numberToShow } = item
+    console.log(item)
     return (
       <PageSection heading={categoryEvent.name} stagger>
         <CardSet items={categoryEvent.events.nodes} num={numberToShow} />
@@ -168,6 +170,7 @@ export const query = graphql`
             }
             name
           }
+          numberToShow
         }
       }
       blocks {

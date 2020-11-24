@@ -22,6 +22,7 @@ const CardSet = ({className, items, children, num }) => {
             const { featuredEvent, featuredImage: img } = item
             const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
 
+            console.log('num: ',num)
             return (num === 3)
                 ? (<ContentCard size="S" img={cardImg} {...item} />)
                 : (<ContentCard size="M" img={cardImg} {...item} />)
@@ -45,7 +46,7 @@ justify-content: center;
     }
 
 }
-@media screen and ${breakpoints.laptopS} {
+@media screen and ${breakpoints.tabletL} {
     flex-direction: row;
     > * {
         margin: 0 ${sizes.s24} 0 0;

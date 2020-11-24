@@ -89,7 +89,7 @@ hr.wp-block-separator {
         .jumbo-img{
             display: none;
         }
-        @media screen and ${breakpoints.tabletL} {
+        @media screen and ${breakpoints.tablet} {
             width: 814px;
             min-height: 398px;
             flex-flow: row;
@@ -109,7 +109,7 @@ hr.wp-block-separator {
             }
 
         }
-        @media screen and ${breakpoints.laptopL} {
+        @media screen and ${breakpoints.tabletL} {
             width: 1080px;
             min-height: 528px;
             .jumbo-img{

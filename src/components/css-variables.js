@@ -785,12 +785,7 @@ export const mixins = {
     }`,
     contentCardSizes:`{
         &--notsmall{
-            @media screen and ${breakpoints.tabletS} {
-                width: 528px;
-                min-height: 680px;
-    
-            }
-            @media screen and ${breakpoints.laptopS} {
+            @media screen and ${breakpoints.tabletL} {
                 .columnwrap:nth-child(1) {
                     border-right: 1px solid ${colors.cardBorder};
                 }
@@ -809,7 +804,7 @@ export const mixins = {
             }
         }
         &--S{
-            @media screen and ${breakpoints.tabletS} {
+            @media screen and ${breakpoints.laptopS} {
                 width: 344px;
                 max-width: 344px;
                 min-height: 680px;
@@ -819,20 +814,36 @@ export const mixins = {
             .columnwrap:nth-child(1) {
                 border-right: none;
             }
+            @media screen and ${breakpoints.tabletL} {
+                width: 396px;
+                max-width: 396px;
+            }
+            @media screen and ${breakpoints.laptopS} {
+                width: 528px;
+                max-width: 528px;
+            }
         }
     
         &--L{
+            @media screen and ${breakpoints.tabletL} {
+                width: 536px;
+            }
             @media screen and ${breakpoints.laptopS} {
                 width: 712px;
-    
             }
         }
         &--XL{
+            @media screen and ${breakpoints.tabletL} {
+                width: 536px;
+            }
             @media screen and ${breakpoints.laptopS} {
                 width: 896px;
             }
         }
         &--XXL{
+            @media screen and ${breakpoints.tabletL} {
+                width: 536px;
+            }
             @media screen and ${breakpoints.laptopS} {
                 width: 1080px;
             }
