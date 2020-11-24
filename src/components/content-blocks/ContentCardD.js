@@ -14,13 +14,29 @@ const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, 
     const endIdx = (excerpt) ? excerpt.indexOf(' ', maxLength) : null
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength && endIdx > 0) ? excerpt.substring(0,excerpt.indexOf(' ', maxLength)) + ' ...' : excerpt
 
-    //determine if event or post - then if post, what type?
-    const categories = (eventsCategories && eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : (terms && terms.nodes && terms.nodes.length > 0) ? terms.nodes : null
-    //let category = (categories && categories[0].name ) ? categories[0].name : (categories && terms.nodes) ? terms.nodes.map((node) => (node?.name) ? node.name : null) : null
-    let category = (categories && categories[0].name ) ? categories[0].name : (categories && categories.length > 2 ) ? categories[2].name : null //always the 3rd node??
+    //get events
+    const categories = (eventsCategories && eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : null;
+    //get posts
+    const postTypes = (terms && terms.nodes && terms.nodes.length > 0) ? terms.nodes : null;
+    //set category if it exists
+    let category = null;
+    if (categories && categories[0].name){
+        category = categories[0].name
+    } else if (postTypes){
+        terms.nodes.map((node)=>{
+            if (node.name){
+                return category = node.name
+            }
+        })
+        console.log(category)
+        //if post but doesnt have category, set as Story
+        if (postTypes && category === null){
+            category = 'Story'
+        }
+    }
     
     //if post, update fields based on post type
-    if(category && terms){
+    if(category && postTypes){
         switch(category){
             case 'Video':
                 break;
@@ -32,7 +48,7 @@ const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, 
             case 'Podcast': 
                 moreLinkText = <nobr>Listen <span class="arrow"></span></nobr>
                 break;
-        }      
+        }   
     }
 
     const fmtStartDate = shortDate(startDate)
