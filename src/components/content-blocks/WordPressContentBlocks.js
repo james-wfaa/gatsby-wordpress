@@ -1,11 +1,11 @@
 import React from 'react'
 import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
+import PageSection from "../page-sections/PageSection"
+import CardHandler from "../content-modules/CardHandler"
 import styled from 'styled-components'
-import {  colors, sizes, breakpoints, mixins } from '../css-variables'
+import { colors, breakpoints, mixins } from '../css-variables'
 
-const WordPressContent = ({className, blocks, stagger}) => {
-
-
+const WordPressContent = ({className, blocks, eventCategory, stagger}) => {
     const staggerBlocks = (stagger) 
         ? blocks.map((block) => {
             block.stagger = true
@@ -13,31 +13,51 @@ const WordPressContent = ({className, blocks, stagger}) => {
         })
         : blocks
 
-    const RenderedBlocks = staggerBlocks.map((block) => {
+    let RenderedBlocks = []
+    console.log(RenderedBlocks)
+
+    staggerBlocks.forEach((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
         const stagger = block.stagger
+        console.log(block.name)
 
         switch(block.name) {
+           
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
-                    return (<PageSectionFromBlocks blocks={block.innerBlocks} borderTop={borderTop} stagger={stagger} />)
+                    console.log('page-section')
+                    RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} borderTop={borderTop} stagger={stagger} />)
                 }
                 if (block.innerBlocks && block.originalContent.indexOf(' gallery') > 0) {
-                    return (<PageSectionFromBlocks blocks={block.innerBlocks} gallery borderTop={borderTop} stagger={stagger} />)
+                    console.log('gallery')
+                    RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} gallery borderTop={borderTop} stagger={stagger} />)
                 }
                 if (block.innerBlocks && block.originalContent.indexOf(' card-set') > 0) {
-                    return (<PageSectionFromBlocks blocks={block.innerBlocks} cardset borderTop={borderTop} stagger={stagger} />)
+                    console.log('card-set')
+                    RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} cardset borderTop={borderTop} stagger={stagger} />)
                 }
 
                 break
             case "core/separator":
-                return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
-                
+                RenderedBlocks.append(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+            case "acf/events-listing-section":
+                console.log('events-listing-section')
+                const { slug, events } = eventCategory
+                const eventsToShow = (events?.nodes) ? events.nodes : null
+                const buttons = (eventsToShow.length > 2) 
+                    ? [{
+                        link: `/events/search/?category=${slug}`,
+                        text: 'See All Events'
+                    }]
+                    : null
+                RenderedBlocks.push(<PageSection heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)
+                break
             default:
-                return (<PageSectionFromBlocks blocks={[block]} stagger={stagger} />)
+                console.log('default')
+                RenderedBlocks.push(<PageSectionFromBlocks blocks={[block]} heading="Default" borderTop={borderTop} stagger={stagger} />)
                 
         }
-        }
+    }
     )
 
     return(
@@ -89,7 +109,7 @@ hr.wp-block-separator {
         .jumbo-img{
             display: none;
         }
-        @media screen and ${breakpoints.tablet} {
+        @media screen and ${breakpoints.tabletL} {
             width: 814px;
             min-height: 398px;
             flex-flow: row;
@@ -109,7 +129,7 @@ hr.wp-block-separator {
             }
 
         }
-        @media screen and ${breakpoints.tabletL} {
+        @media screen and ${breakpoints.laptopS} {
             width: 1080px;
             min-height: 528px;
             .jumbo-img{

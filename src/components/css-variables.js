@@ -444,6 +444,10 @@ export const mixins = {
         border-top: 6px solid ${colors.cardBorder};
         background-color: ${colors.bgWhite};
         opacity: 0.9; 
+
+        @media screen and ${breakpoints.laptopS} {
+            min-height: 680px;
+        }
     
         & a{
             text-decoration: none;
@@ -807,7 +811,6 @@ export const mixins = {
             @media screen and ${breakpoints.laptopS} {
                 width: 344px;
                 max-width: 344px;
-                min-height: 680px;
             }
         }
         &--M{
