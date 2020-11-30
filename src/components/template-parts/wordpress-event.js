@@ -8,8 +8,8 @@ import FeaturedImage from "../content-blocks/FeaturedImage"
 function WordPressPage({ page }) {
   const {  featuredImage, blocks } = page
   const noborder = (featuredImage !== null)
-  console.log('page part of event', page)
-  console.log('blocks part of event', blocks)
+  //console.log('page part of event', page)
+  //console.log('blocks part of event', blocks)
 
   // TODO: filter out the array of blocks to remove all the default Event ones and only show the content ones
   // TODO: then pass that filtered list of blocks in lieu of the content
