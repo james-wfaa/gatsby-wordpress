@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
@@ -13,6 +13,7 @@ import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 import AccordianSearch from "../../components/parts/AccordianSearch"
 
 function WordPressPage({ data }) {
+  const [searchString, setSearchString] = useState("")
   const { page, events } = data
   const { edges: eventEdges } = events
   const { title, featuredImage, eventCategories, excerpt, gridDetails  } = page
@@ -61,7 +62,7 @@ function WordPressPage({ data }) {
     return element !== undefined;
  })
 
- 
+
   console.log('featuredEvents:',featuredEvents)
 
 
@@ -75,6 +76,10 @@ function WordPressPage({ data }) {
   })
   console.log('eventCards:',eventCards)
 
+  const handleFilterString = (str) => {
+    setSearchString(str)
+  }
+
   return (
     <Layout noborder>
       { featuredImage && featuredImage.node && (
@@ -84,7 +89,7 @@ function WordPressPage({ data }) {
           redHeading={title}
           excerpt={excerpt}
         />)}
-        <AccordianSearch />
+        <AccordianSearch handleFilterString={(str) => handleFilterString(str)}/>
         <PageSection>
         <SimpleSlider
             className="center"

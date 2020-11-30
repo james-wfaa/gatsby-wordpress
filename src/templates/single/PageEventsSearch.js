@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
@@ -11,7 +11,7 @@ class EventsList extends React.Component {
 
   render() {
     console.log('PageEventsSearch - props - ',this.props)
-
+    const [searchString, setSearchString] = useState("")
     const baseUri = '/events/search/'
     const { events } = this.props.data
 
@@ -43,10 +43,14 @@ class EventsList extends React.Component {
       return element !== undefined;
    })
 
+   const handleFilterString = (str) => {
+    setSearchString(str)
+   }
+
     return(
 
     <Layout noborder>
-        <AccordianSearch />
+        <AccordianSearch handleFilterString={(str) => handleFilterString(str)}/>
         <PageSection>
           <ContentBlockList>{allEvents}</ContentBlockList>
           <PaginationNav basepath={baseUri} page={page} totalPages={totalPages} isFirst={isFirst} isLast={isLast} />
