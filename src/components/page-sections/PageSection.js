@@ -130,7 +130,7 @@ const StyledPageSection = styled(PageSection)`
         
     }
     
-    &.stagger:nth-child(odd) {
+    &.stagger:nth-child(even) {
         background-color: ${colors.bgActiveGrey};
     }
     &.alt {
