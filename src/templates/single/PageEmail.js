@@ -40,16 +40,18 @@ const WordPressEmailPage = ({ className, data }) => {
           <BackgroundImage
             Tag="div"
             className="adBgImg"
-            fluid={HalfPageAd.adImage.localFile.childImageSharp.fluid}
+            fluid={HalfPageAd.adList[0].adImage.localFile.childImageSharp.fluid}
             preserveStackingContext
           >
-            {HalfPageAd && (
+            {HalfPageAd && HalfPageAd.adList[0] && (
               <div className="wrapper">
-                <div className="AdTitle" dangerouslySetInnerHTML={{ __html: HalfPageAd.adHeading }}/>
-                <div className="AdContent" dangerouslySetInnerHTML={{ __html: HalfPageAd.adCopy }}/>
-                <div className="button">
-                  <a href={HalfPageAd.adButtonLink.uri}>{HalfPageAd.adButtonText}</a>
-                </div>
+                <div className="AdTitle" dangerouslySetInnerHTML={{ __html: HalfPageAd.adList[0].adHeading }}/>
+                <div className="AdContent" dangerouslySetInnerHTML={{ __html: HalfPageAd.adList[0].adCopy }}/>
+                {HalfPageAd.adList[0].adButtonLink && (
+                  <div className="button">
+                    <a href={HalfPageAd.adList[0].adButtonLink.uri}>{HalfPageAd.adList[0].adButtonText}</a>
+                  </div>
+                )}
               </div>
             )}
           </BackgroundImage>
@@ -218,31 +220,34 @@ export const query = graphql`
         }
       }
       HalfPageAd {
-        fieldGroupName
-        adButtonLink {
-          ... on WpPage {
-            id
-            uri
+        adList {
+          fieldGroupName
+          adButtonLink {
+            ... on WpPage {
+              id
+              uri
+            }
+            ... on WpPost {
+              id
+              uri
+            }
+            ... on WpEvent {
+              id
+              url
+              uri
+            }
           }
-          ... on WpPost {
+          adButtonText
+          adCopy
+          adHeading
+          adImage {
             id
-            uri
-          }
-          ... on WpEvent {
-            id
-            url
-            uri
+            localFile {
+              ...HeroImage
+            }
           }
         }
-        adButtonText
-        adCopy
-        adHeading
-        adImage {
-          id
-          localFile {
-            ...HeroImage
-          }
-        }
+        
       }
     },
     posts: allWpPost(limit: 6, sort: {order: ASC, fields: date}) {
