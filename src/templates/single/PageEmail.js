@@ -15,11 +15,11 @@ import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
 const WordPressEmailPage = ({ className, data }) => {
   const { page, posts } = data
-  console.log(posts)
+  //console.log(posts)
   const { title, content, HalfPageAd } = page
 
   let postCards = posts.nodes.map((post) => {
-    console.log(post)
+    //console.log(post)
     const { featuredImage: img } = post
     const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
     return (
