@@ -36,7 +36,7 @@ const WordPressEmailPage = ({ className, data }) => {
         <WordPressContent content={content} />
         </PageSection>
         </div>
-        <div className="col col--ad">
+        {HalfPageAd && HalfPageAd.adList[0] && (<div className="col col--ad">
           <BackgroundImage
             Tag="div"
             className="adBgImg"
@@ -55,7 +55,8 @@ const WordPressEmailPage = ({ className, data }) => {
               </div>
             )}
           </BackgroundImage>
-        </div>
+        </div> )
+      }
 
       </div>
       <PageSection 
