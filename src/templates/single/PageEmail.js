@@ -239,6 +239,7 @@ export const query = graphql`
             }
           }
           adButtonText
+          adActive
           adCopy
           adHeading
           adImage {
