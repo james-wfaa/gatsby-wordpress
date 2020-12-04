@@ -46,13 +46,21 @@ position: relative;
     
 }
 
+
+
+
 a {
     ${mixins.textlink}
 }
 .button{
+    margin-top: ${sizes.s40};
+    margin-bottom: ${sizes.s40};
     a {
         ${mixins.buttons};
     }
+}
+p + p.button {
+    margin-top: ${sizes.s8};
 }
 
 .testimonial {
@@ -263,8 +271,30 @@ hr.wp-block-separator {
 }
 
 div.section-header {
+    
+    /* override main page header H2 styles */
+    h2 {
+        font-size: ${sizes.s32} !important;
+        line-height: ${sizes.s38} !important;
+        width: 80%;
+        max-width: 712px !important;
+        @media screen and ${breakpoints.laptopS} {
+            font-size: ${sizes.s36} !important;
+            line-height: ${sizes.s42} !important;
+        }
+        
+    }
+    &.leftAlign {
+        &:after {
+            display: none;
+        }
+    }
+    &.compact {
+        padding-bottom: 0;
+    }
     ${mixins.sectionHeader}
-
+    
+    
 }
 .callout-bold {
     font-weight: bold;
