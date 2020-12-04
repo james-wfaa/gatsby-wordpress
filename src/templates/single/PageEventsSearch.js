@@ -7,58 +7,49 @@ import ContentBlockList from "../../components/content-modules/ContentBlockList"
 import AccordianSearch from "../../components/parts/AccordianSearch"
 import PaginationNav from "../../components/parts/PaginationNav"
 
-class EventsList extends React.Component {
-
-  render() {
-    console.log('PageEventsSearch - props - ',this.props)
-    const [searchString, setSearchString] = useState("")
-    const baseUri = '/events/search/'
-    const { events } = this.props.data
-
-    const { page, totalPages } = this.props.pageContext
-    const isFirst = page === 1
-    const isLast = page === totalPages
-    const prevPage = page - 1 === 1 ? baseUri : (page - 1).toString()
-    const nextPage = (page + 1).toString()
-    console.log('prev:', prevPage)
-    console.log('next:', nextPage)
-
-    const { edges: eventEdges } = events
-    let allEvents = eventEdges.map((event) => {
-      console.log('event.node:',event.node)
-      const { featuredEvent, featuredImage: img } = event.node
-      const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-      console.log( 'featuredEvent:',featuredEvent )
-      if (!featuredEvent) {
-        return (
-          <ContentCard size="Wide" img={cardImg} {...event.node} />
-        )
-      } else {
-        return (
-          <ContentCard size="XXL" img={cardImg} {...event.node} />
-        )
-      }
-    })
-    allEvents = allEvents.filter(function( element ) {
-      return element !== undefined;
-   })
-
-   const handleFilterString = (str) => {
-    setSearchString(str)
-   }
-
-    return(
-
-    <Layout noborder>
-        <AccordianSearch handleFilterString={(str) => handleFilterString(str)}/>
-        <PageSection>
-          <ContentBlockList>{allEvents}</ContentBlockList>
-          <PaginationNav basepath={baseUri} page={page} totalPages={totalPages} isFirst={isFirst} isLast={isLast} />
-        </PageSection>
-
-    </Layout>
-    )
-  }
+const EventsList = (props) => {
+  console.log('PageEventsSearch - props - ',props)
+  const [searchString, setSearchString] = useState("")
+  const baseUri = '/events/search/'
+  const { events } = props.data
+  const { page, totalPages } = props.pageContext
+  const isFirst = page === 1
+  const isLast = page === totalPages
+  const prevPage = page - 1 === 1 ? baseUri : (page - 1).toString()
+  const nextPage = (page + 1).toString()
+  console.log('prev:', prevPage)
+  console.log('next:', nextPage)
+  const { edges: eventEdges } = events
+  let allEvents = eventEdges.map((event) => {
+    console.log('event.node:',event.node)
+    const { featuredEvent, featuredImage: img } = event.node
+    const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
+    console.log( 'featuredEvent:',featuredEvent )
+    if (!featuredEvent) {
+      return (
+        <ContentCard size="Wide" img={cardImg} {...event.node} />
+      )
+    } else {
+      return (
+        <ContentCard size="XXL" img={cardImg} {...event.node} />
+      )
+    }
+  })
+  allEvents = allEvents.filter(function( element ) {
+    return element !== undefined;
+ })
+ const handleFilterString = (str) => {
+  setSearchString(str)
+ }
+  return(
+  <Layout noborder>
+      <AccordianSearch handleFilterString={(str) => handleFilterString(str)}/>
+      <PageSection>
+        <ContentBlockList>{allEvents}</ContentBlockList>
+        <PaginationNav basepath={baseUri} page={page} totalPages={totalPages} isFirst={isFirst} isLast={isLast} />
+      </PageSection>
+  </Layout>
+  )
 }
 
 export default EventsList

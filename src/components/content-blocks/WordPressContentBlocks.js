@@ -14,7 +14,7 @@ const WordPressContent = ({className, blocks, eventCategory, stagger}) => {
         : blocks
 
     let RenderedBlocks = []
-    console.log(RenderedBlocks)
+    //console.log(RenderedBlocks)
 
     staggerBlocks.forEach((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
