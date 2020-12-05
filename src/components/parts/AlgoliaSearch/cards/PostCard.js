@@ -12,10 +12,6 @@ const CardWrapper = styled.div`
     p {
       margin: 0;
       color: ${colors.offBlack};
-      span {
-        font-size: 14px;
-        color: #777777;
-      }
     }
     p:not(:last-child) {
       padding-bottom: 16px;
@@ -76,7 +72,7 @@ const PostCard = ({ hit, initialBlock, title, topResult, url}) => {
       <Link to={url}>
       {topResult ?
         <CardHeader>
-          <p>BEST BET <span className="bestBet">(TOP SEARCH RESULT)</span></p>
+          <p>BEST BET</p>
         </CardHeader>
         : null}
         <p><span>STORY</span></p>
