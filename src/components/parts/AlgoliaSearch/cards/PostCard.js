@@ -43,9 +43,13 @@ const CardWrapper = styled.div`
     border: 1px solid ${colors.cardBorder};
     margin-bottom: 32px;
     max-width: 760px;
-    p, h3 {
-      padding-left: 32px;
-      padding-right: 32px;
+    & > a > p, h3, div{
+      padding-left: 16px;
+      padding-right: 16px;
+      @media screen and ${breakpoints.tabletS} {
+        padding-left: 32px;
+        padding-right: 32px;
+      }
     }
   }
 `
