@@ -7,6 +7,28 @@ const CardWrapper = styled.div`
   padding: 0 0 32px 0;
   margin: 0;
   max-width: 716px;
+  .cardType {
+    font-size: 13px;
+    color: ${colors.categoryGrey};
+    font-weight: bold;
+    @media screen and ${breakpoints.tabletS} {
+      font-size: 14px;
+    }
+  }
+  .tags {
+    font-size: 14px;
+    color: ${colors.categoryGrey};
+    font-weight: bold;
+    @media screen and ${breakpoints.tabletS} {
+      font-size: 15px;
+    }
+  }
+  .excerpt, .excerpt > * {
+    font-size: 16px;
+    @media screen and ${breakpoints.tabletS} {
+      font-size: 18px;
+    }
+  }
   a {
     cursor: pointer;
     p {
@@ -24,7 +46,10 @@ const CardWrapper = styled.div`
     color: ${colors.bgRed};
     font-weight: normal;
     font-family: ${fonts.eaves};
-    font-size: 26px;
+    font-size: 24px;
+    @media screen and ${breakpoints.tabletS} {
+      font-size: 26px;
+    }
   }
   .datetime {
     font-weight: bold;
@@ -43,7 +68,7 @@ const CardWrapper = styled.div`
     border: 1px solid ${colors.cardBorder};
     margin-bottom: 32px;
     max-width: 760px;
-    & > a > p, h3, div{
+    & > a > p, div{
       padding-left: 16px;
       padding-right: 16px;
       @media screen and ${breakpoints.tabletS} {
@@ -56,15 +81,19 @@ const CardWrapper = styled.div`
 
 const CardHeader = styled.div`
   background-color: ${colors.cardBorder};
-  margin-bottom: 32px;
   p {
     color: ${colors.bgWhite};
     font-size: 14px;
-    padding-left: 32px;
     .bestBet {
       color: #00CCFF;
     }
   }
+`
+
+const DetailsDiv = styled.div`
+  background: ${colors.cardTitleBg};
+  padding: 16px 0 8px 0;
+  margin-bottom: 24px;
 `
 
 const PostCard = ({ hit, initialBlock, title, topResult, url}) => {
@@ -79,11 +108,20 @@ const PostCard = ({ hit, initialBlock, title, topResult, url}) => {
           <p>BEST BET</p>
         </CardHeader>
         : null}
-        <p><span>STORY</span></p>
-        <h3>{title}</h3>
-        <p><span>Tag 1, tag 2, tag 3</span></p>
+      {topResult ?
+        <DetailsDiv>
+          <p><span className="cardType">STORY</span></p>
+          <h3>{title}</h3>
+        </DetailsDiv>
+        :
+        <>
+          <p><span className="cardType">STORY</span></p>
+          <h3>{title}</h3>
+        </>
+    }
+        <p><span className="tags">Tag 1, tag 2, tag 3</span></p>
         {initialBlock ?
-        <div dangerouslySetInnerHTML={{__html: truncatedText}}></div>
+        <div className="excerpt" dangerouslySetInnerHTML={{__html: truncatedText}}></div>
         : null}
       </Link>
     </CardWrapper>

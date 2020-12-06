@@ -13,6 +13,7 @@ const SearchHits = ({ hits, hitHandler }) => {
   }, [hits])
 
   let cards = hits.map(hit => {
+    console.log(hit)
     let topResult = false;
     if (hit.__position === 1) {
       topResult = true;
@@ -27,7 +28,8 @@ const SearchHits = ({ hits, hitHandler }) => {
           title={hit.title}
           excerpt={hit.excerpt}
           date={hit.date}
-          location={hit.venue.address}
+          city={hit.venue.city}
+          state={hit.venue.state}
           topResult={topResult}
         />
         )

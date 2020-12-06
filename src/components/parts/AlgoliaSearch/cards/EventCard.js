@@ -7,6 +7,28 @@ const CardWrapper = styled.div`
   padding: 0 0 32px 0;
   margin: 0;
   max-width: 716px;
+  .cardType {
+    font-size: 13px;
+    color: ${colors.categoryGrey};
+    font-weight: bold;
+    @media screen and ${breakpoints.tabletS} {
+      font-size: 14px;
+    }
+  }
+  .tags {
+    font-size: 14px;
+    color: ${colors.categoryGrey};
+    font-weight: bold;
+    @media screen and ${breakpoints.tabletS} {
+      font-size: 15px;
+    }
+  }
+  .excerpt, .excerpt > * {
+    font-size: 16px;
+    @media screen and ${breakpoints.tabletS} {
+      font-size: 18px;
+    }
+  }
   a {
     cursor: pointer;
     p {
@@ -24,10 +46,14 @@ const CardWrapper = styled.div`
     color: ${colors.bgRed};
     font-weight: normal;
     font-family: ${fonts.eaves};
-    font-size: 26px;
+    font-size: 24px;
+    @media screen and ${breakpoints.tabletS} {
+      font-size: 26px;
+    }
   }
   .datetime {
     font-weight: bold;
+    padding-bottom: 24px;
   }
   &:not(.topResult) {
     ::before {
@@ -43,7 +69,7 @@ const CardWrapper = styled.div`
     border: 1px solid ${colors.cardBorder};
     margin-bottom: 32px;
     max-width: 760px;
-    & > a > p, h3, div {
+    & > a > p, div {
       padding-left: 16px;
       padding-right: 16px;
       @media screen and ${breakpoints.tabletS} {
@@ -57,21 +83,26 @@ const CardWrapper = styled.div`
 
 const CardHeader = styled.div`
   background-color: ${colors.cardBorder};
-  margin-bottom: 32px;
   p {
     color: ${colors.bgWhite};
     font-size: 14px;
-    padding-left: 32px;
     .bestBet {
       color: #00CCFF;
     }
   }
 `
 
-const EventCard = ({date, excerpt, hit, location, title, topResult, type, url}) => {
+const DetailsDiv = styled.div`
+  background: ${colors.cardTitleBg};
+  padding: 16px 0 0 0;
+  margin-bottom: 24px;
+`
+
+const EventCard = ({date, excerpt, hit, city, state, title, topResult, type, url}) => {
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   let parsedDate = new Date(date * 1000).toLocaleDateString('en-US', options)
   let parsedTime = new Date(date * 1000).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})
+  let locationString = city && state ? `| ${city}, ${state}` : null
 
   return (
     <CardWrapper className={topResult ? "topResult" : null}>
@@ -81,12 +112,22 @@ const EventCard = ({date, excerpt, hit, location, title, topResult, type, url}) 
           <p>BEST BET</p>
         </CardHeader>
         : null}
-        <p><span>{type.toUpperCase()}</span></p>
-        <h3>{title}</h3>
-        <p className="datetime">{parsedDate}, {parsedTime} | {location}</p>
-        <p><span>Tag 1, tag 2, tag 3</span></p>
+        {topResult ?
+        <DetailsDiv>
+          <p><span className="cardType">{type.toUpperCase()}</span></p>
+          <h3>{title}</h3>
+          <p className="datetime">{parsedDate}, {parsedTime} {locationString}</p>
+        </DetailsDiv>
+        :
+        <>
+          <p><span className="cardType">{type.toUpperCase()}</span></p>
+          <h3>{title}</h3>
+          <p className="datetime">{parsedDate}, {parsedTime} {locationString}</p>
+        </>
+        }
+        <p><span className="tags">Tag 1, tag 2, tag 3</span></p>
         {excerpt ?
-        <div dangerouslySetInnerHTML={{__html: excerpt}}></div>
+        <div className="excerpt" dangerouslySetInnerHTML={{__html: excerpt}}></div>
         : null}
       </Link>
     </CardWrapper>
