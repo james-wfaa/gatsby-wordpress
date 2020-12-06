@@ -79,6 +79,26 @@ const AccordianSearchAlgolia = props => {
             <RefinementList
             attribute="type"
             defaultRefinement={['Event', 'Post']}
+            transformItems={items =>
+              items.map(item => {
+                let newlabel;
+                switch (item.label) {
+                  case "Event":
+                    newlabel = "Events";
+                    break;
+                  case "Post":
+                    newlabel = "News/Stories";
+                    break;
+                  case "Page":
+                    newlabel = "Pages";
+                    break;
+                }
+                return ({
+                  ...item,
+                  label: newlabel,
+                })
+              })
+            }
             />
           </RefinementChoices>
         </SelectionsWrapper>
