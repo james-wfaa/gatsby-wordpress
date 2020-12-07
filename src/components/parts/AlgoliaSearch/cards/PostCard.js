@@ -10,7 +10,7 @@ const CardWrapper = styled.div`
   .cardType {
     font-size: 13px;
     color: ${colors.categoryGrey};
-    font-weight: bold;
+    font-weight: 800;
     @media screen and ${breakpoints.tabletS} {
       font-size: 14px;
     }
@@ -44,7 +44,8 @@ const CardWrapper = styled.div`
     margin: 0;
     padding-bottom: 16px;
     color: ${colors.bgRed};
-    font-weight: normal;
+    font-weight: bold;
+    font-style: italic;
     font-family: ${fonts.eaves};
     font-size: 24px;
     @media screen and ${breakpoints.tabletS} {
