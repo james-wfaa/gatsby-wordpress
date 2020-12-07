@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { breakpoints, mixins, colors } from '../css-variables'
+import { sizes, breakpoints, mixins, colors } from '../css-variables'
 import BackgroundImage from 'gatsby-background-image'
 import IntroPageSection from "./IntroPageSection"
 import VimeoVideo from '../content-modules/VimeoVideo'
@@ -68,11 +68,11 @@ const HeroIntroSection = ({
       : `heading`
 
   let redboxClass = background
-    ? `${className}__redbox ${className}__redbox--background`
-    : `${className}__redbox`
+    ? `redbox redbox--background`
+    : `redbox`
   let downscrollClass = `${className}__downscroll`
   if (heroSize !== "jumbo") {
-    redboxClass += ` ${className}__redbox--slim`
+    redboxClass += ` redbox--slim`
     downscrollClass += ` ${className}__downscroll--slim`
     classes += ` ${className}--slim`
   }
@@ -284,7 +284,7 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
     }
   }
 
-  &__redbox {
+  .redbox {
     position: relative;
     &--background {
       top: -80px;
@@ -292,6 +292,15 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
     &--slim {
       top: -40px;
     }
+    .excerpt {
+      font-size: ${sizes.s26};
+      line-height: ${sizes.s36};
+      @media screen and ${breakpoints.tabletS} {
+        font-size: ${sizes.s32};
+        line-height: ${sizes.s50};
+      }
+    }
+    
   }
 `
 
