@@ -10,6 +10,7 @@ import PromoCardD from "../components/content-blocks/PromoCardD"
 import HeroIntroSection from "../components/page-sections/HeroIntroSection"
 import CommunicationForm from "../components/content-blocks/CommunicationForm"
 import SimpleSlider from "../components/content-modules/SimpleSlider"
+import { sizes, colors } from "../components/css-variables"
 
 const taglist2 = [
   {
@@ -78,18 +79,22 @@ export default ({ data }) => {
           <CardE
             img={data.asset29}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
+            captionStyleProps={{color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
           />
           <CardE
             img={data.asset30}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
+            captionStyleProps={{color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
           />
           <CardE
             img={data.square1}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
+            captionStyleProps={{ color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
           />
           <CardE
             img={data.squareBucky}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
+            captionStyleProps={{ color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
           />
         </SimpleSlider>
       </PageSection>

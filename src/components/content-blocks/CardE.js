@@ -4,7 +4,7 @@ import { sizes, breakpoints, mixins, colors } from '../css-variables'
 
 import Img from 'gatsby-image'
 
-const CardE = ({ className, img, caption}) => {
+const CardE = ({ className, img, caption, captionStyleProps}) => {
     
     return (
         <div className={className}>
@@ -16,7 +16,7 @@ const CardE = ({ className, img, caption}) => {
                     />
                 )}
                 
-            <figcaption>{caption}</figcaption>
+            <figcaption style={captionStyleProps}>{caption}</figcaption>
             </figure>
         </div>
         
@@ -25,13 +25,6 @@ const CardE = ({ className, img, caption}) => {
 
 const StyledCardE = styled(CardE)`
 ${mixins.imageWithCaption}
-    figure{
-        figcaption {
-            margin-top: ${sizes.s32};
-            font-weight:bold;
-            color: ${colors.captionBlack};
-        }
-    }
 `
 
 export default StyledCardE
