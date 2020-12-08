@@ -113,12 +113,14 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     <h2>Invite Others</h2>
                     <SocialShareLinks></SocialShareLinks>
                 </div>
-
-                <EventMapDetails 
+                {venue.eventlocationDetails && eventDetails.virtualEvent && (
+                    <EventMapDetails 
                     className="eventMap" 
                     venue={venue}
-                />
+                    />
 
+                )}
+                
             </div>
             <div className="reg-desktop">
 
@@ -208,12 +210,6 @@ margin: ${sizes.s48} auto 0;
             max-width: 252px;
         }
     }
-
-
-<<<<<<< HEAD
-    
-=======
->>>>>>> fisher/sprint-11-02_branch
 }
 .reg-mobile {
     min-width: 300px;
