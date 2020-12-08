@@ -21,6 +21,27 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
       setShow(!currentshow)
       console.log("Is Shown" + show);
     }
+
+    const showMapDetails = () => {
+        if(eventDetails){
+            if (eventDetails.virtualEvent){
+                if(eventDetails.eventlocationDetails){
+                    console.log("Virtual With Details");
+                    return true;
+                }
+                console.log("Virtual No Details");
+                return false;
+            }
+            else{
+                console.log("Not Virtual");
+                return true;
+            }
+        }
+        console.log("No Event");
+        return false;
+    }
+
+    
   
     const EventLinksContent = (blocks) ? blocks.map((block) => {
         switch(block.name) {
@@ -113,10 +134,11 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     <h2>Invite Others</h2>
                     <SocialShareLinks></SocialShareLinks>
                 </div>
-                {venue.eventlocationDetails && eventDetails.virtualEvent && (
+                {showMapDetails() && (
                     <EventMapDetails 
                     className="eventMap" 
                     venue={venue}
+                    eventDetails={eventDetails}
                     />
 
                 )}
