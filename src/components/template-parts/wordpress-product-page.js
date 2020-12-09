@@ -12,8 +12,15 @@ function WordPressPage({ page }) {
   const { eventCategory } = eventListing
 
   const normalizedButtons = (buttons) ? buttons.map(item=>{
+    let buttonLink = "";
+    if(item.goToEvents){
+      buttonLink = "#event-listing";
+    }
+    else{
+      buttonLink = item.buttonLink.uri;
+    }
     return {
-      link: item.buttonLink.uri,
+      link: buttonLink,
       text: item.buttonText
     }
   
