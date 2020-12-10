@@ -50,7 +50,7 @@ const PageSection = ({
     const staggerClass = (stagger) ? ' stagger' : ''
 
     return (
-        <div className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading} ${bgClass}`} id={id} >
+        <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading} ${bgClass}`}  >
             { ! background &&  (
             <div className={`${className}__innerwrap   ${popClass}` }>
                 { preheading && (

@@ -50,7 +50,7 @@ const WordPressContent = ({className, blocks, eventCategory, stagger}) => {
                         text: 'See All Events'
                     }]
                     : null
-                RenderedBlocks.push(<PageSection heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" id="event-listing" /></PageSection>)
+                RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)
                 break
             default:
                 console.log('default')
