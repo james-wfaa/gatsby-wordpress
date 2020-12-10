@@ -8,7 +8,7 @@ import { convertTime, compareDate } from "../../utils/tools"
 import GenericModal from '../content-modules/GenericModal'
 
 
-const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails, calendarLinks, mapLinkText}) => {
+const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails, calendarLinks}) => {
 
     const classesList = `${className}`;
     const costDisplay = (cost) => {
@@ -41,6 +41,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
     const registrationText = eventDetails.eventFullSoldOut ? eventDetails.eventFullText : 'Register';
     const regIsFull = eventDetails.eventFullSoldOut;
     const [show, setShow] = useState(false);
+    const mapLinkText = (venue && venue.address) ? "View Map and Event Details" : "View Event Details";
 
     const handleModal = () => {
       let currentshow = show;

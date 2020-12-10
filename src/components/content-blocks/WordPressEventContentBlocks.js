@@ -23,19 +23,13 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
     }
     let mapLinkText = "View Map and Event Details";
     const showMapDetails = () => {
+        let showMap = true;
         if(eventDetails){
-            if (eventDetails.virtualEvent){
-                if(eventDetails.eventlocationDetails){
-                    mapLinkText = "Event Details";
-                    return true;
-                }
-                return false;
-            }
-            else{
-                return true;
+            if ((eventDetails.virtualEvent && !eventDetails.eventlocationDetails) || !venue){
+                showMap = false;
             }
         }
-        return false;
+        return showMap;
     }
 
     
@@ -122,7 +116,6 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                         organizers={organizers}
                         eventDetails={eventDetails}
                         calendarLinks={EventLinksContent}
-                        mapLinkText={mapLinkText}
                     />
                 </div>
                 <div className="social-mobile">
@@ -154,7 +147,6 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     organizers={organizers} 
                     eventDetails={eventDetails}
                     calendarLinks={EventLinksContent}
-                    mapLinkText={mapLinkText}
                 />
                 <div className="social-desktop">
                     <div className="buttonWrap" onClick={() => handleModal()}>
