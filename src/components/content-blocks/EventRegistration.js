@@ -8,7 +8,7 @@ import { convertTime, compareDate } from "../../utils/tools"
 import GenericModal from '../content-modules/GenericModal'
 
 
-const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails, calendarLinks}) => {
+const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails, calendarLinks, mapLinkText}) => {
 
     const classesList = `${className}`;
     const costDisplay = (cost) => {
@@ -71,10 +71,12 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
                 <div>{calcDate(date)}</div>
                 <div className="dateTime" dangerouslySetInnerHTML={{ __html: convertTime(startDate, endDate) }}></div>
                 <a href="#" alt="Add to Calendar" onClick={() => handleModal()}>Add to Calendar</a>
-                <div className="subHeader">WHERE</div>
+                { addressString && (
+                    <div className="subHeader">WHERE</div>
+                )}
                 <div className="venue" dangerouslySetInnerHTML={{ __html: addressString }} />
-                { (venue && venue.address) && (
-                    <a href="#EventMap" alt="View Map">View Map and Event Details</a>
+                { (venue && (venue.address || eventDetails.eventlocationDetails)) && (
+                    <a href="#EventMap" alt="View Map">{mapLinkText}</a>
                 )}
                 <div className="subHeader">COST</div>
                 <div className="amount ">{costDisplay(cost)}</div>
