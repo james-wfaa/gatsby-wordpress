@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import styled from 'styled-components'
 import { breakpoints, sizes, colors, mixins } from '../../components/css-variables'
 import Layout from "../../components/layout"
+import Button from "../../components/parts/Button"
 import PageSection from "../../components/page-sections/PageSection"
 import SimpleSlider from "../../components/content-modules/SimpleSlider"
 import ContentCard from "../../components/content-blocks/ContentCard"
@@ -15,15 +16,13 @@ import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
 const WordPressEmailPage = ({ className, data }) => {
   const { page, posts } = data
-  //console.log(posts)
+  console.log(posts)
   const { title, content, HalfPageAd } = page
 
   let postCards = posts.nodes.map((post) => {
-    //console.log(post)
-    const { featuredImage: img } = post
-    const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
+    console.log(post)
     return (
-      <ContentCard img={cardImg} {...post} />
+      <ContentCard {...post} />
     )
   })
 
@@ -212,7 +211,7 @@ export const query = graphql`
           dynamicContent
           innerBlocks {
             name
-            originalContent
+            originalContent 
             dynamicContent
           }
         }

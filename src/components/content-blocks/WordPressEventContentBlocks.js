@@ -21,6 +21,18 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
       setShow(!currentshow)
       console.log("Is Shown" + show);
     }
+    let mapLinkText = "View Map and Event Details";
+    const showMapDetails = () => {
+        let showMap = true;
+        if(eventDetails){
+            if ((eventDetails.virtualEvent && !eventDetails.eventlocationDetails) || !venue){
+                showMap = false;
+            }
+        }
+        return showMap;
+    }
+
+    
   
     const EventLinksContent = (blocks) ? blocks.map((block) => {
         switch(block.name) {
@@ -113,12 +125,15 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     <h2>Invite Others</h2>
                     <SocialShareLinks></SocialShareLinks>
                 </div>
-
-                <EventMapDetails 
+                {showMapDetails() && (
+                    <EventMapDetails 
                     className="eventMap" 
                     venue={venue}
-                />
+                    eventDetails={eventDetails}
+                    />
 
+                )}
+                
             </div>
             <div className="reg-desktop">
 
@@ -208,12 +223,6 @@ margin: ${sizes.s48} auto 0;
             max-width: 252px;
         }
     }
-
-
-<<<<<<< HEAD
-    
-=======
->>>>>>> fisher/sprint-11-02_branch
 }
 .reg-mobile {
     min-width: 300px;
