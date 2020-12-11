@@ -119,9 +119,12 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     />
                 </div>
                 <div className="social-mobile">
-                    <div className="buttonWrap" onClick={() => handleModal()}>
-                        <Button link="#Top" text="Questions" fullwidth alt altborder />
-                    </div>
+                    { eventDetails && eventDetails.questions && (
+                        <div className="buttonWrap" onClick={() => handleModal()}>
+                            <Button link="#Top" text="Questions" fullwidth alt altborder />
+                        </div>
+                    )}
+                    
                     <h2>Invite Others</h2>
                     <SocialShareLinks></SocialShareLinks>
                 </div>
@@ -149,9 +152,11 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     calendarLinks={EventLinksContent}
                 />
                 <div className="social-desktop">
+                { eventDetails && eventDetails.questions && (
                     <div className="buttonWrap" onClick={() => handleModal()}>
                         <Button link="#Top" text="Questions" fullwidth alt altborder />
                     </div>
+                )}
                     <h2>Invite Others</h2>
                     <SocialShareLinks></SocialShareLinks>
                 </div>
@@ -257,8 +262,11 @@ margin: ${sizes.s48} auto 0;
     ${mixins.socialStyles}
     display: none;
     text-align: left;
+    .buttonWrap{
+        margin-bottom: ${sizes.s40};
+    }
     h2{
-        padding-top: ${sizes.s40};
+        padding-top: 0px;
     }
     @media screen and ${breakpoints.tabletL} {
         display: block;
