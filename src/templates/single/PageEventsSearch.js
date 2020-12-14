@@ -9,7 +9,7 @@ import PaginationNav from "../../components/parts/PaginationNav"
 
 const EventsList = (props) => {
   const [events, setEvents] = useState([])
-
+  console.log(events)
   let contentCards = events.map(card => {
     return (
     <ContentCard

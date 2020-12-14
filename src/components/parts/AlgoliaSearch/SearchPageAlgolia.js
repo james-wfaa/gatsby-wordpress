@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import styled from "styled-components"
 import algoliasearch from "algoliasearch/lite"
 import { InstantSearch, RefinementList, Configure, connectHits } from "react-instantsearch-dom"
 import { colors, sizes, breakpoints } from "../../css-variables"
+import { AppContext } from "../../../context/AppContext"
 import AccordianSearchBoxAlgolia from "./AccordianSearchBoxAlgolia"
 import AlgoliaResults from "./AlgoliaResults"
 import AlgoliaPagination from "./AlgoliaPagination"
@@ -118,9 +119,11 @@ const ResultsBoxWrapper = styled.div`
 
 
 const SearchPageAlgolia = props => {
+  const { state, dispatch, actions } = useContext(AppContext);
+  const { setSearchString } = actions;
 
   // Algolia
-  const [query, setQuery] = useState()
+  const [query, setQuery] = useState(state.searchstring)
   const [hasFocus, setFocus] = useState(false)
   const searchClient = algoliasearch(
     process.env.GATSBY_ALGOLIA_APP_ID,
@@ -150,7 +153,15 @@ const SearchPageAlgolia = props => {
     }
   }
 
-  const filters = `startDate >= ${startDate} AND endDate <= ${endDate}`
+  const dateString = `startDate >= ${startDate} AND endDate <= ${endDate}`
+  let typeString = ``
+
+  if (props.typeFilter) {
+    typeString = ` AND (type:${props.typeFilter})`
+  }
+
+  const filters = dateString.concat(typeString)
+
 
   const handleStartDate = (date) => {
     let startDateTimestamp = new Date(date).getTime() / 1000
@@ -173,19 +184,20 @@ const SearchPageAlgolia = props => {
   }, [query])
   //
 
+
   return (
     <StyledWrapper>
         <StyledButtonWrapper>
-            <InstantSearch
-            searchClient={searchClient}
-            indexName={indices[0].name}
-            onSearchStateChange={({ query }) => setQuery(query)}
-            >
+          <InstantSearch
+          searchClient={searchClient}
+          indexName={indices[0].name}
+          onSearchStateChange={({ query }) => setQuery(query)}
+          >
             <Configure
               filters={filters}
-              hitsPerPage={5}
+              hitsPerPage={1}
             />
-            <AccordianSearchBoxAlgolia onFocus={() => setFocus(true)} hasFocus={hasFocus} />
+            <AccordianSearchBoxAlgolia defaultRefinement={state.searchstring} onFocus={() => setFocus(true)} hasFocus={hasFocus} />
 
             {props.results ?
               <>
