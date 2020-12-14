@@ -88,7 +88,7 @@ function WordPressPage({ data }) {
           excerpt={excerpt}
         />)}
         <Accordian opentext="SEARCH" closetext="CLOSE SEARCH">
-          <AccordianSearchBox />
+          <AccordianSearchBox navigationURL="/events/search" />
         </Accordian>
         <PageSection>
         <SimpleSlider
