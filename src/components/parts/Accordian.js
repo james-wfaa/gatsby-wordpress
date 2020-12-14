@@ -6,11 +6,10 @@ import { colors, sizes, breakpoints } from "../css-variables"
 const Accordian = ({opentext, closetext, children}) => {
   const [open, setOpen] = useState(false)
 
-  const searchstyles = useSpring({ opacity: open ? 1 : 0 })
+  const searchstyles = useSpring({ opacity: open ? 1 : 0, paddingBottom: `56px` })
 
   const StyledWrapper = styled.div`
   background-color: ${colors.navcardGrey};
-  /* margin-bottom: 88px; */
 `
 const StyledClickWrapper = styled.div`
   width: 100%;

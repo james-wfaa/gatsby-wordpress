@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import { colors, sizes, breakpoints } from "../css-variables"
+import { AppContext } from "../../context/AppContext"
 import Search from "../../svg/search.svg"
 
 const StyledDiv = styled.div`
@@ -44,13 +45,21 @@ const StyledInput = styled.input`
 `
 
 const AccordianSearchBox = props => {
+
+  const { state, dispatch, actions } = useContext(AppContext);
+  const { setSearchString } = actions;
+
+  const handleFilterString = (str) => {
+    setSearchString(str)
+  }
+
   return (
     <StyledDiv>
       <StyledInput
         type="text"
         placeholder="Search.."
-        value={props.filterString}
-        onChange={e => props.handleFilterString(e.target.value)}
+        value={state.searchstring}
+        onChange={e => handleFilterString(e.target.value)}
         className="st-default-search-input"
       />
       <span>
