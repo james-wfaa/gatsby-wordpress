@@ -9,7 +9,7 @@ import WalkIcon from '../../svg/Transportation_icons_walk_blk_2x.svg'
 
 
 
-const EventMapDetails = ({ className, venue }) => {
+const EventMapDetails = ({ className, venue, eventDetails }) => {
 
     const addressString = (venue && venue.address) ? venue.title + '<br />' + venue.address + '<br />' + venue.city + ',' + venue.state : '';
     const dirLink = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(addressString);
@@ -40,10 +40,10 @@ const EventMapDetails = ({ className, venue }) => {
                 { !addressString && venue && venue.title && (
                     <div className="address">{venue.title}</div>
                 )}
-                { venue && venue.content && (
+                { eventDetails && eventDetails.eventlocationDetails && (
                     <div className="detailsWrap">
                         <div className="subHeader">Event Details</div>
-                        <div className="details" dangerouslySetInnerHTML={{ __html: venue.content }} />
+                        <div className="details" dangerouslySetInnerHTML={{ __html: eventDetails.eventlocationDetails }} />
                     </div>
                 )}
 

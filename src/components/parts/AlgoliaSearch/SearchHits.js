@@ -27,7 +27,8 @@ const SearchHits = ({ hits, hitHandler }) => {
           title={hit.title}
           excerpt={hit.excerpt}
           date={hit.date}
-          location={hit.venue.address}
+          city={hit.venue.city}
+          state={hit.venue.state}
           topResult={topResult}
         />
         )

@@ -72,6 +72,7 @@ export const query = graphql`
           }
           buttonExternalLinkUrl
           buttonText
+          goToEvents
         }
       }
       storyCategories {

@@ -14,7 +14,7 @@ const WordPressContent = ({className, blocks, eventCategory, stagger}) => {
         : blocks
 
     let RenderedBlocks = []
-    console.log(RenderedBlocks)
+    //console.log(RenderedBlocks)
 
     staggerBlocks.forEach((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
@@ -50,7 +50,7 @@ const WordPressContent = ({className, blocks, eventCategory, stagger}) => {
                         text: 'See All Events'
                     }]
                     : null
-                RenderedBlocks.push(<PageSection heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)
+                RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)
                 break
             default:
                 console.log('default')
@@ -132,6 +132,11 @@ hr.wp-block-separator {
         @media screen and ${breakpoints.laptopS} {
             width: 1080px;
             min-height: 528px;
+            .columnwrap{
+                :nth-last-child(1){
+                    flex: 1 1 auto;
+                }
+            }
             .jumbo-img{
                 width: 528px;
             }
