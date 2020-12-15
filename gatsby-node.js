@@ -51,9 +51,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         case '/events/':
           templatePath = `${contentTypeTemplateDirectory}${nodeType}Events.js`
           break
-        case '/events/calendar/':
-          templatePath = `${contentTypeTemplateDirectory}${nodeType}EventsCalendar.js`
-          break
         case '/news/':
           templatePath = `${contentTypeTemplateDirectory}${nodeType}News.js`
           break

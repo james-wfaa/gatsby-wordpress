@@ -32,7 +32,7 @@ function WordPressPage({ data }) {
 
   const cats = categories.map((item) => {
     const { categoryEvent, numberToShow } = item
-    console.log(item)
+    //console.log(item)
     return (
       <PageSection heading={categoryEvent.name} stagger>
         <CardSet items={categoryEvent.events.nodes} num={numberToShow} />
@@ -48,10 +48,10 @@ function WordPressPage({ data }) {
   }
   console.log('events page events:',events)
   let featuredEvents = eventEdges.map((event) => {
-    console.log('featuredEvents event.node:',event.node)
+    //console.log('featuredEvents event.node:',event.node)
     const { featuredEvent, featuredImage: img } = event.node
     const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-    console.log( 'featuredEvent:',featuredEvent )
+    //console.log( 'featuredEvent:',featuredEvent )
     if (featuredEvent) {
         return (
           <ContentCard size="L" img={cardImg} {...event.node} />
@@ -74,7 +74,7 @@ function WordPressPage({ data }) {
       <ContentCardD {...event.node} />
     )
   })
-  console.log('eventCards:',eventCards)
+  //console.log('eventCards:',eventCards)
 
   const handleFilterString = (str) => {
     setSearchString(str)

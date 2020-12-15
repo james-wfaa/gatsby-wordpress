@@ -62,7 +62,7 @@ const StyledTestimonial = styled(Testimonial)`
             min-height: 100%;  
             top: 0px;
             left: 0px;
-            background-color: ${colors.testimonialGrey};
+            background-color: ${colors.bgActiveGrey};
         }
     }
     blockquote{
