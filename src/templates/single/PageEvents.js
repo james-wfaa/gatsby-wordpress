@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
@@ -10,10 +10,11 @@ import LeftArrow from "../../components/parts/SliderArrowLeft"
 import RightArrow from "../../components/parts/SliderArrowRight"
 import CardSet from "../../components/content-modules/CardSet"
 import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
-import AccordianSearch from "../../components/parts/AccordianSearch"
+import Accordian from "../../components/parts/Accordian"
+import AccordianSearchBox from "../../components/parts/AccordianSearchBox"
 
 function WordPressPage({ data }) {
-  const [searchString, setSearchString] = useState("")
+
   const { page, events } = data
   const { edges: eventEdges } = events
   const { title, featuredImage, eventCategories, excerpt, gridDetails  } = page
@@ -76,9 +77,6 @@ function WordPressPage({ data }) {
   })
   //console.log('eventCards:',eventCards)
 
-  const handleFilterString = (str) => {
-    setSearchString(str)
-  }
 
   return (
     <Layout noborder>
@@ -89,7 +87,9 @@ function WordPressPage({ data }) {
           redHeading={title}
           excerpt={excerpt}
         />)}
-        <AccordianSearch handleFilterString={(str) => handleFilterString(str)}/>
+        <Accordian opentext="SEARCH" closetext="CLOSE SEARCH">
+          <AccordianSearchBox navigationURL="/events/search" />
+        </Accordian>
         <PageSection>
         <SimpleSlider
             className="center"
