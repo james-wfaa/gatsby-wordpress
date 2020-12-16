@@ -72,6 +72,7 @@ export const query = graphql`
           }
           buttonExternalLinkUrl
           buttonText
+          goToEvents
         }
       }
       storyCategories {
@@ -150,6 +151,41 @@ export const query = graphql`
               }
             }
             name
+          }
+        }
+      }
+      eventListing {
+        eventCategory {
+          slug
+          events {
+            nodes {
+              title
+              startDate
+              endDate
+              venue {
+                title
+                city
+                state
+              }
+              excerpt
+              featuredImage {
+                node {
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth: 712) {
+                        base64
+                        tracedSVG
+                        srcWebp
+                        srcSetWebp
+                        originalImg
+                        originalName
+                        aspectRatio
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

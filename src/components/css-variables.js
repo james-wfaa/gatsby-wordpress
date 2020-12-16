@@ -104,6 +104,7 @@ export const colors = {
     bgLightGrey: baseColors.evenlighterGrey,
     mapDetailsText: baseColors.offBlack,
     disabledGrey: baseColors.darkGrey,
+    captionBlack: baseColors.offBlack,
 
 
 
@@ -392,8 +393,10 @@ export const mixins = {
 
             }
             figcaption {
-                margin-top: ${sizes.s32};
+                text-align: left;
+                color: ${colors.captionGrey};
                 font-weight: bold;
+                font-size: ${sizes.s16};
             }
         }
 
@@ -444,6 +447,10 @@ export const mixins = {
         border-top: 6px solid ${colors.cardBorder};
         background-color: ${colors.bgWhite};
         opacity: 0.9; 
+
+        @media screen and ${breakpoints.laptopS} {
+            min-height: 680px;
+        }
     
         & a{
             text-decoration: none;
@@ -807,7 +814,6 @@ export const mixins = {
             @media screen and ${breakpoints.laptopS} {
                 width: 344px;
                 max-width: 344px;
-                min-height: 680px;
             }
         }
         &--M{

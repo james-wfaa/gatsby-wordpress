@@ -60,7 +60,8 @@
 {
     height: inherit !important;
 }
-.slick-slide > div {
+.slick-slide > div,
+.slick-slide > div > div {
   height: 100% !important;
 }
 

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
@@ -10,9 +10,11 @@ import LeftArrow from "../../components/parts/SliderArrowLeft"
 import RightArrow from "../../components/parts/SliderArrowRight"
 import CardSet from "../../components/content-modules/CardSet"
 import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
-import AccordianSearch from "../../components/parts/AccordianSearch"
+import Accordian from "../../components/parts/Accordian"
+import AccordianSearchBox from "../../components/parts/AccordianSearchBox"
 
 function WordPressPage({ data }) {
+
   const { page, events } = data
   const { edges: eventEdges } = events
   const { title, featuredImage, eventCategories, excerpt, gridDetails  } = page
@@ -31,9 +33,9 @@ function WordPressPage({ data }) {
 
   const cats = categories.map((item) => {
     const { categoryEvent, numberToShow } = item
-    console.log(item)
+    //console.log(item)
     return (
-      <PageSection heading={categoryEvent.name} stagger>
+      <PageSection key={item.url} heading={categoryEvent.name} stagger>
         <CardSet items={categoryEvent.events.nodes} num={numberToShow} />
       </PageSection>
     )
@@ -47,13 +49,13 @@ function WordPressPage({ data }) {
   }
   console.log('events page events:',events)
   let featuredEvents = eventEdges.map((event) => {
-    console.log('featuredEvents event.node:',event.node)
+    //console.log('featuredEvents event.node:',event.node)
     const { featuredEvent, featuredImage: img } = event.node
     const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-    console.log( 'featuredEvent:',featuredEvent )
+    //console.log( 'featuredEvent:',featuredEvent )
     if (featuredEvent) {
         return (
-          <ContentCard size="L" img={cardImg} {...event.node} />
+          <ContentCard key={event.url} size="L" img={cardImg} {...event.node} />
         )
     }
   })
@@ -61,7 +63,7 @@ function WordPressPage({ data }) {
     return element !== undefined;
  })
 
- 
+
   console.log('featuredEvents:',featuredEvents)
 
 
@@ -70,10 +72,11 @@ function WordPressPage({ data }) {
   let eventCards = cardGridEvents.map((event) => {
     console.log('building event tiles')
     return (
-      <EventCardD {...event.node} />
+      <EventCardD key={event.url} {...event.node} />
     )
   })
-  console.log('eventCards:',eventCards)
+  //console.log('eventCards:',eventCards)
+
 
   return (
     <Layout noborder>
@@ -84,7 +87,9 @@ function WordPressPage({ data }) {
           redHeading={title}
           excerpt={excerpt}
         />)}
-        <AccordianSearch />
+        <Accordian opentext="SEARCH" closetext="CLOSE SEARCH">
+          <AccordianSearchBox navigationURL="/events/search" />
+        </Accordian>
         <PageSection>
         <SimpleSlider
             className="center"

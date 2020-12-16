@@ -41,6 +41,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
     const registrationText = eventDetails.eventFullSoldOut ? eventDetails.eventFullText : 'Register';
     const regIsFull = eventDetails.eventFullSoldOut;
     const [show, setShow] = useState(false);
+    const mapLinkText = (venue && venue.address) ? "View Map and Event Details" : "View Event Details";
 
     const handleModal = () => {
       let currentshow = show;
@@ -71,10 +72,12 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
                 <div>{calcDate(date)}</div>
                 <div className="dateTime" dangerouslySetInnerHTML={{ __html: convertTime(startDate, endDate) }}></div>
                 <a href="#" alt="Add to Calendar" onClick={() => handleModal()}>Add to Calendar</a>
-                <div className="subHeader">WHERE</div>
+                { addressString && (
+                    <div className="subHeader">WHERE</div>
+                )}
                 <div className="venue" dangerouslySetInnerHTML={{ __html: addressString }} />
-                { (venue && venue.address) && (
-                    <a href="#EventMap" alt="View Map">View Map and Event Details</a>
+                { (venue && (venue.address || eventDetails.eventlocationDetails)) && (
+                    <a href="#EventMap" alt="View Map">{mapLinkText}</a>
                 )}
                 <div className="subHeader">COST</div>
                 <div className="amount ">{costDisplay(cost)}</div>

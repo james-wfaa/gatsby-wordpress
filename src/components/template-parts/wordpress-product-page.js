@@ -4,26 +4,31 @@ import HeroIntroSection from "../page-sections/HeroIntroSection"
 import WordPressContentBlocks from "../content-blocks/WordPressContentBlocks"
 
 function WordPressPage({ page }) {
-  const {  excerpt, featuredImage, introButtons, blocks } = page
+  const {  excerpt, featuredImage, introButtons, eventListing, blocks } = page
   const { introButtons: buttons } = introButtons
   console.log(blocks)
+
+  /* extract the events to pass along with the blocks as helper data */
+  const { eventCategory } = eventListing
+
   const normalizedButtons = (buttons) ? buttons.map(item=>{
-    console.log(item)
+    let buttonLink = "";
+    if(item.goToEvents){
+      buttonLink = "#event-listing";
+    }
+    else{
+      buttonLink = item.buttonLink.uri;
+    }
     return {
-      link: item.buttonLink.uri,
+      link: buttonLink,
       text: item.buttonText
     }
   
   }
   ) : ''
-
-
-  console.log(buttons)
-  console.log(normalizedButtons)
-
   return (
     <Layout>
-      { featuredImage && featuredImage.node && (
+      { featuredImage?.node && (
         <HeroIntroSection  
           heroImage={featuredImage.node.localFile}
           heroSize="slim"
@@ -31,11 +36,7 @@ function WordPressPage({ page }) {
           buttons={normalizedButtons}
         />
       )}
-      
-
-    <WordPressContentBlocks blocks={blocks} />
-
-     
+      <WordPressContentBlocks blocks={blocks} eventCategory={eventCategory}/>
     </Layout>
   )
 }
