@@ -1,11 +1,9 @@
 import React, { useState } from "react"
-import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
 import ContentCard from "../../components/content-blocks/ContentCard"
 import ContentBlockList from "../../components/content-modules/ContentBlockList"
 import SearchResults from "../../components/parts/AlgoliaSearch/SearchPageAlgolia"
-import PaginationNav from "../../components/parts/PaginationNav"
 
 const EventsList = (props) => {
   const [events, setEvents] = useState([])
