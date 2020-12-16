@@ -35,7 +35,7 @@ function WordPressPage({ data }) {
     const { categoryEvent, numberToShow } = item
     //console.log(item)
     return (
-      <PageSection heading={categoryEvent.name} stagger>
+      <PageSection key={item.url} heading={categoryEvent.name} stagger>
         <CardSet items={categoryEvent.events.nodes} num={numberToShow} />
       </PageSection>
     )
@@ -55,7 +55,7 @@ function WordPressPage({ data }) {
     //console.log( 'featuredEvent:',featuredEvent )
     if (featuredEvent) {
         return (
-          <ContentCard size="L" img={cardImg} {...event.node} />
+          <ContentCard key={event.url} size="L" img={cardImg} {...event.node} />
         )
     }
   })
@@ -72,7 +72,7 @@ function WordPressPage({ data }) {
   let eventCards = cardGridEvents.map((event) => {
     console.log('building event tiles')
     return (
-      <ContentCardD {...event.node} />
+      <ContentCardD key={event.url} {...event.node} />
     )
   })
   //console.log('eventCards:',eventCards)
