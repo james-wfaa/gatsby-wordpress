@@ -104,6 +104,7 @@ export const colors = {
     bgLightGrey: baseColors.evenlighterGrey,
     mapDetailsText: baseColors.offBlack,
     disabledGrey: baseColors.darkGrey,
+    captionBlack: baseColors.offBlack,
 
 
 
@@ -392,8 +393,10 @@ export const mixins = {
 
             }
             figcaption {
-                margin-top: ${sizes.s32};
+                text-align: left;
+                color: ${colors.captionGrey};
                 font-weight: bold;
+                font-size: ${sizes.s16};
             }
         }
 

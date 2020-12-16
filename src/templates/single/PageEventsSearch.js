@@ -1,106 +1,45 @@
 import React, { useState } from "react"
-import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
 import ContentCard from "../../components/content-blocks/ContentCard"
 import ContentBlockList from "../../components/content-modules/ContentBlockList"
-import AccordianSearch from "../../components/parts/AccordianSearch"
-import PaginationNav from "../../components/parts/PaginationNav"
+import SearchResults from "../../components/parts/AlgoliaSearch/SearchPageAlgolia"
 
 const EventsList = (props) => {
-  console.log('PageEventsSearch - props - ',props)
-  const [searchString, setSearchString] = useState("")
-  const baseUri = '/events/search/'
-  const { events } = props.data
-  const { page, totalPages } = props.pageContext
-  const isFirst = page === 1
-  const isLast = page === totalPages
-  const prevPage = page - 1 === 1 ? baseUri : (page - 1).toString()
-  const nextPage = (page + 1).toString()
-  console.log('prev:', prevPage)
-  console.log('next:', nextPage)
-  const { edges: eventEdges } = events
-  let allEvents = eventEdges.map((event) => {
-    console.log('event.node:',event.node)
-    const { featuredEvent, featuredImage: img } = event.node
-    const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-    console.log( 'featuredEvent:',featuredEvent )
-    if (!featuredEvent) {
-      return (
-        <ContentCard size="Wide" img={cardImg} {...event.node} />
-      )
-    } else {
-      return (
-        <ContentCard size="XXL" img={cardImg} {...event.node} />
-      )
-    }
+  const [events, setEvents] = useState([])
+  console.log(events)
+  let contentCards = events.map(card => {
+    return (
+    <ContentCard
+      key={`${card.url}`}
+      startDate={card.startDate}
+      endDate={card.endDate ? card.endDate : null}
+      title={card.title}
+      category={card.category}
+      venue={card.venue}
+      location={card.location}
+      img={card.featuredImage ? card.featuredImage.node.localFile: null}
+      featureImg={card.featuredImage ? card.featuredImage.node.localFile : null}
+      alt={card.alt}
+      url={card.url}
+      size={!card.featuredEvent ? "Wide" : "XXL"}
+    />)
   })
-  allEvents = allEvents.filter(function( element ) {
-    return element !== undefined;
- })
- const handleFilterString = (str) => {
-  setSearchString(str)
- }
+
+
   return(
   <Layout noborder>
-      <AccordianSearch handleFilterString={(str) => handleFilterString(str)}/>
-      <PageSection>
-        <ContentBlockList>{allEvents}</ContentBlockList>
-        <PaginationNav basepath={baseUri} page={page} totalPages={totalPages} isFirst={isFirst} isLast={isLast} />
-      </PageSection>
+    <SearchResults
+      indices={[{name: "All"}]}
+      results={false}
+      callback={(arr) => setEvents(arr)}
+    />
+    <PageSection>
+      <ContentBlockList>{contentCards}</ContentBlockList>
+    </PageSection>
   </Layout>
   )
 }
 
 export default EventsList
 
-
-export const query = graphql`
-  query eventsSearch($offset: Int!, $eventsPerPage: Int!) {
-    events: allWpEvent(
-      limit: $eventsPerPage,
-      skip: $offset,
-      sort: {order: ASC, fields: startDate}) {
-      edges {
-        node {
-          id
-          title
-          url: uri
-          excerpt
-          featuredEvent
-          featuredImage {
-            node {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 712) {
-                    base64
-                    tracedSVG
-                    srcWebp
-                    srcSetWebp
-                    originalImg
-                    originalName
-                    aspectRatio
-                  }
-                }
-              }
-            }
-          }
-          date
-          startDate
-          endDate
-          eventsCategories {
-            nodes {
-              name
-              url: uri
-            }
-          }
-          venue {
-            title
-            state
-            city
-          }
-        }
-      }
-    }
-  }
-`
