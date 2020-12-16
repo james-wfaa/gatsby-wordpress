@@ -119,6 +119,7 @@ const ResultsBoxWrapper = styled.div`
 
 
 const SearchPageAlgolia = props => {
+
   const { state, dispatch, actions } = useContext(AppContext);
   const { setSearchString } = actions;
 

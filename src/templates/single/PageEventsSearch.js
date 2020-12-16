@@ -13,7 +13,7 @@ const EventsList = (props) => {
   let contentCards = events.map(card => {
     return (
     <ContentCard
-      key={`${card.startDate}${card.venue}`}
+      key={`${card.url}`}
       startDate={card.startDate}
       endDate={card.endDate ? card.endDate : null}
       title={card.title}
