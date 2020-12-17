@@ -12,7 +12,7 @@ import GenericModal from '../content-modules/GenericModal'
 
 
 const WordPressEventContentBlocks = ({className, date, startDate, endDate, link, venue, cost, organizers, title, eventDetails, blocks, content}) => {
-    console.log('WordPressEventContentBlocks - blocks:',blocks)
+    //console.log('WordPressEventContentBlocks - blocks:',blocks)
 
     const [show, setShow] = useState(false);
 
@@ -21,6 +21,18 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
       setShow(!currentshow)
       console.log("Is Shown" + show);
     }
+    let mapLinkText = "View Map and Event Details";
+    const showMapDetails = () => {
+        let showMap = true;
+        if(eventDetails){
+            if ((eventDetails.virtualEvent && !eventDetails.eventlocationDetails) || !venue){
+                showMap = false;
+            }
+        }
+        return showMap;
+    }
+
+    
   
     const EventLinksContent = (blocks) ? blocks.map((block) => {
         switch(block.name) {
@@ -72,7 +84,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
         }
     ) : null
 
-    console.log('RenderedBlocks:',RenderedBlocks)
+    //console.log('RenderedBlocks:',RenderedBlocks)
     const questionsDiv = <div dangerouslySetInnerHTML={{__html: eventDetails.questions}} />
 
     return(
@@ -107,18 +119,24 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     />
                 </div>
                 <div className="social-mobile">
-                    <div className="buttonWrap" onClick={() => handleModal()}>
-                        <Button link="#Top" text="Questions" fullwidth alt altborder />
-                    </div>
+                    { eventDetails && eventDetails.questions && (
+                        <div className="buttonWrap" onClick={() => handleModal()}>
+                            <Button link="#Top" text="Questions" fullwidth alt altborder />
+                        </div>
+                    )}
+                    
                     <h2>Invite Others</h2>
                     <SocialShareLinks></SocialShareLinks>
                 </div>
-
-                <EventMapDetails 
+                {showMapDetails() && (
+                    <EventMapDetails 
                     className="eventMap" 
                     venue={venue}
-                />
+                    eventDetails={eventDetails}
+                    />
 
+                )}
+                
             </div>
             <div className="reg-desktop">
 
@@ -134,9 +152,11 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     calendarLinks={EventLinksContent}
                 />
                 <div className="social-desktop">
+                { eventDetails && eventDetails.questions && (
                     <div className="buttonWrap" onClick={() => handleModal()}>
                         <Button link="#Top" text="Questions" fullwidth alt altborder />
                     </div>
+                )}
                     <h2>Invite Others</h2>
                     <SocialShareLinks></SocialShareLinks>
                 </div>
@@ -208,12 +228,6 @@ margin: ${sizes.s48} auto 0;
             max-width: 252px;
         }
     }
-
-
-<<<<<<< HEAD
-    
-=======
->>>>>>> fisher/sprint-11-02_branch
 }
 .reg-mobile {
     min-width: 300px;
@@ -248,8 +262,11 @@ margin: ${sizes.s48} auto 0;
     ${mixins.socialStyles}
     display: none;
     text-align: left;
+    .buttonWrap{
+        margin-bottom: ${sizes.s40};
+    }
     h2{
-        padding-top: ${sizes.s40};
+        padding-top: 0px;
     }
     @media screen and ${breakpoints.tabletL} {
         display: block;

@@ -4,7 +4,7 @@ import WpEvent from "../../components/template-parts/wordpress-event"
 
 export default ({ data }) => {
   const { event } = data
-  console.log( 'event object:',event )
+  //console.log( 'event object:',event )
   return (<WpEvent page={event} />)
 }
 
@@ -65,6 +65,7 @@ export const query = graphql`
         eventlocationDetails
         registrationUrl
         questions
+        virtualEvent
       }
       date(formatString: "dddd, MMM. D")
       endDate

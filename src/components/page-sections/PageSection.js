@@ -11,6 +11,7 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 const PageSection = ({
     className,
+    id,
     preheading,
     heading,
     headingAlt,
@@ -49,7 +50,7 @@ const PageSection = ({
     const staggerClass = (stagger) ? ' stagger' : ''
 
     return (
-        <div className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading} ${bgClass}`} >
+        <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading} ${bgClass}`}  >
             { ! background &&  (
             <div className={`${className}__innerwrap   ${popClass}` }>
                 { preheading && (
@@ -130,7 +131,7 @@ const StyledPageSection = styled(PageSection)`
         
     }
     
-    &.stagger:nth-child(odd) {
+    &.stagger:nth-child(even) {
         background-color: ${colors.bgActiveGrey};
     }
     &.alt {

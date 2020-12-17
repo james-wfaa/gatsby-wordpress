@@ -28,8 +28,13 @@ const RefinementChoices = styled.div`
     list-style-type: none;
     margin-left: 0;
     margin-bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     li {
-      margin: 0 20px;
+      margin-left: 24px;
+      margin-bottom: 0;
       text-decoration: none;
       display: inline-block;
       .ais-RefinementList-labelText {
@@ -74,6 +79,26 @@ const AccordianSearchAlgolia = props => {
             <RefinementList
             attribute="type"
             defaultRefinement={['Event', 'Post']}
+            transformItems={items =>
+              items.map(item => {
+                let newlabel;
+                switch (item.label) {
+                  case "Event":
+                    newlabel = "Events";
+                    break;
+                  case "Post":
+                    newlabel = "News/Stories";
+                    break;
+                  case "Page":
+                    newlabel = "Pages";
+                    break;
+                }
+                return ({
+                  ...item,
+                  label: newlabel,
+                })
+              })
+            }
             />
           </RefinementChoices>
         </SelectionsWrapper>
