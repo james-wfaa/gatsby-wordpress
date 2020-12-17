@@ -2,61 +2,11 @@ import React from "react"
 import styled from 'styled-components'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import CardD from './CardD'
-import { shortDate } from "../../utils/tools"
 
-const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, venue, excerpt, url, urlText, terms, linkFormat })=> {
+const ContentCardD = ({ className, startDate, title, venue, excerpt, url, label, moreLinkText, shortenedExcerpt, dateLinkText })=> {
 
     console.log('ContentCardD title: ',title)
-    let moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
 
-    /* let's make this a helper available anywhere we need to nicely shorten an excerpt */
-    const maxLength = (title.length <= 28) ? 200 : 160
-    const endIdx = (excerpt) ? excerpt.indexOf(' ', maxLength) : null
-    const shortenedExcerpt = (excerpt && excerpt.length > maxLength && endIdx > 0) ? excerpt.substring(0,excerpt.indexOf(' ', maxLength)) + ' ...' : excerpt
-
-    //get events
-    const categories = (eventsCategories && eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : null;
-    //get posts
-    const postTypes = (terms && terms.nodes && terms.nodes.length > 0) ? terms.nodes : null;
-    //set category if it exists
-    let category = null;
-    if (categories && categories[0].name){
-        category = categories[0].name
-    } else if (postTypes){
-        terms.nodes.map((node)=>{
-            if (node.name){
-                return category = node.name
-            }
-        })
-        console.log(category)
-        //if post but doesnt have category, set as Story
-        if (postTypes && category === null){
-            category = 'Story'
-        }
-    }
-    
-    //if post, update fields based on post type
-    if(category && postTypes){
-        switch(category){
-            case 'Video':
-                break;
-            case 'Link':
-                moreLinkText = <nobr>Via {linkFormat.linkAuthor} <span class="arrow"></span></nobr>
-                category = 'Story'
-                url = linkFormat.linkUrl
-                break;
-            case 'Podcast': 
-                moreLinkText = <nobr>Listen <span class="arrow"></span></nobr>
-                break;
-        }   
-    }
-
-    const fmtStartDate = shortDate(startDate)
-    let fmtEndDate = null
-    if (endDate && shortDate(endDate) !== fmtStartDate) {
-        fmtEndDate = shortDate(endDate)
-    }
-    const dateLinkText = (fmtEndDate) ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
     return (
         <CardD>
             <a href={url}className={className}>
@@ -73,8 +23,8 @@ const ContentCardD = ({ className, startDate, endDate, title, eventsCategories, 
                         { title && (
                             <h3 className={`${className}__title title`} dangerouslySetInnerHTML={{ __html: title }} />
                         )}
-                        { category && (
-                            <div className={`${className}__category`}>{category}</div>
+                        { label && (
+                            <div className={`${className}__category`}>{label}</div>
                         )}
                     </div>
                     { venue?.title && (
