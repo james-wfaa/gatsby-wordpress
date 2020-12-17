@@ -6,6 +6,13 @@ import TiSocialTwitter from "../../svg/uwa__twitter_white_24x24.inline.svg";
 import {FaFacebookF} from "react-icons/fa";
 import {AiFillMail} from "react-icons/ai";
 import { ShareBlockStandard, ShareButtonIconOnly } from "react-custom-share";
+import {
+    EmailShareButton,
+    FacebookShareButton,
+    TwitterShareButton,
+    FacebookIcon,
+    TwitterIcon
+  } from "react-share";
 
 const SocialShareLinks = props => {
     const { className, url, title, excerpt, text } = props;
@@ -57,6 +64,13 @@ const SocialShareLinks = props => {
                 <div className="socialText">{text}</div>
             )}
             <ShareBlockStandard {...shareBlockProps} />
+            <FacebookShareButton quote={title} url={url}>
+                <FacebookIcon size={32} />
+            </FacebookShareButton>
+
+            <TwitterShareButton title={title} url={url}>
+                <TwitterIcon size={32}/>
+          </TwitterShareButton>
         </div>
     )
 }
