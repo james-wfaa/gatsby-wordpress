@@ -79,22 +79,30 @@ export default ({ data }) => {
           <CardE
             img={data.asset29}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
+            fontSize
+            fontColor
+            marginTop
           />
           <CardE
             img={data.asset30}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
+            fontSize
+            fontColor
+            marginTop
           />
           <CardE
             img={data.square1}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{ color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
+            fontSize
+            fontColor
+            marginTop
           />
           <CardE
             img={data.squareBucky}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{ color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
+            fontSize
+            fontColor
+            marginTop
           />
         </SimpleSlider>
       </PageSection>
