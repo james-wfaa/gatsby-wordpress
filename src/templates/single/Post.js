@@ -13,6 +13,8 @@ export const query = graphql`
     page: wpPost(id: { eq: $id }) {
       title
       content
+      uri
+      link
       date(formatString: "MMMM Do")
       excerpt
       author {
