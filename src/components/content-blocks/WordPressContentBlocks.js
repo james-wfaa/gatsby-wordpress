@@ -132,6 +132,11 @@ hr.wp-block-separator {
         @media screen and ${breakpoints.laptopS} {
             width: 1080px;
             min-height: 528px;
+            .columnwrap{
+                :nth-last-child(1){
+                    flex: 1 1 auto;
+                }
+            }
             .jumbo-img{
                 width: 528px;
             }

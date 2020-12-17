@@ -54,7 +54,7 @@ const Header = ({ noborder }) => {
             <ul>
               <li>
                 <Link
-                  to="/near-me"
+                  to="/email"
                   style={{
                     textDecoration: `none`,
                   }}
@@ -64,7 +64,7 @@ const Header = ({ noborder }) => {
               </li>
               <li>
                 <Link
-                  to="/update-info"
+                  to="/email"
                   style={{
                     textDecoration: `none`,
                   }}
