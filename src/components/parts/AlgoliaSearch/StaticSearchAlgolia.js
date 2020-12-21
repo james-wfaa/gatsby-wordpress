@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import algoliasearch from "algoliasearch/lite"
-import { InstantSearch, RefinementList, Configure, connectHits } from "react-instantsearch-dom"
+import { InstantSearch, RefinementList, Configure, ScrollTo, connectHits } from "react-instantsearch-dom"
 import { colors, sizes, breakpoints } from "../../css-variables"
 import AccordianSearchBoxAlgolia from "./AccordianSearchBoxAlgolia"
 import SearchPageResults from "./SearchPageResults"
@@ -72,36 +72,38 @@ const AccordianSearchAlgolia = props => {
           // filters={filters}
           hitsPerPage={10}
         />
-        <SelectionsWrapper>
-          <AccordianSearchBoxAlgolia defaultRefinement={props.searchString} onFocus={() => setFocus(true)} hasFocus={hasFocus} />
-          <RefinementChoices>
-            <p>Included in Results:</p>
-            <RefinementList
-            attribute="type"
-            defaultRefinement={['Event', 'Post']}
-            transformItems={items =>
-              items.map(item => {
-                let newlabel;
-                switch (item.label) {
-                  case "Event":
-                    newlabel = "Events";
-                    break;
-                  case "Post":
-                    newlabel = "News/Stories";
-                    break;
-                  case "Page":
-                    newlabel = "Pages";
-                    break;
-                }
-                return ({
-                  ...item,
-                  label: newlabel,
-                })
-              })
-            }
-            />
-          </RefinementChoices>
-        </SelectionsWrapper>
+        <ScrollTo>
+          <SelectionsWrapper>
+              <AccordianSearchBoxAlgolia defaultRefinement={props.searchString} onFocus={() => setFocus(true)} hasFocus={hasFocus} />
+            <RefinementChoices>
+              <p>Included in Results:</p>
+              <RefinementList
+              attribute="type"
+              defaultRefinement={['Event', 'Post']}
+              transformItems={items =>
+                items.map(item => {
+                  let newlabel;
+                  switch (item.label) {
+                    case "Event":
+                      newlabel = "Events";
+                      break;
+                      case "Post":
+                        newlabel = "News/Stories";
+                        break;
+                        case "Page":
+                          newlabel = "Pages";
+                          break;
+                        }
+                        return ({
+                          ...item,
+                          label: newlabel,
+                        })
+                      })
+                    }
+                    />
+            </RefinementChoices>
+          </SelectionsWrapper>
+        </ScrollTo>
         <SearchPageResults
         show={query && query.length > 0 && hasFocus}
         indices={props.indices}
@@ -114,4 +116,3 @@ const AccordianSearchAlgolia = props => {
 }
 
 export default AccordianSearchAlgolia
-
