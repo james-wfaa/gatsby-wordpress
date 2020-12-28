@@ -10,14 +10,16 @@ import FeaturedImage from "../content-blocks/FeaturedImage"
 
 function BlogPost({ data }) {
   const { page } = data
-  const { title, content, featuredImage, categories, author, date, excerpt } = page
-
+  const { title, content, featuredImage, categories, author, date, excerpt, heroImage } = page
+  console.log(heroImage, page, featuredImage?.node?.localFile)
+  const image = heroImage && heroImage.heroImage.mediaDetails ? heroImage.herImage.mediaDetails : featuredImage
+  
   return (
     <Layout>
 
         <TitleSection heading={title} author={author} categories={categories} date={date} excerpt={excerpt}  />
         {!!featuredImage?.node?.localFile?.childImageSharp && (
-            <FeaturedImage featuredImage={featuredImage} />
+            <FeaturedImage featuredImage={image} />
         )}
         <WordPressContent content={content} />
 
