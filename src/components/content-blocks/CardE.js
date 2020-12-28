@@ -4,13 +4,11 @@ import { sizes, breakpoints, mixins, colors } from '../css-variables'
 
 import Img from 'gatsby-image'
 
-const CardE = ({ className, img, caption, captionStyleProps, fontColor, fontSize, marginTop, textAlign, fontWeight}) => {
+const CardE = ({ className, img, caption, captionStyleProps, marginTop, center, bold}) => {
     
-    const fontColorClass = fontColor ? 'fontColor' : ''
-    const fontSizeClass = fontSize ? 'fontSize' : ''
     const marginTopClass = marginTop ? 'marginTop' : ''
-    const textAlignClass = textAlign ? 'textAlign' : ''
-    const fontWeightClass = fontWeight ? 'fontWeight' : ''
+    const centerClass = center ? 'center' : ''
+    const boldClass = bold ? 'bold' : ''
 
     return (
         <div className={className}>
@@ -22,7 +20,7 @@ const CardE = ({ className, img, caption, captionStyleProps, fontColor, fontSize
                     />
                 )}
                 
-            <figcaption style={captionStyleProps} className={`${marginTopClass} ${fontColorClass} ${fontSizeClass} ${textAlignClass} ${fontWeightClass}`}>{caption}</figcaption>
+            <figcaption style={captionStyleProps} className={`${marginTopClass} ${centerClass} ${boldClass}`}>{caption}</figcaption>
             </figure>
         </div>
         
@@ -31,25 +29,6 @@ const CardE = ({ className, img, caption, captionStyleProps, fontColor, fontSize
 
 const StyledCardE = styled(CardE)`
 ${mixins.imageWithCaption}
-figure{
-    figcaption{
-        &.fontColor {
-            color: ${colors.captionBlack};
-        }
-        &.marginTop{
-            margin-top: ${sizes.s32};
-        }
-        &.fontSize{
-            font-size: ${sizes.s18};
-        }
-        &.textAlign{
-            text-align: center;
-        }
-        &.fontWeight{
-            font-weight: normal;
-        }
-    }
-}
 `
 
 export default StyledCardE

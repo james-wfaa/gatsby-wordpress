@@ -126,38 +126,30 @@ export default ({ data }) => {
           <CardE
             img={data.asset29}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            fontSize
-            fontColor
             marginTop
-            textAlign
-            fontWeight
+            center
+            normal
           />
           <CardE
             img={data.asset30}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            fontSize
-            fontColor
             marginTop
-            textAlign
-            fontWeight
+            center
+            normal
           />
           <CardE
             img={data.square1}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            fontSize
-            fontColor
             marginTop
-            textAlign
-            fontWeight
+            center
+            normal
           />
           <CardE
             img={data.squareBucky}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            fontSize
-            fontColor
             marginTop
-            textAlign
-            fontWeight
+            center
+            normal
           />
         </SimpleSlider>
       </PageSection>

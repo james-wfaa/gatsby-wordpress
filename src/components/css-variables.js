@@ -394,12 +394,25 @@ export const mixins = {
             }
             figcaption {
                 text-align: left;
-                color: ${colors.captionGrey};
-                font-weight: bold;
-                font-size: ${sizes.s16};
+                color: ${colors.captionBlack};
+                &.marginTop{
+                    margin-top: ${sizes.s32};
+                }
+                &.center{
+                    text-align: center;
+                }
+                &.bold{
+                    font-weight: bold;
+                }
             }
         }
-
+        figure.wp-block-image {
+            figcaption {
+                color: ${colors.captionGrey};
+                font-size: ${sizes.s16};
+                font-weight: bold;   
+            }
+        }
     }`,
     introHeading: `{
         position: absolute;
