@@ -39,10 +39,14 @@ export const query = graphql`
       }
       heroImage {
         heroImage {
-          mediaDetails {
-            width
-            height
-            file
+          caption
+          author{
+            node{
+              name
+            }
+          }
+          localFile{
+            ...HeroImage
           }
         }
       }
