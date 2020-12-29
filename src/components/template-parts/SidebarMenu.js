@@ -63,7 +63,7 @@ const SidebarMenu = ({name, menuItems}) => {
       </li>
     )
   })
-  console.log(open)
+
   return (
     <StyledMenu>
       <ConditionalWrap
