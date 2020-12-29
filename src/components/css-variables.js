@@ -404,6 +404,18 @@ export const mixins = {
                 &.bold{
                     font-weight: bold;
                 }
+                &.red{
+                    color: #C5050C;
+                }
+                &.big{
+                    font-size: ${sizes.s26};
+                }
+                &.italic{
+                    font-style: italic;
+                }
+                &.fontFamily{
+                    font-family:${fonts.eaves};
+                }
             }
         }
         figure.wp-block-image {
