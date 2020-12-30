@@ -45,10 +45,10 @@ export const query = graphql`
         ... on WpTemplate_TopLevelPage {
           templateName
         }
-        ... on WpTemplate_ProductTemplate {
+        ... on WpProductTemplate {
           templateName
         }
-        ... on WpTemplate_GeneralTemplate {
+        ... on WpGeneralTemplate {
           templateName
         }
       }
