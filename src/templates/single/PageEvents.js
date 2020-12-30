@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
 import ContentCard from "../../components/content-blocks/ContentCard"
-import ContentCardD from "../../components/content-blocks/ContentCardD"
+import EventCardD from "../../components/content-blocks/EventCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
 import SimpleSlider from "../../components/content-modules/SimpleSlider"
 import LeftArrow from "../../components/parts/SliderArrowLeft"
@@ -72,7 +72,7 @@ function WordPressPage({ data }) {
   let eventCards = cardGridEvents.map((event) => {
     console.log('building event tiles')
     return (
-      <ContentCardD key={event.url} {...event.node} />
+      <EventCardD key={event.url} {...event.node} />
     )
   })
   //console.log('eventCards:',eventCards)
