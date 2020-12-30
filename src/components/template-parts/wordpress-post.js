@@ -9,7 +9,7 @@ import SocialShareLinks from '../parts/SocialShareLinks'
 import FeaturedImage from "../content-blocks/FeaturedImage"
 
 function BlogPost({ data }) {
-  const { nextPage, previousPage, page } = data
+  const { page } = data
   const { title, content, featuredImage, categories, author, date, excerpt } = page
 
   return (
@@ -24,17 +24,7 @@ function BlogPost({ data }) {
 
 
       <br />
-      {!!nextPage && (
-        <Link to={normalizePath(nextPage.uri)}>Next: {nextPage.title} --
-      </Link>
-       
-      )}
-      <br />
-      {!!previousPage && (
-        <Link to={normalizePath(previousPage.uri)}>
-          Previous: {previousPage.title}
-        </Link>
-      )}
+
       <SocialShareLinks text="Share This Story"/>
     </Layout>
   )
