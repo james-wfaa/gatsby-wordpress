@@ -13,6 +13,8 @@ export default ({ data }) => {
       case "Aggregate (Product) Page":
         return (<WpAggregatePage page={page} />)
         case "Product/General Page":
+        case "Product Template":
+        case "General Template":
         return (<WpProductPage page={page} />)
     
       case "Default":
