@@ -32,11 +32,11 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
     const organizerList = !organizers ? null : organizers.nodes.map((org) => (
          <div className="organizer">{org.title}</div>
       ))
-    const addressString = (venue && venue.address) 
-        ? venue.title + '<br />' + venue.address + '<br />' + venue.city + ', ' + venue.state 
-        : (venue)
-            ? venue.title
-            : null;
+      const addressString = (venue && venue.address)
+      ? `${venue.title} <br />${venue.address}<br >${venue.city ? venue.city : ""}${venue.state ? `, ${venue.state}` : ""} `
+      : (venue)
+          ? venue.title
+          : null;
     const registrationLink = eventDetails.registrationUrl ? eventDetails.registrationUrl : '';
     const registrationText = eventDetails.eventFullSoldOut ? eventDetails.eventFullText : 'Register';
     const regIsFull = eventDetails.eventFullSoldOut;
@@ -90,7 +90,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
 }
 const StyledEventRegistration = styled(EventRegistration)`
 
-    
+
     font-size: ${sizes.s18};
     line-height: ${sizes.s26};
     margin-bottom: ${sizes.s32};
@@ -110,8 +110,8 @@ const StyledEventRegistration = styled(EventRegistration)`
         bottom: 0;
         left: 0;
         z-index: 100;
-       
-        .dateDay{   
+
+        .dateDay{
             padding: ${sizes.s16} 0 ${sizes.s16} 0;
             font-size: ${sizes.s18};
             line-height: ${sizes.s26};
@@ -127,11 +127,11 @@ const StyledEventRegistration = styled(EventRegistration)`
             @media screen and ${breakpoints.tabletS} {
                 max-width: 536px;
             }
-        
+
             &.compact {
                 margin-top: ${sizes.s40};
             }
-        
+
         }
 
         @media screen and ${breakpoints.tabletL} {
@@ -168,11 +168,11 @@ const StyledEventRegistration = styled(EventRegistration)`
             margin-bottom: ${sizes.s8};
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
-    
+
             @media screen and ${breakpoints.tabletL} {
                 border-bottom: none;
                 &:after {
-                    position: absolute; 
+                    position: absolute;
                     bottom: -2px;
                     left: 0;
                     width: ${sizes.s34};
@@ -188,7 +188,7 @@ const StyledEventRegistration = styled(EventRegistration)`
                 margin-top: 0;
             }
         }
-        
+
         a{
             ${mixins.a}
         }
