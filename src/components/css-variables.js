@@ -416,13 +416,19 @@ export const mixins = {
                 &.fontFamily{
                     font-family:${fonts.eaves};
                 }
+                &.enhancedHomepageCaption{
+                    font-family:${fonts.eaves};
+                    font-style: italic;
+                    font-size: ${sizes.s26};
+                    color: #C5050C;
+                }
             }
         }
-        figure.wp-block-image {
-            figcaption {
+        &.storyCaption {
+            figcaption{
                 color: ${colors.captionGrey};
                 font-size: ${sizes.s16};
-                font-weight: bold;   
+                font-weight: bold;
             }
         }
     }`,

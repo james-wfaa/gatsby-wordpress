@@ -108,13 +108,10 @@ export default ({ data }) => {
           />
           <CardE
             img={data.squareBucky}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
+            caption="Lorem ipsum dolor sit amet"
             marginTop
             bold
-            red
-            big
-            italic
-            fontFamily
+            enhancedHomepageCaption
           />
         </SimpleSlider>
       </PageSection>
