@@ -8,6 +8,7 @@ import EventMapDetails from "../content-blocks/EventMapDetails"
 import SocialShareLinks from "../parts/SocialShareLinks"
 import Button from "../parts/Button"
 import GenericModal from '../content-modules/GenericModal'
+import Block from 'WordPressBlock'
 
 
 
@@ -63,8 +64,9 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             case "core/paragraph":
             case "core/list":
             case "core/heading":
+            case "core/table":
             case "core/html":
-                return (<div className={block.name.replace('/', '-')} dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+                return (<Block className={block.name.replace('/', '-')} dangerouslySetInnerHTML={{__html: block.originalContent}} />)
                 break
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
