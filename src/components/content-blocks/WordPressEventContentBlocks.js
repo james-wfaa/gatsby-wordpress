@@ -8,6 +8,7 @@ import EventMapDetails from "../content-blocks/EventMapDetails"
 import SocialShareLinks from "../parts/SocialShareLinks"
 import Button from "../parts/Button"
 import GenericModal from '../content-modules/GenericModal'
+import Block from './WordPressBlock'
 
 
 
@@ -64,8 +65,9 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             case "core/list":
             case "core/heading":
             case "core/table":
+            case "core/image":
             case "core/html":
-                return (<div className={block.name.replace('/', '-')} dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+                return (<Block className={block.name.replace('/', '-')} block={block.originalContent} />)
                 break
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
@@ -276,52 +278,7 @@ margin: ${sizes.s48} auto 0;
 
     
 .content{
-    > p,
-    > ul,
-    > h2,
-    > h3,
-    > div,
-    > table,
-    > div.callout,
-    > div.call-out,
-    .core-freeform > p,
-    .core-freeform > ul,
-    .core-freeform > h2,
-    .core-freeform > h3,
-    .core-freeform > div,
-    .core-freeform > table,
-    .core-freeform > div.callout,
-    .core-freeform > div.call-out
-     {
-        min-width: 300px;
-        width: 100%;
-        max-width: 303px;
-        margin-left: auto;
-        margin-right: auto;
-
-        @media screen and ${breakpoints.tabletS} {
-            max-width: 536px;
-            padding-left: 0;
-            padding-right: 0;
-            margin-left: auto;
-            margin-right: auto;
-
-        }
-        @media screen and ${breakpoints.laptopS} {
-            margin-left: 0;
-            max-width: 712px;
-        }
-
-    }
-    ul {
-        list-style-position: inside;
-    }
-    a {
-        ${mixins.a}
-    }
-    .core-freeform {
-        margin-bottom: ${sizes.s32};
-    }
+    
 
 }
 h2 {
