@@ -14,27 +14,12 @@ function BlogPost({ data }) {
 
   return (
     <Layout>
-
         <TitleSection heading={title} author={author} categories={categories} date={date} excerpt={excerpt}  />
         {!!featuredImage?.node?.localFile?.childImageSharp && (
             <FeaturedImage featuredImage={featuredImage} />
         )}
         <WordPressContent content={content} />
-
-
-
       <br />
-      {!!nextPage && (
-        <Link to={normalizePath(nextPage.uri)}>Next: {nextPage.title} --
-      </Link>
-       
-      )}
-      <br />
-      {!!previousPage && (
-        <Link to={normalizePath(previousPage.uri)}>
-          Previous: {previousPage.title}
-        </Link>
-      )}
       <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
     </Layout>
   )

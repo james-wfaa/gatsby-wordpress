@@ -13,6 +13,8 @@ export default ({ data }) => {
       case "Aggregate (Product) Page":
         return (<WpAggregatePage page={page} />)
         case "Product/General Page":
+        case "Product Template":
+        case "General Template":
         return (<WpProductPage page={page} />)
     
       case "Default":
@@ -43,7 +45,10 @@ export const query = graphql`
         ... on WpTemplate_TopLevelPage {
           templateName
         }
-        ... on WpTemplate_ProductGeneralPage {
+        ... on WpProductTemplate {
+          templateName
+        }
+        ... on WpGeneralTemplate {
           templateName
         }
       }
