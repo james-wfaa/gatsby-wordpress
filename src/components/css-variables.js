@@ -105,6 +105,7 @@ export const colors = {
     mapDetailsText: baseColors.offBlack,
     disabledGrey: baseColors.darkGrey,
     captionBlack: baseColors.offBlack,
+    captionRed: baseColors.mainRed,
 
 
 
@@ -401,26 +402,12 @@ export const mixins = {
                 &.center{
                     text-align: center;
                 }
-                &.bold{
-                    font-weight: bold;
-                }
-                &.red{
-                    color: #C5050C;
-                }
-                &.big{
-                    font-size: ${sizes.s26};
-                }
-                &.italic{
-                    font-style: italic;
-                }
-                &.fontFamily{
-                    font-family:${fonts.eaves};
-                }
                 &.enhancedHomepageCaption{
                     font-family:${fonts.eaves};
                     font-style: italic;
                     font-size: ${sizes.s26};
-                    color: #C5050C;
+                    color: ${colors.captionRed};
+                    font-weight: bold;
                 }
             }
         }
