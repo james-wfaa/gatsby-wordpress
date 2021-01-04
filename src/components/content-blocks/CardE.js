@@ -8,6 +8,7 @@ const CardE = ({ className, img, caption, marginTop, center, enhancedHomepageCap
     
     const marginTopClass = marginTop ? 'marginTop' : ''
     const centerClass = center ? 'center' : ''
+    const enhancedHomepageCaptionClass = enhancedHomepageCaption ? 'enhancedHomepageCaption' : ''
 
     return (
         <div className={className}>
@@ -18,7 +19,7 @@ const CardE = ({ className, img, caption, marginTop, center, enhancedHomepageCap
                         fluid={img.childImageSharp.fluid}
                     />
                 )}
-            <figcaption className={`${marginTopClass} ${centerClass} ${enhancedHomepageCaption}`}>{caption}</figcaption>
+            <figcaption className={`${marginTopClass} ${centerClass} ${enhancedHomepageCaptionClass}`}>{caption}</figcaption>
             </figure>
         </div>
         
