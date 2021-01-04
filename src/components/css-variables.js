@@ -408,6 +408,7 @@ export const mixins = {
                     font-size: ${sizes.s26};
                     color: ${colors.captionRed};
                     font-weight: bold;
+                    margin-top: ${sizes.s32};
                 }
             }
         }

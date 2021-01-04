@@ -78,30 +78,22 @@ export default ({ data }) => {
         >
           <CardE
             img={data.asset29}
-            caption="Lorem ipsum"
-            marginTop
-            bold
+            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
             enhancedHomepageCaption="enhancedHomepageCaption"
           />
           <CardE
             img={data.asset30}
-            caption="Lorem ipsum dolor sit amet"
-            marginTop
-            bold
+            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
             enhancedHomepageCaption="enhancedHomepageCaption"
           />
           <CardE
             img={data.square1}
-            caption="Lorem ipsum dolor sit amet"
-            marginTop
-            bold
+            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
             enhancedHomepageCaption="enhancedHomepageCaption"
           />
           <CardE
             img={data.squareBucky}
-            caption="Lorem ipsum dolor sit amet"
-            marginTop
-            bold
+            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
             enhancedHomepageCaption="enhancedHomepageCaption"
           />
         </SimpleSlider>
