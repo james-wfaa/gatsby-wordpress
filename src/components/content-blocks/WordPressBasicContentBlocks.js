@@ -44,16 +44,22 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 return(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
             case "acf/events-listing-section":
                 console.log('events-listing-section')
-                const { slug, events } = eventCategory
-                const eventsToShow = (events?.nodes) ? events.nodes : null
-                const buttons = (eventsToShow.length > 2) 
-                    ? [{
-                        link: `/events/search/?category=${slug}`,
-                        text: 'See All Events'
-                    }]
-                    : null
-                    return(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)
-                break
+                if(eventCategory){
+                    const { slug, events } = eventCategory
+                    const eventsToShow = (events?.nodes) ? events.nodes : null
+                    const buttons = (eventsToShow.length > 2) 
+                        ? [{
+                            link: `/events/search/?category=${slug}`,
+                            text: 'See All Events'
+                        }]
+                        : null
+                        return(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)
+                    break
+                }
+                else{
+                    break;
+                }
+                
             default:
                 console.log('default')
                 return(<PageSectionFromBlocks blocks={[block]} heading="Default" borderTop={borderTop} stagger={stagger} />)

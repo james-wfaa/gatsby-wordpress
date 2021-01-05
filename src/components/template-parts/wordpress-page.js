@@ -5,7 +5,8 @@ import WordPressContent from "../content-blocks/WordPressBasicContentBlocks"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 
 function WordPressPage({ page }) {
-  const { title, content, featuredImage, blocks } = page
+  const { title, content, featuredImage, blocks, eventListing, } = page
+  const { eventCategory } = eventListing
 
 
   return (
@@ -14,7 +15,7 @@ function WordPressPage({ page }) {
       {!!featuredImage?.node?.localFile?.childImageSharp && (
           <FeaturedImage featuredImage={featuredImage} />
       )}
-        <WordPressContent blocks={blocks} />
+        <WordPressContent blocks={blocks} eventCategory={eventCategory}/>
       </PageSection>
     </Layout>
   )
