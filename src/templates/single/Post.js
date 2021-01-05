@@ -9,11 +9,13 @@ return (<BlogPost data={data} />)
 }
 
 export const query = graphql`
-  query post($id: String!, $nextPage: String, $previousPage: String) {
+  query post($id: String!) {
     page: wpPost(id: { eq: $id }) {
       title
       content
-      date(formatString: "MMMM Do")
+      uri
+      link
+      date(formatString: "MMM. DD, YYYY")
       excerpt
       author {
         node {
@@ -43,16 +45,6 @@ export const query = graphql`
           slug
         }
       }
-    }
-
-    nextPage: wpPost(id: { eq: $nextPage }) {
-      title
-      uri
-    }
-
-    previousPage: wpPost(id: { eq: $previousPage }) {
-      title
-      uri
     }
   }
 `

@@ -6,72 +6,52 @@ import TiSocialTwitter from "../../svg/uwa__twitter_white_24x24.inline.svg";
 import {FaFacebookF} from "react-icons/fa";
 import {AiFillMail} from "react-icons/ai";
 import { ShareBlockStandard, ShareButtonIconOnly } from "react-custom-share";
+import {
+    EmailShareButton,
+    FacebookShareButton,
+    TwitterShareButton,
+    FacebookIcon,
+    TwitterIcon,
+    EmailIcon
+  } from "react-share";
+
+const url = typeof window !== 'undefined' ? window.location.href : '';
 
 const SocialShareLinks = props => {
-    const { className, url, title, excerpt, text } = props;
+    const { className, url, title, excerpt, text, link, event } = props;
+    const isEvent = event ? "eventShare" : "";
 
-    const customStyles = css`
-    padding: 0;
-    @media screen and ${breakpoints.mobileZero} {
-        margin: 0px 10px 48px 10px;
-        width: 24px;
-    }
-    &:hover{
-        background: none;
-        box-shadow: none;
-        
-        svg{
-            path{
-                fill: ${colors.toneRed};
-            }
-        }
-
-    }
-        svg{
-            g{
-                clip-path: none;
-            }
-
-            path{
-                fill: ${colors.bgRed};
-            }
-        }
-    `;
-
-    const shareBlockProps = {
-        url: url,
-        button: ShareButtonIconOnly,
-        buttons: [
-          { network: "Twitter", icon: TiSocialTwitter },
-          { network: "Facebook", icon: FaFacebookF },
-          { network: "Email", icon: AiFillMail },
-        ],
-        text: title,
-        longtext: excerpt,
-        buttonClassName: customStyles
-      };
       
     return (
-        <div className = {className}>
+        <div className = {`${className} ${isEvent}`}>
             { text && (
                 <div className="socialText">{text}</div>
             )}
-            <ShareBlockStandard {...shareBlockProps} />
+            <ul class="shareButtons">
+                <li>
+                    <FacebookShareButton quote={title} url={link}>
+                        <FacebookIcon size={52} iconFillColor={colors.buttonRed} />
+                    </FacebookShareButton>
+                </li>
+
+                <li>
+                    <TwitterShareButton title={title} url={link}>
+                        <TwitterIcon size={52} iconFillColor={colors.buttonRed}/>
+                    </TwitterShareButton>
+                </li>
+
+                <li>
+                    <EmailShareButton subject={title} body={excerpt} url={link}>
+                        <EmailIcon size={52} iconFillColor={colors.buttonRed}/>
+                    </EmailShareButton>
+                </li>
+            </ul>
+            
+
+            
         </div>
     )
 }
-
-SocialShareLinks.propTypes = {
-    url: propTypes.string,
-    title: propTypes.string,
-    excerpt: propTypes.string
-  };
-  
-  SocialShareLinks.defaultProps = {
-    url: "https://mywebsite.com/page-to-share/",
-    title: "Default value of title",
-    excerpt: "Default value of excerpt"
-  };
   
 const StyledSocialShareLinks = styled(SocialShareLinks)
 `
@@ -79,23 +59,51 @@ const StyledSocialShareLinks = styled(SocialShareLinks)
     width: 100%;
     align-items: center;
     justify-content: center;
-    @media screen and ${breakpoints.tabletL} {
-        align-items: flex-start;
-        justify-content: flex-start;
-        button:first-child{
-            margin-left: 0px;
-        }
-    
-    }
     .socialText{
         font-size: ${sizes.s16};
         color: ${colors.toneRed};
         font-weight: bold;
         line-height: ${sizes.s26};
-        margin-top: 5px;
-        @media screen and ${breakpoints.laptopS} {
-            margin: 40px 0px 80px 0px;
+        margin-bottom: 7px;
+    }
+    .shareButtons {
+        list-style-type: none;
+        display: flex;
+        margin: 0px;
+
+        li{
+            margin-bottom: 0px;
+            button{
+                :focus{
+                    outline: none;
+                }
+            }
+            :hover{
+                path{
+                    fill: ${colors.buttonHoverRed};
+                }
+            }
+            :active{
+                path{
+                    fill: ${colors.buttonActiveGrey};
+                }
+                
+            }
         }
+
+        rect {
+            display: none;
+        }
+        
+    }
+    &.eventShare{
+        @media screen and ${breakpoints.tabletL} {
+            align-items: flex-start;
+            justify-content: flex-start;
+            li:first-child{
+                margin-left: 0px;
+            }
+        }    
     }
 `
 
