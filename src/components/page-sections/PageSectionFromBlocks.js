@@ -18,13 +18,11 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger })
     blocks.map((block) => {
         switch(block.name) {
             case "acf/section-header":
-                title = (block.dynamicContent) ? block.dynamicContent : block.originalContent
+                title = (block.isDynamic) ? block.dynamicContent : block.originalContent
                 break
             default:
-                //return ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
                 break
         }
-
     })
 
     // determine inner content (slider or no slider)
@@ -65,15 +63,17 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger })
                     case "acf/section-header":
                         break
                     case "acf/testimonial":
-                        const testimonial = ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
+                        const testimonial = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
                         return (<Testimonial data={testimonial} />)
                         case "acf/image-section":
-                        const imagesection = ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
+                        const imagesection = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
                         return (<ImageSection data={imagesection} />)
                     case "acf/product-card":
-                        return (<div dangerouslySetInnerHTML={{__html: block.dynamicContent}} />)
+                        const productcard = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
+                        return (<div dangerouslySetInnerHTML={{__html: productcard}} />)
                     default:
-                        return ((block.dynamicContent) ? block.dynamicContent : block.originalContent)
+                        const basiccontent = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
+                        return (<div dangerouslySetInnerHTML={{__html: basiccontent}} />)
                         break
                 }
 
