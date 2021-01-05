@@ -29,14 +29,15 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
         }
     }
 
-    const organizerList = !organizers ? null : organizers.nodes.map((org) => (
+    const organizerList = organizers?.nodes?.map((org) => (
          <div className="organizer">{org.title}</div>
       ))
-      const addressString = (venue && venue.address)
-      ? `${venue.title} <br />${venue.address}<br >${venue.city ? venue.city : ""}${venue.state ? `, ${venue.state}` : ""} `
-      : (venue)
-          ? venue.title
-          : null;
+    console.log(organizerList)
+    const addressString = (venue && venue.address)
+        ? `${venue.title} <br />${venue.address}<br >${venue.city ? venue.city : ""}${venue.state ? `, ${venue.state}` : ""} `
+        : (venue)
+            ? venue.title
+            : null;
     const registrationLink = eventDetails.registrationUrl ? eventDetails.registrationUrl : '';
     const registrationText = eventDetails.eventFullSoldOut ? eventDetails.eventFullText : 'Register';
     const regIsFull = eventDetails.eventFullSoldOut;
@@ -81,8 +82,14 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
                 )}
                 <div className="subHeader">COST</div>
                 <div className="amount ">{costDisplay(cost)}</div>
-                <div className="subHeader">ORGANIZER</div>
-                <div className="orgName ">{organizerList}</div>
+                {organizerList.length < 5 ?
+                    <>
+                    <div className="subHeader">ORGANIZER</div>
+                    <div className="orgName ">{organizerList}</div>
+                    </>
+                :
+                    null
+                }
 
             </div>
         </div>
