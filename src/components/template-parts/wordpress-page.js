@@ -1,7 +1,7 @@
 import React from "react"
 import Layout from "../layout"
 import PageSection from "../page-sections/PageSection"
-import WordPressContent from "../content-blocks/WordPressContent"
+import WordPressContent from "../content-blocks/WordPressContentBlocks"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 
 function WordPressPage({ page }) {

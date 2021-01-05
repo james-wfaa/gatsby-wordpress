@@ -4,8 +4,10 @@ import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"
 import styled from 'styled-components'
 import { colors, breakpoints, mixins } from '../css-variables'
+import Block from './WordPressBlock'
 
-const WordPressContent = ({className, blocks, eventCategory, stagger}) => {
+
+const WordPressContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
     const staggerBlocks = (stagger) 
         ? blocks.map((block) => {
             block.stagger = true
@@ -16,56 +18,75 @@ const WordPressContent = ({className, blocks, eventCategory, stagger}) => {
     let RenderedBlocks = []
     //console.log(RenderedBlocks)
 
-    staggerBlocks.forEach((block) => {
-        const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-        const stagger = block.stagger
-        console.log(block.name)
-
-        switch(block.name) {
-           
-            case "core/group":
-                if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
-                    console.log('page-section')
-                    RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} borderTop={borderTop} stagger={stagger} />)
-                }
-                if (block.innerBlocks && block.originalContent.indexOf(' gallery') > 0) {
-                    console.log('gallery')
-                    RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} gallery borderTop={borderTop} stagger={stagger} />)
-                }
-                if (block.innerBlocks && block.originalContent.indexOf(' card-set') > 0) {
-                    console.log('card-set')
-                    RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} cardset borderTop={borderTop} stagger={stagger} />)
-                }
-
-                break
-            case "core/separator":
-                RenderedBlocks.append(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
-            case "acf/events-listing-section":
-                console.log('events-listing-section')
-                const { slug, events } = eventCategory
-                const eventsToShow = (events?.nodes) ? events.nodes : null
-                const buttons = (eventsToShow.length > 2) 
-                    ? [{
-                        link: `/events/search/?category=${slug}`,
-                        text: 'See All Events'
-                    }]
-                    : null
-                RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)
-                break
-            default:
-                console.log('default')
-                RenderedBlocks.push(<PageSectionFromBlocks blocks={[block]} heading="Default" borderTop={borderTop} stagger={stagger} />)
-                
+    if(blocks){
+        staggerBlocks.forEach((block) => {
+            const borderTop = (block.originalContent.indexOf(' border-top') > 0)
+            const stagger = block.stagger
+            console.log(block.name)
+    
+            switch(block.name) {
+               
+                case "core/group":
+                    if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
+                        console.log('page-section')
+                        RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} borderTop={borderTop} stagger={stagger} />)
+                    }
+                    if (block.innerBlocks && block.originalContent.indexOf(' gallery') > 0) {
+                        console.log('gallery')
+                        RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} gallery borderTop={borderTop} stagger={stagger} />)
+                    }
+                    if (block.innerBlocks && block.originalContent.indexOf(' card-set') > 0) {
+                        console.log('card-set')
+                        RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} cardset borderTop={borderTop} stagger={stagger} />)
+                    }
+    
+                    break
+                    case "core/freeform":
+                    case "core/paragraph":
+                    case "core/list":
+                    case "core/heading":
+                    case "core/table":
+                    case "core/image":
+                    case "core/html":
+                        return (<Block className={block.name.replace('/', '-')} block={block.originalContent} />)
+                        break
+            
+                case "core/separator":
+                    RenderedBlocks.append(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+                case "acf/events-listing-section":
+                    console.log('events-listing-section')
+                    const { slug, events } = eventCategory
+                    const eventsToShow = (events?.nodes) ? events.nodes : null
+                    const buttons = (eventsToShow.length > 2) 
+                        ? [{
+                            link: `/events/search/?category=${slug}`,
+                            text: 'See All Events'
+                        }]
+                        : null
+                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)
+                    break
+                default:
+                    console.log('default')
+                    RenderedBlocks.push(<PageSectionFromBlocks blocks={[block]} heading="Default" borderTop={borderTop} stagger={stagger} />)
+                    
+            }
         }
+        )
+    
+        return(
+            <Block className={className} block={content} />
+        )
     }
-    )
+    else{
+        return(
+            <div className={className} dangerouslySetInnerHTML={{ __html: content }} />
+        )
+    }
 
-    return(
-        <div className={className}>{RenderedBlocks}</div>
-    )
+
 }
 
-const StyledWordPressContent = styled(WordPressContent)`
+const StyledWordPressContentBlocks = styled(WordPressContentBlocks)`
 hr.wp-block-separator {
     ${mixins.separator}
 }
@@ -145,4 +166,4 @@ hr.wp-block-separator {
 }
 `
 
-export default StyledWordPressContent
+export default StyledWordPressContentBlocks
