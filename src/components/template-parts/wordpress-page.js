@@ -1,11 +1,11 @@
 import React from "react"
 import Layout from "../layout"
 import PageSection from "../page-sections/PageSection"
-import WordPressContent from "../content-blocks/WordPressContentBlocks"
+import WordPressContent from "../content-blocks/WordPressBasicContentBlocks"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 
 function WordPressPage({ page }) {
-  const { title, content, featuredImage } = page
+  const { title, content, featuredImage, blocks } = page
 
 
   return (
@@ -14,7 +14,7 @@ function WordPressPage({ page }) {
       {!!featuredImage?.node?.localFile?.childImageSharp && (
           <FeaturedImage featuredImage={featuredImage} />
       )}
-        <WordPressContent content={content} />
+        <WordPressContent blocks={blocks} />
       </PageSection>
     </Layout>
   )
