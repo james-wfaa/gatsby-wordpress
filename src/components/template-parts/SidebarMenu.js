@@ -3,8 +3,7 @@ import styled from "styled-components"
 import { colors, sizes, breakpoints } from "../css-variables"
 import { useWindowSize } from "../hooks"
 
-const SidebarMenu = ({name, menuItems}) => {
-  const { width } = useWindowSize()
+const SidebarMenu = ({name, menuItems, width}) => {
   const [open, setOpen] = useState(false)
   const menuMargin = open ? `32px` : 0;
   const StyledMenu = styled.div`
@@ -14,6 +13,7 @@ const SidebarMenu = ({name, menuItems}) => {
     padding: 32px 0;
     
     margin-bottom: 32px;
+
     ul {
       justify-self: left;
       margin-left: 0;
@@ -36,6 +36,7 @@ const SidebarMenu = ({name, menuItems}) => {
       border: none;
       margin-top: 7px; // hack to get menu title & page title vertically aligned (curse you, Mrs. Eaves!)
       margin-right: 32px;
+      margin-left: 32px;
       padding: 0;
     }
   `

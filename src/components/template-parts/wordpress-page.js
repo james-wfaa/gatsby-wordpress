@@ -6,10 +6,13 @@ import Layout from "../layout"
 import PageSection from "../page-sections/PageSection"
 import WordPressContent from "../content-blocks/WordPressBasicContentBlocks"
 import Menu from "../template-parts/SidebarMenu"
+import PageSectionHeader from '../parts/PageSectionHeader'
+import { useWindowSize } from "../hooks"
 
 function WordPressPage({ page }) {
   const { title, content, featuredImage, blocks, eventListing, } = page
   const { eventCategory } = eventListing
+  const { width } = useWindowSize()
   // Temporary Query until dynamic menus added to page query
   const { wpMenu } = useStaticQuery(
     graphql`
@@ -47,10 +50,23 @@ function WordPressPage({ page }) {
   return (
     <Layout>
       <PageWrapper>
-        <Menu name={wpMenu.name} menuItems={wpMenu.menuItems.nodes} />
-        <PageSection heading={title} pageTitle leftAlign defaultPage>
-          <WordPressContent blocks={blocks} eventCategory={eventCategory}/>
-        </PageSection>
+        {width > 936
+        ?
+        <>
+          <Menu name={wpMenu.name} menuItems={wpMenu.menuItems.nodes} width={width} />
+          <PageSection heading={title} pageTitle leftAlign defaultPage>
+            <WordPressContent blocks={blocks} eventCategory={eventCategory} content={content} />
+          </PageSection>
+        </>
+        :
+        <>
+          <PageSectionHeader heading={title} />
+          <Menu name={wpMenu.name} menuItems={wpMenu.menuItems.nodes} width={width} />
+          <PageSection pageTitle>
+            <WordPressContent blocks={blocks} eventCategory={eventCategory} content={content} />
+          </PageSection>
+        </>
+      }
       </PageWrapper>
     </Layout>
   )

@@ -16,13 +16,11 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
         : blocks
 
     let RenderedBlocks = []
-    //console.log(RenderedBlocks)
 
     if(blocks){
         staggerBlocks.forEach((block) => {
             const borderTop = (block.originalContent.indexOf(' border-top') > 0)
             const stagger = block.stagger
-            console.log(block.name)
     
             switch(block.name) {
                
@@ -72,10 +70,18 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             }
         }
         )
+        /* there should not be a return here, because the whole point of this section 
+           is to build up the RenderedBlocks object */
     
+        /*
         return(
             <Block className={className} block={content} />
         )
+        */
+        return(
+            <div className={className}>{RenderedBlocks}</div>
+        )
+
     }
     else{
         return(
