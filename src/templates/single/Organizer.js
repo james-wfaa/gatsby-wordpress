@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
-import WordPressContent from "../../components/content-blocks/WordPressContentBlocks"
+import WordPressContent from "../../components/content-blocks/WordPressBasicContentBlocks"
 
 function WpOrganizerPage({ data }) {
   const { organizer } = data
