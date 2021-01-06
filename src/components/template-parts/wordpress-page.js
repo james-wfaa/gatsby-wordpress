@@ -7,8 +7,11 @@ import PageSection from "../page-sections/PageSection"
 import WordPressContent from "../content-blocks/WordPressContent"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 import Menu from "../template-parts/SidebarMenu"
+import PageSectionHeader from '../parts/PageSectionHeader'
+import { useWindowSize } from "../hooks"
 
 function WordPressPage({ page }) {
+  const { width } = useWindowSize()
   // Temporary Query until dynamic menus added to page query
   const { wpMenu } = useStaticQuery(
     graphql`
@@ -49,13 +52,29 @@ function WordPressPage({ page }) {
   return (
     <Layout>
       <PageWrapper>
-        <Menu name={wpMenu.name} menuItems={wpMenu.menuItems.nodes} />
-        <PageSection heading={title} pageTitle><div>Default template</div>
-        {!!featuredImage?.node?.localFile?.childImageSharp && (
-            <FeaturedImage featuredImage={featuredImage} />
-        )}
-          <WordPressContent content={content} />
-        </PageSection>
+        {width > 656
+        ?
+        <>
+          <Menu name={wpMenu.name} menuItems={wpMenu.menuItems.nodes} width={width} />
+          <PageSection heading={title} pageTitle><div>Default template</div>
+          {!!featuredImage?.node?.localFile?.childImageSharp && (
+              <FeaturedImage featuredImage={featuredImage} />
+          )}
+            <WordPressContent content={content} />
+          </PageSection>
+        </>
+        :
+        <>
+          <PageSectionHeader heading={title} />
+          <Menu name={wpMenu.name} menuItems={wpMenu.menuItems.nodes} width={width} />
+          <PageSection pageTitle><div>Default template</div>
+          {!!featuredImage?.node?.localFile?.childImageSharp && (
+              <FeaturedImage featuredImage={featuredImage} />
+          )}
+            <WordPressContent content={content} />
+          </PageSection>
+        </>
+      }
       </PageWrapper>
     </Layout>
   )
