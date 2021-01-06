@@ -8,7 +8,7 @@ const WordPressBlock = ({className, block}) => {
     console.log('WordPressBlock - block:',block)
 
     return (
-        <div className={className} dangerouslySetInnerHTML={{__html: block}} />
+        <div className={className} dangerouslySetInnerHTML={{__html: block.originalContent}} />
     )
 }
 

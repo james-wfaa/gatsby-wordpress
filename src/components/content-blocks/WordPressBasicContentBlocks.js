@@ -18,7 +18,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 
             default:
                 console.log('default')
-                return (<Block className={block.name.replace('/', '-')} block={block.originalContent} />)    
+                return (<Block className={block.name.replace('/', '-')} block={block} />)    
         }
     }
     ) : null

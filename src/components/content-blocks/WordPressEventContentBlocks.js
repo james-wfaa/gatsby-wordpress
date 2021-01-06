@@ -67,7 +67,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             case "core/table":
             case "core/image":
             case "core/html":
-                return (<Block className={block.name.replace('/', '-')} block={block.originalContent} />)
+                return (<Block className={block.name.replace('/', '-')} block={block} />)
                 break
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
