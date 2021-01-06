@@ -11,6 +11,9 @@ export default () => (
       <h1>uwalumni.com redesign - development work in progress</h1>
       <h2>Full Page Templates</h2>
       <li>
+        <Link to="/gpu/scrapbook">Default Page - NEW</Link>
+      </li>
+      <li>
         <Link to="/email">Email Login - NEW</Link>
       </li>
       <li>
@@ -45,7 +48,7 @@ export default () => (
           Individual Group Page (NEW) (in progress)
         </Link>
       </li>
-      
+
       <h2>Page Sections &amp; Content Components</h2>
       <ul>
       <li>
@@ -61,14 +64,14 @@ export default () => (
           <Link to="/james-test">
             Image/Content Modules (1/3, 1/2, 2/3) from WordPress Pages{" "}
           </Link>
-          
+
         </li>
         <li>
           <Link to="/contentBlockList">Content Card List </Link>
         </li>
         <li>
           <Link to="/gridCardDPop">
-            Card D Grid Alternative, pops out of section 
+            Card D Grid Alternative, pops out of section
           </Link>
         </li>
         <li>
@@ -104,8 +107,11 @@ export default () => (
         <li>
           <Link to="/modal">Generic Modal</Link>
         </li>
+        <li>
+          <Link to="/sidebarMenu">Generic Sidebar Menu</Link>
+        </li>
 
-       
+
       </ul>
     </PageSection>
   </Layout>

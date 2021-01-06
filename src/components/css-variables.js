@@ -333,7 +333,11 @@ export const mixins = {
         &.leftAlign {
             text-align: left;
             &:after {
-                left: 10%;
+                left: 0;
+            }
+            h1,
+            h2 {
+                margin-left: 0;
             }
         }
         h1,

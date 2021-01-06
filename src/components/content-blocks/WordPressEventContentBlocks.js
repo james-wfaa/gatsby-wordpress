@@ -161,7 +161,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     </div>
                 )}
                     <h2>Invite Others</h2>
-                    <SocialShareLinks></SocialShareLinks>
+                    <SocialShareLinks className="SocailShare" title={title} url={link} event></SocialShareLinks>
                 </div>
 
             </div>

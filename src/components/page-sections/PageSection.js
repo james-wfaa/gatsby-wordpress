@@ -32,7 +32,8 @@ const PageSection = ({
     children,
     stagger,
     desktopOnly,
-    onlyChild
+    onlyChild,
+    defaultPage // one page section with no top padding
  }) => {
 
 
@@ -48,9 +49,10 @@ const PageSection = ({
     const hasNoHeading = !preheading && !heading ? ' hasNoHeading' : ''
     const popClass = popOut ? `${className}__popOut` : ''
     const staggerClass = (stagger) ? ' stagger' : ''
+    const defaultClass = (defaultPage) ? ' defaultClass' : ''
 
     return (
-        <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading} ${bgClass}`}  >
+        <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading}${defaultClass} ${bgClass}`}  >
             { ! background &&  (
             <div className={`${className}__innerwrap   ${popClass}` }>
                 { preheading && (
@@ -130,6 +132,9 @@ const StyledPageSection = styled(PageSection)`
         }
         
     }
+    &.defaultClass {
+        padding-top: 0;
+    }
     
     &.stagger:nth-child(even) {
         background-color: ${colors.bgActiveGrey};
@@ -150,6 +155,7 @@ const StyledPageSection = styled(PageSection)`
         }
     &.leftAlign {
         text-align: left;
+        
     }
     &.hasPreHeading {
         padding-top: 0;
