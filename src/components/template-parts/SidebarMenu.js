@@ -32,7 +32,7 @@ const SidebarMenu = ({name, menuItems, width}) => {
         font-size: 18px;
       }
     }
-    @media screen and ${breakpoints.tabletL} {
+    @media screen and ${breakpoints.laptopS} {
       border: none;
       margin-top: 7px; // hack to get menu title & page title vertically aligned (curse you, Mrs. Eaves!)
       margin-right: 32px;
@@ -49,12 +49,12 @@ const SidebarMenu = ({name, menuItems, width}) => {
     width: 100%;
     text-align: center;
     margin-bottom: ${menuMargin};
-    @media screen and ${breakpoints.tabletL} {
+    @media screen and ${breakpoints.laptopS} {
       text-align: left;
     }
   `
   useEffect(() => {
-    setOpen(width > 936)
+    setOpen(width > 1200)
   }, [width])
 
   const ConditionalWrap = ({condition, wrap, children}) => condition ? wrap(children) : children;
