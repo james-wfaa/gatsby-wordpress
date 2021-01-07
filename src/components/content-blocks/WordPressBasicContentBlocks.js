@@ -15,10 +15,14 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
         switch(block.name) {
             case "core/separator":
                 return(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
-                
+                break
+            case "core/group":
+            case "acf/events-listing-section":
+                break   
             default:
                 console.log('default')
                 return (<Block className={block.name.replace('/', '-')} block={block} />)    
+                break
         }
     }
     ) : null
