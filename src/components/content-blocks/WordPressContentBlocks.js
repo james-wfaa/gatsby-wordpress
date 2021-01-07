@@ -69,19 +69,9 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
         }
     }
     )
-    /* there should not be a return here, because the whole point of this section 
-        is to build up the RenderedBlocks object */
-
-    /*
-    return(
-        <Block className={className} block={content} />
-    )
-    */
     return(
         <div className={className}>{RenderedBlocks}</div>
     )
-
-
 }
 
 const StyledWordPressContentBlocks = styled(WordPressContentBlocks)`

@@ -36,7 +36,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             case "core/table":
             case "core/image":
             case "core/html":
-                console.log(block.name);
+                console.log(block);
                 return (<Block className={block.name.replace('/', '-')} block={block.originalContent} />)
                 break
         
@@ -61,7 +61,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 }
                 
             default:
-                console.log('default')
+                console.log('default case')
                 return(<PageSectionFromBlocks blocks={[block]} heading="Default" borderTop={borderTop} stagger={stagger} />)
                 
         }
