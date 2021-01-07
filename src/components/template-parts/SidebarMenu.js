@@ -70,7 +70,7 @@ const SidebarMenu = ({name, menuItems, width}) => {
   return (
     <StyledMenu>
       <ConditionalWrap
-        condition={width < 936}
+        condition={width < 1200}
         wrap={children => <ModalHandler onClick={() => setOpen(!open)}>{children}</ModalHandler>}
       >
         <StyledHeader>{name}</StyledHeader>
