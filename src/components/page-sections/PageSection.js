@@ -28,6 +28,7 @@ const PageSection = ({
     alt,
     topBorder,
     bgImage,
+    marginLeft,
     fromBlocks,
     children,
     stagger,
@@ -50,9 +51,10 @@ const PageSection = ({
     const popClass = popOut ? `${className}__popOut` : ''
     const staggerClass = (stagger) ? ' stagger' : ''
     const defaultClass = (defaultPage) ? ' defaultClass' : ''
+    const marginLeftClass = (marginLeft) ? ' marginLeft' : ''
 
     return (
-        <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading}${defaultClass} ${bgClass}`}  >
+        <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading}${defaultClass} ${bgClass}${marginLeftClass}`}  >
             { ! background &&  (
             <div className={`${className}__innerwrap   ${popClass}` }>
                 { preheading && (
@@ -118,6 +120,9 @@ const StyledPageSection = styled(PageSection)`
     padding-bottom: 58px;
     &:last-child {
         padding-bottom: 88px;
+    }
+    &.marginLeft{
+        margin-left:56px;
     }
     @media screen and ${breakpoints.tabletS} {
         padding-top: 88px;
