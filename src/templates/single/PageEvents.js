@@ -31,16 +31,21 @@ function WordPressPage({ data }) {
     },
   ]
 
-  const cats = categories.map((item) => {
+  const cats = (categories) 
+  ? categories.map((item) => {
     const { categoryEvent, numberToShow } = item
     //console.log(item)
-    return (
-      <PageSection key={item.url} heading={categoryEvent.name} stagger>
-        <CardSet items={categoryEvent.events.nodes} num={numberToShow} />
-      </PageSection>
-    )
+    return (categoryEvent && categoryEvent.events.nodes.length > 0) 
+      ?
+      (
+        <PageSection key={item.url} heading={categoryEvent.name} stagger>
+          <CardSet items={categoryEvent.events.nodes} num={numberToShow} />
+        </PageSection>
+      )
+      : null
   }
   )
+  : null
 
 
   const settings = {
