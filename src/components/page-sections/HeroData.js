@@ -115,7 +115,7 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
   .excerpt {
     font-size: ${sizes.s24};
     line-height: ${sizes.s36};
-    max-width: 712px;
+    max-width: 896px;
     margin: 0 auto;
     margin-bottom: ${excerptBottom};
     padding: 0 ${sizes.s36};

@@ -10,7 +10,7 @@ import PageSectionHeader from '../parts/PageSectionHeader'
 import { useWindowSize } from "../hooks"
 
 function WordPressPage({ page }) {
-  const { title, content, featuredImage, blocks, eventListing, } = page
+  const { title, content, blocks, eventListing, } = page
   const { eventCategory } = eventListing
   const { width } = useWindowSize()
   // Temporary Query until dynamic menus added to page query
