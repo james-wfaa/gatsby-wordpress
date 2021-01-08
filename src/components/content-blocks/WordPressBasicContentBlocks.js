@@ -18,9 +18,8 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 break
             case "core/group":
             case "acf/events-listing-section":
-                break   
+                break  
             default:
-                console.log('default')
                 return (<Block className={block.name.replace('/', '-')} block={block} />)    
                 break
         }

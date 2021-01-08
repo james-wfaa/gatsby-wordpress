@@ -5,7 +5,6 @@ import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 
 
 const WordPressBlock = ({className, block}) => {
-    console.log('WordPressBlock - block:',block)
 
     return (
         <div className={className} dangerouslySetInnerHTML={{__html: block.originalContent}} />
@@ -13,6 +12,26 @@ const WordPressBlock = ({className, block}) => {
 }
 
 const StyledWordPressBlock = styled(WordPressBlock)`
+
+min-width: 300px;
+    width: 100%;
+    max-width: 303px;
+    margin-left: auto;
+    margin-right: auto;
+
+@media screen and ${breakpoints.tabletS} {
+    max-width: 536px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+@media screen and ${breakpoints.laptopS} {
+    margin-left: 0;
+    max-width: 712px;
+}
+
 >h2,
 >h3{
     font-size: ${sizes.s32};
@@ -36,45 +55,15 @@ const StyledWordPressBlock = styled(WordPressBlock)`
 
 }
 
-> p,
-> ul,
-> h2,
-> h3,
-> div,
-> table,
-> div.callout,
-> div.call-out,
-.core-freeform > p,
-.core-freeform > ul,
-.core-freeform > h2,
-.core-freeform > h3,
-.core-freeform > div,
-.core-freeform > table,
-.core-freeform > div.callout,
-.core-freeform > div.call-out
- {
-    min-width: 300px;
-    width: 100%;
-    max-width: 303px;
-    margin-left: auto;
-    margin-right: auto;
-
-    @media screen and ${breakpoints.tabletS} {
-        max-width: 536px;
-        padding-left: 0;
-        padding-right: 0;
-        margin-left: auto;
-        margin-right: auto;
-
-    }
-    @media screen and ${breakpoints.laptopS} {
-        margin-left: 0;
-        max-width: 712px;
-    }
-
-}
 ul {
     list-style-position: inside;
+    margin-left: 0;
+    @media screen and ${breakpoints.tabletS} {
+        margin-left: ${sizes.s24};
+    }
+}
+li{
+    margin-bottom: ${sizes.s12};
 }
 a {
     ${mixins.a}
