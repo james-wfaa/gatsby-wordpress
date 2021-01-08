@@ -5,6 +5,8 @@ import ImageSection from '../content-blocks/ImageSection'
 import ImageWithCaption from '../content-blocks/ImageWithCaption'
 import SimpleSlider from '../content-modules/SimpleSlider'
 import CardSet from "../content-modules/CardSet"
+import Block from '../content-blocks/WordPressBlock'
+
 
 
 
@@ -19,6 +21,14 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger })
         switch(block.name) {
             case "acf/section-header":
                 title = (block.isDynamic) ? block.dynamicContent : block.originalContent
+                break
+            case "core/heading":
+                console.log ("normal heading")
+                if (block.originalContent.indexOf('<h2') > -1) {
+                    console.log ("normal h2 heading")
+                    title = (block.isDynamic) ? block.dynamicContent : block.originalContent
+                    
+                }
                 break
             default:
                 break
@@ -62,6 +72,16 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger })
                 switch(block.name) {
                     case "acf/section-header":
                         break
+                        case "core/heading":
+                            if (block.originalContent.indexOf('<h2') > -1) {
+                                break
+                            }
+                            else {
+                                return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+                            }
+                            
+            
+                            
                     case "acf/testimonial":
                         const testimonial = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
                         return (<Testimonial data={testimonial} />)
@@ -73,7 +93,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger })
                         return (<div dangerouslySetInnerHTML={{__html: productcard}} />)
                     default:
                         const basiccontent = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
-                        return (<div dangerouslySetInnerHTML={{__html: basiccontent}} />)
+                        return (<Block className={block.name.replace('/', '-')} block={basiccontent} />)
                         break
                 }
 

@@ -153,6 +153,7 @@ const StyledPageSection = styled(PageSection)`
         a {
             color: ${colors.bgRed}
         }
+    }
     &.leftAlign {
         text-align: left;
         
@@ -195,14 +196,14 @@ const StyledPageSection = styled(PageSection)`
         padding: 58px 0;
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s20};
-         }
+        }
     }
 
 
     .sectionexcerpt {
         font-size: ${sizes.s24};
         line-height: ${sizes.s36};
-        max-width: 712px;
+        max-width: 896px;
         margin: 0 auto;
         margin-bottom: ${sizes.s32};
         padding: 0 ${sizes.s36};
