@@ -40,7 +40,7 @@ function WordPressPage({ page }) {
     grid-template-columns: 1fr;
     max-width: 1080px;
     margin: 58px 32px 0 32px;
-    @media screen and ${breakpoints.tabletL} {
+    @media screen and ${breakpoints.laptopS} {
       grid-template-columns: 350px 1fr;
       margin: 88px auto 0;
     }
@@ -50,11 +50,11 @@ function WordPressPage({ page }) {
   return (
     <Layout>
       <PageWrapper>
-        {width > 936
+        {width > 1200
         ?
         <>
           <Menu name={wpMenu.name} menuItems={wpMenu.menuItems.nodes} width={width} />
-          <PageSection heading={title} pageTitle leftAlign defaultPage>
+          <PageSection heading={title} pageTitle leftAlign defaultPage marginLeft>
             <WordPressContent blocks={blocks} eventCategory={eventCategory} content={content} />
           </PageSection>
         </>
