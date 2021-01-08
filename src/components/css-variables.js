@@ -332,6 +332,7 @@ export const mixins = {
         }
         &.leftAlign {
             text-align: left;
+            margin-bottom: ${sizes.s32};
             &:after {
                 left: 0;
             }

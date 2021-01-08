@@ -65,7 +65,9 @@ const StyledWordPressBlock = styled(WordPressBlock)`
         padding-right: 0;
         margin-left: auto;
         margin-right: auto;
-
+    }
+    @media screen and ${breakpoints.tabletL} {
+        max-width: 650px;
     }
     @media screen and ${breakpoints.laptopS} {
         margin-left: 0;

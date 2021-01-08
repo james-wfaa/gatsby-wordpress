@@ -47,7 +47,10 @@ text-align: left;
 margin: 0 auto;
 position: relative;
 display: block;
-width: 712px;
+max-width: 100%;
+@media screen and ${breakpoints.laptopS} {
+    max-width: 712px;
+}
 
 hr.wp-block-separator {
     ${mixins.separator}
