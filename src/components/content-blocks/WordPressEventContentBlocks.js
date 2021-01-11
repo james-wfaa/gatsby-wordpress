@@ -278,14 +278,17 @@ margin: ${sizes.s48} auto 0;
 
     
 .content{
-    
+    h2,h3 {
+        font-size: ${sizes.s18};
+        font-weight: bold;
+        font-family: ${fonts.verlag};
+        font-style: normal;
+        color: ${colors.copyText};
+        line-height: ${sizes.s26};
+        margin-bottom: ${sizes.s16};
+    }
+}
 
-}
-h2 {
-    font-size: ${sizes.s18};
-    font-weight: bold;
-    margin-bottom: ${sizes.s16};
-}
 
 
 `
