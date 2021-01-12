@@ -78,6 +78,14 @@ a {
 .core-freeform {
     margin-bottom: ${sizes.s32};
 }
+hr, hr.wp-block-separator{
+    height: ${sizes.s2};
+    background-color: ${colors.sectionBorder};
+    margin: ${sizes.s36} 0;
+    &.section-break{
+        height: ${sizes.s8};
+    }
+}
 `
 
 
