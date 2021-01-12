@@ -42,7 +42,6 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
 
 const StyledWordPressContentBlocks = styled(WordPressContentBlocks)`
 
-text-align: left;
 margin: 0 auto;
 position: relative;
 display: block;
