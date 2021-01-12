@@ -64,7 +64,11 @@ const SidebarMenu = ({name, menuItems, width}) => {
       margin-left:12px;
       vertical-align: top;
       margin-top: 4px;
-      
+    }
+    h4.open::after{
+      transform: rotate(-135deg);
+      -webkit-transform: rotate(-135deg);
+      vertical-align: middle;
     }
   `
   const ModalHandler = styled.div`
@@ -100,7 +104,7 @@ const SidebarMenu = ({name, menuItems, width}) => {
         condition={width < 1200}
         wrap={children => <ModalHandler onClick={() => setOpen(!open)}>{children}</ModalHandler>}
       >
-        <StyledHeader>{name}</StyledHeader>
+        <StyledHeader className={open ? `open` : null}>{name}</StyledHeader>
       </ConditionalWrap>
         {open &&
           <ul>
