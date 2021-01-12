@@ -5,10 +5,16 @@ import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 
 
 const WordPressBlock = ({className, block}) => {
-    console.log('WordPressBlock - block:',block)
+    if (block) {
+        console.log('WordPressBlock - block:',block)
+    }
 
     return (
-        <div className={className} dangerouslySetInnerHTML={{__html: block.originalContent}} />
+        <>
+        { block && (
+            <div className={className} dangerouslySetInnerHTML={{__html: block.originalContent}} />
+        ) }
+        </>
     )
 }
 

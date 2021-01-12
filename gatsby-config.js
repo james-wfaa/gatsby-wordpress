@@ -45,6 +45,11 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress-experimental`,
       options: {
+        schema: {
+          requestConcurrency: 2, // currently set to undefined
+          previewRequestConcurrency: 2, // currently set to undefined
+          perPage: 50,
+        },
         url:
           process.env.WPGRAPHQL_URL ||
           `https://uwalumni.wpengine.com/graphql`,

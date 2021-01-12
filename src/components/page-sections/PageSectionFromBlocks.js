@@ -92,6 +92,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger })
                         const productcard = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
                         return (<div dangerouslySetInnerHTML={{__html: productcard}} />)
                     default:
+                        console.log('default block', block.name)
                         const basiccontent = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
                         return (<Block className={block.name.replace('/', '-')} block={basiccontent} />)
                         break
