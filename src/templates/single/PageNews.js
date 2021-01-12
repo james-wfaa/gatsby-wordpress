@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
-import WordPressContent from "../../components/content-blocks/WordPressBasicContentBlocks"
+import WordPressContent from "../../components/content-blocks/WordPressContentBlocks"
 import CardSet from "../../components/content-modules/CardSet"
 import StoryCardD from "../../components/content-blocks/StoryCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
@@ -10,7 +10,7 @@ import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 
 function WordPressPage({ data }) {
   const { page, posts } = data
-  const { title, excerpt, content, featuredImage, storyCategories, gridDetails } = page
+  const { title, excerpt, content, blocks, featuredImage, storyCategories, gridDetails } = page
 
   const { storycategoriesinner: categories } = storyCategories
   const { backgroundImage } = gridDetails
@@ -58,7 +58,7 @@ function WordPressPage({ data }) {
           redHeading={title}
           excerpt={excerpt}
       />)}
-      <WordPressContent content={content} />
+      <WordPressContent blocks={blocks} />
       <>{cats}</>
       <PageSection heading="Most Recent" bgImage={gridBgImage} buttons={moreButton}>
         <GridCardD>{postCards}</GridCardD>

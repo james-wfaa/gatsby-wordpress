@@ -69,3 +69,5 @@ yarn-error.log
 WordPress
 .wordpress-cache
 public
+parse-html.js
+src/components/parsed-components
