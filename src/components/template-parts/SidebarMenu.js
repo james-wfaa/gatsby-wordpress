@@ -14,6 +14,20 @@ const SidebarMenu = ({name, menuItems, width}) => {
     
     margin-bottom: 32px;
 
+    @media screen and ${breakpoints.tabletS} {
+        width:100%;
+        max-width: 536px;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+    @media screen and ${breakpoints.laptopS} {
+        margin-left: 0;
+        max-width: 712px;
+    }
+
     ul {
       justify-self: left;
       margin-left: 0;
