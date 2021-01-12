@@ -21,11 +21,11 @@ const FeaturedImage = ({ className, featuredImage, event }) => {
 
   return (
     <div className={classes}>
-      <Img fluid={featuredImage.node.localFile.childImageSharp.fluid} />
-      { featuredImage.node.caption && (
+      <Img fluid={featuredImage.localFile.childImageSharp.fluid} />
+      { featuredImage.caption && (
         <div className={`${className}__captionSection`}>
-          <div className={`${className}__caption`} dangerouslySetInnerHTML={{ __html: featuredImage.node.caption }} />
-          <div className={`${className}__author`} dangerouslySetInnerHTML={{ __html: featuredImage.node.author.node.name }} />
+          <div className={`${className}__caption`} dangerouslySetInnerHTML={{ __html: featuredImage.caption }} />
+          <div className={`${className}__author`} dangerouslySetInnerHTML={{ __html: featuredImage.author.node.name }} />
         </div>
       )}
     </div>

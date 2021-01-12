@@ -39,6 +39,19 @@ export const query = graphql`
           }
         }
       }
+      heroImage {
+        heroImage {
+          caption
+          author{
+            node{
+              name
+            }
+          }
+          localFile{
+            ...HeroImage
+          }
+        }
+      }
       categories {
         nodes {
           name
