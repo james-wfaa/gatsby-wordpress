@@ -53,6 +53,19 @@ const SidebarMenu = ({name, menuItems, width}) => {
       margin-left: 32px;
       padding: 0;
     }
+    h4::after {
+      content:'';
+      border: solid #c5050c;
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      padding: 5px;
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      margin-left:12px;
+      vertical-align: top;
+      margin-top: 4px;
+      
+    }
   `
   const ModalHandler = styled.div`
     cursor: pointer;
