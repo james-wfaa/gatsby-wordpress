@@ -61,7 +61,7 @@ const SidebarMenu = ({name, menuItems, width}) => {
       padding: 5px;
       transform: rotate(45deg);
       -webkit-transform: rotate(45deg);
-      margin-left:12px;
+      margin-left:20px;
       vertical-align: top;
       margin-top: 4px;
     }
