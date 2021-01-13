@@ -63,7 +63,7 @@ export const formatAMPM = (date) => {
 }
 
 export const shortDate = (date) => {
-  const tmpDate = new Date(date.replace(/\s/, 'T'))
+  const tmpDate = new Date(date)
 
   const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June",
   "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
