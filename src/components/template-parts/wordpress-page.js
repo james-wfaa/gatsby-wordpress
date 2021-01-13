@@ -54,7 +54,7 @@ function WordPressPage({ page }) {
         ?
         <>
           <Menu name={wpMenu.name} menuItems={wpMenu.menuItems.nodes} width={width} />
-          <PageSection heading={title} pageTitle leftAlign defaultPage marginLeft>
+          <PageSection heading={title} pageTitle leftAlign defaultPage divider>
             <WordPressContent blocks={blocks} eventCategory={eventCategory} content={content} />
           </PageSection>
         </>
