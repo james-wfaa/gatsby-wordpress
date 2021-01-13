@@ -4,9 +4,9 @@ import HeroIntroSection from "../page-sections/HeroIntroSection"
 import WordPressContentBlocks from "../content-blocks/WordPressContentBlocks"
 
 function WordPressPage({ page }) {
-  const {  excerpt, featuredImage, introButtons, eventListing, blocks } = page
+  const {  excerpt, featuredImage, introButtons, eventListing, blocks, title } = page
   const { introButtons: buttons } = introButtons
-  console.log(blocks)
+  console.log({page})
 
   /* extract the events to pass along with the blocks as helper data */
   const { eventCategory } = eventListing
@@ -23,15 +23,16 @@ function WordPressPage({ page }) {
       link: buttonLink,
       text: item.buttonText
     }
-  
+
   }
   ) : ''
   return (
     <Layout>
       { featuredImage?.node && (
-        <HeroIntroSection  
+        <HeroIntroSection
           heroImage={featuredImage.node.localFile}
           heroSize="slim"
+          redHeading={title}
           excerpt={excerpt}
           buttons={normalizedButtons}
         />
