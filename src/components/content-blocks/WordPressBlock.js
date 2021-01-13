@@ -72,6 +72,10 @@ ul {
 }
 li{
     margin-bottom: ${sizes.s12};
+    >ul{
+        margin-left: ${sizes.s24};
+    }
+
 }
 a {
     ${mixins.a}
@@ -81,7 +85,6 @@ a {
 }
 
 > p, 
-> ul,
 > h2,
 > h3,
 >.wp-block-image {
