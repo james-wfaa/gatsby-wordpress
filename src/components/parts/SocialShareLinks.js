@@ -21,7 +21,6 @@ const SocialShareLinks = props => {
     const { className, url, title, excerpt, text, link, event } = props;
     const isEvent = event ? "eventShare" : "";
 
-      
     return (
         <div className = {`${className} ${isEvent}`}>
             { text && (
@@ -29,30 +28,30 @@ const SocialShareLinks = props => {
             )}
             <ul class="shareButtons">
                 <li>
-                    <FacebookShareButton quote={title} url={link}>
+                    <FacebookShareButton quote={title} url={url} target="_blank">
                         <FacebookIcon size={52} iconFillColor={colors.buttonRed} />
                     </FacebookShareButton>
                 </li>
 
                 <li>
-                    <TwitterShareButton title={title} url={link}>
+                    <TwitterShareButton title={title} url={url}>
                         <TwitterIcon size={52} iconFillColor={colors.buttonRed}/>
                     </TwitterShareButton>
                 </li>
 
                 <li>
-                    <EmailShareButton subject={title} body={excerpt} url={link}>
+                    <EmailShareButton subject={title} body={excerpt} url={url}>
                         <EmailIcon size={52} iconFillColor={colors.buttonRed}/>
                     </EmailShareButton>
                 </li>
             </ul>
-            
 
-            
+
+
         </div>
     )
 }
-  
+
 const StyledSocialShareLinks = styled(SocialShareLinks)
 `
     display: flex;
@@ -87,14 +86,14 @@ const StyledSocialShareLinks = styled(SocialShareLinks)
                 path{
                     fill: ${colors.buttonActiveGrey};
                 }
-                
+
             }
         }
 
         rect {
             display: none;
         }
-        
+
     }
     &.eventShare{
         @media screen and ${breakpoints.tabletL} {
@@ -103,7 +102,7 @@ const StyledSocialShareLinks = styled(SocialShareLinks)
             li:first-child{
                 margin-left: 0px;
             }
-        }    
+        }
     }
 `
 
