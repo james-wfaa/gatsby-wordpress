@@ -50,7 +50,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-
+        console.log(block.name)
         switch(block.name) {
             case "tribe/event-datetime":
             case "tribe/featured-image":
@@ -81,7 +81,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                 return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
                 break
             default:
-                return (<PageSectionFromBlocks blocks={[block]}  />)
+                return (<Block className={block.name.replace('/', '-')} block={block} />)
                 break
         }
         }

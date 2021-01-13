@@ -21,6 +21,7 @@ const FeaturedImage = ({ className, featuredImage, event }) => {
 
   return (
     <div className={classes}>
+      
       <Img fluid={featuredImage.localFile.childImageSharp.fluid} />
       { featuredImage.caption && (
         <div className={`${className}__captionSection`}>

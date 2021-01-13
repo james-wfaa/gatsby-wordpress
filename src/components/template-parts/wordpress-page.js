@@ -1,5 +1,5 @@
 import React from "react"
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 import { breakpoints } from "../css-variables"
 import styled from "styled-components"
 import Layout from "../layout"
