@@ -17,7 +17,7 @@ function WordPressPage({ page }) {
   return (
     <Layout noborder={noborder}>
         {!!featuredImage?.node?.localFile?.childImageSharp && (
-            <FeaturedImage featuredImage={featuredImage} event/>
+            <FeaturedImage featuredImage={featuredImage.node} event/>
         )}
         <WordPressEventContentBlocks {...page} />
     </Layout>
