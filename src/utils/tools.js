@@ -1,7 +1,7 @@
 // @todo once the source plugin is updated to the latest WPGQL version, we wont need this helper anymore
 export const convertTime = (startTime, endTime) => {
-  const startDS = new Date(startTime);
-  const endDS = new Date(endTime);
+  const startDS = new Date(startTime.replace(/\s/, 'T'));
+  const endDS = new Date(endTime.replace(/\s/, 'T'));
   if(startDS.getDate() === endDS.getDate()){
     const startTime = formatAMPM(startDS);
     const endTime = formatAMPM(endDS);
@@ -13,7 +13,7 @@ export const convertTime = (startTime, endTime) => {
       strTime = startTime[0].time + ' ' + startTime[0].ampm + '&ndash;' + endTime[0].time + ' ' + endTime[0].ampm;
     }
     return strTime;
-  
+
   }
   else{
 
@@ -21,8 +21,9 @@ export const convertTime = (startTime, endTime) => {
 }
 
 export const compareDate = (startDate, endDate) => {
-  const startDS = new Date(startDate);
-  const endDS = new Date(endDate);
+  const startDS = new Date(startDate.replace(/\s/, 'T'));
+  const endDS = new Date(endDate.replace(/\s/, 'T'));
+  console.log({startDate, endDate, startDS, endDS})
   if(startDS.getDate() === endDS.getDate()){
     return false;
   }
@@ -42,6 +43,7 @@ export const compareDate = (startDate, endDate) => {
 }
 
 export const formatAMPM = (date) => {
+  console.log("Here is the date", date)
   let hours = date.getHours();
   let minutes = date.getMinutes();
   const ampm = hours >= 12 ? 'p.m.' : 'a.m.';

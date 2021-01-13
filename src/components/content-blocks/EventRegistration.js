@@ -32,7 +32,6 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
     const organizerList = organizers?.nodes?.map((org) => (
          <div className="organizer">{org.title}</div>
       ))
-    console.log(organizerList)
     const addressString = (venue && venue.address)
         ? `${venue.title} <br />${venue.address}<br >${venue.city ? venue.city : ""}${venue.state ? `, ${venue.state}` : ""} `
         : (venue)

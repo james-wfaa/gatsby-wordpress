@@ -13,6 +13,24 @@ export const query = graphql`
     page: wpPost(id: { eq: $id }) {
       title
       content
+      blocks {
+        name
+        isDynamic
+        originalContent
+        dynamicContent
+        innerBlocks {
+          name
+          isDynamic
+          originalContent
+          dynamicContent
+          innerBlocks {
+            name
+            isDynamic
+            originalContent
+            dynamicContent
+          }
+        }
+      }
       uri
       link
       date(formatString: "MMM. DD, YYYY")

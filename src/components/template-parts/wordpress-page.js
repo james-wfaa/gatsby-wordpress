@@ -1,5 +1,5 @@
 import React from "react"
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 import { breakpoints } from "../css-variables"
 import styled from "styled-components"
 import Layout from "../layout"
@@ -54,7 +54,7 @@ function WordPressPage({ page }) {
         ?
         <>
           <Menu name={wpMenu.name} menuItems={wpMenu.menuItems.nodes} width={width} />
-          <PageSection heading={title} pageTitle leftAlign defaultPage marginLeft>
+          <PageSection heading={title} pageTitle leftAlign defaultPage divider>
             <WordPressContent blocks={blocks} eventCategory={eventCategory} content={content} />
           </PageSection>
         </>
