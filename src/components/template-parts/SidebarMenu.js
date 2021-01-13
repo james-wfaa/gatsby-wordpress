@@ -14,6 +14,20 @@ const SidebarMenu = ({name, menuItems, width}) => {
     
     margin-bottom: 32px;
 
+    @media screen and ${breakpoints.tabletS} {
+        width:100%;
+        max-width: 536px;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+    @media screen and ${breakpoints.laptopS} {
+        margin-left: 0;
+        max-width: 712px;
+    }
+
     ul {
       justify-self: left;
       margin-left: 0;
@@ -39,6 +53,26 @@ const SidebarMenu = ({name, menuItems, width}) => {
       margin-left: 32px;
       padding: 0;
     }
+    @media screen and ${breakpoints.laptopSMax}{
+      h4::after {
+        content:'';
+        border: solid #c5050c;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 5px;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        margin-left:20px;
+        vertical-align: top;
+        margin-top: 4px;
+      }
+      h4.open::after{
+        transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+        vertical-align: middle;
+      }
+    }
+    
   `
   const ModalHandler = styled.div`
     cursor: pointer;
@@ -73,7 +107,7 @@ const SidebarMenu = ({name, menuItems, width}) => {
         condition={width < 1200}
         wrap={children => <ModalHandler onClick={() => setOpen(!open)}>{children}</ModalHandler>}
       >
-        <StyledHeader>{name}</StyledHeader>
+        <StyledHeader className={open ? `open` : null}>{name}</StyledHeader>
       </ConditionalWrap>
         {open &&
           <ul>
