@@ -6,7 +6,7 @@ import WordPressContentBlocks from "../content-blocks/WordPressContentBlocks"
 function WordPressPage({ page }) {
   const {  excerpt, featuredImage, introButtons, eventListing, blocks, title } = page
   const { introButtons: buttons } = introButtons
-  console.log({page})
+  //console.log({page})
 
   /* extract the events to pass along with the blocks as helper data */
   const { eventCategory } = eventListing

@@ -6,7 +6,7 @@ import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 
 const WordPressBlock = ({className, block}) => {
     if (block) {
-        console.log('WordPressBlock - block:',block)
+        //console.log('WordPressBlock - block:',block)
     }
 
     return (
