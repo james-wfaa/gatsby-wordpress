@@ -62,7 +62,6 @@ min-width: 300px;
 
 }
 @media screen and ${breakpoints.laptopS} {
-    margin-left: 0;
     max-width: 712px;
 }
 .core-freeform {
