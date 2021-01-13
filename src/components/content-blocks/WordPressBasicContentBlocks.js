@@ -20,18 +20,18 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             case "acf/events-listing-section":
                 break  
             case "core/columns":
-                console.log("column" + block.innerBlocks[0].saveContent)
-            default:
-                if(block.innerBlocks && block.innerBlocks.originalContent){
+                if(block.innerBlocks && block.innerBlocks[0].originalContent){
                     let innerRenderedBlocks = [];
                     block.innerBlocks.forEach((innerBlock) => {
+                        console.log("Columns in" + innerBlock.originalContent);
                         innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />) 
                     })
-                    return (<div className="contentInner">{innerRenderedBlocks}</div>)
+                    console.log("blocks: " + innerRenderedBlocks)
+                    return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
                 }
-                else{
-                    return (<Block className={block.name.replace('/', '-')} block={block} />)    
-                }
+                break
+            default:
+                return (<Block className={block.name.replace('/', '-')} block={block} />)    
                 break
         }
     }
