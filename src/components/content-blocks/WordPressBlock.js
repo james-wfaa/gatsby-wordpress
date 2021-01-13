@@ -20,11 +20,12 @@ const WordPressBlock = ({className, block}) => {
 
 const StyledWordPressBlock = styled(WordPressBlock)`
 
+text-align: left;
 min-width: 300px;
-    width: 100%;
-    max-width: 303px;
-    margin-left: auto;
-    margin-right: auto;
+width: 100%;
+max-width: 303px;
+margin-left: auto;
+margin-right: auto;
 
 @media screen and ${breakpoints.tabletS} {
     max-width: 536px;
@@ -77,6 +78,17 @@ a {
 }
 .core-freeform {
     margin-bottom: ${sizes.s32};
+}
+
+> p, 
+> ul,
+> h2,
+> h3,
+>.wp-block-image {
+    min-width: 300px;
+    max-width: 712px;
+    margin-left: auto;
+    margin-right: auto;
 }
 `
 

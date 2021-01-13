@@ -69,7 +69,6 @@ min-width: 300px;
 }
 /* End Styles copied form WPBlock*/ 
 
-text-align: left;
 margin: 0 auto;
 position: relative;
 display: block;
@@ -80,80 +79,6 @@ max-width: 100%;
 
 hr.wp-block-separator {
     ${mixins.separator}
-}
-.product-card{
-    ${mixins.contentCardBase}
-    ${mixins.contentCardSizes}
-    display: flex;
-    flex-flow: column;
-    .title {
-        ${mixins.cardTitle}
-    }
-
-    .button{
-        a {
-            ${mixins.buttons};
-        }
-    }
-    .button--alt{
-        a {
-            ${mixins.buttonAlt};
-        }
-    }
-
-    .columnwrap {
-        display: flex;
-        flex-flow: column;
-        justify-content: space-between;
-        height: 100%;
-    }
-
-    .jumbo-contentwrap{
-        display: flex;
-        flex-flow: column;
-        width: 100%;
-        flex-grow: 1;
-    }
-
-
-    &--XXL50{
-        margin: 0 auto;
-        .jumbo-img{
-            display: none;
-        }
-        @media screen and ${breakpoints.tabletL} {
-            width: 814px;
-            min-height: 398px;
-            flex-flow: row;
-            border-top: 1px solid ${colors.cardBorder};
-            .jumbo-img{
-                display: block;
-                width: 398px;
-            }
-
-            .jumbo-contentwrap{
-                .attachment-full {
-                    display: none;
-                }
-                .columnwrap{
-                    border-right: none;
-                }
-            }
-
-        }
-        @media screen and ${breakpoints.laptopS} {
-            width: 1080px;
-            min-height: 528px;
-            .columnwrap{
-                :nth-last-child(1){
-                    flex: 1 1 auto;
-                }
-            }
-            .jumbo-img{
-                width: 528px;
-            }
-        }
-    }
 }
 `
 
