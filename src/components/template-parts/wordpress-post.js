@@ -11,8 +11,12 @@ function BlogPost({ data }) {
   const { page } = data
   const { title, content, featuredImage, categories, author, date, excerpt, heroImage, link } = page
 
-  const image = heroImage && heroImage?.heroImage?.localFile?.childImageSharp ? heroImage.heroImage : featuredImage.node
-  console.log(page)
+  const image = heroImage && heroImage?.heroImage?.localFile?.childImageSharp 
+    ? heroImage.heroImage 
+    : featuredImage?.node
+      ? featuredImage.node
+      : null
+  //console.log(page)
   return (
     <Layout>
         <TitleSection heading={title} author={author} categories={categories} date={date} excerpt={excerpt}  />
