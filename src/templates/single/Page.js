@@ -6,7 +6,10 @@ import WpAggregatePage from "../../components/template-parts/wordpress-aggregate
 
 export default ({ data }) => {
   const { page } = data
-  const { template } = page
+  const { template, ancestors } = page
+  if (ancestors) {
+    
+  }
   if (template) {
     const { templateName } = template
     switch (templateName ) {
@@ -32,6 +35,13 @@ export const query = graphql`
       title
       excerpt
       content
+      ancestors {
+        nodes {
+          id
+          slug
+          link
+        }
+      }
       template {
         ... on WpDefaultTemplate {
           templateName
@@ -211,7 +221,6 @@ export const query = graphql`
             dynamicContent
           }
         }
-
       }
     }
   }

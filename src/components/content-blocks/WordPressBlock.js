@@ -1,20 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
+import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
 
 
 const WordPressBlock = ({className, block}) => {
-    if(block.saveContent){
+    if (block) {
+        const blockContent = (block.isDynamic) 
+            ? block.dynamicContent
+            : (block.saveContent) 
+                ? block.saveContent
+                : block.originalContent 
+                
         return (
-            <div className={className} dangerouslySetInnerHTML={{__html: block.saveContent}} />
+            <div className={className} dangerouslySetInnerHTML={{__html: blockContent}} />
         )
     }
-    else{
-        return (
-            <div className={className} dangerouslySetInnerHTML={{__html: block.originalContent}} />
-        )
-    }
+    
 
     
 }
@@ -40,28 +43,56 @@ margin-right: auto;
     margin-left: 0;
     max-width: 712px;
 }
+>p {
+    &.button{
+        margin: ${sizes.s40} 0;
+        a{
+            ${mixins.buttons};
+          width: 100%;
+          position: relative;
+          @media screen and ${breakpoints.tabletS} {
+            width: 100%;
+          }
+          @media screen and ${breakpoints.laptopS} {
+            width: 50%;
+          }
+          :after {
+            position: absolute;
+            bottom: 38%;
+            left: calc( 50% + ${sizes.s34} );
+            width: ${sizes.s12};
+            height: ${sizes.s12};
+            background-color: ${colors.bgWhite};
+            -webkit-mask-image: url(${arrowSVG});
+            mask: url(${arrowSVG}) no-repeat;
+            content: '';
+          }
+        }
+      }
+}
 
 >h2,
 >h3{
-    font-size: ${sizes.s32};
     font-family: ${fonts.eaves};
     font-weight: bold;
-    font-style: italic;
+    font-style: italic; 
+    color: ${colors.titleColor};
+}
+>h2 {
+    font-size: ${sizes.s32};
     line-height: ${sizes.s36};
     margin-bottom: ${sizes.s32};
-    color: ${colors.titleColor};
+    margin-top: ${sizes.s48}; // ex: email login page
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s36};
         line-height: ${sizes.s42};
-
+        margin-top: ${sizes.s58}; // ex: email login page
     }
-
 }
 >h3 {
     font-size: ${sizes.s26};
     margin-bottom: ${sizes.s24};
     line-height: ${sizes.s32};
-
 }
 
 ul {

@@ -17,7 +17,7 @@ const WordPressEmailPage = ({ className, data }) => {
   const [ads, setAds] = useState(data.page.HalfPageAd.adList)
   const [currentAd, setCurrentAd] = useState(null)
   const { page, posts } = data
-  const { title, content, HalfPageAd } = page
+  const { title, HalfPageAd } = page
 
   let postCards = posts.nodes.map((post) => {
     const { featuredImage: img } = post
@@ -44,7 +44,7 @@ const WordPressEmailPage = ({ className, data }) => {
       <div className={`${className}`}>
         <div className="col col--copy">
         <PageSection heading={title} leftAlign headingCompact onlyChild>
-        <WordPressContent content={content} />
+        <WordPressContent {...page} />
         </PageSection>
         </div>
         {currentAd && (<div className="col col--ad">
@@ -109,6 +109,7 @@ margin: 0 auto;
   }
 }
 
+
 .button{
   a{
     width: 100%;
@@ -138,7 +139,7 @@ margin: 0 auto;
   @media screen and ${breakpoints.tabletL} {
     text-align: left;
     :after {
-      left: 10%;
+      left: 0;
     }
   }
 }
@@ -149,7 +150,7 @@ div{
     @media screen and ${breakpoints.tabletL} {
       text-align: left;
       :after {
-        left: 10%;
+        left: 0;
       }
     }
   }
@@ -193,10 +194,12 @@ div{
   }
 
 }
-.col-copy {
+.col--copy {
   padding-bottom: ${sizes.s58};
   @media screen and ${breakpoints.tabletL} {
     padding-bottom: ${sizes.s88};
+    padding-left: ${sizes.s24};
+    padding-right: ${sizes.s24};
   }
 }
 `
@@ -263,7 +266,7 @@ export const query = graphql`
 
       }
     },
-    posts: allWpPost(limit: 6, sort: {order: ASC, fields: date}) {
+    posts: allWpPost(limit: 6, sort: {order: DESC, fields: date}) {
       nodes {
         title
         excerpt

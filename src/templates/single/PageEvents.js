@@ -19,7 +19,7 @@ function WordPressPage({ data }) {
   const { edges: eventEdges } = events
   const { title, featuredImage, eventCategories, excerpt, gridDetails  } = page
   const { categories } = eventCategories
-  console.log(eventCategories)
+  //console.log(eventCategories)
 
   const { backgroundImage } = gridDetails
 

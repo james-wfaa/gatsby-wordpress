@@ -33,8 +33,8 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
         return showMap;
     }
 
-    
-  
+
+
     const EventLinksContent = (blocks) ? blocks.map((block) => {
         switch(block.name) {
             case "tribe/event-links":
@@ -46,11 +46,11 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
         }
     } )
     : null
-    
+
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-
+        console.log(block.name)
         switch(block.name) {
             case "tribe/event-datetime":
             case "tribe/featured-image":
@@ -81,7 +81,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                 return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
                 break
             default:
-                return (<PageSectionFromBlocks blocks={[block]}  />)
+                return (<Block className={block.name.replace('/', '-')} block={block} />)
                 break
         }
         }
@@ -89,7 +89,6 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
 
     //console.log('RenderedBlocks:',RenderedBlocks)
     const questionsDiv = <div dangerouslySetInnerHTML={{__html: eventDetails.questions}} />
-
     return(
         <div className={className} id="Top">
             {show ?
@@ -127,30 +126,30 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                             <Button link="#Top" text="Questions" fullwidth alt altborder />
                         </div>
                     )}
-                    
+
                     <h2>Invite Others</h2>
                     <SocialShareLinks></SocialShareLinks>
                 </div>
                 {showMapDetails() && (
-                    <EventMapDetails 
-                    className="eventMap" 
+                    <EventMapDetails
+                    className="eventMap"
                     venue={venue}
                     eventDetails={eventDetails}
                     />
 
                 )}
-                
+
             </div>
             <div className="reg-desktop">
 
-                <EventRegistration 
-                    className="reg-Wrap" 
+                <EventRegistration
+                    className="reg-Wrap"
                     date={date}
-                    registrationLink={link} 
-                    startDate={startDate} 
-                    endDate={endDate} 
-                    venue={venue} cost={cost} 
-                    organizers={organizers} 
+                    registrationLink={link}
+                    startDate={startDate}
+                    endDate={endDate}
+                    venue={venue} cost={cost}
+                    organizers={organizers}
                     eventDetails={eventDetails}
                     calendarLinks={EventLinksContent}
                 />
@@ -161,7 +160,10 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     </div>
                 )}
                     <h2>Invite Others</h2>
-                    <SocialShareLinks className="SocailShare" title={title} url={link} event></SocialShareLinks>
+                    { typeof window !== "undefined" && (
+                        <SocialShareLinks className="SocailShare" title={title} url={window.location.href} event></SocialShareLinks>
+                    )}
+                    
                 </div>
 
             </div>
@@ -276,7 +278,7 @@ margin: ${sizes.s48} auto 0;
     }
 }
 
-    
+
 .content{
     h2,h3 {
         font-size: ${sizes.s18};

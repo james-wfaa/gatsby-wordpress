@@ -11,7 +11,10 @@ export default () => (
       <h1>uwalumni.com redesign - development work in progress</h1>
       <h2>Full Page Templates</h2>
       <li>
-        <Link to="/gpu/scrapbook">Default Page - NEW</Link>
+        <Link to="/gpu/majors/">Default Page 1- NEW</Link>
+      </li>
+      <li>
+        <Link to="/gpu/scrapbooks/">Default Page 2 - NEW</Link>
       </li>
       <li>
         <Link to="/email">Email Login - NEW</Link>

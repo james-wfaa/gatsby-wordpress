@@ -28,7 +28,7 @@ const PageSection = ({
     alt,
     topBorder,
     bgImage,
-    marginLeft,
+    divider,
     fromBlocks,
     children,
     stagger,
@@ -51,12 +51,12 @@ const PageSection = ({
     const popClass = popOut ? `${className}__popOut` : ''
     const staggerClass = (stagger) ? ' stagger' : ''
     const defaultClass = (defaultPage) ? ' defaultClass' : ''
-    const marginLeftClass = (marginLeft) ? ' marginLeft' : ''
+    const dividerClass = (divider) ? ' divider' : ''
 
     return (
-        <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading}${defaultClass} ${bgClass}${marginLeftClass}`}  >
+        <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading}${defaultClass} ${bgClass}`}  >
             { ! background &&  (
-            <div className={`${className}__innerwrap   ${popClass}` }>
+            <div className={`${className}__innerwrap   ${popClass}${dividerClass}` }>
                 { preheading && (
                 <div className={`${className}__preheading`}>{preheading}</div>
             )}
@@ -121,8 +121,9 @@ const StyledPageSection = styled(PageSection)`
     &:last-child {
         padding-bottom: 88px;
     }
-    &.marginLeft{
-        margin-left:56px;
+    &__innerwrap.divider{
+        padding-left:56px;
+        border-left: 6px solid #F3F3F3;
     }
     @media screen and ${breakpoints.tabletS} {
         padding-top: 88px;
@@ -230,17 +231,19 @@ const StyledPageSection = styled(PageSection)`
     }
     /* some wordpress content pieces */
     .content {
-        > p {
+        > p,
+        > .core-heading,
+        > .core-image,
+        > .core-freeform,
+        > .core-paragraph,
+        > .core-list,
+        > .core-table {
             min-width: 300px;
             width: 80%;
-            max-width: 897px;
+            max-width: 712px;
             margin-left: auto;
             margin-right: auto;
             text-align: left;
-        }
-        &.plaintext {
-            max-width: 712px;
-            margin: 0 auto;
         }
     }
 

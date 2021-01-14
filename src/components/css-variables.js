@@ -6,6 +6,7 @@ export const fonts = {
     verlag: 'Verlag A, Verlag B'
 }
 export const sizes = {
+    s2:  '0.115rem',
     s4:  '0.222rem',
     s7:  '0.389rem',
     s8:  '0.444rem',
@@ -307,12 +308,15 @@ export const mixins = {
     
     }`,
     separator: `{
-        height: ${sizes.s36};
+        height: ${sizes.s2};
         background-color: ${colors.sectionBorder};
         margin: ${sizes.s36} 0;
         @media screen and ${breakpoints.tabletS} {
             margin: ${sizes.s52} 0;
 
+        }
+        &.section-break{
+            height: ${sizes.s8};
         }
     }`,
     sectionHeader: ` {
@@ -338,7 +342,10 @@ export const mixins = {
             }
             h1,
             h2 {
-                margin-left: 0;
+                @media screen and ${breakpoints.tabletL} {
+                    margin-left: 0;
+                }
+               
             }
         }
         h1,
