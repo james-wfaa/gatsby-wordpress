@@ -150,7 +150,7 @@ export const query = graphql`
         }
       }
     },
-    posts: allWpPost(limit: 100, sort: {order: ASC, fields: date}) {
+    posts: allWpPost(limit: 100, sort: {order: DESC, fields: date}) {
       nodes {
         title
         excerpt
