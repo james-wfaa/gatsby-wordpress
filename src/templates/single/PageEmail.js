@@ -17,7 +17,7 @@ const WordPressEmailPage = ({ className, data }) => {
   const [ads, setAds] = useState(data.page.HalfPageAd.adList)
   const [currentAd, setCurrentAd] = useState(null)
   const { page, posts } = data
-  const { title, HalfPageAd } = page
+  const { title } = page
 
   let postCards = posts.nodes.map((post) => {
     const { featuredImage: img } = post
