@@ -59,6 +59,10 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
   }
   &.productPage{
     margin-bottom: 0;
+    h1,
+    h2{
+      font-size: ${sizes.s54};
+    }
     h2:after{
       display:none;
     }
