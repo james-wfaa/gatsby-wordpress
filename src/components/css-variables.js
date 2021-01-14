@@ -342,7 +342,10 @@ export const mixins = {
             }
             h1,
             h2 {
-                margin-left: 0;
+                @media screen and ${breakpoints.tabletL} {
+                    margin-left: 0;
+                }
+               
             }
         }
         h1,
