@@ -266,7 +266,7 @@ export const query = graphql`
 
       }
     },
-    posts: allWpPost(limit: 6, sort: {order: ASC, fields: date}) {
+    posts: allWpPost(limit: 6, sort: {order: DESC, fields: date}) {
       nodes {
         title
         excerpt
