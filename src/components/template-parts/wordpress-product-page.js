@@ -35,6 +35,7 @@ function WordPressPage({ page }) {
           redHeading={title}
           excerpt={excerpt}
           buttons={normalizedButtons}
+          productPage
         />
       )}
       <WordPressContentBlocks blocks={blocks} eventCategory={eventCategory}/>
