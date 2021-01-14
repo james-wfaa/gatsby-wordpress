@@ -135,11 +135,11 @@ a {
 
         &.has-text-align-right{
             float: right;
-            margin: 16px 0px 16px 16px;
+            margin: 16px -184px 16px 16px;
         }
         &.has-text-align-left{
             float: left;
-            margin: 24px 24px 24px -184px;
+            margin: 16px 16px 16px -184px;
         }
 
     }
@@ -166,7 +166,7 @@ a {
         }
         &.has-text-align-right{
             float: right;
-            margin: 16px 0px 16px 16px;
+            margin: 24px -184px 24px 24px;
         }
     }
     @media screen and ${breakpoints.laptopS} {
