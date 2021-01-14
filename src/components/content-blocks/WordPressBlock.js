@@ -65,14 +65,18 @@ margin-right: auto;
 }
 
 ul {
-    list-style-position: inside;
-    margin-left: 0;
+    list-style-position: outside;
+    margin-left: ${sizes.s18};
     @media screen and ${breakpoints.tabletS} {
-        margin-left: ${sizes.s24};
+        margin-left: ${sizes.s40};
     }
 }
 li{
     margin-bottom: ${sizes.s12};
+    >ul{
+        margin-left: ${sizes.s40};
+    }
+
 }
 a {
     ${mixins.a}
@@ -82,7 +86,6 @@ a {
 }
 
 > p, 
-> ul,
 > h2,
 > h3,
 >.wp-block-image {
