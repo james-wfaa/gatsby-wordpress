@@ -42,25 +42,24 @@ margin-right: auto;
 
 >h2,
 >h3{
-    font-size: ${sizes.s32};
     font-family: ${fonts.eaves};
     font-weight: bold;
-    font-style: italic;
+    font-style: italic; 
+    color: ${colors.titleColor};
+}
+>h2 {
+    font-size: ${sizes.s32};
     line-height: ${sizes.s36};
     margin-bottom: ${sizes.s32};
-    color: ${colors.titleColor};
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s36};
         line-height: ${sizes.s42};
-
     }
-
 }
 >h3 {
     font-size: ${sizes.s26};
     margin-bottom: ${sizes.s24};
     line-height: ${sizes.s32};
-
 }
 
 ul {
