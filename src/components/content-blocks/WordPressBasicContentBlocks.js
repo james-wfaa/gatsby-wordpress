@@ -65,6 +65,25 @@ max-width: 100%;
 hr.wp-block-separator {
     ${mixins.separator}
 }
+
+.core-columns{
+    max-width: 303px;
+    
+    @media screen and ${breakpoints.tabletS} {
+        display: flex;
+        max-width: 536px;
+    }
+    @media screen and ${breakpoints.laptopS} {
+        max-width: 712px;
+    }
+    .core-column{
+        flex: 1 1 auto;
+        flex-shrink: 1;
+        min-width: 50px;
+    }
+}
+
+
 .product-card{
     ${mixins.contentCardBase}
     ${mixins.contentCardSizes}
