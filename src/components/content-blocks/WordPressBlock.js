@@ -17,6 +17,7 @@ const WordPressBlock = ({className, block}) => {
             <div className={className} dangerouslySetInnerHTML={{__html: blockContent}} />
         )
     }
+    return null
     
 
     

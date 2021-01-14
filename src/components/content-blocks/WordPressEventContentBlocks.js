@@ -50,7 +50,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-        console.log(block.name)
+        //console.log(block.name)
         switch(block.name) {
             case "tribe/event-datetime":
             case "tribe/featured-image":

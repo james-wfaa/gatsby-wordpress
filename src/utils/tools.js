@@ -43,7 +43,6 @@ export const compareDate = (startDate, endDate) => {
 }
 
 export const formatAMPM = (date) => {
-  console.log("Here is the date", date)
   let hours = date.getHours();
   let minutes = date.getMinutes();
   const ampm = hours >= 12 ? 'p.m.' : 'a.m.';

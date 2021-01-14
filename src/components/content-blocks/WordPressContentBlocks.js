@@ -26,7 +26,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
                     console.log('page-section')
-                    RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} borderTop={borderTop} stagger={stagger} />)
+                    RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} borderTop={borderTop} stagger={stagger} centered />)
                 }
                 if (block.innerBlocks && block.originalContent.indexOf(' gallery') > 0) {
                     console.log('gallery')
@@ -52,15 +52,18 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 RenderedBlocks.append(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
             case "acf/events-listing-section":
                 console.log('events-listing-section')
-                const { slug, events } = eventCategory
-                const eventsToShow = (events?.nodes) ? events.nodes : null
-                const buttons = (eventsToShow.length > 2) 
-                    ? [{
-                        link: `/events/search/?category=${slug}`,
-                        text: 'See All Events'
-                    }]
-                    : null
-                RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)
+                if ( eventCategory) {
+                    const { slug, events } = eventCategory
+                    const eventsToShow = (events?.nodes) ? events.nodes : null
+                    const buttons = (eventsToShow.length > 2) 
+                        ? [{
+                            link: `/events/search/?category=${slug}`,
+                            text: 'See All Events'
+                        }]
+                        : null
+                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)
+                }
+                
                 break
             default:
                 console.log('default')
