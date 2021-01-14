@@ -5,17 +5,18 @@ import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 
 
 const WordPressBlock = ({className, block}) => {
-    if (block) {
-        console.log('WordPressBlock - block:',block)
+    if(block.saveContent){
+        return (
+            <div className={className} dangerouslySetInnerHTML={{__html: block.saveContent}} />
+        )
+    }
+    else{
+        return (
+            <div className={className} dangerouslySetInnerHTML={{__html: block.originalContent}} />
+        )
     }
 
-    return (
-        <>
-        { block && (
-            <div className={className} dangerouslySetInnerHTML={{__html: block.originalContent}} />
-        ) }
-        </>
-    )
+    
 }
 
 const StyledWordPressBlock = styled(WordPressBlock)`

@@ -19,6 +19,17 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             case "core/group":
             case "acf/events-listing-section":
                 break  
+            case "core/columns":
+                if(block.innerBlocks && block.innerBlocks[0].originalContent){
+                    let innerRenderedBlocks = [];
+                    block.innerBlocks.forEach((innerBlock) => {
+                        console.log("Columns in" + innerBlock.originalContent);
+                        innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />) 
+                    })
+                    console.log("blocks: " + innerRenderedBlocks)
+                    return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
+                }
+                break
             default:
                 return (<Block className={block.name.replace('/', '-')} block={block} />)    
                 break
@@ -53,6 +64,24 @@ max-width: 100%;
 hr.wp-block-separator {
     ${mixins.separator}
 }
+
+.core-columns{
+    max-width: 303px;
+    
+    @media screen and ${breakpoints.tabletS} {
+        display: flex;
+        max-width: 536px;
+    }
+    @media screen and ${breakpoints.laptopS} {
+        max-width: 712px;
+    }
+    .core-column{
+        flex: 1 1 auto;
+        flex-shrink: 1;
+        min-width: 50px;
+    }
+}
+
 `
 
 export default StyledWordPressContentBlocks
