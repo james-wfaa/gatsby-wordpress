@@ -17,10 +17,10 @@ export default () => (
         <Link to="/jamess-product">Product Page - James Test</Link>
       </li>
       <li>
-        <Link to="/news/wordpress-story">Story Page - Long &amp; Winding Road (wide feature image) </Link>
+        <Link to="/wordpress-story">Story Page - Long &amp; Winding Road (wide feature image) </Link>
       </li>
       <li>
-        <Link to="/news/wordpress-story">Story Page - "Refocused" (column-width feature image) </Link>
+        <Link to="/refocused">Story Page - "Refocused" (column-width feature image) </Link>
       </li>
     
       <li>
