@@ -22,16 +22,16 @@ function BlogPost({ data }) {
   let image = null
   if ((size >= 1080) && featuredImage?.node?.localFile?.childImageSharp.fluid){
     image = featuredImage?.node
-    console.log('using 1080, wfeat')
-  } else if ((size >= 718) && heroImage?.heroImage?.localFile?.childImageSharp){
+    //console.log('using 1080, wfeat')
+  } else if ((718 <= size < 1080) && heroImage?.heroImage?.localFile?.childImageSharp){
     image = heroImage.heroImage
-    console.log('using 718 hero')
-  } else if ((size >= 718) && featuredImage?.node?.localFile?.childImageSharp){
+    //console.log('using 718 hero')
+  } else if ((718 <= size < 1080) && featuredImage?.node?.localFile?.childImageSharp){
     image = featuredImage.node
-    console.log('using 718 feat', featuredImage?.node?.localFile?.childImageSharp)
+    //console.log('using 718 feat', featuredImage?.node?.localFile?.childImageSharp)
   } else if(size < 718){
     image = featuredImage.node
-    console.log('using less than 718 feat')
+    //console.log('using less than 718 feat')
   }
   //old image logic
   /*const image = heroImage && heroImage?.heroImage?.localFile?.childImageSharp 
@@ -44,7 +44,7 @@ function BlogPost({ data }) {
     <Layout>
         <TitleSection heading={title} author={author} categories={categories} date={date} excerpt={excerpt}  />
         {!!featuredImage?.node?.localFile?.childImageSharp && (
-            <FeaturedImage featuredImage={image} />
+            <FeaturedImage featuredImage={image} size={size}/>
         )}
         <WordPressBasicContentBlocks {...page} />
       <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>

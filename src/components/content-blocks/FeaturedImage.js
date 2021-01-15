@@ -15,11 +15,14 @@ import Img from "gatsby-image"
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-const FeaturedImage = ({ className, featuredImage, event }) => {
+const FeaturedImage = ({ className, featuredImage, event, size }) => {
   const classes = (event) ? `${className} ${className}--event` : className
+  const imgSizeClass = (718 <= size && size < 1080) ? `mediumImg` : (size < 718) ? `smallImg` : ''
+  const smImgStyleOverride = (size < 718) ? {maxWidth: size + 'px', float: 'left', margin: 12+'px',} : null
+  
 
   return (
-    <div className={classes}>
+    <div className={`${classes} ${imgSizeClass}`} style={smImgStyleOverride}>
       
       <Img fluid={featuredImage.localFile.childImageSharp.fluid} />
       { featuredImage.caption && (
@@ -41,6 +44,14 @@ position: relative;
 margin: ${sizes.s58} 0;
 &--event {
   margin: 0 0 48px;
+}
+&.mediumImg {
+  max-width:712px;
+  margin: 3.222rem auto;
+}
+&.smallImg img{
+  width: auto;
+  height: auto;
 }
 
 @media screen and ${breakpoints.tabletS} {
