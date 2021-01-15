@@ -10,7 +10,7 @@ import FeaturedImage from "../content-blocks/FeaturedImage"
 function BlogPost({ data }) {
   const { page } = data
   const { title, content, featuredImage, categories, author, date, excerpt, heroImage, link } = page
-
+  console.log(heroImage, featuredImage)
   const image = heroImage && heroImage?.heroImage?.localFile?.childImageSharp 
     ? heroImage.heroImage 
     : featuredImage?.node

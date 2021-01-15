@@ -47,6 +47,10 @@ export const query = graphql`
       featuredImage {
         node {
           caption
+          mediaDetails {
+            height
+            width
+          }
           author{
             node{
               name
@@ -60,6 +64,10 @@ export const query = graphql`
       heroImage {
         heroImage {
           caption
+          mediaDetails {
+            height
+            width
+          }
           author{
             node{
               name
