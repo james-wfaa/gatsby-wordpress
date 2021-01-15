@@ -1,11 +1,13 @@
 import React from "react"
 import styled from 'styled-components'
 import { sizes, colors, fonts, breakpoints } from '../css-variables'
+import FeaturedImage from "../content-blocks/FeaturedImage"
 
-const TitleSection = ({ className, heading, author, categories, date, excerpt, series, event = false }) => {
+const TitleSection = ({ className, heading, author, categories, date, excerpt, series, event = false, smImg, size }) => {
 
     const classesList = !event ? `${className}` : `${className} ${className}--event`
     const theCategory = !categories? null : categories.nodes[0]
+    console.log(smImg)
 
     return (
         <div className={classesList}>
@@ -30,8 +32,12 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
                 )}
             </div>
             </div>
-
-            { excerpt && (
+            
+            { smImg && excerpt && (
+                <div><FeaturedImage featuredImage={smImg} className='smImgFeat' size={size}/><div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
+                </div>
+            )}
+            { !smImg && excerpt && (
                 <div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
             )}
 
