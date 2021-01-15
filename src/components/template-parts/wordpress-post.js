@@ -29,7 +29,7 @@ function BlogPost({ data }) {
   } else if ((718 <= size < 1080) && featuredImage?.node?.localFile?.childImageSharp){
     image = featuredImage.node
     //console.log('using 718 feat', featuredImage?.node?.localFile?.childImageSharp)
-  } else if(size < 718){
+  } else if((size < 718) && featuredImage){
     image = featuredImage.node
     //console.log('using less than 718 feat')
   }
@@ -43,7 +43,7 @@ function BlogPost({ data }) {
   return (
     <Layout>
         <TitleSection heading={title} author={author} categories={categories} date={date} excerpt={excerpt}  />
-        {!!featuredImage?.node?.localFile?.childImageSharp && (
+        {image && (
             <FeaturedImage featuredImage={image} size={size}/>
         )}
         <WordPressBasicContentBlocks {...page} />
