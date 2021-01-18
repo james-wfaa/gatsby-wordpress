@@ -4,11 +4,11 @@ import styled from 'styled-components'
 import { breakpoints, sizes, colors, mixins } from '../../components/css-variables'
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
-import SimpleSlider from "../../components/content-modules/SimpleSlider"
-import ContentCard from "../../components/content-blocks/ContentCard"
+import RecentPosts from "../../components/page-sections/RecentPosts"
 import WordPressContent from "../../components/content-blocks/WordPressBasicContentBlocks"
 import BackgroundImage from 'gatsby-background-image'
 import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
+
 
 
 
@@ -18,14 +18,6 @@ const WordPressEmailPage = ({ className, data }) => {
   const [currentAd, setCurrentAd] = useState(null)
   const { page, posts } = data
   const { title, HalfPageAd } = page
-
-  let postCards = posts.nodes.map((post) => {
-    const { featuredImage: img } = post
-    const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-    return (
-      <ContentCard key={post.url} img={cardImg} {...post} />
-    )
-  })
 
   const randomAdGenerator = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min) - 1
@@ -81,14 +73,7 @@ const WordPressEmailPage = ({ className, data }) => {
         topBorder
         desktopOnly
       >
-          <SimpleSlider
-          className="center"
-          slidesToShow="1"
-          dots
-          centerMode
-          variableWidth>
-            {postCards}
-          </SimpleSlider>
+          <RecentPosts />
         </PageSection>
 
     </Layout>
@@ -264,20 +249,6 @@ export const query = graphql`
           }
         }
 
-      }
-    },
-    posts: allWpPost(limit: 6, sort: {order: DESC, fields: date}) {
-      nodes {
-        title
-        excerpt
-        featuredImage {
-          node {
-            localFile {
-              ...HeroImage
-            }
-          }
-        }
-        url: uri
       }
     }
   }
