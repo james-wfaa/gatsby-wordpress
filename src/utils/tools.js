@@ -23,7 +23,7 @@ export const convertTime = (startTime, endTime) => {
 export const compareDate = (startDate, endDate) => {
   const startDS = new Date(startDate.replace(/\s/, 'T'));
   const endDS = new Date(endDate.replace(/\s/, 'T'));
-  console.log({startDate, endDate, startDS, endDS})
+
   if(startDS.getDate() === endDS.getDate()){
     return false;
   }
@@ -62,7 +62,10 @@ export const formatAMPM = (date) => {
 }
 
 export const shortDate = (date) => {
-  const tmpDate = new Date(date)
+  if (!date) {
+    return null
+  }
+  const tmpDate = new Date(date.replace(/\s/, 'T'))
 
   const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June",
   "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
