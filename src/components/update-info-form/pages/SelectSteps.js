@@ -16,7 +16,7 @@ const SelectSteps = ({ handleCheckboxes }) => {
   }
   
     return (
-        <div className="select-steps">
+        <div>
             <IntroPageSection
             excerpt='Thanks so much. Now, let us know what else you are wanting to update, if anything.'
             heading='Update My Info'
@@ -24,17 +24,17 @@ const SelectSteps = ({ handleCheckboxes }) => {
             headingAlt
             headingCompact
             />
-            <form>
-                <input type="checkbox" name="address" id="address" checked />
-                <label for="address" selected>Mailing Address</label>
-                <input type="checkbox" name="phone" id="phone" checked />
-                <label for="phone" selected>Phone Number</label>
-                <input type="checkbox" name="employment" id="employment" checked />
-                <label for="employment" selected>Employment Information</label>
-                <input type="checkbox" name="demographic" id="demographic" checked />
-                <label for="demographic" selected>Demographic/Identity/Country Information</label>
-                <input type="checkbox" name="spouse" id="spouse" checked />
-                <label for="spouse" selected>Spouse Update (Marriage/Divorce/Death)</label>
+            <form className="select-steps">
+                
+                <label for="address" selected><input type="checkbox" name="address" id="address" checked />Mailing Address</label>
+                
+                <label for="phone" selected><input type="checkbox" name="phone" id="phone" checked />Phone Number</label>
+                
+                <label for="employment" selected><input type="checkbox" name="employment" id="employment" checked />Employment Information</label>
+                
+                <label for="demographic" selected><input type="checkbox" name="demographic" id="demographic" checked />Demographic/Identity/Country Information</label>
+                
+                <label for="spouse" selected><input type="checkbox" name="spouse" id="spouse" checked />Spouse Update (Marriage/Divorce/Death)</label>
             </form>
             <Buttons back finish next />
 
