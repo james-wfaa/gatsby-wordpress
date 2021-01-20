@@ -107,6 +107,7 @@ export const colors = {
     mapDetailsText: baseColors.offBlack,
     disabledGrey: baseColors.darkGrey,
     captionBlack: baseColors.offBlack,
+    formIntroBg: baseColors.lightestGrey,
 
 
 
