@@ -9,7 +9,7 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 
-const PageSection = ({className, preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, variantObject, bgImage, fromBlocks, children }) => {
+const PageSection = ({className, preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, variantObject, bgImage, fromBlocks, children, productPage }) => {
   const background = typeof bgImage !== "undefined" && bgImage !== null
   const excerptBottom = variantObject.scroll_color === '#9E9E9E'? 0 : sizes.s32
 
@@ -22,6 +22,7 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
   const hasNoHeading =
     !preheading && !heading ? ` ${className}--hasNoHeading` : ""
   const popClass = popOut ? `${className}__popOut` : ""
+  const removeHeadingAfter = productPage ? `productPage` : ""
 
   const StyledPageSection = styled.div`
   position: relative;
@@ -54,6 +55,16 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
       width: calc(${sizes.s34} * 2);
       background-color: ${variantObject.color};
       content: "";
+    }
+  }
+  &.productPage{
+    margin-bottom: 0;
+    h1,
+    h2{
+      font-size: ${sizes.s54};
+    }
+    h2:after{
+      display:none;
     }
   }
 
@@ -161,7 +172,7 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
           )}
           {heading && (
             (
-            <div className="headingWrapper">
+            <div className={`headingWrapper ` + `${removeHeadingAfter}`}>
               <h2>{heading}</h2>
             </div>
           )

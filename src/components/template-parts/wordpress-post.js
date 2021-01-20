@@ -27,18 +27,18 @@ function BlogPost({ data }) {
   } else if ((718 <= size && size < 1080) && featuredImage?.node?.localFile?.childImageSharp){
     image = featuredImage.node
     //console.log('using 718 feat', featuredImage?.node?.localFile?.childImageSharp)
-  } else if(718 > size){
+  } else if((size < 718) && featuredImage){
     image = featuredImage.node
     //console.log('using less than 718 feat')
   }
   //console.log(page)
   return (
     <Layout>
-          <TitleSection heading={title} author={author} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />
-          {!!featuredImage?.node?.localFile?.childImageSharp && size > 718 && (
-              <FeaturedImage featuredImage={image} size={size}/>
-          )}
-          <WordPressBasicContentBlocks {...page} />
+        <TitleSection heading={title} author={author} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />
+        {image && (
+            <FeaturedImage featuredImage={image} size={size}/>
+        )}
+        <WordPressBasicContentBlocks {...page} />
       <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
     </Layout>
   )
