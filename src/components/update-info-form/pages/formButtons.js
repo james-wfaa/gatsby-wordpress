@@ -1,8 +1,9 @@
-import React from "react"
+import React, { useContext } from "react"
 import Button from "../../parts/Button"
+import Context from '../form-context';
 
-const formButtons = ({ next, back, finish }) => {
-    
+const FormButtons = ({ next, back, finish }) => {
+    const { UpdateInfoFormContext } = useContext(Context);
 
  return  (
         <div className="form-btns">
@@ -14,9 +15,9 @@ const formButtons = ({ next, back, finish }) => {
                 value="FINISH UPDATE"
               />}
             
-            { next && <button >Save and Continue</button>}
+            { next && <button /*onClick={this.UpdateInfoFormContext.handleNextBtn()}*/>Save and Continue</button>}
         </div>
     )
 }
 
-export default formButtons
+export default FormButtons

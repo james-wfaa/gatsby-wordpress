@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import IntroPageSection from "../../page-sections/IntroPageSection"
 
 import { sizes, breakpoints, mixins, colors } from '../../css-variables'
-import Buttons from './formButtons'
+import Buttons from './FormButtons'
 
 
 const SelectSteps = ({ handleCheckboxes }) => {

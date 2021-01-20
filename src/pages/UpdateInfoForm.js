@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import Layout from "../components/layout"
 import ContactInfo from "../components/update-info-form/pages/ContactInfo"
 import SelectSteps from "../components/update-info-form/pages/SelectSteps"
+import Context from '../components/update-info-form/form-context';
 
 
 class UpdateInfoForm extends React.Component {
@@ -12,18 +13,37 @@ class UpdateInfoForm extends React.Component {
     super(props)
     this.state = {
       currentStep: 1,
+      contactInfo: {
+        firstname: '',
+        lastname: '',
+        othernames: '',
+        email: '',
+        phone: '',
+        undergrad: '',
+        postgrad: '',
+      },
+      selectedSteps: {
+        address: true,
+        phone: true,
+        employment: true,
+        demographic: true,
+        spouse: true,
+      },
+
+      
 
     }
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   renderCurrentStep = () => {
     switch(this.state.currentStep){
       case 1:
-        return <ContactInfo />
+        return <ContactInfo onChange={this.handleInputChange} />
       case 2:
         return <SelectSteps />
-      default:
-        return <ContactInfo />
+      case 3:
+        return <SelectSteps />
     }
   }
 
@@ -43,28 +63,46 @@ class UpdateInfoForm extends React.Component {
     })
   }
 
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+    
+    this.setState({
+      [name]: value
+    });
+    if (this.state.currentStep === 1){
+      this.setState({
+        contactInfo:{
+          [name]: value
+        }
+      });
+    }
+  }
+
 
   onSubmit = (data) => {
     console.log(data)
   }
 
   render(){
+    const contextValue = {
+      currentStep: this.state.currentStep,
+      handleNextBtn: this.handleNextBtn,
+      handleBackBtn: this.handleBackBtn,
+    }
     return (
       <Layout>
-        <div  className="updateInfo">
-        {this.renderCurrentStep()}
-        <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our Privacy Statement.</p>
-        </div>
+        <Context.Provider value={contextValue}>
+          <div  className="updateInfo">
+          {this.renderCurrentStep()}
+          <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our Privacy Statement.</p>
+          </div>
+        </Context.Provider>
       </Layout>
     )
   }
 }
 
 
-const StyledUpdateInfoForm = styled(UpdateInfoForm)`
-  
-    
-  
-`
-
-export default StyledUpdateInfoForm
+export default UpdateInfoForm
