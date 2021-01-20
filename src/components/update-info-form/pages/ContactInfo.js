@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 //import { useForm } from "react-hook-form"
 import formHelpers from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
-
 import { sizes, breakpoints, mixins, colors } from '../../css-variables'
 import Buttons from './FormButtons'
 import { render } from "react-dom"
@@ -37,7 +36,6 @@ class ContactInfo extends React.Component {
                     onChange={this.props.onChange}
                 />
               </label>
-              
               <label htmlFor="lastname"  className="half leftMargin">Last Name
                 <input
                     type="text"
@@ -47,7 +45,6 @@ class ContactInfo extends React.Component {
                     onChange={this.props.onChange}
                 />
               </label>
-              
               <label htmlFor="othernames">Other names you use or have used in the past (maiden names, nicknames, given names etc.)</label>
               <input
                   type="text"
@@ -64,7 +61,6 @@ class ContactInfo extends React.Component {
                     onChange={this.props.onChange}
                 />
               </label>
-              
               <label htmlFor="phone"  className="half leftMargin">Mobile Phone
                 <input
                     type="phone"
@@ -74,7 +70,6 @@ class ContactInfo extends React.Component {
                     onChange={this.props.onChange}
                 />
               </label>
-              
               <label htmlFor="undergradYear"  className="third">Undergraduate Year (if applicable)
                 <input
                     type="number"
@@ -83,7 +78,6 @@ class ContactInfo extends React.Component {
                     placeholder="1998"
                 />
               </label>
-              
               <label htmlFor="postgradYear" className="third leftMargin">Postgraduate Year(s) (if applicable)
                 <input
                     type="number"
@@ -92,7 +86,6 @@ class ContactInfo extends React.Component {
                     placeholder="2004"
                 />
               </label>
-              
             </form>
             <Buttons next />
   

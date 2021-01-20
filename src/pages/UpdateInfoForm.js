@@ -8,7 +8,6 @@ import Context from '../components/update-info-form/form-context'
 import { mixins, colors, fonts, sizes } from '../components/css-variables'
 
 
-
 class UpdateInfoForm extends React.Component {
   constructor(props) {
     super(props)
@@ -78,11 +77,9 @@ class UpdateInfoForm extends React.Component {
     }
   }
 
-
   onSubmit = (data) => {
     console.log(data)
   }
-  
 
   render(){
     const contextValue = {

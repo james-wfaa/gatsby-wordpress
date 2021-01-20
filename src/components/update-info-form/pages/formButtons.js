@@ -1,7 +1,6 @@
 import React, { useContext } from "react"
 import Context from '../form-context'
 import styled from 'styled-components'
-import { mixins, colors, fonts, sizes } from '../../css-variables'
 
 const FormButtons = ({ next, back, finish }) => {
     const { UpdateInfoFormContext } = useContext(Context);
