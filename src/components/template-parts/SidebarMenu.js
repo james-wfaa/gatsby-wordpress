@@ -37,13 +37,13 @@ const SidebarMenu = ({name, menuItems, width}) => {
       margin: 0;
       padding-top:8px;
       padding-bottom: 8px;
-      &:hover {
-        font-weight: bold;
-      }
       a {
         text-decoration: none;
         color: ${colors.navMenuBlack};
         font-size: 18px;
+        &:hover {
+          color: ${colors.linkTextHover};
+        }
       }
     }
     @media screen and ${breakpoints.laptopS} {
