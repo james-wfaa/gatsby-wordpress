@@ -27,7 +27,6 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                 if (block.originalContent.indexOf('<h2') > -1) {
                     console.log ("normal h2 heading")
                     title = (block.isDynamic) ? block.dynamicContent : block.originalContent
-                    
                 }
                 break
             default:
@@ -36,6 +35,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
     })
 
     // determine inner content (slider or no slider)
+    let excerpt = null;
     const innerContent = (gallery)
         ?
         (<SimpleSlider className="center"
@@ -72,20 +72,25 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                 switch(block.name) {
                     case "acf/section-header":
                         break
-                        case "core/heading":
-                            if (block.originalContent.indexOf('<h2') > -1) {
-                                break
-                            }
-                            else {
-                                return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
-                            }
-                            
-            
-                            
+                    case "core/heading":
+                        if (block.originalContent.indexOf('<h2') > -1) {
+                            break
+                        }
+                        else {
+                            return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+                        }
+                    case "core/paragraph":
+                        if (block.originalContent.indexOf(' excerpt') > 0) {
+                            excerpt = (block.isDynamic) ? block.dynamicContent : block.originalContent
+                            break
+                        }
+                        else{
+                            return (<Block className={block.name.replace('/', '-')} block={block} />)
+                        }
                     case "acf/testimonial":
                         const testimonial = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
                         return (<Testimonial data={testimonial} />)
-                        case "acf/image-section":
+                    case "acf/image-section":
                         const imagesection = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
                         return (<ImageSection data={imagesection} />)
                     case "acf/product-card":
@@ -95,13 +100,12 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         //console.log('default block', block.name)
                         
                         return (<Block className={block.name.replace('/', '-')} block={block} />)
-                        break
                 }
 
             })
 
     return (
-        <PageSection heading={title} topBorder={borderTop} fromBlocks stagger={stagger} centered={centered} >
+        <PageSection heading={title} topBorder={borderTop} fromBlocks stagger={stagger} centered={centered} excerpt={excerpt} >
             { innerContent }
         </PageSection>
     )
