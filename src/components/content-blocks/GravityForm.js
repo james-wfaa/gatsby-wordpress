@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { breakpoints, mixins, sizes } from '../css-variables'
 import Block from './WordPressBlock'
-import GravityFormForm from 'gatsby-gravityforms-component'
+import GravityFormForm from '../gatsby-gravityforms-component/src/'
 import { useStaticQuery, graphql } from 'gatsby'
 
 const AllGravityData = () => {
@@ -33,7 +33,21 @@ const AllGravityData = () => {
                                 size
                                 defaultValue
                                 maxLength
-                            }
+                                inputName
+                                inputType
+                                inputs {
+                                  id
+                                  name
+                                  label
+                                  inputType
+                                  isHidden
+                                  choices {
+                                    isSelected
+                                    value
+                                    text
+                                  }
+                                }
+                              }
                             button {
                                 text
                             }
