@@ -12,11 +12,21 @@ const initialState = {
     undergrad: '',
     postgrad: '',
   },
+  addressStep: false,
+  phoneStep: false,
+  employmentStep: false,
+  identityStep: false,
+  lifeEventStep: false,
 };
 const types = {
   SET_SEARCH_STRING: "SET_SEARCH_STRING",
   SET_CURRENT_STEP: "SET_CURRENT_STEP",
   SET_CONTACT_INFO: "SET_CONTACT_INFO",
+  SET_ADDRESS_STEP: "SET_ADDRESS_STEP",
+  SET_PHONE_STEP: "SET_PHONE_STEP",
+  SET_EMPLOYMENT_STEP: "SET_EMPLOYMENT_STEP",
+  SET_IDENTITY_STEP: "SET_IDENTITY_STEP",
+  SET_LIFE_EVENT_STEP: "SET_LIFE_EVENT_STEP",
 };
 
 const reducer = (state = initialState, action) => {
@@ -43,6 +53,31 @@ const reducer = (state = initialState, action) => {
           undergrad: action.payload.undergrad ? action.payload.undergrad : '',
           postgrad: action.payload.postgrad ? action.payload.postgrad : '',
         },
+      };
+    case types.SET_ADDRESS_STEP:
+      return {
+        ...state,
+        addressStep: action.payload,
+      };
+    case types.SET_PHONE_STEP:
+      return {
+        ...state,
+        phoneStep: action.payload,
+      };
+    case types.SET_EMPLOYMENT_STEP:
+      return {
+        ...state,
+        employmentStep: action.payload,
+      };
+    case types.SET_IDENTITY_STEP:
+      return {
+        ...state,
+        identityStep: action.payload,
+      };
+    case types.SET_LIFE_EVENT_STEP:
+      return {
+        ...state,
+        lifeEventStep: action.payload,
       };
     default:
       throw new Error("Unexpected action");
