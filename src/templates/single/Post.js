@@ -84,6 +84,12 @@ export const query = graphql`
           slug
         }
       }
+      products {
+        nodes {
+          name
+          slug
+        }
+      }
     }
   }
 `

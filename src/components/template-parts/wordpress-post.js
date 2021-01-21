@@ -9,7 +9,7 @@ import FeaturedImage from "../content-blocks/FeaturedImage"
 
 function BlogPost({ data }) {
   const { page } = data
-  const { title, content, featuredImage, categories, author, date, excerpt, heroImage, link } = page
+  const { title, content, featuredImage, categories, products, author, date, excerpt, heroImage, link } = page
   console.log(heroImage, featuredImage)
   //if featuredImage is at least 1080px
   //otherwise heroImage from old site if it's at least 718px (render at 712)
@@ -42,7 +42,7 @@ function BlogPost({ data }) {
   //console.log(page)
   return (
     <Layout>
-        <TitleSection heading={title} author={author} categories={categories} date={date} excerpt={excerpt}  />
+        <TitleSection heading={title} author={author} categories={products} date={date} excerpt={excerpt}  />
         {image && (
             <FeaturedImage featuredImage={image} size={size}/>
         )}
