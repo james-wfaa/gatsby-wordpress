@@ -5,14 +5,13 @@ import Layout from "../components/layout"
 import { AppContext } from "../context/AppContext"
 import ContactInfo from "../components/update-info-form/pages/ContactInfo"
 import SelectSteps from "../components/update-info-form/pages/SelectSteps"
-import Context from '../components/update-info-form/form-context'
 import { mixins, colors, fonts, sizes } from '../components/css-variables'
 
 
 const UpdateInfoForm = () =>  {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setContactInfo } = actions;
-
+  
   useEffect(() => {
     setContactInfo({
       firstname: "Jakey",
@@ -27,58 +26,19 @@ const UpdateInfoForm = () =>  {
     console.log(state)
   }, [state])
 
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     currentStep: 1,
-  //     contactInfo: {
-  //       firstname: '',
-  //       lastname: '',
-  //       othernames: '',
-  //       email: '',
-  //       phone: '',
-  //       undergrad: '',
-  //       postgrad: '',
-  //     },
-  //     selectedSteps: {
-  //       address: true,
-  //       phone: true,
-  //       employment: true,
-  //       demographic: true,
-  //       spouse: true,
-  //     },
-  //   }
-  //   this.handleInputChange = this.handleInputChange.bind(this);
-  // }
 
-  // const renderCurrentStep = () => {
-  //   switch(this.state.currentStep){
-  //     case 1:
-  //       return <ContactInfo onChange={handleInputChange} />
-  //     case 2:
-  //       return <SelectSteps />
-  //     case 3:
-  //       return <SelectSteps />
-  //   }
-  // }
+ const renderCurrentStep = () => {
+     switch(state.currentStep){
+       case 1:
+         return <ContactInfo />
+       case 2:
+         return <SelectSteps />
+       case 3:
+         return <SelectSteps />
+     }
+   }
 
-  const handleNextBtn = () => {
-    // let currentStep = this.state.currentStep
-    // currentStep = currentStep + 1
-    // this.setState({
-    //   currentStep: currentStep
-    // })
-  }
-
-  const handleBackBtn = () => {
-    // let currentStep = this.state.currentStep
-    // currentStep = currentStep - 1
-    // this.setState({
-    //   currentStep: currentStep
-    // })
-  }
-
-  const handleInputChange = (event) => {
+  /*const handleInputChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
@@ -93,24 +53,18 @@ const UpdateInfoForm = () =>  {
     //     }
     //   });
     // }
-  }
+  }*/
 
   const onSubmit = (data) => {
     console.log(data)
   }
 
   return (
-    // const contextValue = {
-    //   currentStep: this.state.currentStep,
-    //   handleNextBtn: this.handleNextBtn,
-    //   handleBackBtn: this.handleBackBtn,
-    // }
 
     <Layout>
       <StyledUpdateInfoForm>
-        {/* {this.renderCurrentStep()} */}
-        {/* {!(this.state.currentStep === 8) && <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our Privacy Statement.</p>} */}
-
+        { renderCurrentStep() }
+        { !(state.currentStep === 8) && <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our Privacy Statement.</p>} 
       </StyledUpdateInfoForm>
     </Layout>
 

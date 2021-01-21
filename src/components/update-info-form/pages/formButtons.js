@@ -1,13 +1,21 @@
 import React, { useContext } from "react"
-import Context from '../form-context'
 import styled from 'styled-components'
+import { AppContext } from "../../../context/AppContext"
 
 const FormButtons = ({ next, back, finish }) => {
-    const { UpdateInfoFormContext } = useContext(Context);
+    const { state, actions } = useContext(AppContext);
+    const { setCurrentStep } = actions;
+
+    const handleNextBtn = () => {
+        setCurrentStep(1)
+      }
+    const handleBackBtn = () => {
+        setCurrentStep(-1)
+      }
 
  return  (
         <div className="form-btns">
-            { back && <button className="back">Go Back</button>}
+            { back && <button className="back" onClick={() => handleBackBtn()}>Go Back</button>}
             { finish && <input
                 type="submit"
                 name="submitbutton"
@@ -15,7 +23,7 @@ const FormButtons = ({ next, back, finish }) => {
                 value="FINISH UPDATE"
               />}
             
-            { next && <button className="next"/*onClick={this.UpdateInfoFormContext.handleNextBtn()}*/>Save and Continue</button>}
+            { next && <button className="next" onClick={() => handleNextBtn()}>Save and Continue</button>}
         </div>
     )
 }
