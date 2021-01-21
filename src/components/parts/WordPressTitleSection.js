@@ -34,7 +34,7 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
             </div>
             
             { smImg && excerpt && (
-                <div><FeaturedImage featuredImage={smImg} className='smImgFeat' size={size}/><div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
+                <div><FeaturedImage featuredImage={smImg} size={size}/><div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
                 </div>
             )}
             { !smImg && excerpt && (
