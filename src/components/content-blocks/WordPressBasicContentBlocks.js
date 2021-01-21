@@ -1,15 +1,69 @@
 import React from 'react'
-import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
-import PageSection from "../page-sections/PageSection"
-import CardHandler from "../content-modules/CardHandler"
 import styled from 'styled-components'
-import { colors, breakpoints, mixins, sizes } from '../css-variables'
+import { breakpoints, mixins, sizes } from '../css-variables'
 import Block from './WordPressBlock'
+import GravityFormForm from 'gatsby-gravityforms-component'
+import { useStaticQuery, graphql } from 'gatsby'
 
+
+const AllGravityData = () => {
+    const { allGfForm } = useStaticQuery(
+        graphql`
+            query {
+                allGfForm {
+                    edges {
+                        node {
+                            formId
+                            slug
+                            apiURL
+                            descriptionPlacement
+                            formFields {
+                                id
+                                label
+                                description
+                                descriptionPlacement
+                                type
+                                choices
+                                content
+                                errorMessage
+                                inputMaskValue
+                                isRequired
+                                visibility
+                                cssClass
+                                placeholder
+                                size
+                                defaultValue
+                                maxLength
+                            }
+                            button {
+                                text
+                            }
+                            confirmations {
+                                message
+                            }
+                        }
+                    }
+                }
+            }
+        `
+    )
+    return allGfForm
+}
+
+function handleError({values, error, reset}) {
+    //handle error
+}
+
+function handleSuccess({values, reset, confirmations}) {
+    //handle success
+}
+    
 
 const WordPressContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
 
-    const RenderedBlocks = (blocks) ? blocks.map((block) => {
+    console.log(AllGravityData())
+
+        const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
         //console.log(block.name)
         switch(block.name) {
@@ -23,10 +77,10 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 if(block.innerBlocks && block.innerBlocks[0].originalContent){
                     let innerRenderedBlocks = [];
                     block.innerBlocks.forEach((innerBlock) => {
-                        console.log("Columns in" + innerBlock.originalContent);
+                        //console.log("Columns in" + innerBlock.originalContent);
                         innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />) 
                     })
-                    console.log("blocks: " + innerRenderedBlocks)
+                    //console.log("blocks: " + innerRenderedBlocks)
                     return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
                 }
             //Add case to handle news/stories that use the freeform block but do not have blocks... and then use content instead of original content because it has the html tags
@@ -45,7 +99,17 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
     return(
         <div className={className} id="Top">
             { RenderedBlocks && (
-                <div className="content">{RenderedBlocks}</div>
+                
+                <div className="content">
+                    {RenderedBlocks}
+                    <GravityFormForm
+                        id={1}
+                        formData={AllGravityData()}
+                        lambda={process.env.LAMBDA_ENDPOINT}
+                        successCallback={handleSuccess}
+                        errorCallback={handleError}
+                    />
+                </div>
             )}
             { !RenderedBlocks && (
                 <Block className={className} block={content} />

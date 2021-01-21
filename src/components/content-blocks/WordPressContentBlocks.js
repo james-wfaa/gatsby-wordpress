@@ -38,15 +38,16 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 }
 
                 break
-                case "core/freeform":
-                case "core/paragraph":
-                case "core/list":
-                case "core/heading":
-                case "core/table":
-                case "core/image":
-                case "core/html":
-                    return (<Block className={block.name.replace('/', '-')} block={block.originalContent} />)
-                    break
+            case "core/freeform":
+            case "core/paragraph":
+            case "core/list":
+            case "core/heading":
+            case "core/table":
+            case "core/image":
+            case "core/html":
+                return (<Block className={block.name.replace('/', '-')} block={block.originalContent} />)
+                break
+            //case ""
         
             case "core/separator":
                 RenderedBlocks.append(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)

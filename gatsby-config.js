@@ -74,7 +74,21 @@ module.exports = {
         },
       },
     },
-
+    {
+      resolve: 'gatsby-source-gravityforms',
+      options: {
+          // Base URL needs to include protocol (http/https)
+          baseUrl: 'https://uwalumni.wpengine.com',
+          //include: [], // Array of form IDs. Will only import these forms.
+          //exclude: [], // Array of form IDs. Will exclude these forms.
+          // Gravity Forms API
+          allowSelfSigned: true,
+          api: {
+              key: 'ck_2df05b5d127aa2a3cf4b7163e2190c4e5a80b0f8', //'ck_05467ba5c64789fa4fc2aca5cb13e28baae38617',
+              secret: 'cs_9bbe6e5dcb8bed64daeb0657543f9894acb500ce', //'cs_b24f465d257bf548d78b5bd6723621babf4e3dfc',
+          },
+      },
+  },
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-netlify-cache`,
