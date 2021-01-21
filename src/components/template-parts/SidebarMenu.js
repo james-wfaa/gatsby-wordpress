@@ -44,6 +44,9 @@ const SidebarMenu = ({name, menuItems, width}) => {
         &:hover {
           color: ${colors.linkTextHover};
         }
+        &.active {
+          font-weight: bold;
+        }
       }
     }
     @media screen and ${breakpoints.laptopS} {
@@ -94,7 +97,7 @@ const SidebarMenu = ({name, menuItems, width}) => {
   const items = menuItems.map(item => {
     return (
       <li>
-        <a href={item.path}>{item.label}</a>
+        <a href={item.path} className={item.path == window.location.pathname ? 'active': ''}>{item.label}</a>
       </li>
     )
   })
