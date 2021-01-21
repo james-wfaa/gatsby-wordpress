@@ -49,8 +49,6 @@ const SidebarMenu = ({name, menuItems, width}) => {
     @media screen and ${breakpoints.laptopS} {
       border: none;
       margin-top: 7px; // hack to get menu title & page title vertically aligned (curse you, Mrs. Eaves!)
-      margin-right: 32px;
-      margin-left: 32px;
       padding: 0;
     }
     @media screen and ${breakpoints.laptopSMax}{
