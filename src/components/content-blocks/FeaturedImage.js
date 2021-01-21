@@ -18,8 +18,6 @@ import Img from "gatsby-image"
 const FeaturedImage = ({ className, featuredImage, event, size }) => {
   const classes = (event) ? `${className} ${className}--event` : className
   const imgSizeClass = (718 <= size && size < 1080) ? `mediumImg` : (size < 718) ? `smallImg` : ''
-  //const smImgStyleOverride = (size < 718) ? {maxWidth: size + 'px',} : null
-  
 
   return (
     <div className={`${classes} ${imgSizeClass}`} >
