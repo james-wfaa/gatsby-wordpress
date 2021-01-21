@@ -81,7 +81,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         }
                     case "core/paragraph":
                         if (block.originalContent.indexOf(' excerpt') > 0) {
-                            excerpt = (block.isDynamic) ? block.dynamicContent : block.originalContent
+                            excerpt += (block.isDynamic) ? block.dynamicContent : block.originalContent
                             break
                         }
                         else{
