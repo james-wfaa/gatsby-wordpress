@@ -7,6 +7,8 @@ import PageSection from "../page-sections/PageSection"
 import GridCardD from "../content-modules/GridCardD"
 import ContentCard from "../content-blocks/ContentCard"
 import CardHandler from "../content-modules/CardHandler"
+import RecentPosts from "../page-sections/RecentPosts"
+
 
 
 import CardE from "../content-blocks/CardE"
@@ -154,44 +156,7 @@ other and the UW.
         </SimpleSlider>
       </PageSection>
       <PageSection heading="WAA Stories" buttons={featuredbutton} topBorder>
-        <SimpleSlider
-          className="center"
-          slidesToShow="1"
-          dots
-          centerMode
-          variableWidth
-          centerPadding="100px"
-        >
-          <ContentCard
-            title="All About That Bass"
-            category="UW NOW"
-            excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
-            url="##"
-            img={page.cardImage1}
-            tags={taglist2}
-            size="M"
-          />
-
-          <ContentCard
-            title="Coachella Valley"
-            category="UW NOW"
-            excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
-            url="##"
-            img={page.cardImage7}
-            tags={taglist2}
-            size="M"
-          />
-
-          <ContentCard
-            title="Coachella Valley"
-            category="UW NOW"
-            excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
-            url="##"
-            img={page.cardImage5}
-            tags={taglist2}
-            size="M"
-          />
-        </SimpleSlider>
+        <RecentPosts />
       </PageSection>
     </Layout>
   )
