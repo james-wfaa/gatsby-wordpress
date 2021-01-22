@@ -142,12 +142,52 @@ form{
  }
   
   &.select-steps{
-    text-align:center;
-    input{
+    fieldset{
+      margin: 0 auto;
+      max-width: 390px;
+      border:none;
+    }
+    input[type='checkbox'] {
+      position: absolute !important;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+      clip: rect(1px, 1px, 1px, 1px);
+    }
+    input[type='checkbox'] + label {
+      display: block;
+      position: relative;
+      padding: 0 1.5rem;
+      cursor:pointer;
+    }
+    input[type='checkbox'] + label::before {
+      content: '';
+      position: relative;
       display: inline-block;
-      width: auto;
-      height:auto;
-      margin-right:12px;
+      margin-right: 10px;
+      width: 20px;
+      height: 20px;
+      border: 2px solid ${colors.buttonRed};
+      top: 3px;
+    }
+    input[type='checkbox']:checked + label::before {
+      background: ${colors.buttonRed};
+    }
+    input[type='checkbox']:checked + label::after {
+      content: '';
+      position: absolute;
+      top: 7px;
+      left: 30px;
+      border-left: 2px solid white;
+      border-bottom: 2px solid white;
+      height: 8px;
+      width: 14px;
+      transform: rotate(-45deg);
+    }
+    input[type='checkbox']:focus + label::before {
+      outline: #5d9dd5 solid 1px;
+      box-shadow: 0 0px 8px #5e9ed6;
     }
   }
   

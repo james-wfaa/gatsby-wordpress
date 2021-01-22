@@ -51,12 +51,19 @@ const SelectSteps = () => {
             headingCompact
             />
             <form className="select-steps" onSubmit={handleSubmit(handleSubmit)}>
-                <label htmlFor="address" selected><input type="checkbox" name="address" id="address" checked={state.addressStep} onChange={()=>updateCheckbox(1)}/>Mailing Address</label>
-                <label htmlFor="phone" selected><input type="checkbox" name="phone" id="phone" checked={state.phoneStep} onChange={()=>updateCheckbox(2)}/>Phone Number</label>
-                <label htmlFor="employment" selected><input type="checkbox" name="employment" id="employment" checked={state.employmentStep} onChange={()=>updateCheckbox(3)}/>Employment Information</label>
-                <label htmlFor="demographic" selected><input type="checkbox" name="demographic" id="demographic" checked={state.identityStep} onChange={()=>updateCheckbox(4)} />Demographic/Identity/Country Information</label>
-                <label htmlFor="spouse" selected><input type="checkbox" name="spouse" id="spouse" checked={state.lifeEventStep} onChange={()=>updateCheckbox(5)} />Spouse Update (Marriage/Divorce/Death)</label>
-                <Buttons back finish next />
+                <fieldset>
+                    <input type="checkbox" name="address" id="address" checked={state.addressStep} onChange={()=>updateCheckbox(1)}/>
+                    <label htmlFor="address" selected>Mailing Address</label>
+                    <input type="checkbox" name="phone" id="phone" checked={state.phoneStep} onChange={()=>updateCheckbox(2)}/>
+                    <label htmlFor="phone" selected>Phone Number</label>
+                    <input type="checkbox" name="employment" id="employment" checked={state.employmentStep} onChange={()=>updateCheckbox(3)}/>
+                    <label htmlFor="employment" selected>Employment Information</label>
+                    <input type="checkbox" name="demographic" id="demographic" checked={state.identityStep} onChange={()=>updateCheckbox(4)} />
+                    <label htmlFor="demographic" selected>Demographic/Identity/Country Information</label>
+                    <input type="checkbox" name="spouse" id="spouse" checked={state.lifeEventStep} onChange={()=>updateCheckbox(5)} />
+                    <label htmlFor="spouse" selected>Spouse Update (Marriage/Divorce/Death)</label>
+                    <Buttons back finish next />
+                </fieldset>
             </form>
         </div>
     )
