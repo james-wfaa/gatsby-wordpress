@@ -1,10 +1,11 @@
+import { attributesToProps } from "html-react-parser";
 import React, { useContext } from "react"
 import styled from 'styled-components'
 import { AppContext } from "../../../context/AppContext"
 
-const FormButtons = ({ next, back, finish }) => {
+const FormButtons = ({ next, back, save, finish }) => {
     const { state, actions } = useContext(AppContext);
-    const { setCurrentStep } = actions;
+    const { setCurrentStep, setContactInfo, } = actions;
 
     const handleNextBtn = () => {
         setCurrentStep(1)
@@ -12,6 +13,7 @@ const FormButtons = ({ next, back, finish }) => {
     const handleBackBtn = () => {
         setCurrentStep(-1)
       }
+    
 
  return  (
         <div className="form-btns">
@@ -21,9 +23,13 @@ const FormButtons = ({ next, back, finish }) => {
                 name="submitbutton"
                 id="submitbutton"
                 value="FINISH UPDATE"
-              />}
-            
-            { next && <button className="next" onClick={() => handleNextBtn()}>Save and Continue</button>}
+                />}
+            { save && <button 
+                type="submit"
+                name="savebutton"
+                id="savebutton"
+                className="save">Save and Continue</button>}
+            { next && <button className="next" onClick={() => handleNextBtn()}>Go Back</button>}
         </div>
     )
 }

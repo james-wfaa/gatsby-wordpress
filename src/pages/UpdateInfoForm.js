@@ -32,7 +32,8 @@ const UpdateInfoForm = () =>  {
        case 1:
          return <ContactInfo />
        case 2:
-         return <SelectSteps />
+        console.log(state) 
+        return <SelectSteps />
        case 3:
          return <SelectSteps />
      }
@@ -146,6 +147,7 @@ form{
       display: inline-block;
       width: auto;
       height:auto;
+      margin-right:12px;
     }
   }
   
@@ -172,7 +174,7 @@ form{
     &:hover {
       cursor:pointer;
     }
-    &.next{
+    &.next, &.save{
       background-color: ${colors.buttonRed};
       color: ${colors.titleWhite};
       &:after{

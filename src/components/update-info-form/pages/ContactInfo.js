@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { useForm } from "react-hook-form"
 import formHelpers from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import { colors } from '../../css-variables'
 import Buttons from './FormButtons'
-import { render } from "react-dom"
 import styled from "styled-components"
+import { AppContext } from "../../../context/AppContext"
 
 const ContactInfo = () => {
+  const { state, actions } = useContext(AppContext);
+  const { setCurrentStep, setContactInfo } = actions;
+
   const { register, handleSubmit, watch, errors } = useForm({
     mode: "onChange",
   })
+  const UpdateContactInfo = data =>{
+    setContactInfo(data)
+    setCurrentStep(1)
+  }
   const StyledError = styled.p`
   font-family: "Verlag A", "Verlag B";
   font-style: normal;
@@ -38,7 +45,7 @@ const ContactInfo = () => {
               headingAlt
               headingCompact
             />
-            <form>
+            <form onSubmit={handleSubmit(UpdateContactInfo)}>
               <legend>Contact Information</legend>
               <hr></hr>
               <label htmlFor="firstname" className="half required">First Name
@@ -140,12 +147,12 @@ const ContactInfo = () => {
                   <StyledError>{errors.phone.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="undergradYear" className="third">Undergraduate Year (if applicable)
+              <label htmlFor="undergrad" className="third">Undergraduate Year (if applicable)
                 <input
                     type="text"
-                    name="undergradYear"
-                    id="undergradYear"
-                    maxlength="4"
+                    name="undergrad"
+                    id="undergrad"
+                    maxLength="4"
                     ref={register({
                       pattern: {
                         value: /^(19|20)\d{2}$/,
@@ -153,16 +160,16 @@ const ContactInfo = () => {
                       },
                     })}
                 />
-                {errors.undergradYear && (
-                  <StyledError>{errors.undergradYear.message}</StyledError>
+                {errors.undergrad && (
+                  <StyledError>{errors.undergrad.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="postgradYear" className="third leftMargin">Postgraduate Year(s) (if applicable)
+              <label htmlFor="postgrad" className="third leftMargin">Postgraduate Year(s) (if applicable)
                 <input
                     type="text"
-                    name="postgradYear"
-                    id="postgradYear"
-                    maxlength="4"
+                    name="postgrad"
+                    id="postgrad"
+                    maxLength="4"
                     ref={register({
                       pattern: {
                         value: /^(19|20)\d{2}$/,
@@ -170,16 +177,14 @@ const ContactInfo = () => {
                       },
                     })}
                 />
-                {errors.postgradYear && (
-                  <StyledError>{errors.postgradYear.message}</StyledError>
+                {errors.postgrad && (
+                  <StyledError>{errors.postgrad.message}</StyledError>
                 )}
               </label>
+              <Buttons save />
             </form>
-            <Buttons next />
         </div>
     )
-  
-  
 }
 
 export default ContactInfo
