@@ -89,6 +89,22 @@ form{
   legend{
     text-transform: uppercase;
     margin-bottom: 12px;
+    display:block;
+    position:relative;
+    &:after {
+      content:"* Required Information";
+      color: ${colors.buttonRed};
+      position: absolute;
+      left: 0;
+      top: -30px;
+      font-size: 0.778rem;
+      text-transform: capitalize;
+      @media screen and ${breakpoints.tabletS} {
+        right: 0;
+        top: 0;
+        left: unset;
+      }
+    }
   }
   hr{
     margin-bottom: 0;
@@ -99,6 +115,11 @@ form{
   }
   label{
     margin-top: 24px;
+    position:relative;
+    &.required:before {
+      content:" *";
+      color: ${colors.buttonRed};
+    }
   }
   input{
     margin-top: 12px;
@@ -187,7 +208,7 @@ form{
             margin-right:8px;
       }
     }
-    @media screen and ${breakpoints.mobileL} {
+    @media screen and ${breakpoints.tabletS} {
       width: auto;
     }
     @media screen and ${breakpoints.tabletS} {
