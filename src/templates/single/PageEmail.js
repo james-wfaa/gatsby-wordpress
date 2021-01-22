@@ -14,10 +14,10 @@ import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
 
 const WordPressEmailPage = ({ className, data }) => {
-  const [ads, setAds] = useState(data.page.HalfPageAd.adList)
+  const [ads] = useState(data.page.HalfPageAd.adList)
   const [currentAd, setCurrentAd] = useState(null)
   const { page, posts } = data
-  const { title, HalfPageAd } = page
+  const { title } = page
 
   const randomAdGenerator = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min) - 1
