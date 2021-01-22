@@ -6,6 +6,8 @@ import Layout from "../layout"
 import PageSection from "../page-sections/PageSection"
 import GridCardD from "../content-modules/GridCardD"
 import ContentCard from "../content-blocks/ContentCard"
+import CardHandler from "../content-modules/CardHandler"
+
 
 import CardE from "../content-blocks/CardE"
 import PromoCardD from "../content-blocks/PromoCardD"
@@ -39,7 +41,7 @@ function WordPressGroupPage({ page }) {
   
   const eventbutton = [
     {
-      link: "#",
+      link: "/events",
       text: "All Events",
     },
   ]
@@ -50,10 +52,8 @@ function WordPressGroupPage({ page }) {
       text: "See all news and stories",
     },
   ]
-  const { title,  excerpt, content, featuredImage, blocks, eventListing, } = page
-  const { eventCategory } = eventListing
-  const { width } = useWindowSize()
-  // Temporary Query until dynamic menus added to page query
+  const { title,  excerpt, content, featuredImage, blocks, groups } = page
+
   const { wpMenu } = useStaticQuery(
     graphql`
       query {
@@ -82,19 +82,22 @@ function WordPressGroupPage({ page }) {
       })
       : null
 
- 
+  const chapterType = 'A Wisconsin Alumni Association <a href="#">Bascom Chapter</a>'
+
+  const eventsToShow = (groups?.nodes && groups?.nodes[0]?.events.nodes) ? groups?.nodes[0]?.events.nodes : null
 
   return (
     <Layout>
       <PageSection
         heading={title}
-        excerpt='A Wisconsin Alumni Association <a href="#">Bascom Chapter</a>'
+        excerpt={chapterType}
         withSocial
         plainText
         pageTitle
-      >
-        Connect with us to celebrate UW pride, enjoy Badger spirit and build
-        community with each other and the UW.
+      > { // this is static text... will live in a WP settings field somewhere... same for every chapter 
+      }
+        Connect with us to celebrate UW pride, enjoy Badger spirit and build community with each 
+other and the UW.
       </PageSection>
       <div style={{maxWidth: `1080px`, margin: `auto`, paddingBottom: `58px`}}>
 
@@ -103,7 +106,6 @@ function WordPressGroupPage({ page }) {
           heroImage={featuredImage.node.localFile}
           heroSize="slim"
           variant="white"
-          redHeading={title}
           excerpt={excerpt}
         />
       )}
@@ -116,39 +118,9 @@ function WordPressGroupPage({ page }) {
       </PageSection>
       )}
       
-
-      <PageSection heading="Upcoming Events" buttons={eventbutton} topBorder>
-        <SimpleSlider
-          className="center"
-          slidesToShow="1"
-          dots
-          centerMode
-          variableWidth
-          centerPadding="100px"
-        >
-          <ContentCard
-            startDate="Apr. 29"
-            endDate="May 3"
-            title="The Kentucky Derby"
-            category="Athletic Travel"
-            venue="Churchill Downs"
-            location="Louisville, KY"
-            tags={taglist2}
-            size="M"
-          />
-
-          <ContentCard
-            startDate="Apr. 29"
-            endDate="May 3"
-            title="The Kentucky Derby"
-            category="Athletic Travel"
-            venue="Churchill Downs"
-            location="Louisville, KY"
-            tags={taglist2}
-            size="M"
-          />
-        </SimpleSlider>
-      </PageSection>
+      { eventsToShow && (
+        <PageSection heading="Upcoming Events" topBorder buttons={eventbutton}><CardHandler items={eventsToShow} size="M" /></PageSection>
+      )}
 
       <PageSection heading="Our Chapter Sponsors" topBorder>
         <SimpleSlider
