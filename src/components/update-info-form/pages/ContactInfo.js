@@ -53,6 +53,7 @@ const ContactInfo = () => {
                     type="text"
                     name="firstname"
                     id="firstname"
+                    defaultValue={state.contactInfo.firstname}
                     ref={register({
                       required: { value: true, message: "First Name is required" },
                       minLength: {
@@ -75,6 +76,7 @@ const ContactInfo = () => {
                     type="text"
                     name="lastname"
                     id="lastname"
+                    defaultValue={state.contactInfo.lastname}
                     ref={register({
                       required: { value: true, message: "Last Name is required" },
                       minLength: {
@@ -96,6 +98,7 @@ const ContactInfo = () => {
                     type="text"
                     name="othernames"
                     id="othernames"
+                    defaultValue={state.contactInfo.othernames}
                     ref={register({
                       minLength: {
                         value: 2,
@@ -116,6 +119,7 @@ const ContactInfo = () => {
                     type="email"
                     name="email"
                     id="email"
+                    defaultValue={state.contactInfo.email}
                     ref={register({
                       required: {
                         value: true,
@@ -136,6 +140,7 @@ const ContactInfo = () => {
                     type="phone"
                     name="phone"
                     id="phone"
+                    defaultValue={state.contactInfo.phone}
                     ref={register({
                       pattern: {
                         value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
@@ -153,6 +158,7 @@ const ContactInfo = () => {
                     name="undergrad"
                     id="undergrad"
                     maxLength="4"
+                    defaultValue={state.contactInfo.undergrad}
                     ref={register({
                       pattern: {
                         value: /^(19|20)\d{2}$/,
@@ -170,6 +176,7 @@ const ContactInfo = () => {
                     name="postgrad"
                     id="postgrad"
                     maxLength="4"
+                    defaultValue={state.contactInfo.postgrad}
                     ref={register({
                       pattern: {
                         value: /^(19|20)\d{2}$/,

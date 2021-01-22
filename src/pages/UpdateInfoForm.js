@@ -30,7 +30,8 @@ const UpdateInfoForm = () =>  {
  const renderCurrentStep = () => {
      switch(state.currentStep){
        case 1:
-         return <ContactInfo />
+          console.log(state) 
+          return <ContactInfo />
        case 2:
         console.log(state) 
         return <SelectSteps />
