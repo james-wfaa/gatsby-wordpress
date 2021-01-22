@@ -20,6 +20,7 @@ const PageSection = ({
     pageTitle,
     withSocial,
     plainText,
+    centered, // a centered-content page section e.g. Product Page or Aggregate Page
     popOut,
     excerpt,
     buttons,
@@ -52,6 +53,7 @@ const PageSection = ({
     const staggerClass = (stagger) ? ' stagger' : ''
     const defaultClass = (defaultPage) ? ' defaultClass' : ''
     const dividerClass = (divider) ? ' divider' : ''
+    const centeredContentClass = (centered) ? ' centered' : ''
 
     return (
         <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading}${defaultClass} ${bgClass}`}  >
@@ -66,7 +68,7 @@ const PageSection = ({
             { excerpt && (
                 <div className="sectionexcerpt"  dangerouslySetInnerHTML={{ __html: excerpt }} />
             )}
-            <div className={`content ${plainTextContent}`}>
+            <div className={`content ${plainTextContent}${centeredContentClass}`}>
                 {children}
             </div>
             { buttons && (<PageSectionButtons buttons={buttons} buttonsAlt={buttonsAlt} compact={buttonsCompact} />
@@ -230,18 +232,20 @@ const StyledPageSection = styled(PageSection)`
         }
     }
     /* some wordpress content pieces */
-    .content {
-        > p {
+    .content.centered {
+        > p,
+        > .core-heading,
+        > .core-image,
+        > .core-freeform,
+        > .core-paragraph,
+        > .core-list,
+        > .core-table {
             min-width: 300px;
             width: 80%;
-            max-width: 897px;
+            max-width: 712px;
             margin-left: auto;
             margin-right: auto;
             text-align: left;
-        }
-        &.plaintext {
-            max-width: 712px;
-            margin: 0 auto;
         }
     }
 

@@ -12,7 +12,7 @@ import Block from '../content-blocks/WordPressBlock'
 
 
 
-const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger }) => {
+const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, centered }) => {
     // preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, children
 
     // get the title
@@ -92,16 +92,16 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger })
                         const productcard = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
                         return (<div dangerouslySetInnerHTML={{__html: productcard}} />)
                     default:
-                        console.log('default block', block.name)
-                        const basiccontent = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
-                        return (<Block className={block.name.replace('/', '-')} block={basiccontent} />)
+                        //console.log('default block', block.name)
+                        
+                        return (<Block className={block.name.replace('/', '-')} block={block} />)
                         break
                 }
 
             })
 
     return (
-        <PageSection heading={title} topBorder={borderTop} fromBlocks stagger={stagger} >
+        <PageSection heading={title} topBorder={borderTop} fromBlocks stagger={stagger} centered={centered} >
             { innerContent }
         </PageSection>
     )

@@ -232,6 +232,7 @@ export const query = graphql`
           isDynamic
           originalContent
           dynamicContent
+          saveContent
           innerBlocks {
             name
             originalContent

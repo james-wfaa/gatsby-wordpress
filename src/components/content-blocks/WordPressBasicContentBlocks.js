@@ -11,7 +11,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-        console.log(block.name)
+        //console.log(block.name)
         switch(block.name) {
             case "core/separator":
                 return(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
@@ -19,6 +19,16 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             case "core/group":
             case "acf/events-listing-section":
                 break  
+            case "core/columns":
+                if(block.innerBlocks && block.innerBlocks[0].originalContent){
+                    let innerRenderedBlocks = [];
+                    block.innerBlocks.forEach((innerBlock) => {
+                        console.log("Columns in" + innerBlock.originalContent);
+                        innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />) 
+                    })
+                    console.log("blocks: " + innerRenderedBlocks)
+                    return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
+                }
             //Add case to handle news/stories that use the freeform block but do not have blocks... and then use content instead of original content because it has the html tags
             //Also added css below that is duplicated from WPBlock
             case "core/freeform":
@@ -80,6 +90,24 @@ max-width: 100%;
 hr.wp-block-separator {
     ${mixins.separator}
 }
+
+.core-columns{
+    max-width: 303px;
+    
+    @media screen and ${breakpoints.tabletS} {
+        display: flex;
+        max-width: 536px;
+    }
+    @media screen and ${breakpoints.laptopS} {
+        max-width: 712px;
+    }
+    .core-column{
+        flex: 1 1 auto;
+        flex-shrink: 1;
+        min-width: 50px;
+    }
+}
+
 `
 
 export default StyledWordPressContentBlocks

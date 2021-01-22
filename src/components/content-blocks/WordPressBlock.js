@@ -7,16 +7,20 @@ import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
 const WordPressBlock = ({className, block}) => {
     if (block) {
-        //console.log('WordPressBlock - block:',block)
+        const blockContent = (block.isDynamic) 
+            ? block.dynamicContent
+            : (block.saveContent) 
+                ? block.saveContent
+                : block.originalContent 
+                
+        return (
+            <div className={className} dangerouslySetInnerHTML={{__html: blockContent}} />
+        )
     }
+    return null
+    
 
-    return (
-        <>
-        { block && (
-            <div className={className} dangerouslySetInnerHTML={{__html: block.originalContent}} />
-        ) }
-        </>
-    )
+    
 }
 
 const StyledWordPressBlock = styled(WordPressBlock)`
@@ -93,14 +97,18 @@ margin-right: auto;
 }
 
 ul {
-    list-style-position: inside;
-    margin-left: 0;
+    list-style-position: outside;
+    margin-left: ${sizes.s18};
     @media screen and ${breakpoints.tabletS} {
-        margin-left: ${sizes.s24};
+        margin-left: ${sizes.s40};
     }
 }
 li{
     margin-bottom: ${sizes.s12};
+    >ul{
+        margin-left: ${sizes.s40};
+    }
+
 }
 a {
     ${mixins.a}
@@ -110,7 +118,6 @@ a {
 }
 
 > p, 
-> ul,
 > h2,
 > h3,
 >.wp-block-image {
@@ -118,6 +125,60 @@ a {
     max-width: 712px;
     margin-left: auto;
     margin-right: auto;
+}
+.callout-bold {
+    font-weight: bold;
+    font-family: ${fonts.verlag};
+    background-color: ${colors.calloutGrey};
+    padding: ${sizes.s18};
+    @media screen and ${breakpoints.tabletS} {
+        padding: ${sizes.s24};
+        width: 584px;
+    }
+    @media screen and ${breakpoints.laptopL} {
+        width: 272px;
+        float: left;
+        margin: 16px 16px 16px 0;
+
+        &.has-text-align-right{
+            float: right;
+            margin: 16px -184px 16px 16px;
+        }
+        &.has-text-align-left{
+            float: left;
+            margin: 16px 16px 16px -184px;
+        }
+
+    }
+
+}
+.wp-block-quote {
+    color: ${colors.badgerRed};
+    font-family: ${fonts.eavesNarrow};
+    font-style: italic;
+    font-size: ${sizes.s24};
+    line-height: ${sizes.s38};
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: 712px;
+    @media screen and ${breakpoints.laptopL} {
+        width: 252px;
+        float: right;
+        margin: 24px 0px 24px 24px;
+
+        &.has-text-align-left{
+            float: left;
+            margin: 24px 24px 24px -184px;
+        }
+        &.has-text-align-right{
+            float: right;
+            margin: 24px -184px 24px 24px;
+        }
+    }
+    @media screen and ${breakpoints.laptopS} {
+        max-width: 536px;
+    }
 }
 `
 

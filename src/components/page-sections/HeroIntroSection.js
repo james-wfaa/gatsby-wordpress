@@ -20,7 +20,8 @@ const HeroIntroSection = ({
   redHeading,
   excerpt,
   buttons,
-  carouselItems
+  carouselItems,
+  productPage
 }) => {
   const { width } = useWindowSize();
   let size
@@ -120,6 +121,7 @@ const HeroIntroSection = ({
           )}
         </>
       : null}
+      {productPage ? <div className="standardProductLabel"></div> :
       <div style={{ position: `relative` }}>
         <a
           className={downscrollClass}
@@ -130,7 +132,8 @@ const HeroIntroSection = ({
           <div className="downscroll_main">down</div>
           <div className="downscroll_after" style={{backgroundColor: variantObject.background_color}}></div>
         </a>
-      </div>
+      </div> 
+      }
 
       <div className={redboxClass}>
         <div className="downanchor" id={`${className}__downscroll`}>
@@ -145,6 +148,7 @@ const HeroIntroSection = ({
           buttons={buttons}
           buttonsAlt
           buttonsCompact
+          productPage={productPage}
         />
       </div>
     </div>
@@ -299,6 +303,39 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
         font-size: ${sizes.s32};
         line-height: ${sizes.s50};
       }
+    }
+  }
+  .standardProductLabel{
+      position:relative;
+      width:100%;
+      height: 40px;
+      &:before{
+        position: absolute;
+        top: -35px;
+        height: 35px;
+        width: 100%;
+        content: "";
+        mix-blend-mode: multiply;
+        background-color: #c5050c;
+      }
+      &:after {
+        position: absolute;
+        content: '';
+        top: -16px;
+        left:50%;
+        height: 48px;
+        width: 9px;
+        z-index: 1;
+        border-left: 2px solid ${colors.bgWhite};
+        border-right: 2px solid ${colors.bgWhite};
+        transform: skew(135deg);
+  
+        @media screen and ${breakpoints.tabletS} {
+          top: -18px;
+          height: 38px;
+          width: 11px;
+        }
+    }
     }
     
   }

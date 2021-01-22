@@ -35,6 +35,7 @@ export const sizes = {
     s48: '2.6rem',
     s50: '2.778rem',
     s52: '2.889rem',
+    s54: '3rem',
     s58: '3.222rem',
     s60: '3.333rem',
     s72: '4rem',
