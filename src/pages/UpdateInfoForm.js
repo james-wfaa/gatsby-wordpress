@@ -5,14 +5,14 @@ import Layout from "../components/layout"
 import { AppContext } from "../context/AppContext"
 import ContactInfo from "../components/update-info-form/pages/ContactInfo"
 import SelectSteps from "../components/update-info-form/pages/SelectSteps"
-import { mixins, colors, fonts, sizes } from '../components/css-variables'
+import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-variables'
 
 
 const UpdateInfoForm = () =>  {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setContactInfo } = actions;
   
-  useEffect(() => {
+  /*useEffect(() => {
     setContactInfo({
       firstname: "Jakey",
       lastname: "Jacobs",
@@ -20,11 +20,11 @@ const UpdateInfoForm = () =>  {
       undergrad: '1993',
       postgrad: '1995',
     });
-  }, [])
+  }, [])*/
 
-  useEffect(() => {
+  /*useEffect(() => {
     console.log(state)
-  }, [state])
+  }, [state])*/
 
 
  const renderCurrentStep = () => {
@@ -79,9 +79,13 @@ const StyledUpdateInfoForm = styled.div`
 form, .form-btns, .disclaimer{
   max-width: 712px;
   margin: 0 auto;
+  padding: 0 2rem;
+  @media screen and ${breakpoints.tabletL} {
+    padding: 0;
+ }
 }
 form{
-  margin-top: 24px;
+  margin-top: 58px;
   legend{
     text-transform: uppercase;
     margin-bottom: 12px;
@@ -101,17 +105,20 @@ form{
     height: 48px;
     padding-left: 12px;
   }
-  label.half, input.half  {
-    width: 49%;
-    display: inline-block;
-  }
-  label.leftMargin{
-    margin-left: 2%;
-  }
-  label.third, input.third  {
-    width: 30%;
-    display: inline-block;
-  }
+  @media screen and ${breakpoints.tabletS} {
+    label.half, input.half  {
+      width: 49%;
+      display: inline-block;
+    }
+    label.leftMargin{
+      margin-left: 2%;
+    }
+    label.third, input.third  {
+      width: 30%;
+      display: inline-block;
+    }
+ }
+  
   &.select-steps{
     text-align:center;
     input{
@@ -120,13 +127,15 @@ form{
       height:auto;
     }
   }
+  
 }
 
 .form-btns{
   margin: 58px auto;
   text-align: center;
   button{
-    display: inline-block;
+    display: block;
+    width: 100%;
     min-width: 6.5rem;
     font-family: ${fonts.verlag};
     font-style: normal;
@@ -177,6 +186,12 @@ form{
             -webkit-transform: rotate(135deg);
             margin-right:8px;
       }
+    }
+    @media screen and ${breakpoints.mobileL} {
+      width: auto;
+    }
+    @media screen and ${breakpoints.tabletS} {
+      display: inline-block;
     }
 
   }
