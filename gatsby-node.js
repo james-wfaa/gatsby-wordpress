@@ -77,9 +77,16 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         )
       }
 
+      let updatedPath;
+      if (nodeType === 'Post') {
+        updatedPath = `/news${uri}`
+      } else {
+        updatedPath = uri
+      }
+
       await actions.createPage({
         component: resolve(contentTypeTemplate),
-        path: uri,
+        path: updatedPath,
         context: {
           id,
           nextPage: (contentNodes[i + 1] || {}).id,
