@@ -37,20 +37,21 @@ const SidebarMenu = ({name, menuItems, width}) => {
       margin: 0;
       padding-top:8px;
       padding-bottom: 8px;
-      &:hover {
-        font-weight: bold;
-      }
       a {
         text-decoration: none;
         color: ${colors.navMenuBlack};
         font-size: 18px;
+        &:hover {
+          color: ${colors.linkTextHover};
+        }
+        &.active {
+          font-weight: bold;
+        }
       }
     }
     @media screen and ${breakpoints.laptopS} {
       border: none;
       margin-top: 7px; // hack to get menu title & page title vertically aligned (curse you, Mrs. Eaves!)
-      margin-right: 32px;
-      margin-left: 32px;
       padding: 0;
     }
     @media screen and ${breakpoints.laptopSMax}{
@@ -96,7 +97,7 @@ const SidebarMenu = ({name, menuItems, width}) => {
   const items = menuItems.map(item => {
     return (
       <li>
-        <a href={item.path}>{item.label}</a>
+        <a href={item.path} className={item.path == (typeof window !== "undefined" && window.location.pathname) ? 'active': ''}>{item.label}</a>
       </li>
     )
   })

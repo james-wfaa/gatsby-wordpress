@@ -1,13 +1,31 @@
 import React from "react"
 import { graphql } from "gatsby"
 import WpDefaultPage from "../../components/template-parts/wordpress-page"
+import WpGroupPage from "../../components/template-parts/wordpress-group-page"
 import WpProductPage from "../../components/template-parts/wordpress-product-page"
 import WpAggregatePage from "../../components/template-parts/wordpress-aggregate-page"
 
 export default ({ data }) => {
   const { page } = data
   const { template, ancestors } = page
+
+
   if (ancestors) {
+
+    const groupSlug = 'groups'
+    // this page has a parent
+
+    
+    const topParent = ancestors.nodes[ancestors.nodes.length -1]
+    if (topParent?.slug && topParent.slug === groupSlug) {
+      console.log('this is a group page or subpage')
+      if (ancestors.nodes.length > 1) {
+        console.log('this is a group sub page')
+      } else {
+        console.log('this is a group main page')
+        return <WpGroupPage page={page} />
+      }
+    }
     
   }
   if (template) {
@@ -166,6 +184,41 @@ export const query = graphql`
               }
             }
             name
+          }
+        }
+      }
+      groups {
+        nodes {
+          slug
+          events {
+            nodes {
+              title
+              startDate
+              endDate
+              venue {
+                title
+                city
+                state
+              }
+              excerpt
+              featuredImage {
+                node {
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth: 712) {
+                        base64
+                        tracedSVG
+                        srcWebp
+                        srcSetWebp
+                        originalImg
+                        originalName
+                        aspectRatio
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
