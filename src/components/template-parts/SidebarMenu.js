@@ -97,7 +97,7 @@ const SidebarMenu = ({name, menuItems, width}) => {
   const items = menuItems.map(item => {
     return (
       <li>
-        <a href={item.path} className={item.path == window.location.pathname ? 'active': ''}>{item.label}</a>
+        <a href={item.path} className={item.path == (typeof window !== "undefined" && window.location.pathname) ? 'active': ''}>{item.label}</a>
       </li>
     )
   })
