@@ -1,7 +1,6 @@
 import React, { useContext } from "react"
 //import { useForm } from "react-hook-form"
 import IntroPageSection from "../../page-sections/IntroPageSection"
-
 import { sizes, breakpoints, mixins, colors } from '../../css-variables'
 import Buttons from './FormButtons'
 import { AppContext } from "../../../context/AppContext"

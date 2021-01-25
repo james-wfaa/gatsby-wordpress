@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import { useForm } from "react-hook-form"
-import formHelpers from '../form-helpers'
+import { StyledError } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import { colors } from '../../css-variables'
 import Buttons from './FormButtons'
@@ -44,6 +44,8 @@ const ContactInfo = () => {
                     name="firstname"
                     id="firstname"
                     defaultValue={state.contactInfo.firstname}
+                    aria-label="First Name"
+                    aria-required="true"
                     ref={register({
                       required: { value: true, message: "First Name is required" },
                       minLength: {
@@ -67,6 +69,8 @@ const ContactInfo = () => {
                     type="text"
                     name="lastname"
                     id="lastname"
+                    aria-label="Last Name"
+                    aria-required="true"
                     defaultValue={state.contactInfo.lastname}
                     ref={register({
                       required: { value: true, message: "Last Name is required" },
@@ -89,6 +93,7 @@ const ContactInfo = () => {
                     type="text"
                     name="othernames"
                     id="othernames"
+                    aria-label="Other names"
                     defaultValue={state.contactInfo.othernames}
                     ref={register({
                       minLength: {
@@ -112,6 +117,8 @@ const ContactInfo = () => {
                     name="email"
                     id="email"
                     defaultValue={state.contactInfo.email}
+                    aria-label="Preferred email"
+                    aria-required="true"
                     ref={register({
                       required: {
                         value: true,
@@ -132,6 +139,7 @@ const ContactInfo = () => {
                     type="phone"
                     name="phone"
                     id="phone"
+                    aria-label="Phone Number"
                     defaultValue={state.contactInfo.phone}
                     ref={register({
                       pattern: {
@@ -150,6 +158,7 @@ const ContactInfo = () => {
                     name="undergrad"
                     id="undergrad"
                     maxLength="4"
+                    aria-label="Undergraduate Year (if applicable)"
                     defaultValue={state.contactInfo.undergrad}
                     ref={register({
                       pattern: {
@@ -168,6 +177,7 @@ const ContactInfo = () => {
                     name="postgrad"
                     id="postgrad"
                     maxLength="4"
+                    aria-label="Postgraduate Years (if applicable)"
                     defaultValue={state.contactInfo.postgrad}
                     ref={register({
                       pattern: {
@@ -180,7 +190,9 @@ const ContactInfo = () => {
                   <StyledError>{errors.postgrad.message}</StyledError>
                 )}
               </label>
-              <Buttons save />
+              <Buttons 
+                save
+                disabled={Object.keys(errors).length > 0 ? true : false} />
             </form>
         </div>
     )
@@ -188,15 +200,3 @@ const ContactInfo = () => {
 
 export default ContactInfo
 
-const StyledError = styled.p`
-  font-family: "Verlag A", "Verlag B";
-  font-style: normal;
-  margin: 0 auto;
-  padding: 0;
-  font-size: 16px;
-  position: relative;
-  color: ${colors.buttonRed};
-  position:absolute;
-  bottom:-24px;
-  font-size: 0.778rem;
-`

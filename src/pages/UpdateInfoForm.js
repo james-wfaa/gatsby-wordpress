@@ -7,6 +7,9 @@ import ContactInfo from "../components/update-info-form/pages/ContactInfo"
 import SelectSteps from "../components/update-info-form/pages/SelectSteps"
 import MailingAddress from "../components/update-info-form/pages/MailingAddress"
 import PhoneInfo from "../components/update-info-form/pages/PhoneInfo"
+import EmploymentInfo from "../components/update-info-form/pages/EmploymentInfo"
+import IdentityInfo from "../components/update-info-form/pages/IdentityInfo"
+import SpouseInfo from "../components/update-info-form/pages/SpouseInfo"
 import UpdateSuccess from "../components/update-info-form/pages/UpdateSuccess"
 import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-variables'
 import downCaret from './../../static/down-caret-red.png'
@@ -47,6 +50,24 @@ const UpdateInfoForm = () =>  {
         case 4:
             if(state.phoneStep){
               return <PhoneInfo />
+            } else{
+              setCurrentStep(1)
+            }
+        case 5:
+            if(state.employmentStep){
+              return <EmploymentInfo />
+            } else{
+              setCurrentStep(1)
+            }
+        case 6:
+            if(state.identityStep){
+              return <IdentityInfo />
+            } else{
+              setCurrentStep(1)
+            }
+        case 7:
+            if(state.lifeEventStep){
+              return <SpouseInfo />
             } else{
               setCurrentStep(1)
             }
@@ -108,6 +129,8 @@ form{
   }
   hr{
     margin-bottom: 0;
+    color: ${colors.formInputBorder};
+    height: 2px;
   }
   label, input  {
     display: block;
@@ -128,6 +151,8 @@ form{
     margin-top: 12px;
     height: 48px;
     padding-left: 12px;
+    border: 2px solid ${colors.formInputBorder};
+    border-radius: 0;
   }
   select {
     display: block;
@@ -155,7 +180,7 @@ form{
       margin-left: 2%;
     }
     label.third, input.third  {
-      width: 30%;
+      width: 32%;
       display: inline-block;
     }
  }
@@ -221,7 +246,7 @@ form{
     font-family: ${fonts.verlag};
     font-style: normal;
     font-size: ${sizes.s16};
-    line-height: ${sizes.s26};
+    line-height: ${sizes.s16};
     font-weight: bold;
     padding: ${sizes.s16};
     text-align: center;
@@ -250,14 +275,20 @@ form{
         box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
       }
       &:active {
-          background-color: ${colors.buttonActiveGrey};
+          background-color: ${colors.buttonHoverRed};
+      }
+      /*&.disabled {
+        background-color: grey;
+      }*/
+      &:disabled {
+        background-color: grey;
       }
     }
     &.back{
       border: 2px solid ${colors.buttonRed};
       background-color: ${colors.bgWhite};
       color: ${colors.buttonRed};
-      line-height: ${sizes.s22};
+      line-height: ${sizes.s12};
       &:before{
         content:'';
             border: solid ${colors.buttonRed};

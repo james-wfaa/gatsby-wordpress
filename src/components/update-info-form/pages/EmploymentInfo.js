@@ -8,10 +8,9 @@ import styled from "styled-components"
 import { AppContext } from "../../../context/AppContext"
 import countryList from "react-select-country-list"
 
-const MailingAddress = () => {
+const EmploymentInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setContactInfo } = actions;
-  const [countries, setCountries] = useState(countryList().getData())
 
   const { register, handleSubmit, watch, errors } = useForm({
     mode: "onChange",
@@ -20,16 +19,6 @@ const MailingAddress = () => {
     setContactInfo(data)
     setCurrentStep(1)
   }
-  const countryOptions = countries.map(country => {
-    if (country.value === "US") {
-      return (
-        <option value={country.value} selected>
-          {country.label}
-        </option>
-      )
-    }
-    return <option value={country.value}>{country.label}</option>
-  })
   
     let variantObject = {
       background_color: colors.formIntroBg,
@@ -40,33 +29,58 @@ const MailingAddress = () => {
       return (
         <div>
             <IntroPageSection
-              excerpt='Please update your address. You will have the option to update multiple addresses after clicking “Save and Continue”.'
+              excerpt='Please update your employment info and click “Save and Continue”.'
               heading='Update My Info'
               variantObject={variantObject}
               headingAlt
               headingCompact
             />
             <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
-              <legend>Mailing Address</legend>
+              <legend>Employment Info</legend>
               <hr></hr>
-              <label htmlFor="addresstype" className="half select-dropdown">Address Type
-                <select name="country" /*onChange={e => handleCountryChange(e)}*/>
-                  <option value="home">Home</option>
-                </select>
-                {errors.addresstype && (
-                  <StyledError>{errors.addresstype.message}</StyledError>
+              <label htmlFor="bussinessname" className="half required">Business Name
+                <input
+                    type="text"
+                    name="bussinessname"
+                    id="bussinessname"
+                    //defaultValue={state.employmentInfo.bussinessname}
+                    ref={register({
+                      minLength: {
+                        value: 2,
+                        message: "Must be at least 2 letters",
+                      },
+                      pattern: {
+                        value: /^[A-Za-z @-]+$/,
+                        message: "Name must not contain numbers",
+                      },
+                    })}
+                />
+                {errors.bussinessname && (
+                  <StyledError>{errors.bussinessname.message}</StyledError>
                 )}
               </label>
-              
-              <label htmlFor="lastname" className="half leftMargin required">Country
-                <select name="country" /*onChange={e => handleCountryChange(e)}*/>
-                  {countryOptions}
-                </select>
-                {errors.lastname && (
-                  <StyledError>{errors.lastname.message}</StyledError>
+              <label htmlFor="jobtitle" className="half leftMargin">Job Title
+                <input
+                    type="text"
+                    name="jobtitle"
+                    id="jobtitle"
+                    //defaultValue={state.employmentInfo.jobtitle}
+                    ref={register({
+                      minLength: {
+                        value: 2,
+                        message: "Must be at least 2 letters",
+                      },
+                      pattern: {
+                        value: /^[A-Za-z @-]+$/,
+                        message: "Name must not contain numbers",
+                      },
+                    })}
+                />
+                {errors.jobtitle && (
+                  <StyledError>{errors.jobtitle.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="streetaddress">Street Address
+              <label htmlFor="streetaddress">Business Street Address
                 <span class="required">*</span>
                 <input
                     type="text"
@@ -169,4 +183,4 @@ const MailingAddress = () => {
     )
 }
 
-export default MailingAddress
+export default EmploymentInfo

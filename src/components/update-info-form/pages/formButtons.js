@@ -3,7 +3,7 @@ import React, { useContext } from "react"
 import styled from 'styled-components'
 import { AppContext } from "../../../context/AppContext"
 
-const FormButtons = ({ next, back, save, finish }) => {
+const FormButtons = ({ next, back, save, finish, disabled }) => {
     const { state, actions } = useContext(AppContext);
     const { setCurrentStep, setContactInfo, } = actions;
 
@@ -13,7 +13,7 @@ const FormButtons = ({ next, back, save, finish }) => {
     const handleBackBtn = () => {
         setCurrentStep(-1)
       }
-    
+    //const disabledClass = disabled ? `disabled` : ''
 
  return  (
         <div className="form-btns">
@@ -28,6 +28,7 @@ const FormButtons = ({ next, back, save, finish }) => {
                 type="submit"
                 name="savebutton"
                 id="savebutton"
+                disabled={disabled}
                 className="save">Save and Continue</button>}
             { next && <button className="next" onClick={() => handleNextBtn()}>Save and Continue</button>}
         </div>

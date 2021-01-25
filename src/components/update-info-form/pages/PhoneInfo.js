@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import { useForm } from "react-hook-form"
-import formHelpers from '../form-helpers'
+import { StyledError } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import { colors } from '../../css-variables'
 import Buttons from './FormButtons'
@@ -139,16 +139,3 @@ const PhoneInfo = () => {
 }
 
 export default PhoneInfo
-
-const StyledError = styled.p`
-  font-family: "Verlag A", "Verlag B";
-  font-style: normal;
-  margin: 0 auto;
-  padding: 0;
-  font-size: 16px;
-  position: relative;
-  color: ${colors.buttonRed};
-  position:absolute;
-  bottom:-24px;
-  font-size: 0.778rem;
-`
