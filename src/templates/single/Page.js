@@ -17,7 +17,7 @@ export default ({ data }) => {
 
     
     const topParent = ancestors.nodes[ancestors.nodes.length -1]
-    if (topParent.slug === groupSlug) {
+    if (topParent?.slug && topParent.slug === groupSlug) {
       console.log('this is a group page or subpage')
       if (ancestors.nodes.length > 1) {
         console.log('this is a group sub page')
