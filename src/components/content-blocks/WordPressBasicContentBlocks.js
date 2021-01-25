@@ -97,6 +97,9 @@ hr.wp-block-separator {
     @media screen and ${breakpoints.tabletS} {
         display: flex;
         max-width: 536px;
+        .core-column{
+            margin-right: 24px;
+        }
     }
     @media screen and ${breakpoints.laptopS} {
         max-width: 712px;
@@ -105,7 +108,6 @@ hr.wp-block-separator {
         flex: 1 1 auto;
         flex-shrink: 1;
         min-width: 50px;
-        margin-right: 24px;
     }
 }
 

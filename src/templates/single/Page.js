@@ -272,6 +272,7 @@ export const query = graphql`
             name
             originalContent
             dynamicContent
+            saveContent
           }
         }
       }

@@ -94,13 +94,22 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         const productcard = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
                         return (<div dangerouslySetInnerHTML={{__html: productcard}} />)
                     case "core/buttons":
-                        console.log("Found a button");
                         if(block.innerBlocks && block.innerBlocks[0].originalContent){
                             let innerRenderedBlocks = [];
                             block.innerBlocks.forEach((innerBlock) => {
                                 innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />) 
                             })
                             console.log("blocks: " + innerRenderedBlocks)
+                            return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
+                        }
+                        break
+                    case "core/columns":
+                        if(block.innerBlocks && block.innerBlocks[0].originalContent){
+                            let innerRenderedBlocks = [];
+                            block.innerBlocks.forEach((innerBlock) => {
+                                console.log("Columns in" + innerBlock.saveContent);
+                                innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />) 
+                            })
                             return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
                         }
                         break
