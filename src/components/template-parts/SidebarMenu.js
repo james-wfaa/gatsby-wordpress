@@ -95,7 +95,7 @@ const SidebarMenu = ({name, menuItems, width}) => {
 
   const items = menuItems.map(item => {
     return (
-      <li>
+      <li key={item.path}>
         <a href={item.path}>{item.label}</a>
       </li>
     )

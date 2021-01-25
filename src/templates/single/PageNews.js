@@ -10,7 +10,7 @@ import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 
 function WordPressPage({ data }) {
   const { page, posts } = data
-  const { title, excerpt, content, blocks, featuredImage, storyCategories, gridDetails } = page
+  const { title, excerpt, blocks, featuredImage, storyCategories, gridDetails } = page
 
   const { storycategoriesinner: categories } = storyCategories
   const { backgroundImage } = gridDetails
