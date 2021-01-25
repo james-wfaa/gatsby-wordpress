@@ -105,6 +105,7 @@ hr.wp-block-separator {
         flex: 1 1 auto;
         flex-shrink: 1;
         min-width: 50px;
+        margin-right: 24px;
     }
 }
 
