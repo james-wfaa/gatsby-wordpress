@@ -9,6 +9,7 @@ import MailingAddress from "../components/update-info-form/pages/MailingAddress"
 import PhoneInfo from "../components/update-info-form/pages/PhoneInfo"
 import UpdateSuccess from "../components/update-info-form/pages/UpdateSuccess"
 import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-variables'
+import downCaret from './../../static/down-caret-red.png'
 
 
 const UpdateInfoForm = () =>  {
@@ -139,7 +140,9 @@ form{
     -webkit-appearance: none; /* Remove default arrow */
     -moz-appearance: none;    /* Remove default arrow */
     appearance: none;         /* Remove default arrow */
-    background-image: url(...);
+    background-image: url(${downCaret});
+    background-repeat:no-repeat;
+    background-position: 96% 50%; 
   }
   
   
@@ -254,6 +257,7 @@ form{
       border: 2px solid ${colors.buttonRed};
       background-color: ${colors.bgWhite};
       color: ${colors.buttonRed};
+      line-height: ${sizes.s22};
       &:before{
         content:'';
             border: solid ${colors.buttonRed};
