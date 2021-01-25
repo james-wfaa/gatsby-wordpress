@@ -100,10 +100,12 @@ const StyledUpdateInfoForm = styled.div`
 form, .form-btns, .disclaimer{
   max-width: 712px;
   margin: 0 auto;
-  padding: 0 2rem;
   @media screen and ${breakpoints.tabletL} {
     padding: 0;
  }
+}
+form, .disclaimer{
+  padding: 0 2rem;
 }
 form{
   margin-top: 58px;
@@ -161,7 +163,7 @@ form{
     margin-top: 12px;
     height: 48px;
     padding-left: 12px;
-    border: 1px solid grey;
+    border: 2px solid ${colors.formInputBorder};
     -webkit-appearance: none; /* Remove default arrow */
     -moz-appearance: none;    /* Remove default arrow */
     appearance: none;         /* Remove default arrow */
@@ -252,8 +254,9 @@ form{
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;
-    margin: ${sizes.s24} 0 0 ;
+    margin: ${sizes.s24} auto 0 ;
     border:none;
+    max-width:310px;
     &:hover {
       cursor:pointer;
     }
@@ -285,7 +288,7 @@ form{
       }
     }
     &.back{
-      border: 2px solid ${colors.buttonRed};
+      border: 1px solid ${colors.buttonRed};
       background-color: ${colors.bgWhite};
       color: ${colors.buttonRed};
       line-height: ${sizes.s12};
@@ -299,14 +302,12 @@ form{
             -webkit-transform: rotate(135deg);
             margin-right:8px;
       }
-    }
-    &#savebutton:valid button {
-      background : green;
+      @media screen and ${breakpoints.tabletS} {
+        margin-right: 40px;
+      }
     }
     @media screen and ${breakpoints.tabletS} {
       width: auto;
-    }
-    @media screen and ${breakpoints.tabletS} {
       display: inline-block;
     }
 

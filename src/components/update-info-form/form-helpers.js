@@ -1,8 +1,10 @@
+//import React, { useState } from "react"
 import postalCodes from "postal-codes-js"
-import countryList from "react-select-country-list"
+//import countryList from "react-select-country-list"
 import { colors } from '../css-variables'
 import styled from "styled-components"
-/*
+
+/*const [countries, setCountries] = useState(countryList().getData())
 export const countryOptions = countries.map(country => {
     if (country.value === "US") {
       return (
@@ -12,7 +14,7 @@ export const countryOptions = countries.map(country => {
       )
     }
     return <option value={country.value}>{country.label}</option>
-  })*/
+})*/
 
 export const validatePostalCode = (value, country) => {
     return postalCodes.validate(country, value)

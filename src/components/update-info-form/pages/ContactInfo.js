@@ -11,7 +11,7 @@ const ContactInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setContactInfo } = actions;
 
-  const { register, handleSubmit, watch, errors } = useForm({
+  const { register, handleSubmit, watch, errors, formState: {isDirty, isValid } } = useForm({
     mode: "onChange",
   })
   const UpdateContactInfo = data =>{
@@ -192,7 +192,8 @@ const ContactInfo = () => {
               </label>
               <Buttons 
                 save
-                disabled={Object.keys(errors).length > 0 ? true : false} />
+                //disabled={Object.keys(errors).length > 0 ? true : false} />
+                disabled={!isDirty || !isValid } />
             </form>
         </div>
     )
