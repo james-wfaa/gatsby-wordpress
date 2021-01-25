@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { colors, sizes, breakpoints } from '../css-variables'
+import { fonts, colors, sizes, breakpoints } from '../css-variables'
 import CardD from './CardD'
 import diagRightSVG from '../../svg/Diagonals_Card_Corners_White_bottom-rght_2x.svg'
 import diagLeftSVG from '../../svg/Diagonals_Card_Corners_White_top-left_2x.svg'
@@ -27,13 +27,13 @@ const PromoCardD = ({ className, title, url, isNav = false })=> {
 }
 
 const StyledPromoCardD = styled(PromoCardD)`
+font-family: ${fonts.eaves};
 background-color: ${colors.promoRed};
 height: 100%;
 width: 100%;
 position: absolute;
 text-decoration: none;
 display: block;
-
 
 &__wrapper {
     position: relative;
@@ -175,7 +175,7 @@ display: block;
     }
     &:visited {
         .title{
-            color: ${colors.linkVisitedGrey};
+            color: ${colors.titleColor};
         }
     }
     

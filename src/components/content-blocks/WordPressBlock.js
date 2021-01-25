@@ -72,6 +72,7 @@ margin-right: auto;
       }
 }
 
+
 >h2,
 >h3{
     font-family: ${fonts.eaves};
@@ -152,6 +153,29 @@ a {
     }
 
 }
+
+&.core-button{
+    width: 100%;
+    max-width: 500px;
+    min-width: 0px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: ${sizes.s24};
+    justify-content: center;
+    .wp-block-button {
+        ${mixins.buttons};
+        a{
+            color: ${colors.titleWhite};
+        }
+        
+    }
+    @media screen and ${breakpoints.tabletS} {
+        margin: ${sizes.s12};
+        width: auto;
+    }  
+}
+
 .wp-block-quote {
     color: ${colors.badgerRed};
     font-family: ${fonts.eavesNarrow};

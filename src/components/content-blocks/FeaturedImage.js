@@ -18,11 +18,9 @@ import Img from "gatsby-image"
 const FeaturedImage = ({ className, featuredImage, event, size }) => {
   const classes = (event) ? `${className} ${className}--event` : className
   const imgSizeClass = (718 <= size && size < 1080) ? `mediumImg` : (size < 718) ? `smallImg` : ''
-  const smImgStyleOverride = (size < 718) ? {maxWidth: size + 'px', float: 'left', margin: 12+'px',} : null
-  
 
   return (
-    <div className={`${classes} ${imgSizeClass}`} style={smImgStyleOverride}>
+    <div className={`${classes} ${imgSizeClass}`} >
       
       <Img fluid={featuredImage.localFile.childImageSharp.fluid} />
       { featuredImage.caption && (
@@ -49,9 +47,12 @@ margin: ${sizes.s58} 0;
   max-width:712px;
   margin: 3.222rem auto;
 }
-&.smallImg img{
-  width: auto;
-  height: auto;
+&.smallImg{
+  max-width: ${props => props.size + `px`};
+  margin: 5px 12px 12px 0;
+  @media screen and ${breakpoints.tablet} {
+    float: left; 
+  }
 }
 
 @media screen and ${breakpoints.tabletS} {
