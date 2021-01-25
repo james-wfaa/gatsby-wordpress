@@ -29,7 +29,7 @@ const FormButtons = ({ next, back, save, finish }) => {
                 name="savebutton"
                 id="savebutton"
                 className="save">Save and Continue</button>}
-            { next && <button className="next" onClick={() => handleNextBtn()}>Go Back</button>}
+            { next && <button className="next" onClick={() => handleNextBtn()}>Save and Continue</button>}
         </div>
     )
 }

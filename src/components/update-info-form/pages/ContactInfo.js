@@ -18,18 +18,7 @@ const ContactInfo = () => {
     setContactInfo(data)
     setCurrentStep(1)
   }
-  const StyledError = styled.p`
-  font-family: "Verlag A", "Verlag B";
-  font-style: normal;
-  margin: 0 auto;
-  padding: 0;
-  font-size: 16px;
-  position: relative;
-  color: ${colors.buttonRed};
-  position:absolute;
-  bottom:-24px;
-  font-size: 0.778rem;
-`
+  
     let variantObject = {
       background_color: colors.formIntroBg,
       color: colors.bgRed,
@@ -45,10 +34,11 @@ const ContactInfo = () => {
               headingAlt
               headingCompact
             />
-            <form onSubmit={handleSubmit(UpdateContactInfo)}>
+            <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
               <legend>Contact Information</legend>
               <hr></hr>
               <label htmlFor="firstname" className="half required">First Name
+                <span className="required">*</span>
                 <input
                     type="text"
                     name="firstname"
@@ -72,6 +62,7 @@ const ContactInfo = () => {
               </label>
               
               <label htmlFor="lastname" className="half leftMargin required">Last Name
+                <span className="required">*</span>
                 <input
                     type="text"
                     name="lastname"
@@ -115,6 +106,7 @@ const ContactInfo = () => {
                 )}
               </label>
               <label htmlFor="email" className="half required">Preferred Email
+                <span className="required">*</span>
                 <input
                     type="email"
                     name="email"
@@ -195,3 +187,16 @@ const ContactInfo = () => {
 }
 
 export default ContactInfo
+
+const StyledError = styled.p`
+  font-family: "Verlag A", "Verlag B";
+  font-style: normal;
+  margin: 0 auto;
+  padding: 0;
+  font-size: 16px;
+  position: relative;
+  color: ${colors.buttonRed};
+  position:absolute;
+  bottom:-24px;
+  font-size: 0.778rem;
+`

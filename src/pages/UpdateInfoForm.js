@@ -5,6 +5,9 @@ import Layout from "../components/layout"
 import { AppContext } from "../context/AppContext"
 import ContactInfo from "../components/update-info-form/pages/ContactInfo"
 import SelectSteps from "../components/update-info-form/pages/SelectSteps"
+import MailingAddress from "../components/update-info-form/pages/MailingAddress"
+import PhoneInfo from "../components/update-info-form/pages/PhoneInfo"
+import UpdateSuccess from "../components/update-info-form/pages/UpdateSuccess"
 import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-variables'
 
 
@@ -26,36 +29,31 @@ const UpdateInfoForm = () =>  {
     console.log(state)
   }, [state])*/
 
-
  const renderCurrentStep = () => {
      switch(state.currentStep){
-       case 1:
-          console.log(state) 
-          return <ContactInfo />
-       case 2:
-        console.log(state) 
-        return <SelectSteps />
-       case 3:
-         return <SelectSteps />
+        case 1:
+            console.log(state) 
+            return <ContactInfo />
+        case 2:
+            console.log(state) 
+            return <SelectSteps />
+        case 3:
+            if(state.addressStep){
+              return <MailingAddress />
+            } else{
+              setCurrentStep(1)
+            }
+        case 4:
+            if(state.phoneStep){
+              return <PhoneInfo />
+            } else{
+              setCurrentStep(1)
+            }
+        case 8:
+            return <UpdateSuccess />
+        
      }
    }
-
-  /*const handleInputChange = (event) => {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
-    // this.setState({
-    //   [name]: value
-    // });
-    // if (this.state.currentStep === 1){
-    //   this.setState({
-    //     contactInfo:{
-    //       [name]: value
-    //     }
-    //   });
-    // }
-  }*/
 
   const onSubmit = (data) => {
     console.log(data)
@@ -77,7 +75,6 @@ const StyledUpdateInfoForm = styled.div`
 .excerpt{
   color: ${colors.copyText}
 }
-
 form, .form-btns, .disclaimer{
   max-width: 712px;
   margin: 0 auto;
@@ -118,8 +115,11 @@ form{
   label{
     margin-top: 24px;
     position:relative;
-    &.required:before {
+    /*&.required:before {
       content:" *";
+      color: ${colors.buttonRed};
+    }*/
+    span.required{
       color: ${colors.buttonRed};
     }
   }
@@ -128,6 +128,21 @@ form{
     height: 48px;
     padding-left: 12px;
   }
+  select {
+    display: block;
+    width:100%;
+    border-radius: 0;
+    margin-top: 12px;
+    height: 48px;
+    padding-left: 12px;
+    border: 1px solid grey;
+    -webkit-appearance: none; /* Remove default arrow */
+    -moz-appearance: none;    /* Remove default arrow */
+    appearance: none;         /* Remove default arrow */
+    background-image: url(...);
+  }
+  
+  
   @media screen and ${breakpoints.tabletS} {
     label.half, input.half  {
       width: 49%;
@@ -191,7 +206,6 @@ form{
       box-shadow: 0 0px 8px #5e9ed6;
     }
   }
-  
 }
 
 .form-btns{
@@ -250,6 +264,9 @@ form{
             -webkit-transform: rotate(135deg);
             margin-right:8px;
       }
+    }
+    &#savebutton:valid button {
+      background : green;
     }
     @media screen and ${breakpoints.tabletS} {
       width: auto;
