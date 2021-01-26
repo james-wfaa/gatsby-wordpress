@@ -28,7 +28,7 @@ const EventsList = (props) => {
 
 
   return(
-  <Layout noborder>
+  <Layout title="Filtered Events" noborder>
     <SearchResults
       indices={[{name: "All"}]}
       results={false}

@@ -10,11 +10,9 @@ export default ({ data }) => {
   const { template, ancestors } = page
 
 
-  if (ancestors) {
+  if (ancestors) { // this page has a parent
 
     const groupSlug = 'groups'
-    // this page has a parent
-
     
     const topParent = ancestors.nodes[ancestors.nodes.length -1]
     if (topParent?.slug && topParent.slug === groupSlug) {
@@ -58,8 +56,35 @@ export const query = graphql`
           id
           slug
           link
+          ... on WpPage {
+            id
+            title
+            link
+          }
+          ... Children
+          template {
+            ... on WpDefaultTemplate {
+              templateName
+            }
+            ... on WpTemplate_AggregateProductPage {
+              templateName
+            }
+            ... on WpTemplate_HomePage {
+              templateName
+            }
+            ... on WpTemplate_TopLevelPage {
+              templateName
+            }
+            ... on WpProductTemplate {
+              templateName
+            }
+            ... on WpGeneralTemplate {
+              templateName
+            }
+          }
         }
       }
+      ... Children
       template {
         ... on WpDefaultTemplate {
           templateName

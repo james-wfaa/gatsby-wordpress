@@ -32,7 +32,7 @@ const WordPressEmailPage = ({ className, data }) => {
   }, [])
 
   return (
-    <Layout>
+    <Layout title={title}>
       <div className={`${className}`}>
         <div className="col col--copy">
         <PageSection heading={title} leftAlign headingCompact onlyChild>

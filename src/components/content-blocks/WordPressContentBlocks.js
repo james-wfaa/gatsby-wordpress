@@ -11,6 +11,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
     const staggerBlocks = (stagger) 
         ? blocks.map((block) => {
             block.stagger = true
+            block.key = block.id
             return block
         })
         : blocks

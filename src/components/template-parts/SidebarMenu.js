@@ -3,7 +3,9 @@ import styled from "styled-components"
 import { colors, sizes, breakpoints } from "../css-variables"
 import { useWindowSize } from "../hooks"
 
-const SidebarMenu = ({name, menuItems, width}) => {
+const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
+
+  console.log(name)
   const [open, setOpen] = useState(false)
   const menuMargin = open ? `32px` : 0;
   const StyledMenu = styled.div`
@@ -87,6 +89,13 @@ const SidebarMenu = ({name, menuItems, width}) => {
     @media screen and ${breakpoints.laptopS} {
       text-align: left;
     }
+    a {
+      color: ${colors.buttonRed};
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   `
   useEffect(() => {
     setOpen(width > 1200)
@@ -108,7 +117,11 @@ const SidebarMenu = ({name, menuItems, width}) => {
         condition={width < 1200}
         wrap={children => <ModalHandler onClick={() => setOpen(!open)}>{children}</ModalHandler>}
       >
-        <StyledHeader className={open ? `open` : null}>{name}</StyledHeader>
+        <StyledHeader className={open ? `open` : null}>
+          { link && (<a href={link}>{name}</a>)
+          }
+          { !link && ({name} )}
+        </StyledHeader>
       </ConditionalWrap>
         {open &&
           <ul>
