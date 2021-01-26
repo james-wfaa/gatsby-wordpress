@@ -75,3 +75,73 @@ export const shortDate = (date) => {
   return `${month} ${dd}`
 }
 
+export const membershipFeeCalc = (graduate, age, type) => {
+  const fees = {
+    full: 0,
+    installments: 0,
+    oneYear: 0,
+    twoYear: 0,
+  }
+  if (graduate) {
+    if (type === "individual") {
+      if (age) {
+        fees.full = 550;
+        fees.installments = 29;
+        fees.oneYear = 45;
+        fees.twoYear = 79;
+        // gradYes & ageYes & individual
+      } else {
+        fees.full = 650;
+        fees.installments = 34;
+        fees.oneYear = 25;
+        fees.twoYear = 44;
+        // gradYes & ageNo & individual
+      }
+    } else {
+      if (age) {
+        fees.full = 650;
+        fees.installments = 34;
+        fees.oneYear = 55;
+        fees.twoYear = 94;
+        // gradYes & ageYes & joint
+      } else {
+        fees.full = 750;
+        fees.installments = 39;
+        fees.oneYear = 35;
+        fees.twoYear = 59;
+        // gradYes & ageNo & joint
+      }
+    }
+  } else {
+    if (type === "individual") {
+      if (age) {
+        fees.full = 550;
+        fees.installments = 29;
+        fees.oneYear = 45;
+        fees.twoYear = 79;
+        // gradNo & ageYes & individual
+      } else {
+        fees.full = 790;
+        fees.installments = 41;
+        fees.oneYear = 55;
+        fees.twoYear = 94;
+        // gradNo & ageNo & individual
+      }
+    } else {
+      if (age) {
+        fees.full = 650;
+        fees.installments = 34;
+        fees.oneYear = 55;
+        fees.twoYear = 94;
+        // gradNo & ageYes & joint
+      } else {
+        fees.full = 890;
+        fees.installments = 46;
+        fees.oneYear = 65;
+        fees.twoYear = 109;
+        // gradNo & ageNo & joint
+      }
+    }
+  }
+  return fees;
+}
