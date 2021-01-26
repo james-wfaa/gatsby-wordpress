@@ -49,6 +49,9 @@ const MembershipForm = () => {
   }
 
   const handleClear = () => {
+    setMembershipGraduate(null);
+    setMembershipAge(null);
+    setMembershipType(null);
     setDisabled(true);
     setShowValues(false);
   }
@@ -88,11 +91,11 @@ const MembershipForm = () => {
               <h3>1.</h3>
               <p>Did you graduate from UW Madison within the last five years?</p>
               <StyledCheckbox>
-                <input id="graduateYes" name="graduate" value={true} type="radio" onChange={(e) => onGraduateChanged(e)} />
+                <input id="graduateYes" name="graduate" checked={state.membershipGraduate} value={true} type="radio" onChange={(e) => onGraduateChanged(e)} />
                 <label for="graduateYes">Yes</label>
               </StyledCheckbox>
               <StyledCheckbox>
-                <input id="graduateNo" name="graduate" value={false} type="radio" onChange={(e) => onGraduateChanged(e)}/>
+                <input id="graduateNo" name="graduate" checked={state.membershipGraduate !== null && !state.membershipGraduate} value={false} type="radio" onChange={(e) => onGraduateChanged(e)}/>
                 <label for="graduateNo">No</label>
               </StyledCheckbox>
             </FormSection>
@@ -100,11 +103,11 @@ const MembershipForm = () => {
               <h3>2.</h3>
               <p>Are you 65 years of age or over?</p>
               <StyledCheckbox>
-                <input id="ageYes" name="age" value={true} type="radio" onChange={(e) => onAgeChanged(e)}/>
+                <input id="ageYes" name="age" checked={state.membershipAge} value={true} type="radio" onChange={(e) => onAgeChanged(e)}/>
                 <label for="ageYes">Yes</label>
               </StyledCheckbox>
               <StyledCheckbox>
-                <input id="ageNo" name="age" value={false} type="radio" onChange={(e) => onAgeChanged(e)}/>
+                <input id="ageNo" name="age" checked={state.membershipAge !== null && !state.membershipAge} value={false} type="radio" onChange={(e) => onAgeChanged(e)}/>
                 <label for="ageNo">No</label>
               </StyledCheckbox>
             </FormSection>
@@ -112,11 +115,11 @@ const MembershipForm = () => {
               <h3>3.</h3>
               <p>What type of member option are you looking for?</p>
               <StyledCheckbox>
-                <input id="individual" name="accountType" value="individual" type="radio" onChange={(e) => onMembershipChanged(e)}/>
+                <input id="individual" name="accountType" checked={state.membershipType === 'individual'} value="individual" type="radio" onChange={(e) => onMembershipChanged(e)}/>
                 <label for="individual">Individual</label>
               </StyledCheckbox>
               <StyledCheckbox>
-                <input id="joint" name="accountType" value="joint" type="radio" onChange={(e) => onMembershipChanged(e)}/>
+                <input id="joint" name="accountType" checked={state.membershipType === 'joint'} value="joint" type="radio" onChange={(e) => onMembershipChanged(e)}/>
                 <label for="joint">Joint</label>
               </StyledCheckbox>
             </FormSection>
