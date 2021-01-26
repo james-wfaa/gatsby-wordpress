@@ -18,19 +18,19 @@ const FormButtons = ({ next, back, save, finish, disabled }) => {
  return  (
         <div className="form-btns">
             { back && <button className="back" onClick={() => handleBackBtn()}>Go Back</button>}
-            { finish && <input
+            { finish && <button
                 type="submit"
                 name="submitbutton"
                 id="submitbutton"
-                value="FINISH UPDATE"
-                />}
+                disabled={!disabled}
+                >Finish Update</button>}
             { save && <button 
                 type="submit"
                 name="savebutton"
                 id="savebutton"
                 disabled={disabled}
                 className="save">Save and Continue</button>}
-            { next && <button className="next" onClick={() => handleNextBtn()}>Save and Continue</button>}
+            { next && <button className="next" onClick={() => handleNextBtn()} disabled={disabled}>Save and Continue</button>}
         </div>
     )
 }

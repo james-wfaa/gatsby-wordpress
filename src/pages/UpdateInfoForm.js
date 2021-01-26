@@ -190,8 +190,11 @@ form{
   &.select-steps{
     fieldset{
       margin: 0 auto;
-      max-width: 390px;
       border:none;
+    }
+    .checkboxWrap{
+      margin: 0 auto;
+      max-width: 390px;
     }
     input[type='checkbox'] {
       position: absolute !important;
@@ -284,7 +287,7 @@ form{
         background-color: grey;
       }*/
       &:disabled {
-        background-color: grey;
+        background-color: ${colors.disabledButtonGrey};
       }
     }
     &.back{
@@ -301,6 +304,16 @@ form{
             transform: rotate(135deg);
             -webkit-transform: rotate(135deg);
             margin-right:8px;
+      }
+      @media screen and ${breakpoints.tabletS} {
+        margin-right: 40px;
+      }
+    }
+    &#submitbutton{
+      background-color: ${colors.buttonRed};
+      color: ${colors.titleWhite};
+      &:disabled {
+        background-color: ${colors.disabledButtonGrey};
       }
       @media screen and ${breakpoints.tabletS} {
         margin-right: 40px;

@@ -40,6 +40,12 @@ const SelectSteps = () => {
         console.log(data)
         //setCurrentStep(6)
       }
+
+    const disabledBtn = () => {
+        console.log('disabled')
+        return state.addressStep || state.phoneStep || state.employmentStep || state.identityStep || state.lifeEventStep
+        
+    }
   
     return (
         <div>
@@ -52,17 +58,19 @@ const SelectSteps = () => {
             />
             <form className="select-steps" onSubmit={handleSubmit(handleSubmit)}>
                 <fieldset>
-                    <input type="checkbox" name="address" id="address" checked={state.addressStep} onChange={()=>updateCheckbox(1)}/>
-                    <label htmlFor="address" selected>Mailing Address</label>
-                    <input type="checkbox" name="phone" id="phone" checked={state.phoneStep} onChange={()=>updateCheckbox(2)}/>
-                    <label htmlFor="phone" selected>Phone Number</label>
-                    <input type="checkbox" name="employment" id="employment" checked={state.employmentStep} onChange={()=>updateCheckbox(3)}/>
-                    <label htmlFor="employment" selected>Employment Information</label>
-                    <input type="checkbox" name="demographic" id="demographic" checked={state.identityStep} onChange={()=>updateCheckbox(4)} />
-                    <label htmlFor="demographic" selected>Demographic/Identity/Country Information</label>
-                    <input type="checkbox" name="spouse" id="spouse" checked={state.lifeEventStep} onChange={()=>updateCheckbox(5)} />
-                    <label htmlFor="spouse" selected>Spouse Update (Marriage/Divorce/Death)</label>
-                    <Buttons back finish next />
+                    <div className="checkboxWrap">
+                        <input type="checkbox" name="address" id="address" checked={state.addressStep} onChange={()=>updateCheckbox(1)}/>
+                        <label htmlFor="address" selected>Mailing Address</label>
+                        <input type="checkbox" name="phone" id="phone" checked={state.phoneStep} onChange={()=>updateCheckbox(2)}/>
+                        <label htmlFor="phone" selected>Phone Number</label>
+                        <input type="checkbox" name="employment" id="employment" checked={state.employmentStep} onChange={()=>updateCheckbox(3)}/>
+                        <label htmlFor="employment" selected>Employment Information</label>
+                        <input type="checkbox" name="demographic" id="demographic" checked={state.identityStep} onChange={()=>updateCheckbox(4)} />
+                        <label htmlFor="demographic" selected>Demographic/Identity/Country Information</label>
+                        <input type="checkbox" name="spouse" id="spouse" checked={state.lifeEventStep} onChange={()=>updateCheckbox(5)} />
+                        <label htmlFor="spouse" selected>Spouse Update (Marriage/Divorce/Death)</label>
+                    </div>
+                    <Buttons back finish next disabled={!(state.addressStep || state.phoneStep || state.employmentStep || state.identityStep || state.lifeEventStep)}/>
                 </fieldset>
             </form>
         </div>

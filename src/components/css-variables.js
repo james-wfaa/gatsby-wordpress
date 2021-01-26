@@ -109,9 +109,7 @@ export const colors = {
     captionBlack: baseColors.offBlack,
     formIntroBg: baseColors.lightestGrey,
     formInputBorder: baseColors.lightGrey,
-
-
-
+    disabledButtonGrey: baseColors.grey,
 
 }
 
