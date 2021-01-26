@@ -300,6 +300,11 @@ export const query = graphql`
           }
         }
       }
+      products {
+        nodes {
+          name
+        }
+      }
     }
   }
 `
