@@ -73,7 +73,6 @@ const UpdateInfoForm = () =>  {
             }
         case 8:
             return <UpdateSuccess />
-        
      }
    }
 
@@ -327,6 +326,7 @@ form{
   }
 
 }
+
 
 .disclaimer{
   margin-bottom: 128px;

@@ -4,6 +4,7 @@ import { StyledError } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import { colors } from '../../css-variables'
 import Buttons from './FormButtons'
+import ProgressBar from './ProgressBar'
 //import styled from "styled-components"
 import { AppContext } from "../../../context/AppContext"
 import countryList from "react-select-country-list"
@@ -46,6 +47,7 @@ const MailingAddress = () => {
               headingAlt
               headingCompact
             />
+            <ProgressBar progress={state.numberOfSteps} totalSteps={state.currentStep}/>
             <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
               <legend>Mailing Address</legend>
               <hr></hr>
@@ -67,7 +69,7 @@ const MailingAddress = () => {
                 )}
               </label>
               <label htmlFor="streetaddress">Street Address
-                <span class="required">*</span>
+                <span className="required">*</span>
                 <input
                     type="text"
                     name="streetaddress"
@@ -110,7 +112,7 @@ const MailingAddress = () => {
                 )}
               </label>
               <label htmlFor="city" className="third">City
-                <span class="required">*</span>
+                <span className="required">*</span>
                 <input
                     type="text"
                     name="city"
@@ -128,7 +130,7 @@ const MailingAddress = () => {
                 )}
               </label>
               <label htmlFor="postgrad" className="third leftMargin">State/Province/Region
-                <span class="required">*</span>
+                <span className="required">*</span>
                 <input
                     type="text"
                     name="postgrad"
@@ -146,7 +148,7 @@ const MailingAddress = () => {
                 )}
               </label>
               <label htmlFor="postgrad" className="third leftMargin">Zip/Postal Code
-                <span class="required">*</span>
+                <span className="required">*</span>
                 <input
                     type="text"
                     name="postgrad"

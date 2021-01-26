@@ -9,7 +9,7 @@ import { AppContext } from "../../../context/AppContext"
 
 const SelectSteps = () => {
     const { state, actions } = useContext(AppContext);
-    const { setAddressStep, setPhoneStep, setEmploymentStep, setIdentityStep, setLifeEventStep } = actions;
+    const { setAddressStep, setPhoneStep, setEmploymentStep, setIdentityStep, setLifeEventStep, setNumberOfSteps } = actions;
   
     const variantObject = {
         background_color: colors.formIntroBg,
@@ -20,20 +20,33 @@ const SelectSteps = () => {
     const updateCheckbox = ( stepNumber ) => {
         switch(stepNumber){
             case 1:
+                updateNumberOfSteps(!state.addressStep)
                 setAddressStep(!state.addressStep)
                 break;
             case 2:
+                updateNumberOfSteps(!state.phoneStep)
                 setPhoneStep(!state.phoneStep)
                 break;
             case 3:
+                updateNumberOfSteps(!state.employmentStep)
                 setEmploymentStep(!state.employmentStep)
                 break;
             case 4:
+                updateNumberOfSteps(!state.identityStep)
                 setIdentityStep(!state.identityStep)
                 break;
             case 5:
+                updateNumberOfSteps(!state.lifeEventStep)
                 setLifeEventStep(!state.lifeEventStep)
                 break;
+        }
+    }
+    const updateNumberOfSteps = (change) => {
+        console.log(change)
+        if (change === true){
+            setNumberOfSteps(1)
+        } else if (change === false){
+            setNumberOfSteps(-1)
         }
     }
     const handleSubmit = data =>{
