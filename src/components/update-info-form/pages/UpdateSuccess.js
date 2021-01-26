@@ -16,7 +16,7 @@ const UpdateSuccess = () => {
         scroll_color: colors.bgRed,
         text_align: `center`
     }
-    const updateCheckbox = ( stepNumber ) => {
+    /*const updateCheckbox = ( stepNumber ) => {
         switch(stepNumber){
             case 1:
                 setAddressStep(!state.addressStep)
@@ -34,11 +34,11 @@ const UpdateSuccess = () => {
                 setLifeEventStep(!state.lifeEventStep)
                 break;
         }
-    }
-    const handleSubmit = data =>{
+    }*/
+    /*const handleSubmit = data =>{
         console.log(data)
         //setCurrentStep(6)
-      }
+    }*/
   
     return (
         <div>
@@ -49,7 +49,7 @@ const UpdateSuccess = () => {
             headingAlt
             headingCompact
             />
-            <form className="select-steps" onSubmit={handleSubmit(handleSubmit)}>
+            <form>
                 <legend>Are you interested in receiving communications about any of the following?</legend>
                 <fieldset>
                     <input type="checkbox" name="affinity-list-1" id="affinity-list-1" /*checked={state.addressStep} onChange={()=>updateCheckbox(1)}*//>

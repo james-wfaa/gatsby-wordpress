@@ -3,7 +3,7 @@ import { at } from "lodash";
 const initialState = {
   searchstring: "",
   currentStep: 1,
-  numberOfSteps: 2,
+  numberOfSteps: [1, 2],
   contactInfo: {
     firstname: '',
     lastname: '',
@@ -22,7 +22,8 @@ const initialState = {
 const types = {
   SET_SEARCH_STRING: "SET_SEARCH_STRING",
   SET_CURRENT_STEP: "SET_CURRENT_STEP",
-  SET_NUMBER_OF_STEPS: "SET_NUMBER_OF_STEPS",
+  SET_NUMBER_OF_STEPS_ADD: "SET_NUMBER_OF_STEPS_ADD",
+  SET_NUMBER_OF_STEPS_DELETE: "SET_NUMBER_OF_STEPS_DELETE",
   SET_CONTACT_INFO: "SET_CONTACT_INFO",
   SET_ADDRESS_STEP: "SET_ADDRESS_STEP",
   SET_PHONE_STEP: "SET_PHONE_STEP",
@@ -43,10 +44,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         currentStep: state.currentStep + action.payload,
       };
-    case types.SET_NUMBER_OF_STEPS:
+    case types.SET_NUMBER_OF_STEPS_ADD:
+      console.log(action.payload)
       return {
         ...state,
-        numberOfSteps: state.numberOfSteps + action.payload,
+        numberOfSteps: [...state.numberOfSteps, action.payload]
+      };
+    case types.SET_NUMBER_OF_STEPS_DELETE:
+      console.log(action.payload)
+      return {
+        ...state,
+        numberOfSteps: [...state.numberOfSteps.filter(step => step !== action.payload)]
       };
     case types.SET_CONTACT_INFO:
       return {

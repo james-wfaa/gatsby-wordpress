@@ -47,7 +47,7 @@ const MailingAddress = () => {
               headingAlt
               headingCompact
             />
-            <ProgressBar progress={state.numberOfSteps} totalSteps={state.currentStep}/>
+            <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
               <legend>Mailing Address</legend>
               <hr></hr>

@@ -4,6 +4,7 @@ import { StyledError } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import { colors } from '../../css-variables'
 import Buttons from './FormButtons'
+import ProgressBar from './ProgressBar'
 import styled from "styled-components"
 import { AppContext } from "../../../context/AppContext"
 import countryList from "react-select-country-list"
@@ -35,6 +36,7 @@ const EmploymentInfo = () => {
               headingAlt
               headingCompact
             />
+            <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
               <legend>Employment Info</legend>
               <hr></hr>

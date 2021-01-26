@@ -34,7 +34,8 @@ const UpdateInfoForm = () =>  {
   }, [state])*/
 
  const renderCurrentStep = () => {
-     switch(state.currentStep){
+      console.log(state.currentStep)
+      switch(state.currentStep){
         case 1:
             console.log(state) 
             return <ContactInfo />
@@ -186,7 +187,8 @@ form{
     }
  }
   
-  &.select-steps{
+  &.select-steps, 
+  &.identity-info{
     fieldset{
       margin: 0 auto;
       border:none;
@@ -216,11 +218,12 @@ form{
       margin-right: 10px;
       width: 20px;
       height: 20px;
-      border: 2px solid ${colors.buttonRed};
+      border: 2px solid grey;
       top: 3px;
     }
     input[type='checkbox']:checked + label::before {
       background: ${colors.buttonRed};
+      border: 2px solid ${colors.buttonRed};
     }
     input[type='checkbox']:checked + label::after {
       content: '';
@@ -238,7 +241,13 @@ form{
       box-shadow: 0 0px 8px #5e9ed6;
     }
   }
+  &.identity-info{
+    input[type='checkbox'] + label {
+      padding: 0;
+    }
+  }
 }
+
 
 .form-btns{
   margin: 58px auto;

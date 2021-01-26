@@ -4,6 +4,7 @@ import { StyledError } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import { colors } from '../../css-variables'
 import Buttons from './FormButtons'
+import ProgressBar from './ProgressBar'
 import styled from "styled-components"
 import { AppContext } from "../../../context/AppContext"
 import countryList from "react-select-country-list"
@@ -46,10 +47,25 @@ const IdentityInfo = () => {
               headingAlt
               headingCompact
             />
-            <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
+            <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep} />
+            <form className="identity-info" id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
               <legend>Race/Ethnicity/Identity</legend>
               <hr></hr>
-              <label htmlFor="lastname" className="half">What is your country of origin?
+              <input type="checkbox" name="select1" id="address" />
+              <label htmlFor="select1" selected>American Indian/Alaska Native</label>
+              <input type="checkbox" name="select2" id="phone" />
+              <label htmlFor="select2" selected>Black/African-American</label>
+              <input type="checkbox" name="select3" id="employment" />
+              <label htmlFor="select3" selected>Native Hawaiian/Other Pacific Islander</label>
+              <input type="checkbox" name="select4" id="demographic" />
+              <label htmlFor="select4" selected>Asian/Asian American</label>
+              <input type="checkbox" name="select5" id="spouse" />
+              <label htmlFor="select5" selected>Hispanic/Latinx</label>
+              <input type="checkbox" name="select6" id="spouse" />
+              <label htmlFor="select6" selected>White/Caucasian</label>
+              <input type="checkbox" name="select7" id="spouse" />
+              <label htmlFor="select7" selected>Not Specified</label>
+              <label htmlFor="origincountry" className="half">What is your country of origin?
                 <select name="country" /*onChange={e => handleCountryChange(e)}*/>
                   {countryOptions}
                 </select>
@@ -57,11 +73,11 @@ const IdentityInfo = () => {
                   <StyledError>{errors.lastname.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="streetaddress">What else is important to your identity?
+              <label htmlFor="identitydescrip">What else is important to your identity?
                 <input
                     type="textbox"
-                    name="streetaddress"
-                    id="streetaddress"
+                    name="identitydescrip"
+                    id="identitydescrip"
                     //defaultValue={state.MailingAddress.streetaddress}
                     ref={register({
                       minLength: {
@@ -74,8 +90,8 @@ const IdentityInfo = () => {
                       },
                     })}
                 />
-                {errors.streetaddress && (
-                  <StyledError>{errors.streetaddress.message}</StyledError>
+                {errors.identitydescrip && (
+                  <StyledError>{errors.identitydescrip.message}</StyledError>
                 )}
               </label>
               <Buttons save back />

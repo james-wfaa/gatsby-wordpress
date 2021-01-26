@@ -9,7 +9,7 @@ import { AppContext } from "../../../context/AppContext"
 
 const SelectSteps = () => {
     const { state, actions } = useContext(AppContext);
-    const { setAddressStep, setPhoneStep, setEmploymentStep, setIdentityStep, setLifeEventStep, setNumberOfSteps } = actions;
+    const { setAddressStep, setPhoneStep, setEmploymentStep, setIdentityStep, setLifeEventStep, setNumberOfStepsAdd, setNumberOfStepsDelete } = actions;
   
     const variantObject = {
         background_color: colors.formIntroBg,
@@ -20,34 +20,35 @@ const SelectSteps = () => {
     const updateCheckbox = ( stepNumber ) => {
         switch(stepNumber){
             case 1:
-                updateNumberOfSteps(!state.addressStep)
+                updateNumberOfSteps(!state.addressStep, 3)
                 setAddressStep(!state.addressStep)
                 break;
             case 2:
-                updateNumberOfSteps(!state.phoneStep)
+                updateNumberOfSteps(!state.phoneStep, 4)
                 setPhoneStep(!state.phoneStep)
                 break;
             case 3:
-                updateNumberOfSteps(!state.employmentStep)
+                updateNumberOfSteps(!state.employmentStep, 5)
                 setEmploymentStep(!state.employmentStep)
                 break;
             case 4:
-                updateNumberOfSteps(!state.identityStep)
+                updateNumberOfSteps(!state.identityStep, 6)
                 setIdentityStep(!state.identityStep)
                 break;
             case 5:
-                updateNumberOfSteps(!state.lifeEventStep)
+                updateNumberOfSteps(!state.lifeEventStep, 7)
                 setLifeEventStep(!state.lifeEventStep)
                 break;
         }
     }
-    const updateNumberOfSteps = (change) => {
-        console.log(change)
+    const updateNumberOfSteps = (change, step) => {
+        console.log(change, step)
         if (change === true){
-            setNumberOfSteps(1)
+            setNumberOfStepsAdd(step)
         } else if (change === false){
-            setNumberOfSteps(-1)
+            setNumberOfStepsDelete(step)
         }
+        
     }
     const handleSubmit = data =>{
         console.log(data)

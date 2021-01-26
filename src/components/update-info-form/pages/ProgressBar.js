@@ -4,11 +4,13 @@ import styled from 'styled-components'
 import { mixins, colors, fonts, sizes, breakpoints } from '../../css-variables'
 import { AppContext } from "../../../context/AppContext"
 
-const ProgressBar = ({ progress, totalSteps }) => {
-    console.log(progress, totalSteps)
+const ProgressBar = ({ progress, currentStep }) => {
+    
+    //console.log(progress, currentStep)
     
     let increment = 33
-    switch(progress){
+    let current = progress.indexOf(currentStep)
+    switch(progress.length){
         case 3:
             increment = 33
             break;
@@ -25,10 +27,9 @@ const ProgressBar = ({ progress, totalSteps }) => {
             increment = 14
             break;
      }
-   
     
-    let progressWidth = increment * (totalSteps - 1) + '%'
-    console.log(progressWidth)
+    let progressWidth = increment * current + '%'
+    //console.log(progress, currentStep, current, progressWidth)
  return  (
         <StyledProgressBar>
             <div className="progress" style={{ width: `${progressWidth}` }}></div>

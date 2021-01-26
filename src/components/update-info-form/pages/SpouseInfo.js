@@ -4,6 +4,7 @@ import { StyledError } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import { colors } from '../../css-variables'
 import Buttons from './FormButtons'
+import ProgressBar from './ProgressBar'
 import styled from "styled-components"
 import { AppContext } from "../../../context/AppContext"
 
@@ -34,16 +35,17 @@ const SpouseInfo = () => {
               headingAlt
               headingCompact
             />
+            <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
               <legend>Spouse or Partner</legend>
               <hr></hr>
-              <label htmlFor="firstname" className="half required">Spouse/Partner First Name
+              <label htmlFor="spousefirstname" className="half required">Spouse/Partner First Name
                 <span className="required">*</span>
                 <input
                     type="text"
-                    name="firstname"
-                    id="firstname"
-                    defaultValue={state.contactInfo.firstname}
+                    name="spousefirstname"
+                    id="spousefirstname"
+                    //defaultValue={state.spouseInfo.spousefirstname}
                     ref={register({
                       required: { value: true, message: "Spouse/Partner First Name is required" },
                       minLength: {
@@ -56,18 +58,18 @@ const SpouseInfo = () => {
                       },
                     })}
                 />
-                {errors.firstname && (
-                  <StyledError>{errors.firstname.message}</StyledError>
+                {errors.spousefirstname && (
+                  <StyledError>{errors.spousefirstname.message}</StyledError>
                 )}
               </label>
               
-              <label htmlFor="lastname" className="half leftMargin required">Spouse/Partner Last Name
+              <label htmlFor="spouselastname" className="half leftMargin required">Spouse/Partner Last Name
                 <span className="required">*</span>
                 <input
                     type="text"
-                    name="lastname"
-                    id="lastname"
-                    defaultValue={state.contactInfo.lastname}
+                    name="spouselastname"
+                    id="spouselastname"
+                    //defaultValue={state.spouseInfo.spouselastname}
                     ref={register({
                       required: { value: true, message: "Spouse/Partner Last Name is required" },
                       minLength: {
@@ -80,8 +82,8 @@ const SpouseInfo = () => {
                       },
                     })}
                 />
-                {errors.lastname && (
-                  <StyledError>{errors.lastname.message}</StyledError>
+                {errors.spouselastname && (
+                  <StyledError>{errors.spouselastname.message}</StyledError>
                 )}
               </label>
               

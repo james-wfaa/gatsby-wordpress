@@ -10,8 +10,11 @@ export const useActions = (state, dispatch) => {
     dispatch({ type: types.SET_CURRENT_STEP, payload: num})
   }
 
-  function setNumberOfSteps(num) {
-    dispatch({ type: types.SET_NUMBER_OF_STEPS, payload: num})
+  function setNumberOfStepsAdd(array) {
+    dispatch({ type: types.SET_NUMBER_OF_STEPS_ADD, payload: array})
+  }
+  function setNumberOfStepsDelete(array) {
+    dispatch({ type: types.SET_NUMBER_OF_STEPS_DELETE, payload: array})
   }
 
   function setContactInfo(obj) {
@@ -40,7 +43,8 @@ export const useActions = (state, dispatch) => {
   return {
     setSearchString,
     setCurrentStep,
-    setNumberOfSteps,
+    setNumberOfStepsAdd,
+    setNumberOfStepsDelete,
     setContactInfo,
     setAddressStep,
     setPhoneStep,
