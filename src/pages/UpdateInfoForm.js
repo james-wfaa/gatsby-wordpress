@@ -114,10 +114,9 @@ form{
     margin-bottom: 12px;
     display:block;
     position:relative;
-    &:after {
-      content:"* Required Information";
+    .requiredInfo{
+      position:absolute;
       color: ${colors.buttonRed};
-      position: absolute;
       left: 0;
       top: -30px;
       font-size: 0.778rem;
@@ -188,7 +187,9 @@ form{
  }
   
   &.select-steps, 
-  &.identity-info{
+  &.identity-info,
+  &.success-page,
+  &.spouse-info{
     fieldset{
       margin: 0 auto;
       border:none;
@@ -197,7 +198,7 @@ form{
       margin: 0 auto;
       max-width: 390px;
     }
-    input[type='checkbox'] {
+    input[type='checkbox'], input[type='radio'] {
       position: absolute !important;
       height: 1px;
       width: 1px;
@@ -205,13 +206,13 @@ form{
       clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
       clip: rect(1px, 1px, 1px, 1px);
     }
-    input[type='checkbox'] + label {
+    input[type='checkbox'] + label, input[type='radio'] + label{
       display: block;
       position: relative;
       padding: 0 1.5rem;
       cursor:pointer;
     }
-    input[type='checkbox'] + label::before {
+    input[type='checkbox'] + label::before, input[type='radio'] + label::before {
       content: '';
       position: relative;
       display: inline-block;
@@ -221,11 +222,11 @@ form{
       border: 2px solid grey;
       top: 3px;
     }
-    input[type='checkbox']:checked + label::before {
+    input[type='checkbox']:checked + label::before, input[type='radio']:checked + label::before {
       background: ${colors.buttonRed};
       border: 2px solid ${colors.buttonRed};
     }
-    input[type='checkbox']:checked + label::after {
+    input[type='checkbox']:checked + label::after, input[type='radio']:checked + label::after {
       content: '';
       position: absolute;
       top: 7px;
@@ -236,14 +237,28 @@ form{
       width: 14px;
       transform: rotate(-45deg);
     }
-    input[type='checkbox']:focus + label::before {
+    input[type='checkbox']:focus + label::before, input[type='radio']:focus + label::before {
       outline: #5d9dd5 solid 1px;
       box-shadow: 0 0px 8px #5e9ed6;
     }
   }
-  &.identity-info{
-    input[type='checkbox'] + label {
+  &.identity-info,
+  &.spouse-info{
+    input[type='checkbox'] + label, input[type='radio'] + label {
       padding: 0;
+    }
+    input[type='checkbox']:checked + label::after, input[type='radio']:checked + label::after {
+      left: 3px;
+    }
+  }
+  &.success-page{
+    legend{
+      font-family: ${fonts.eaves};
+      color: ${colors.buttonRed};
+      text-transform: none;
+      font-style: italic;
+      font-weight: bold;
+      font-size: ${sizes.s26};
     }
   }
 }

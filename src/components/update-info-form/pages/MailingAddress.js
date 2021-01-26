@@ -49,7 +49,7 @@ const MailingAddress = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
-              <legend>Mailing Address</legend>
+              <legend>Mailing Address<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="addresstype" className="half select-dropdown">Address Type
                 <select name="country" /*onChange={e => handleCountryChange(e)}*/>

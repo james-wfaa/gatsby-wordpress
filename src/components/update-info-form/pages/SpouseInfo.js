@@ -36,8 +36,8 @@ const SpouseInfo = () => {
               headingCompact
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
-            <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
-              <legend>Spouse or Partner</legend>
+            <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)} className="spouse-info">
+              <legend>Spouse or Partner<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="spousefirstname" className="half required">Spouse/Partner First Name
                 <span className="required">*</span>
@@ -47,7 +47,6 @@ const SpouseInfo = () => {
                     id="spousefirstname"
                     //defaultValue={state.spouseInfo.spousefirstname}
                     ref={register({
-                      required: { value: true, message: "Spouse/Partner First Name is required" },
                       minLength: {
                         value: 2,
                         message: "Must be at least 2 letters",
@@ -71,7 +70,6 @@ const SpouseInfo = () => {
                     id="spouselastname"
                     //defaultValue={state.spouseInfo.spouselastname}
                     ref={register({
-                      required: { value: true, message: "Spouse/Partner Last Name is required" },
                       minLength: {
                         value: 2,
                         message: "Must be at least 2 letters",
@@ -105,7 +103,13 @@ const SpouseInfo = () => {
                   <StyledError>{errors.undergrad.message}</StyledError>
                 )}
               </label>
-              
+              <label htmlFor="undergrad">What is the update you would like to share about your spouse or partner?</label>
+              <input type="radio" id="newSpouse" value="newSpouse" name="spouseUpdate"/>
+              <label htmlFor="newSpouse">This is my new spouse or partner.</label>
+              <input type="radio" id="deceasedSpouse" value="deceasedSpouse" name="spouseUpdate"/>
+              <label htmlFor="deceasedSpouse">My spouse or partner is now deceased.</label>
+              <input type="radio" id="noSpouse" value="noSpouse" name="spouseUpdate"/>
+              <label htmlFor="noSpouse">I am no longer with my spouse or partner.</label>
               <Buttons save back />
             </form>
         </div>

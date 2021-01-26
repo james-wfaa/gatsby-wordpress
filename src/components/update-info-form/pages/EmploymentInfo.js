@@ -38,7 +38,7 @@ const EmploymentInfo = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
-              <legend>Employment Info</legend>
+              <legend>Employment Info<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="bussinessname" className="half required">Business Name
                 <input

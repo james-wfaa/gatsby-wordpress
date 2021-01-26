@@ -3,6 +3,7 @@ import React, { useContext } from "react"
 import IntroPageSection from "../../page-sections/IntroPageSection"
 import { sizes, breakpoints, mixins, colors } from '../../css-variables'
 import Buttons from './FormButtons'
+import ProgressBar from './ProgressBar'
 import { AppContext } from "../../../context/AppContext"
 
 
@@ -49,11 +50,26 @@ const UpdateSuccess = () => {
             headingAlt
             headingCompact
             />
-            <form>
+            <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
+            <form  className="success-page">
                 <legend>Are you interested in receiving communications about any of the following?</legend>
                 <fieldset>
-                    <input type="checkbox" name="affinity-list-1" id="affinity-list-1" /*checked={state.addressStep} onChange={()=>updateCheckbox(1)}*//>
-                    <label htmlFor="affinity-list-1" selected>Affinity List 1</label>
+                    <div className="checkboxWrap">
+                        <input type="checkbox" name="affinity-list-1" id="affinity-list-1" /*checked={state.addressStep} onChange={()=>updateCheckbox(1)}*//>
+                        <label htmlFor="affinity-list-1" selected>Affinity List 1</label>
+                        <input type="checkbox" name="affinity-list-2" id="affinity-list-2" /*checked={state.addressStep} onChange={()=>updateCheckbox(1)}*//>
+                        <label htmlFor="affinity-list-2" selected>Affinity List 2</label>
+                        <input type="checkbox" name="affinity-list-3" id="affinity-list-3" /*checked={state.addressStep} onChange={()=>updateCheckbox(1)}*//>
+                        <label htmlFor="affinity-list-3" selected>Affinity List 3</label>
+                        <input type="checkbox" name="affinity-list-4" id="affinity-list-4" /*checked={state.addressStep} onChange={()=>updateCheckbox(1)}*//>
+                        <label htmlFor="affinity-list-4" selected>Affinity List 4</label>
+                        <input type="checkbox" name="affinity-list-5" id="affinity-list-5" /*checked={state.addressStep} onChange={()=>updateCheckbox(1)}*//>
+                        <label htmlFor="affinity-list-5" selected>Affinity List 5</label>
+                        <input type="checkbox" name="affinity-list-6" id="affinity-list-6" /*checked={state.addressStep} onChange={()=>updateCheckbox(1)}*//>
+                        <label htmlFor="affinity-list-6" selected>Affinity List 6</label>
+                        <input type="checkbox" name="affinity-list-7" id="affinity-list-7" /*checked={state.addressStep} onChange={()=>updateCheckbox(1)}*//>
+                        <label htmlFor="affinity-list-7" selected>Affinity List 7</label>
+                    </div>
                     <Buttons signup />
                 </fieldset>
             </form>

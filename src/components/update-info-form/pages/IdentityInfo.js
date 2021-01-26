@@ -49,7 +49,7 @@ const IdentityInfo = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep} />
             <form className="identity-info" id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
-              <legend>Race/Ethnicity/Identity</legend>
+              <legend>Race/Ethnicity/Identity<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <input type="checkbox" name="select1" id="address" />
               <label htmlFor="select1" selected>American Indian/Alaska Native</label>

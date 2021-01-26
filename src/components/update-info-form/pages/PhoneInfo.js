@@ -49,7 +49,7 @@ const PhoneInfo = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
-              <legend>Phone Numbers</legend>
+              <legend>Phone Numbers<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="addresstype" className="half">Phone Type 1
                 <span class="required">*</span>

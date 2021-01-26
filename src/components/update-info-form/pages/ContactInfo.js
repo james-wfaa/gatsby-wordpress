@@ -35,7 +35,7 @@ const ContactInfo = () => {
               headingCompact
             />
             <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
-              <legend>Contact Information</legend>
+              <legend>Contact Information<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="firstname" className="half required">First Name
                 <span className="required">*</span>
