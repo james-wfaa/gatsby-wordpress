@@ -18,7 +18,12 @@ const EmploymentInfo = () => {
   })
   const UpdateContactInfo = data =>{
     setContactInfo(data)
-    setCurrentStep(1)
+    let currentOrder = state.numberOfSteps
+        let currentStep = state.currentStep
+        let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+        let nextStep = currentOrder[currentPlaceInOrder + 1]
+        console.log( nextStep)
+        setCurrentStep(nextStep)
   }
   
     let variantObject = {
@@ -51,10 +56,6 @@ const EmploymentInfo = () => {
                         value: 2,
                         message: "Must be at least 2 letters",
                       },
-                      pattern: {
-                        value: /^[A-Za-z @-]+$/,
-                        message: "Name must not contain numbers",
-                      },
                     })}
                 />
                 {errors.bussinessname && (
@@ -74,7 +75,7 @@ const EmploymentInfo = () => {
                       },
                       pattern: {
                         value: /^[A-Za-z @-]+$/,
-                        message: "Name must not contain numbers",
+                        message: "Job title must not contain numbers",
                       },
                     })}
                 />
@@ -83,21 +84,14 @@ const EmploymentInfo = () => {
                 )}
               </label>
               <label htmlFor="streetaddress">Business Street Address
-                <span class="required">*</span>
+                <span className="required">*</span>
                 <input
                     type="text"
                     name="streetaddress"
                     id="streetaddress"
                     //defaultValue={state.MailingAddress.streetaddress}
                     ref={register({
-                      minLength: {
-                        value: 2,
-                        message: "Must be at least 2 letters",
-                      },
-                      pattern: {
-                        value: /^[A-Za-z @-]+$/,
-                        message: "Name must not contain numbers",
-                      },
+                      
                     })}
                 />
                 {errors.streetaddress && (
@@ -111,14 +105,7 @@ const EmploymentInfo = () => {
                     id="streetaddresstwo"
                     //defaultValue={state.MailingAddress.streetaddresstwo}
                     ref={register({
-                      minLength: {
-                        value: 2,
-                        message: "Must be at least 2 letters",
-                      },
-                      pattern: {
-                        value: /^[A-Za-z @-]+$/,
-                        message: "Name must not contain numbers",
-                      },
+                      
                     })}
                 />
                 {errors.streetaddresstwo && (
@@ -126,57 +113,48 @@ const EmploymentInfo = () => {
                 )}
               </label>
               <label htmlFor="city" className="third">City
-                <span class="required">*</span>
+                <span className="required">*</span>
                 <input
                     type="text"
                     name="city"
                     id="city"
                     //defaultValue={state.MailingAddress.city}
                     ref={register({
-                      pattern: {
-                        value: /^(19|20)\d{2}$/,
-                        message: "Must be a valid year",
-                      },
+                      
                     })}
                 />
                 {errors.city && (
                   <StyledError>{errors.city.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="postgrad" className="third leftMargin">State/Province/Region
-                <span class="required">*</span>
+              <label htmlFor="state" className="third leftMargin">State/Province/Region
+                <span className="required">*</span>
                 <input
                     type="text"
-                    name="postgrad"
-                    id="postgrad"
-                    defaultValue={state.contactInfo.postgrad}
+                    name="state"
+                    id="state"
+                    //defaultValue={state.contactInfo.postgrad}
                     ref={register({
-                      pattern: {
-                        value: /^(19|20)\d{2}$/,
-                        message: "Must be a valid year",
-                      },
+                      
                     })}
                 />
                 {errors.postgrad && (
                   <StyledError>{errors.postgrad.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="postgrad" className="third leftMargin">Zip/Postal Code
-                <span class="required">*</span>
+              <label htmlFor="zipcode" className="third leftMargin">Zip/Postal Code
+                <span className="required">*</span>
                 <input
                     type="text"
-                    name="postgrad"
-                    id="postgrad"
-                    defaultValue={state.contactInfo.postgrad}
+                    name="zipcode"
+                    id="zipcode"
+                    //defaultValue={state.contactInfo.postgrad}
                     ref={register({
-                      pattern: {
-                        value: /^(19|20)\d{2}$/,
-                        message: "Must be a valid year",
-                      },
+                      
                     })}
                 />
-                {errors.postgrad && (
-                  <StyledError>{errors.postgrad.message}</StyledError>
+                {errors.zipcode && (
+                  <StyledError>{errors.zipcode.message}</StyledError>
                 )}
               </label>
               <Buttons save back />

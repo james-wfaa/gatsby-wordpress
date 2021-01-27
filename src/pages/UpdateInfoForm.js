@@ -34,7 +34,7 @@ const UpdateInfoForm = () =>  {
   }, [state])*/
 
  const renderCurrentStep = () => {
-      console.log(state.currentStep)
+      //console.log(state.currentStep)
       switch(state.currentStep){
         case 1:
             console.log(state) 
@@ -43,35 +43,15 @@ const UpdateInfoForm = () =>  {
             console.log(state) 
             return <SelectSteps />
         case 3:
-            if(state.addressStep){
-              return <MailingAddress />
-            } else{
-              setCurrentStep(1)
-            }
+            return <MailingAddress />
         case 4:
-            if(state.phoneStep){
-              return <PhoneInfo />
-            } else{
-              setCurrentStep(1)
-            }
+            return <PhoneInfo />
         case 5:
-            if(state.employmentStep){
-              return <EmploymentInfo />
-            } else{
-              setCurrentStep(1)
-            }
+            return <EmploymentInfo />
         case 6:
-            if(state.identityStep){
-              return <IdentityInfo />
-            } else{
-              setCurrentStep(1)
-            }
+            return <IdentityInfo />
         case 7:
-            if(state.lifeEventStep){
-              return <SpouseInfo />
-            } else{
-              setCurrentStep(1)
-            }
+            return <SpouseInfo />
         case 8:
             return <UpdateSuccess />
      }

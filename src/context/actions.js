@@ -40,6 +40,15 @@ export const useActions = (state, dispatch) => {
   function setLifeEventStep(bool) {
     dispatch({ type: types.SET_LIFE_EVENT_STEP, payload: bool})
   }
+
+  function setMailingAddress(obj) {
+    dispatch({ type: types.SET_MAILING_ADDRESS, payload: obj})
+  }
+
+  function setPhoneInfo(obj) {
+    dispatch({ type: types.SET_PHONE_INFO, payload: obj})
+  }
+
   return {
     setSearchString,
     setCurrentStep,
@@ -50,6 +59,8 @@ export const useActions = (state, dispatch) => {
     setPhoneStep,
     setEmploymentStep,
     setIdentityStep,
-    setLifeEventStep
+    setLifeEventStep,
+    setMailingAddress,
+    setPhoneInfo,
   };
 };

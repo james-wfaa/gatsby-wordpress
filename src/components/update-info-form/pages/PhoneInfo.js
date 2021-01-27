@@ -11,26 +11,21 @@ import countryList from "react-select-country-list"
 
 const PhoneInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setContactInfo } = actions;
-  const [countries, setCountries] = useState(countryList().getData())
+  const { setCurrentStep, setPhoneInfo } = actions;
 
   const { register, handleSubmit, watch, errors } = useForm({
     mode: "onChange",
   })
-  const UpdateContactInfo = data =>{
-    setContactInfo(data)
-    setCurrentStep(1)
+  const UpdatePhoneInfo = data =>{
+    //console.log(data)
+    setPhoneInfo(data)
+    let currentOrder = state.numberOfSteps
+        let currentStep = state.currentStep
+        let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+        let nextStep = currentOrder[currentPlaceInOrder + 1]
+        console.log( nextStep)
+        setCurrentStep(nextStep)
   }
-  const countryOptions = countries.map(country => {
-    if (country.value === "US") {
-      return (
-        <option value={country.value} selected>
-          {country.label}
-        </option>
-      )
-    }
-    return <option value={country.value}>{country.label}</option>
-  })
   
     let variantObject = {
       background_color: colors.formIntroBg,
@@ -48,27 +43,62 @@ const PhoneInfo = () => {
               headingCompact
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
-            <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
+            <form id="phoneInfo" onSubmit={handleSubmit(UpdatePhoneInfo)}>
               <legend>Phone Numbers<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
-              <label htmlFor="addresstype" className="half">Phone Type 1
-                <span class="required">*</span>
-                <select>
+              <label htmlFor="phoneType1" className="half">Phone Type 1
+                <span className="required">*</span>
+                <select 
+                  id="phoneType1" 
+                  name="phoneType1" 
+                  defaultValue={state.phoneInfo.phoneType1}
+                  ref={register({})}
+                  >
                   <option value="home">Home</option>
                   <option value="mobile">Cellular/Mobile</option>
                   <option value="work">Work/Business</option>
                 </select>
-                {errors.addresstype && (
-                  <StyledError>{errors.addresstype.message}</StyledError>
+                {errors.phoneType1 && (
+                  <StyledError>{errors.phoneType1.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="phone" className="half leftMargin">Phone Number 1
-                <span class="required">*</span>
+              <label htmlFor="phoneNumber1" className="half leftMargin">Phone Number 1
+                <span className="required">*</span>
                 <input
                     type="phone"
-                    name="phone"
-                    id="phone"
-                    defaultValue={state.contactInfo.phone}
+                    name="phoneNumber1"
+                    id="phoneNumber1"
+                    defaultValue={state.phoneInfo.phoneNumber1}
+                    ref={register({
+                      pattern: {
+                        value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
+                        message: "Must be a valid phone number",
+                      },
+                    })}
+                />
+                {errors.phoneNumber1 && (
+                  <StyledError>{errors.phoneNumber1.message}</StyledError>
+                )}
+              </label>
+              <label htmlFor="phoneType2" className="half">Phone Type 2
+                <select 
+                  defaultValue={state.phoneInfo.phoneType2} 
+                  name="phoneType2"
+                  ref={register({})}>
+                  <option value="home">Home</option>
+                  <option value="mobile">Cellular/Mobile</option>
+                  <option value="work">Work/Business</option>
+                </select>
+                {errors.phoneType2 && (
+                  <StyledError>{errors.phoneType2.message}</StyledError>
+                )}
+              </label>
+              <label htmlFor="phoneNumber2" className="half leftMargin">Phone Number 2
+                <input
+                    type="phone"
+                    name="phoneNumber2"
+                    id="phoneNumber2"
+                    defaultValue={state.phoneInfo.phoneNumber2}
                     ref={register({
                       pattern: {
                         value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
@@ -80,22 +110,25 @@ const PhoneInfo = () => {
                   <StyledError>{errors.phone.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="addresstype" className="half">Phone Type 2
-                <select>
+              <label htmlFor="phoneType3" className="half">Phone Type 3
+                <select 
+                  defaultValue={state.phoneInfo.phoneType3} 
+                  name="phoneType3"
+                  ref={register({})}>
                   <option value="home">Home</option>
                   <option value="mobile">Cellular/Mobile</option>
                   <option value="work">Work/Business</option>
                 </select>
-                {errors.addresstype && (
-                  <StyledError>{errors.addresstype.message}</StyledError>
+                {errors.phoneType3 && (
+                  <StyledError>{errors.phoneType3.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="phone" className="half leftMargin">Phone Number 2
+              <label htmlFor="phoneNumber3" className="half leftMargin">Phone Number 3
                 <input
                     type="phone"
-                    name="phone"
-                    id="phone"
-                    defaultValue={state.contactInfo.phone}
+                    name="phoneNumber3"
+                    id="phoneNumber3"
+                    defaultValue={state.phoneInfo.phoneNumber3}
                     ref={register({
                       pattern: {
                         value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
@@ -103,35 +136,8 @@ const PhoneInfo = () => {
                       },
                     })}
                 />
-                {errors.phone && (
-                  <StyledError>{errors.phone.message}</StyledError>
-                )}
-              </label>
-              <label htmlFor="addresstype" className="half">Phone Type 3
-                <select>
-                  <option value="home">Home</option>
-                  <option value="mobile">Cellular/Mobile</option>
-                  <option value="work">Work/Business</option>
-                </select>
-                {errors.addresstype && (
-                  <StyledError>{errors.addresstype.message}</StyledError>
-                )}
-              </label>
-              <label htmlFor="phone" className="half leftMargin">Phone Number 3
-                <input
-                    type="phone"
-                    name="phone"
-                    id="phone"
-                    defaultValue={state.contactInfo.phone}
-                    ref={register({
-                      pattern: {
-                        value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
-                        message: "Must be a valid phone number",
-                      },
-                    })}
-                />
-                {errors.phone && (
-                  <StyledError>{errors.phone.message}</StyledError>
+                {errors.phoneNumber3 && (
+                  <StyledError>{errors.phoneNumber3.message}</StyledError>
                 )}
               </label>
               <Buttons save back />

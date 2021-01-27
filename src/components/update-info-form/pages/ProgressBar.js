@@ -10,7 +10,7 @@ const ProgressBar = ({ progress, currentStep }) => {
     
     let increment = 33
     let current = progress.indexOf(currentStep)
-    switch(progress.length){
+    switch(progress.length - 1){
         case 3:
             increment = 33
             break;
@@ -27,11 +27,11 @@ const ProgressBar = ({ progress, currentStep }) => {
             increment = 14
             break;
      }
-     if(currentStep === 8){
-         progressWidth = `100%`
-     }
     
     let progressWidth = increment * current + '%'
+    if(currentStep === 8){
+        progressWidth = `100%`
+    }
     //console.log(progress, currentStep, current, progressWidth)
  return  (
         <StyledProgressBar>

@@ -17,7 +17,12 @@ const SpouseInfo = () => {
   })
   const UpdateContactInfo = data =>{
     setContactInfo(data)
-    setCurrentStep(1)
+    let currentOrder = state.numberOfSteps
+        let currentStep = state.currentStep
+        let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+        let nextStep = currentOrder[currentPlaceInOrder + 1]
+        console.log( nextStep)
+        setCurrentStep(nextStep)
   }
   
     let variantObject = {
@@ -85,11 +90,11 @@ const SpouseInfo = () => {
                 )}
               </label>
               
-              <label htmlFor="undergrad" className="third">Undergraduate Grad Year (if applicable)
+              <label htmlFor="spouseUndergrad" className="third">Undergraduate Grad Year (if applicable)
                 <input
                     type="text"
-                    name="undergrad"
-                    id="undergrad"
+                    name="spouseUndergrad"
+                    id="spouseUndergrad"
                     maxLength="4"
                     defaultValue={state.contactInfo.undergrad}
                     ref={register({
@@ -99,8 +104,8 @@ const SpouseInfo = () => {
                       },
                     })}
                 />
-                {errors.undergrad && (
-                  <StyledError>{errors.undergrad.message}</StyledError>
+                {errors.spouseUndergrad && (
+                  <StyledError>{errors.spouseUndergrad.message}</StyledError>
                 )}
               </label>
               <label htmlFor="undergrad">What is the update you would like to share about your spouse or partner?</label>

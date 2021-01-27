@@ -44,7 +44,14 @@ const SelectSteps = () => {
     const updateNumberOfSteps = (change, step) => {
         console.log(change, step)
         if (change === true){
-            setNumberOfStepsAdd(step)
+            console.log(state.numberOfSteps)
+            let newOrder = state.numberOfSteps
+            newOrder.push(step)
+            newOrder.sort(function(a, b){
+                return a - b;
+            })
+            console.log(newOrder)
+            //setNumberOfStepsAdd(newOrder)
         } else if (change === false){
             setNumberOfStepsDelete(step)
         }

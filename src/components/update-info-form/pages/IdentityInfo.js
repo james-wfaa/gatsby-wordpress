@@ -19,7 +19,12 @@ const IdentityInfo = () => {
   })
   const UpdateContactInfo = data =>{
     setContactInfo(data)
-    setCurrentStep(1)
+    let currentOrder = state.numberOfSteps
+        let currentStep = state.currentStep
+        let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+        let nextStep = currentOrder[currentPlaceInOrder + 1]
+        console.log( nextStep)
+        setCurrentStep(nextStep)
   }
   const countryOptions = countries.map(country => {
     if (country.value === "US") {
@@ -69,9 +74,6 @@ const IdentityInfo = () => {
                 <select name="country" /*onChange={e => handleCountryChange(e)}*/>
                   {countryOptions}
                 </select>
-                {errors.lastname && (
-                  <StyledError>{errors.lastname.message}</StyledError>
-                )}
               </label>
               <label htmlFor="identitydescrip">What else is important to your identity?
                 <input
@@ -83,10 +85,6 @@ const IdentityInfo = () => {
                       minLength: {
                         value: 2,
                         message: "Must be at least 2 letters",
-                      },
-                      pattern: {
-                        value: /^[A-Za-z @-]+$/,
-                        message: "Name must not contain numbers",
                       },
                     })}
                 />

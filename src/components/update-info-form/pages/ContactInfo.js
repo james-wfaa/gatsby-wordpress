@@ -16,7 +16,12 @@ const ContactInfo = () => {
   })
   const UpdateContactInfo = data =>{
     setContactInfo(data)
-    setCurrentStep(1)
+    let currentOrder = state.numberOfSteps
+        let currentStep = state.currentStep
+        let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+        let nextStep = currentOrder[currentPlaceInOrder + 1]
+        console.log( nextStep)
+        setCurrentStep(nextStep)
   }
   
     let variantObject = {

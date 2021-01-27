@@ -11,15 +11,21 @@ import countryList from "react-select-country-list"
 
 const MailingAddress = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setContactInfo } = actions;
+  const { setCurrentStep, setMailingAddress } = actions;
   const [countries, setCountries] = useState(countryList().getData())
 
   const { register, handleSubmit, watch, errors } = useForm({
     mode: "onChange",
   })
-  const UpdateContactInfo = data =>{
-    setContactInfo(data)
-    setCurrentStep(1)
+  const UpdateMailingAddressInfo = data =>{
+    console.log(data)
+    setMailingAddress(data)
+    let currentOrder = state.numberOfSteps
+        let currentStep = state.currentStep
+        let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+        let nextStep = currentOrder[currentPlaceInOrder + 1]
+        console.log( nextStep)
+        setCurrentStep(nextStep)
   }
   const countryOptions = countries.map(country => {
     if (country.value === "US") {
@@ -48,67 +54,59 @@ const MailingAddress = () => {
               headingCompact
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
-            <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
+            <form id="mailingAddress" onSubmit={handleSubmit(UpdateMailingAddressInfo)}>
               <legend>Mailing Address<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
-              <label htmlFor="addresstype" className="half select-dropdown">Address Type
-                <select name="country" /*onChange={e => handleCountryChange(e)}*/>
+              <label htmlFor="addressType" className="half select-dropdown">Address Type
+                <select name="addressType" /*onChange={e => handleCountryChange(e)}*/ defaultValue={state.mailingAddress.addressType}>
                   <option value="home">Home</option>
                 </select>
-                {errors.addresstype && (
-                  <StyledError>{errors.addresstype.message}</StyledError>
+                {errors.addressType && (
+                  <StyledError>{errors.addressType.message}</StyledError>
                 )}
               </label>
               
-              <label htmlFor="lastname" className="half leftMargin required">Country
+              <label htmlFor="country" className="half leftMargin required">Country
                 <select name="country" /*onChange={e => handleCountryChange(e)}*/>
                   {countryOptions}
                 </select>
-                {errors.lastname && (
-                  <StyledError>{errors.lastname.message}</StyledError>
+                {errors.country && (
+                  <StyledError>{errors.country.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="streetaddress">Street Address
+              <label htmlFor="streetAddress">Street Address
                 <span className="required">*</span>
                 <input
                     type="text"
-                    name="streetaddress"
-                    id="streetaddress"
-                    //defaultValue={state.MailingAddress.streetaddress}
+                    name="streetAddress"
+                    id="streetAddress"
+                    defaultValue={state.mailingAddress.streetAddress}
                     ref={register({
                       minLength: {
                         value: 2,
                         message: "Must be at least 2 letters",
                       },
-                      pattern: {
-                        value: /^[A-Za-z @-]+$/,
-                        message: "Name must not contain numbers",
-                      },
                     })}
                 />
-                {errors.streetaddress && (
-                  <StyledError>{errors.streetaddress.message}</StyledError>
+                {errors.streetAddress && (
+                  <StyledError>{errors.streetAddress.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="streetaddresstwo">Street Address Line Two
+              <label htmlFor="streetAddressLineTwo">Street Address Line Two
                 <input
                     type="text"
-                    name="streetaddresstwo"
-                    id="streetaddresstwo"
-                    //defaultValue={state.MailingAddress.streetaddresstwo}
+                    name="streetAddressLineTwo"
+                    id="streetAddressLineTwo"
+                    defaultValue={state.mailingAddress.streetAddressLineTwo}
                     ref={register({
                       minLength: {
                         value: 2,
                         message: "Must be at least 2 letters",
                       },
-                      pattern: {
-                        value: /^[A-Za-z @-]+$/,
-                        message: "Name must not contain numbers",
-                      },
                     })}
                 />
-                {errors.streetaddresstwo && (
-                  <StyledError>{errors.streetaddresstwo.message}</StyledError>
+                {errors.streetAddressLineTwo && (
+                  <StyledError>{errors.streetAddressLineTwo.message}</StyledError>
                 )}
               </label>
               <label htmlFor="city" className="third">City
@@ -117,52 +115,43 @@ const MailingAddress = () => {
                     type="text"
                     name="city"
                     id="city"
-                    //defaultValue={state.MailingAddress.city}
+                    //defaultValue={state.mailingAddress.city}
                     ref={register({
-                      pattern: {
-                        value: /^(19|20)\d{2}$/,
-                        message: "Must be a valid year",
-                      },
+                      
                     })}
                 />
                 {errors.city && (
                   <StyledError>{errors.city.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="postgrad" className="third leftMargin">State/Province/Region
+              <label htmlFor="state" className="third leftMargin">State/Province/Region
                 <span className="required">*</span>
                 <input
                     type="text"
-                    name="postgrad"
-                    id="postgrad"
-                    defaultValue={state.contactInfo.postgrad}
+                    name="state"
+                    id="state"
+                    defaultValue={state.mailingAddress.state}
                     ref={register({
-                      pattern: {
-                        value: /^(19|20)\d{2}$/,
-                        message: "Must be a valid year",
-                      },
+                      
                     })}
                 />
-                {errors.postgrad && (
-                  <StyledError>{errors.postgrad.message}</StyledError>
+                {errors.state && (
+                  <StyledError>{errors.state.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="postgrad" className="third leftMargin">Zip/Postal Code
+              <label htmlFor="zipcode" className="third leftMargin">Zip/Postal Code
                 <span className="required">*</span>
                 <input
                     type="text"
-                    name="postgrad"
-                    id="postgrad"
-                    defaultValue={state.contactInfo.postgrad}
+                    name="zipcode"
+                    id="zipcode"
+                    //defaultValue={state.mailingAddress.zipcode}
                     ref={register({
-                      pattern: {
-                        value: /^(19|20)\d{2}$/,
-                        message: "Must be a valid year",
-                      },
+                      
                     })}
                 />
-                {errors.postgrad && (
-                  <StyledError>{errors.postgrad.message}</StyledError>
+                {errors.zipcode && (
+                  <StyledError>{errors.zipcode.message}</StyledError>
                 )}
               </label>
               <Buttons save back />

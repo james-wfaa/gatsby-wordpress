@@ -8,10 +8,25 @@ const FormButtons = ({ next, back, save, finish, signup, disabled }) => {
     const { setCurrentStep, setContactInfo, } = actions;
 
     const handleNextBtn = () => {
-        setCurrentStep(1)
+        
+        //get current step order
+        let currentOrder = state.numberOfSteps
+        let currentStep = state.currentStep
+        let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+        let nextStep = currentOrder[currentPlaceInOrder + 1]
+        console.log( nextStep)
+        setCurrentStep(nextStep)
+        //get next value in array
+        //set current step to next value
       }
     const handleBackBtn = () => {
-        setCurrentStep(-1)
+        
+        let currentOrder = state.numberOfSteps
+        let currentStep = state.currentStep
+        let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+        let nextStep = currentOrder[currentPlaceInOrder - 1]
+        console.log( nextStep)
+        setCurrentStep(nextStep)
       }
     //const disabledClass = disabled ? `disabled` : ''
 
