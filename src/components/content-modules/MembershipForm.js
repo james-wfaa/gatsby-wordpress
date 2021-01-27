@@ -1,7 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { AppContext } from "../../context/AppContext"
 import styled from "styled-components"
+import { colors, mixins } from '../css-variables'
 import PageSection from "../page-sections/PageSection"
+import PageSectionHeader from "../parts/PageSectionHeader"
 import { membershipFeeCalc } from "../../utils/tools"
 
 const FormSection = styled.div`
@@ -13,7 +15,38 @@ const StyledCheckbox = styled.div`
   input, label {
     display: inline-block;
   }
+`
+const FeeBoxHeading = styled.div`
+  ${mixins.sectionHeader}
+`
+const FeeBox = styled.div`
+  background-color: ${colors.bgActiveGrey};
+  display: grid;
+  /* grid-template-rows: repeat(4, 320px); */
+  grid-template-columns: 1fr 1fr;
 
+`
+const FeeCard = styled.div`
+  ${mixins.contentCardBase}
+  ${mixins.contentCardSizes}
+  * {
+    text-align: center;
+  }
+  justify-self: center;
+  padding: 1rem;
+  text-align: left;
+  text-decoration: none;
+  background-color: ${colors.bgWhite};
+  opacity: 0.9;
+  color: ${colors.cardText};
+  min-height: 256px;
+  width: 100%;
+`
+
+const Fee = styled.p`
+  font-size: 54px;
+  font-weight: bold;
+  text-align: center;
 `
 
 const MembershipForm = () => {
@@ -66,20 +99,86 @@ const MembershipForm = () => {
   }, [state.membershipGraduate, state.membershipAge, state.membershipType])
 
   return (
-    <div>
+    <div style={{maxWidth: `896px`, margin: `0 auto`}}>
       {showValues && fees ?
         <PageSection>
           <button onClick={() => handleClear()}>Submit</button>
-          <div>
-            <PageSection header="Lifetime Membership">
-              <div>${fees.full}</div>
-              <div>${fees.installments}</div>
-            </PageSection>
-            <PageSection header="Annual Membership">
-              <div>${fees.oneYear}</div>
-              <div>${fees.twoYear}</div>
-            </PageSection>
-          </div>
+          <FeeBox>
+            <FeeBoxHeading style={{gridColumn: "1 / span 2"}}>
+              <h1>Lifetime Membership</h1>
+            </FeeBoxHeading>
+            <div style={{gridColumn: "1 / span 2"}}>
+              <p>
+                Solidify your pride. Become a lifetime member. Your love of the UW knows no bounds,
+                and neither does this membership community dedicated to supporting all alumni
+                and strengthening WAA’s mission. Plus, you’ll enjoy a lifetime of member benefits
+                including an exclusive added bonus!
+              </p>
+            </div>
+            <FeeCard>
+              <div>
+                <p>Param List</p>
+                <h2>Pay in Full</h2>
+              </div>
+              <div className="contentwrap">
+                <Fee>
+                  ${fees.full}
+                </Fee>
+              </div>
+            </FeeCard>
+            <FeeCard>
+              <div>
+                <p>Param List</p>
+                <h2>Installments</h2>
+              </div>
+              <div className="contentwrap">
+                <Fee>
+                  ${fees.installments}
+                </Fee>
+              </div>
+            </FeeCard>
+            <p>Make a one-time payment to become a lifetime member and save a total of $30 off installment pricing.</p>
+            <p>This simple online installment plan automatically bills your credit card monthly — and in less than two
+              years you’re a WAA lifetime member!</p>
+          </FeeBox>
+          <FeeBox>
+            <FeeBoxHeading style={{gridColumn: "1 / span 2"}}>
+              <h1>Annual Membership</h1>
+            </FeeBoxHeading>
+            <div style={{gridColumn: "1 / span 2"}}>
+              <p>
+                Becoming a WAA member is the best way to stay connected to the UW.
+                You’ll join a community that shares your pride in the achievements of the university,
+                supports all alumni, and celebrates Badger spirit. Plus, enjoy a variety of special benefits
+                and being where Badgers belong.
+              </p>
+            </div>
+            <FeeCard>
+              <div>
+                <p>Param List</p>
+                <h2>Two Year</h2>
+              </div>
+              <div className="contentwrap">
+                <Fee>
+                  ${fees.twoYear}
+                </Fee>
+              </div>
+            </FeeCard>
+            <FeeCard>
+              <div>
+                <p>Param List</p>
+                <h2>One Year</h2>
+              </div>
+              <div className="contentwrap">
+                <Fee>
+                  ${fees.oneYear}
+                </Fee>
+              </div>
+            </FeeCard>
+            <p>Extend your stay in this Badger community and save off the one-year option.</p>
+            <p>Enjoy the benefits of being a WAA member at an affordable price. </p>
+          </FeeBox>
+
         </PageSection>
         :
         <PageSection heading="Let's Find the Best Membership for You">
