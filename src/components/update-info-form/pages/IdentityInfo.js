@@ -11,20 +11,21 @@ import countryList from "react-select-country-list"
 
 const IdentityInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setContactInfo } = actions;
+  const { setCurrentStep, setIdentityInfo } = actions;
   const [countries, setCountries] = useState(countryList().getData())
 
   const { register, handleSubmit, watch, errors } = useForm({
     mode: "onChange",
   })
-  const UpdateContactInfo = data =>{
-    setContactInfo(data)
+  const UpdateIdentityInfo = data =>{
+    setIdentityInfo(data)
+
+    //figure out next page
     let currentOrder = state.numberOfSteps
-        let currentStep = state.currentStep
-        let currentPlaceInOrder = currentOrder.indexOf(currentStep)
-        let nextStep = currentOrder[currentPlaceInOrder + 1]
-        console.log( nextStep)
-        setCurrentStep(nextStep)
+    let currentStep = state.currentStep
+    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+    let nextStep = currentOrder[currentPlaceInOrder + 1]
+    setCurrentStep(nextStep)
   }
   const countryOptions = countries.map(country => {
     if (country.value === "US") {
@@ -53,7 +54,7 @@ const IdentityInfo = () => {
               headingCompact
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep} />
-            <form className="identity-info" id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
+            <form className="identity-info" id="contact" onSubmit={handleSubmit(UpdateIdentityInfo)}>
               <legend>Race/Ethnicity/Identity<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <input type="checkbox" name="select1" id="address" />

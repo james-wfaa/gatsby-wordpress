@@ -35,6 +35,26 @@ const initialState = {
     phoneType3: 'work',
     phoneNumber3: '',
   },
+  employmentInfo: {
+    businessName: '',
+    jobTitle: '',
+    streetAddress: '',
+    streetAddressLineTwo: '',
+    city: '',
+    state: '',
+    zipcode: '',
+  },
+  identityInfo: {
+    identity: '',
+    originCountry: '',
+    identitydescrip: '',
+  },
+  spouseInfo: {
+    firstname: '',
+    lastname: '',
+    undergrad: '',
+    update: '',
+  },
 };
 const types = {
   SET_SEARCH_STRING: "SET_SEARCH_STRING",
@@ -49,7 +69,10 @@ const types = {
   SET_LIFE_EVENT_STEP: "SET_LIFE_EVENT_STEP",
   SET_MAILING_ADDRESS: "SET_MAILING_ADDRESS",
   SET_PHONE_INFO: "SET_PHONE_INFO",
-  SET_PHONE_TYPE: "SET_PHONE_TYPE"
+  SET_PHONE_TYPE: "SET_PHONE_TYPE",
+  SET_EMPLOYMENT_INFO: "SET_EMPLOYMENT_INFO",
+  SET_IDENTITY_INFO: "SET_IDENTITY_INFO",
+  SET_SPOUSE_INFO: "SET_SPOUSE_INFO",
 };
 
 const reducer = (state = initialState, action) => {
@@ -139,6 +162,41 @@ const reducer = (state = initialState, action) => {
           phoneNumber3: action.payload.phoneNumber3 ? action.payload.phoneNumber3 : '',
         },
       };
+    case types.SET_EMPLOYMENT_INFO:
+      return {
+        ...state,
+        employmentInfo: {
+          businessName: action.payload.businessName ? action.payload.businessName : '',
+          jobTitle: action.payload.jobTitle ? action.payload.jobTitle : '',
+          streetAddress: action.payload.streetAddress ? action.payload.streetAddress : '',
+          streetAddressLineTwo: action.payload.streetAddressLineTwo ? action.payload.streetAddressLineTwo : '',
+          city: action.payload.city ? action.payload.city : '',
+          state: action.payload.state ? action.payload.state : '',
+          zipcode: action.payload.zipcode ? action.payload.zipcode : '',
+
+        },
+      };
+    case types.SET_IDENTITY_INFO:
+      return {
+        ...state,
+        identityInfo: {
+          identity: action.payload.identity ? action.payload.identity : '',
+          originCountry: action.payload.originCountry ? action.payload.originCountry : '',
+          identitydescrip: action.payload.identitydescrip ? action.payload.identitydescrip : '',
+        },
+      };
+    case types.SET_SPOUSE_INFO:
+      return {
+        ...state,
+        spouseInfo: {
+          firstname: action.payload.firstname ? action.payload.firstname : '',
+          lastname: action.payload.lastname ? action.payload.lastname : '',
+          undergrad: action.payload.undergrad ? action.payload.undergrad : '',
+          update: action.payload.update ? action.payload.update : '',
+        },
+      };
+      
+      
     default:
       throw new Error("Unexpected action");
   }

@@ -10,19 +10,15 @@ import { AppContext } from "../../../context/AppContext"
 
 const SpouseInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setContactInfo } = actions;
+  const { setCurrentStep, setSpouseInfo } = actions;
 
   const { register, handleSubmit, watch, errors } = useForm({
     mode: "onChange",
   })
-  const UpdateContactInfo = data =>{
-    setContactInfo(data)
-    let currentOrder = state.numberOfSteps
-        let currentStep = state.currentStep
-        let currentPlaceInOrder = currentOrder.indexOf(currentStep)
-        let nextStep = currentOrder[currentPlaceInOrder + 1]
-        console.log( nextStep)
-        setCurrentStep(nextStep)
+  const submitEntireForm = data =>{
+    setSpouseInfo(data)
+    //submit data
+    setCurrentStep(8)
   }
   
     let variantObject = {
@@ -41,7 +37,7 @@ const SpouseInfo = () => {
               headingCompact
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
-            <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)} className="spouse-info">
+            <form id="spouseInfo" onSubmit={handleSubmit(submitEntireForm)} className="spouse-info">
               <legend>Spouse or Partner<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="spousefirstname" className="half required">Spouse/Partner First Name

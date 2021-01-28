@@ -11,19 +11,20 @@ import countryList from "react-select-country-list"
 
 const EmploymentInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setContactInfo } = actions;
+  const { setCurrentStep, setEmploymentInfo } = actions;
 
   const { register, handleSubmit, watch, errors } = useForm({
     mode: "onChange",
   })
-  const UpdateContactInfo = data =>{
-    setContactInfo(data)
+  const UpdateEmploymentInfo = data =>{
+    setEmploymentInfo(data)
+
+    //figure out next page
     let currentOrder = state.numberOfSteps
-        let currentStep = state.currentStep
-        let currentPlaceInOrder = currentOrder.indexOf(currentStep)
-        let nextStep = currentOrder[currentPlaceInOrder + 1]
-        console.log( nextStep)
-        setCurrentStep(nextStep)
+    let currentStep = state.currentStep
+    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+    let nextStep = currentOrder[currentPlaceInOrder + 1]
+    setCurrentStep(nextStep)
   }
   
     let variantObject = {
@@ -42,7 +43,7 @@ const EmploymentInfo = () => {
               headingCompact
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
-            <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
+            <form id="contact" onSubmit={handleSubmit(UpdateEmploymentInfo)}>
               <legend>Employment Info<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="bussinessname" className="half required">Business Name

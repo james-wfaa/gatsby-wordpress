@@ -8,24 +8,17 @@ const FormButtons = ({ next, back, save, finish, signup, disabled }) => {
     const { setCurrentStep, setContactInfo, } = actions;
 
     const handleNextBtn = () => {
-        
-        //get current step order
         let currentOrder = state.numberOfSteps
         let currentStep = state.currentStep
         let currentPlaceInOrder = currentOrder.indexOf(currentStep)
         let nextStep = currentOrder[currentPlaceInOrder + 1]
-        console.log( nextStep)
         setCurrentStep(nextStep)
-        //get next value in array
-        //set current step to next value
       }
     const handleBackBtn = () => {
-        
         let currentOrder = state.numberOfSteps
         let currentStep = state.currentStep
         let currentPlaceInOrder = currentOrder.indexOf(currentStep)
         let nextStep = currentOrder[currentPlaceInOrder - 1]
-        console.log( nextStep)
         setCurrentStep(nextStep)
       }
     //const disabledClass = disabled ? `disabled` : ''
@@ -48,9 +41,9 @@ const FormButtons = ({ next, back, save, finish, signup, disabled }) => {
             { next && <button className="next" onClick={() => handleNextBtn()} disabled={disabled}>Save and Continue</button>}
             { signup && <button 
                 type="submit"
-                name="savebutton"
-                id="savebutton"
-                className="save">Sign up for Communications</button>}
+                name="signupbutton"
+                id="signupbutton"
+                className="signup">Sign up for Communications</button>}
         </div>
     )
 }

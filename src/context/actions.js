@@ -48,6 +48,18 @@ export const useActions = (state, dispatch) => {
   function setPhoneInfo(obj) {
     dispatch({ type: types.SET_PHONE_INFO, payload: obj})
   }
+  
+  function setEmploymentInfo(obj) {
+    dispatch({ type: types.SET_EMPLOYMENT_INFO, payload: obj})
+  }
+  
+  function setIdentityInfo(obj) {
+    dispatch({ type: types.SET_IDENTITY_INFO, payload: obj})
+  }
+  
+  function setSpouseInfo(obj) {
+    dispatch({ type: types.SET_SPOUSE_INFO, payload: obj})
+  }
 
   return {
     setSearchString,
@@ -62,5 +74,8 @@ export const useActions = (state, dispatch) => {
     setLifeEventStep,
     setMailingAddress,
     setPhoneInfo,
+    setEmploymentInfo,
+    setIdentityInfo,
+    setSpouseInfo,
   };
 };

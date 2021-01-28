@@ -19,12 +19,13 @@ const PhoneInfo = () => {
   const UpdatePhoneInfo = data =>{
     //console.log(data)
     setPhoneInfo(data)
+    
+    //figure out next page
     let currentOrder = state.numberOfSteps
-        let currentStep = state.currentStep
-        let currentPlaceInOrder = currentOrder.indexOf(currentStep)
-        let nextStep = currentOrder[currentPlaceInOrder + 1]
-        console.log( nextStep)
-        setCurrentStep(nextStep)
+    let currentStep = state.currentStep
+    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+    let nextStep = currentOrder[currentPlaceInOrder + 1]
+    setCurrentStep(nextStep)
   }
   
     let variantObject = {

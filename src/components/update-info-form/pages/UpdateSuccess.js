@@ -9,7 +9,7 @@ import { AppContext } from "../../../context/AppContext"
 
 const UpdateSuccess = () => {
     const { state, actions } = useContext(AppContext);
-    const { setAddressStep, setPhoneStep, setEmploymentStep, setIdentityStep, setLifeEventStep } = actions;
+    const { setAddressStep,  } = actions;
   
     const variantObject = {
         background_color: colors.formIntroBg,
@@ -17,29 +17,6 @@ const UpdateSuccess = () => {
         scroll_color: colors.bgRed,
         text_align: `center`
     }
-    /*const updateCheckbox = ( stepNumber ) => {
-        switch(stepNumber){
-            case 1:
-                setAddressStep(!state.addressStep)
-                break;
-            case 2:
-                setPhoneStep(!state.phoneStep)
-                break;
-            case 3:
-                setEmploymentStep(!state.employmentStep)
-                break;
-            case 4:
-                setIdentityStep(!state.identityStep)
-                break;
-            case 5:
-                setLifeEventStep(!state.lifeEventStep)
-                break;
-        }
-    }*/
-    /*const handleSubmit = data =>{
-        console.log(data)
-        //setCurrentStep(6)
-    }*/
   
     return (
         <div>
