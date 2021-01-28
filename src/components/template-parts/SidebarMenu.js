@@ -3,7 +3,9 @@ import styled from "styled-components"
 import { colors, sizes, breakpoints } from "../css-variables"
 import { useWindowSize } from "../hooks"
 
-const SidebarMenu = ({name, menuItems, width}) => {
+const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
+
+  console.log(name)
   const [open, setOpen] = useState(false)
   const menuMargin = open ? `32px` : 0;
   const StyledMenu = styled.div`
@@ -37,20 +39,21 @@ const SidebarMenu = ({name, menuItems, width}) => {
       margin: 0;
       padding-top:8px;
       padding-bottom: 8px;
-      &:hover {
-        font-weight: bold;
-      }
       a {
         text-decoration: none;
         color: ${colors.navMenuBlack};
         font-size: 18px;
+        &:hover {
+          color: ${colors.linkTextHover};
+        }
+        &.active {
+          font-weight: bold;
+        }
       }
     }
     @media screen and ${breakpoints.laptopS} {
       border: none;
       margin-top: 7px; // hack to get menu title & page title vertically aligned (curse you, Mrs. Eaves!)
-      margin-right: 32px;
-      margin-left: 32px;
       padding: 0;
     }
     @media screen and ${breakpoints.laptopSMax}{
@@ -86,6 +89,13 @@ const SidebarMenu = ({name, menuItems, width}) => {
     @media screen and ${breakpoints.laptopS} {
       text-align: left;
     }
+    a {
+      color: ${colors.buttonRed};
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   `
   useEffect(() => {
     setOpen(width > 1200)
@@ -96,7 +106,7 @@ const SidebarMenu = ({name, menuItems, width}) => {
   const items = menuItems.map(item => {
     return (
       <li>
-        <a href={item.path}>{item.label}</a>
+        <a href={item.path} className={item.path == (typeof window !== "undefined" && window.location.pathname) ? 'active': ''}>{item.label}</a>
       </li>
     )
   })
@@ -107,7 +117,11 @@ const SidebarMenu = ({name, menuItems, width}) => {
         condition={width < 1200}
         wrap={children => <ModalHandler onClick={() => setOpen(!open)}>{children}</ModalHandler>}
       >
-        <StyledHeader className={open ? `open` : null}>{name}</StyledHeader>
+        <StyledHeader className={open ? `open` : null}>
+          { link && (<a href={link}>{name}</a>)
+          }
+          { !link && ({name} )}
+        </StyledHeader>
       </ConditionalWrap>
         {open &&
           <ul>
