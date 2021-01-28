@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from "styled-components"
 import { useSpring, animated } from "react-spring"
-import { colors, sizes, breakpoints } from "../css-variables"
+import { colors, sizes, breakpoints,mixins } from "../css-variables"
 
 const Accordian = ({opentext, closetext, children}) => {
   const [open, setOpen] = useState(false)
@@ -10,6 +10,15 @@ const Accordian = ({opentext, closetext, children}) => {
 
   const StyledWrapper = styled.div`
   background-color: ${colors.navcardGrey};
+  a{
+    ${mixins.textlink}
+  }
+
+  .navWrap{
+    width: 100px;;
+    margin: 0 auto;
+  }
+
 `
 const StyledClickWrapper = styled.div`
   width: 100%;
@@ -73,7 +82,7 @@ const StyledInputWrapper = styled.div`
         </StyledInputWrapper>
       </StyledClickWrapper>
       {open ? (
-        <animated.div style={searchstyles}>
+        <animated.div className="navWrap" style={searchstyles}>
           {children}
         </animated.div>
       ) : null}
