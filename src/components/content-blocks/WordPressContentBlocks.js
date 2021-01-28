@@ -50,7 +50,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                     break
         
             case "core/separator":
-                RenderedBlocks.append(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+                RenderedBlocks.push(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
             case "acf/events-listing-section":
                 console.log('events-listing-section')
                 if ( eventCategory) {
