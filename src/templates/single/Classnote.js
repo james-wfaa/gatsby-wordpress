@@ -1,11 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
-import BlogPost from "../../components/template-parts/wordpress-post"
+import Classnote from "../../components/template-parts/wordpress-classnote"
 
 export default ({ data }) => {
 //console.log('Post.js data:',data)
 
-return (<BlogPost data={data} />)
+return (<Classnote data={data} />)
 }
 
 export const query = graphql`
@@ -41,6 +41,18 @@ export const query = graphql`
           localFile {
             ...HeroImage
           }
+        }
+      }
+      classnoteNotes {
+        nodes {
+          name
+          slug
+        }
+      }
+      classnoteDegrees {
+        nodes {
+          name
+          slug
         }
       }
     }
