@@ -20,13 +20,13 @@ const MailingAddress = () => {
   const UpdateMailingAddressInfo = data =>{
     console.log(data)
     setMailingAddress(data)
-    
+
     //figure out next page
     let currentOrder = state.numberOfSteps
     let currentStep = state.currentStep
     let currentPlaceInOrder = currentOrder.indexOf(currentStep)
     let nextStep = currentOrder[currentPlaceInOrder + 1]
-    setCurrentStep(nextStep)
+    setCurrentStep(35)
   }
   const countryOptions = countries.map(country => {
     if (country.value === "US") {

@@ -11,6 +11,7 @@ import EmploymentInfo from "../components/update-info-form/pages/EmploymentInfo"
 import IdentityInfo from "../components/update-info-form/pages/IdentityInfo"
 import SpouseInfo from "../components/update-info-form/pages/SpouseInfo"
 import UpdateSuccess from "../components/update-info-form/pages/UpdateSuccess"
+import MailingAddressSuccess from "../components/update-info-form/pages/MailingAddressSuccess"
 import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-variables'
 import downCaret from './../../static/down-caret-red.png'
 
@@ -54,6 +55,8 @@ const UpdateInfoForm = () =>  {
             return <SpouseInfo />
         case 8:
             return <UpdateSuccess />
+        case 35:
+            return <MailingAddressSuccess />
      }
    }
 
