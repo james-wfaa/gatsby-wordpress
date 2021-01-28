@@ -10,14 +10,7 @@ const Accordian = ({opentext, closetext, children}) => {
 
   const StyledWrapper = styled.div`
   background-color: ${colors.navcardGrey};
-  a{
-    ${mixins.textlink}
-  }
-
-  .navWrap{
-    width: 100px;;
-    margin: 0 auto;
-  }
+  
 
 `
 const StyledClickWrapper = styled.div`
@@ -82,7 +75,7 @@ const StyledInputWrapper = styled.div`
         </StyledInputWrapper>
       </StyledClickWrapper>
       {open ? (
-        <animated.div className="navWrap" style={searchstyles}>
+        <animated.div style={searchstyles}>
           {children}
         </animated.div>
       ) : null}
