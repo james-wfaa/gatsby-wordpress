@@ -15,7 +15,7 @@ function BlogPost({ data }) {
   let featSize = featuredImage?.node?.mediaDetails.width ? featuredImage?.node?.mediaDetails.width : null
   let size = featSize 
   
-  let image = (image = featuredImage?.node) ? image = featuredImage.node : null
+  let image = (featuredImage?.node) ? featuredImage.node : null
   
   return (
     <Layout title={title}>

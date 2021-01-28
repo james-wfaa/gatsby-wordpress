@@ -18,9 +18,9 @@ export default ({ data }) => {
     if (topParent?.slug && topParent.slug === groupSlug) {
       console.log('this is a group page or subpage')
       if (ancestors.nodes.length > 1) {
-        console.log('this is a group sub page')
+        //console.log('this is a group sub page')
       } else {
-        console.log('this is a group main page')
+        //console.log('this is a group main page')
         return <WpGroupPage page={page} />
       }
     }

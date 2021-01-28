@@ -75,7 +75,7 @@ function WordPressPage({ data }) {
 
   const cardGridEvents = eventEdges.slice(0,9)
   let eventCards = cardGridEvents.map((event) => {
-    console.log('building event tiles')
+    //console.log('building event tiles')
     return (
       <EventCardD key={event.url} {...event.node} />
     )
