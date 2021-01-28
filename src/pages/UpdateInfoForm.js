@@ -81,14 +81,17 @@ const StyledUpdateInfoForm = styled.div`
   color: ${colors.copyText}
 }
 form, .form-btns, .disclaimer{
-  max-width: 712px;
+  max-width: 896px;
   margin: 0 auto;
-  @media screen and ${breakpoints.tabletL} {
+  @media screen and ${breakpoints.laptopS} {
     padding: 0;
  }
 }
 form, .disclaimer{
   padding: 0 2rem;
+  @media screen and ${breakpoints.laptopS} {
+    padding: 0;
+ }
 }
 form{
   margin-top: 58px;
@@ -258,6 +261,7 @@ form{
       font-style: italic;
       font-weight: bold;
       font-size: ${sizes.s26};
+      text-align:center;
     }
     .checkboxWrap{
       max-width: 180px;
@@ -340,9 +344,13 @@ form{
         margin-right: 40px;
       }
     }
-    &.signup{
+    &.signup, 
+    &.address{
       color:white;
       background-color: ${colors.buttonRed};
+    }
+    &.address{
+      margin-right:40px;
     }
     &#submitbutton{
       background-color: ${colors.buttonRed};
@@ -378,6 +386,38 @@ form{
     right: -16px;
     top:-40px;
     font-weight:bold;
+  }
+  .successPageIcon{
+    position:relative;
+    top: -95px;
+    height: 0;
+    width: 60px;
+    margin: 0 auto;
+    :before {
+      content: '';
+      position: relative;
+      display: inline-block;
+      margin-right: 10px;
+      width: 58px;
+      height: 58px;
+      border: 4px solid ${colors.buttonRed};
+      top: 0;
+      border-radius:50%;
+    }
+    :after {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 13px;
+      border-left: 4px solid ${colors.buttonRed};
+      border-bottom: 4px solid ${colors.buttonRed};
+      height: 16px;
+      width: 32px;
+      transform: rotate(-55deg);
+    }
+  }
+  .content{
+    margin-bottom: 70px;
   }
 }
 

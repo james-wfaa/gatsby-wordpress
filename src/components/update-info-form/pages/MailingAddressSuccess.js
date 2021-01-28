@@ -15,6 +15,7 @@ const MailingAddress = () => {
   const { register, handleSubmit, watch, errors } = useForm({
     mode: "onChange",
   })
+    const headline = `Thanks, ${state.contactInfo.firstname}`
  
     let variantObject = {
       background_color: colors.formIntroBg,
@@ -26,7 +27,7 @@ const MailingAddress = () => {
         <div>
             <IntroPageSection
               excerpt='Thanks for updating your address - your information has been recorded. You can either opt to update another address or proceed to update other types of information by clicking “Save and Continue.”'
-              heading='Thanks'
+              heading={headline}
               variantObject={variantObject}
               headingAlt
               headingCompact

@@ -17,6 +17,7 @@ const UpdateSuccess = () => {
         scroll_color: colors.bgRed,
         text_align: `center`
     }
+    const content = `<div className="successPageIcon"></div>`
   
     return (
         <div className="success-page">
@@ -26,7 +27,9 @@ const UpdateSuccess = () => {
             variantObject={variantObject}
             headingAlt
             headingCompact
+            content={content}
             />
+            <div className="successPageIcon"></div>
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form className="success-page">
                 <legend>Are you interested in receiving communications about any of the following?</legend>

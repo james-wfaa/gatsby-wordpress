@@ -50,8 +50,9 @@ const StyledProgressBar = styled.div`
     position:relative;
     padding: 0 2rem;
     @media screen and ${breakpoints.tabletS} {
-        max-width:712px;
+        max-width:896px;
         margin:0 auto;
+        padding: 0;
     }
     .progress-bar-wrapper{
         border: 1px solid ${colors.buttonRed};
