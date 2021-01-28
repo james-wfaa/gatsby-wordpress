@@ -113,7 +113,7 @@ form{
     color: ${colors.formInputBorder};
     height: 2px;
   }
-  label, input  {
+  label, input, textarea  {
     display: block;
     width:100%;
   }
@@ -128,12 +128,15 @@ form{
       color: ${colors.buttonRed};
     }
   }
-  input{
+  input, textarea{
     margin-top: 12px;
     height: 48px;
     padding-left: 12px;
     border: 2px solid ${colors.formInputBorder};
     border-radius: 0;
+  }
+  textarea{
+    padding-top:8px;
   }
   select {
     display: block;
@@ -202,6 +205,9 @@ form{
       border: 2px solid grey;
       top: 3px;
     }
+    input[type='radio'] + label::before {
+      border-radius: 50%;
+    }
     input[type='checkbox']:checked + label::before, input[type='radio']:checked + label::before {
       background: ${colors.buttonRed};
       border: 2px solid ${colors.buttonRed};
@@ -216,6 +222,16 @@ form{
       height: 8px;
       width: 14px;
       transform: rotate(-45deg);
+    }
+    input[type='radio']:checked + label::after {
+      content: '';
+      position: absolute;
+      border: 2px solid white;
+      top: 6px;
+      left: 30px;
+      height: 14px;
+      width: 14px;
+      border-radius: 50%;
     }
     input[type='checkbox']:focus + label::before, input[type='radio']:focus + label::before {
       outline: #5d9dd5 solid 1px;
@@ -239,6 +255,15 @@ form{
       font-style: italic;
       font-weight: bold;
       font-size: ${sizes.s26};
+    }
+    .checkboxWrap{
+      max-width: 180px;
+    }
+  }
+  &.identity-info{
+    textarea#identitydescrip{
+      height:96px;
+      resize: none;
     }
   }
 }
@@ -312,6 +337,10 @@ form{
         margin-right: 40px;
       }
     }
+    &.signup{
+      color:white;
+      background-color: ${colors.buttonRed};
+    }
     &#submitbutton{
       background-color: ${colors.buttonRed};
       color: ${colors.titleWhite};
@@ -329,6 +358,24 @@ form{
 
   }
 
+}
+.success-page{
+  .progress-bar-wrapper .progress::after{
+    border-radius:0;
+    height:28px;
+    width: 4px;
+    bottom:-1px;
+    top:unset;
+    background-color:${colors.buttonRed};
+  }
+  .progress-bar-wrapper .progress::before{
+    content:'100';
+    color:${colors.buttonRed};
+    position:absolute;
+    right: -16px;
+    top:-40px;
+    font-weight:bold;
+  }
 }
 
 

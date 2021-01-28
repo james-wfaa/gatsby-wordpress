@@ -31,4 +31,8 @@ color: ${colors.buttonRed};
 position:absolute;
 bottom:-24px;
 font-size: 0.778rem;
++ input{
+  border: 2px solid ${colors.buttonRed} !important;
+  //background-image: ;
+}
 `

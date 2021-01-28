@@ -29,24 +29,15 @@ const ProgressBar = ({ progress, currentStep }) => {
      }
     
     let progressWidth = increment * current + '%'
-    let faintProgressWidth = ((increment * current) + increment) + '%'
     if(currentStep === 8){
         progressWidth = `100%`
     }
-    if(currentStep === 7){
-        faintProgressWidth = `100%`
-    }
-    const FaintProgressBar = styled.div`
-        width: ${faintProgressWidth};
-        background-color: grey;
-    `
+    
     //console.log(progress, currentStep, current, progressWidth)
  return  (
         <StyledProgressBar>
             <div className="progress-bar-wrapper">
-                <FaintProgressBar>
-                    <div className="progress" style={{ width: `${progressWidth}` }}></div>
-                </FaintProgressBar>
+                <div className="progress" style={{ width: `${progressWidth}` }}></div>
             </div>
         </StyledProgressBar>
     )

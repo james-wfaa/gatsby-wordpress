@@ -19,7 +19,7 @@ const UpdateSuccess = () => {
     }
   
     return (
-        <div>
+        <div className="success-page">
             <IntroPageSection
             excerpt='Thanks so much for updating your info. Someone will be in contact with you if they have any questions about your submission. If you’d like to make any changes to your communication preferences in the future, simply email recordsupdates@supportuw.org to let us know. '
             heading='Thanks so much. Your info has been updated.'
@@ -28,7 +28,7 @@ const UpdateSuccess = () => {
             headingCompact
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
-            <form  className="success-page">
+            <form className="success-page">
                 <legend>Are you interested in receiving communications about any of the following?</legend>
                 <fieldset>
                     <div className="checkboxWrap">

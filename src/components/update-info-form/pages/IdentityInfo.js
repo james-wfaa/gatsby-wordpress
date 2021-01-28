@@ -77,7 +77,7 @@ const IdentityInfo = () => {
                 </select>
               </label>
               <label htmlFor="identitydescrip">What else is important to your identity?
-                <input
+                <textarea
                     type="textbox"
                     name="identitydescrip"
                     id="identitydescrip"
