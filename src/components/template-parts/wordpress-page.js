@@ -41,7 +41,7 @@ function WordPressPage({ page }) {
   */
  //menuName = (ancestors) ? 
 
- console.log(ancestors)
+ //console.log(ancestors)
  if (ancestors?.nodes) {
   // child page of a product page
   if (ancestors.nodes[0]?.template?.templateName === "Product Template") {
@@ -59,7 +59,7 @@ function WordPressPage({ page }) {
  }
 
  if (menuRoot) {
-  console.log(menuRoot)
+  //console.log(menuRoot)
 
   wpMenu = {}
   wpMenu.name = menuRoot.title
