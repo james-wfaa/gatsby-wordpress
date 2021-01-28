@@ -27,7 +27,7 @@ function WordPressPage({ page }) {
   }
   ) : ''
   return (
-    <Layout>
+    <Layout title={title}>
       { featuredImage?.node && (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}

@@ -122,6 +122,18 @@ const HeroIntroSection = ({
         </>
       : null}
       {productPage ? <div className="standardProductLabel"></div> :
+         (heroSize === 'slim') ? 
+         <div style={{ position: `relative` }}>
+            <a
+          className={downscrollClass}
+          href={`#${className}__downscroll`}
+          title="Scroll down to content"
+          css={downscrollStyle}
+        >
+            <div className="downscroll_after" style={{backgroundColor: variantObject.background_color}}></div>
+          </a>
+        </div> 
+      : 
       <div style={{ position: `relative` }}>
         <a
           className={downscrollClass}
