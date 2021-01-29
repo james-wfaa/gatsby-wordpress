@@ -27,9 +27,6 @@ const ProgressBar = ({ progress, currentStep }) => {
             increment = 14
             break;
      }
-    if(currentStep === 35){
-        current = 2
-    }
     let progressWidth = increment * current + '%'
     if(currentStep === 8){
         progressWidth = `100%`

@@ -26,7 +26,7 @@ const MailingAddress = () => {
     let currentStep = state.currentStep
     let currentPlaceInOrder = currentOrder.indexOf(currentStep)
     let nextStep = currentOrder[currentPlaceInOrder + 1]
-    setCurrentStep(35)
+    setCurrentStep(nextStep)
   }
   const countryOptions = countries.map(country => {
     if (country.value === "US") {
