@@ -61,9 +61,6 @@ margin-right: auto;
         ${mixins.buttons};
           width: 100%;
           position: relative;
-          @media screen and ${breakpoints.tabletS} {
-            width: 100%;
-          }
           @media screen and ${breakpoints.laptopS} {
             width: 50%;
           }
