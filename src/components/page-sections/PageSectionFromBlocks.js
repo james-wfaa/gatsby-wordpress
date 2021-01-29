@@ -7,6 +7,8 @@ import SimpleSlider from '../content-modules/SimpleSlider'
 import CardSet from "../content-modules/CardSet"
 import Block from '../content-blocks/WordPressBlock'
 import Button from "../parts/Button"
+import Column from '../parts/WordPressColumns'
+
 
 
 const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, centered }) => {
@@ -109,15 +111,8 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         }
                         break
                     case "core/columns":
-                        if(block.innerBlocks && block.innerBlocks[0].originalContent){
-                            let innerRenderedBlocks = [];
-                            block.innerBlocks.forEach((innerBlock) => {
-                                console.log("Columns in" + innerBlock.saveContent);
-                                innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />) 
-                            })
-                            return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
-                        }
-                        break
+                        return (<Column className={block.name.replace('/', '-')} block={block} />)
+            
                     default:
                         //console.log('default block', block.name)
                         

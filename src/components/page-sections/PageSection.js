@@ -258,29 +258,7 @@ const StyledPageSection = styled(PageSection)`
             @media screen and ${breakpoints.tabletS} {
                 flex-direction: row;
             }        
-        }
-
-        .core-columns{
-            max-width: 303px;
-            
-            @media screen and ${breakpoints.tabletS} {
-                display: flex;
-                max-width: 536px;
-                .core-column{
-                    margin-right: 12px;
-                    margin-left: 12px;
-                }
-            }
-            @media screen and ${breakpoints.laptopS} {
-                max-width: 712px;
-            }
-            .core-column{
-                flex: 1 1 auto;
-                flex-shrink: 1;
-                min-width: 50px;
-            }
-        }
-        
+        }        
     }
 
 
