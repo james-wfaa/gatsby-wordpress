@@ -11,6 +11,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
     const staggerBlocks = (stagger) 
         ? blocks.map((block) => {
             block.stagger = true
+            block.key = block.id
             return block
         })
         : blocks
@@ -50,7 +51,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             //case ""
         
             case "core/separator":
-                RenderedBlocks.append(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+                RenderedBlocks.push(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
             case "acf/events-listing-section":
                 console.log('events-listing-section')
                 if ( eventCategory) {

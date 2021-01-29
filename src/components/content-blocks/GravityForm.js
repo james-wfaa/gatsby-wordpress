@@ -97,7 +97,16 @@ const StyledGravityForm = styled(GravityForm)`
 max-width: 500px;
 margin: 0 auto;
 ul {
+    text-align: left;
+}
+ul.gform_fields {
     list-style-type: none;
+}
+p {
+    text-align: left;
+}
+button.gravityform__button {
+    ${mixins.buttons}
 }
 
     

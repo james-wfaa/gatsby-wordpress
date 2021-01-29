@@ -9,4 +9,33 @@ export const fragments = graphql`
       }
     }
   }
+  fragment Children on WpPage {
+    wpChildren {
+      nodes {
+        ... on WpPage {
+          id
+          title
+          uri
+          wpChildren {
+            nodes {
+              ... on WpPage {
+                id
+                title
+                uri
+                wpChildren {
+                  nodes {
+                    ... on WpPage {
+                      id
+                      title
+                      uri
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 `

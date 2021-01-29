@@ -46,6 +46,11 @@ div.image-section {
     display: flex;
     flex-direction: column;
     padding-bottom: ${sizes.s58};
+
+    a {
+        ${mixins.textlink}
+    }
+    
     &--small {
         .image-section__image {
             width: calc(100% - 72px);
