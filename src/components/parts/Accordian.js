@@ -20,7 +20,8 @@ const StyledClickWrapper = styled.div`
 const StyledInputWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 30px;
-  width: 200px;
+  width: max-content;
+  max-width: 350px;
   margin: 0 auto;
   align-items: center;
   h4 {
