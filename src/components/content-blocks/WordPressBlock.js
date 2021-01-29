@@ -6,16 +6,26 @@ import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
 
 const WordPressBlock = ({className, block}) => {
+    console.log(block)
     if (block) {
-        const blockContent = (block.isDynamic) 
+        if (block.originalContent) {
+            const blockContent = (block.isDynamic) 
             ? block.dynamicContent
             : (block.saveContent) 
                 ? block.saveContent
                 : block.originalContent 
                 
-        return (
-            <div className={className} dangerouslySetInnerHTML={{__html: blockContent}} />
-        )
+            return (
+                <div className={className} dangerouslySetInnerHTML={{__html: blockContent}} />
+            )
+
+        } else {
+            return (
+                <div className={className} dangerouslySetInnerHTML={{__html: block}} />
+            )
+            
+        }
+        
     }
     return null
     
