@@ -17,6 +17,7 @@ const SelectSteps = () => {
         scroll_color: colors.bgRed,
         text_align: `center`
     }
+    
     const updateCheckbox = ( stepNumber ) => {
         switch(stepNumber){
             case 1:

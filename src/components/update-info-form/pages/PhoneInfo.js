@@ -19,7 +19,7 @@ const PhoneInfo = () => {
   const UpdatePhoneInfo = data =>{
     //console.log(data)
     setPhoneInfo(data)
-    
+
     //figure out next page
     let currentOrder = state.numberOfSteps
     let currentStep = state.currentStep
@@ -37,7 +37,7 @@ const PhoneInfo = () => {
       return (
         <div>
             <IntroPageSection
-              excerpt='Please update your address. You will have the option to update multiple addresses after clicking “Save and Continue”.'
+              excerpt='Please update any phone numbers you wish to have on file. You only have to update one but can update multiple numbers if desired.'
               heading='Update My Info'
               variantObject={variantObject}
               headingAlt

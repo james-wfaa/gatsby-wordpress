@@ -100,6 +100,7 @@ form{
     margin-bottom: 12px;
     display:block;
     position:relative;
+    font-weight:bold;
     .requiredInfo{
       position:absolute;
       color: ${colors.buttonRed};
@@ -107,6 +108,7 @@ form{
       top: -30px;
       font-size: 0.778rem;
       text-transform: capitalize;
+      font-weight:normal;
       @media screen and ${breakpoints.tabletS} {
         right: 0;
         top: 0;

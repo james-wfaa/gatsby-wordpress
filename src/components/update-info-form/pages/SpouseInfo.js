@@ -111,6 +111,8 @@ const SpouseInfo = () => {
               <label htmlFor="deceasedSpouse">My spouse or partner is now deceased.</label>
               <input type="radio" id="noSpouse" value="noSpouse" name="spouseUpdate"/>
               <label htmlFor="noSpouse">I am no longer with my spouse or partner.</label>
+              <input type="radio" id="none" value="none" name="spouseUpdate"/>
+              <label htmlFor="none">None of the above.</label>
               <Buttons save back />
             </form>
         </div>
