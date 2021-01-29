@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from "styled-components"
 import { useSpring, animated } from "react-spring"
-import { colors, sizes, breakpoints,mixins } from "../css-variables"
+import { colors, sizes } from "../css-variables"
 
 const Accordian = ({opentext, closetext, children}) => {
   const [open, setOpen] = useState(false)
@@ -21,7 +21,7 @@ const StyledInputWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 30px;
   width: max-content;
-  max-width: 350px;
+  max-width: 500px;
   margin: 0 auto;
   align-items: center;
   h4 {

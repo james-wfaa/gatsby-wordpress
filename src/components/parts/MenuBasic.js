@@ -20,7 +20,8 @@ const MenuBasic = ({ items, className, menuTitle }) => {
 const StyledMenuBasic = styled(MenuBasic)`
 
 margin-bottom: 48px;
-width: 276px;
+width: 80%;
+max-width: 500px;
 margin: 0 auto;
 
 
