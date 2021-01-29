@@ -10,19 +10,17 @@ export default ({ data }) => {
   const { template, ancestors } = page
 
 
-  if (ancestors) {
+  if (ancestors) { // this page has a parent
 
     const groupSlug = 'groups'
-    // this page has a parent
-
     
     const topParent = ancestors.nodes[ancestors.nodes.length -1]
-    if (topParent.slug === groupSlug) {
+    if (topParent?.slug && topParent.slug === groupSlug) {
       console.log('this is a group page or subpage')
       if (ancestors.nodes.length > 1) {
-        console.log('this is a group sub page')
+        //console.log('this is a group sub page')
       } else {
-        console.log('this is a group main page')
+        //console.log('this is a group main page')
         return <WpGroupPage page={page} />
       }
     }
@@ -58,8 +56,35 @@ export const query = graphql`
           id
           slug
           link
+          ... on WpPage {
+            id
+            title
+            link
+          }
+          ... Children
+          template {
+            ... on WpDefaultTemplate {
+              templateName
+            }
+            ... on WpTemplate_AggregateProductPage {
+              templateName
+            }
+            ... on WpTemplate_HomePage {
+              templateName
+            }
+            ... on WpTemplate_TopLevelPage {
+              templateName
+            }
+            ... on WpProductTemplate {
+              templateName
+            }
+            ... on WpGeneralTemplate {
+              templateName
+            }
+          }
         }
       }
+      ... Children
       template {
         ... on WpDefaultTemplate {
           templateName
@@ -274,6 +299,11 @@ export const query = graphql`
             dynamicContent
             saveContent
           }
+        }
+      }
+      products {
+        nodes {
+          name
         }
       }
     }

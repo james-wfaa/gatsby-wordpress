@@ -77,8 +77,13 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                             return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
                         }
                     case "core/paragraph":
-                        if (block.originalContent.indexOf(' excerpt') > 0) {
-                            excerpt += (block.isDynamic) ? block.dynamicContent : block.originalContent
+                        if (block.originalContent.indexOf('excerpt') > 0) {
+                            if(excerpt){
+                                excerpt += (block.isDynamic) ? block.dynamicContent : block.originalContent
+                            }
+                            else{
+                                excerpt = (block.isDynamic) ? block.dynamicContent : block.originalContent
+                            }
                             break
                         }
                         else{
