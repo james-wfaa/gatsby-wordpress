@@ -19,27 +19,29 @@ const MenuBasic = ({ items, className, menuTitle }) => {
 
 const StyledMenuBasic = styled(MenuBasic)`
 
-width: max-content;
-margin: 0 auto;
 margin-bottom: 48px;
+width: 276px;
+margin: 0 auto;
 
+
+@media screen and ${breakpoints.tabletS} {
+    width: max-content;
+}
 
 .menu__title{
     color: ${colors.titleColor};
     font-size: ${sizes.s16};
     font-weight: bold;
     line-height: ${sizes.s26};
-
     margin-bottom: 32px;
 }  
-
 .menu__link{
     color: ${colors.copyText};
     font-size: ${sizes.s18};
     line-height: ${sizes.s36};
     text-decoration: none;
+    
 }
-
 
 `
 
