@@ -58,7 +58,7 @@ margin-right: auto;
     &.button{
         margin: ${sizes.s40} 0;
         a{
-            ${mixins.buttons};
+        ${mixins.buttons};
           width: 100%;
           position: relative;
           @media screen and ${breakpoints.tabletS} {
@@ -173,12 +173,12 @@ a {
     margin-right: auto;
     margin-bottom: ${sizes.s24};
     justify-content: center;
-    .wp-block-button {
+
+    .wp-block-button{
+        width: 100%;
+    }
+    .wp-block-button__link {
         ${mixins.buttons};
-        a{
-            color: ${colors.titleWhite};
-        }
-        
     }
     @media screen and ${breakpoints.tabletS} {
         margin: ${sizes.s12};
