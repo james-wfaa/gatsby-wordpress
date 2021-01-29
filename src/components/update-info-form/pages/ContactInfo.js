@@ -189,10 +189,6 @@ const ContactInfo = () => {
                     aria-label="Postgraduate Years (if applicable)"
                     defaultValue={state.contactInfo.postgrad}
                     ref={register({
-                      pattern: {
-                        value: /^(19|20)\d{2}$/,
-                        message: "Must be a valid year",
-                      },
                     })}
                 />
               </label>
