@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
+import { Link } from 'gatsby'
 import { AppContext } from "../../context/AppContext"
 import styled from "styled-components"
 import { colors, mixins, fonts } from '../css-variables'
@@ -45,6 +46,34 @@ const StyledCheckbox = styled.div`
     font-size: 26px;
   }
 `
+const ClearFilterSection = styled.div`
+  margin-bottom: 58px;
+  display: flex;
+`
+
+const ClearButton = styled.div`
+  border: 1px solid ${colors.badgerRed};
+  padding: 10px;
+  width: 200px;
+  cursor: pointer;
+  p {
+    color: ${colors.badgerRed};
+    margin: 0;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+  }
+`
+
+const clearText = `< Reset Selections`
+
+const OptionsText = styled.p`
+  font-size: 24px;
+  margin: 0 0 0 24px;
+  align-self: center;
+  color: ${colors.badgerRed};
+`
+
 const FeeBoxHeading = styled.div`
   ${mixins.sectionHeader}
 `
@@ -53,6 +82,8 @@ const FeeBox = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 58px 58px 0 58px;
+  border-top: 4px solid ${colors.iconGrey};
+  margin-bottom: 58px;
 `
 
 const FeeCard = styled.div`
@@ -61,21 +92,65 @@ const FeeCard = styled.div`
   * {
     text-align: center;
   }
+  margin-bottom: 32px;
   justify-self: center;
-  padding: 1rem;
   text-align: left;
   text-decoration: none;
   background-color: ${colors.bgWhite};
   opacity: 0.9;
   color: ${colors.cardText};
-  min-height: 256px;
-  width: 100%;
+  min-height: 380px !important;
+  min-width: 350px;
+  .contentwrap::before {
+    left: 50%;
+    transform: translateX(-50%) skew(135deg);
+  }
+  .contentwrap {
+    h3 {
+      font-size: 18px;
+      color: ${colors.badgerRed};
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+  }
+`
+const FeeCardHeader = styled.div`
+  background-color: ${colors.bgLightGrey};
+  padding-top: 16px;
+  p {
+    margin: 0;
+  }
+  h2 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 32px;
+    color: ${colors.badgerRed};
+  }
+`
+const FeeParamList = styled.p`
+  font-size: 13px;
+  color: ${colors.tagGrey};
 `
 
 const Fee = styled.p`
   font-size: 54px;
   font-weight: bold;
   text-align: center;
+  margin-top: 48px;
+`
+
+const JoinButton = styled(Link)`
+  margin: 40px auto;
+  background: ${colors.badgerRed};
+  width: 120px;
+  height: 48px;
+  p {
+    color: ${colors.bgWhite};
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 48px;
+    height: 48px;
+  }
 `
 
 const MembershipForm = () => {
@@ -92,6 +167,17 @@ const MembershipForm = () => {
     if (str.toLowerCase() === "false") return false;
     return false;
   }
+
+  const createOptionsText = () => {
+    let gradText = state.membershipGraduate ? `Graduated in the last 5 years. ` : `Did not graduate in the last 5 years. `;
+    let ageText = state.membershipAge ? `Over 65. ` : `Not over 65. `;
+    let typeText = state.membershipType === 'individual' ? `Individual. ` : `Joint. `
+    let combinedText = `${gradText} ${ageText} ${typeText}`
+    return combinedText
+  }
+
+  const recentGradText = state.membershipGraduate ? `RECENT GRAD` : `PRIOR GRAD`
+  const membershipTypeText = state.membershipType === 'individual' ? `INDIVIDUAL` : `JOINT`
 
   const onGraduateChanged = (e) => {
     setMembershipGraduate(convertStrToBool(e.target.value))
@@ -131,7 +217,12 @@ const MembershipForm = () => {
     <div style={{maxWidth: `896px`, margin: `0 auto`}}>
       {showValues && fees ?
         <PageSection>
-          <button onClick={() => handleClear()}>Submit</button>
+          <ClearFilterSection>
+            <ClearButton onClick={() => handleClear()}>
+              <p>{clearText}</p>
+            </ClearButton>
+            <OptionsText>{createOptionsText()}</OptionsText>
+          </ClearFilterSection>
           <FeeBox>
             <FeeBoxHeading style={{gridColumn: "1 / span 2"}}>
               <h1>Lifetime Membership</h1>
@@ -145,25 +236,33 @@ const MembershipForm = () => {
               </p>
             </div>
             <FeeCard>
-              <div>
-                <p>Param List</p>
+              <FeeCardHeader>
+                <FeeParamList>LIFETIME - {recentGradText} - {membershipTypeText}</FeeParamList>
                 <h2>Pay in Full</h2>
-              </div>
+              </FeeCardHeader>
               <div className="contentwrap">
                 <Fee>
                   ${fees.full}
                 </Fee>
+                <h3>Best Value</h3>
+                <JoinButton to="/join">
+                  <p>JOIN</p>
+                </JoinButton>
               </div>
             </FeeCard>
             <FeeCard>
-              <div>
-                <p>Param List</p>
+              <FeeCardHeader>
+                <FeeParamList>LIFETIME - {recentGradText} - {membershipTypeText}</FeeParamList>
                 <h2>Installments</h2>
-              </div>
+              </FeeCardHeader>
               <div className="contentwrap">
                 <Fee>
                   ${fees.installments}
                 </Fee>
+                <h3>Convenient and Affordable</h3>
+                <JoinButton to="/join">
+                <p>JOIN</p>
+                </JoinButton>
               </div>
             </FeeCard>
             <p>Make a one-time payment to become a lifetime member and save a total of $30 off installment pricing.</p>
@@ -183,25 +282,33 @@ const MembershipForm = () => {
               </p>
             </div>
             <FeeCard>
-              <div>
-                <p>Param List</p>
+              <FeeCardHeader>
+                <FeeParamList>ANNUAL - {recentGradText} - {membershipTypeText}</FeeParamList>
                 <h2>Two Year</h2>
-              </div>
+              </FeeCardHeader>
               <div className="contentwrap">
                 <Fee>
                   ${fees.twoYear}
                 </Fee>
+                <h3>Best Value</h3>
+                <JoinButton to="/join">
+                  <p>JOIN</p>
+                </JoinButton>
               </div>
             </FeeCard>
             <FeeCard>
-              <div>
-                <p>Param List</p>
+              <FeeCardHeader>
+                <FeeParamList>ANNUAL - {recentGradText} - {membershipTypeText}</FeeParamList>
                 <h2>One Year</h2>
-              </div>
+              </FeeCardHeader>
               <div className="contentwrap">
                 <Fee>
                   ${fees.oneYear}
                 </Fee>
+                <h3>Most Popular</h3>
+                <JoinButton to="/join">
+                  <p>JOIN</p>
+                </JoinButton>
               </div>
             </FeeCard>
             <p>Extend your stay in this Badger community and save off the one-year option.</p>
