@@ -33,6 +33,7 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
     ul {
       justify-self: left;
       margin-left: 0;
+      margin-right: ${sizes.s18};
     }
     li {
       list-style: none;
