@@ -26,11 +26,9 @@ const WordPressColumns = ({ block, className }) => {
 const StyledWordPressColumns = styled(WordPressColumns)`
 
 .core-columns{
-    max-width: 303px;
     
     @media screen and ${breakpoints.tabletS} {
         display: flex;
-        max-width: 536px;
         flex: 1 1 auto;
         flex-shrink: 1;
 
@@ -38,6 +36,13 @@ const StyledWordPressColumns = styled(WordPressColumns)`
             margin-right: 12px;
             margin-left: 12px;
         }
+        .core-column:first-child{
+            margin-left: 0px;
+        }
+        .core-column:last-child{
+            margin-right: 0px;
+        }
+
     }
     @media screen and ${breakpoints.laptopS} {
         max-width: 712px;
