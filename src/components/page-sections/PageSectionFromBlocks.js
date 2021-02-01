@@ -7,6 +7,8 @@ import SimpleSlider from '../content-modules/SimpleSlider'
 import CardSet from "../content-modules/CardSet"
 import Block from '../content-blocks/WordPressBlock'
 import Button from "../parts/Button"
+import Column from '../parts/WordPressColumns'
+
 
 
 const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, centered }) => {
@@ -99,7 +101,6 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         const productcard = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
                         return (<div dangerouslySetInnerHTML={{__html: productcard}} />)
                     case "core/buttons":
-                        console.log("Found a button");
                         if(block.innerBlocks && block.innerBlocks[0].originalContent){
                             let innerRenderedBlocks = [];
                             block.innerBlocks.forEach((innerBlock) => {
@@ -109,6 +110,9 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                             return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
                         }
                         break
+                    case "core/columns":
+                        return (<Column className={block.name.replace('/', '-')} block={block} />)
+            
                     default:
                         //console.log('default block', block.name)
                         

@@ -240,7 +240,8 @@ const StyledPageSection = styled(PageSection)`
         > .core-paragraph,
         > .core-list,
         > .core-table,
-        > .core-buttons {
+        > .core-buttons,
+        > .core-columns {
             min-width: 300px;
             width: 80%;
             max-width: 712px;
@@ -257,7 +258,7 @@ const StyledPageSection = styled(PageSection)`
             @media screen and ${breakpoints.tabletS} {
                 flex-direction: row;
             }        
-        }
+        }        
     }
 
 

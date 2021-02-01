@@ -53,6 +53,14 @@ margin: ${sizes.s58} 0;
   @media screen and ${breakpoints.tablet} {
     float: left; 
   }
+  @media screen and ${breakpoints.tabletL} {
+    &:before {
+      display: none;
+    }
+    &:after {
+      display: none;
+    }
+  }
 }
 
 @media screen and ${breakpoints.tabletS} {
