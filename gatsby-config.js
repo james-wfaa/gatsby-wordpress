@@ -26,6 +26,22 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-omni-font-loader",
+      options: {
+        mode: "render-blocking",
+        web: [
+          {
+            name: ["Verlag A", "Verlag B"],
+            file: "https://cloud.typography.com/7708974/664088/css/fonts.css"
+          },
+          {
+            name: ["mrs-eaves-xl-serif", "mrs-eaves-xl-serif-narrow"],
+            file: "https://use.typekit.net/suj0sae.css"
+          },
+        ],
+      },
+    },
+    {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
