@@ -50,7 +50,19 @@ const ClearFilterSection = styled.div`
   margin-bottom: 58px;
   display: flex;
 `
-
+const FormSubmitButton = styled.button`
+  background-color: ${colors.borderGrey};
+  margin: 40px auto;
+  border: none;
+  width: 98px;
+  height: 48px;
+  color: ${colors.bgWhite};
+  font-weight: bold;
+  :disabled{
+    background-color: rgba(239,239,239, 0.5);
+    color: #fff;
+  }
+`
 const ClearButton = styled.div`
   border: 1px solid ${colors.badgerRed};
   padding: 10px;
@@ -62,6 +74,20 @@ const ClearButton = styled.div`
     font-size: 20px;
     text-align: center;
     font-weight: bold;
+  }
+`
+
+const JoinButton = styled(Link)`
+  margin: 40px auto;
+  background: ${colors.badgerRed};
+  width: 120px;
+  height: 48px;
+  p {
+    color: ${colors.bgWhite};
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 48px;
+    height: 48px;
   }
 `
 
@@ -92,7 +118,7 @@ const FeeCard = styled.div`
   * {
     text-align: center;
   }
-  margin-bottom: 32px;
+  margin: 48px auto 32px;
   justify-self: center;
   text-align: left;
   text-decoration: none;
@@ -139,19 +165,7 @@ const Fee = styled.p`
   margin-top: 48px;
 `
 
-const JoinButton = styled(Link)`
-  margin: 40px auto;
-  background: ${colors.badgerRed};
-  width: 120px;
-  height: 48px;
-  p {
-    color: ${colors.bgWhite};
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 48px;
-    height: 48px;
-  }
-`
+
 
 const MembershipForm = () => {
 
@@ -228,7 +242,7 @@ const MembershipForm = () => {
               <h1>Lifetime Membership</h1>
             </FeeBoxHeading>
             <div style={{gridColumn: "1 / span 2"}}>
-              <p>
+              <p style={{marginBottom: 0}}>
                 Solidify your pride. Become a lifetime member. Your love of the UW knows no bounds,
                 and neither does this membership community dedicated to supporting all alumni
                 and strengthening WAA’s mission. Plus, you’ll enjoy a lifetime of member benefits
@@ -274,7 +288,7 @@ const MembershipForm = () => {
               <h1>Annual Membership</h1>
             </FeeBoxHeading>
             <div style={{gridColumn: "1 / span 2"}}>
-              <p>
+              <p style={{marginBottom: 0}}>
                 Becoming a WAA member is the best way to stay connected to the UW.
                 You’ll join a community that shares your pride in the achievements of the university,
                 supports all alumni, and celebrates Badger spirit. Plus, enjoy a variety of special benefits
@@ -362,7 +376,7 @@ const MembershipForm = () => {
               </StyledCheckbox>
             </FormSection>
             <p style={{margin: `32px auto 0`}}>You must answer all three questions before submitting</p>
-            <button style={{margin: `40px auto`}} disabled={disabled} onClick={(e) => handleSubmit(e)}>Submit</button>
+            <FormSubmitButton disabled={disabled} onClick={(e) => handleSubmit(e)}>SUBMIT</FormSubmitButton>
           </QuestionForm>
         </PageSection>
       }
