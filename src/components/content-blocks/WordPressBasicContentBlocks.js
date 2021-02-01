@@ -22,6 +22,18 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 break  
             case "core/columns":
                 return (<Column className={block.name.replace('/', '-')} block={block} />)
+            case "core/buttons":
+                console.log("Found a button");
+                if(block.innerBlocks && block.innerBlocks[0].originalContent){
+                    let innerRenderedBlocks = [];
+                    block.innerBlocks.forEach((innerBlock) => {
+                        innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />) 
+                    })
+                    console.log("blocks: " + innerRenderedBlocks)
+                    return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
+                }
+                break
+    
             //Add case to handle news/stories that use the freeform block but do not have blocks... and then use content instead of original content because it has the html tags
             //Also added css below that is duplicated from WPBlock
             case "core/freeform":
