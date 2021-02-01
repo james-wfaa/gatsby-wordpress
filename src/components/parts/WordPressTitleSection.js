@@ -1,11 +1,14 @@
 import React from "react"
 import styled from 'styled-components'
 import { sizes, colors, fonts, breakpoints } from '../css-variables'
+import FeaturedImage from "../content-blocks/FeaturedImage"
 
-const TitleSection = ({ className, heading, author, categories, date, excerpt, series, event = false }) => {
+const TitleSection = ({ className, heading, author, categories, date, excerpt, series, event = false, smImg, size }) => {
 
     const classesList = !event ? `${className}` : `${className} ${className}--event`
     const theCategory = !categories? null : categories.nodes[0]
+    const defaultAuthor = "Wisconsin Alumni Association";
+    console.log(smImg)
 
     return (
         <div className={classesList}>
@@ -14,7 +17,7 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
                 <h1>{heading}</h1>
             )}
             <div className="titlesection">
-                { author && (
+                { author && author.node.name.toLowerCase() != defaultAuthor.toLowerCase() &&  (
                     <div className={`${className}__author`}>{author.node.name}</div>
                 )}
                 { date && (
@@ -22,7 +25,7 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
                 )}
                 { theCategory && (
                     <div className={`${className}__category`}>
-                        <a className="category__item" href={`/category/${theCategory.slug}`}>{theCategory.name}</a>
+                        <a className="category__item" href={`/${theCategory.slug}`}>{theCategory.name}</a>
                         <span> &gt;</span></div>
                 )}
                 { series && (
@@ -30,8 +33,12 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
                 )}
             </div>
             </div>
-
-            { excerpt && (
+            
+            { smImg && excerpt && (
+                <div><FeaturedImage featuredImage={smImg} size={size}/><div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
+                </div>
+            )}
+            { !smImg && excerpt && (
                 <div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
             )}
 

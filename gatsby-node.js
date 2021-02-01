@@ -58,7 +58,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           break
       }
 
-      console.log("templatePath:",templatePath)
+      //console.log("templatePath:",templatePath)
 
       const contentTypeTemplate = contentTypeTemplates.find(
         (path) => path === templatePath

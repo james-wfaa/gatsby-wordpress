@@ -8,12 +8,12 @@ import Footer from "./Footer"
 
 import "./layout.css"
 
-const Layout = ({ children, img, url, excerpt, noborder }) => {
+const Layout = ({ children, img, url, excerpt, noborder, title }) => {
   
   return (
     <>
     <FilledHelmet
-      title="Wisconsin Alumni Association"
+      title={title}
       img={img}
       url={url}
       desc={excerpt} 
