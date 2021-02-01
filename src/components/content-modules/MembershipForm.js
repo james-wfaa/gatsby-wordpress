@@ -1,19 +1,48 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { AppContext } from "../../context/AppContext"
 import styled from "styled-components"
-import { colors, mixins } from '../css-variables'
+import { colors, mixins, fonts } from '../css-variables'
 import PageSection from "../page-sections/PageSection"
 import PageSectionHeader from "../parts/PageSectionHeader"
 import { membershipFeeCalc } from "../../utils/tools"
 
+const QuestionForm = styled.form`
+  border: 1px solid ${colors.iconGrey};
+`
+
+const FormHeader = styled.div`
+  background-color: ${colors.bgActiveGrey};
+  padding: 48px;
+  border-top: 3px solid ${colors.iconGrey};
+  border-collapse: collapse;
+  p {
+    margin: 0;
+    font-size: 18px;
+    color: ${colors.badgerRed};
+  }
+`
+
 const FormSection = styled.div`
-  margin: 48px;
-  border-bottom: 2px solid grey;
+  padding: 48px;
+  border-bottom: 9px solid ${colors.cardTitleBg};
+  h3 {
+    font-size: 54px;
+    color: ${colors.badgerRed};
+    font-family: ${fonts.eaves};
+  }
+`
+const FormQuestion = styled.p`
+  font-size: 32px;
+  font-family: ${fonts.eavesNarrow};
+  margin-bottom: 48px;
 `
 const StyledCheckbox = styled.div`
   display: inline-block;
+  margin: 12px;
   input, label {
     display: inline-block;
+    margin: 12px;
+    font-size: 26px;
   }
 `
 const FeeBoxHeading = styled.div`
@@ -22,10 +51,10 @@ const FeeBoxHeading = styled.div`
 const FeeBox = styled.div`
   background-color: ${colors.bgActiveGrey};
   display: grid;
-  /* grid-template-rows: repeat(4, 320px); */
   grid-template-columns: 1fr 1fr;
-
+  padding: 58px 58px 0 58px;
 `
+
 const FeeCard = styled.div`
   ${mixins.contentCardBase}
   ${mixins.contentCardSizes}
@@ -185,10 +214,13 @@ const MembershipForm = () => {
           <p style={{fontSize: `26px`, maxWidth: `896px`, margin: `0 auto 58px`}}>Joining for the first time? Or are you a long-time member who wants to make sure you're getting
             the best deal? Either way, answer the following questions to see what's right for you.
           </p>
-          <form>
+          <QuestionForm>
+            <FormHeader>
+              <p>IT'S AS EASY AS ONE, TWO, THREE</p>
+            </FormHeader>
             <FormSection>
               <h3>1.</h3>
-              <p>Did you graduate from UW Madison within the last five years?</p>
+              <FormQuestion>Did you graduate from UW Madison within the last five years?</FormQuestion>
               <StyledCheckbox>
                 <input id="graduateYes" name="graduate" checked={state.membershipGraduate} value={true} type="radio" onChange={(e) => onGraduateChanged(e)} />
                 <label for="graduateYes">Yes</label>
@@ -200,7 +232,7 @@ const MembershipForm = () => {
             </FormSection>
             <FormSection>
               <h3>2.</h3>
-              <p>Are you 65 years of age or over?</p>
+              <FormQuestion>Are you 65 years of age or over?</FormQuestion>
               <StyledCheckbox>
                 <input id="ageYes" name="age" checked={state.membershipAge} value={true} type="radio" onChange={(e) => onAgeChanged(e)}/>
                 <label for="ageYes">Yes</label>
@@ -212,7 +244,7 @@ const MembershipForm = () => {
             </FormSection>
             <FormSection>
               <h3>3.</h3>
-              <p>What type of member option are you looking for?</p>
+              <FormQuestion>What type of member option are you looking for?</FormQuestion>
               <StyledCheckbox>
                 <input id="individual" name="accountType" checked={state.membershipType === 'individual'} value="individual" type="radio" onChange={(e) => onMembershipChanged(e)}/>
                 <label for="individual">Individual</label>
@@ -222,9 +254,9 @@ const MembershipForm = () => {
                 <label for="joint">Joint</label>
               </StyledCheckbox>
             </FormSection>
-            <p>You must answer all three questions before submitting</p>
-            <button disabled={disabled} onClick={(e) => handleSubmit(e)}>Submit</button>
-          </form>
+            <p style={{margin: `32px auto 0`}}>You must answer all three questions before submitting</p>
+            <button style={{margin: `40px auto`}} disabled={disabled} onClick={(e) => handleSubmit(e)}>Submit</button>
+          </QuestionForm>
         </PageSection>
       }
 
