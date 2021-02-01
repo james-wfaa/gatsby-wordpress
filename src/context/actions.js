@@ -48,6 +48,10 @@ export const useActions = (state, dispatch) => {
   function setMailingAddress(obj) {
     dispatch({ type: types.SET_MAILING_ADDRESS, payload: obj})
   }
+  
+  function setMailingAddressOnchange(array) {
+    dispatch({ type: types.SET_MAILING_ADDRESS_ONCHANGE, payload: array})
+  }
 
   function setPhoneInfo(obj) {
     dispatch({ type: types.SET_PHONE_INFO, payload: obj})
@@ -78,12 +82,13 @@ export const useActions = (state, dispatch) => {
     setContactInfoOnchange,
     setAddressStep,
     setPhoneStep,
-    setPhoneInfoOnchange,
     setEmploymentStep,
     setIdentityStep,
     setLifeEventStep,
     setMailingAddress,
+    setMailingAddressOnchange,
     setPhoneInfo,
+    setPhoneInfoOnchange,
     setEmploymentInfo,
     setIdentityInfo,
     setSpouseInfo,

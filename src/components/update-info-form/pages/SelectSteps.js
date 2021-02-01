@@ -9,7 +9,7 @@ import { AppContext } from "../../../context/AppContext"
 
 const SelectSteps = () => {
     const { state, actions } = useContext(AppContext);
-    const { setAddressStep, setPhoneStep, setEmploymentStep, setIdentityStep, setLifeEventStep, setNumberOfStepsAdd, setNumberOfStepsDelete } = actions;
+    const { setCurrentStep, setAddressStep, setPhoneStep, setEmploymentStep, setIdentityStep, setLifeEventStep, setNumberOfStepsAdd, setNumberOfStepsDelete } = actions;
   
     const variantObject = {
         background_color: colors.formIntroBg,
@@ -17,7 +17,7 @@ const SelectSteps = () => {
         scroll_color: colors.bgRed,
         text_align: `center`
     }
-    
+
     const updateCheckbox = ( stepNumber ) => {
         switch(stepNumber){
             case 1:
@@ -43,16 +43,13 @@ const SelectSteps = () => {
         }
     }
     const updateNumberOfSteps = (change, step) => {
-        console.log(change, step)
         if (change === true){
             console.log(state.numberOfSteps)
-            let newOrder = state.numberOfSteps
-            newOrder.push(step)
+            let newOrder = [...state.numberOfSteps, step]
             newOrder.sort(function(a, b){
                 return a - b;
             })
-            console.log(newOrder)
-            //setNumberOfStepsAdd(newOrder)
+            setNumberOfStepsAdd(newOrder)
         } else if (change === false){
             setNumberOfStepsDelete(step)
         }
@@ -60,13 +57,7 @@ const SelectSteps = () => {
     }
     const handleSubmit = data =>{
         console.log(data)
-        //setCurrentStep(6)
-      }
-
-    const disabledBtn = () => {
-        console.log('disabled')
-        return state.addressStep || state.phoneStep || state.employmentStep || state.identityStep || state.lifeEventStep
-        
+        //setCurrentStep(8)
     }
   
     return (

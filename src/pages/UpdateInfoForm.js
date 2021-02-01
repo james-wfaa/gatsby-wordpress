@@ -17,7 +17,7 @@ import downCaret from './../../static/down-caret-red.png'
 
 const UpdateInfoForm = () =>  {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setContactInfo } = actions;
+  const { setCurrentStep } = actions;
   
   /*useEffect(() => {
     setContactInfo({
@@ -56,7 +56,10 @@ const UpdateInfoForm = () =>  {
    }
 
   const onSubmit = (data) => {
+    
     console.log(data)
+    console.log(state.currentStep)
+    
   }
 
   return (
@@ -64,6 +67,7 @@ const UpdateInfoForm = () =>  {
     <Layout>
       <StyledUpdateInfoForm>
         { renderCurrentStep() }
+        {console.log(state)}
         { !(state.currentStep === 8) && <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our Privacy Statement.</p>} 
       </StyledUpdateInfoForm>
     </Layout>

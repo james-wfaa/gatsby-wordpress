@@ -106,6 +106,7 @@ const PhoneInfo = () => {
                     name="phoneNumber2"
                     id="phoneNumber2"
                     defaultValue={state.phoneInfo.phoneNumber2}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       pattern: {
                         value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
@@ -136,6 +137,7 @@ const PhoneInfo = () => {
                     name="phoneNumber3"
                     id="phoneNumber3"
                     defaultValue={state.phoneInfo.phoneNumber3}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       pattern: {
                         value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,

@@ -5,17 +5,15 @@ import IntroPageSection from '../../page-sections/IntroPageSection'
 import { colors } from '../../css-variables'
 import Buttons from './FormButtons'
 import ProgressBar from './ProgressBar'
-//import styled from "styled-components"
 import { AppContext } from "../../../context/AppContext"
 import countryList from "react-select-country-list"
 
 const MailingAddress = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setMailingAddress } = actions;
+  const { setCurrentStep, setMailingAddress, setMailingAddressOnchange } = actions;
   const [countries, setCountries] = useState(countryList().getData())
-  const [ currentCountry, setCurrentCountry ] = useState('US');
 
-  const { register, handleSubmit, watch, errors } = useForm({
+  const { register, handleSubmit, watch, errors, formState: { isValid } } = useForm({
     mode: "onChange",
   })
   const UpdateMailingAddressInfo = data =>{
@@ -29,9 +27,13 @@ const MailingAddress = () => {
     let nextStep = currentOrder[currentPlaceInOrder + 1]
     setCurrentStep(nextStep)
   }
-  const handleCountryChange = (e) => {
-    setCurrentCountry(e.target.value)
+  const updateOnChangeValues = (e) => {
+    setMailingAddressOnchange([e.target.name, e.target.value])
   }
+
+  const requiredFieldsCheck = state.mailingAddress.country === "US" ? state.mailingAddress.streetAddress !== '' && state.mailingAddress.city !== '' && state.mailingAddress.state !== '' && state.mailingAddress.zipcode !== '' : state.mailingAddress.streetAddress !== '';
+
+  const requiredForUS = state.mailingAddress.country === "US" ? `required: { value: true, message: "Required field" },` : null
   const countryOptions = countries.map(country => {
     if (country.value === "US") {
       return (
@@ -63,7 +65,7 @@ const MailingAddress = () => {
               <legend>Mailing Address<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="addressType" className="half select-dropdown">Address Type
-                <select name="addressType" /*onChange={e => handleCountryChange(e)}*/ defaultValue={state.mailingAddress.addressType}>
+                <select name="addressType" defaultValue={state.mailingAddress.addressType}>
                   <option value="home">Home</option>
                 </select>
                 {errors.addressType && (
@@ -72,7 +74,7 @@ const MailingAddress = () => {
               </label>
               
               <label htmlFor="country" className="half leftMargin required">Country
-                <select name="country" onChange={e => handleCountryChange(e)}>
+                <select name="country" onChange={e => updateOnChangeValues(e)}>
                   {countryOptions}
                 </select>
                 {errors.country && (
@@ -86,6 +88,7 @@ const MailingAddress = () => {
                     name="streetAddress"
                     id="streetAddress"
                     defaultValue={state.mailingAddress.streetAddress}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       minLength: {
                         value: 2,
@@ -115,12 +118,13 @@ const MailingAddress = () => {
                 )}
               </label>
               <label htmlFor="city" className="third">City
-                {currentCountry === 'US' ? <span className="required">*</span> : null}
+                {state.mailingAddress.country === 'US' ? <span className="required">*</span> : null}
                 <input
                     type="text"
                     name="city"
                     id="city"
                     //defaultValue={state.mailingAddress.city}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       
                     })}
@@ -130,12 +134,13 @@ const MailingAddress = () => {
                 )}
               </label>
               <label htmlFor="state" className="third leftMargin">State/Province/Region
-                {currentCountry === 'US' ? <span className="required">*</span> : null}
+                {state.mailingAddress.country === 'US' ? <span className="required">*</span> : null}
                 <input
                     type="text"
                     name="state"
                     id="state"
                     defaultValue={state.mailingAddress.state}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       
                     })}
@@ -145,21 +150,25 @@ const MailingAddress = () => {
                 )}
               </label>
               <label htmlFor="zipcode" className="third leftMargin">Zip/Postal Code
-                {currentCountry === 'US' ? <span className="required">*</span> : null}
+                {state.mailingAddress.country === 'US' && <span className="required">*</span> }
                 <input
                     type="text"
                     name="zipcode"
                     id="zipcode"
                     //defaultValue={state.mailingAddress.zipcode}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      
+                      requiredForUS
                     })}
                 />
                 {errors.zipcode && (
                   <StyledError>{errors.zipcode.message}</StyledError>
                 )}
               </label>
-              <Buttons save back />
+              <Buttons 
+                save 
+                back
+                disabled={ !requiredFieldsCheck || !isValid }  />
             </form>
         </div>
     )

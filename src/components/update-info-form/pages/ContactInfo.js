@@ -112,6 +112,7 @@ const ContactInfo = () => {
                     id="othernames"
                     aria-label="Other names"
                     defaultValue={state.contactInfo.othernames}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       minLength: {
                         value: 2,
@@ -159,6 +160,7 @@ const ContactInfo = () => {
                     id="phone"
                     aria-label="Phone Number"
                     defaultValue={state.contactInfo.phone}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       pattern: {
                         value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
@@ -178,6 +180,7 @@ const ContactInfo = () => {
                     maxLength="4"
                     aria-label="Undergraduate Year (if applicable)"
                     defaultValue={state.contactInfo.undergrad}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       pattern: {
                         value: /^(19|20)\d{2}$/,
@@ -197,6 +200,7 @@ const ContactInfo = () => {
                     maxLength="4"
                     aria-label="Postgraduate Years (if applicable)"
                     defaultValue={state.contactInfo.postgrad}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                     })}
                 />

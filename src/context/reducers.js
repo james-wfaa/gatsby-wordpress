@@ -69,6 +69,7 @@ const types = {
   SET_IDENTITY_STEP: "SET_IDENTITY_STEP",
   SET_LIFE_EVENT_STEP: "SET_LIFE_EVENT_STEP",
   SET_MAILING_ADDRESS: "SET_MAILING_ADDRESS",
+  SET_MAILING_ADDRESS_ONCHANGE: "SET_MAILING_ADDRESS_ONCHANGE",
   SET_PHONE_INFO: "SET_PHONE_INFO",
   SET_PHONE_INFO_ONCHANGE: "SET_PHONE_INFO_ONCHANGE",
   SET_PHONE_TYPE: "SET_PHONE_TYPE",
@@ -92,7 +93,7 @@ const reducer = (state = initialState, action) => {
     case types.SET_NUMBER_OF_STEPS_ADD:
       return {
         ...state,
-        numberOfSteps: [action.payload]
+        numberOfSteps: action.payload
       };
     case types.SET_NUMBER_OF_STEPS_DELETE:
       return {
@@ -156,6 +157,14 @@ const reducer = (state = initialState, action) => {
           city: action.payload.city ? action.payload.city : '',
           state: action.payload.state ? action.payload.state : '',
           zipcode: action.payload.zipcode ? action.payload.zipcode : '',
+        },
+      };
+    case types.SET_MAILING_ADDRESS_ONCHANGE:
+      return {
+        ...state,
+        mailingAddress: {
+          ...state.mailingAddress,
+          [action.payload[0]]: action.payload[1],
         },
       };
     case types.SET_PHONE_INFO:

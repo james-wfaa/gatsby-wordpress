@@ -47,6 +47,7 @@ const EmploymentInfo = () => {
               <legend>Employment Info<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="bussinessname" className="half required">Business Name
+                <span className="required">*</span>
                 <input
                     type="text"
                     name="bussinessname"
@@ -85,7 +86,6 @@ const EmploymentInfo = () => {
                 )}
               </label>
               <label htmlFor="streetaddress">Business Street Address
-                <span className="required">*</span>
                 <input
                     type="text"
                     name="streetaddress"
@@ -114,7 +114,6 @@ const EmploymentInfo = () => {
                 )}
               </label>
               <label htmlFor="city" className="third">City
-                <span className="required">*</span>
                 <input
                     type="text"
                     name="city"
@@ -129,7 +128,6 @@ const EmploymentInfo = () => {
                 )}
               </label>
               <label htmlFor="state" className="third leftMargin">State/Province/Region
-                <span className="required">*</span>
                 <input
                     type="text"
                     name="state"
@@ -144,7 +142,6 @@ const EmploymentInfo = () => {
                 )}
               </label>
               <label htmlFor="zipcode" className="third leftMargin">Zip/Postal Code
-                <span className="required">*</span>
                 <input
                     type="text"
                     name="zipcode"
