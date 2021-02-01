@@ -20,6 +20,10 @@ export const useActions = (state, dispatch) => {
   function setContactInfo(obj) {
     dispatch({ type: types.SET_CONTACT_INFO, payload: obj})
   }
+  
+  function setContactInfoOnchange(array) {
+    dispatch({ type: types.SET_CONTACT_INFO_ONCHANGE, payload: array})
+  }
 
   function setAddressStep(bool) {
     dispatch({ type: types.SET_ADDRESS_STEP, payload: bool})
@@ -49,6 +53,10 @@ export const useActions = (state, dispatch) => {
     dispatch({ type: types.SET_PHONE_INFO, payload: obj})
   }
   
+  function setPhoneInfoOnchange(array) {
+    dispatch({ type: types.SET_PHONE_INFO_ONCHANGE, payload: array})
+  }
+  
   function setEmploymentInfo(obj) {
     dispatch({ type: types.SET_EMPLOYMENT_INFO, payload: obj})
   }
@@ -67,8 +75,10 @@ export const useActions = (state, dispatch) => {
     setNumberOfStepsAdd,
     setNumberOfStepsDelete,
     setContactInfo,
+    setContactInfoOnchange,
     setAddressStep,
     setPhoneStep,
+    setPhoneInfoOnchange,
     setEmploymentStep,
     setIdentityStep,
     setLifeEventStep,

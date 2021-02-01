@@ -62,6 +62,7 @@ const types = {
   SET_NUMBER_OF_STEPS_ADD: "SET_NUMBER_OF_STEPS_ADD",
   SET_NUMBER_OF_STEPS_DELETE: "SET_NUMBER_OF_STEPS_DELETE",
   SET_CONTACT_INFO: "SET_CONTACT_INFO",
+  SET_CONTACT_INFO_ONCHANGE: "SET_CONTACT_INFO_ONCHANGE",
   SET_ADDRESS_STEP: "SET_ADDRESS_STEP",
   SET_PHONE_STEP: "SET_PHONE_STEP",
   SET_EMPLOYMENT_STEP: "SET_EMPLOYMENT_STEP",
@@ -69,6 +70,7 @@ const types = {
   SET_LIFE_EVENT_STEP: "SET_LIFE_EVENT_STEP",
   SET_MAILING_ADDRESS: "SET_MAILING_ADDRESS",
   SET_PHONE_INFO: "SET_PHONE_INFO",
+  SET_PHONE_INFO_ONCHANGE: "SET_PHONE_INFO_ONCHANGE",
   SET_PHONE_TYPE: "SET_PHONE_TYPE",
   SET_EMPLOYMENT_INFO: "SET_EMPLOYMENT_INFO",
   SET_IDENTITY_INFO: "SET_IDENTITY_INFO",
@@ -88,13 +90,11 @@ const reducer = (state = initialState, action) => {
         currentStep: action.payload,
       };
     case types.SET_NUMBER_OF_STEPS_ADD:
-      console.log(action.payload)
       return {
         ...state,
         numberOfSteps: [action.payload]
       };
     case types.SET_NUMBER_OF_STEPS_DELETE:
-      console.log(action.payload)
       return {
         ...state,
         numberOfSteps: [...state.numberOfSteps.filter(step => step !== action.payload)]
@@ -110,6 +110,14 @@ const reducer = (state = initialState, action) => {
           phone: action.payload.phone ? action.payload.phone : '',
           undergrad: action.payload.undergrad ? action.payload.undergrad : '',
           postgrad: action.payload.postgrad ? action.payload.postgrad : '',
+        },
+      };
+    case types.SET_CONTACT_INFO_ONCHANGE:
+      return {
+        ...state,
+        contactInfo: {
+          ...state.contactInfo,
+          [action.payload[0]]: action.payload[1],
         },
       };
     case types.SET_ADDRESS_STEP:
@@ -160,6 +168,14 @@ const reducer = (state = initialState, action) => {
           phoneNumber2: action.payload.phoneNumber2 ? action.payload.phoneNumber2 : '',
           phoneType3: action.payload.phoneType3 ? action.payload.phoneType3 : '',
           phoneNumber3: action.payload.phoneNumber3 ? action.payload.phoneNumber3 : '',
+        },
+      };
+    case types.SET_PHONE_INFO_ONCHANGE:
+      return {
+        ...state,
+        phoneInfo: {
+          ...state.phoneInfo,
+          [action.payload[0]]: action.payload[1],
         },
       };
     case types.SET_EMPLOYMENT_INFO:

@@ -11,13 +11,13 @@ import countryList from "react-select-country-list"
 
 const PhoneInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setPhoneInfo } = actions;
+  const { setCurrentStep, setPhoneInfo, setPhoneInfoOnchange } = actions;
 
-  const { register, handleSubmit, watch, errors } = useForm({
+  const { register, handleSubmit, watch, errors, formState: { isValid } } = useForm({
     mode: "onChange",
   })
   const UpdatePhoneInfo = data =>{
-    //console.log(data)
+    console.log(data)
     setPhoneInfo(data)
 
     //figure out next page
@@ -27,7 +27,11 @@ const PhoneInfo = () => {
     let nextStep = currentOrder[currentPlaceInOrder + 1]
     setCurrentStep(nextStep)
   }
-  
+  const updateOnChangeValues = (e) => {
+    setPhoneInfoOnchange([e.target.name, e.target.value])
+  }
+  const requiredFieldsCheck = state.phoneInfo.phoneNumber1 !== '';
+
     let variantObject = {
       background_color: colors.formIntroBg,
       color: colors.bgRed,
@@ -70,7 +74,9 @@ const PhoneInfo = () => {
                     name="phoneNumber1"
                     id="phoneNumber1"
                     defaultValue={state.phoneInfo.phoneNumber1}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
+                      required: { value: true, message: "Phone is required" },
                       pattern: {
                         value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
                         message: "Must be a valid phone number",
@@ -141,7 +147,11 @@ const PhoneInfo = () => {
                   <StyledError>{errors.phoneNumber3.message}</StyledError>
                 )}
               </label>
-              <Buttons save back />
+              
+              <Buttons 
+                save 
+                back
+                disabled={ !requiredFieldsCheck || !isValid } />
             </form>
         </div>
     )

@@ -9,9 +9,9 @@ import { AppContext } from "../../../context/AppContext"
 
 const ContactInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setContactInfo } = actions;
+  const { setCurrentStep, setContactInfo, setContactInfoOnchange } = actions;
 
-  const { register, handleSubmit, watch, errors, formState: {isDirty, isValid } } = useForm({
+  const { register, handleSubmit, watch, errors, formState: { isValid } } = useForm({
     mode: "onChange",
   })
   const UpdateContactInfo = data =>{
@@ -23,7 +23,13 @@ const ContactInfo = () => {
         console.log( nextStep)
         setCurrentStep(nextStep)
   }
+
+  const updateOnChangeValues = (e) => {
+    setContactInfoOnchange([e.target.name, e.target.value])
+  }
   
+  const requiredFieldsCheck = state.firstName !== '' && state.lastName !== '' && state.email !== '';
+
     let variantObject = {
       background_color: colors.formIntroBg,
       color: colors.bgRed,
@@ -52,6 +58,7 @@ const ContactInfo = () => {
                     name="firstname"
                     id="firstname"
                     defaultValue={state.contactInfo.firstname}
+                    onChange={e => updateOnChangeValues(e)}
                     aria-label="First Name"
                     aria-required="true"
                     ref={register({
@@ -68,7 +75,7 @@ const ContactInfo = () => {
                 />
                 
               </label>
-              
+              {console.log(isValid)}
               <label htmlFor="lastname" className="half leftMargin required">Last Name
                 <span className="required">*</span>
                 {errors.lastname && (
@@ -81,6 +88,7 @@ const ContactInfo = () => {
                     aria-label="Last Name"
                     aria-required="true"
                     defaultValue={state.contactInfo.lastname}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       required: { value: true, message: "Last Name is required" },
                       minLength: {
@@ -126,6 +134,7 @@ const ContactInfo = () => {
                     name="email"
                     id="email"
                     defaultValue={state.contactInfo.email}
+                    onChange={e => updateOnChangeValues(e)}
                     aria-label="Preferred email"
                     aria-required="true"
                     ref={register({
@@ -194,8 +203,7 @@ const ContactInfo = () => {
               </label>
               <Buttons 
                 save
-                //disabled={Object.keys(errors).length > 0 ? true : false} />
-                disabled={!isDirty || !isValid } />
+                disabled={ !requiredFieldsCheck || !isValid } />
             </form>
         </div>
     )

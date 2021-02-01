@@ -13,6 +13,7 @@ const MailingAddress = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setMailingAddress } = actions;
   const [countries, setCountries] = useState(countryList().getData())
+  const [ currentCountry, setCurrentCountry ] = useState('US');
 
   const { register, handleSubmit, watch, errors } = useForm({
     mode: "onChange",
@@ -27,6 +28,9 @@ const MailingAddress = () => {
     let currentPlaceInOrder = currentOrder.indexOf(currentStep)
     let nextStep = currentOrder[currentPlaceInOrder + 1]
     setCurrentStep(nextStep)
+  }
+  const handleCountryChange = (e) => {
+    setCurrentCountry(e.target.value)
   }
   const countryOptions = countries.map(country => {
     if (country.value === "US") {
@@ -68,7 +72,7 @@ const MailingAddress = () => {
               </label>
               
               <label htmlFor="country" className="half leftMargin required">Country
-                <select name="country" /*onChange={e => handleCountryChange(e)}*/>
+                <select name="country" onChange={e => handleCountryChange(e)}>
                   {countryOptions}
                 </select>
                 {errors.country && (
@@ -111,7 +115,7 @@ const MailingAddress = () => {
                 )}
               </label>
               <label htmlFor="city" className="third">City
-                <span className="required">*</span>
+                {currentCountry === 'US' ? <span className="required">*</span> : null}
                 <input
                     type="text"
                     name="city"
@@ -126,7 +130,7 @@ const MailingAddress = () => {
                 )}
               </label>
               <label htmlFor="state" className="third leftMargin">State/Province/Region
-                <span className="required">*</span>
+                {currentCountry === 'US' ? <span className="required">*</span> : null}
                 <input
                     type="text"
                     name="state"
@@ -141,7 +145,7 @@ const MailingAddress = () => {
                 )}
               </label>
               <label htmlFor="zipcode" className="third leftMargin">Zip/Postal Code
-                <span className="required">*</span>
+                {currentCountry === 'US' ? <span className="required">*</span> : null}
                 <input
                     type="text"
                     name="zipcode"
