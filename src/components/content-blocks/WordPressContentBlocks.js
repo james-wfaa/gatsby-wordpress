@@ -2,6 +2,8 @@ import React from 'react'
 import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
 import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"
+import GravityForm from '../content-blocks/GravityForm'
+
 import styled from 'styled-components'
 import { colors, breakpoints, mixins } from '../css-variables'
 import Block from './WordPressBlock'
@@ -48,7 +50,22 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             case "core/html":
                 return (<Block className={block.name.replace('/', '-')} block={block.originalContent} />)
                 break
-            //case ""
+            case "gravityforms/form":
+                console.log('form found')
+                const shortcode = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
+                console.log(shortcode)
+                let idStart = shortcode.indexOf('id="')
+                if (idStart > -1) {
+                    idStart += 4
+                    let idEnd = shortcode.indexOf('"', idStart)
+                    console.log(idEnd)
+                    console.log(idStart)
+                    const formId = shortcode.substring(idStart,idEnd)
+                    console.log(formId)
+                    return (<GravityForm className={block.name.replace('/', '-')} id={formId} />)
+                }
+                
+                break
         
             case "core/separator":
                 RenderedBlocks.push(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
