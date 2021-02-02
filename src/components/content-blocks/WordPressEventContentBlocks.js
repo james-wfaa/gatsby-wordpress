@@ -14,7 +14,7 @@ import Block from './WordPressBlock'
 
 const WordPressEventContentBlocks = ({className, date, startDate, endDate, link, venue, cost, organizers, title, eventDetails, blocks, content}) => {
     //console.log('WordPressEventContentBlocks - blocks:',blocks)
-    console.log(blocks)
+    //console.log(blocks)
 
     const [show, setShow] = useState(false);
 

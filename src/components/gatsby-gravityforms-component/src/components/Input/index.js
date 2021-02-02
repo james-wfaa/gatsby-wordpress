@@ -6,7 +6,7 @@ import InputWrapper from '../InputWrapper'
 import InputSubfieldWrapper from '../InputSubfieldWrapper'
 
 const Input = ({ errors, fieldData, name, register, value, subfield, ...wrapProps }) => {
-    console.log(fieldData)
+    //console.log(fieldData)
     const {
         cssClass,
         inputMaskValue,

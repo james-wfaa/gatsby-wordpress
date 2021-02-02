@@ -62,11 +62,11 @@ function handleSuccess({values, reset, confirmations}) {
 
 const WordPressContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
 
-    console.log(AllGravityData())
+    //console.log(AllGravityData())
 
         const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-        console.log(block.name)
+        //(block.name)
         switch(block.name) {
             case "core/separator":
                 return(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
@@ -83,22 +83,22 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                     block.innerBlocks.forEach((innerBlock) => {
                         innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />) 
                     })
-                    console.log("blocks: " + innerRenderedBlocks)
+                    //console.log("blocks: " + innerRenderedBlocks)
                     return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
                 }
                 break
                 case "gravityforms/form":
                     console.log('form found')
                     const shortcode = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
-                    console.log(shortcode)
+                    //console.log(shortcode)
                     let idStart = shortcode.indexOf('id="')
                     if (idStart > -1) {
                         idStart += 4
                         let idEnd = shortcode.indexOf('"', idStart)
-                        console.log(idEnd)
-                        console.log(idStart)
+                        //console.log(idEnd)
+                        //console.log(idStart)
                         const formId = shortcode.substring(idStart,idEnd)
-                        console.log(formId)
+                        //(formId)
                         return (<GravityForm className={block.name.replace('/', '-')} id={formId} />)
                     }
                     

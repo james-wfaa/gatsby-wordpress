@@ -150,7 +150,7 @@ const FieldBuilder = ({
                     />
                 )
             case 'name':
-                console.log(fieldData)
+                //console.log(fieldData)
                 return (
                     <Name
                         errors={errors[inputName]}

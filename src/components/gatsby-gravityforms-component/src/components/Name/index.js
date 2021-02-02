@@ -7,10 +7,10 @@ import InputWrapper from '../InputWrapper'
 import Input from '../Input'
 
 const Name = ({ errors, fieldData, name,  register, value, ...wrapProps }) => {
-    console.log(fieldData)
-    console.log(inputs)
-    console.log(value)
-    console.log(register)
+    //console.log(fieldData)
+    //console.log(inputs)
+    //console.log(value)
+    //console.log(register)
     const {
         cssClass,
         inputMaskValue,
@@ -29,7 +29,7 @@ const Name = ({ errors, fieldData, name,  register, value, ...wrapProps }) => {
     inputs.forEach(i => {
         if (!i.isHidden) {
             if (!i.inputType) { // text field
-                console.log(i)
+                //console.log(i)
                 // so we need to render this as a subfield inside of Name
 
                 // set this up to pass to <Input> as fieldData
@@ -55,7 +55,7 @@ const Name = ({ errors, fieldData, name,  register, value, ...wrapProps }) => {
        
     }) 
 
-    console.log(renderedSubfields)
+    //console.log(renderedSubfields)
 
     const inputFields = renderedSubfields.map(subfield => {
                     

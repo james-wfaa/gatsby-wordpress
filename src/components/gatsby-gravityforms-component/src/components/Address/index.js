@@ -7,10 +7,10 @@ import InputWrapper from '../InputWrapper'
 import Input from '../Input'
 
 const Address = ({ errors, fieldData, name,  register, value, ...wrapProps }) => {
-    console.log(fieldData)
-    console.log(inputs)
-    console.log(value)
-    console.log(register)
+    //console.log(fieldData)
+    //console.log(inputs)
+    //console.log(value)
+    //console.log(register)
     const {
         cssClass,
         inputMaskValue,
@@ -29,7 +29,7 @@ const Address = ({ errors, fieldData, name,  register, value, ...wrapProps }) =>
     inputs.forEach(i => {
         if (!i.isHidden) {
             if (!i.inputType) { // text field
-                console.log(i)
+                //console.log(i)
 
                 const widefields = [
                     'Street Address',

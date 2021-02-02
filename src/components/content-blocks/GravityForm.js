@@ -72,13 +72,13 @@ function handleSuccess({values, reset, confirmations}) {
 }
 
 const GravityForm = ({className, id}) => {
-    console.log(id)
+    //console.log(id)
     const gfData = AllGravityData()
-    console.log (gfData.edges)
+    //console.log (gfData.edges)
     let thisForm = gfData.edges.filter(function (e) {
         return e.node.formId == id
     })
-    console.log(thisForm)
+    //console.log(thisForm)
 
     return (
         <div className={className}>
