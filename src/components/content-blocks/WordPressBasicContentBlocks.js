@@ -6,13 +6,14 @@ import EmbedBlock from "./EmbedBlock"
 import styled from 'styled-components'
 import { colors, breakpoints, mixins, sizes } from '../css-variables'
 import Block from './WordPressBlock'
+import Column from '../parts/WordPressColumns'
 
 
 const WordPressContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-        //console.log(block.name)
+        console.log(block.name)
         switch(block.name) {
             case "core/separator":
                 return(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
@@ -21,15 +22,24 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             case "acf/events-listing-section":
                 break
             case "core/columns":
+                return (<Column className={block.name.replace('/', '-')} block={block} />)
+            case "core/buttons":
+                console.log("Found a button");
                 if(block.innerBlocks && block.innerBlocks[0].originalContent){
                     let innerRenderedBlocks = [];
                     block.innerBlocks.forEach((innerBlock) => {
+<<<<<<< HEAD
                         console.log("Columns in" + innerBlock.originalContent);
                         innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />)
+=======
+                        innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />) 
+>>>>>>> 2c1b4559393425bdfafaa627f04c9728809afb23
                     })
                     console.log("blocks: " + innerRenderedBlocks)
                     return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
                 }
+                break
+    
             //Add case to handle news/stories that use the freeform block but do not have blocks... and then use content instead of original content because it has the html tags
             //Also added css below that is duplicated from WPBlock
             case "core/freeform":
@@ -95,6 +105,7 @@ hr.wp-block-separator {
     ${mixins.separator}
 }
 
+<<<<<<< HEAD
 .core-columns{
     max-width: 303px;
 
@@ -112,6 +123,8 @@ hr.wp-block-separator {
     }
 }
 
+=======
+>>>>>>> 2c1b4559393425bdfafaa627f04c9728809afb23
 `
 
 export default StyledWordPressContentBlocks

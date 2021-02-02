@@ -239,7 +239,9 @@ const StyledPageSection = styled(PageSection)`
         > .core-freeform,
         > .core-paragraph,
         > .core-list,
-        > .core-table {
+        > .core-table,
+        > .core-buttons,
+        > .core-columns {
             min-width: 300px;
             width: 80%;
             max-width: 712px;
@@ -247,6 +249,16 @@ const StyledPageSection = styled(PageSection)`
             margin-right: auto;
             text-align: left;
         }
+
+        > .core-buttons {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            @media screen and ${breakpoints.tabletS} {
+                flex-direction: row;
+            }        
+        }        
     }
 
 

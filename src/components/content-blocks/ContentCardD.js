@@ -5,7 +5,7 @@ import CardD from './CardD'
 
 const ContentCardD = ({ className, startDate, title, venue, excerpt, url, label, moreLinkText, shortenedExcerpt, dateLinkText })=> {
 
-    console.log('ContentCardD title: ',title)
+   //console.log('ContentCardD title: ',title)
 
     return (
         <CardD>

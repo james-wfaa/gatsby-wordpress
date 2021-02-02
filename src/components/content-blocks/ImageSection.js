@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { colors, sizes, breakpoints, fonts } from '../css-variables'
+import { colors, sizes, breakpoints, fonts, mixins } from '../css-variables'
 
 const ImageSection = ({ className, data }) => {
 
@@ -48,7 +48,9 @@ const StyledImageSection = styled(ImageSection)`
 .image-section {
     display: flex;
     flex-direction: column;
-
+    a {
+        ${mixins.textlink}
+    }
     &--small {
         .image-section__image {
             width: calc(100% - 72px);
