@@ -13,7 +13,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-        console.log(block.name)
+
         switch(block.name) {
             case "core/separator":
                 return(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
