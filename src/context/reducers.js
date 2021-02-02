@@ -26,6 +26,14 @@ const initialState = {
     city: '',
     state: '',
     zipcode: '',
+    seasonalResidence: false,
+    seasonalAddressType: 'Home',
+    seasonalCountry: 'US',
+    seasonalStreetAddress: '',
+    seasonalStreetAddressLineTwo: '',
+    seasonalCity: '',
+    seasonalState: '',
+    seasonalZipcode: '',
   },
   phoneInfo: {
     phoneType1: 'home',
@@ -38,6 +46,7 @@ const initialState = {
   employmentInfo: {
     businessName: '',
     jobTitle: '',
+    startDate: '',
     streetAddress: '',
     streetAddressLineTwo: '',
     city: '',
@@ -193,6 +202,7 @@ const reducer = (state = initialState, action) => {
         employmentInfo: {
           businessName: action.payload.businessName ? action.payload.businessName : '',
           jobTitle: action.payload.jobTitle ? action.payload.jobTitle : '',
+          startDate: action.payload.startDate ? action.payload.startDate : '',
           streetAddress: action.payload.streetAddress ? action.payload.streetAddress : '',
           streetAddressLineTwo: action.payload.streetAddressLineTwo ? action.payload.streetAddressLineTwo : '',
           city: action.payload.city ? action.payload.city : '',

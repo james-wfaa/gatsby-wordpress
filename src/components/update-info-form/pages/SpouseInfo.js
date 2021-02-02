@@ -104,7 +104,7 @@ const SpouseInfo = () => {
                   <StyledError>{errors.spouseUndergrad.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="postgrad" className="third leftMargin">Postgraduate Year(s) (if applicable)
+              <label htmlFor="postgrad" className="third leftMargin">UW Postgraduate Year(s) (if applicable)
                 {errors.postgrad && (
                   <StyledError>{errors.postgrad.message}</StyledError>
                 )}
@@ -112,14 +112,13 @@ const SpouseInfo = () => {
                     type="text"
                     name="postgrad"
                     id="postgrad"
-                    maxLength="4"
-                    aria-label="Postgraduate Years (if applicable)"
+                    aria-label="UW Postgraduate Years (if applicable)"
                     defaultValue={state.contactInfo.postgrad}
                     ref={register({
                     })}
                 />
               </label>
-              <label htmlFor="undergrad">What is the update you would like to share about your spouse or partner?</label>
+              <label htmlFor="spouseupdate">What is the update you would like to share about your spouse or partner?</label>
               <input type="radio" id="newSpouse" value="newSpouse" name="spouseUpdate"/>
               <label htmlFor="newSpouse">This is my new spouse or partner.</label>
               <input type="radio" id="deceasedSpouse" value="deceasedSpouse" name="spouseUpdate"/>

@@ -179,7 +179,8 @@ form{
   &.select-steps, 
   &.identity-info,
   &.success-page,
-  &.spouse-info{
+  &.spouse-info,
+  &.mailing-address{
     fieldset{
       margin: 0 auto;
       border:none;
@@ -324,6 +325,7 @@ form{
       }*/
       &:disabled {
         background-color: ${colors.disabledButtonGrey};
+        box-shadow:none;
       }
     }
     &.back{

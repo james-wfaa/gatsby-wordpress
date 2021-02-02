@@ -197,7 +197,6 @@ const ContactInfo = () => {
                     type="text"
                     name="postgrad"
                     id="postgrad"
-                    maxLength="4"
                     aria-label="Postgraduate Years (if applicable)"
                     defaultValue={state.contactInfo.postgrad}
                     onChange={e => updateOnChangeValues(e)}

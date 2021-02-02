@@ -85,6 +85,21 @@ const EmploymentInfo = () => {
                   <StyledError>{errors.jobtitle.message}</StyledError>
                 )}
               </label>
+              <label htmlFor="startDate" className="third">Start Date
+                <span className="required">*</span>
+                <input
+                    type="date"
+                    name="startDate"
+                    id="startDate"
+                    //defaultValue={state.employmentInfo.startDate}
+                    ref={register({
+                      
+                    })}
+                />
+                {errors.jobtitle && (
+                  <StyledError>{errors.jobtitle.message}</StyledError>
+                )}
+              </label>
               <label htmlFor="streetaddress">Business Street Address
                 <input
                     type="text"
