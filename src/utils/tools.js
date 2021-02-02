@@ -65,7 +65,12 @@ export const shortDate = (date) => {
   if (!date) {
     return null
   }
-  const tmpDate = new Date(date.replace(/\s/, 'T'))
+  let tmpDate
+  if (typeof date !== 'string') {
+    tmpDate = new Date(date)
+  } else {
+    tmpDate = new Date(date.replace(/\s/, 'T'))
+  }
 
   const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June",
   "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
