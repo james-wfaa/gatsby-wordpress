@@ -52,7 +52,7 @@ const InputSubfieldWrapper = ({
             </div>
             { !(type === 'html') && (
             <label
-                className="gravityform__label gfield_label"
+                className="gravityform__label gfield_label gfield_label--subfield"
                 htmlFor={labelFor}
             >
                 {label}

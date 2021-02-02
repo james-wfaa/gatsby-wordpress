@@ -113,6 +113,41 @@ button.gravityform__button {
 a {
     ${mixins.a}
 }
+label.gfield_label {
+    font-weight: bold;
+    &--subfield {
+        font-weight: normal;
+    }
+}
+input {
+    width: 100%;
+    
+}
+.ginput_container {
+    &_address,
+    &_name {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
+        flex-flow: row-wrap;
+    }
+}
+.subfield__wrapper {
+    width: 100%;
+    margin: 0 0 10px 0;
+    @media screen and ${breakpoints.tabletS} {
+        &.half-width {
+            width: calc( 50% - 5px );
+            margin: 0 5px 10px 0;
+            &:nth-child(2n) {
+                margin: 0 0 10px 5px;
+              }
+        }
+      }
+    
+
+}
 
     
 `
