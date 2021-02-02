@@ -50,7 +50,7 @@ function WordPressPage({ page }) {
   return (
     <Layout>
       <PageWrapper>
-        {width > 1199
+        {width >= 1200
         ?
         <>
           <Menu name={wpMenu.name} menuItems={wpMenu.menuItems.nodes} width={width} />

@@ -89,7 +89,7 @@ const SidebarMenu = ({name, menuItems, width}) => {
     }
   `
   useEffect(() => {
-    setOpen(width > 1199)
+    setOpen(width >= 1200)
   }, [width])
 
   const ConditionalWrap = ({condition, wrap, children}) => condition ? wrap(children) : children;
@@ -105,7 +105,7 @@ const SidebarMenu = ({name, menuItems, width}) => {
   return (
     <StyledMenu>
       <ConditionalWrap
-        condition={width < 1199}
+        condition={width <= 1200}
         wrap={children => <ModalHandler onClick={() => setOpen(!open)}>{children}</ModalHandler>}
       >
         <StyledHeader className={open ? `open` : null}>{name}</StyledHeader>
