@@ -28,10 +28,20 @@ const IdentityInfo = () => {
     setCurrentStep(nextStep)
   }
   const updateOnChangeValues = (e) => {
+    //if checkbox, update array accordingly
     if(e.target.type === 'checkbox'){
-      
-      
-    } else{
+        if(e.target.checked){
+          console.log(e.target.checked)
+          let newIdentity = [...state.identityInfo.identity, e.target.name]
+          setIdentityInfoOnchange(['identity', newIdentity])
+        } else {
+         
+          let newIdentity = [...state.identityInfo.identity.filter(a => a !== e.target.name)]
+          setIdentityInfoOnchange(['identity', newIdentity])
+        }
+    } 
+    //otherwise, update field like normal
+    else{
       setIdentityInfoOnchange([e.target.name, e.target.value])
     }
     
@@ -68,17 +78,17 @@ const IdentityInfo = () => {
               <hr></hr>
               <input type="checkbox" name="select1" id="select1" onChange={e => updateOnChangeValues(e)}/>
               <label htmlFor="select1" selected>American Indian/Alaska Native</label>
-              <input type="checkbox" name="select2" id="select2" />
+              <input type="checkbox" name="select2" id="select2" onChange={e => updateOnChangeValues(e)}/>
               <label htmlFor="select2" selected>Black/African-American</label>
-              <input type="checkbox" name="select3" id="select3" />
+              <input type="checkbox" name="select3" id="select3" onChange={e => updateOnChangeValues(e)} />
               <label htmlFor="select3" selected>Native Hawaiian/Other Pacific Islander</label>
-              <input type="checkbox" name="select4" id="select4" />
+              <input type="checkbox" name="select4" id="select4" onChange={e => updateOnChangeValues(e)} />
               <label htmlFor="select4" selected>Asian/Asian American</label>
-              <input type="checkbox" name="select5" id="select5" />
+              <input type="checkbox" name="select5" id="select5" onChange={e => updateOnChangeValues(e)} />
               <label htmlFor="select5" selected>Hispanic/Latinx</label>
-              <input type="checkbox" name="select6" id="select6" />
+              <input type="checkbox" name="select6" id="select6" onChange={e => updateOnChangeValues(e)} />
               <label htmlFor="select6" selected>White/Caucasian</label>
-              <input type="checkbox" name="select7" id="select7" />
+              <input type="checkbox" name="select7" id="select7" onChange={e => updateOnChangeValues(e)} />
               <label htmlFor="select7" selected>Not Specified</label>
               <label htmlFor="origincountry" className="half">What is your country of origin?
                 <select name="country" onChange={e => updateOnChangeValues(e)}>

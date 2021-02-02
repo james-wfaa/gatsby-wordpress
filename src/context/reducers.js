@@ -54,7 +54,7 @@ const initialState = {
     zipcode: '',
   },
   identityInfo: {
-    identity: '',
+    identity: [],
     originCountry: '',
     identitydescrip: '',
   },
