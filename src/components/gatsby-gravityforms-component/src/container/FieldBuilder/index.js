@@ -2,10 +2,12 @@ import classnames from 'classnames'
 import get from 'lodash/get'
 import React from 'react'
 
+import Address from '../../components/Address'
 import Captcha from '../../components/Captcha'
 import Html from '../../components/Html'
 import Input from '../../components/Input'
 import Multiselect from '../../components/Multiselect'
+import Name from '../../components/Name'
 import Select from '../../components/Select'
 import SelectorList from '../../components/SelectorList'
 import Textarea from '../../components/Textarea'
@@ -148,26 +150,41 @@ const FieldBuilder = ({
                     />
                 )
             case 'name':
+                console.log(fieldData)
+                return (
+                    <Name
+                        errors={errors[inputName]}
+                        fieldData={fieldData}
+                        key={field.id}
+                        name={inputName}
+                        register={register}
+                        value={
+                            get(presetValues, inputName, false)
+                                ? get(presetValues, inputName, false)
+                                : ifDefaultValue(field)
+                        }
+                        wrapClassName={inputWrapperClass}
+                        wrapId={wrapId}
+                    />
+                )
             case 'address':
                 // loop through the input fields
-                let namefields = field.inputs.map(subfield => {
-                    
-                    const {
-                        name,
-                        label,
-                        inputType,
-                        choices,
-                        isHidden
-                    } = subfield
-                    if (!isHidden) {
-                        if (!inputType) {
-                            // text field
-                            return (<div key={subfield.id}>{subfield.label}: coming soon</div>)
-                        }
-                    }
-                })
+                
                 return (
-                    <div>{namefields}</div>
+                    <Address
+                        errors={errors[inputName]}
+                        fieldData={fieldData}
+                        key={field.id}
+                        name={inputName}
+                        register={register}
+                        value={
+                            get(presetValues, inputName, false)
+                                ? get(presetValues, inputName, false)
+                                : ifDefaultValue(field)
+                        }
+                        wrapClassName={inputWrapperClass}
+                        wrapId={wrapId}
+                    />
                 )
             case 'html':
                 return (

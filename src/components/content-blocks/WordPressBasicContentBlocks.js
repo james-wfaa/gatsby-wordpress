@@ -4,6 +4,7 @@ import { breakpoints, mixins, sizes } from '../css-variables'
 import Block from './WordPressBlock'
 import GravityFormForm from 'gatsby-gravityforms-component'
 import { useStaticQuery, graphql } from 'gatsby'
+import Column from '../parts/WordPressColumns'
 
 
 const AllGravityData = () => {
@@ -74,15 +75,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             case "acf/events-listing-section":
                 break  
             case "core/columns":
-                if(block.innerBlocks && block.innerBlocks[0].originalContent){
-                    let innerRenderedBlocks = [];
-                    block.innerBlocks.forEach((innerBlock) => {
-                        //console.log("Columns in" + innerBlock.originalContent);
-                        innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />) 
-                    })
-                    //console.log("blocks: " + innerRenderedBlocks)
-                    return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
-                }
+                return (<Column className={block.name.replace('/', '-')} block={block} />)
             case "core/buttons":
                 console.log("Found a button");
                 if(block.innerBlocks && block.innerBlocks[0].originalContent){
@@ -94,6 +87,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                     return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
                 }
                 break
+    
             //Add case to handle news/stories that use the freeform block but do not have blocks... and then use content instead of original content because it has the html tags
             //Also added css below that is duplicated from WPBlock
             case "core/freeform":
@@ -164,23 +158,6 @@ max-width: 100%;
 
 hr.wp-block-separator {
     ${mixins.separator}
-}
-
-.core-columns{
-    max-width: 303px;
-    
-    @media screen and ${breakpoints.tabletS} {
-        display: flex;
-        max-width: 536px;
-    }
-    @media screen and ${breakpoints.laptopS} {
-        max-width: 712px;
-    }
-    .core-column{
-        flex: 1 1 auto;
-        flex-shrink: 1;
-        min-width: 50px;
-    }
 }
 
 `

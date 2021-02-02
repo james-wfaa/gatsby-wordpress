@@ -94,19 +94,24 @@ const GravityForm = ({className, id}) => {
 }
     
 const StyledGravityForm = styled(GravityForm)`
-max-width: 500px;
+max-width: 100%;
 margin: 0 auto;
 ul {
     text-align: left;
 }
+
 ul.gform_fields {
     list-style-type: none;
+    margin: 0;
 }
 p {
     text-align: left;
 }
 button.gravityform__button {
     ${mixins.buttons}
+}
+a {
+    ${mixins.a}
 }
 
     
