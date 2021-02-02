@@ -11,14 +11,14 @@ import countryList from "react-select-country-list"
 
 const IdentityInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setIdentityInfo } = actions;
+  const { setCurrentStep, setIdentityInfo, setIdentityInfoOnchange } = actions;
   const [countries, setCountries] = useState(countryList().getData())
 
   const { register, handleSubmit, watch, errors } = useForm({
     mode: "onChange",
   })
   const UpdateIdentityInfo = data =>{
-    setIdentityInfo(data)
+    //setIdentityInfo(data)
 
     //figure out next page
     let currentOrder = state.numberOfSteps
@@ -26,6 +26,15 @@ const IdentityInfo = () => {
     let currentPlaceInOrder = currentOrder.indexOf(currentStep)
     let nextStep = currentOrder[currentPlaceInOrder + 1]
     setCurrentStep(nextStep)
+  }
+  const updateOnChangeValues = (e) => {
+    if(e.target.type === 'checkbox'){
+      
+      
+    } else{
+      setIdentityInfoOnchange([e.target.name, e.target.value])
+    }
+    
   }
   const countryOptions = countries.map(country => {
     if (country.value === "US") {
@@ -57,7 +66,7 @@ const IdentityInfo = () => {
             <form className="identity-info" id="contact" onSubmit={handleSubmit(UpdateIdentityInfo)}>
               <legend>Race/Ethnicity/Identity<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
-              <input type="checkbox" name="select1" id="select1" />
+              <input type="checkbox" name="select1" id="select1" onChange={e => updateOnChangeValues(e)}/>
               <label htmlFor="select1" selected>American Indian/Alaska Native</label>
               <input type="checkbox" name="select2" id="select2" />
               <label htmlFor="select2" selected>Black/African-American</label>
@@ -72,7 +81,7 @@ const IdentityInfo = () => {
               <input type="checkbox" name="select7" id="select7" />
               <label htmlFor="select7" selected>Not Specified</label>
               <label htmlFor="origincountry" className="half">What is your country of origin?
-                <select name="country" /*onChange={e => handleCountryChange(e)}*/>
+                <select name="country" onChange={e => updateOnChangeValues(e)}>
                   {countryOptions}
                 </select>
               </label>
@@ -81,7 +90,8 @@ const IdentityInfo = () => {
                     type="textbox"
                     name="identitydescrip"
                     id="identitydescrip"
-                    //defaultValue={state.MailingAddress.streetaddress}
+                    defaultValue={state.identityInfo.identitydescrip}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       minLength: {
                         value: 2,

@@ -11,13 +11,13 @@ import countryList from "react-select-country-list"
 
 const EmploymentInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setEmploymentInfo } = actions;
+  const { setCurrentStep, setEmploymentInfo, setEmploymentInfoOnchange } = actions;
 
   const { register, handleSubmit, watch, errors } = useForm({
     mode: "onChange",
   })
   const UpdateEmploymentInfo = data =>{
-    setEmploymentInfo(data)
+    //setEmploymentInfo(data)
 
     //figure out next page
     let currentOrder = state.numberOfSteps
@@ -25,6 +25,10 @@ const EmploymentInfo = () => {
     let currentPlaceInOrder = currentOrder.indexOf(currentStep)
     let nextStep = currentOrder[currentPlaceInOrder + 1]
     setCurrentStep(nextStep)
+  }
+
+  const updateOnChangeValues = (e) => {
+    setEmploymentInfoOnchange([e.target.name, e.target.value])
   }
   
     let variantObject = {
@@ -46,13 +50,14 @@ const EmploymentInfo = () => {
             <form id="contact" onSubmit={handleSubmit(UpdateEmploymentInfo)}>
               <legend>Employment Info<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
-              <label htmlFor="bussinessname" className="half required">Business Name
+              <label htmlFor="businessName" className="half required">Business Name
                 <span className="required">*</span>
                 <input
                     type="text"
-                    name="bussinessname"
-                    id="bussinessname"
-                    //defaultValue={state.employmentInfo.bussinessname}
+                    name="businessName"
+                    id="businessName"
+                    defaultValue={state.employmentInfo.businessName}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       minLength: {
                         value: 2,
@@ -60,8 +65,8 @@ const EmploymentInfo = () => {
                       },
                     })}
                 />
-                {errors.bussinessname && (
-                  <StyledError>{errors.bussinessname.message}</StyledError>
+                {errors.businessname && (
+                  <StyledError>{errors.businessname.message}</StyledError>
                 )}
               </label>
               <label htmlFor="jobtitle" className="half leftMargin">Job Title
@@ -69,7 +74,8 @@ const EmploymentInfo = () => {
                     type="text"
                     name="jobtitle"
                     id="jobtitle"
-                    //defaultValue={state.employmentInfo.jobtitle}
+                    defaultValue={state.employmentInfo.jobtitle}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       minLength: {
                         value: 2,
@@ -91,7 +97,8 @@ const EmploymentInfo = () => {
                     type="date"
                     name="startDate"
                     id="startDate"
-                    //defaultValue={state.employmentInfo.startDate}
+                    defaultValue={state.employmentInfo.startDate}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       
                     })}
@@ -105,7 +112,8 @@ const EmploymentInfo = () => {
                     type="text"
                     name="streetaddress"
                     id="streetaddress"
-                    //defaultValue={state.MailingAddress.streetaddress}
+                    defaultValue={state.employmentInfo.streetaddress}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       
                     })}
@@ -119,7 +127,8 @@ const EmploymentInfo = () => {
                     type="text"
                     name="streetaddresstwo"
                     id="streetaddresstwo"
-                    //defaultValue={state.MailingAddress.streetaddresstwo}
+                    defaultValue={state.employmentInfo.streetaddresstwo}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       
                     })}
@@ -133,7 +142,8 @@ const EmploymentInfo = () => {
                     type="text"
                     name="city"
                     id="city"
-                    //defaultValue={state.MailingAddress.city}
+                    defaultValue={state.employmentInfo.city}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       
                     })}
@@ -147,7 +157,8 @@ const EmploymentInfo = () => {
                     type="text"
                     name="state"
                     id="state"
-                    //defaultValue={state.contactInfo.postgrad}
+                    defaultValue={state.employmentInfo.state}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       
                     })}
@@ -161,7 +172,8 @@ const EmploymentInfo = () => {
                     type="text"
                     name="zipcode"
                     id="zipcode"
-                    //defaultValue={state.contactInfo.postgrad}
+                    defaultValue={state.employmentInfo.zipcode}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       
                     })}

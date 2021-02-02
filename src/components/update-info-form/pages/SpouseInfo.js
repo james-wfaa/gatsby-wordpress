@@ -10,15 +10,18 @@ import { AppContext } from "../../../context/AppContext"
 
 const SpouseInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setSpouseInfo } = actions;
+  const { setCurrentStep, setSpouseInfo, setSpouseInfoOnchange } = actions;
 
   const { register, handleSubmit, watch, errors } = useForm({
     mode: "onChange",
   })
-  const submitEntireForm = data =>{
-    setSpouseInfo(data)
+  const submitForm = data =>{
+    //setSpouseInfo(data)
     //submit data
     setCurrentStep(8)
+  }
+  const updateOnChangeValues = (e) => {
+    setSpouseInfoOnchange([e.target.name, e.target.value])
   }
   
     let variantObject = {
@@ -37,7 +40,7 @@ const SpouseInfo = () => {
               headingCompact
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
-            <form id="spouseInfo" onSubmit={handleSubmit(submitEntireForm)} className="spouse-info">
+            <form id="spouseInfo" onSubmit={handleSubmit(submitForm)} className="spouse-info">
               <legend>Spouse or Partner<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="spousefirstname" className="half required">Spouse/Partner First Name
@@ -46,7 +49,8 @@ const SpouseInfo = () => {
                     type="text"
                     name="spousefirstname"
                     id="spousefirstname"
-                    //defaultValue={state.spouseInfo.spousefirstname}
+                    defaultValue={state.spouseInfo.spousefirstname}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       minLength: {
                         value: 2,
@@ -69,7 +73,8 @@ const SpouseInfo = () => {
                     type="text"
                     name="spouselastname"
                     id="spouselastname"
-                    //defaultValue={state.spouseInfo.spouselastname}
+                    defaultValue={state.spouseInfo.spouselastname}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       minLength: {
                         value: 2,
@@ -92,7 +97,8 @@ const SpouseInfo = () => {
                     name="spouseUndergrad"
                     id="spouseUndergrad"
                     maxLength="4"
-                    defaultValue={state.contactInfo.undergrad}
+                    defaultValue={state.spouseInfo.undergrad}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       pattern: {
                         value: /^(19|20)\d{2}$/,
@@ -113,7 +119,8 @@ const SpouseInfo = () => {
                     name="postgrad"
                     id="postgrad"
                     aria-label="UW Postgraduate Years (if applicable)"
-                    defaultValue={state.contactInfo.postgrad}
+                    defaultValue={state.spouseInfo.postgrad}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                     })}
                 />

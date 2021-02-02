@@ -65,12 +65,24 @@ export const useActions = (state, dispatch) => {
     dispatch({ type: types.SET_EMPLOYMENT_INFO, payload: obj})
   }
   
+  function setEmploymentInfoOnchange(array) {
+    dispatch({ type: types.SET_EMPLOYMENT_INFO_ONCHANGE, payload: array})
+  }
+
   function setIdentityInfo(obj) {
     dispatch({ type: types.SET_IDENTITY_INFO, payload: obj})
+  }
+
+  function setIdentityInfoOnchange(array) {
+    dispatch({ type: types.SET_IDENTITY_INFO_ONCHANGE, payload: array})
   }
   
   function setSpouseInfo(obj) {
     dispatch({ type: types.SET_SPOUSE_INFO, payload: obj})
+  }
+
+  function setSpouseInfoOnchange(obj) {
+    dispatch({ type: types.SET_SPOUSE_INFO_ONCHANGE, payload: obj})
   }
 
   return {
@@ -90,7 +102,10 @@ export const useActions = (state, dispatch) => {
     setPhoneInfo,
     setPhoneInfoOnchange,
     setEmploymentInfo,
+    setEmploymentInfoOnchange,
     setIdentityInfo,
+    setIdentityInfoOnchange,
     setSpouseInfo,
+    setSpouseInfoOnchange,
   };
 };

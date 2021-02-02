@@ -83,8 +83,11 @@ const types = {
   SET_PHONE_INFO_ONCHANGE: "SET_PHONE_INFO_ONCHANGE",
   SET_PHONE_TYPE: "SET_PHONE_TYPE",
   SET_EMPLOYMENT_INFO: "SET_EMPLOYMENT_INFO",
+  SET_EMPLOYMENT_INFO_ONCHANGE: "SET_EMPLOYMENT_INFO_ONCHANGE",
   SET_IDENTITY_INFO: "SET_IDENTITY_INFO",
+  SET_IDENTITY_INFO_ONCHANGE: "SET_IDENTITY_INFO_ONCHANGE",
   SET_SPOUSE_INFO: "SET_SPOUSE_INFO",
+  SET_SPOUSE_INFO_ONCHANGE: "SET_SPOUSE_INFO_ONCHANGE",
 };
 
 const reducer = (state = initialState, action) => {
@@ -211,6 +214,14 @@ const reducer = (state = initialState, action) => {
 
         },
       };
+    case types.SET_EMPLOYMENT_INFO_ONCHANGE:
+      return {
+        ...state,
+        employmentInfo: {
+          ...state.employmentInfo,
+          [action.payload[0]]: action.payload[1],
+        },
+      };
     case types.SET_IDENTITY_INFO:
       return {
         ...state,
@@ -218,6 +229,14 @@ const reducer = (state = initialState, action) => {
           identity: action.payload.identity ? action.payload.identity : '',
           originCountry: action.payload.originCountry ? action.payload.originCountry : '',
           identitydescrip: action.payload.identitydescrip ? action.payload.identitydescrip : '',
+        },
+      };
+    case types.SET_IDENTITY_INFO_ONCHANGE:
+      return {
+        ...state,
+        identityInfo: {
+          ...state.identityInfo,
+          [action.payload[0]]: action.payload[1],
         },
       };
     case types.SET_SPOUSE_INFO:
@@ -228,6 +247,14 @@ const reducer = (state = initialState, action) => {
           lastname: action.payload.lastname ? action.payload.lastname : '',
           undergrad: action.payload.undergrad ? action.payload.undergrad : '',
           update: action.payload.update ? action.payload.update : '',
+        },
+      };
+    case types.SET_SPOUSE_INFO_ONCHANGE:
+      return {
+        ...state,
+        spouseInfo: {
+          ...state.spouseInfo,
+          [action.payload[0]]: action.payload[1],
         },
       };
       
