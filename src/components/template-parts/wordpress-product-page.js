@@ -49,7 +49,7 @@ function WordPressPage({ page }) {
         />
       )}
       { navContents && (
-        <Accordian opentext={navOpenText} closetext={navCloseText}>
+        <Accordian opentext={navOpenText} closetext={navCloseText} useAsMenu>
             <MenuBasic className = "productmenu" items={navContents} />
         </Accordian>
       )}

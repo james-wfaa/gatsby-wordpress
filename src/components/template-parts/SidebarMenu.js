@@ -103,9 +103,9 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
       }
       h4.open span::before{
         background-color: #c5050c;
-        -webkit-transform: rotate(-45deg) translate(-8px,13px);
-        -ms-transform: rotate(-45deg) translate(-8px,13px);
-        transform: rotate(-45deg) translate(-8px,13px);
+        -webkit-transform: rotate(-45deg) translate(-8.5px,13px);
+        -ms-transform: rotate(-45deg) translate(-8.5px,13px);
+        transform: rotate(-45deg) translate(-8.5px,13px);
         width: 12px;
       }
       h4.open span::after{
