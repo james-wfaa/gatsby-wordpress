@@ -13,7 +13,7 @@ const EmploymentInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setEmploymentInfo, setEmploymentInfoOnchange } = actions;
 
-  const { register, handleSubmit, watch, errors } = useForm({
+  const { register, handleSubmit, watch, errors,  formState: { isValid } } = useForm({
     mode: "onChange",
   })
   const UpdateEmploymentInfo = data =>{
@@ -30,6 +30,8 @@ const EmploymentInfo = () => {
   const updateOnChangeValues = (e) => {
     setEmploymentInfoOnchange([e.target.name, e.target.value])
   }
+
+  const requiredFieldsCheck = state.employmentInfo.businessName !== '' && state.employmentInfo.startDate !== '' ;
   
     let variantObject = {
       background_color: colors.formIntroBg,
@@ -182,7 +184,7 @@ const EmploymentInfo = () => {
                   <StyledError>{errors.zipcode.message}</StyledError>
                 )}
               </label>
-              <Buttons save back />
+              <Buttons save back disabled={ !requiredFieldsCheck || !isValid } />
             </form>
         </div>
     )

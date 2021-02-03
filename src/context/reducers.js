@@ -55,13 +55,14 @@ const initialState = {
   },
   identityInfo: {
     identity: [],
-    originCountry: '',
+    originCountry: 'US',
     identitydescrip: '',
   },
   spouseInfo: {
     firstname: '',
     lastname: '',
     undergrad: '',
+    postgrad: '',
     update: '',
   },
 };

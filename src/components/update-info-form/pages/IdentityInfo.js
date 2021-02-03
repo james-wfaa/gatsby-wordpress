@@ -91,7 +91,7 @@ const IdentityInfo = () => {
               <input type="checkbox" name="select7" id="select7" onChange={e => updateOnChangeValues(e)} />
               <label htmlFor="select7" selected>Not Specified</label>
               <label htmlFor="origincountry" className="half">What is your country of origin?
-                <select name="country" onChange={e => updateOnChangeValues(e)}>
+                <select name="originCountry" onChange={e => updateOnChangeValues(e)} defaultValue={state.identityInfo.originCountry}>
                   {countryOptions}
                 </select>
               </label>

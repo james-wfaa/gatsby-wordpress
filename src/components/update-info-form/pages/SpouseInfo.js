@@ -12,7 +12,7 @@ const SpouseInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setSpouseInfo, setSpouseInfoOnchange } = actions;
 
-  const { register, handleSubmit, watch, errors } = useForm({
+  const { register, handleSubmit, watch, errors, formState: { isValid }} = useForm({
     mode: "onChange",
   })
   const submitForm = data =>{
@@ -23,6 +23,8 @@ const SpouseInfo = () => {
   const updateOnChangeValues = (e) => {
     setSpouseInfoOnchange([e.target.name, e.target.value])
   }
+
+  const requiredFieldsCheck = state.spouseInfo.firstname !== '' && state.spouseInfo.lastname !== '' ;
   
     let variantObject = {
       background_color: colors.formIntroBg,
@@ -43,13 +45,13 @@ const SpouseInfo = () => {
             <form id="spouseInfo" onSubmit={handleSubmit(submitForm)} className="spouse-info">
               <legend>Spouse or Partner<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
-              <label htmlFor="spousefirstname" className="half required">Spouse/Partner First Name
+              <label htmlFor="firstname" className="half required">Spouse/Partner First Name
                 <span className="required">*</span>
                 <input
                     type="text"
-                    name="spousefirstname"
-                    id="spousefirstname"
-                    defaultValue={state.spouseInfo.spousefirstname}
+                    name="firstname"
+                    id="firstname"
+                    defaultValue={state.spouseInfo.firstname}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       minLength: {
@@ -62,18 +64,18 @@ const SpouseInfo = () => {
                       },
                     })}
                 />
-                {errors.spousefirstname && (
-                  <StyledError>{errors.spousefirstname.message}</StyledError>
+                {errors.firstname && (
+                  <StyledError>{errors.firstname.message}</StyledError>
                 )}
               </label>
               
-              <label htmlFor="spouselastname" className="half leftMargin required">Spouse/Partner Last Name
+              <label htmlFor="lastname" className="half leftMargin required">Spouse/Partner Last Name
                 <span className="required">*</span>
                 <input
                     type="text"
-                    name="spouselastname"
-                    id="spouselastname"
-                    defaultValue={state.spouseInfo.spouselastname}
+                    name="lastname"
+                    id="lastname"
+                    defaultValue={state.spouseInfo.lastname}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       minLength: {
@@ -82,20 +84,20 @@ const SpouseInfo = () => {
                       },
                       pattern: {
                         value: /^[A-Za-z @-]+$/,
-                        message: "Name must not contain numbers",
+                        message: "Name must not contain numbers or special characters",
                       },
                     })}
                 />
-                {errors.spouselastname && (
-                  <StyledError>{errors.spouselastname.message}</StyledError>
+                {errors.lastname && (
+                  <StyledError>{errors.lastname.message}</StyledError>
                 )}
               </label>
               
-              <label htmlFor="spouseUndergrad" className="third">UW Undergraduate Grad Year (if applicable)
+              <label htmlFor="undergrad" className="third">UW Undergraduate Grad Year (if applicable)
                 <input
                     type="text"
-                    name="spouseUndergrad"
-                    id="spouseUndergrad"
+                    name="undergrad"
+                    id="undergrad"
                     maxLength="4"
                     defaultValue={state.spouseInfo.undergrad}
                     onChange={e => updateOnChangeValues(e)}
@@ -134,7 +136,7 @@ const SpouseInfo = () => {
               <label htmlFor="noSpouse">I am no longer with my spouse or partner.</label>
               <input type="radio" id="none" value="none" name="spouseUpdate"/>
               <label htmlFor="none">None of the above.</label>
-              <Buttons save back />
+              <Buttons save back disabled={ !requiredFieldsCheck || !isValid } />
             </form>
         </div>
     )
