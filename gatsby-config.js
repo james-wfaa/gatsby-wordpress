@@ -62,6 +62,9 @@ module.exports = {
             writeQueriesToDisk: true,
           },
         },
+        production: {
+          allow404Images: true
+        },
         type: {
           Post: {
             limit:
@@ -87,7 +90,7 @@ module.exports = {
       options: {
           // Base URL needs to include protocol (http/https)
           baseUrl: 'https://uwalumni.wpengine.com',
-          //include: [], // Array of form IDs. Will only import these forms.
+          include: [1,2,3,4,5,6,7,8,9,10], // Array of form IDs. Will only import these forms.
           //exclude: [], // Array of form IDs. Will exclude these forms.
           // Gravity Forms API
           allowSelfSigned: true,
