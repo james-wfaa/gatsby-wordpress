@@ -49,6 +49,7 @@ export const query = graphql`
       featuredImage {
         node {
           caption
+          description
           mediaDetails {
             height
             width

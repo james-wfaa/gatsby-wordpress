@@ -26,7 +26,9 @@ const FeaturedImage = ({ className, featuredImage, event, size }) => {
       { featuredImage.caption && (
         <div className={`${className}__captionSection`}>
           <div className={`${className}__caption`} dangerouslySetInnerHTML={{ __html: featuredImage.caption }} />
-          <div className={`${className}__author`} dangerouslySetInnerHTML={{ __html: featuredImage.author.node.name }} />
+          {featuredImage.description && (
+            <div className={`${className}__author`} dangerouslySetInnerHTML={{ __html: featuredImage.description }} />
+          )}
         </div>
       )}
     </div>
