@@ -249,9 +249,28 @@ export const query = graphql`
           }
         }
       }
-      eventListing {
-        eventCategory {
-          slug
+      blocks {
+        name
+        isDynamic
+        originalContent
+        dynamicContent
+        innerBlocks {
+          name
+          isDynamic
+          originalContent
+          dynamicContent
+          saveContent
+          innerBlocks {
+            name
+            originalContent
+            dynamicContent
+            saveContent
+          }
+        }
+      }
+      products {
+        nodes {
+          name
           events {
             nodes {
               title
@@ -282,30 +301,29 @@ export const query = graphql`
               }
             }
           }
-        }
-      }
-      blocks {
-        name
-        isDynamic
-        originalContent
-        dynamicContent
-        innerBlocks {
-          name
-          isDynamic
-          originalContent
-          dynamicContent
-          saveContent
-          innerBlocks {
-            name
-            originalContent
-            dynamicContent
-            saveContent
+          posts {
+            nodes {
+              title
+              url: uri
+              excerpt
+              featuredImage {
+                node {
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth: 712) {
+                        base64
+                        tracedSVG
+                        srcWebp
+                        srcSetWebp
+                        originalImg
+                        originalName
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
-        }
-      }
-      products {
-        nodes {
-          name
         }
       }
     }
