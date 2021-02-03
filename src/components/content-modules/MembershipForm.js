@@ -2,10 +2,18 @@ import React, { useContext, useState, useEffect } from 'react'
 import { Link } from 'gatsby'
 import { AppContext } from "../../context/AppContext"
 import styled from "styled-components"
-import { colors, mixins, fonts } from '../css-variables'
+import { colors, mixins, fonts, breakpoints } from '../css-variables'
 import PageSection from "../page-sections/PageSection"
 import PageSectionHeader from "../parts/PageSectionHeader"
 import { membershipFeeCalc } from "../../utils/tools"
+
+const FormWrapper = styled.div`
+  margin: 0 auto;
+  width: 90%;
+  @media screen and ${breakpoints.tabletL} {
+    max-width: 896px;
+  }
+`
 
 const QuestionForm = styled.form`
   border: 1px solid ${colors.iconGrey};
@@ -102,14 +110,46 @@ const OptionsText = styled.p`
 
 const FeeBoxHeading = styled.div`
   ${mixins.sectionHeader}
+  @media screen and ${breakpoints.tabletL} {
+    grid-column: 1 / span 2;
+  }
+
+`
+const FeeBoxTitle = styled.h1`
+  max-width: 95% !important;
+  @media screen and ${breakpoints.tabletL} {
+    max-width: 80% !important;
+  }
+`
+
+const FeeBoxHeadingExcerpt = styled.p`
+  @media screen and ${breakpoints.tabletL} {
+    grid-column: 1 / span 2;
+  }
 `
 const FeeBox = styled.div`
   background-color: ${colors.bgActiveGrey};
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 58px 58px 0 58px;
+  grid-template-columns: 1fr;
+  @media screen and ${breakpoints.tabletL} {
+    grid-template-columns: 1fr 1fr;
+  }
+  padding: 24px 24px 0 24px;
+  @media screen and ${breakpoints.tabletS} {
+    padding: 58px 58px 0 58px;
+  }
   border-top: 4px solid ${colors.iconGrey};
   margin-bottom: 58px;
+`
+const CardWrapper = styled.div`
+  width: 100% !important;
+  @media screen and ${breakpoints.tabletS} {
+    grid-template-columns: 1fr 1fr;
+    width: 350px !important;
+  }
+  justify-self: center;
+  margin: 0;
+  padding: 0;
 `
 
 const FeeCard = styled.div`
@@ -118,6 +158,11 @@ const FeeCard = styled.div`
   * {
     text-align: center;
   }
+  width: 100% !important;
+  @media screen and ${breakpoints.tabletS} {
+    width: 350px !important;
+  }
+  min-height: 380px !important;
   margin: 48px auto 32px;
   justify-self: center;
   text-align: left;
@@ -125,8 +170,6 @@ const FeeCard = styled.div`
   background-color: ${colors.bgWhite};
   opacity: 0.9;
   color: ${colors.cardText};
-  min-height: 380px !important;
-  min-width: 350px;
   .contentwrap::before {
     left: 50%;
     transform: translateX(-50%) skew(135deg);
@@ -159,6 +202,7 @@ const FeeParamList = styled.p`
 `
 
 const Fee = styled.p`
+  font-family: ${fonts.eaves};
   font-size: 54px;
   font-weight: bold;
   text-align: center;
@@ -228,7 +272,7 @@ const MembershipForm = () => {
   }, [state.membershipGraduate, state.membershipAge, state.membershipType])
 
   return (
-    <div style={{maxWidth: `896px`, margin: `0 auto`}}>
+    <FormWrapper>
       {showValues && fees ?
         <PageSection>
           <ClearFilterSection>
@@ -238,95 +282,103 @@ const MembershipForm = () => {
             <OptionsText>{createOptionsText()}</OptionsText>
           </ClearFilterSection>
           <FeeBox>
-            <FeeBoxHeading style={{gridColumn: "1 / span 2"}}>
-              <h1>Lifetime Membership</h1>
+            <FeeBoxHeading>
+              <FeeBoxTitle>Lifetime Membership</FeeBoxTitle>
             </FeeBoxHeading>
-            <div style={{gridColumn: "1 / span 2"}}>
+            <FeeBoxHeadingExcerpt>
               <p style={{marginBottom: 0}}>
                 Solidify your pride. Become a lifetime member. Your love of the UW knows no bounds,
                 and neither does this membership community dedicated to supporting all alumni
                 and strengthening WAA’s mission. Plus, you’ll enjoy a lifetime of member benefits
                 including an exclusive added bonus!
               </p>
-            </div>
-            <FeeCard>
-              <FeeCardHeader>
-                <FeeParamList>LIFETIME - {recentGradText} - {membershipTypeText}</FeeParamList>
-                <h2>Pay in Full</h2>
-              </FeeCardHeader>
-              <div className="contentwrap">
-                <Fee>
-                  ${fees.full}
-                </Fee>
-                <h3>Best Value</h3>
-                <JoinButton to="/join">
+            </FeeBoxHeadingExcerpt>
+            <CardWrapper>
+              <FeeCard>
+                <FeeCardHeader>
+                  <FeeParamList>LIFETIME - {recentGradText} - {membershipTypeText}</FeeParamList>
+                  <h2>Pay in Full</h2>
+                </FeeCardHeader>
+                <div className="contentwrap">
+                  <Fee>
+                    ${fees.full}
+                  </Fee>
+                  <h3>Best Value</h3>
+                  <JoinButton to="/join">
+                    <p>JOIN</p>
+                  </JoinButton>
+                </div>
+              </FeeCard>
+              <p>Make a one-time payment to become a lifetime member and save a total of $30 off installment pricing.</p>
+            </CardWrapper>
+            <CardWrapper>
+              <FeeCard>
+                <FeeCardHeader>
+                  <FeeParamList>LIFETIME - {recentGradText} - {membershipTypeText}</FeeParamList>
+                  <h2>Installments</h2>
+                </FeeCardHeader>
+                <div className="contentwrap">
+                  <Fee>
+                    ${fees.installments}
+                  </Fee>
+                  <h3>Convenient and Affordable</h3>
+                  <JoinButton to="/join">
                   <p>JOIN</p>
-                </JoinButton>
-              </div>
-            </FeeCard>
-            <FeeCard>
-              <FeeCardHeader>
-                <FeeParamList>LIFETIME - {recentGradText} - {membershipTypeText}</FeeParamList>
-                <h2>Installments</h2>
-              </FeeCardHeader>
-              <div className="contentwrap">
-                <Fee>
-                  ${fees.installments}
-                </Fee>
-                <h3>Convenient and Affordable</h3>
-                <JoinButton to="/join">
-                <p>JOIN</p>
-                </JoinButton>
-              </div>
-            </FeeCard>
-            <p>Make a one-time payment to become a lifetime member and save a total of $30 off installment pricing.</p>
-            <p>This simple online installment plan automatically bills your credit card monthly — and in less than two
-              years you’re a WAA lifetime member!</p>
+                  </JoinButton>
+                </div>
+              </FeeCard>
+              <p>This simple online installment plan automatically bills your credit card monthly — and in less than two
+                years you’re a WAA lifetime member!</p>
+            </CardWrapper>
           </FeeBox>
           <FeeBox>
-            <FeeBoxHeading style={{gridColumn: "1 / span 2"}}>
-              <h1>Annual Membership</h1>
+            <FeeBoxHeading>
+              <FeeBoxTitle>Annual Membership</FeeBoxTitle>
             </FeeBoxHeading>
-            <div style={{gridColumn: "1 / span 2"}}>
+            <FeeBoxHeadingExcerpt>
               <p style={{marginBottom: 0}}>
                 Becoming a WAA member is the best way to stay connected to the UW.
                 You’ll join a community that shares your pride in the achievements of the university,
                 supports all alumni, and celebrates Badger spirit. Plus, enjoy a variety of special benefits
                 and being where Badgers belong.
               </p>
-            </div>
-            <FeeCard>
-              <FeeCardHeader>
-                <FeeParamList>ANNUAL - {recentGradText} - {membershipTypeText}</FeeParamList>
-                <h2>Two Year</h2>
-              </FeeCardHeader>
-              <div className="contentwrap">
-                <Fee>
-                  ${fees.twoYear}
-                </Fee>
-                <h3>Best Value</h3>
-                <JoinButton to="/join">
-                  <p>JOIN</p>
-                </JoinButton>
-              </div>
-            </FeeCard>
-            <FeeCard>
-              <FeeCardHeader>
-                <FeeParamList>ANNUAL - {recentGradText} - {membershipTypeText}</FeeParamList>
-                <h2>One Year</h2>
-              </FeeCardHeader>
-              <div className="contentwrap">
-                <Fee>
-                  ${fees.oneYear}
-                </Fee>
-                <h3>Most Popular</h3>
-                <JoinButton to="/join">
-                  <p>JOIN</p>
-                </JoinButton>
-              </div>
-            </FeeCard>
-            <p>Extend your stay in this Badger community and save off the one-year option.</p>
-            <p>Enjoy the benefits of being a WAA member at an affordable price. </p>
+            </FeeBoxHeadingExcerpt>
+            <CardWrapper>
+              <FeeCard>
+                <FeeCardHeader>
+                  <FeeParamList>ANNUAL - {recentGradText} - {membershipTypeText}</FeeParamList>
+                  <h2>Two Year</h2>
+                </FeeCardHeader>
+                <div className="contentwrap">
+                  <Fee>
+                    ${fees.twoYear}
+                  </Fee>
+                  <h3>Best Value</h3>
+                  <JoinButton to="/join">
+                    <p>JOIN</p>
+                  </JoinButton>
+                </div>
+              </FeeCard>
+              <p>Extend your stay in this Badger community and save off the one-year option.</p>
+            </CardWrapper>
+            <CardWrapper>
+              <FeeCard>
+                <FeeCardHeader>
+                  <FeeParamList>ANNUAL - {recentGradText} - {membershipTypeText}</FeeParamList>
+                  <h2>One Year</h2>
+                </FeeCardHeader>
+                <div className="contentwrap">
+                  <Fee>
+                    ${fees.oneYear}
+                  </Fee>
+                  <h3>Most Popular</h3>
+                  <JoinButton to="/join">
+                    <p>JOIN</p>
+                  </JoinButton>
+                </div>
+              </FeeCard>
+              <p>Enjoy the benefits of being a WAA member at an affordable price. </p>
+            </CardWrapper>
           </FeeBox>
 
         </PageSection>
@@ -381,7 +433,7 @@ const MembershipForm = () => {
         </PageSection>
       }
 
-    </div>
+    </FormWrapper>
   )
 }
 
