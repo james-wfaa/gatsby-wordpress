@@ -8,8 +8,8 @@ import MenuBasic from "../parts/MenuBasic"
 function WordPressPage({ page }) {
   const {  excerpt, featuredImage, introButtons, eventListing, blocks, title, wpChildren } = page
   const { introButtons: buttons } = introButtons
-  const navOpenText = 'Browse "' + title + '"' 
-  const navCloseText = '"' + title + '"'
+  const navOpenText =  title 
+  const navCloseText = title 
   //console.log({page})
 
   /* extract the events to pass along with the blocks as helper data */
