@@ -51,23 +51,7 @@ const PhoneInfo = () => {
             <form id="phoneInfo" onSubmit={handleSubmit(UpdatePhoneInfo)}>
               <legend>Phone Numbers<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
-              <label htmlFor="phoneType1" className="half">Phone Type 1
-                <span className="required">*</span>
-                <select 
-                  id="phoneType1" 
-                  name="phoneType1" 
-                  defaultValue={state.phoneInfo.phoneType1}
-                  ref={register({})}
-                  >
-                  <option value="home">Home</option>
-                  <option value="mobile">Cellular/Mobile</option>
-                  <option value="work">Work/Business</option>
-                </select>
-                {errors.phoneType1 && (
-                  <StyledError>{errors.phoneType1.message}</StyledError>
-                )}
-              </label>
-              <label htmlFor="phoneNumber1" className="half leftMargin">Phone Number 1
+              <label htmlFor="phoneNumber1" className="half">Phone Number 1
                 <span className="required">*</span>
                 <input
                     type="phone"
@@ -87,20 +71,25 @@ const PhoneInfo = () => {
                   <StyledError>{errors.phoneNumber1.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="phoneType2" className="half">Phone Type 2
+              <label htmlFor="phoneType1" className="half leftMargin">Phone Type 1
                 <select 
-                  defaultValue={state.phoneInfo.phoneType2} 
-                  name="phoneType2"
-                  ref={register({})}>
+                  id="phoneType1" 
+                  name="phoneType1" 
+                  defaultValue={state.phoneInfo.phoneType1}
+                  ref={register({})}
+                  >
                   <option value="home">Home</option>
-                  <option value="mobile">Cellular/Mobile</option>
+                  <option value="mobile">Personal Cellular/Mobile</option>
                   <option value="work">Work/Business</option>
+                  <option value="work-mobile">Work/Business Cellular/Mobile</option>
+                  <option value="seasonal">Seasonal</option>
                 </select>
-                {errors.phoneType2 && (
-                  <StyledError>{errors.phoneType2.message}</StyledError>
+                {errors.phoneType1 && (
+                  <StyledError>{errors.phoneType1.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="phoneNumber2" className="half leftMargin">Phone Number 2
+              
+              <label htmlFor="phoneNumber2" className="half">Phone Number 2
                 <input
                     type="phone"
                     name="phoneNumber2"
@@ -118,20 +107,22 @@ const PhoneInfo = () => {
                   <StyledError>{errors.phone.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="phoneType3" className="half">Phone Type 3
+              <label htmlFor="phoneType2" className="half leftMargin">Phone Type 2
                 <select 
-                  defaultValue={state.phoneInfo.phoneType3} 
-                  name="phoneType3"
+                  defaultValue={state.phoneInfo.phoneType2} 
+                  name="phoneType2"
                   ref={register({})}>
                   <option value="home">Home</option>
-                  <option value="mobile">Cellular/Mobile</option>
+                  <option value="mobile">Personal Cellular/Mobile</option>
                   <option value="work">Work/Business</option>
+                  <option value="work-mobile">Work/Business Cellular/Mobile</option>
+                  <option value="seasonal">Seasonal</option>
                 </select>
-                {errors.phoneType3 && (
-                  <StyledError>{errors.phoneType3.message}</StyledError>
+                {errors.phoneType2 && (
+                  <StyledError>{errors.phoneType2.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="phoneNumber3" className="half leftMargin">Phone Number 3
+              <label htmlFor="phoneNumber3" className="half">Phone Number 3
                 <input
                     type="phone"
                     name="phoneNumber3"
@@ -147,6 +138,21 @@ const PhoneInfo = () => {
                 />
                 {errors.phoneNumber3 && (
                   <StyledError>{errors.phoneNumber3.message}</StyledError>
+                )}
+              </label>
+              <label htmlFor="phoneType3" className="half leftMargin">Phone Type 3
+                <select 
+                  defaultValue={state.phoneInfo.phoneType3} 
+                  name="phoneType3"
+                  ref={register({})}>
+                  <option value="home">Home</option>
+                  <option value="mobile">Personal Cellular/Mobile</option>
+                  <option value="work">Work/Business</option>
+                  <option value="work-mobile">Work/Business Cellular/Mobile</option>
+                  <option value="seasonal">Seasonal</option>
+                </select>
+                {errors.phoneType3 && (
+                  <StyledError>{errors.phoneType3.message}</StyledError>
                 )}
               </label>
               

@@ -13,6 +13,7 @@ const IdentityInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setIdentityInfo, setIdentityInfoOnchange } = actions;
   const [countries, setCountries] = useState(countryList().getData())
+  
 
   const { register, handleSubmit, watch, errors } = useForm({
     mode: "onChange",
@@ -46,14 +47,8 @@ const IdentityInfo = () => {
     }
     
   }
+
   const countryOptions = countries.map(country => {
-    if (country.value === "US") {
-      return (
-        <option value={country.value} selected>
-          {country.label}
-        </option>
-      )
-    }
     return <option value={country.value}>{country.label}</option>
   })
   
@@ -92,6 +87,7 @@ const IdentityInfo = () => {
               <label htmlFor="select7" selected>Not Specified</label>
               <label htmlFor="origincountry" className="half">What is your country of origin?
                 <select name="originCountry" onChange={e => updateOnChangeValues(e)} defaultValue={state.identityInfo.originCountry}>
+                  <option value="Not Specified"> </option>
                   {countryOptions}
                 </select>
               </label>

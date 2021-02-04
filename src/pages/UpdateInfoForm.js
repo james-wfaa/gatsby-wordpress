@@ -142,6 +142,9 @@ form{
     border: 2px solid ${colors.formInputBorder};
     border-radius: 0;
   }
+  input[type='date']{
+    display:inline-block;
+  }
   textarea{
     padding-top:8px;
   }
@@ -244,6 +247,9 @@ form{
     input[type='checkbox']:focus + label::before, input[type='radio']:focus + label::before {
       outline: #5d9dd5 solid 1px;
       box-shadow: 0 0px 8px #5e9ed6;
+    }
+    .seasonal-address-wrapper{
+      margin-top:24px;
     }
   }
   &.identity-info,

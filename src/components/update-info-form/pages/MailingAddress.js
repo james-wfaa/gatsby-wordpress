@@ -37,7 +37,7 @@ const MailingAddress = () => {
   const countryOptions = countries.map(country => {
     if (country.value === state.mailingAddress.country) {
       return (
-        <option value={country.value} selected>
+        <option value={country.value} key={country.value} selected>
           {country.label}
         </option>
       )
@@ -63,7 +63,7 @@ const MailingAddress = () => {
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form className="mailing-address" onSubmit={handleSubmit(UpdateMailingAddressInfo)}>
               <legend>Mailing Address<span className="requiredInfo">*Required Information</span></legend>
-              <hr></hr>
+              <hr />
               <label htmlFor="addressType" className="half select-dropdown">Address Type
                 <select name="addressType" defaultValue={state.mailingAddress.addressType}>
                   <option value="home">Home</option>
@@ -118,8 +118,7 @@ const MailingAddress = () => {
                 )}
               </label>
               <label htmlFor="city" className="third">City
-                  {console.log(state.mailingAddress)}
-                {state.mailingAddress.country === 'US' ? <span className="required">*</span> : null}
+                <span className="required">*</span>
                 <input
                     type="text"
                     name="city"
@@ -127,7 +126,6 @@ const MailingAddress = () => {
                     defaultValue={state.mailingAddress.city}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      
                     })}
                 />
                 {errors.city && (
@@ -171,14 +169,14 @@ const MailingAddress = () => {
               <label htmlFor="yesSeasonal">Yes</label>
               <input type="radio" id="noSeasonal" value="no" name="seasonalResidence" onChange={e => updateOnChangeValues(e)}/>
               <label htmlFor="noSeasonal">No</label>
-              
-
               { state.mailingAddress.seasonalResidence === "yes" ? (
-              <div>
+              <div className="seasonal-address-wrapper">
+              <legend>Seasonal Address</legend>
+              <hr />
               <label htmlFor="startDate" className="third">Start Date
                 <span className="required">*</span>
                 <input
-                    type="date"
+                    type="text"
                     name="startDate"
                     id="startDate"
                     //defaultValue={state.mailingAddress.seasonalStartDate}
@@ -193,7 +191,7 @@ const MailingAddress = () => {
               <label htmlFor="endDate" className="third leftMargin">End Date
                 <span className="required">*</span>
                 <input
-                    type="date"
+                    type="text"
                     name="endDate"
                     id="endDate"
                     //defaultValue={state.mailingAddress.seasonalEndDate}

@@ -55,7 +55,7 @@ const initialState = {
   },
   identityInfo: {
     identity: [],
-    originCountry: 'US',
+    originCountry: '',
     identitydescrip: '',
   },
   spouseInfo: {
@@ -64,6 +64,7 @@ const initialState = {
     undergrad: '',
     postgrad: '',
     update: '',
+    uwGrad: false,
   },
 };
 const types = {

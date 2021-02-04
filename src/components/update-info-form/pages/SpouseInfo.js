@@ -21,7 +21,11 @@ const SpouseInfo = () => {
     setCurrentStep(8)
   }
   const updateOnChangeValues = (e) => {
-    setSpouseInfoOnchange([e.target.name, e.target.value])
+    if(e.target.type === 'checkbox'){
+      setSpouseInfoOnchange([e.target.name, !state.spouseInfo.uwGrad])
+    } else{
+      setSpouseInfoOnchange([e.target.name, e.target.value])
+    }
   }
 
   const requiredFieldsCheck = state.spouseInfo.firstname !== '' && state.spouseInfo.lastname !== '' ;
@@ -92,8 +96,9 @@ const SpouseInfo = () => {
                   <StyledError>{errors.lastname.message}</StyledError>
                 )}
               </label>
-              
-              <label htmlFor="undergrad" className="third">UW Undergraduate Grad Year (if applicable)
+              <input type="checkbox" id="uwGrad" value={state.spouseInfo.uwGrad} name="uwGrad" onChange={e => updateOnChangeValues(e)}/>
+              <label htmlFor="uwGrad" >My spouse/partner is a UW grad</label>
+              { state.spouseInfo.uwGrad ? (<div><label htmlFor="undergrad" className="third">UW Undergraduate Grad Year
                 <input
                     type="text"
                     name="undergrad"
@@ -112,7 +117,7 @@ const SpouseInfo = () => {
                   <StyledError>{errors.spouseUndergrad.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="postgrad" className="third leftMargin">UW Postgraduate Year(s) (if applicable)
+              <label htmlFor="postgrad" className="third leftMargin">UW Postgraduate Year(s)
                 {errors.postgrad && (
                   <StyledError>{errors.postgrad.message}</StyledError>
                 )}
@@ -126,7 +131,8 @@ const SpouseInfo = () => {
                     ref={register({
                     })}
                 />
-              </label>
+              </label></div>) : null }
+              
               <label htmlFor="spouseupdate">What is the update you would like to share about your spouse or partner?</label>
               <input type="radio" id="newSpouse" value="newSpouse" name="spouseUpdate"/>
               <label htmlFor="newSpouse">This is my new spouse or partner.</label>
