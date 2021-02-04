@@ -271,59 +271,8 @@ export const query = graphql`
       products {
         nodes {
           name
-          events {
-            nodes {
-              title
-              startDate
-              endDate
-              venue {
-                title
-                city
-                state
-              }
-              excerpt
-              featuredImage {
-                node {
-                  localFile {
-                    childImageSharp {
-                      fluid(maxWidth: 712) {
-                        base64
-                        tracedSVG
-                        srcWebp
-                        srcSetWebp
-                        originalImg
-                        originalName
-                        aspectRatio
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-          posts {
-            nodes {
-              title
-              url: uri
-              excerpt
-              featuredImage {
-                node {
-                  localFile {
-                    childImageSharp {
-                      fluid(maxWidth: 712) {
-                        base64
-                        tracedSVG
-                        srcWebp
-                        srcSetWebp
-                        originalImg
-                        originalName
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
+          ...ProductEventCards
+          ...ProductPostCards
         }
       }
     }

@@ -6,15 +6,19 @@ import Accordian from "../parts/Accordian"
 import MenuBasic from "../parts/MenuBasic"
 
 function WordPressPage({ page }) {
-  const {  excerpt, featuredImage, introButtons, eventListing, products, blocks, title, wpChildren } = page
+  const {  excerpt, featuredImage, introButtons, products, blocks, title, wpChildren } = page
   const { introButtons: buttons } = introButtons
   const navOpenText = 'Browse "' + title + '"' 
   const navCloseText = '"' + title + '"'
   //console.log({page})
-  console.log(products)
+  //console.log(products)
+  const product = (products?.nodes) ? products.nodes[0] : null
+  console.log(product)
+
 
   /* extract the events to pass along with the blocks as helper data */
-  const { eventCategory } = eventListing
+  // commenting this out because we don't need it anymore
+  //const { eventCategory } = eventListing
 
   const navContents = (wpChildren.nodes) ? wpChildren.nodes.map((node) => {
     console.log("Nav: " +  node.uri);
@@ -54,7 +58,7 @@ function WordPressPage({ page }) {
             <MenuBasic className = "productmenu" items={navContents} />
         </Accordian>
       )}
-      <WordPressContentBlocks blocks={blocks} eventCategory={eventCategory}/>
+      <WordPressContentBlocks product={product} blocks={blocks} />
     </Layout>
   )
 }

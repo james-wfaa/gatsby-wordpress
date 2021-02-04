@@ -9,7 +9,11 @@ import { colors, breakpoints, mixins } from '../css-variables'
 import Block from './WordPressBlock'
 
 
-const WordPressContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
+const WordPressContentBlocks = ({className, blocks, content, eventCategory, product, stagger}) => {
+
+    // see if the product has event and/or post nodes
+    console.log(product)
+
     const staggerBlocks = (stagger) 
         ? blocks.map((block) => {
             block.stagger = true
