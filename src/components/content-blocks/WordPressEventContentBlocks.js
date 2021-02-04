@@ -14,6 +14,7 @@ import Block from './WordPressBlock'
 
 const WordPressEventContentBlocks = ({className, date, startDate, endDate, link, venue, cost, organizers, title, eventDetails, blocks, content}) => {
     //console.log('WordPressEventContentBlocks - blocks:',blocks)
+    //console.log(blocks)
 
     const [show, setShow] = useState(false);
 
@@ -50,7 +51,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-        //console.log(block.name)
+        console.log(block.name)
         switch(block.name) {
             case "tribe/event-datetime":
             case "tribe/featured-image":
