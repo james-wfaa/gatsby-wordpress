@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError } from '../form-helpers'
+import { StyledError, StyledTopError } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import { colors } from '../../css-variables'
 import Buttons from './FormButtons'
-import styled from "styled-components"
 import { AppContext } from "../../../context/AppContext"
 
 const ContactInfo = () => {
@@ -28,7 +27,7 @@ const ContactInfo = () => {
     setContactInfoOnchange([e.target.name, e.target.value])
   }
   
-  const requiredFieldsCheck = state.firstName !== '' && state.lastName !== '' && state.email !== '';
+  const requiredFieldsCheck = state.contactInfo.firstname !== '' && state.contactInfo.lastname !== '' && state.contactInfo.email !== '';
 
     let variantObject = {
       background_color: colors.formIntroBg,
@@ -46,6 +45,7 @@ const ContactInfo = () => {
               headingCompact
             />
             <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
+              {false && <StyledTopError>Please correct error(s) below</StyledTopError>}
               <legend>Contact Information<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="firstname" className="half required">First Name
@@ -75,7 +75,6 @@ const ContactInfo = () => {
                 />
                 
               </label>
-              {console.log(isValid)}
               <label htmlFor="lastname" className="half leftMargin required">Last Name
                 <span className="required">*</span>
                 {errors.lastname && (
@@ -206,7 +205,8 @@ const ContactInfo = () => {
               </label>
               <Buttons 
                 save
-                disabled={ !requiredFieldsCheck || !isValid } />
+                disabled={ !requiredFieldsCheck || !isValid }
+                error={false} />
             </form>
         </div>
     )

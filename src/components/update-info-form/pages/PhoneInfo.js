@@ -30,6 +30,43 @@ const PhoneInfo = () => {
   const updateOnChangeValues = (e) => {
     setPhoneInfoOnchange([e.target.name, e.target.value])
   }
+
+  const renderSeasonalDates = () =>{
+    return(
+      <div>
+        <label htmlFor="startDate" className="third block">Start Date
+                <span className="required">*</span>
+                <input
+                    type="text"
+                    name="startDate"
+                    id="startDate"
+                    defaultValue={state.phoneInfo.seasonalStartDate}
+                    ref={register({
+                      
+                    })}
+                />
+                {errors.jobtitle && (
+                  <StyledError>{errors.jobtitle.message}</StyledError>
+                )}
+              </label>
+              <label htmlFor="endDate" className="third block">End Date
+                <span className="required">*</span>
+                <input
+                    type="text"
+                    name="endDate"
+                    id="endDate"
+                    defaultValue={state.phoneInfo.seasonalEndDate}
+                    ref={register({
+                      
+                    })}
+                />
+                {errors.jobtitle && (
+                  <StyledError>{errors.jobtitle.message}</StyledError>
+                )}
+              </label>
+      </div>
+    )
+  }
   const requiredFieldsCheck = state.phoneInfo.phoneNumber1 !== '';
 
     let variantObject = {
@@ -76,6 +113,7 @@ const PhoneInfo = () => {
                   id="phoneType1" 
                   name="phoneType1" 
                   defaultValue={state.phoneInfo.phoneType1}
+                  onChange={e => updateOnChangeValues(e)}
                   ref={register({})}
                   >
                   <option value="home">Home</option>
@@ -88,7 +126,7 @@ const PhoneInfo = () => {
                   <StyledError>{errors.phoneType1.message}</StyledError>
                 )}
               </label>
-              
+              {state.phoneInfo.phoneType1 === "seasonal" ? renderSeasonalDates() : null}
               <label htmlFor="phoneNumber2" className="half">Phone Number 2
                 <input
                     type="phone"
@@ -110,6 +148,7 @@ const PhoneInfo = () => {
               <label htmlFor="phoneType2" className="half leftMargin">Phone Type 2
                 <select 
                   defaultValue={state.phoneInfo.phoneType2} 
+                  onChange={e => updateOnChangeValues(e)}
                   name="phoneType2"
                   ref={register({})}>
                   <option value="home">Home</option>
@@ -122,6 +161,7 @@ const PhoneInfo = () => {
                   <StyledError>{errors.phoneType2.message}</StyledError>
                 )}
               </label>
+              {state.phoneInfo.phoneType2 === "seasonal" ? renderSeasonalDates() : null}
               <label htmlFor="phoneNumber3" className="half">Phone Number 3
                 <input
                     type="phone"
@@ -143,6 +183,7 @@ const PhoneInfo = () => {
               <label htmlFor="phoneType3" className="half leftMargin">Phone Type 3
                 <select 
                   defaultValue={state.phoneInfo.phoneType3} 
+                  onChange={e => updateOnChangeValues(e)}
                   name="phoneType3"
                   ref={register({})}>
                   <option value="home">Home</option>
@@ -155,6 +196,7 @@ const PhoneInfo = () => {
                   <StyledError>{errors.phoneType3.message}</StyledError>
                 )}
               </label>
+              {state.phoneInfo.phoneType3 === "seasonal" ? renderSeasonalDates() : null}
               
               <Buttons 
                 save 

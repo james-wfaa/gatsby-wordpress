@@ -173,7 +173,7 @@ const MailingAddress = () => {
               <div className="seasonal-address-wrapper">
               <legend>Seasonal Address</legend>
               <hr />
-              <label htmlFor="startDate" className="third">Start Date
+              <label htmlFor="startDate" className="third block">Start Date
                 <span className="required">*</span>
                 <input
                     type="text"
@@ -188,7 +188,7 @@ const MailingAddress = () => {
                   <StyledError>{errors.jobtitle.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="endDate" className="third leftMargin">End Date
+              <label htmlFor="endDate" className="third block">End Date
                 <span className="required">*</span>
                 <input
                     type="text"

@@ -94,6 +94,7 @@ form, .disclaimer{
 }
 form{
   margin-top: 58px;
+  position:relative;
   legend{
     text-transform: uppercase;
     margin-bottom: 12px;
@@ -176,6 +177,9 @@ form{
     label.third, input.third  {
       width: 32%;
       display: inline-block;
+      &.block{
+        display:block;
+      }
     }
  }
   
@@ -287,6 +291,7 @@ form{
 .form-btns{
   margin: 58px auto;
   text-align: center;
+  position:relative;
   button{
     display: block;
     width: 100%;
@@ -370,6 +375,22 @@ form{
       @media screen and ${breakpoints.tabletS} {
         margin-right: 40px;
       }
+    }
+    &.errorMessage{
+      position:Relative;
+    }
+    &.errorMessage::before{
+      content: 'Please correct error(s) above';
+      font-family: "Verlag A", "Verlag B";
+      font-style: normal;
+      margin: 0 auto;
+      padding: 0;
+      font-size: 16px;
+      position: absolute;
+      color: ${colors.buttonRed};
+      text-transform: none;
+      right: -215px;
+      font-weight:normal;
     }
     @media screen and ${breakpoints.tabletS} {
       width: auto;

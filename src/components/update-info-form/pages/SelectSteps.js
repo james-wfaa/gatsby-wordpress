@@ -44,7 +44,6 @@ const SelectSteps = () => {
     }
     const updateNumberOfSteps = (change, step) => {
         if (change === true){
-            console.log(state.numberOfSteps)
             let newOrder = [...state.numberOfSteps, step]
             newOrder.sort(function(a, b){
                 return a - b;

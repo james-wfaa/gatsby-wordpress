@@ -36,3 +36,18 @@ font-size: 0.778rem;
   //background-image: ;
 }
 `
+export const StyledTopError = styled.p`
+font-family: "Verlag A", "Verlag B";
+font-style: normal;
+margin: 0 auto;
+padding: 0;
+font-size: 16px;
+position: absolute;
+color: ${colors.buttonRed};
+top: -45px;
+}
+`
+export const StyledNextToButtonError = styled.p`
+
+}
+`
