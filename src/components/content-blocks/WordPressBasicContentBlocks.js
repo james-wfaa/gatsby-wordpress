@@ -13,7 +13,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-
+        console.log(block.name)
         switch(block.name) {
             case "core/separator":
                 return(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
@@ -43,6 +43,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             case "core-embed/flickr":
                 return <EmbedBlock data={block.originalContent} />
                 break
+            
             default:
                 return (<Block className={block.name.replace('/', '-')} block={block} />)
                 break
