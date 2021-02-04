@@ -8,7 +8,7 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
     const classesList = !event ? `${className}` : `${className} ${className}--event`
     const theCategory = !categories? null : categories.nodes[0]
     const defaultAuthor = "Wisconsin Alumni Association";
-    console.log(smImg)
+    //console.log(smImg)
 
     return (
         <div className={classesList}>

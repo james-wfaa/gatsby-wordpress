@@ -69,7 +69,7 @@ function WordPressPage({ data }) {
  })
 
 
-  console.log('featuredEvents:',featuredEvents)
+  //console.log('featuredEvents:',featuredEvents)
 
 
 
