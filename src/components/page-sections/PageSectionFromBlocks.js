@@ -49,7 +49,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                 const innerContent =  ((block.dynamicContent && block.dynamicContent !== "") ? block.dynamicContent : block.originalContent)
                 if (block.name === "core/image") {
                     return (
-                        <ImageWithCaption><div dangerouslySetInnerHTML={{__html: innerContent}} /></ImageWithCaption>
+                        <ImageWithCaption storyCaption="storyCaption" ><div dangerouslySetInnerHTML={{__html: innerContent}} /></ImageWithCaption>
                     )
                 } else {
                     return <div dangerouslySetInnerHTML={{__html: innerContent}} />
