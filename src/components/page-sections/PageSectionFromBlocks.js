@@ -2,6 +2,7 @@ import React from 'react'
 import PageSection from './PageSection'
 import Testimonial from '../content-blocks/Testimonial'
 import ImageSection from '../content-blocks/ImageSection'
+import GravityForm from '../content-blocks/GravityForm'
 import ImageWithCaption from '../content-blocks/ImageWithCaption'
 import SimpleSlider from '../content-modules/SimpleSlider'
 import CardSet from "../content-modules/CardSet"
@@ -68,6 +69,8 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
             })}</CardSet>)
             : blocks.map((block) => {
 
+                console.log(block.name)
+
                 switch(block.name) {
                     case "acf/section-header":
                         break
@@ -100,6 +103,24 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                     case "acf/product-card":
                         const productcard = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
                         return (<div dangerouslySetInnerHTML={{__html: productcard}} />)
+
+                    case "gravityforms/form":
+                        console.log('form found')
+                        const shortcode = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
+                        console.log(shortcode)
+                        let idStart = shortcode.indexOf('id="')
+                        if (idStart > -1) {
+                            idStart += 4
+                            let idEnd = shortcode.indexOf('"', idStart)
+                            console.log(idEnd)
+                            console.log(idStart)
+                            const formId = shortcode.substring(idStart,idEnd)
+                            console.log(formId)
+                            return (<GravityForm className={block.name.replace('/', '-')} id={formId} />)
+                        }
+                        
+                        break
+
                     case "core/buttons":
                         if(block.innerBlocks && block.innerBlocks[0].originalContent){
                             let innerRenderedBlocks = [];

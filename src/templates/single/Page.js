@@ -5,7 +5,7 @@ import WpGroupPage from "../../components/template-parts/wordpress-group-page"
 import WpProductPage from "../../components/template-parts/wordpress-product-page"
 import WpAggregatePage from "../../components/template-parts/wordpress-aggregate-page"
 
-export default ({ data }) => {
+const Page = ({ data }) => {
   const { page } = data
   const { template, ancestors } = page
 
@@ -44,6 +44,8 @@ export default ({ data }) => {
   return (<WpDefaultPage page={page} />)
 
 }
+
+export default Page
 
 export const query = graphql`
   query all($id: String!) {

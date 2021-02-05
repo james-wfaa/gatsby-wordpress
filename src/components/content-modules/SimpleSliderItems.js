@@ -7,7 +7,7 @@ import RightArrow from "../../components/parts/SliderArrowRight"
 const SimpleSliderItems = ({ items, size }) => {
     let myItems = []
     items.forEach((item) => {
-        console.log(item)
+        //console.log(item)
         const { featuredImage: img } = item
         const cardImg = (img ?.node?.localFile) ? img.node.localFile : null
         myItems.push(

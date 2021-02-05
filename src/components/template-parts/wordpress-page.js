@@ -88,7 +88,7 @@ function WordPressPage({ page }) {
   return (
     <Layout title={title}>
       <PageWrapper>
-        {width > 1200
+        {width >= 1200
         ?
         <>
         { wpMenu && (

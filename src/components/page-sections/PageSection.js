@@ -241,7 +241,8 @@ const StyledPageSection = styled(PageSection)`
         > .core-list,
         > .core-table,
         > .core-buttons,
-        > .core-columns {
+        > .core-columns,
+        > .gravityforms-form {
             min-width: 300px;
             width: 80%;
             max-width: 712px;
