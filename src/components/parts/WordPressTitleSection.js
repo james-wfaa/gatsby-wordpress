@@ -7,7 +7,8 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
 
     const classesList = !event ? `${className}` : `${className} ${className}--event`
     const theCategory = !categories? null : categories.nodes[0]
-    console.log(smImg)
+    const defaultAuthor = "Wisconsin Alumni Association";
+    //console.log(smImg)
 
     return (
         <div className={classesList}>
@@ -16,7 +17,7 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
                 <h1>{heading}</h1>
             )}
             <div className="titlesection">
-                { author && (
+                { author && author.node.name.toLowerCase() != defaultAuthor.toLowerCase() &&  (
                     <div className={`${className}__author`}>{author.node.name}</div>
                 )}
                 { date && (
@@ -24,7 +25,7 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
                 )}
                 { theCategory && (
                     <div className={`${className}__category`}>
-                        <a className="category__item" href={`/category/${theCategory.slug}`}>{theCategory.name}</a>
+                        <a className="category__item" href={`/${theCategory.slug}`}>{theCategory.name}</a>
                         <span> &gt;</span></div>
                 )}
                 { series && (

@@ -1,25 +1,15 @@
 import React from "react"
-import { useStaticQuery, graphql } from 'gatsby'
-import { breakpoints, colors, sizes } from "../css-variables"
-import styled from "styled-components"
+import { colors, sizes } from "../css-variables"
 import Layout from "../layout"
 import PageSection from "../page-sections/PageSection"
 import GridCardD from "../content-modules/GridCardD"
-import ContentCard from "../content-blocks/ContentCard"
 import CardHandler from "../content-modules/CardHandler"
 import RecentPosts from "../page-sections/RecentPosts"
-
-
 
 import CardE from "../content-blocks/CardE"
 import PromoCardD from "../content-blocks/PromoCardD"
 import HeroIntroSection from "../page-sections/HeroIntroSection"
 import SimpleSlider from "../content-modules/SimpleSlider"
-
-import WordPressContent from "../content-blocks/WordPressBasicContentBlocks"
-import Menu from "./SidebarMenu"
-import PageSectionHeader from '../parts/PageSectionHeader'
-import { useWindowSize } from "../hooks"
 
 function WordPressGroupPage({ page }) {
   const taglist2 = [
@@ -54,32 +44,12 @@ function WordPressGroupPage({ page }) {
       text: "See all news and stories",
     },
   ]
-  const { title,  excerpt, content, featuredImage, blocks, groups } = page
+  const { title,  excerpt, content, ancestors, wpChildren, featuredImage, blocks, groups } = page
 
-  const { wpMenu } = useStaticQuery(
-    graphql`
-      query {
-        wpMenu {
-          id
-          name
-          locations
-          count
-          menuItems {
-            nodes {
-              title
-              url
-              path
-              label
-            }
-          }
-        }
-      }
-    `
-  )
-  const RenderedMenu = (wpMenu?.menuItems?.nodes) 
-      ? wpMenu.menuItems.nodes.map(item => {
+  const RenderedMenu = (wpChildren?.nodes) 
+      ? wpChildren.nodes.map(item => {
         return (
-            <PromoCardD title={item.label} url={item.path} isNav />
+            <PromoCardD key={item.id} title={item.title} url={item.uri} isNav />
         )
       })
       : null
@@ -89,7 +59,7 @@ function WordPressGroupPage({ page }) {
   const eventsToShow = (groups?.nodes && groups?.nodes[0]?.events.nodes) ? groups?.nodes[0]?.events.nodes : null
 
   return (
-    <Layout>
+    <Layout title={title}>
       <PageSection
         heading={title}
         excerpt={chapterType}

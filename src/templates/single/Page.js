@@ -5,24 +5,22 @@ import WpGroupPage from "../../components/template-parts/wordpress-group-page"
 import WpProductPage from "../../components/template-parts/wordpress-product-page"
 import WpAggregatePage from "../../components/template-parts/wordpress-aggregate-page"
 
-export default ({ data }) => {
+const Page = ({ data }) => {
   const { page } = data
   const { template, ancestors } = page
 
 
-  if (ancestors) {
+  if (ancestors) { // this page has a parent
 
     const groupSlug = 'groups'
-    // this page has a parent
-
     
     const topParent = ancestors.nodes[ancestors.nodes.length -1]
     if (topParent?.slug && topParent.slug === groupSlug) {
       console.log('this is a group page or subpage')
       if (ancestors.nodes.length > 1) {
-        console.log('this is a group sub page')
+        //console.log('this is a group sub page')
       } else {
-        console.log('this is a group main page')
+        //console.log('this is a group main page')
         return <WpGroupPage page={page} />
       }
     }
@@ -47,6 +45,8 @@ export default ({ data }) => {
 
 }
 
+export default Page
+
 export const query = graphql`
   query all($id: String!) {
     page: wpPage(id: { eq: $id }) {
@@ -58,8 +58,35 @@ export const query = graphql`
           id
           slug
           link
+          ... on WpPage {
+            id
+            title
+            link
+          }
+          ... Children
+          template {
+            ... on WpDefaultTemplate {
+              templateName
+            }
+            ... on WpTemplate_AggregateProductPage {
+              templateName
+            }
+            ... on WpTemplate_HomePage {
+              templateName
+            }
+            ... on WpTemplate_TopLevelPage {
+              templateName
+            }
+            ... on WpProductTemplate {
+              templateName
+            }
+            ... on WpGeneralTemplate {
+              templateName
+            }
+          }
         }
       }
+      ... Children
       template {
         ... on WpDefaultTemplate {
           templateName
@@ -272,7 +299,13 @@ export const query = graphql`
             name
             originalContent
             dynamicContent
+            saveContent
           }
+        }
+      }
+      products {
+        nodes {
+          name
         }
       }
     }
