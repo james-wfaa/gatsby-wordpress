@@ -11,14 +11,13 @@ import countryList from "react-select-country-list"
 
 const EmploymentInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setEmploymentInfo, setEmploymentInfoOnchange } = actions;
+  const { setCurrentStep, setEmploymentInfoOnchange } = actions;
   const [countries, setCountries] = useState(countryList().getData())
 
   const { register, handleSubmit, watch, errors,  formState: { isValid } } = useForm({
     mode: "onChange",
   })
   const UpdateEmploymentInfo = data =>{
-    //setEmploymentInfo(data)
 
     //figure out next page
     let currentOrder = state.numberOfSteps
@@ -64,7 +63,7 @@ const EmploymentInfo = () => {
             <form id="contact" onSubmit={handleSubmit(UpdateEmploymentInfo)}>
               <legend>Employment Info<span className="requiredInfo">*Required Information</span></legend>
               <hr />
-              <label htmlFor="startDate" className="half">Start Date
+              <label htmlFor="startDate" className="smallThird">Start Date
                 <span className="required">*</span>
                 <input
                     type="date"
@@ -80,12 +79,12 @@ const EmploymentInfo = () => {
                   <StyledError>{errors.jobtitle.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="jobtitle" className="half leftMargin">Job Title
+              <label htmlFor="jobTitle" className="twoThirds leftMargin">Job Title
                 <input
                     type="text"
-                    name="jobtitle"
-                    id="jobtitle"
-                    defaultValue={state.employmentInfo.jobtitle}
+                    name="jobTitle"
+                    id="jobTitle"
+                    defaultValue={state.employmentInfo.jobTitle}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       minLength: {
@@ -98,8 +97,8 @@ const EmploymentInfo = () => {
                       },
                     })}
                 />
-                {errors.jobtitle && (
-                  <StyledError>{errors.jobtitle.message}</StyledError>
+                {errors.jobTitle && (
+                  <StyledError>{errors.jobTitle.message}</StyledError>
                 )}
               </label>
               <label htmlFor="businessName" className="required">Business Name
@@ -117,41 +116,41 @@ const EmploymentInfo = () => {
                       },
                     })}
                 />
-                {errors.businessname && (
-                  <StyledError>{errors.businessname.message}</StyledError>
+                {errors.businessName && (
+                  <StyledError>{errors.businessName.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="streetaddress">Business Street Address
+              <label htmlFor="streetAddress">Business Street Address
                 <input
                     type="text"
-                    name="streetaddress"
-                    id="streetaddress"
-                    defaultValue={state.employmentInfo.streetaddress}
+                    name="streetAddress"
+                    id="streetAddress"
+                    defaultValue={state.employmentInfo.streetAddress}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       
                     })}
                 />
-                {errors.streetaddress && (
-                  <StyledError>{errors.streetaddress.message}</StyledError>
+                {errors.streetAddress && (
+                  <StyledError>{errors.streetAddress.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="streetaddresstwo">Street Address Line Two
+              <label htmlFor="streetAddressLineTwo">Street Address Line Two
                 <input
                     type="text"
-                    name="streetaddresstwo"
-                    id="streetaddresstwo"
-                    defaultValue={state.employmentInfo.streetaddresstwo}
+                    name="streetAddressLineTwo"
+                    id="streetAddressLineTwo"
+                    defaultValue={state.employmentInfo.streetAddressLineTwo}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       
                     })}
                 />
-                {errors.streetaddresstwo && (
-                  <StyledError>{errors.streetaddresstwo.message}</StyledError>
+                {errors.streetAddressLineTwo && (
+                  <StyledError>{errors.streetAddressLineTwo.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="city" className="third">City
+              <label htmlFor="city" className="bigThird">City
                 <input
                     type="text"
                     name="city"
@@ -166,7 +165,7 @@ const EmploymentInfo = () => {
                   <StyledError>{errors.city.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="state" className="third leftMargin">State/Province/Region
+              <label htmlFor="state" className="smallThird leftMargin">State/Province/Region
                 <input
                     type="text"
                     name="state"
@@ -177,11 +176,11 @@ const EmploymentInfo = () => {
                       
                     })}
                 />
-                {errors.postgrad && (
-                  <StyledError>{errors.postgrad.message}</StyledError>
+                {errors.state && (
+                  <StyledError>{errors.state.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="zipcode" className="third leftMargin">Zip/Postal Code
+              <label htmlFor="zipcode" className="smallThird leftMargin">Zip/Postal Code
                 <input
                     type="text"
                     name="zipcode"
@@ -196,8 +195,8 @@ const EmploymentInfo = () => {
                   <StyledError>{errors.zipcode.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="country" className="required third">Country
-                <select name="country" onChange={e => updateOnChangeValues(e)} defaultValue={state.mailingAddress.country}>
+              <label htmlFor="country" className="required bigThird">Country
+                <select name="country" onChange={e => updateOnChangeValues(e)} defaultValue={state.employmentInfo.country}>
                   {countryOptions}
                 </select>
                 {errors.country && (

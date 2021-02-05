@@ -106,6 +106,7 @@ const MailingAddress = () => {
                     name="streetAddressLineTwo"
                     id="streetAddressLineTwo"
                     defaultValue={state.mailingAddress.streetAddressLineTwo}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       minLength: {
                         value: 2,
@@ -117,7 +118,7 @@ const MailingAddress = () => {
                   <StyledError>{errors.streetAddressLineTwo.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="city" className="third">City
+              <label htmlFor="city" className="bigThird">City
                 <span className="required">*</span>
                 <input
                     type="text"
@@ -132,7 +133,7 @@ const MailingAddress = () => {
                   <StyledError>{errors.city.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="state" className="third leftMargin">State/Province/Region
+              <label htmlFor="state" className="smallThird leftMargin">State/Province/Region
                 {state.mailingAddress.country === 'US' ? <span className="required">*</span> : null}
                 <input
                     type="text"
@@ -148,7 +149,7 @@ const MailingAddress = () => {
                   <StyledError>{errors.state.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="zipcode" className="third leftMargin">Zip/Postal Code
+              <label htmlFor="zipcode" className="smallThird leftMargin">Zip/Postal Code
                 {state.mailingAddress.country === 'US' && <span className="required">*</span> }
                 <input
                     type="text"
@@ -165,21 +166,22 @@ const MailingAddress = () => {
                 )}
               </label>
               <label htmlFor="seasonalResidence" >Do you have a seasonal residence?</label>
-              <input type="radio" id="yesSeasonal" value="yes" name="seasonalResidence" onChange={e => updateOnChangeValues(e)}/>
+              <input type="radio" id="yesSeasonal" value="yes" name="seasonalResidence" onChange={e => updateOnChangeValues(e)} checked={state.mailingAddress.seasonalResidence === "yes"} />
               <label htmlFor="yesSeasonal">Yes</label>
-              <input type="radio" id="noSeasonal" value="no" name="seasonalResidence" onChange={e => updateOnChangeValues(e)}/>
+              <input type="radio" id="noSeasonal" value="no" name="seasonalResidence" onChange={e => updateOnChangeValues(e)} checked={state.mailingAddress.seasonalResidence === "no"}/>
               <label htmlFor="noSeasonal">No</label>
               { state.mailingAddress.seasonalResidence === "yes" ? (
               <div className="seasonal-address-wrapper">
               <legend>Seasonal Address</legend>
               <hr />
-              <label htmlFor="startDate" className="third block">Start Date
+              <label htmlFor="seasonalStartDate" className="smallThird block">Start Date
                 <span className="required">*</span>
                 <input
                     type="text"
-                    name="startDate"
-                    id="startDate"
-                    //defaultValue={state.mailingAddress.seasonalStartDate}
+                    name="seasonalStartDate"
+                    id="seasonalStartDate"
+                    defaultValue={state.mailingAddress.seasonalStartDate}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       
                     })}
@@ -188,13 +190,14 @@ const MailingAddress = () => {
                   <StyledError>{errors.jobtitle.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="endDate" className="third block">End Date
+              <label htmlFor="seasonalEndDate" className="smallThird block">End Date
                 <span className="required">*</span>
                 <input
                     type="text"
-                    name="endDate"
-                    id="endDate"
-                    //defaultValue={state.mailingAddress.seasonalEndDate}
+                    name="seasonalEndDate"
+                    id="seasonalEndDate"
+                    defaultValue={state.mailingAddress.seasonalEndDate}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       
                     })}
@@ -245,6 +248,7 @@ const MailingAddress = () => {
                     name="seasonalStreetAddressLineTwo"
                     id="seasonalStreetAddressLineTwo"
                     defaultValue={state.mailingAddress.seasonalStreetAddressLineTwo}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       minLength: {
                         value: 2,
@@ -256,7 +260,7 @@ const MailingAddress = () => {
                   <StyledError>{errors.seasonalStreetAddressLineTwo.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="seasonalCity" className="third">City
+              <label htmlFor="seasonalCity" className="bigThird">City
                 {state.mailingAddress.seasonalCountry === 'US' ? <span className="required">*</span> : null}
                 <input
                     type="text"
@@ -272,7 +276,7 @@ const MailingAddress = () => {
                   <StyledError>{errors.seasonalCity.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="seasonalState" className="third leftMargin">State/Province/Region
+              <label htmlFor="seasonalState" className="smallThird leftMargin">State/Province/Region
                 {state.mailingAddress.seasonalCountry === 'US' ? <span className="required">*</span> : null}
                 <input
                     type="text"
@@ -288,7 +292,7 @@ const MailingAddress = () => {
                   <StyledError>{errors.seasonalState.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="seasonalZipcode" className="third leftMargin">Zip/Postal Code
+              <label htmlFor="seasonalZipcode" className="smallThird leftMargin">Zip/Postal Code
                 {state.mailingAddress.seasonalCountry === 'US' && <span className="required">*</span> }
                 <input
                     type="text"

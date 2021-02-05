@@ -34,7 +34,7 @@ const PhoneInfo = () => {
   const renderSeasonalDates = () =>{
     return(
       <div>
-        <label htmlFor="seasonalStartDate" className="third block">Start Date
+        <label htmlFor="seasonalStartDate" className="smallThird block">Start Date
                 <span className="required">*</span>
                 <input
                     type="text"
@@ -50,7 +50,7 @@ const PhoneInfo = () => {
                   <StyledError>{errors.jobtitle.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="seasonalEndDate" className="third block">End Date
+              <label htmlFor="seasonalEndDate" className="smallThird block">End Date
                 <span className="required">*</span>
                 <input
                     type="text"

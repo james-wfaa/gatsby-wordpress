@@ -183,10 +183,23 @@ form{
     label.third, input.third  {
       width: 32%;
       display: inline-block;
+    }
+    label.bigThird, input.bigThird  {
+      width: 38%;
+      display: inline-block;
+    }
+    label.smallThird, input.smallThird  {
+      width: 29%;
+      display: inline-block;
       &.block{
         display:block;
       }
     }
+    label.twoThirds, input.twoThirds  {
+      width: 69%;
+      display: inline-block;
+    }
+    
  }
   
   &.select-steps, 

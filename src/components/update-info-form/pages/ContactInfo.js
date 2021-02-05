@@ -143,7 +143,7 @@ const ContactInfo = () => {
                     })}
                 />
               </label>
-              <label htmlFor="undergrad" className="third">Undergraduate Year (if applicable)
+              <label htmlFor="undergrad" className="smallThird">Undergraduate Year (if applicable)
                 {errors.undergrad && (
                   <StyledError>{errors.undergrad.message}</StyledError>
                 )}
@@ -163,7 +163,7 @@ const ContactInfo = () => {
                     })}
                 />
               </label>
-              <label htmlFor="postgrad" className="third leftMargin">Postgraduate Year(s) (if applicable)
+              <label htmlFor="postgrad" className="smallThird leftMargin">Postgraduate Year(s) (if applicable)
                 {errors.postgrad && (
                   <StyledError>{errors.postgrad.message}</StyledError>
                 )}

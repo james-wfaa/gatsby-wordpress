@@ -26,7 +26,9 @@ const initialState = {
     city: '',
     state: '',
     zipcode: '',
-    seasonalResidence: false,
+    seasonalResidence: '',
+    seasonalStartDate: '',
+    seasonalEndDate: '',
     seasonalAddressType: 'Home',
     seasonalCountry: 'US',
     seasonalStreetAddress: '',
@@ -54,6 +56,7 @@ const initialState = {
     city: '',
     state: '',
     zipcode: '',
+    country: 'US',
   },
   identityInfo: {
     identity: [],

@@ -98,7 +98,7 @@ const SpouseInfo = () => {
               </label>
               <input type="checkbox" id="uwGrad" checked={state.spouseInfo.uwGrad} name="uwGrad" onChange={e => updateOnChangeValues(e)} />
               <label htmlFor="uwGrad" >My spouse/partner is a UW graduate</label>
-              { state.spouseInfo.uwGrad ? (<div><label htmlFor="undergrad" className="third">UW Undergraduate Year
+              { state.spouseInfo.uwGrad ? (<div><label htmlFor="undergrad" className="smallThird">UW Undergraduate Year
                 <input
                     type="text"
                     name="undergrad"
@@ -117,7 +117,7 @@ const SpouseInfo = () => {
                   <StyledError>{errors.spouseUndergrad.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="postgrad" className="third leftMargin">UW Postgraduate Year(s)
+              <label htmlFor="postgrad" className="smallThird leftMargin">UW Postgraduate Year(s)
                 {errors.postgrad && (
                   <StyledError>{errors.postgrad.message}</StyledError>
                 )}
