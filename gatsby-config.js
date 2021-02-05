@@ -8,6 +8,7 @@ require("dotenv").config({
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
+process.env.WP_DISABLE_POLLING = 1
 
 module.exports = {
   siteMetadata: {
