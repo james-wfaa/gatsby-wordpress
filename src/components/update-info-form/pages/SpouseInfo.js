@@ -96,7 +96,7 @@ const SpouseInfo = () => {
                   <StyledError>{errors.lastname.message}</StyledError>
                 )}
               </label>
-              <input type="checkbox" id="uwGrad" value={state.spouseInfo.uwGrad} name="uwGrad" onChange={e => updateOnChangeValues(e)} />
+              <input type="checkbox" id="uwGrad" checked={state.spouseInfo.uwGrad} name="uwGrad" onChange={e => updateOnChangeValues(e)} />
               <label htmlFor="uwGrad" >My spouse/partner is a UW graduate</label>
               { state.spouseInfo.uwGrad ? (<div><label htmlFor="undergrad" className="third">UW Undergraduate Year
                 <input
@@ -134,13 +134,13 @@ const SpouseInfo = () => {
               </label></div>) : null }
               
               <label htmlFor="spouseupdate">What is the update you would like to share about your spouse or partner?</label>
-              <input type="radio" id="newSpouse" value="newSpouse" name="spouseUpdate"/>
+              <input type="radio" id="newSpouse" value="newSpouse" name="spouseUpdate" defaultChecked={state.spouseInfo.spouseUpdate === "newSpouse"} onClick={e => updateOnChangeValues(e)}/>
               <label htmlFor="newSpouse">This is my new spouse or partner.</label>
-              <input type="radio" id="deceasedSpouse" value="deceasedSpouse" name="spouseUpdate"/>
+              <input type="radio" id="deceasedSpouse" value="deceasedSpouse" name="spouseUpdate" defaultChecked={state.spouseInfo.spouseUpdate === "deceasedSpouse"} onClick={e => updateOnChangeValues(e)}/>
               <label htmlFor="deceasedSpouse">My spouse or partner is now deceased.</label>
-              <input type="radio" id="noSpouse" value="noSpouse" name="spouseUpdate"/>
+              <input type="radio" id="noSpouse" value="noSpouse" name="spouseUpdate" defaultChecked={state.spouseInfo.spouseUpdate === "noSpouse"} onClick={e => updateOnChangeValues(e)}/>
               <label htmlFor="noSpouse">I am no longer with my spouse or partner.</label>
-              <input type="radio" id="none" value="none" name="spouseUpdate"/>
+              <input type="radio" id="none" value="none" name="spouseUpdate" defaultChecked={state.spouseInfo.spouseUpdate === "none"} onClick={e => updateOnChangeValues(e)}/>
               <label htmlFor="none">None of the above.</label>
               <Buttons save back disabled={ !requiredFieldsCheck || !isValid } />
             </form>

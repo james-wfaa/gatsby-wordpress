@@ -8,13 +8,13 @@ import { AppContext } from "../../../context/AppContext"
 
 const ContactInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setContactInfo, setContactInfoOnchange } = actions;
+  const { setCurrentStep, setContactInfoOnchange } = actions;
 
   const { register, handleSubmit, watch, errors, formState: { isValid } } = useForm({
     mode: "onChange",
   })
   const UpdateContactInfo = data =>{
-    setContactInfo(data)
+    //console.log(data)
     setCurrentStep(2)
   }
 
@@ -40,7 +40,7 @@ const ContactInfo = () => {
               headingCompact
             />
             <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
-              {false && <StyledTopError>Please correct error(s) below</StyledTopError>}
+              { (requiredFieldsCheck && !isValid)  && <StyledTopError>Please correct error(s) below</StyledTopError>}
               <legend>Contact Information<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="firstname" className="half required">First Name
@@ -62,10 +62,6 @@ const ContactInfo = () => {
                         value: 2,
                         message: "Must be at least 2 letters",
                       },
-                      pattern: {
-                        value: /^[A-Za-z @-]+$/,
-                        message: "Name must not contain numbers",
-                      },
                     })}
                 />
                 
@@ -85,14 +81,6 @@ const ContactInfo = () => {
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       required: { value: true, message: "Last Name is required" },
-                      minLength: {
-                        value: 2,
-                        message: "Must be at least 2 letters",
-                      },
-                      pattern: {
-                        value: /^[A-Za-z @-]+$/,
-                        message: "Name must not contain numbers",
-                      },
                     })}
                 />
               </label>
@@ -108,14 +96,6 @@ const ContactInfo = () => {
                     defaultValue={state.contactInfo.othernames}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      minLength: {
-                        value: 2,
-                        message: "Must be at least 2 letters",
-                      },
-                      pattern: {
-                        value: /^[A-Za-z @-]+$/,
-                        message: "Name must not contain numbers",
-                      },
                     })}
                 />
               </label>
@@ -201,7 +181,7 @@ const ContactInfo = () => {
               <Buttons 
                 save
                 disabled={ !requiredFieldsCheck || !isValid }
-                error={false} />
+                error={ requiredFieldsCheck && !isValid } />
             </form>
         </div>
     )

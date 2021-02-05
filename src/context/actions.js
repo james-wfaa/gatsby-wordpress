@@ -16,10 +16,6 @@ export const useActions = (state, dispatch) => {
   function setNumberOfStepsDelete(array) {
     dispatch({ type: types.SET_NUMBER_OF_STEPS_DELETE, payload: array})
   }
-
-  function setContactInfo(obj) {
-    dispatch({ type: types.SET_CONTACT_INFO, payload: obj})
-  }
   
   function setContactInfoOnchange(array) {
     dispatch({ type: types.SET_CONTACT_INFO_ONCHANGE, payload: array})
@@ -44,17 +40,9 @@ export const useActions = (state, dispatch) => {
   function setLifeEventStep(bool) {
     dispatch({ type: types.SET_LIFE_EVENT_STEP, payload: bool})
   }
-
-  function setMailingAddress(obj) {
-    dispatch({ type: types.SET_MAILING_ADDRESS, payload: obj})
-  }
   
   function setMailingAddressOnchange(array) {
     dispatch({ type: types.SET_MAILING_ADDRESS_ONCHANGE, payload: array})
-  }
-
-  function setPhoneInfo(obj) {
-    dispatch({ type: types.SET_PHONE_INFO, payload: obj})
   }
   
   function setPhoneInfoOnchange(array) {
@@ -90,16 +78,13 @@ export const useActions = (state, dispatch) => {
     setCurrentStep,
     setNumberOfStepsAdd,
     setNumberOfStepsDelete,
-    setContactInfo,
     setContactInfoOnchange,
     setAddressStep,
     setPhoneStep,
     setEmploymentStep,
     setIdentityStep,
     setLifeEventStep,
-    setMailingAddress,
     setMailingAddressOnchange,
-    setPhoneInfo,
     setPhoneInfoOnchange,
     setEmploymentInfo,
     setEmploymentInfoOnchange,

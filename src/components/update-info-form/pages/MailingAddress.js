@@ -10,7 +10,7 @@ import countryList from "react-select-country-list"
 
 const MailingAddress = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setMailingAddress, setMailingAddressOnchange } = actions;
+  const { setCurrentStep, setMailingAddressOnchange } = actions;
   const [countries, setCountries] = useState(countryList().getData())
 
   const { register, handleSubmit, watch, errors, formState: { isValid } } = useForm({

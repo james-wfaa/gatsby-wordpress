@@ -42,6 +42,8 @@ const initialState = {
     phoneNumber2: '',
     phoneType3: 'work',
     phoneNumber3: '',
+    seasonalStartDate: '',
+    seasonalEndDate: '',
   },
   employmentInfo: {
     businessName: '',
@@ -63,7 +65,7 @@ const initialState = {
     lastname: '',
     undergrad: '',
     postgrad: '',
-    update: '',
+    spouseUpdate: '',
     uwGrad: false,
   },
 };
@@ -72,16 +74,13 @@ const types = {
   SET_CURRENT_STEP: "SET_CURRENT_STEP",
   SET_NUMBER_OF_STEPS_ADD: "SET_NUMBER_OF_STEPS_ADD",
   SET_NUMBER_OF_STEPS_DELETE: "SET_NUMBER_OF_STEPS_DELETE",
-  SET_CONTACT_INFO: "SET_CONTACT_INFO",
   SET_CONTACT_INFO_ONCHANGE: "SET_CONTACT_INFO_ONCHANGE",
   SET_ADDRESS_STEP: "SET_ADDRESS_STEP",
   SET_PHONE_STEP: "SET_PHONE_STEP",
   SET_EMPLOYMENT_STEP: "SET_EMPLOYMENT_STEP",
   SET_IDENTITY_STEP: "SET_IDENTITY_STEP",
   SET_LIFE_EVENT_STEP: "SET_LIFE_EVENT_STEP",
-  SET_MAILING_ADDRESS: "SET_MAILING_ADDRESS",
   SET_MAILING_ADDRESS_ONCHANGE: "SET_MAILING_ADDRESS_ONCHANGE",
-  SET_PHONE_INFO: "SET_PHONE_INFO",
   SET_PHONE_INFO_ONCHANGE: "SET_PHONE_INFO_ONCHANGE",
   SET_PHONE_TYPE: "SET_PHONE_TYPE",
   SET_EMPLOYMENT_INFO: "SET_EMPLOYMENT_INFO",
@@ -113,19 +112,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         numberOfSteps: [...state.numberOfSteps.filter(step => step !== action.payload)]
-      };
-    case types.SET_CONTACT_INFO:
-      return {
-        ...state,
-        contactInfo: {
-          firstname: action.payload.firstname ? action.payload.firstname : '',
-          lastname: action.payload.lastname ? action.payload.lastname : '',
-          othernames: action.payload.othernames ? action.payload.othernames : '',
-          email: action.payload.email ? action.payload.email : '',
-          phone: action.payload.phone ? action.payload.phone : '',
-          undergrad: action.payload.undergrad ? action.payload.undergrad : '',
-          postgrad: action.payload.postgrad ? action.payload.postgrad : '',
-        },
       };
     case types.SET_CONTACT_INFO_ONCHANGE:
       return {
@@ -160,37 +146,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         lifeEventStep: action.payload,
       };
-    case types.SET_MAILING_ADDRESS:
-      return {
-        ...state,
-        mailingAddress: {
-          addressType: action.payload.addressType ? action.payload.addressType : '',
-          country: action.payload.country ? action.payload.country : '',
-          streetAddress: action.payload.streetAddress ? action.payload.streetAddress : '',
-          streetAddressLineTwo: action.payload.streetAddressLineTwo ? action.payload.streetAddressLineTwo : '',
-          city: action.payload.city ? action.payload.city : '',
-          state: action.payload.state ? action.payload.state : '',
-          zipcode: action.payload.zipcode ? action.payload.zipcode : '',
-        },
-      };
     case types.SET_MAILING_ADDRESS_ONCHANGE:
       return {
         ...state,
         mailingAddress: {
           ...state.mailingAddress,
           [action.payload[0]]: action.payload[1],
-        },
-      };
-    case types.SET_PHONE_INFO:
-      return {
-        ...state,
-        phoneInfo: {
-          phoneType1: action.payload.phoneType1 ? action.payload.phoneType1 : '',
-          phoneNumber1: action.payload.phoneNumber1 ? action.payload.phoneNumber1 : '',
-          phoneType2: action.payload.phoneType2 ? action.payload.phoneType2 : '',
-          phoneNumber2: action.payload.phoneNumber2 ? action.payload.phoneNumber2 : '',
-          phoneType3: action.payload.phoneType3 ? action.payload.phoneType3 : '',
-          phoneNumber3: action.payload.phoneNumber3 ? action.payload.phoneNumber3 : '',
         },
       };
     case types.SET_PHONE_INFO_ONCHANGE:

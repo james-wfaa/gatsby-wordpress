@@ -11,14 +11,14 @@ import countryList from "react-select-country-list"
 
 const PhoneInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setPhoneInfo, setPhoneInfoOnchange } = actions;
+  const { setCurrentStep, setPhoneInfoOnchange } = actions;
 
   const { register, handleSubmit, watch, errors, formState: { isValid } } = useForm({
     mode: "onChange",
   })
   const UpdatePhoneInfo = data =>{
     console.log(data)
-    setPhoneInfo(data)
+    
 
     //figure out next page
     let currentOrder = state.numberOfSteps
@@ -34,13 +34,14 @@ const PhoneInfo = () => {
   const renderSeasonalDates = () =>{
     return(
       <div>
-        <label htmlFor="startDate" className="third block">Start Date
+        <label htmlFor="seasonalStartDate" className="third block">Start Date
                 <span className="required">*</span>
                 <input
                     type="text"
-                    name="startDate"
-                    id="startDate"
+                    name="seasonalStartDate"
+                    id="seasonalStartDate"
                     defaultValue={state.phoneInfo.seasonalStartDate}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       
                     })}
@@ -49,13 +50,14 @@ const PhoneInfo = () => {
                   <StyledError>{errors.jobtitle.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="endDate" className="third block">End Date
+              <label htmlFor="seasonalEndDate" className="third block">End Date
                 <span className="required">*</span>
                 <input
                     type="text"
-                    name="endDate"
-                    id="endDate"
+                    name="seasonalEndDate"
+                    id="seasonalEndDate"
                     defaultValue={state.phoneInfo.seasonalEndDate}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       
                     })}
