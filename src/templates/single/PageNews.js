@@ -10,7 +10,7 @@ import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 
 function WordPressPage({ data }) {
   const { page, posts } = data
-  const { title, excerpt, content, blocks, featuredImage, storyCategories, gridDetails } = page
+  const { title, excerpt, blocks, featuredImage, storyCategories, gridDetails } = page
 
   const { storycategoriesinner: categories } = storyCategories
   const { backgroundImage } = gridDetails
@@ -50,7 +50,7 @@ function WordPressPage({ data }) {
 
 
   return (
-    <Layout noborder>
+    <Layout title={title} noborder>
       { featuredImage && featuredImage.node && (
       <HeroIntroSection
           heroImage={featuredImage.node.localFile}
