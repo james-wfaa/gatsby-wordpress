@@ -58,22 +58,62 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
       padding: 0;
     }
     @media screen and ${breakpoints.laptopSMax}{
-      h4::after {
-        content:'';
-        border: solid #c5050c;
-        border-width: 0 3px 3px 0;
+      .menuIcon{
         display: inline-block;
-        padding: 5px;
-        transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-        margin-left:20px;
-        vertical-align: top;
-        margin-top: 4px;
+        margin-left:12px;
+        width: 32px;
       }
-      h4.open::after{
-        transform: rotate(-135deg);
-        -webkit-transform: rotate(-135deg);
-        vertical-align: middle;
+      h4 span{
+        display: inline-block;
+        background-color: ${colors.buttonRed};
+        height: 2px;
+        transition: all 0.3s linear;
+        position: relative;
+        width:32px;
+        top: -6px;
+      }
+      h4 span::before{
+        width: 32px;
+        height: 2px;
+        background-color: ${colors.buttonRed};
+        content: "";
+        position: absolute;
+        -webkit-transition: all 0.3s linear;
+        transition: all 0.3s linear;
+        top: -7px;
+        left:0;
+      }
+      h4 span::after{
+        width: 32px;
+        height: 2px;
+        background-color: ${colors.buttonRed};
+        content: "";
+        position: absolute;
+        -webkit-transition: all 0.3s linear;
+        transition: all 0.3s linear;
+        bottom:-7px;
+        left:0;
+      }
+      h4.open span{
+        width: 20px;
+        height: 20px;
+        border: 1px solid #c5050c;
+        border-radius: 50%;
+        background-color:white;
+        top:4px;
+      }
+      h4.open span::before{
+        background-color: #c5050c;
+        -webkit-transform: rotate(-45deg) translate(-8.5px,13px);
+        -ms-transform: rotate(-45deg) translate(-8.5px,13px);
+        transform: rotate(-45deg) translate(-8.5px,13px);
+        width: 12px;
+      }
+      h4.open span::after{
+        -webkit-transform: rotate(45deg) translate(-8px,-13px);
+        -ms-transform: rotate(45deg) translate(-8px,-13px);
+        transform: rotate(45deg) translate(-8px,-13px);
+        width: 12px;
       }
     }
     
@@ -122,6 +162,7 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
           { link && (<a href={link}>{name}</a>)
           }
           { !link && ({name} )}
+          <div className="menuIcon"><span></span></div>
         </StyledHeader>
       </ConditionalWrap>
         {open &&

@@ -10,8 +10,8 @@ const ProductMenu = ({ items, className, menuTitle }) => {
             <a className="menu__link" href={item.uri}><span>{item.title}</span></a>
         </div>
       ))
-    const navOpenText = 'Browse "' + menuTitle + '"' 
-    const navCloseText = '"' + menuTitle + '"'
+    const navOpenText =  menuTitle + ' menu' 
+    const navCloseText = menuTitle + ' menu'
 
       
         return (

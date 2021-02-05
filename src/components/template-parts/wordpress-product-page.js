@@ -7,6 +7,8 @@ import ProductMenu from "../parts/ProductMenu"
 function WordPressPage({ page }) {
   const {  excerpt, featuredImage, introButtons, eventListing, blocks, title, wpChildren } = page
   const { introButtons: buttons } = introButtons
+  const navOpenText =  title 
+  const navCloseText = title 
   //console.log({page})
 
   /* extract the events to pass along with the blocks as helper data */
@@ -46,7 +48,7 @@ function WordPressPage({ page }) {
         />
       )}
       { navContents && (
-          <ProductMenu className = "productmenu" items={navContents} menuTitle={title} />
+          <ProductMenu items={navContents} menuTitle={title} />
       )}
       <WordPressContentBlocks blocks={blocks} eventCategory={eventCategory}/>
     </Layout>
