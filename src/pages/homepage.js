@@ -78,7 +78,7 @@ export default ({ data }) => {
         >
           <CardE
             img={data.asset29}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+            caption="Zipper ipsum dolor sit amet, consectetur adipiscing elit"
             enhancedHomepageCaption
           />
           <CardE
