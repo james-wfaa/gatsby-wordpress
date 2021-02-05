@@ -15,7 +15,7 @@ const ProductMenu = ({ items, className, menuTitle }) => {
 
       
         return (
-            <Accordian opentext={navOpenText} closetext={navCloseText}>
+            <Accordian opentext={navOpenText} closetext={navCloseText} useAsMenu>
                 <div className={className}>
                     {itemsList && (<section className="menu__items">{itemsList}</section>)}
                 </div>
