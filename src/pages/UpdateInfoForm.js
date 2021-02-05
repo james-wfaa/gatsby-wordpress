@@ -107,6 +107,7 @@ form{
     display:block;
     position:relative;
     font-weight:bold;
+    width: 100%;
     .requiredInfo{
       position:absolute;
       color: ${colors.buttonRed};
@@ -327,6 +328,7 @@ form{
     margin: ${sizes.s24} auto 0 ;
     border:none;
     max-width:310px;
+    border-radius: 0;
     &:hover {
       cursor:pointer;
     }
