@@ -6,7 +6,7 @@ import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
 
 const WordPressBlock = ({className, block}) => {
-    console.log(block)
+    //console.log(block)
     if (block) {
         if (block.originalContent) {
             const blockContent = (block.isDynamic) 
@@ -58,12 +58,9 @@ margin-right: auto;
     &.button{
         margin: ${sizes.s40} 0;
         a{
-            ${mixins.buttons};
+        ${mixins.buttons};
           width: 100%;
           position: relative;
-          @media screen and ${breakpoints.tabletS} {
-            width: 100%;
-          }
           @media screen and ${breakpoints.laptopS} {
             width: 50%;
           }
@@ -173,12 +170,12 @@ a {
     margin-right: auto;
     margin-bottom: ${sizes.s24};
     justify-content: center;
-    .wp-block-button {
+
+    .wp-block-button{
+        width: 100%;
+    }
+    .wp-block-button__link {
         ${mixins.buttons};
-        a{
-            color: ${colors.titleWhite};
-        }
-        
     }
     @media screen and ${breakpoints.tabletS} {
         margin: ${sizes.s12};
