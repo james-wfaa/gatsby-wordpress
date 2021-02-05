@@ -10,10 +10,14 @@ import PageSectionHeader from '../parts/PageSectionHeader'
 import { useWindowSize } from "../hooks"
 
 function WordPressPage({ page }) {
-  const { title, content, blocks, eventListing, } = page
+  const { title, content, blocks, eventListing, ancestors, wpChildren, menu } = page
   const { eventCategory } = eventListing
   const { width } = useWindowSize()
+
   // Temporary Query until dynamic menus added to page query
+  let wpMenu = null
+  let menuRoot = null
+  /*
   const { wpMenu } = useStaticQuery(
     graphql`
       query {
@@ -34,6 +38,40 @@ function WordPressPage({ page }) {
       }
     `
   )
+  */
+ //menuName = (ancestors) ? 
+
+ //console.log(ancestors)
+ if (ancestors?.nodes) {
+  // child page of a product page
+  if (ancestors.nodes[0]?.template?.templateName === "Product Template") {
+    menuRoot = ancestors.nodes[0]
+   }
+   else {
+    const groupSlug = 'groups'
+    const topParent = ancestors.nodes[ancestors.nodes.length -1]
+    if (topParent?.slug && topParent.slug === groupSlug) {
+     // child or granchild of a Group/Chapter page
+      menuRoot = ancestors.nodes[ancestors.nodes.length -2]
+    }
+   }
+   
+ }
+
+ if (menuRoot) {
+  //console.log(menuRoot)
+
+  wpMenu = {}
+  wpMenu.name = menuRoot.title
+  wpMenu.link = menuRoot.link
+  wpMenu.menuItems = {}
+  wpMenu.menuItems.nodes = menuRoot.wpChildren.nodes.map( item => {
+   item.path = item.uri
+   item.label = item.title
+   return item
+ })
+ }
+
 
   const PageWrapper = styled.div`
     display: grid;
@@ -48,12 +86,15 @@ function WordPressPage({ page }) {
 
 
   return (
-    <Layout>
+    <Layout title={title}>
       <PageWrapper>
         {width >= 1200
         ?
         <>
-          <Menu name={wpMenu.name} menuItems={wpMenu.menuItems.nodes} width={width} />
+        { wpMenu && (
+          <Menu name={wpMenu.name} link={wpMenu.link} menuItems={wpMenu.menuItems.nodes} width={width} />
+        )}
+          
           <PageSection heading={title} pageTitle leftAlign defaultPage divider>
             <WordPressContent blocks={blocks} eventCategory={eventCategory} content={content} />
           </PageSection>
@@ -61,7 +102,9 @@ function WordPressPage({ page }) {
         :
         <>
           <PageSectionHeader heading={title} />
+          { wpMenu && (
           <Menu name={wpMenu.name} menuItems={wpMenu.menuItems.nodes} width={width} />
+        )}
           <PageSection pageTitle>
             <WordPressContent blocks={blocks} eventCategory={eventCategory} content={content} />
           </PageSection>

@@ -69,13 +69,13 @@ function WordPressPage({ data }) {
  })
 
 
-  console.log('featuredEvents:',featuredEvents)
+  //console.log('featuredEvents:',featuredEvents)
 
 
 
   const cardGridEvents = eventEdges.slice(0,9)
   let eventCards = cardGridEvents.map((event) => {
-    console.log('building event tiles')
+    //console.log('building event tiles')
     return (
       <EventCardD key={event.url} {...event.node} />
     )
@@ -84,7 +84,7 @@ function WordPressPage({ data }) {
 
 
   return (
-    <Layout noborder>
+    <Layout title={title} noborder>
       { featuredImage && featuredImage.node && (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}
