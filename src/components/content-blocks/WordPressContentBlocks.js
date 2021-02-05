@@ -12,7 +12,6 @@ import Block from './WordPressBlock'
 const WordPressContentBlocks = ({className, blocks, content, eventCategory, product, stagger}) => {
 
     // see if the product has event and/or post nodes
-    console.log(product)
 
     const staggerBlocks = (stagger) 
         ? blocks.map((block) => {
@@ -75,8 +74,8 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
                 RenderedBlocks.push(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
             case "acf/events-listing-section":
                 console.log('events-listing-section')
-                if ( eventCategory) {
-                    const { slug, events } = eventCategory
+                if ( product) {
+                    const { slug, events } = product
                     const eventsToShow = (events?.nodes) ? events.nodes : null
                     const buttons = (eventsToShow.length > 2) 
                         ? [{
@@ -84,7 +83,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
                             text: 'See All Events'
                         }]
                         : null
-                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)
+                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)    
                 }
                 
                 break

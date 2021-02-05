@@ -42,6 +42,7 @@ export const fragments = graphql`
     events {
       nodes {
         title
+        url: uri
         startDate
         endDate
         venue {

@@ -270,6 +270,7 @@ export const query = graphql`
       }
       products {
         nodes {
+          slug
           name
           ...ProductEventCards
           ...ProductPostCards
