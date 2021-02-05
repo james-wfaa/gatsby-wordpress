@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-//import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import IntroPageSection from "../../page-sections/IntroPageSection"
 import { sizes, breakpoints, mixins, colors } from '../../css-variables'
 import Buttons from './FormButtons'
@@ -9,7 +9,16 @@ import { AppContext } from "../../../context/AppContext"
 
 const UpdateSuccess = () => {
     const { state, actions } = useContext(AppContext);
-    const { setAddressStep,  } = actions;
+    const { setCurrentStep } = actions;
+    const { register, handleSubmit, watch, errors, formState: { isValid } } = useForm({
+        mode: "onChange",
+      })
+
+    const submitCommunicationsSignup = data =>{
+        console.log(data)
+    
+        setCurrentStep(9)
+      }
   
     const variantObject = {
         background_color: colors.formIntroBg,
@@ -31,7 +40,7 @@ const UpdateSuccess = () => {
             />
             <div className="successPageIcon"></div>
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
-            <form className="success-page">
+            <form className="success-page" onSubmit={handleSubmit(submitCommunicationsSignup)}>
                 <legend>Are you interested in receiving communications about any of the following?</legend>
                 <fieldset>
                     <div className="checkboxWrap">

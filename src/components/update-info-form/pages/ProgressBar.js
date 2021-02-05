@@ -10,7 +10,7 @@ const ProgressBar = ({ progress, currentStep }) => {
     
     let increment = 33
     let current = progress.indexOf(currentStep)
-    switch(progress.length - 1){
+    switch(progress.length - 2){
         case 3:
             increment = 33
             break;

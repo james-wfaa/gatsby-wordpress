@@ -11,6 +11,7 @@ import EmploymentInfo from "../components/update-info-form/pages/EmploymentInfo"
 import IdentityInfo from "../components/update-info-form/pages/IdentityInfo"
 import SpouseInfo from "../components/update-info-form/pages/SpouseInfo"
 import UpdateSuccess from "../components/update-info-form/pages/UpdateSuccess"
+import CommunicationSuccess from "../components/update-info-form/pages/CommunicationSuccess"
 import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-variables'
 import downCaret from './../../static/down-caret-red.png'
 
@@ -52,6 +53,8 @@ const UpdateInfoForm = () =>  {
             return <SpouseInfo />
         case 8:
             return <UpdateSuccess />
+        case 9:
+            return <CommunicationSuccess />
      }
    }
 
@@ -68,7 +71,7 @@ const UpdateInfoForm = () =>  {
       <StyledUpdateInfoForm>
         { renderCurrentStep() }
         {console.log(state)}
-        { !(state.currentStep === 8) && <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our Privacy Statement.</p>} 
+        { !(state.currentStep === 8 || state.currentStep === 9) && <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our Privacy Statement.</p>} 
       </StyledUpdateInfoForm>
     </Layout>
 

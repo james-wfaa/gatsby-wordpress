@@ -3,7 +3,7 @@ import { at } from "lodash";
 const initialState = {
   searchstring: "",
   currentStep: 1,
-  numberOfSteps: [1, 2, 8],
+  numberOfSteps: [1, 2, 8, 9],
   contactInfo: {
     firstname: '',
     lastname: '',
