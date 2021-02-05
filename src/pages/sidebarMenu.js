@@ -1,6 +1,6 @@
 import React from 'react'
-import { useStaticQuery, graphql, Link } from 'gatsby'
-import { colors, sizes, breakpoints } from "../components/css-variables"
+import { useStaticQuery, graphql } from 'gatsby'
+import { breakpoints } from "../components/css-variables"
 import styled from "styled-components"
 import Layout from "../components/layout"
 import Menu from '../components/template-parts/SidebarMenu'
