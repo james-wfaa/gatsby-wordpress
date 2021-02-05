@@ -9,6 +9,7 @@ import styled from "styled-components"
 import { AppContext } from "../../../context/AppContext"
 import countryList from "react-select-country-list"
 
+let charactersLeft = 500
 const IdentityInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setIdentityInfo, setIdentityInfoOnchange } = actions;
@@ -28,7 +29,9 @@ const IdentityInfo = () => {
     let nextStep = currentOrder[currentPlaceInOrder + 1]
     setCurrentStep(nextStep)
   }
+  
   const updateOnChangeValues = (e) => {
+    
     //if checkbox, update array accordingly
     if(e.target.type === 'checkbox'){
         if(e.target.checked){
@@ -40,11 +43,21 @@ const IdentityInfo = () => {
           let newIdentity = [...state.identityInfo.identity.filter(a => a !== e.target.name)]
           setIdentityInfoOnchange(['identity', newIdentity])
         }
-    } 
+    }
     //otherwise, update field like normal
     else{
       setIdentityInfoOnchange([e.target.name, e.target.value])
     }
+    if(e.target.type === 'textarea'){
+      let currentLength = e.target.value.length
+      console.log(currentLength)
+      if(currentLength > 500){
+        charactersLeft = 0
+      } else{
+        charactersLeft = 500 - currentLength
+      }
+    }
+    
     
   }
 
@@ -96,6 +109,7 @@ const IdentityInfo = () => {
                     type="textbox"
                     name="identitydescrip"
                     id="identitydescrip"
+                    maxLength="500"
                     defaultValue={state.identityInfo.identitydescrip}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -105,6 +119,7 @@ const IdentityInfo = () => {
                       },
                     })}
                 />
+                {state.identityInfo.identitydescrip !== "" && <p>{charactersLeft} characters left</p>}
                 {errors.identitydescrip && (
                   <StyledError>{errors.identitydescrip.message}</StyledError>
                 )}

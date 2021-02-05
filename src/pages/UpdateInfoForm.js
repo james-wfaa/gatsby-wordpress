@@ -79,8 +79,11 @@ const UpdateInfoForm = () =>  {
 }
 
 const StyledUpdateInfoForm = styled.div`
-.excerpt{
-  color: ${colors.copyText}
+div.excerpt{
+  color: ${colors.copyText};
+  span.red{
+    color: ${colors.buttonRed};
+  }
 }
 form, .form-btns, .disclaimer{
   max-width: 896px;

@@ -21,6 +21,9 @@ const FormButtons = ({ next, back, save, finish, signup, disabled, error }) => {
         let nextStep = currentOrder[currentPlaceInOrder - 1]
         setCurrentStep(nextStep)
       }
+    const handleFinishBtn = () => {
+        setCurrentStep(8)
+      }
     const errorClass = error ? 'errorMessage' : ''
 
  return  (
@@ -28,7 +31,8 @@ const FormButtons = ({ next, back, save, finish, signup, disabled, error }) => {
             { back && <button className="back" onClick={() => handleBackBtn()}>Go Back</button>}
             { finish && <button
                 type="submit"
-                name="submitbutton"
+                name="finish"
+                onClick={() => handleFinishBtn()}
                 id="submitbutton"
                 disabled={!disabled}
                 >Finish Update</button>}

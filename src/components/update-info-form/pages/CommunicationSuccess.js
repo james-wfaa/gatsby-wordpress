@@ -13,18 +13,16 @@ const UpdateSuccess = () => {
         scroll_color: colors.bgRed,
         text_align: `center`
     }
-    const content = `<div className="successPageIcon"></div>`
   
     return (
         <div className="communications-success-page">
             <IntroPageSection
             excerpt='Thanks so much for signing up for those communications.
-            You will get a confirmation at the email you provided. Again, if you’d like to make any changes to your communication preferences in the future, simply email recordsupdates@supportuw.org to let us know.'
+            You will get a confirmation at the email you provided. Again, if you’d like to make any changes to your communication preferences in the future, simply email <span class="red">recordsupdates@supportuw.org</span> to let us know.'
             heading='Thanks so much. Your info has been updated.'
             variantObject={variantObject}
             headingAlt
             headingCompact
-            content={content}
             />
         </div>
     )
