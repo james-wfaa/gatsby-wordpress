@@ -6,7 +6,7 @@ import FeaturedImage from "../content-blocks/FeaturedImage"
 
 
 function WordPressPage({ page }) {
-  const {  featuredImage, blocks } = page
+  const {  featuredImage, blocks, title } = page
   const noborder = (featuredImage !== null)
   //console.log('page part of event', page)
   //console.log('blocks part of event', blocks)
@@ -15,9 +15,9 @@ function WordPressPage({ page }) {
   // TODO: then pass that filtered list of blocks in lieu of the content
 
   return (
-    <Layout noborder={noborder}>
+    <Layout title={title} noborder={noborder}>
         {!!featuredImage?.node?.localFile?.childImageSharp && (
-            <FeaturedImage featuredImage={featuredImage} event/>
+            <FeaturedImage featuredImage={featuredImage.node} event/>
         )}
         <WordPressEventContentBlocks {...page} />
     </Layout>

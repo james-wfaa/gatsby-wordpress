@@ -19,7 +19,7 @@ function WordPressPage({ data }) {
   const { edges: eventEdges } = events
   const { title, featuredImage, eventCategories, excerpt, gridDetails  } = page
   const { categories } = eventCategories
-  console.log(eventCategories)
+  //console.log(eventCategories)
 
   const { backgroundImage } = gridDetails
 
@@ -31,16 +31,21 @@ function WordPressPage({ data }) {
     },
   ]
 
-  const cats = categories.map((item) => {
+  const cats = (categories) 
+  ? categories.map((item) => {
     const { categoryEvent, numberToShow } = item
     //console.log(item)
-    return (
-      <PageSection key={item.url} heading={categoryEvent.name} stagger>
-        <CardSet items={categoryEvent.events.nodes} num={numberToShow} />
-      </PageSection>
-    )
+    return (categoryEvent && categoryEvent.events.nodes.length > 0) 
+      ?
+      (
+        <PageSection key={item.url} heading={categoryEvent.name} stagger>
+          <CardSet items={categoryEvent.events.nodes} num={numberToShow} />
+        </PageSection>
+      )
+      : null
   }
   )
+  : null
 
 
   const settings = {
@@ -64,13 +69,13 @@ function WordPressPage({ data }) {
  })
 
 
-  console.log('featuredEvents:',featuredEvents)
+  //console.log('featuredEvents:',featuredEvents)
 
 
 
   const cardGridEvents = eventEdges.slice(0,9)
   let eventCards = cardGridEvents.map((event) => {
-    console.log('building event tiles')
+    //console.log('building event tiles')
     return (
       <EventCardD key={event.url} {...event.node} />
     )
@@ -79,7 +84,7 @@ function WordPressPage({ data }) {
 
 
   return (
-    <Layout noborder>
+    <Layout title={title} noborder>
       { featuredImage && featuredImage.node && (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}

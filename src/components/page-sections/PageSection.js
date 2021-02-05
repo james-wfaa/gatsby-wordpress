@@ -20,6 +20,7 @@ const PageSection = ({
     pageTitle,
     withSocial,
     plainText,
+    centered, // a centered-content page section e.g. Product Page or Aggregate Page
     popOut,
     excerpt,
     buttons,
@@ -28,11 +29,13 @@ const PageSection = ({
     alt,
     topBorder,
     bgImage,
+    divider,
     fromBlocks,
     children,
     stagger,
     desktopOnly,
-    onlyChild
+    onlyChild,
+    defaultPage // one page section with no top padding
  }) => {
 
 
@@ -48,11 +51,14 @@ const PageSection = ({
     const hasNoHeading = !preheading && !heading ? ' hasNoHeading' : ''
     const popClass = popOut ? `${className}__popOut` : ''
     const staggerClass = (stagger) ? ' stagger' : ''
+    const defaultClass = (defaultPage) ? ' defaultClass' : ''
+    const dividerClass = (divider) ? ' divider' : ''
+    const centeredContentClass = (centered) ? ' centered' : ''
 
     return (
-        <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading} ${bgClass}`}  >
+        <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading}${defaultClass} ${bgClass}`}  >
             { ! background &&  (
-            <div className={`${className}__innerwrap   ${popClass}` }>
+            <div className={`${className}__innerwrap   ${popClass}${dividerClass}` }>
                 { preheading && (
                 <div className={`${className}__preheading`}>{preheading}</div>
             )}
@@ -62,7 +68,7 @@ const PageSection = ({
             { excerpt && (
                 <div className="sectionexcerpt"  dangerouslySetInnerHTML={{ __html: excerpt }} />
             )}
-            <div className={`content ${plainTextContent}`}>
+            <div className={`content ${plainTextContent}${centeredContentClass}`}>
                 {children}
             </div>
             { buttons && (<PageSectionButtons buttons={buttons} buttonsAlt={buttonsAlt} compact={buttonsCompact} />
@@ -117,6 +123,10 @@ const StyledPageSection = styled(PageSection)`
     &:last-child {
         padding-bottom: 88px;
     }
+    &__innerwrap.divider{
+        padding-left:56px;
+        border-left: 6px solid #F3F3F3;
+    }
     @media screen and ${breakpoints.tabletS} {
         padding-top: 88px;
         padding-bottom: 88px;
@@ -129,6 +139,9 @@ const StyledPageSection = styled(PageSection)`
             }
         }
         
+    }
+    &.defaultClass {
+        padding-top: 0;
     }
     
     &.stagger:nth-child(even) {
@@ -148,8 +161,10 @@ const StyledPageSection = styled(PageSection)`
         a {
             color: ${colors.bgRed}
         }
+    }
     &.leftAlign {
         text-align: left;
+        
     }
     &.hasPreHeading {
         padding-top: 0;
@@ -189,14 +204,14 @@ const StyledPageSection = styled(PageSection)`
         padding: 58px 0;
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s20};
-         }
+        }
     }
 
 
     .sectionexcerpt {
         font-size: ${sizes.s24};
         line-height: ${sizes.s36};
-        max-width: 712px;
+        max-width: 896px;
         margin: 0 auto;
         margin-bottom: ${sizes.s32};
         padding: 0 ${sizes.s36};
@@ -217,19 +232,34 @@ const StyledPageSection = styled(PageSection)`
         }
     }
     /* some wordpress content pieces */
-    .content {
-        > p {
+    .content.centered {
+        > p,
+        > .core-heading,
+        > .core-image,
+        > .core-freeform,
+        > .core-paragraph,
+        > .core-list,
+        > .core-table,
+        > .core-buttons,
+        > .core-columns,
+        > .gravityforms-form {
             min-width: 300px;
             width: 80%;
-            max-width: 897px;
+            max-width: 712px;
             margin-left: auto;
             margin-right: auto;
             text-align: left;
         }
-        &.plaintext {
-            max-width: 712px;
-            margin: 0 auto;
-        }
+
+        > .core-buttons {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            @media screen and ${breakpoints.tabletS} {
+                flex-direction: row;
+            }        
+        }        
     }
 
 

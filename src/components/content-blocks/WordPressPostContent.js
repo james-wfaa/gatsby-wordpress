@@ -46,6 +46,11 @@ div.image-section {
     display: flex;
     flex-direction: column;
     padding-bottom: ${sizes.s58};
+
+    a {
+        ${mixins.textlink}
+    }
+    
     &--small {
         .image-section__image {
             width: calc(100% - 72px);
@@ -139,13 +144,7 @@ div.image-section {
 
 }
 hr.wp-block-separator {
-    height: ${sizes.s36};
-    background-color: ${colors.sectionBorder};
-    margin: ${sizes.s36} 0;
-    @media screen and ${breakpoints.tabletS} {
-        margin: ${sizes.s52} 0;
-
-    }
+    ${mixins.separator}
 }
 div.section-header {
     ${mixins.sectionHeader}

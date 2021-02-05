@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
-import WordPressContent from "../../components/content-blocks/WordPressContent"
+import WordPressContent from "../../components/content-blocks/WordPressContentBlocks"
 import CardSet from "../../components/content-modules/CardSet"
 import StoryCardD from "../../components/content-blocks/StoryCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
@@ -10,7 +10,7 @@ import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 
 function WordPressPage({ data }) {
   const { page, posts } = data
-  const { title, excerpt, content, featuredImage, storyCategories, gridDetails } = page
+  const { title, excerpt, blocks, featuredImage, storyCategories, gridDetails } = page
 
   const { storycategoriesinner: categories } = storyCategories
   const { backgroundImage } = gridDetails
@@ -50,7 +50,7 @@ function WordPressPage({ data }) {
 
 
   return (
-    <Layout noborder>
+    <Layout title={title} noborder>
       { featuredImage && featuredImage.node && (
       <HeroIntroSection
           heroImage={featuredImage.node.localFile}
@@ -58,7 +58,7 @@ function WordPressPage({ data }) {
           redHeading={title}
           excerpt={excerpt}
       />)}
-      <WordPressContent content={content} />
+      <WordPressContent blocks={blocks} />
       <>{cats}</>
       <PageSection heading="Most Recent" bgImage={gridBgImage} buttons={moreButton}>
         <GridCardD>{postCards}</GridCardD>
@@ -150,7 +150,7 @@ export const query = graphql`
         }
       }
     },
-    posts: allWpPost(limit: 100, sort: {order: ASC, fields: date}) {
+    posts: allWpPost(limit: 100, sort: {order: DESC, fields: date}) {
       nodes {
         title
         excerpt

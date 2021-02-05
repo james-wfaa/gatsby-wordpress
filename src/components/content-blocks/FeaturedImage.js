@@ -15,17 +15,18 @@ import Img from "gatsby-image"
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-const FeaturedImage = ({ className, featuredImage, event }) => {
+const FeaturedImage = ({ className, featuredImage, event, size }) => {
   const classes = (event) ? `${className} ${className}--event` : className
-
+  const imgSizeClass = (718 <= size && size < 1080) ? `mediumImg` : (size < 718) ? `smallImg` : ''
 
   return (
-    <div className={classes}>
-      <Img fluid={featuredImage.node.localFile.childImageSharp.fluid} />
-      { featuredImage.node.caption && (
+    <div className={`${classes} ${imgSizeClass}`} >
+      
+      <Img fluid={featuredImage.localFile.childImageSharp.fluid} />
+      { featuredImage.caption && (
         <div className={`${className}__captionSection`}>
-          <div className={`${className}__caption`} dangerouslySetInnerHTML={{ __html: featuredImage.node.caption }} />
-          <div className={`${className}__author`} dangerouslySetInnerHTML={{ __html: featuredImage.node.author.node.name }} />
+          <div className={`${className}__caption`} dangerouslySetInnerHTML={{ __html: featuredImage.caption }} />
+          <div className={`${className}__author`} dangerouslySetInnerHTML={{ __html: featuredImage.author.node.name }} />
         </div>
       )}
     </div>
@@ -41,6 +42,25 @@ position: relative;
 margin: ${sizes.s58} 0;
 &--event {
   margin: 0 0 48px;
+}
+&.mediumImg {
+  max-width:712px;
+  margin: 3.222rem auto;
+}
+&.smallImg{
+  max-width: ${props => props.size + `px`};
+  margin: 5px 12px 12px 0;
+  @media screen and ${breakpoints.tablet} {
+    float: left; 
+  }
+  @media screen and ${breakpoints.tabletL} {
+    &:before {
+      display: none;
+    }
+    &:after {
+      display: none;
+    }
+  }
 }
 
 @media screen and ${breakpoints.tabletS} {

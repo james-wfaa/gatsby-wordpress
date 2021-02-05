@@ -1,7 +1,7 @@
 import React from "react"
 import Layout from "../layout"
 import PageSection from "../page-sections/PageSection"
-import WordPressContent from "../content-blocks/WordPressContent"
+import WordPressContent from "../content-blocks/WordPressBasicContentBlocks"
 import AccordianSearchAlgolia from "../../components/parts/AlgoliaSearch/AccordianSearchAlgolia-temp"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 import CardSet from "../content-modules/CardSet"
@@ -54,7 +54,7 @@ function WordPressPage({ page, posts }) {
 
 
   return (
-    <Layout noborder>
+    <Layout title={title} noborder>
       { featuredImage && featuredImage.node && (
       <HeroIntroSection
           heroImage={featuredImage.node.localFile}

@@ -9,18 +9,35 @@ export default () => (
   <Layout>
     <PageSection pad>
       <h1>uwalumni.com redesign - development work in progress</h1>
-      <h2>Full Page Templates</h2>
+      <h2>Full Pages / Templates</h2>
+      <li>
+        <Link to="/gpu">Product Page - GPU</Link>
+      </li>
+      <li>
+        <Link to="/jamess-product">Product Page - James Test</Link>
+      </li>
+      <li>
+        <Link to="/wordpress-story">Story Page - Long &amp; Winding Road (wide feature image) </Link>
+      </li>
+      <li>
+        <Link to="/refocused">Story Page - "Refocused" (column-width feature image) </Link>
+      </li>
+    
+      <li>
+        <Link to="/gpu/majors/">Default Page (GPU / Majors)</Link>
+      </li>
+      <li>
+        <Link to="/gpu/scrapbooks/">Default Page (GPU / Scrapbooks)</Link>
+      </li>
       <li>
         <Link to="/email">Email Login - NEW</Link>
       </li>
+  
       <li>
-        <Link to="/jamess-product">Product Page - NEW</Link>
+        <Link to="/product-aggregate">Product Aggregate</Link>
       </li>
       <li>
-        <Link to="/product-aggregate">Product Aggregate - NEW</Link>
-      </li>
-      <li>
-        <Link to="/homepage">Full Homepage - enhancements</Link>
+        <Link to="/homepage">Full Homepage </Link>
       </li>
       <li>
         <Link to="/news">News/Stories Page</Link>
@@ -32,20 +49,11 @@ export default () => (
         <Link to="/event/planarians">Event Page</Link>
       </li>
       <li>
-        <Link to="/event/badger-cafe-threats-to-peace-around-the-world/">Event Page (no image)</Link>
-      </li>
-      <li>
-        <Link to="/event/badger-football-badger-huddle-tailgate-at-the-rose-bowl/">Event Page </Link>
-      </li>
-      <li>
-        <Link to="/news/wordpress-story">Story Page</Link>
-      </li>
-      <li>
         <Link to="/chapter-page">
           Individual Group Page (NEW) (in progress)
         </Link>
       </li>
-      
+
       <h2>Page Sections &amp; Content Components</h2>
       <ul>
       <li>
@@ -61,14 +69,14 @@ export default () => (
           <Link to="/james-test">
             Image/Content Modules (1/3, 1/2, 2/3) from WordPress Pages{" "}
           </Link>
-          
+
         </li>
         <li>
           <Link to="/contentBlockList">Content Card List </Link>
         </li>
         <li>
           <Link to="/gridCardDPop">
-            Card D Grid Alternative, pops out of section 
+            Card D Grid Alternative, pops out of section
           </Link>
         </li>
         <li>
@@ -104,8 +112,11 @@ export default () => (
         <li>
           <Link to="/modal">Generic Modal</Link>
         </li>
+        <li>
+          <Link to="/sidebarMenu">Generic Sidebar Menu</Link>
+        </li>
 
-       
+
       </ul>
     </PageSection>
   </Layout>
