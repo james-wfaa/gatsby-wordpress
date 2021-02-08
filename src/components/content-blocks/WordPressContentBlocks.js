@@ -72,21 +72,21 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
         
             case "core/separator":
                 RenderedBlocks.push(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
-                case "acf/product-story-listing":
-                    console.log('story-listing-section')
-                    if ( product) {
-                        const { slug, posts } = product
-                        const postsToShow = (posts?.nodes) ? posts.nodes : null
-                        const buttons = (postsToShow.length > 2) 
-                            ? [{
-                                link: `/posts/search/?category=${slug}`,
-                                text: 'See More WAA Stories'
-                            }]
-                            : null
-                        RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={postsToShow} size="M" /></PageSection>)    
-                    }
-                    
-                    break
+            case "acf/product-story-listing":
+                console.log('story-listing-section')
+                if ( product) {
+                    const { slug, posts } = product
+                    const postsToShow = (posts?.nodes) ? posts.nodes : null
+                    const buttons = (postsToShow.length > 2) 
+                        ? [{
+                            link: `/posts/search/?category=${slug}`,
+                            text: 'See More WAA Stories'
+                        }]
+                        : null
+                    RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={postsToShow} size="M" /></PageSection>)    
+                }
+                
+                break
         
             case "acf/events-listing-section":
                 console.log('events-listing-section')
