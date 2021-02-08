@@ -72,6 +72,22 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
         
             case "core/separator":
                 RenderedBlocks.push(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+                case "acf/product-story-listing":
+                    console.log('story-listing-section')
+                    if ( product) {
+                        const { slug, posts } = product
+                        const postsToShow = (posts?.nodes) ? posts.nodes : null
+                        const buttons = (postsToShow.length > 2) 
+                            ? [{
+                                link: `/posts/search/?category=${slug}`,
+                                text: 'See More WAA Stories'
+                            }]
+                            : null
+                        RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={postsToShow} size="M" /></PageSection>)    
+                    }
+                    
+                    break
+        
             case "acf/events-listing-section":
                 console.log('events-listing-section')
                 if ( product) {
@@ -80,13 +96,14 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
                     const buttons = (eventsToShow.length > 2) 
                         ? [{
                             link: `/events/search/?category=${slug}`,
-                            text: 'See All Events'
+                            text: 'See More Events'
                         }]
                         : null
                     RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)    
                 }
                 
                 break
+            
             default:
                 console.log('default')
                 RenderedBlocks.push(<PageSectionFromBlocks blocks={[block]} heading="Default" borderTop={borderTop} stagger={stagger} />)
