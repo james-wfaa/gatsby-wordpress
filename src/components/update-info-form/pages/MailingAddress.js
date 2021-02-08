@@ -143,7 +143,11 @@ const MailingAddress = () => {
                     defaultValue={state.mailingAddress.zipcode}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      requiredForUS
+                      requiredForUS,
+                      pattern: {
+                        value: /^\d{5}(?:[-\s]\d{4})?$/,
+                        message: "Must be valid zip/postal code",
+                      },
                     })}
                 />
                 {errors.zipcode && (
@@ -286,7 +290,11 @@ const MailingAddress = () => {
                     defaultValue={state.mailingAddress.seasonalZipcode}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      requiredForUS
+                      requiredForUS,
+                      pattern: {
+                        value: /^\d{5}(?:[-\s]\d{4})?$/,
+                        message: "Must be valid zip/postal code",
+                      },
                     })}
                 />
                 {errors.seasonalZipcode && (

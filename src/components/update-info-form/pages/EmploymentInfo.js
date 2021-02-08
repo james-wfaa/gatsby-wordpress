@@ -58,7 +58,7 @@ const EmploymentInfo = () => {
                     defaultValue={state.employmentInfo.startDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      
+                      required: { value: true, message: "Phone is required" },
                     })}
                 />
                 {errors.jobtitle && (
@@ -96,6 +96,7 @@ const EmploymentInfo = () => {
                     defaultValue={state.employmentInfo.businessName}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
+                      required: { value: true, message: "Phone is required" },
                       minLength: {
                         value: 2,
                         message: "Must be at least 2 letters",

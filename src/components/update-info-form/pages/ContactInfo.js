@@ -19,17 +19,7 @@ const ContactInfo = () => {
   }
 
   const updateOnChangeValues = (e) => {
-    if(e.target.name === 'phone'){
-      //PHONE MASKING
-      console.log('phone')
-      const number = e.target.value;
-      const num = `${number.substring(0, 3)}-${number.substring(3, 6)}-${number.substring(6, number.length)}`;
-
-      console.log(num);
-      setContactInfoOnchange([e.target.name, num])
-    }else{
       setContactInfoOnchange([e.target.name, e.target.value])
-    }
   }
   
   const requiredFieldsCheck = state.contactInfo.firstname !== '' && state.contactInfo.lastname !== '' && state.contactInfo.email !== '';
@@ -58,8 +48,6 @@ const ContactInfo = () => {
                     id="firstname"
                     defaultValue={state.contactInfo.firstname}
                     onChange={e => updateOnChangeValues(e)}
-                    aria-label="First Name"
-                    aria-required="true"
                     ref={register({
                       required: { value: true, message: "First Name is required" },
                       minLength: {
@@ -68,7 +56,6 @@ const ContactInfo = () => {
                       },
                     })}
                 />
-                
               </label>
               <label htmlFor="lastname" className="half leftMargin required">Last Name
                 <span className="required">*</span>
@@ -79,8 +66,6 @@ const ContactInfo = () => {
                     type="text"
                     name="lastname"
                     id="lastname"
-                    aria-label="Last Name"
-                    aria-required="true"
                     defaultValue={state.contactInfo.lastname}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -96,7 +81,6 @@ const ContactInfo = () => {
                     type="text"
                     name="othernames"
                     id="othernames"
-                    aria-label="Other names"
                     defaultValue={state.contactInfo.othernames}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -114,8 +98,6 @@ const ContactInfo = () => {
                     id="email"
                     defaultValue={state.contactInfo.email}
                     onChange={e => updateOnChangeValues(e)}
-                    aria-label="Preferred email"
-                    aria-required="true"
                     ref={register({
                       required: {
                         value: true,
@@ -136,8 +118,6 @@ const ContactInfo = () => {
                     type="phone"
                     name="phone"
                     id="phone"
-                    mask="000 000 0000"
-                    aria-label="Phone Number"
                     defaultValue={state.contactInfo.phone}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -157,7 +137,6 @@ const ContactInfo = () => {
                     name="undergrad"
                     id="undergrad"
                     maxLength="4"
-                    aria-label="Undergraduate Year (if applicable)"
                     defaultValue={state.contactInfo.undergrad}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -176,7 +155,6 @@ const ContactInfo = () => {
                     type="text"
                     name="postgrad"
                     id="postgrad"
-                    aria-label="Postgraduate Years (if applicable)"
                     defaultValue={state.contactInfo.postgrad}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({

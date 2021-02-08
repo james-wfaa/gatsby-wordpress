@@ -11,7 +11,7 @@ const SpouseInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setSpouseInfoOnchange } = actions;
 
-  const { register, handleSubmit, watch, errors, formState: { isValid }} = useForm({
+  const { register, handleSubmit, errors, formState: { isValid }} = useForm({
     mode: "onChange",
   })
   const submitForm = data =>{
@@ -48,6 +48,7 @@ const SpouseInfo = () => {
                     defaultValue={state.spouseInfo.firstname}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
+                      required: { value: true, message: "Phone is required" },
                       minLength: {
                         value: 2,
                         message: "Must be at least 2 letters",
@@ -72,6 +73,7 @@ const SpouseInfo = () => {
                     defaultValue={state.spouseInfo.lastname}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
+                      required: { value: true, message: "Phone is required" },
                       minLength: {
                         value: 2,
                         message: "Must be at least 2 letters",
@@ -115,7 +117,6 @@ const SpouseInfo = () => {
                     type="text"
                     name="postgrad"
                     id="postgrad"
-                    aria-label="UW Postgraduate Years (if applicable)"
                     defaultValue={state.spouseInfo.postgrad}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
