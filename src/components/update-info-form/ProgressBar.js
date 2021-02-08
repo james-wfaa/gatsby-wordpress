@@ -1,12 +1,8 @@
-import { attributesToProps } from "html-react-parser";
-import React, { useContext } from "react"
+import React from "react"
 import styled from 'styled-components'
-import { mixins, colors, fonts, sizes, breakpoints } from '../../css-variables'
-import { AppContext } from "../../../context/AppContext"
+import { colors, breakpoints } from '../css-variables'
 
 const ProgressBar = ({ progress, currentStep }) => {
-    
-    //console.log(progress, currentStep)
     
     let increment = 33
     let current = progress.indexOf(currentStep)
@@ -32,7 +28,6 @@ const ProgressBar = ({ progress, currentStep }) => {
         progressWidth = `100%`
     }
     
-    //console.log(progress, currentStep, current, progressWidth)
  return  (
         <StyledProgressBar>
             <div className="progress-bar-wrapper">

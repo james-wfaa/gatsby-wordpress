@@ -1,4 +1,3 @@
-//import React, { useState } from "react"
 import postalCodes from "postal-codes-js"
 //import countryList from "react-select-country-list"
 import { colors } from '../css-variables'
@@ -16,9 +15,18 @@ export const countryOptions = countries.map(country => {
     return <option value={country.value}>{country.label}</option>
 })*/
 
+
 export const validatePostalCode = (value, country) => {
     return postalCodes.validate(country, value)
 }
+
+export const variantObject = {
+    background_color: colors.formIntroBg,
+    color: colors.bgRed,
+    scroll_color: colors.bgRed,
+    text_align: `center`
+  }
+
 
 export const StyledError = styled.p`
 font-family: "Verlag A", "Verlag B";

@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from "react"
-//import { useForm } from "react-hook-form"
 import styled from 'styled-components'
 import Layout from "../components/layout"
 import { AppContext } from "../context/AppContext"
@@ -19,23 +18,8 @@ import downCaret from './../../static/down-caret-red.png'
 const UpdateInfoForm = () =>  {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep } = actions;
-  
-  /*useEffect(() => {
-    setContactInfo({
-      firstname: "Jakey",
-      lastname: "Jacobs",
-      email: 'jjacobs@defaultsDeep.com',
-      undergrad: '1993',
-      postgrad: '1995',
-    });
-  }, [])*/
 
-  /*useEffect(() => {
-    console.log(state)
-  }, [state])*/
-
- const renderCurrentStep = () => {
-      //console.log(state.currentStep)
+  const renderCurrentStep = () => {
       switch(state.currentStep){
         case 1:
             return <ContactInfo />
@@ -59,14 +43,10 @@ const UpdateInfoForm = () =>  {
    }
 
   const onSubmit = (data) => {
-    
     console.log(data)
-    console.log(state.currentStep)
-    
   }
 
   return (
-
     <Layout>
       <StyledUpdateInfoForm>
         { renderCurrentStep() }
@@ -74,7 +54,6 @@ const UpdateInfoForm = () =>  {
         { !(state.currentStep === 8 || state.currentStep === 9) && <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our Privacy Statement.</p>} 
       </StyledUpdateInfoForm>
     </Layout>
-
   )
 }
 
@@ -352,9 +331,6 @@ form{
       &:active {
           background-color: ${colors.buttonHoverRed};
       }
-      /*&.disabled {
-        background-color: grey;
-      }*/
       &:disabled {
         background-color: ${colors.disabledButtonGrey};
         box-shadow:none;

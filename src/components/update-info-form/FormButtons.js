@@ -1,29 +1,28 @@
-import { attributesToProps } from "html-react-parser";
 import React, { useContext } from "react"
 import styled from 'styled-components'
-import { AppContext } from "../../../context/AppContext"
+import { AppContext } from "../../context/AppContext"
 
 const FormButtons = ({ next, back, save, finish, signup, disabled, error }) => {
     const { state, actions } = useContext(AppContext);
     const { setCurrentStep, setContactInfo, } = actions;
 
     const handleNextBtn = () => {
-        let currentOrder = state.numberOfSteps
-        let currentStep = state.currentStep
-        let currentPlaceInOrder = currentOrder.indexOf(currentStep)
-        let nextStep = currentOrder[currentPlaceInOrder + 1]
-        setCurrentStep(nextStep)
-      }
+      let currentOrder = state.numberOfSteps
+      let currentStep = state.currentStep
+      let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+      let nextStep = currentOrder[currentPlaceInOrder + 1]
+      setCurrentStep(nextStep)
+    }
     const handleBackBtn = () => {
-        let currentOrder = state.numberOfSteps
-        let currentStep = state.currentStep
-        let currentPlaceInOrder = currentOrder.indexOf(currentStep)
-        let nextStep = currentOrder[currentPlaceInOrder - 1]
-        setCurrentStep(nextStep)
-      }
+      let currentOrder = state.numberOfSteps
+      let currentStep = state.currentStep
+      let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+      let nextStep = currentOrder[currentPlaceInOrder - 1]
+      setCurrentStep(nextStep)
+    }
     const handleFinishBtn = () => {
-        setCurrentStep(8)
-      }
+      setCurrentStep(8)
+    }
     const errorClass = error ? 'errorMessage' : ''
 
  return  (

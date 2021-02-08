@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError } from '../form-helpers'
+import { StyledError, variantObject } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
-import { colors } from '../../css-variables'
-import Buttons from './FormButtons'
-import ProgressBar from './ProgressBar'
-import styled from "styled-components"
+import Buttons from './../FormButtons'
+import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
-import countryList from "react-select-country-list"
 
 const PhoneInfo = () => {
   const { state, actions } = useContext(AppContext);
@@ -18,14 +15,6 @@ const PhoneInfo = () => {
   })
   const UpdatePhoneInfo = data =>{
     console.log(data)
-    
-
-    //figure out next page
-    let currentOrder = state.numberOfSteps
-    let currentStep = state.currentStep
-    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
-    let nextStep = currentOrder[currentPlaceInOrder + 1]
-    setCurrentStep(nextStep)
   }
   const updateOnChangeValues = (e) => {
     setPhoneInfoOnchange([e.target.name, e.target.value])
@@ -71,12 +60,6 @@ const PhoneInfo = () => {
   }
   const requiredFieldsCheck = state.phoneInfo.phoneNumber1 !== '';
 
-    let variantObject = {
-      background_color: colors.formIntroBg,
-      color: colors.bgRed,
-      scroll_color: colors.bgRed,
-      text_align: `center`
-    }
       return (
         <div>
             <IntroPageSection
@@ -199,9 +182,8 @@ const PhoneInfo = () => {
                 )}
               </label>
               {state.phoneInfo.phoneType3 === "seasonal" ? renderSeasonalDates() : null}
-              
               <Buttons 
-                save 
+                next 
                 back
                 disabled={ !requiredFieldsCheck || !isValid } />
             </form>

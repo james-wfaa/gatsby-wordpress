@@ -1,24 +1,21 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError } from '../form-helpers'
+import { StyledError, variantObject } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import { colors } from '../../css-variables'
-import Buttons from './FormButtons'
-import ProgressBar from './ProgressBar'
-import styled from "styled-components"
+import Buttons from './../FormButtons'
+import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
 
 const SpouseInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setSpouseInfo, setSpouseInfoOnchange } = actions;
+  const { setCurrentStep, setSpouseInfoOnchange } = actions;
 
   const { register, handleSubmit, watch, errors, formState: { isValid }} = useForm({
     mode: "onChange",
   })
   const submitForm = data =>{
-    //setSpouseInfo(data)
-    //submit data
-    setCurrentStep(8)
+    //setCurrentStep(8)
   }
   const updateOnChangeValues = (e) => {
     if(e.target.type === 'checkbox'){
@@ -27,15 +24,8 @@ const SpouseInfo = () => {
       setSpouseInfoOnchange([e.target.name, e.target.value])
     }
   }
-
   const requiredFieldsCheck = state.spouseInfo.firstname !== '' && state.spouseInfo.lastname !== '' ;
-  
-    let variantObject = {
-      background_color: colors.formIntroBg,
-      color: colors.bgRed,
-      scroll_color: colors.bgRed,
-      text_align: `center`
-    }
+
       return (
         <div>
             <IntroPageSection
@@ -142,7 +132,7 @@ const SpouseInfo = () => {
               <label htmlFor="noSpouse">I am no longer with my spouse or partner.</label>
               <input type="radio" id="none" value="none" name="spouseUpdate" defaultChecked={state.spouseInfo.spouseUpdate === "none"} onClick={e => updateOnChangeValues(e)}/>
               <label htmlFor="none">None of the above.</label>
-              <Buttons save back disabled={ !requiredFieldsCheck || !isValid } />
+              <Buttons next back disabled={ !requiredFieldsCheck || !isValid } />
             </form>
         </div>
     )

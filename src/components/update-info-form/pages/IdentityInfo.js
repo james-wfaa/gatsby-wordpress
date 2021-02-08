@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError } from '../form-helpers'
+import { StyledError, variantObject } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
-import { colors } from '../../css-variables'
-import Buttons from './FormButtons'
-import ProgressBar from './ProgressBar'
-import styled from "styled-components"
+import Buttons from './../FormButtons'
+import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
 import countryList from "react-select-country-list"
 
@@ -17,17 +15,10 @@ const IdentityInfo = () => {
   
 
   const { register, handleSubmit, watch, errors } = useForm({
-    mode: "onChange",
+    mode: "onBlur",
   })
   const UpdateIdentityInfo = data =>{
     //setIdentityInfo(data)
-
-    //figure out next page
-    let currentOrder = state.numberOfSteps
-    let currentStep = state.currentStep
-    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
-    let nextStep = currentOrder[currentPlaceInOrder + 1]
-    setCurrentStep(nextStep)
   }
   
   const updateOnChangeValues = (e) => {
@@ -57,20 +48,12 @@ const IdentityInfo = () => {
         charactersLeft = 500 - currentLength
       }
     }
-    
-    
   }
 
   const countryOptions = countries.map(country => {
     return <option value={country.value} key={country.value}>{country.label}</option>
   })
   
-    let variantObject = {
-      background_color: colors.formIntroBg,
-      color: colors.bgRed,
-      scroll_color: colors.bgRed,
-      text_align: `center`
-    }
       return (
         <div>
             <IntroPageSection
@@ -124,7 +107,7 @@ const IdentityInfo = () => {
                   <StyledError>{errors.identitydescrip.message}</StyledError>
                 )}
               </label>
-              <Buttons save back />
+              <Buttons next back />
             </form>
         </div>
     )

@@ -1,31 +1,22 @@
 import React, { useState, useEffect, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError } from '../form-helpers'
+import { StyledError, variantObject } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
-import { colors } from '../../css-variables'
-import Buttons from './FormButtons'
-import ProgressBar from './ProgressBar'
+import Buttons from '../FormButtons'
+import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
 import countryList from "react-select-country-list"
 
 const MailingAddress = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setMailingAddressOnchange } = actions;
-  const [countries, setCountries] = useState(countryList().getData())
+  const [ countries ] = useState(countryList().getData())
 
   const { register, handleSubmit, watch, errors, formState: { isValid } } = useForm({
     mode: "onChange",
   })
   const UpdateMailingAddressInfo = data =>{
     console.log(data)
-    //setMailingAddress(data) //is overwriting country & not needed with onchange updates
-
-    //figure out next page
-    let currentOrder = state.numberOfSteps
-    let currentStep = state.currentStep
-    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
-    let nextStep = currentOrder[currentPlaceInOrder + 1]
-    setCurrentStep(nextStep)
   }
   const updateOnChangeValues = (e) => {
     setMailingAddressOnchange([e.target.name, e.target.value])
@@ -34,23 +25,17 @@ const MailingAddress = () => {
   const requiredFieldsCheck = state.mailingAddress.country === "US" ? state.mailingAddress.streetAddress !== '' && state.mailingAddress.city !== '' && state.mailingAddress.state !== '' && state.mailingAddress.zipcode !== '' : state.mailingAddress.streetAddress !== '';
 
   const requiredForUS = state.mailingAddress.country === "US" ? `required: { value: true, message: "Required field" },` : null
+  
   const countryOptions = countries.map(country => {
     if (country.value === state.mailingAddress.country) {
       return (
-        <option value={country.value} key={country.value} selected>
+        <option value={country.value} key={country.value} defaultValue={state.mailingAddress.country}>
           {country.label}
         </option>
       )
     }
-    return <option value={country.value}>{country.label}</option>
+    return <option value={country.value} key={country.value}>{country.label}</option>
   })
-  
-    let variantObject = {
-      background_color: colors.formIntroBg,
-      color: colors.bgRed,
-      scroll_color: colors.bgRed,
-      text_align: `center`
-    }
       return (
         <div>
             <IntroPageSection
@@ -311,7 +296,7 @@ const MailingAddress = () => {
               </div> ) : null }
 
               <Buttons 
-                save 
+                next 
                 back
                 disabled={ !requiredFieldsCheck || !isValid }  />
             </form>

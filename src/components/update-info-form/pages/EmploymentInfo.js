@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError } from '../form-helpers'
+import { StyledError, variantObject } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
-import { colors } from '../../css-variables'
-import Buttons from './FormButtons'
-import ProgressBar from './ProgressBar'
-import styled from "styled-components"
+import Buttons from './../FormButtons'
+import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
 import countryList from "react-select-country-list"
 
@@ -19,12 +17,6 @@ const EmploymentInfo = () => {
   })
   const UpdateEmploymentInfo = data =>{
 
-    //figure out next page
-    let currentOrder = state.numberOfSteps
-    let currentStep = state.currentStep
-    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
-    let nextStep = currentOrder[currentPlaceInOrder + 1]
-    setCurrentStep(nextStep)
   }
 
   const updateOnChangeValues = (e) => {
@@ -36,20 +28,14 @@ const EmploymentInfo = () => {
   const countryOptions = countries.map(country => {
     if (country.value === state.mailingAddress.country) {
       return (
-        <option value={country.value} key={country.value} selected>
+        <option value={country.value} key={country.value}  defaultValue={state.mailingAddress.country}>
           {country.label}
         </option>
       )
     }
-    return <option value={country.value}>{country.label}</option>
+    return <option value={country.value} key={country.value}>{country.label}</option>
   })
-  
-    let variantObject = {
-      background_color: colors.formIntroBg,
-      color: colors.bgRed,
-      scroll_color: colors.bgRed,
-      text_align: `center`
-    }
+
       return (
         <div>
             <IntroPageSection
@@ -203,7 +189,7 @@ const EmploymentInfo = () => {
                   <StyledError>{errors.country.message}</StyledError>
                 )}
               </label>
-              <Buttons save back disabled={ !requiredFieldsCheck || !isValid } />
+              <Buttons next back disabled={ !requiredFieldsCheck || !isValid } />
             </form>
         </div>
     )

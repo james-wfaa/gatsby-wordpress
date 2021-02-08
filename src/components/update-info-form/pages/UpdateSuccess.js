@@ -1,30 +1,20 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
 import IntroPageSection from "../../page-sections/IntroPageSection"
-import { sizes, breakpoints, mixins, colors } from '../../css-variables'
-import Buttons from './FormButtons'
-import ProgressBar from './ProgressBar'
+import Buttons from './../FormButtons'
+import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
-
+import { variantObject } from '../form-helpers'
 
 const UpdateSuccess = () => {
     const { state, actions } = useContext(AppContext);
     const { setCurrentStep } = actions;
-    const { register, handleSubmit, watch, errors, formState: { isValid } } = useForm({
+    const { handleSubmit, errors, formState: { isValid } } = useForm({
         mode: "onChange",
       })
-
     const submitCommunicationsSignup = data =>{
         console.log(data)
-    
         setCurrentStep(9)
-      }
-  
-    const variantObject = {
-        background_color: colors.formIntroBg,
-        color: colors.bgRed,
-        scroll_color: colors.bgRed,
-        text_align: `center`
     }
     const content = `<div className="successPageIcon"></div>`
   

@@ -1,19 +1,8 @@
-import React, { useContext } from "react"
+import React from "react"
 import IntroPageSection from "../../page-sections/IntroPageSection"
-import { colors } from '../../css-variables'
-import { AppContext } from "../../../context/AppContext"
+import { variantObject } from '../form-helpers'
 
 const UpdateSuccess = () => {
-    const { state, actions } = useContext(AppContext);
-    const { setAddressStep,  } = actions;
-  
-    const variantObject = {
-        background_color: colors.formIntroBg,
-        color: colors.bgRed,
-        scroll_color: colors.bgRed,
-        text_align: `center`
-    }
-  
     return (
         <div className="communications-success-page">
             <IntroPageSection

@@ -1,22 +1,12 @@
 import React, { useContext } from "react"
-//import { useForm } from "react-hook-form"
 import IntroPageSection from "../../page-sections/IntroPageSection"
-
-import { sizes, breakpoints, mixins, colors } from '../../css-variables'
-import Buttons from './FormButtons'
+import Buttons from './../FormButtons'
 import { AppContext } from "../../../context/AppContext"
-
+import { variantObject } from '../form-helpers'
 
 const SelectSteps = () => {
     const { state, actions } = useContext(AppContext);
-    const { setCurrentStep, setAddressStep, setPhoneStep, setEmploymentStep, setIdentityStep, setLifeEventStep, setNumberOfStepsAdd, setNumberOfStepsDelete } = actions;
-  
-    const variantObject = {
-        background_color: colors.formIntroBg,
-        color: colors.bgRed,
-        scroll_color: colors.bgRed,
-        text_align: `center`
-    }
+    const { setAddressStep, setPhoneStep, setEmploymentStep, setIdentityStep, setLifeEventStep, setNumberOfStepsAdd, setNumberOfStepsDelete } = actions;
 
     const updateCheckbox = ( stepNumber ) => {
         switch(stepNumber){
@@ -42,6 +32,7 @@ const SelectSteps = () => {
                 break;
         }
     }
+
     const updateNumberOfSteps = (change, step) => {
         if (change === true){
             let newOrder = [...state.numberOfSteps, step]
@@ -52,8 +43,8 @@ const SelectSteps = () => {
         } else if (change === false){
             setNumberOfStepsDelete(step)
         }
-        
     }
+
     const handleSubmit = data =>{
         console.log(data)
         //setCurrentStep(8)

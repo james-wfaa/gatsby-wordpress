@@ -1,10 +1,10 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, StyledTopError } from '../form-helpers'
+import { StyledError, StyledTopError, variantObject } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
-import { colors } from '../../css-variables'
-import Buttons from './FormButtons'
+import Buttons from '../FormButtons'
 import { AppContext } from "../../../context/AppContext"
+
 
 const ContactInfo = () => {
   const { state, actions } = useContext(AppContext);
@@ -19,17 +19,21 @@ const ContactInfo = () => {
   }
 
   const updateOnChangeValues = (e) => {
-    setContactInfoOnchange([e.target.name, e.target.value])
+    if(e.target.name === 'phone'){
+      //PHONE MASKING
+      console.log('phone')
+      const number = e.target.value;
+      const num = `${number.substring(0, 3)}-${number.substring(3, 6)}-${number.substring(6, number.length)}`;
+
+      console.log(num);
+      setContactInfoOnchange([e.target.name, num])
+    }else{
+      setContactInfoOnchange([e.target.name, e.target.value])
+    }
   }
   
   const requiredFieldsCheck = state.contactInfo.firstname !== '' && state.contactInfo.lastname !== '' && state.contactInfo.email !== '';
 
-    let variantObject = {
-      background_color: colors.formIntroBg,
-      color: colors.bgRed,
-      scroll_color: colors.bgRed,
-      text_align: `center`
-    }
       return (
         <div>
             <IntroPageSection
@@ -132,14 +136,15 @@ const ContactInfo = () => {
                     type="phone"
                     name="phone"
                     id="phone"
+                    mask="000 000 0000"
                     aria-label="Phone Number"
                     defaultValue={state.contactInfo.phone}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      pattern: {
+                      /*pattern: {
                         value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
                         message: "Must be a valid phone number",
-                      },
+                      },*/
                     })}
                 />
               </label>
