@@ -26,7 +26,7 @@ const TitleSection = ({ className, heading, author, product, date, excerpt, seri
                 )}
                 { product && (
                     <div className={`${className}__category`}>
-                        { product?.pages?.nodes && (
+                        { product?.pages?.nodes?.uri && (
                             <a className="category__item" href={`${product.pages.nodes[0].uri}`}>{product.name}</a>
                         )}
                         { !product?.pages?.nodes && (

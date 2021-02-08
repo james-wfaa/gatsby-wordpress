@@ -59,7 +59,7 @@ const FieldBuilder = ({
 
         let errorKey = ''
 
-        console.log(field.type)
+        //(field.type)
         switch (field.type) {
             // Add note for unsupported captcha field
             case 'captcha':
