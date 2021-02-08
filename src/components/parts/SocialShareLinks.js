@@ -58,6 +58,11 @@ const StyledSocialShareLinks = styled(SocialShareLinks)
     width: 100%;
     align-items: center;
     justify-content: center;
+    margin-bottom: 31px;
+    @media screen and ${breakpoints.tabletS} {
+        margin-bottom: 61px;
+    }
+
     .socialText{
         font-size: ${sizes.s16};
         color: ${colors.toneRed};

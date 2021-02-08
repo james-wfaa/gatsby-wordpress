@@ -4,8 +4,12 @@ import { sizes, breakpoints, mixins, colors } from '../css-variables'
 
 import Img from 'gatsby-image'
 
-const CardE = ({ className, img, caption, captionStyleProps}) => {
+const CardE = ({ className, img, caption, marginTop, center, enhancedHomepageCaption}) => {
     
+    const marginTopClass = marginTop ? 'marginTop' : ''
+    const centerClass = center ? 'center' : ''
+    const enhancedHomepageCaptionClass = enhancedHomepageCaption ? 'enhancedHomepageCaption' : ''
+
     return (
         <div className={className}>
             <figure >
@@ -15,8 +19,7 @@ const CardE = ({ className, img, caption, captionStyleProps}) => {
                         fluid={img.childImageSharp.fluid}
                     />
                 )}
-                
-            <figcaption style={captionStyleProps}>{caption}</figcaption>
+            <figcaption className={`${marginTopClass} ${centerClass} ${enhancedHomepageCaptionClass}`}>{caption}</figcaption>
             </figure>
         </div>
         

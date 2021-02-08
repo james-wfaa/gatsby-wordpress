@@ -2,11 +2,14 @@ import React from 'react'
 import PageSection from './PageSection'
 import Testimonial from '../content-blocks/Testimonial'
 import ImageSection from '../content-blocks/ImageSection'
+import GravityForm from '../content-blocks/GravityForm'
 import ImageWithCaption from '../content-blocks/ImageWithCaption'
 import SimpleSlider from '../content-modules/SimpleSlider'
 import CardSet from "../content-modules/CardSet"
 import Block from '../content-blocks/WordPressBlock'
 import Button from "../parts/Button"
+import Column from '../parts/WordPressColumns'
+
 
 
 const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, centered }) => {
@@ -46,7 +49,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                 const innerContent =  ((block.dynamicContent && block.dynamicContent !== "") ? block.dynamicContent : block.originalContent)
                 if (block.name === "core/image") {
                     return (
-                        <ImageWithCaption><div dangerouslySetInnerHTML={{__html: innerContent}} /></ImageWithCaption>
+                        <ImageWithCaption storyCaption="storyCaption" ><div dangerouslySetInnerHTML={{__html: innerContent}} /></ImageWithCaption>
                     )
                 } else {
                     return <div dangerouslySetInnerHTML={{__html: innerContent}} />
@@ -66,6 +69,8 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
             })}</CardSet>)
             : blocks.map((block) => {
 
+                console.log(block.name)
+
                 switch(block.name) {
                     case "acf/section-header":
                         break
@@ -77,8 +82,13 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                             return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
                         }
                     case "core/paragraph":
-                        if (block.originalContent.indexOf(' excerpt') > 0) {
-                            excerpt += (block.isDynamic) ? block.dynamicContent : block.originalContent
+                        if (block.originalContent.indexOf('excerpt') > 0) {
+                            if(excerpt){
+                                excerpt += (block.isDynamic) ? block.dynamicContent : block.originalContent
+                            }
+                            else{
+                                excerpt = (block.isDynamic) ? block.dynamicContent : block.originalContent
+                            }
                             break
                         }
                         else{
@@ -93,8 +103,25 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                     case "acf/product-card":
                         const productcard = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
                         return (<div dangerouslySetInnerHTML={{__html: productcard}} />)
+
+                    case "gravityforms/form":
+                        console.log('form found')
+                        const shortcode = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
+                        console.log(shortcode)
+                        let idStart = shortcode.indexOf('id="')
+                        if (idStart > -1) {
+                            idStart += 4
+                            let idEnd = shortcode.indexOf('"', idStart)
+                            console.log(idEnd)
+                            console.log(idStart)
+                            const formId = shortcode.substring(idStart,idEnd)
+                            console.log(formId)
+                            return (<GravityForm className={block.name.replace('/', '-')} id={formId} />)
+                        }
+                        
+                        break
+
                     case "core/buttons":
-                        console.log("Found a button");
                         if(block.innerBlocks && block.innerBlocks[0].originalContent){
                             let innerRenderedBlocks = [];
                             block.innerBlocks.forEach((innerBlock) => {
@@ -104,6 +131,9 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                             return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
                         }
                         break
+                    case "core/columns":
+                        return (<Column className={block.name.replace('/', '-')} block={block} />)
+            
                     default:
                         //console.log('default block', block.name)
                         

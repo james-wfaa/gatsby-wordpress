@@ -16,7 +16,7 @@ import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 const WordPressEmailPage = ({ className, data }) => {
   const [ads] = useState(data.page.HalfPageAd.adList)
   const [currentAd, setCurrentAd] = useState(null)
-  const { page, posts } = data
+  const { page } = data
   const { title } = page
 
   const randomAdGenerator = (min, max) => {

@@ -2,6 +2,10 @@ import { at } from "lodash";
 
 const initialState = {
   searchstring: "",
+  membershipGraduate: null,
+  membershipAge: null,
+  membershipType: null,
+  //Start Update Info Form 
   currentStep: 1,
   numberOfSteps: [1, 2, 8, 9],
   contactInfo: {
@@ -71,9 +75,16 @@ const initialState = {
     spouseUpdate: '',
     uwGrad: false,
   },
+  //End Update Info Form 
 };
 const types = {
   SET_SEARCH_STRING: "SET_SEARCH_STRING",
+  SET_SEARCH_STRING: "SET_SEARCH_STRING",
+  SET_MEMBERSHIP_GRADUATE: "SET_MEMBERSHIP_GRADUATE",
+  SET_MEMBERSHIP_AGE: "SET_MEMBERSHIP_AGE",
+  SET_MEMBERSHIP_TYPE: "SET_MEMBERSHIP_TYPE",
+
+  //Start Update Info Form 
   SET_CURRENT_STEP: "SET_CURRENT_STEP",
   SET_NUMBER_OF_STEPS_ADD: "SET_NUMBER_OF_STEPS_ADD",
   SET_NUMBER_OF_STEPS_DELETE: "SET_NUMBER_OF_STEPS_DELETE",
@@ -92,6 +103,7 @@ const types = {
   SET_IDENTITY_INFO_ONCHANGE: "SET_IDENTITY_INFO_ONCHANGE",
   SET_SPOUSE_INFO: "SET_SPOUSE_INFO",
   SET_SPOUSE_INFO_ONCHANGE: "SET_SPOUSE_INFO_ONCHANGE",
+  //End Update Info Form 
 };
 
 const reducer = (state = initialState, action) => {
@@ -101,6 +113,23 @@ const reducer = (state = initialState, action) => {
         ...state,
         searchstring: action.payload,
       };
+    case types.SET_MEMBERSHIP_GRADUATE:
+      return {
+        ...state,
+        membershipGraduate: action.payload,
+      };
+    case types.SET_MEMBERSHIP_AGE:
+      return {
+        ...state,
+        membershipAge: action.payload,
+      };
+    case types.SET_MEMBERSHIP_TYPE:
+      return {
+        ...state,
+        membershipType: action.payload,
+      };
+      
+    //Start Update Info Form 
     case types.SET_CURRENT_STEP:
       return {
         ...state,
@@ -223,7 +252,7 @@ const reducer = (state = initialState, action) => {
           [action.payload[0]]: action.payload[1],
         },
       };
-      
+    //End Update Info Form 
       
     default:
       throw new Error("Unexpected action");
