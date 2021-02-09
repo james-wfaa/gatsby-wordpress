@@ -92,13 +92,13 @@ const IdentityInfo = () => {
                     type="textbox"
                     name="identitydescrip"
                     id="identitydescrip"
-                    maxLength="500"
+                    maxLength="501"
                     defaultValue={state.identityInfo.identitydescrip}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      minLength: {
-                        value: 2,
-                        message: "Must be at least 2 letters",
+                      maxLength: {
+                        value: 500,
+                        message: "Cannot be more than 500 characters",
                       },
                     })}
                 />

@@ -24,7 +24,7 @@ const MailingAddress = () => {
 
   const requiredFieldsCheck = state.mailingAddress.country === "US" ? state.mailingAddress.streetAddress !== '' && state.mailingAddress.city !== '' && state.mailingAddress.state !== '' && state.mailingAddress.zipcode !== '' : state.mailingAddress.streetAddress !== '';
 
-  const requiredForUS = state.mailingAddress.country === "US" ? `required: { value: true, message: "Required field" },` : null
+  const requiredForUS = state.mailingAddress.country === "US" ? `required: { value: true, message: "This field is required" },` : null
   
   const countryOptions = countries.map(country => {
     if (country.value === state.mailingAddress.country) {
@@ -75,10 +75,7 @@ const MailingAddress = () => {
                     defaultValue={state.mailingAddress.streetAddress}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      minLength: {
-                        value: 2,
-                        message: "Must be at least 2 letters",
-                      },
+                      required: { value: true, message: "Street address is required" },
                     })}
                 />
                 {errors.streetAddress && (
@@ -93,10 +90,6 @@ const MailingAddress = () => {
                     defaultValue={state.mailingAddress.streetAddressLineTwo}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      minLength: {
-                        value: 2,
-                        message: "Must be at least 2 letters",
-                      },
                     })}
                 />
                 {errors.streetAddressLineTwo && (
@@ -144,10 +137,10 @@ const MailingAddress = () => {
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       requiredForUS,
-                      pattern: {
+                      /*pattern: {
                         value: /^\d{5}(?:[-\s]\d{4})?$/,
                         message: "Must be valid zip/postal code",
-                      },
+                      },*/
                     })}
                 />
                 {errors.zipcode && (
@@ -172,7 +165,7 @@ const MailingAddress = () => {
                     defaultValue={state.mailingAddress.seasonalStartDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      
+                      required: { value: true, message: "Start date of seasonal address is required" },
                     })}
                 />
                 {errors.jobtitle && (
@@ -188,7 +181,7 @@ const MailingAddress = () => {
                     defaultValue={state.mailingAddress.seasonalEndDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      
+                      required: { value: true, message: "End date of seasonal address is required" },
                     })}
                 />
                 {errors.jobtitle && (
@@ -221,10 +214,7 @@ const MailingAddress = () => {
                     defaultValue={state.mailingAddress.seasonalStreetAddress}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      minLength: {
-                        value: 2,
-                        message: "Must be at least 2 letters",
-                      },
+                      required: { value: true, message: "Street address is required" },
                     })}
                 />
                 {errors.seasonalStreetAddress && (
@@ -239,10 +229,7 @@ const MailingAddress = () => {
                     defaultValue={state.mailingAddress.seasonalStreetAddressLineTwo}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      minLength: {
-                        value: 2,
-                        message: "Must be at least 2 letters",
-                      },
+                      
                     })}
                 />
                 {errors.seasonalStreetAddressLineTwo && (
@@ -291,10 +278,10 @@ const MailingAddress = () => {
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       requiredForUS,
-                      pattern: {
+                      /*pattern: {
                         value: /^\d{5}(?:[-\s]\d{4})?$/,
                         message: "Must be valid zip/postal code",
-                      },
+                      },*/
                     })}
                 />
                 {errors.seasonalZipcode && (

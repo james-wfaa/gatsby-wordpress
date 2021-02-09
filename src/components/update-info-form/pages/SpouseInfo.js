@@ -45,17 +45,14 @@ const SpouseInfo = () => {
                     type="text"
                     name="firstname"
                     id="firstname"
+                    maxLength="51"
                     defaultValue={state.spouseInfo.firstname}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       required: { value: true, message: "Phone is required" },
-                      minLength: {
-                        value: 2,
-                        message: "Must be at least 2 letters",
-                      },
-                      pattern: {
-                        value: /^[A-Za-z @-]+$/,
-                        message: "Name must not contain numbers",
+                      maxLength: {
+                        value: 50,
+                        message: "First name must be less than 50 characters",
                       },
                     })}
                 />
@@ -70,17 +67,14 @@ const SpouseInfo = () => {
                     type="text"
                     name="lastname"
                     id="lastname"
+                    maxLength="51"
                     defaultValue={state.spouseInfo.lastname}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       required: { value: true, message: "Phone is required" },
-                      minLength: {
-                        value: 2,
-                        message: "Must be at least 2 letters",
-                      },
-                      pattern: {
-                        value: /^[A-Za-z @-]+$/,
-                        message: "Name must not contain numbers or special characters",
+                      maxLength: {
+                        value: 50,
+                        message: "Last name must be less than 50 characters",
                       },
                     })}
                 />
@@ -101,7 +95,7 @@ const SpouseInfo = () => {
                     ref={register({
                       pattern: {
                         value: /^(19|20)\d{2}$/,
-                        message: "Must be a valid year",
+                        message: "Must be a valid 4 digit graduation year, formatted YYYY",
                       },
                     })}
                 />

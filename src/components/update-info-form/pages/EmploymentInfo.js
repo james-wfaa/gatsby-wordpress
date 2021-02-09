@@ -58,7 +58,7 @@ const EmploymentInfo = () => {
                     defaultValue={state.employmentInfo.startDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      required: { value: true, message: "Phone is required" },
+                      required: { value: true, message: "Start date is required" },
                     })}
                 />
                 {errors.jobtitle && (
@@ -73,14 +73,6 @@ const EmploymentInfo = () => {
                     defaultValue={state.employmentInfo.jobTitle}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      minLength: {
-                        value: 2,
-                        message: "Must be at least 2 letters",
-                      },
-                      pattern: {
-                        value: /^[A-Za-z @-]+$/,
-                        message: "Job title must not contain numbers",
-                      },
                     })}
                 />
                 {errors.jobTitle && (
@@ -96,11 +88,7 @@ const EmploymentInfo = () => {
                     defaultValue={state.employmentInfo.businessName}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      required: { value: true, message: "Phone is required" },
-                      minLength: {
-                        value: 2,
-                        message: "Must be at least 2 letters",
-                      },
+                      required: { value: true, message: "Business Name is required" },
                     })}
                 />
                 {errors.businessName && (

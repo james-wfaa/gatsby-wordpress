@@ -111,6 +111,7 @@ export const colors = {
     formInputBorder: baseColors.lightGrey,
     disabledButtonGrey: baseColors.grey,
     captionRed: baseColors.mainRed,
+    checkboxInputGrey: baseColors.darkGrey,
 
 }
 

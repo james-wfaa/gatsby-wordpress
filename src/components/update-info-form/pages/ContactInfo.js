@@ -46,13 +46,14 @@ const ContactInfo = () => {
                     type="text"
                     name="firstname"
                     id="firstname"
+                    maxLength="51"
                     defaultValue={state.contactInfo.firstname}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       required: { value: true, message: "First Name is required" },
-                      minLength: {
-                        value: 2,
-                        message: "Must be at least 2 letters",
+                      maxLength: {
+                        value: 50,
+                        message: "First name cannot be more than 50 characters",
                       },
                     })}
                 />
@@ -66,10 +67,15 @@ const ContactInfo = () => {
                     type="text"
                     name="lastname"
                     id="lastname"
+                    maxLength="51"
                     defaultValue={state.contactInfo.lastname}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       required: { value: true, message: "Last Name is required" },
+                      maxLength: {
+                        value: 50,
+                        message: "Last name cannot be more than 50 characters",
+                      },
                     })}
                 />
               </label>
@@ -118,13 +124,18 @@ const ContactInfo = () => {
                     type="phone"
                     name="phone"
                     id="phone"
+                    maxLength="51"
                     defaultValue={state.contactInfo.phone}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      /*pattern: {
+                      pattern: {
                         value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
                         message: "Must be a valid phone number",
-                      },*/
+                      },
+                      maxLength: {
+                        value: 50,
+                        message: "Cannot be more than 50 characters",
+                      },
                     })}
                 />
               </label>
@@ -142,7 +153,11 @@ const ContactInfo = () => {
                     ref={register({
                       pattern: {
                         value: /^(19|20)\d{2}$/,
-                        message: "Must be a valid year",
+                        message: "Must be a valid 4 digit graduation year, formatted yyyy",
+                      },
+                      maxLength: {
+                        value: 4,
+                        message: "Must be 4 characters or less",
                       },
                     })}
                 />

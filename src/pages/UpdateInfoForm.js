@@ -51,7 +51,7 @@ const UpdateInfoForm = () =>  {
       <StyledUpdateInfoForm>
         { renderCurrentStep() }
         {console.log(state)}
-        { !(state.currentStep === 8 || state.currentStep === 9) && <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our Privacy Statement.</p>} 
+        { !(state.currentStep === 8 || state.currentStep === 9) && <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our <a href="">Privacy Statement</a>.</p>} 
       </StyledUpdateInfoForm>
     </Layout>
   )
@@ -216,7 +216,7 @@ form{
       margin-right: 10px;
       width: 20px;
       height: 20px;
-      border: 2px solid grey;
+      border: 2px solid ${colors.checkboxInputGrey};
       top: 3px;
     }
     input[type='radio'] + label::before {
@@ -378,7 +378,7 @@ form{
     }
     &.errorMessage::before{
       content: 'Please correct error(s) above';
-      font-family: "Verlag A", "Verlag B";
+      font-family: ${fonts.verlag};
       font-style: normal;
       margin: 0 auto;
       padding: 0;
@@ -451,6 +451,9 @@ form{
 
 .disclaimer{
   margin-bottom: 128px;
+  a{
+    color: ${colors.buttonRed};
+  }
 }
 `
 export default UpdateInfoForm

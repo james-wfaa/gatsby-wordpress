@@ -32,7 +32,7 @@ const PhoneInfo = () => {
                     defaultValue={state.phoneInfo.seasonalStartDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      
+                      required: { value: true, message: "Seasonal start date is required" },
                     })}
                 />
                 {errors.jobtitle && (
@@ -48,7 +48,7 @@ const PhoneInfo = () => {
                     defaultValue={state.phoneInfo.seasonalEndDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      
+                      required: { value: true, message: "Seasonal end date is required" },
                     })}
                 />
                 {errors.jobtitle && (
@@ -82,11 +82,11 @@ const PhoneInfo = () => {
                     defaultValue={state.phoneInfo.phoneNumber1}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      required: { value: true, message: "Phone is required" },
-                      pattern: {
+                      required: { value: true, message: "At least one valid phone number is required" },
+                      /*pattern: {
                         value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
                         message: "Must be a valid phone number",
-                      },
+                      },*/
                     })}
                 />
                 {errors.phoneNumber1 && (
