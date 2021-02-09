@@ -26,7 +26,12 @@ function WordPressPage({ page }) {
       buttonLink = "#event-listing";
     }
     else{
-      buttonLink = item.buttonLink.uri;
+      if(item.buttonLink){
+        buttonLink = item.buttonLink.uri;
+      }
+      else if(item.buttonExternalLinkUrl){
+        buttonLink = item.buttonExternalLinkUrl
+      }
     }
     return {
       link: buttonLink,
