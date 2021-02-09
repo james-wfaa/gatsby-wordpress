@@ -11,27 +11,28 @@ function WordPressPage({ page }) {
   /* extract the events to pass along with the blocks as helper data */
   const { eventCategory } = eventListing
 
-  const navContents = (wpChildren.nodes[0]) ? wpChildren.nodes.map((node) => {
-    console.log("Nav: " +  node.uri);
-    return node;
-  }
-  ) : ''
+  const navContents = (wpChildren.nodes[0]) 
+    ? wpChildren.nodes.map((node) => {
+      console.log("Nav: " +  node.uri);
+      return node
+    }) 
+    : ''
 
-  const normalizedButtons = (buttons) ? buttons.map(item=>{
-    let buttonLink = "";
-    if(item.goToEvents){
-      buttonLink = "#event-listing";
-    }
-    else{
-      buttonLink = item.buttonLink.uri;
-    }
-    return {
-      link: buttonLink,
-      text: item.buttonText
-    }
-
-  }
-  ) : ''
+  const normalizedButtons = (buttons) 
+    ? buttons.map(item=>{     
+      let buttonLink = (item.goToEvents) 
+        ? "#event-listing"
+        : (item.buttonLink?.uri)
+          ? item.buttonLink.uri
+          : (item.buttonExternalLinkUrl) 
+            ? item.buttonExternalLinkUrl
+            : '#'
+      return {
+        link: buttonLink,
+        text: item.buttonText
+      }
+    }) 
+  : ''
   return (
     <Layout title={title}>
       { featuredImage?.node && (
