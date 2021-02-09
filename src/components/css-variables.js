@@ -107,10 +107,11 @@ export const colors = {
     mapDetailsText: baseColors.offBlack,
     disabledGrey: baseColors.darkGrey,
     captionBlack: baseColors.offBlack,
+    formIntroBg: baseColors.lightestGrey,
+    formInputBorder: baseColors.lightGrey,
+    disabledButtonGrey: baseColors.grey,
     captionRed: baseColors.mainRed,
-
-
-
+    checkboxInputGrey: baseColors.darkGrey,
 
 }
 
