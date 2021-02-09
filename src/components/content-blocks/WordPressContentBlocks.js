@@ -73,7 +73,6 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
             case "core/separator":
                 RenderedBlocks.push(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
             case "acf/product-story-listing":
-                console.log('story-listing-section')
                 if ( product) {
                     const { slug, posts } = product
                     const postsToShow = (posts?.nodes) ? posts.nodes : null
