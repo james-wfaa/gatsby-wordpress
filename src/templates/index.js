@@ -4,11 +4,12 @@ import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 
-export default ({ data }) => (
+const Index = ({ data }) => (
   <Layout>
     <h1>this template has been cleaned out</h1>
   </Layout>
 )
+export default Index
 
 export const query = graphql`
   fragment Thumbnail on File {

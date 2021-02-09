@@ -6,11 +6,9 @@ import ContentCardD from "../components/content-blocks/ContentCardD"
 import GridCardD from "../components/content-modules/GridCardD"
 import ContentCard from "../components/content-blocks/ContentCard"
 import CardE from "../components/content-blocks/CardE"
-import PromoCardD from "../components/content-blocks/PromoCardD"
 import HeroIntroSection from "../components/page-sections/HeroIntroSection"
 import CommunicationForm from "../components/content-blocks/CommunicationForm"
 import SimpleSlider from "../components/content-modules/SimpleSlider"
-import { sizes, colors } from "../components/css-variables"
 
 const taglist2 = [
   {
@@ -45,7 +43,7 @@ const featuredbutton = [
   },
 ]
 
-export default ({ data }) => {
+const HomePage = ({ data }) => {
   const { events } = data
 
   const cardGridEvents = events.edges.slice(0,9)
@@ -169,6 +167,8 @@ export default ({ data }) => {
     </Layout>
   )
 }
+
+export default HomePage
 
 export const pageQuery = graphql`
   query {

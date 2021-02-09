@@ -1,11 +1,7 @@
 import React from "react"
-import propTypes from "prop-types";
-import styled, { css }  from 'styled-components'
+import styled from 'styled-components'
 import { colors, breakpoints, sizes } from '../css-variables'
-import TiSocialTwitter from "../../svg/uwa__twitter_white_24x24.inline.svg";
-import {FaFacebookF} from "react-icons/fa";
-import {AiFillMail} from "react-icons/ai";
-import { ShareBlockStandard, ShareButtonIconOnly } from "react-custom-share";
+
 import {
     EmailShareButton,
     FacebookShareButton,

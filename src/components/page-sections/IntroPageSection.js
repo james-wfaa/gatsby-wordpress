@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { colors, sizes, breakpoints } from "../css-variables"
+import { sizes, breakpoints } from "../css-variables"
 
 import HeroData from "./HeroData"
 

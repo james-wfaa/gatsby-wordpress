@@ -8,7 +8,6 @@ import CardE from "../components/content-blocks/CardE"
 import PromoCardD from "../components/content-blocks/PromoCardD"
 import HeroIntroSection from "../components/page-sections/HeroIntroSection"
 import SimpleSlider from "../components/content-modules/SimpleSlider"
-import { sizes, colors } from "../components/css-variables"
 
 const taglist2 = [
   {
@@ -43,7 +42,7 @@ const featuredbutton = [
   },
 ]
 
-export default ({ data }) => {
+const ChptPage = ({ data }) => {
 
   return (
     <Layout>
@@ -192,6 +191,7 @@ export default ({ data }) => {
     </Layout>
   )
 }
+export default ChptPage
 
 export const pageQuery = graphql`
   query {

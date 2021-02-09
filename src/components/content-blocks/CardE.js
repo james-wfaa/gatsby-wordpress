@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { sizes, breakpoints, mixins, colors } from '../css-variables'
+import {  mixins } from '../css-variables'
 
 import Img from 'gatsby-image'
 

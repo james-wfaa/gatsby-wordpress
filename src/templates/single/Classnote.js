@@ -2,11 +2,13 @@ import React from "react"
 import { graphql } from "gatsby"
 import Classnote from "../../components/template-parts/wordpress-classnote"
 
-export default ({ data }) => {
+const ClassNote = ({ data }) => {
 //console.log('Post.js data:',data)
 
 return (<Classnote data={data} />)
 }
+
+export default ClassNote
 
 export const query = graphql`
   query classnote($id: String!) {

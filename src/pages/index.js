@@ -1,11 +1,10 @@
 import React from "react"
 import Layout from "../components/layout"
 import PageSection from "../components/page-sections/GenericPageSection"
-
 import { Link } from "gatsby"
 
 
-export default () => (
+const IndexPage = () => (
   <Layout>
     <PageSection pad>
       <h1>uwalumni.com redesign - development work in progress</h1>
@@ -121,3 +120,4 @@ export default () => (
     </PageSection>
   </Layout>
 )
+export default IndexPage

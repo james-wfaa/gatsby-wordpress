@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import * as dayjs from "dayjs"
 import isAfter from 'dayjs/plugin/isSameOrAfter'
-import styled from "styled-components"
 
 dayjs.extend(isAfter)
 
