@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
 import ContentCard from "../../components/content-blocks/ContentCard"
+import EventContentCard from "../../components/content-blocks/EventContentCard"
 import EventCardD from "../../components/content-blocks/EventCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
 import SimpleSlider from "../../components/content-modules/SimpleSlider"
@@ -60,7 +61,7 @@ function WordPressPage({ data }) {
     //console.log( 'featuredEvent:',featuredEvent )
     if (featuredEvent) {
         return (
-          <ContentCard key={event.url} size="L" img={cardImg} {...event.node} />
+          <EventContentCard key={event.url} size="L" img={cardImg} {...event.node} />
         )
     }
   })
