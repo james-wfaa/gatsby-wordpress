@@ -7,7 +7,7 @@ import HeroIntroSection from '../components/page-sections/HeroIntroSection'
 import MobileHr from '../components/parts/MobileHr'
 
 
-export default ({ data }) => {
+const IntroSectionPage = ({ data }) => {
 
     return (
       <Layout>
@@ -126,6 +126,8 @@ export default ({ data }) => {
       </Layout>
     )
 }
+
+export default IntroSectionPage
 
 export const pageQuery = graphql`
 query {

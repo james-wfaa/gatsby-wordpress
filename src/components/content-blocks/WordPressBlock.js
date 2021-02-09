@@ -6,7 +6,7 @@ import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
 
 const WordPressBlock = ({className, block}) => {
-
+    //console.log(block)
     if (block) {
         if (block.originalContent) {
             const blockContent = (block.isDynamic)
