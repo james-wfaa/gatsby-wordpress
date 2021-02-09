@@ -41,6 +41,9 @@ margin: 0 auto;
     font-size: ${sizes.s18};
     line-height: ${sizes.s36};
     text-decoration: none;
+    &:hover {
+        color: ${colors.linkTextHover};
+    }
     
 }
 
