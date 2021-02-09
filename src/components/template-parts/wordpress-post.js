@@ -9,7 +9,7 @@ import FeaturedImage from "../content-blocks/FeaturedImage"
 
 function BlogPost({ data }) {
   const { page } = data
-  const { title,  featuredImage, categories, author, date, excerpt, heroImage, link } = page
+  const { title, content, featuredImage, categories, products, author, date, excerpt, heroImage, link } = page
   console.log(heroImage, featuredImage)
 
   let heroSize = heroImage.heroImage && heroImage.heroImage.mediaDetails.width ? heroImage.heroImage.mediaDetails.width : null
