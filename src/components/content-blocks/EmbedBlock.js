@@ -6,7 +6,8 @@ const EmbedBlock = ({source, type}) => {
 
   console.log(type)
   console.log(source)
-  console.log(source.children)
+
+  //console.log(source.children)
   //console.log(parse(data.data))
   switch (type) {
     case "vimeo":
