@@ -20,14 +20,30 @@ const QuestionForm = styled.form`
 `
 
 const FormHeader = styled.div`
-  background-color: ${colors.bgActiveGrey};
+  background-color: ${colors.formHeaderBGGrey};
   padding: 48px;
   border-top: 3px solid ${colors.iconGrey};
   border-collapse: collapse;
+  position:relative;
   p {
     margin: 0;
     font-size: 18px;
     color: ${colors.badgerRed};
+    font-weight: 900;
+  }
+  &:after{
+    position: absolute;
+    content: '';
+    bottom: -20px;
+    left: 50%;
+    height: 40px;
+    width: 16px;
+    z-index: 1;
+    border-left: 2px solid ${colors.badgerRed};
+    border-right: 2px solid ${colors.badgerRed};
+    -webkit-transform: skew(135deg);
+    -ms-transform: skew(135deg);
+    transform: skew(135deg);
   }
 `
 
@@ -38,12 +54,15 @@ const FormSection = styled.div`
     font-size: 54px;
     color: ${colors.badgerRed};
     font-family: ${fonts.eaves};
+    font-style: italic;
   }
 `
 const FormQuestion = styled.p`
   font-size: 32px;
   font-family: ${fonts.eavesNarrow};
   margin-bottom: 48px;
+  font-style: italic;
+  font-weight:bold;
 `
 const StyledCheckbox = styled.div`
   display: inline-block;
@@ -427,7 +446,7 @@ const MembershipForm = () => {
                 <label for="joint">Joint</label>
               </StyledCheckbox>
             </FormSection>
-            <p style={{margin: `32px auto 0`}}>You must answer all three questions before submitting</p>
+            <p style={{margin: `32px auto 0`, fontStyle: `italic`}}>You must answer all three questions before submitting. Thank you.</p>
             <FormSubmitButton disabled={disabled} onClick={(e) => handleSubmit(e)}>SUBMIT</FormSubmitButton>
           </QuestionForm>
         </PageSection>
