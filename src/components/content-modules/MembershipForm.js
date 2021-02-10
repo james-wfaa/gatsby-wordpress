@@ -154,9 +154,10 @@ const ClearButton = styled.div`
   p {
     color: ${colors.badgerRed};
     margin: 0;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     font-weight: bold;
+    text-transform: uppercase;
   }
 `
 
@@ -181,6 +182,7 @@ const OptionsText = styled.p`
   margin: 0 0 0 24px;
   align-self: center;
   color: ${colors.badgerRed};
+  font-style:italic;
 `
 
 const FeeBoxHeading = styled.div`
@@ -257,18 +259,24 @@ const FeeCard = styled.div`
       margin-bottom: 0;
     }
   }
+  + p{
+    font-size:16px;
+  }
 `
 const FeeCardHeader = styled.div`
   background-color: ${colors.bgLightGrey};
   padding-top: 16px;
   p {
     margin: 0;
+    font-weight: 900;
   }
   h2 {
     padding-top: 1rem;
     padding-bottom: 1rem;
     font-size: 32px;
     color: ${colors.badgerRed};
+    font-family: ${fonts.eaves};
+    font-style:italic;
   }
 `
 const FeeParamList = styled.p`
