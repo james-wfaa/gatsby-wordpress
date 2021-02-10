@@ -134,16 +134,22 @@ const ClearFilterSection = styled.div`
   display: flex;
 `
 const FormSubmitButton = styled.button`
-  background-color: ${colors.borderGrey};
+  background-color: ${colors.badgerRed};
   margin: 40px auto;
   border: none;
   width: 98px;
   height: 48px;
   color: ${colors.bgWhite};
   font-weight: bold;
+  :hover {
+    box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
+    cursor:pointer;
+  }
   :disabled{
     background-color: rgba(239,239,239, 0.5);
     color: #fff;
+    box-shadow: none;
+    cursor:default;
   }
 `
 const ClearButton = styled.div`
