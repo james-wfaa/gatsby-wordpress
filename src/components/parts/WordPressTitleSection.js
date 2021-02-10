@@ -18,7 +18,7 @@ const TitleSection = ({ className, heading, author, product, date, excerpt, seri
                 <h1>{heading}</h1>
             )}
             <div className="titlesection">
-                { author && author.node.name.toLowerCase() != defaultAuthor.toLowerCase() &&  (
+                { author && author.node.name.toLowerCase() !== defaultAuthor.toLowerCase() &&  (
                     <div className={`${className}__author`}>{author.node.name}</div>
                 )}
                 { date && (

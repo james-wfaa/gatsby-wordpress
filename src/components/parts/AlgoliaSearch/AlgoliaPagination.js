@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Pagination } from 'react-instantsearch-dom'
-import { fonts, colors } from '../../css-variables'
+import { colors } from '../../css-variables'
 
 const PaginationWrapper = styled.div`
   width: 760px;
