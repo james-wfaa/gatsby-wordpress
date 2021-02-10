@@ -4,6 +4,8 @@ import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"
 import EmbedBlock from "./EmbedBlock"
 import GravityForm from './GravityForm'
+import AccordionNavigation from './AccordionNavigation'
+
 
 import styled from 'styled-components'
 import { colors, breakpoints, mixins } from '../css-variables'
@@ -28,10 +30,9 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
         const stagger = block.stagger
 
-        console.log(block.name)
+        console.log("block name: " + block.name)
 
-        switch(block.name) {
-            
+        switch(block.name) {            
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
                     console.log('page-section')
@@ -86,6 +87,11 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
                 break
             case "core/separator":
                 RenderedBlocks.push(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+            case "acf/accordion-navigation":
+                if(block.dynamicContent){
+                    return <AccordionNavigation className={block.name.replace('/', '-')} blockContent={block.dynamicContent} />
+                }
+                break
             case "acf/product-story-listing":
                 if ( product) {
                     const { slug, posts } = product

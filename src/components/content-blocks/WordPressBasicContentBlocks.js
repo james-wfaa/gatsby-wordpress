@@ -9,6 +9,8 @@ import Block from './WordPressBlock'
 import GravityForm from '../content-blocks/GravityForm'
 import { useStaticQuery, graphql } from 'gatsby'
 import Column from '../parts/WordPressColumns'
+import AccordionNavigation from './AccordionNavigation'
+
 
 
 const AllGravityData = () => {
@@ -70,13 +72,17 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
 
         const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-        //(block.name)
         switch(block.name) {
             case "core/separator":
                 return(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
                 break
             case "core/group":
             case "acf/events-listing-section":
+                break
+            case "acf/accordion-navigation":
+                if(block.dynamicContent){
+                    return <AccordionNavigation className={block.name.replace('/', '-')} blockContent={block.dynamicContent} />
+                }
                 break
             case "core/columns":
                 return (<Column className={block.name.replace('/', '-')} block={block} />)
