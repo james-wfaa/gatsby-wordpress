@@ -179,6 +179,10 @@ const JoinButton = styled(Link)`
     line-height: 48px;
     height: 48px;
   }
+  :hover {
+    box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
+    cursor:pointer;
+  }
 `
 
 const clearText = `< Reset Selections`
