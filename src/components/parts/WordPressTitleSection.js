@@ -3,12 +3,13 @@ import styled from 'styled-components'
 import { sizes, colors, fonts, breakpoints } from '../css-variables'
 import FeaturedImage from "../content-blocks/FeaturedImage"
 
-const TitleSection = ({ className, heading, author, categories, date, excerpt, series, event = false, smImg, size }) => {
+const TitleSection = ({ className, heading, author, product, date, excerpt, series, event = false, smImg, size }) => {
+
+    console.log(product) 
 
     const classesList = !event ? `${className}` : `${className} ${className}--event`
-    const theCategory = !categories? null : categories.nodes[0]
     const defaultAuthor = "Wisconsin Alumni Association";
-    console.log(smImg)
+    //console.log(smImg)
 
     return (
         <div className={classesList}>
@@ -23,9 +24,15 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
                 { date && (
                     <div className={`${className}__date`}>{date}</div>
                 )}
-                { theCategory && (
+                { product && (
                     <div className={`${className}__category`}>
-                        <a className="category__item" href={`/${theCategory.slug}`}>{theCategory.name}</a>
+                        { product?.pages?.nodes?.uri && (
+                            <a className="category__item" href={`${product.pages.nodes[0].uri}`}>{product.name}</a>
+                        )}
+                        { !product?.pages?.nodes && (
+                            <>{product.name}</>
+                        )}
+                        
                         <span> &gt;</span></div>
                 )}
                 { series && (

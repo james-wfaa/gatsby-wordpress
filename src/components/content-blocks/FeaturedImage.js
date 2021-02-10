@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { sizes, colors, fonts, breakpoints } from '../css-variables'
+import { sizes, colors, breakpoints } from '../css-variables'
 
 import Img from "gatsby-image"
 
@@ -52,6 +52,14 @@ margin: ${sizes.s58} 0;
   margin: 5px 12px 12px 0;
   @media screen and ${breakpoints.tablet} {
     float: left; 
+  }
+  @media screen and ${breakpoints.tabletL} {
+    &:before {
+      display: none;
+    }
+    &:after {
+      display: none;
+    }
   }
 }
 

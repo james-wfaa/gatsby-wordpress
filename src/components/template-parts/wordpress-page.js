@@ -1,5 +1,4 @@
 import React from "react"
-import { useStaticQuery, graphql } from 'gatsby'
 import { breakpoints } from "../css-variables"
 import styled from "styled-components"
 import Layout from "../layout"
@@ -10,7 +9,7 @@ import PageSectionHeader from '../parts/PageSectionHeader'
 import { useWindowSize } from "../hooks"
 
 function WordPressPage({ page }) {
-  const { title, content, blocks, eventListing, ancestors, wpChildren, menu } = page
+  const { title, content, blocks, eventListing, ancestors } = page
   const { eventCategory } = eventListing
   const { width } = useWindowSize()
 
@@ -88,7 +87,7 @@ function WordPressPage({ page }) {
   return (
     <Layout title={title}>
       <PageWrapper>
-        {width > 1200
+        {width >= 1200
         ?
         <>
         { wpMenu && (
