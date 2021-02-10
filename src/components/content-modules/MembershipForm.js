@@ -72,6 +72,62 @@ const StyledCheckbox = styled.div`
     margin: 12px;
     font-size: 26px;
   }
+  input[type='radio'] {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+  }
+  input[type='radio'] + label{
+    display: block;
+    position: relative;
+    padding: 0 1.5rem;
+    cursor:pointer;
+  }
+  input[type='radio'] + label::before {
+    content: '';
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid ${colors.checkboxInputGrey};
+    top: 3px;
+  }
+  input[type='radio'] + label::before {
+    border-radius: 50%;
+  }
+  input[type='radio']:checked + label::before {
+    background: ${colors.buttonRed};
+    border: 2px solid ${colors.buttonRed};
+  }
+  input[type='radio']:checked + label::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 30px;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    height: 8px;
+    width: 14px;
+    transform: rotate(-45deg);
+  }
+  input[type='radio']:checked + label::after {
+    content: '';
+    position: absolute;
+    border: 2px solid white;
+    top: 8.25px;
+    left: 30px;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+  }
+  input[type='radio']:focus + label::before {
+    outline: #5d9dd5 solid 1px;
+    box-shadow: 0 0px 8px #5e9ed6;
+  }
 `
 const ClearFilterSection = styled.div`
   margin-bottom: 58px;
