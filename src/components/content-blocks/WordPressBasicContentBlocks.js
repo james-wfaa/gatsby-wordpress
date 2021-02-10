@@ -1,4 +1,8 @@
 import React from 'react'
+import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
+import PageSection from "../page-sections/PageSection"
+import CardHandler from "../content-modules/CardHandler"
+import EmbedBlock from "./EmbedBlock"
 import styled from 'styled-components'
 import { breakpoints, mixins, sizes } from '../css-variables'
 import Block from './WordPressBlock'
@@ -73,7 +77,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 break
             case "core/group":
             case "acf/events-listing-section":
-                break  
+                break
             case "core/columns":
                 return (<Column className={block.name.replace('/', '-')} block={block} />)
             case "core/buttons":
@@ -81,7 +85,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 if(block.innerBlocks && block.innerBlocks[0].originalContent){
                     let innerRenderedBlocks = [];
                     block.innerBlocks.forEach((innerBlock) => {
-                        innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />) 
+                        innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />)
                     })
                     //console.log("blocks: " + innerRenderedBlocks)
                     return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
@@ -109,8 +113,12 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             case "core/freeform":
                 return(<div className={block.name.replace('/', '-')} dangerouslySetInnerHTML={{__html: content}} />)
                 break
+            case "core-embed/flickr":
+                return <EmbedBlock data={block.originalContent} />
+                break
+            
             default:
-                return (<Block className={block.name.replace('/', '-')} block={block} />)    
+                return (<Block className={block.name.replace('/', '-')} block={block} />)
                 break
         }
     }
@@ -134,7 +142,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
 }
 
 const StyledWordPressContentBlocks = styled(WordPressContentBlocks)`
-/* Start Styles copied form WPBlock - should these be here?*/ 
+/* Start Styles copied form WPBlock - should these be here?*/
 min-width: 300px;
     width: 100%;
     max-width: 303px;
@@ -155,7 +163,7 @@ min-width: 300px;
 .core-freeform {
     margin-bottom: ${sizes.s32};
 }
-/* End Styles copied form WPBlock*/ 
+/* End Styles copied form WPBlock*/
 
 margin: 0 auto;
 position: relative;
@@ -167,6 +175,23 @@ max-width: 100%;
 
 hr.wp-block-separator {
     ${mixins.separator}
+}
+
+.core-columns{
+    max-width: 303px;
+
+    @media screen and ${breakpoints.tabletS} {
+        display: flex;
+        max-width: 536px;
+    }
+    @media screen and ${breakpoints.laptopS} {
+        max-width: 712px;
+    }
+    .core-column{
+        flex: 1 1 auto;
+        flex-shrink: 1;
+        min-width: 50px;
+    }
 }
 
 `

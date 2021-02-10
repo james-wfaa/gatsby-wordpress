@@ -290,6 +290,12 @@ margin: ${sizes.s48} auto 0;
         line-height: ${sizes.s26};
         margin-bottom: ${sizes.s16};
     }
+    .tribe-block__events-link,
+    .tribe-events-event-image,
+    .tribe-block__venue,
+    .tribe-events-event-meta {
+        display: none;
+    }
 }
 
 

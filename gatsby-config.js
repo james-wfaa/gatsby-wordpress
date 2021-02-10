@@ -8,6 +8,7 @@ require("dotenv").config({
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
+process.env.WP_DISABLE_POLLING = 1
 
 module.exports = {
   siteMetadata: {
@@ -23,6 +24,22 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: "gatsby-omni-font-loader",
+      options: {
+        mode: "render-blocking",
+        web: [
+          {
+            name: ["Verlag A", "Verlag B"],
+            file: "https://cloud.typography.com/7708974/664088/css/fonts.css"
+          },
+          {
+            name: ["mrs-eaves-xl-serif", "mrs-eaves-xl-serif-narrow"],
+            file: "https://use.typekit.net/suj0sae.css"
+          },
+        ],
       },
     },
     {

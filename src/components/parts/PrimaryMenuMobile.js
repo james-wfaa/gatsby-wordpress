@@ -1,11 +1,10 @@
 import { Link } from "gatsby"
 import React, { useState, useEffect } from "react"
-import { colors, sizes, size, breakpoints } from "../css-variables"
-import styled, { css } from "styled-components"
+import { colors, sizes } from "../css-variables"
+import styled from "styled-components"
 import { useTransition, animated } from "react-spring"
 import { useWindowSize } from "../hooks"
 import HeaderSocialIcons from "./HeaderSocialIcons"
-import Header from "../header"
 import FbIcon from "../../svg/fb_icon_gray.svg" // Tell webpack this JS file uses this image
 import TwIcon from "../../svg/twitter_icon_gray.svg" // Tell webpack this JS file uses this image
 import IgIcon from "../../svg/instagram_icon_gray.svg" // Tell webpack this JS file uses this image

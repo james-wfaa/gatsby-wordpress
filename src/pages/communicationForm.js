@@ -4,7 +4,7 @@ import CommunicationForm from "../components/content-blocks/CommunicationForm"
 import GenericPageSection from '../components/page-sections/GenericPageSection'
 import MobileHr from '../components/parts/MobileHr'
 
-export default () => {
+const CommForm = () => {
     return (
       <Layout>
         <GenericPageSection>
@@ -31,3 +31,4 @@ export default () => {
       </Layout>
     )
 }
+export default CommForm

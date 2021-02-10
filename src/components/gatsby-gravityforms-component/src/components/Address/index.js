@@ -61,7 +61,7 @@ const Address = ({ errors, fieldData, name,  register, value, ...wrapProps }) =>
        
     }) 
 
-    console.log(renderedSubfields)
+    //console.log(renderedSubfields)
 
     const inputFields = renderedSubfields.map(subfield => {
                     

@@ -19,7 +19,7 @@ const InputWrapper = ({
     wrapClassName,
     wrapId,
 }) => {
-    console.log(label)
+    //console.log(label)
     return (
         <li
             className={classnames(

@@ -2,7 +2,8 @@ import React from 'react'
 import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
 import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"
-import GravityForm from '../content-blocks/GravityForm'
+import EmbedBlock from "./EmbedBlock"
+import GravityForm from './GravityForm'
 
 import styled from 'styled-components'
 import { colors, breakpoints, mixins } from '../css-variables'
@@ -26,6 +27,8 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
     staggerBlocks.forEach((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
         const stagger = block.stagger
+
+        console.log(block.name)
 
         switch(block.name) {
             
@@ -70,6 +73,17 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
                 
                 break
         
+            case "core-embed/flickr":
+                return <EmbedBlock source={block.originalContent} type="flickr" />
+                break
+            case "core-embed/vimeo":
+                console.log('vimeo')
+                console.log(block)
+                //return <div>foo</div>//
+                RenderedBlocks.push(<PageSection borderTop={borderTop} stagger={stagger}>
+                    <EmbedBlock source={block.originalContent} type="vimeo" />
+                    </PageSection>)
+                break
             case "core/separator":
                 RenderedBlocks.push(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
             case "acf/product-story-listing":

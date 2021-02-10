@@ -1,5 +1,4 @@
 import React from "react"
-import { useStaticQuery, graphql } from 'gatsby'
 import { breakpoints } from "../css-variables"
 import styled from "styled-components"
 import Layout from "../layout"
@@ -10,8 +9,7 @@ import PageSectionHeader from '../parts/PageSectionHeader'
 import { useWindowSize } from "../hooks"
 
 function WordPressPage({ page }) {
-  const { title, content, blocks, eventListing, ancestors, wpChildren, menu } = page
-  const { eventCategory } = eventListing
+  const { title, content, blocks,  ancestors } = page
   const { width } = useWindowSize()
 
   // Temporary Query until dynamic menus added to page query
@@ -88,7 +86,7 @@ function WordPressPage({ page }) {
   return (
     <Layout title={title}>
       <PageWrapper>
-        {width > 1200
+        {width >= 1200
         ?
         <>
         { wpMenu && (
@@ -96,7 +94,7 @@ function WordPressPage({ page }) {
         )}
           
           <PageSection heading={title} pageTitle leftAlign defaultPage divider>
-            <WordPressContent blocks={blocks} eventCategory={eventCategory} content={content} />
+            <WordPressContent blocks={blocks}  content={content} />
           </PageSection>
         </>
         :
@@ -106,7 +104,7 @@ function WordPressPage({ page }) {
           <Menu name={wpMenu.name} menuItems={wpMenu.menuItems.nodes} width={width} />
         )}
           <PageSection pageTitle>
-            <WordPressContent blocks={blocks} eventCategory={eventCategory} content={content} />
+            <WordPressContent blocks={blocks} content={content} />
           </PageSection>
         </>
       }

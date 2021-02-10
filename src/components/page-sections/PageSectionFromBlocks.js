@@ -7,9 +7,8 @@ import ImageWithCaption from '../content-blocks/ImageWithCaption'
 import SimpleSlider from '../content-modules/SimpleSlider'
 import CardSet from "../content-modules/CardSet"
 import Block from '../content-blocks/WordPressBlock'
-import Button from "../parts/Button"
 import Column from '../parts/WordPressColumns'
-
+import EmbedBlock from "../content-blocks/EmbedBlock"
 
 
 const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, centered }) => {
@@ -49,7 +48,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                 const innerContent =  ((block.dynamicContent && block.dynamicContent !== "") ? block.dynamicContent : block.originalContent)
                 if (block.name === "core/image") {
                     return (
-                        <ImageWithCaption><div dangerouslySetInnerHTML={{__html: innerContent}} /></ImageWithCaption>
+                        <ImageWithCaption storyCaption="storyCaption" ><div dangerouslySetInnerHTML={{__html: innerContent}} /></ImageWithCaption>
                     )
                 } else {
                     return <div dangerouslySetInnerHTML={{__html: innerContent}} />
@@ -69,7 +68,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
             })}</CardSet>)
             : blocks.map((block) => {
 
-                console.log(block.name)
+                //console.log(block.name)
 
                 switch(block.name) {
                     case "acf/section-header":
@@ -133,6 +132,13 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         break
                     case "core/columns":
                         return (<Column className={block.name.replace('/', '-')} block={block} />)
+
+                    case "core-embed/vimeo":
+                        console.log('vimeo')
+                        console.log(block)
+                        //return <div>foo</div>//
+                        return (<div className="wp-block-embed"><EmbedBlock source={block.originalContent} type="vimeo" /></div>)
+                        break
             
                     default:
                         //console.log('default block', block.name)
