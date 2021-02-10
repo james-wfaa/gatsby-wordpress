@@ -10,9 +10,7 @@ const ContactInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setContactInfoOnchange } = actions;
 
-  const { register, handleSubmit, watch, errors, formState: { isValid } } = useForm({
-    mode: "onChange",
-  })
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateContactInfo = data =>{
     //console.log(data)
     setCurrentStep(2)
@@ -34,7 +32,7 @@ const ContactInfo = () => {
               headingCompact
             />
             <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
-              { (requiredFieldsCheck && !isValid)  && <StyledTopError>Please correct error(s) below</StyledTopError>}
+              { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
               <legend>Contact Information<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="firstname" className="half required">First Name
@@ -176,10 +174,13 @@ const ContactInfo = () => {
                     })}
                 />
               </label>
+              
               <Buttons 
                 save
-                disabled={ !requiredFieldsCheck || !isValid }
-                error={ requiredFieldsCheck && !isValid } />
+                disabled={ !requiredFieldsCheck }
+                error={ requiredFieldsCheck && (Object.keys(errors).length !== 0) }
+                errors={errors}
+                submitCount={submitCount} />
             </form>
         </div>
     )

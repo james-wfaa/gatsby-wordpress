@@ -193,7 +193,7 @@ form{
     }
     .checkboxWrap{
       margin: 0 auto;
-      max-width: 390px;
+      max-width: 442px;
     }
     input[type='checkbox'], input[type='radio'] {
       position: absolute !important;
@@ -334,6 +334,7 @@ form{
       &:disabled {
         background-color: ${colors.disabledButtonGrey};
         box-shadow:none;
+        cursor: default;
       }
     }
     &.back{
@@ -366,8 +367,14 @@ form{
     &#submitbutton{
       background-color: ${colors.buttonRed};
       color: ${colors.titleWhite};
+      &:hover {
+        background-color: ${colors.buttonHoverRed};
+        box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
+      }
       &:disabled {
         background-color: ${colors.disabledButtonGrey};
+        box-shadow: none;
+        cursor:default;
       }
       @media screen and ${breakpoints.tabletS} {
         margin-right: 40px;
@@ -446,6 +453,12 @@ form{
   .content{
     margin-bottom: 70px;
   }
+}
+.validFormMessage{
+  top: -30px;
+  position: absolute;
+  width: 100%;
+  font-weight:bold;
 }
 
 
