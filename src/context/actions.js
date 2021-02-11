@@ -66,6 +66,10 @@ export const useActions = (state, dispatch) => {
   function setSpouseInfoOnchange(obj) {
     dispatch({ type: types.SET_SPOUSE_INFO_ONCHANGE, payload: obj})
   }
+  function setCommunicationsSignUpOnchange(array) {
+    dispatch({ type: types.SET_COMMUNICATIONS_SIGNUP_ONCHANGE, payload: array})
+  }
+  
 
   return {
     setSearchString,
@@ -86,6 +90,7 @@ export const useActions = (state, dispatch) => {
     setIdentityInfoOnchange,
     setSpouseInfo,
     setSpouseInfoOnchange,
+    setCommunicationsSignUpOnchange,
     setMembershipGraduate,
     setMembershipAge,
     setMembershipType

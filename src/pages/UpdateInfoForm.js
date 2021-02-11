@@ -85,7 +85,7 @@ form{
     margin-bottom: 12px;
     display:block;
     position:relative;
-    font-weight:bold;
+    font-weight:900;
     width: 100%;
     .requiredInfo{
       position:absolute;
@@ -306,12 +306,12 @@ form{
     text-decoration: none;
     margin: ${sizes.s24} auto 0 ;
     border:none;
-    max-width:310px;
+    max-width:315px;
     border-radius: 0;
     &:hover {
       cursor:pointer;
     }
-    &.next, &.save{
+    &.next, &.save, &.signup{
       background-color: ${colors.buttonRed};
       color: ${colors.titleWhite};
       &:after{
@@ -356,7 +356,6 @@ form{
         margin-right: 40px;
       }
     }
-    &.signup, 
     &.address{
       color:white;
       background-color: ${colors.buttonRed};

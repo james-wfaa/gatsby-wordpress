@@ -26,8 +26,9 @@ const MailingAddress = () => {
     setMailingAddressOnchange([e.target.name, e.target.value])
   }
 
+  //check country, check if seasonal address checked
   const requiredFieldsCheck = state.mailingAddress.country === "US" ? state.mailingAddress.streetAddress !== '' && state.mailingAddress.city !== '' && state.mailingAddress.state !== '' && state.mailingAddress.zipcode !== '' : state.mailingAddress.streetAddress !== '';
-
+  
   const requiredForUS = state.mailingAddress.country === "US" ? `required: { value: true, message: "This field is required" },` : null
   
   const countryOptions = countries.map(country => {
@@ -189,22 +190,6 @@ const MailingAddress = () => {
                   <StyledError>{errors.jobtitle.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="seasonalAddressType" className="half select-dropdown">Address Type
-                <select name="seasonalAddressType" defaultValue={state.mailingAddress.seasonalAddressType}>
-                  <option value="home">Home</option>
-                </select>
-                {errors.seasonalAddressType && (
-                  <StyledError>{errors.seasonalAddressType.message}</StyledError>
-                )}
-              </label>
-              <label htmlFor="seasonalCountry" className="half leftMargin required">Country
-                <select name="seasonalCountry" onChange={e => updateOnChangeValues(e)} defaultValue={state.mailingAddress.seasonalCountry}>
-                  {countryOptions}
-                </select>
-                {errors.seasonalCountry && (
-                  <StyledError>{errors.seasonalCountry.message}</StyledError>
-                )}
-              </label>
               <label htmlFor="seasonalStreetAddress">Street Address
                 <span className="required">*</span>
                 <input
@@ -237,7 +222,7 @@ const MailingAddress = () => {
                 )}
               </label>
               <label htmlFor="seasonalCity" className="bigThird">City
-                {state.mailingAddress.seasonalCountry === 'US' ? <span className="required">*</span> : null}
+                <span className="required">*</span>
                 <input
                     type="text"
                     name="seasonalCity"
@@ -286,6 +271,14 @@ const MailingAddress = () => {
                 />
                 {errors.seasonalZipcode && (
                   <StyledError>{errors.seasonalZipcode.message}</StyledError>
+                )}
+              </label>
+              <label htmlFor="seasonalCountry" className="half required">Country
+                <select name="seasonalCountry" onChange={e => updateOnChangeValues(e)} defaultValue={state.mailingAddress.seasonalCountry}>
+                  {countryOptions}
+                </select>
+                {errors.seasonalCountry && (
+                  <StyledError>{errors.seasonalCountry.message}</StyledError>
                 )}
               </label>
               </div> ) : null }

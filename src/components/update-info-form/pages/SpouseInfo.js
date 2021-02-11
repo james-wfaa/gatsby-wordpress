@@ -99,8 +99,8 @@ const SpouseInfo = () => {
                       },
                     })}
                 />
-                {errors.spouseUndergrad && (
-                  <StyledError>{errors.spouseUndergrad.message}</StyledError>
+                {errors.undergrad && (
+                  <StyledError>{errors.undergrad.message}</StyledError>
                 )}
               </label>
               <label htmlFor="postgrad" className="smallThird leftMargin">UW Postgraduate Year(s)

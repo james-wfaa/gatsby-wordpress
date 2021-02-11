@@ -47,7 +47,8 @@ const FormButtons = ({ next, back, save, finish, signup, disabled, error, errors
                 type="submit"
                 name="signupbutton"
                 id="signupbutton"
-                className="signup">Sign up for Communications</button>}
+                className="signup"
+                disabled={disabled}>Sign up for Communications</button>}
         </div>
     )
 }
