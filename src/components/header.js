@@ -64,7 +64,7 @@ const Header = ({ noborder }) => {
               </li>
               <li>
                 <Link
-                  to="/email"
+                  to="/update-info"
                   style={{
                     textDecoration: `none`,
                   }}
