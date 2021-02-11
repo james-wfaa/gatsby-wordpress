@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, useRef } from 'react'
 import { Link } from 'gatsby'
 import { AppContext } from "../../context/AppContext"
 import styled from "styled-components"
@@ -216,9 +216,13 @@ const MembershipForm = () => {
   const { state, actions } = useContext(AppContext);
   const { setMembershipGraduate, setMembershipAge, setMembershipType } = actions;
 
-  const [fees, setFees] = useState(null)
+  const [fees, setFees] = useState({stringParams: {full: "", installments: "", oneYear: "", twoYear: ""}})
   const [showValues, setShowValues] = useState(false)
   const [disabled, setDisabled] = useState(false)
+
+  const scrollRef = useRef(null)
+
+  const executeScroll = () => scrollRef.current.scrollIntoView()
 
   const convertStrToBool= (str) => {
     if (str.toLowerCase() === "true") return true;
@@ -236,6 +240,8 @@ const MembershipForm = () => {
 
   const recentGradText = state.membershipGraduate ? `RECENT GRAD` : `PRIOR GRAD`
   const membershipTypeText = state.membershipType === 'individual' ? `INDIVIDUAL` : `JOINT`
+  const baseJoinUrl = "https://secure.uwalumni.com/join"
+
 
   const onGraduateChanged = (e) => {
     setMembershipGraduate(convertStrToBool(e.target.value))
@@ -271,10 +277,19 @@ const MembershipForm = () => {
       }
   }, [state.membershipGraduate, state.membershipAge, state.membershipType])
 
+  useEffect(() => {
+    if (showValues) {
+      executeScroll();
+    }
+  }, [showValues])
+
+
   return (
-    <FormWrapper>
+    <FormWrapper ref={scrollRef}>
       {showValues && fees ?
-        <PageSection>
+      <PageSection heading="Let's Find the Best Membership for You" >
+        <p style={{fontSize: `26px`, maxWidth: `896px`, margin: `0 auto 58px`}}>Great, thanks for helping to determine the WAA membership that’s right for you. Please check out the membership options below that meet your current selections:
+          </p>
           <ClearFilterSection>
             <ClearButton onClick={() => handleClear()}>
               <p>{clearText}</p>
@@ -304,7 +319,7 @@ const MembershipForm = () => {
                     ${fees.full}
                   </Fee>
                   <h3>Best Value</h3>
-                  <JoinButton to="/join">
+                  <JoinButton to={`${baseJoinUrl}${fees.stringParams.full}`}>
                     <p>JOIN</p>
                   </JoinButton>
                 </div>
@@ -322,7 +337,7 @@ const MembershipForm = () => {
                     ${fees.installments}
                   </Fee>
                   <h3>Convenient and Affordable</h3>
-                  <JoinButton to="/join">
+                  <JoinButton to={`${baseJoinUrl}${fees.stringParams.installments}`}>
                   <p>JOIN</p>
                   </JoinButton>
                 </div>
@@ -354,7 +369,7 @@ const MembershipForm = () => {
                     ${fees.twoYear}
                   </Fee>
                   <h3>Best Value</h3>
-                  <JoinButton to="/join">
+                  <JoinButton to={`${baseJoinUrl}${fees.stringParams.oneYear}`}>
                     <p>JOIN</p>
                   </JoinButton>
                 </div>
@@ -372,7 +387,7 @@ const MembershipForm = () => {
                     ${fees.oneYear}
                   </Fee>
                   <h3>Most Popular</h3>
-                  <JoinButton to="/join">
+                  <JoinButton to={`${baseJoinUrl}${fees.stringParams.twoYear}`}>
                     <p>JOIN</p>
                   </JoinButton>
                 </div>
@@ -383,7 +398,7 @@ const MembershipForm = () => {
 
         </PageSection>
         :
-        <PageSection heading="Let's Find the Best Membership for You">
+        <PageSection heading="Let's Find the Best Membership for You" >
           <p style={{fontSize: `26px`, maxWidth: `896px`, margin: `0 auto 58px`}}>Joining for the first time? Or are you a long-time member who wants to make sure you're getting
             the best deal? Either way, answer the following questions to see what's right for you.
           </p>
