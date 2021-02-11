@@ -7,7 +7,7 @@ import ContentCard from "./ContentCard"
 
 
 const StoryContentCard = ({ className, title, category, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo = false }) => {
-    //const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
+    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
     /*const fmtStartDate = shortDate(startDate)
     let fmtEndDate = null
     if (endDate && shortDate(endDate) !== fmtStartDate) {
@@ -26,7 +26,7 @@ const StoryContentCard = ({ className, title, category, excerpt, url, urlText, i
     url = `news/${url}`
 
 
-    /*const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
+    const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
         ? null
         : (featureImg && typeof featureImg !== 'undefined' && featureImg.childImageSharp) ?
             [
@@ -36,7 +36,7 @@ const StoryContentCard = ({ className, title, category, excerpt, url, urlText, i
                     media: `(min-width: 1200px)`
                 }
             ]
-            :  img.childImageSharp.fluid*/
+            :  img.childImageSharp.fluid
     //console.log(title)
     //console.log(imgSources)
     return (
@@ -47,7 +47,7 @@ const StoryContentCard = ({ className, title, category, excerpt, url, urlText, i
           title={title}
           url={url}
           excerpt={excerpt}
-          //moreLinkText={moreLinkText}
+          moreLinkText={moreLinkText}
           tags={tags}
           promoClass={promoClass}
           notSmall={notSmall}
@@ -55,6 +55,8 @@ const StoryContentCard = ({ className, title, category, excerpt, url, urlText, i
           featureImg={featureImg}
           urlText={urlText}
           img={img}
+          shortenedExcerpt={shortenedExcerpt}
+          imgSources={imgSources}
         />
         /*<div className={`${className} ${className}--${size} ${className}--${notSmall} ${promoClass}`}>
                 <div className={`headersection headersection--${size}`}>

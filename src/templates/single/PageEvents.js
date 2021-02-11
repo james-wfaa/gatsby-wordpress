@@ -40,7 +40,7 @@ function WordPressPage({ data }) {
       ?
       (
         <PageSection key={item.url} heading={categoryEvent.name} stagger>
-          <CardSet items={categoryEvent.events.nodes} num={numberToShow} />
+          <CardSet items={categoryEvent.events.nodes} num={numberToShow} type="event"/>
         </PageSection>
       )
       : null
