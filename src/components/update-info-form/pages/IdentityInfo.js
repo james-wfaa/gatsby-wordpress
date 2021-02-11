@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
 import { StyledError, variantObject } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
@@ -12,7 +12,6 @@ const IdentityInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setIdentityInfo, setIdentityInfoOnchange } = actions;
   const [countries, setCountries] = useState(countryList().getData())
-  
 
   const { register, handleSubmit, watch, errors } = useForm({
     mode: "onBlur",

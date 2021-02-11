@@ -14,10 +14,13 @@ import CommunicationSuccess from "../components/update-info-form/pages/Communica
 import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-variables'
 import downCaret from './../../static/down-caret-red.png'
 
-
 const UpdateInfoForm = () =>  {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep } = actions;
+
+  useEffect(() => {
+    document.body.scrollTop = 0
+  }, [state.currentStep]);
 
   const renderCurrentStep = () => {
       switch(state.currentStep){
@@ -60,8 +63,9 @@ const UpdateInfoForm = () =>  {
 const StyledUpdateInfoForm = styled.div`
 div.excerpt{
   color: ${colors.copyText};
-  span.red{
+  a.red{
     color: ${colors.buttonRed};
+    text-decoration: none;
   }
 }
 form, .form-btns, .disclaimer{

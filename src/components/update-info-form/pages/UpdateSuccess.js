@@ -12,6 +12,7 @@ const UpdateSuccess = () => {
     const { handleSubmit, errors, formState: { isValid, isDirty } } = useForm({
         mode: "onChange",
       })
+
     const submitCommunicationsSignup = data =>{
         console.log(data)
         setCurrentStep(9)
@@ -38,7 +39,7 @@ const UpdateSuccess = () => {
     return (
         <div className="success-page">
             <IntroPageSection
-            excerpt='Thanks so much for updating your info. Someone will be in contact with you if they have any questions about your submission. If you’d like to make any changes to your communication preferences in the future, simply email <span class="red">recordsupdates@supportuw.org</span> to let us know. '
+            excerpt='Thanks so much for updating your info. Someone will be in contact with you if they have any questions about your submission. If you’d like to make any changes to your communication preferences in the future, simply email <a href="mailto:recordsupdates@supportuw.org" class="red">recordsupdates@supportuw.org</a> to let us know. '
             heading='Thanks so much. Your info has been updated.'
             variantObject={variantObject}
             headingAlt
