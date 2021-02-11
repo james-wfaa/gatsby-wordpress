@@ -112,7 +112,7 @@ export const colors = {
     disabledButtonGrey: baseColors.grey,
     captionRed: baseColors.mainRed,
     checkboxInputGrey: baseColors.darkGrey,
-
+    formHeaderBGGrey: baseColors.lightestGrey,
 }
 
 export const size = {

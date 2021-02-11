@@ -20,14 +20,30 @@ const QuestionForm = styled.form`
 `
 
 const FormHeader = styled.div`
-  background-color: ${colors.bgActiveGrey};
+  background-color: ${colors.formHeaderBGGrey};
   padding: 48px;
   border-top: 3px solid ${colors.iconGrey};
   border-collapse: collapse;
+  position:relative;
   p {
     margin: 0;
     font-size: 18px;
     color: ${colors.badgerRed};
+    font-weight: 900;
+  }
+  &:after{
+    position: absolute;
+    content: '';
+    bottom: -20px;
+    left: 50%;
+    height: 40px;
+    width: 16px;
+    z-index: 1;
+    border-left: 2px solid ${colors.badgerRed};
+    border-right: 2px solid ${colors.badgerRed};
+    -webkit-transform: skew(135deg);
+    -ms-transform: skew(135deg);
+    transform: skew(135deg);
   }
 `
 
@@ -38,12 +54,15 @@ const FormSection = styled.div`
     font-size: 54px;
     color: ${colors.badgerRed};
     font-family: ${fonts.eaves};
+    font-style: italic;
   }
 `
 const FormQuestion = styled.p`
   font-size: 32px;
   font-family: ${fonts.eavesNarrow};
   margin-bottom: 48px;
+  font-style: italic;
+  font-weight:bold;
 `
 const StyledCheckbox = styled.div`
   display: inline-block;
@@ -53,22 +72,84 @@ const StyledCheckbox = styled.div`
     margin: 12px;
     font-size: 26px;
   }
+  input[type='radio'] {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+  }
+  input[type='radio'] + label{
+    display: block;
+    position: relative;
+    padding: 0 1.5rem;
+    cursor:pointer;
+  }
+  input[type='radio'] + label::before {
+    content: '';
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid ${colors.checkboxInputGrey};
+    top: 3px;
+  }
+  input[type='radio'] + label::before {
+    border-radius: 50%;
+  }
+  input[type='radio']:checked + label::before {
+    background: ${colors.buttonRed};
+    border: 2px solid ${colors.buttonRed};
+  }
+  input[type='radio']:checked + label::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 30px;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    height: 8px;
+    width: 14px;
+    transform: rotate(-45deg);
+  }
+  input[type='radio']:checked + label::after {
+    content: '';
+    position: absolute;
+    border: 2px solid white;
+    top: 8.25px;
+    left: 30px;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+  }
+  input[type='radio']:focus + label::before {
+    outline: #5d9dd5 solid 1px;
+    box-shadow: 0 0px 8px #5e9ed6;
+  }
 `
 const ClearFilterSection = styled.div`
   margin-bottom: 58px;
   display: flex;
 `
 const FormSubmitButton = styled.button`
-  background-color: ${colors.borderGrey};
+  background-color: ${colors.badgerRed};
   margin: 40px auto;
   border: none;
   width: 98px;
   height: 48px;
   color: ${colors.bgWhite};
   font-weight: bold;
+  :hover {
+    box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
+    cursor:pointer;
+  }
   :disabled{
     background-color: rgba(239,239,239, 0.5);
     color: #fff;
+    box-shadow: none;
+    cursor:default;
   }
 `
 const ClearButton = styled.div`
@@ -79,9 +160,10 @@ const ClearButton = styled.div`
   p {
     color: ${colors.badgerRed};
     margin: 0;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     font-weight: bold;
+    text-transform: uppercase;
   }
 `
 
@@ -97,6 +179,10 @@ const JoinButton = styled(Link)`
     line-height: 48px;
     height: 48px;
   }
+  :hover {
+    box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
+    cursor:pointer;
+  }
 `
 
 const clearText = `< Reset Selections`
@@ -106,6 +192,7 @@ const OptionsText = styled.p`
   margin: 0 0 0 24px;
   align-self: center;
   color: ${colors.badgerRed};
+  font-style:italic;
 `
 
 const FeeBoxHeading = styled.div`
@@ -182,18 +269,24 @@ const FeeCard = styled.div`
       margin-bottom: 0;
     }
   }
+  + p{
+    font-size:16px;
+  }
 `
 const FeeCardHeader = styled.div`
   background-color: ${colors.bgLightGrey};
   padding-top: 16px;
   p {
     margin: 0;
+    font-weight: 900;
   }
   h2 {
     padding-top: 1rem;
     padding-bottom: 1rem;
     font-size: 32px;
     color: ${colors.badgerRed};
+    font-family: ${fonts.eaves};
+    font-style:italic;
   }
 `
 const FeeParamList = styled.p`
@@ -427,7 +520,7 @@ const MembershipForm = () => {
                 <label for="joint">Joint</label>
               </StyledCheckbox>
             </FormSection>
-            <p style={{margin: `32px auto 0`}}>You must answer all three questions before submitting</p>
+            <p style={{margin: `32px auto 0`, fontStyle: `italic`}}>You must answer all three questions before submitting. Thank you.</p>
             <FormSubmitButton disabled={disabled} onClick={(e) => handleSubmit(e)}>SUBMIT</FormSubmitButton>
           </QuestionForm>
         </PageSection>
