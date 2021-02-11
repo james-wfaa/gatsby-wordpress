@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject } from '../form-helpers'
+import { StyledError, variantObject, StyledTopError, } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from '../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -12,11 +12,15 @@ const MailingAddress = () => {
   const { setCurrentStep, setMailingAddressOnchange } = actions;
   const [ countries ] = useState(countryList().getData())
 
-  const { register, handleSubmit, watch, errors, formState: { isValid } } = useForm({
-    mode: "onChange",
-  })
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateMailingAddressInfo = data =>{
     console.log(data)
+
+    let currentOrder = state.numberOfSteps
+    let currentStep = state.currentStep
+    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+    let nextStep = currentOrder[currentPlaceInOrder + 1]
+    setCurrentStep(nextStep)
   }
   const updateOnChangeValues = (e) => {
     setMailingAddressOnchange([e.target.name, e.target.value])
@@ -47,6 +51,7 @@ const MailingAddress = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form className="mailing-address" onSubmit={handleSubmit(UpdateMailingAddressInfo)}>
+            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
               <legend>Mailing Address<span className="requiredInfo">*Required Information</span></legend>
               <hr />
               <label htmlFor="addressType" className="half select-dropdown">Address Type
@@ -137,10 +142,6 @@ const MailingAddress = () => {
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       requiredForUS,
-                      /*pattern: {
-                        value: /^\d{5}(?:[-\s]\d{4})?$/,
-                        message: "Must be valid zip/postal code",
-                      },*/
                     })}
                 />
                 {errors.zipcode && (
@@ -191,7 +192,6 @@ const MailingAddress = () => {
               <label htmlFor="seasonalAddressType" className="half select-dropdown">Address Type
                 <select name="seasonalAddressType" defaultValue={state.mailingAddress.seasonalAddressType}>
                   <option value="home">Home</option>
-                  <option value="business">Business</option>
                 </select>
                 {errors.seasonalAddressType && (
                   <StyledError>{errors.seasonalAddressType.message}</StyledError>
@@ -291,9 +291,13 @@ const MailingAddress = () => {
               </div> ) : null }
 
               <Buttons 
-                next 
+                save 
                 back
-                disabled={ !requiredFieldsCheck || !isValid }  />
+                disabled={ !requiredFieldsCheck }
+                error={ requiredFieldsCheck && (Object.keys(errors).length !== 0) }
+                errors={errors}
+                submitCount={submitCount}
+                  />
             </form>
         </div>
     )

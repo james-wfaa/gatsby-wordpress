@@ -126,10 +126,6 @@ const ContactInfo = () => {
                     defaultValue={state.contactInfo.phone}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      pattern: {
-                        value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
-                        message: "Must be a valid phone number",
-                      },
                       maxLength: {
                         value: 50,
                         message: "Cannot be more than 50 characters",
