@@ -10,9 +10,7 @@ const ContactInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setContactInfoOnchange } = actions;
 
-  const { register, handleSubmit, watch, errors, formState: { isValid } } = useForm({
-    mode: "onChange",
-  })
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateContactInfo = data =>{
     //console.log(data)
     setCurrentStep(2)
@@ -34,7 +32,7 @@ const ContactInfo = () => {
               headingCompact
             />
             <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
-              { (requiredFieldsCheck && !isValid)  && <StyledTopError>Please correct error(s) below</StyledTopError>}
+              { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
               <legend>Contact Information<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="firstname" className="half required">First Name
@@ -127,11 +125,8 @@ const ContactInfo = () => {
                     maxLength="51"
                     defaultValue={state.contactInfo.phone}
                     onChange={e => updateOnChangeValues(e)}
+                    //placeholder="+1 (000) 000-0000"
                     ref={register({
-                      pattern: {
-                        value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
-                        message: "Must be a valid phone number",
-                      },
                       maxLength: {
                         value: 50,
                         message: "Cannot be more than 50 characters",
@@ -150,11 +145,12 @@ const ContactInfo = () => {
                     maxLength="4"
                     defaultValue={state.contactInfo.undergrad}
                     onChange={e => updateOnChangeValues(e)}
+                    placeholder="YYYY"
                     ref={register({
-                      pattern: {
+                      /*pattern: {
                         value: /^(19|20)\d{2}$/,
                         message: "Must be a valid 4 digit graduation year, formatted yyyy",
-                      },
+                      },*/
                       maxLength: {
                         value: 4,
                         message: "Must be 4 characters or less",
@@ -176,10 +172,13 @@ const ContactInfo = () => {
                     })}
                 />
               </label>
+              
               <Buttons 
                 save
-                disabled={ !requiredFieldsCheck || !isValid }
-                error={ requiredFieldsCheck && !isValid } />
+                disabled={ !requiredFieldsCheck }
+                error={ requiredFieldsCheck && (Object.keys(errors).length !== 0) }
+                errors={errors}
+                submitCount={submitCount} />
             </form>
         </div>
     )
