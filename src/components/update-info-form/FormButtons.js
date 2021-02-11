@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import styled from 'styled-components'
 import { AppContext } from "../../context/AppContext"
 
-const FormButtons = ({ next, back, save, finish, signup, disabled, error }) => {
+const FormButtons = ({ next, back, save, finish, signup, disabled, error, errors, submitCount }) => {
     const { state, actions } = useContext(AppContext);
     const { setCurrentStep, setContactInfo, } = actions;
 
@@ -27,6 +27,7 @@ const FormButtons = ({ next, back, save, finish, signup, disabled, error }) => {
 
  return  (
         <div className="form-btns">
+            { submitCount > 0 && (Object.keys(errors).length === 0) && <p className="validFormMessage">All required information has been entered. Click below to save and continue to the next page. </p>}
             { back && <button className="back" onClick={() => handleBackBtn()}>Go Back</button>}
             { finish && <button
                 type="submit"
@@ -46,7 +47,8 @@ const FormButtons = ({ next, back, save, finish, signup, disabled, error }) => {
                 type="submit"
                 name="signupbutton"
                 id="signupbutton"
-                className="signup">Sign up for Communications</button>}
+                className="signup"
+                disabled={disabled}>Sign up for Communications</button>}
         </div>
     )
 }

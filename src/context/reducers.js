@@ -33,7 +33,6 @@ const initialState = {
     seasonalResidence: '',
     seasonalStartDate: '',
     seasonalEndDate: '',
-    seasonalAddressType: 'Home',
     seasonalCountry: 'US',
     seasonalStreetAddress: '',
     seasonalStreetAddressLineTwo: '',
@@ -75,6 +74,7 @@ const initialState = {
     spouseUpdate: '',
     uwGrad: false,
   },
+  communicationsSignUp: [],
   //End Update Info Form 
 };
 const types = {
@@ -103,6 +103,7 @@ const types = {
   SET_IDENTITY_INFO_ONCHANGE: "SET_IDENTITY_INFO_ONCHANGE",
   SET_SPOUSE_INFO: "SET_SPOUSE_INFO",
   SET_SPOUSE_INFO_ONCHANGE: "SET_SPOUSE_INFO_ONCHANGE",
+  SET_COMMUNICATIONS_SIGNUP_ONCHANGE: "SET_COMMUNICATIONS_SIGNUP_ONCHANGE",
   //End Update Info Form 
 };
 
@@ -251,6 +252,11 @@ const reducer = (state = initialState, action) => {
           ...state.spouseInfo,
           [action.payload[0]]: action.payload[1],
         },
+      };
+    case types.SET_COMMUNICATIONS_SIGNUP_ONCHANGE:
+      return {
+        ...state,
+        communicationsSignUp: action.payload,
       };
     //End Update Info Form 
       

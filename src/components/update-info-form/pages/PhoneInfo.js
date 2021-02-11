@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject } from '../form-helpers'
+import { StyledError, StyledTopError, variantObject } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -10,11 +10,15 @@ const PhoneInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setPhoneInfoOnchange } = actions;
 
-  const { register, handleSubmit, watch, errors, formState: { isValid } } = useForm({
-    mode: "onChange",
-  })
+  const { register, handleSubmit, watch, errors, formState: { submitCount } } = useForm()
   const UpdatePhoneInfo = data =>{
     console.log(data)
+
+    let currentOrder = state.numberOfSteps
+    let currentStep = state.currentStep
+    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+    let nextStep = currentOrder[currentPlaceInOrder + 1]
+    setCurrentStep(nextStep)
   }
   const updateOnChangeValues = (e) => {
     setPhoneInfoOnchange([e.target.name, e.target.value])
@@ -71,7 +75,8 @@ const PhoneInfo = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="phoneInfo" onSubmit={handleSubmit(UpdatePhoneInfo)}>
-              <legend>Phone Numbers<span className="requiredInfo">*Required Information</span></legend>
+            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
+            <legend>Phone Numbers<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="phoneNumber1" className="half">Phone Number 1
                 <span className="required">*</span>
@@ -83,10 +88,6 @@ const PhoneInfo = () => {
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       required: { value: true, message: "At least one valid phone number is required" },
-                      /*pattern: {
-                        value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
-                        message: "Must be a valid phone number",
-                      },*/
                     })}
                 />
                 {errors.phoneNumber1 && (
@@ -183,9 +184,12 @@ const PhoneInfo = () => {
               </label>
               {state.phoneInfo.phoneType3 === "seasonal" ? renderSeasonalDates() : null}
               <Buttons 
-                next 
+                save 
                 back
-                disabled={ !requiredFieldsCheck || !isValid } />
+                disabled={ !requiredFieldsCheck }
+                error={ requiredFieldsCheck && (Object.keys(errors).length !== 0) }
+                errors={errors}
+                submitCount={submitCount} />
             </form>
         </div>
     )
