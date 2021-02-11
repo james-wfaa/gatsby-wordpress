@@ -9,6 +9,8 @@ import CardSet from "../content-modules/CardSet"
 import Block from '../content-blocks/WordPressBlock'
 import Column from '../parts/WordPressColumns'
 import EmbedBlock from "../content-blocks/EmbedBlock"
+import AccordionNavigation from '../content-blocks/AccordionNavigation'
+
 
 
 const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, centered }) => {
@@ -102,7 +104,11 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                     case "acf/product-card":
                         const productcard = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
                         return (<div dangerouslySetInnerHTML={{__html: productcard}} />)
-
+                    case "acf/accordion-navigation":
+                        if(block.dynamicContent){
+                            return <AccordionNavigation className={block.name.replace('/', '-')} blockContent={block.dynamicContent} />
+                        }
+                        break
                     case "gravityforms/form":
                         console.log('form found')
                         const shortcode = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
