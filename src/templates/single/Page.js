@@ -5,7 +5,7 @@ import WpGroupPage from "../../components/template-parts/wordpress-group-page"
 import WpProductPage from "../../components/template-parts/wordpress-product-page"
 import WpAggregatePage from "../../components/template-parts/wordpress-aggregate-page"
 
-export default ({ data }) => {
+const Page = ({ data }) => {
   const { page } = data
   const { template, ancestors } = page
 
@@ -44,6 +44,8 @@ export default ({ data }) => {
   return (<WpDefaultPage page={page} />)
 
 }
+
+export default Page
 
 export const query = graphql`
   query all($id: String!) {
@@ -247,41 +249,6 @@ export const query = graphql`
           }
         }
       }
-      eventListing {
-        eventCategory {
-          slug
-          events {
-            nodes {
-              title
-              startDate
-              endDate
-              venue {
-                title
-                city
-                state
-              }
-              excerpt
-              featuredImage {
-                node {
-                  localFile {
-                    childImageSharp {
-                      fluid(maxWidth: 712) {
-                        base64
-                        tracedSVG
-                        srcWebp
-                        srcSetWebp
-                        originalImg
-                        originalName
-                        aspectRatio
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
       blocks {
         name
         isDynamic
@@ -297,12 +264,16 @@ export const query = graphql`
             name
             originalContent
             dynamicContent
+            saveContent
           }
         }
       }
       products {
         nodes {
+          slug
           name
+          ...ProductEventCards
+          ...ProductPostCards
         }
       }
     }

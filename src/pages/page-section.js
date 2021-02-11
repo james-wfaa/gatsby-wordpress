@@ -29,7 +29,7 @@ const buttons2 = [
     
 ]
 
-export default ({ data }) => {
+const PageSectionPage = ({ data }) => {
 
     return (
 <Layout>
@@ -169,6 +169,8 @@ export default ({ data }) => {
 </Layout>
     )
 }
+
+export default PageSectionPage
 
 export const pageQuery = graphql`
 query {

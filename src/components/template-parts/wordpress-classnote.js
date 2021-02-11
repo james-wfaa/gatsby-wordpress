@@ -9,8 +9,8 @@ import FeaturedImage from "../content-blocks/FeaturedImage"
 
 function BlogPost({ data }) {
   const { page } = data
-  console.log(page)
-  const { title, content, featuredImage, categories, author, date, excerpt, link } = page
+  //console.log(page)
+  const { title, featuredImage, categories, author, date, excerpt, link } = page
 
   let featSize = featuredImage?.node?.mediaDetails.width ? featuredImage?.node?.mediaDetails.width : null
   let size = featSize 

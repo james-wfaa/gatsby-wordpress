@@ -107,10 +107,12 @@ export const colors = {
     mapDetailsText: baseColors.offBlack,
     disabledGrey: baseColors.darkGrey,
     captionBlack: baseColors.offBlack,
-
-
-
-
+    formIntroBg: baseColors.lightestGrey,
+    formInputBorder: baseColors.lightGrey,
+    disabledButtonGrey: baseColors.grey,
+    captionRed: baseColors.mainRed,
+    checkboxInputGrey: baseColors.darkGrey,
+    formHeaderBGGrey: baseColors.lightestGrey,
 }
 
 export const size = {
@@ -407,12 +409,30 @@ export const mixins = {
             }
             figcaption {
                 text-align: left;
-                color: ${colors.captionGrey};
-                font-weight: bold;
-                font-size: ${sizes.s16};
+                color: ${colors.captionBlack};
+                &.marginTop{
+                    margin-top: ${sizes.s32};
+                }
+                &.center{
+                    text-align: center;
+                }
+                &.enhancedHomepageCaption{
+                    font-family:${fonts.eaves};
+                    font-style: italic;
+                    font-size: ${sizes.s26};
+                    color: ${colors.captionRed};
+                    font-weight: bold;
+                    margin-top: ${sizes.s32};
+                }
             }
         }
-
+        &.storyCaption {
+            figcaption{
+                color: ${colors.captionGrey};
+                font-size: ${sizes.s16};
+                font-weight: bold;
+            }
+        }
     }`,
     introHeading: `{
         position: absolute;

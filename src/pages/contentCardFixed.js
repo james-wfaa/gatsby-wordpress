@@ -71,7 +71,7 @@ const taglist2 = [
 
 ]
 
-export default ({ data }) => {
+const ContentFixed = ({ data }) => {
 return (
 <Layout>
     <PageSection pad>
@@ -313,6 +313,8 @@ return (
 </Layout>
     )
 }
+
+export default ContentFixed
 
 export const pageQuery = graphql`
 query {

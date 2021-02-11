@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState} from "react"
 import { graphql } from 'gatsby'
 import Layout from "../components/layout"
 import PageSection from "../components/page-sections/PageSection"
@@ -7,66 +7,7 @@ import ContentBlockList from "../components/content-modules/ContentBlockList"
 import AccordianSearchAlgolia from "../components/parts/AlgoliaSearch/AccordianSearchAlgolia"
 
 
-const taglist1 = [
-    {
-        link: '#',
-        tag: 'Tag 1'
-    },
-    {
-        link: '#',
-        tag: 'Tag 2'
-    },
-    {
-        link: '#',
-        tag: 'Tag 3'
-    },
-    {
-        link: '#',
-        tag: 'Tag 4'
-    },
-    {
-        link: '#',
-        tag: 'Tag 5'
-    },
-    {
-      link: '#',
-      tag: 'Tag 6'
-    },
-    {
-      link: '#',
-      tag: 'Tag 7'
-    },
-    {
-      link: '#',
-      tag: 'Tag 8'
-    },
-    {
-      link: '#',
-      tag: 'Tag 9'
-    },
-  ]
-  const taglist2 = [
-    {
-        link: '#',
-        tag: 'Tag 1'
-    },
-    {
-        link: '#',
-        tag: 'Tag 2'
-    },
-    {
-        link: '#',
-        tag: 'Tag 3'
-    },
-    {
-        link: '#',
-        tag: 'Tag 4'
-    },
-]
-
-
-
-export default ({ data }) => {
+const ContentBlockListPage = ({ data }) => {
   const [events, setEvents] = useState([])
 
   let contentCards = events.map(card => {
@@ -97,6 +38,7 @@ export default ({ data }) => {
     </Layout>
   )
 }
+export default ContentBlockListPage
 
 export const pageQuery = graphql`
 query {

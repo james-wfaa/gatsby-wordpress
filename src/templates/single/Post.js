@@ -2,11 +2,13 @@ import React from "react"
 import { graphql } from "gatsby"
 import BlogPost from "../../components/template-parts/wordpress-post"
 
-export default ({ data }) => {
+const Post = ({ data }) => {
 //console.log('Post.js data:',data)
 
 return (<BlogPost data={data} />)
 }
+
+export default Post
 
 export const query = graphql`
   query post($id: String!) {
@@ -88,6 +90,12 @@ export const query = graphql`
         nodes {
           name
           slug
+          pages {
+            nodes { 
+              title
+              uri
+            }
+          }
         }
       }
     }
