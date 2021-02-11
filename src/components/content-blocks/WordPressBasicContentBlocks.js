@@ -87,20 +87,16 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             case "core/columns":
                 return (<Column className={block.name.replace('/', '-')} block={block} />)
             case "core/buttons":
-                console.log("Found a button");
                 if(block.innerBlocks && block.innerBlocks[0].originalContent){
                     let innerRenderedBlocks = [];
                     block.innerBlocks.forEach((innerBlock) => {
                         innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />)
                     })
-                    //console.log("blocks: " + innerRenderedBlocks)
                     return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
                 }
                 break
                 case "gravityforms/form":
-                    console.log('form found')
                     const shortcode = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
-                    //console.log(shortcode)
                     let idStart = shortcode.indexOf('id="')
                     if (idStart > -1) {
                         idStart += 4

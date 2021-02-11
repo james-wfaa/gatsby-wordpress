@@ -9,11 +9,7 @@ import { element } from "prop-types";
 const AccordionNavigation = ({ blockContent, className }) => {
 
 
-    const navOpenText =  'temp' 
-    const navCloseText = 'temp'
-
     const parsed = parse(blockContent)
-    console.log(parsed.props)
 
     const RenderedBlocks = (parsed.props.children) ? parsed.props.children.map((block) => {
         let accordionHeader = ''
@@ -26,7 +22,7 @@ const AccordionNavigation = ({ blockContent, className }) => {
                             accordionHeader = element.props.children ? element.props.children : ''
                             break
                         case "accordion__content":
-                            console.log(element.props.children);
+                            accordionContent = element
                             break
                         default:
                             break
@@ -34,9 +30,9 @@ const AccordionNavigation = ({ blockContent, className }) => {
                     }
                 }
             })
-            return (<Accordian opentext={accordionHeader} closetext={navCloseText} useAsMenu>
+            return (<Accordian opentext={accordionHeader} closetext={accordionHeader} >
                         <div className={className}>
-                            Testing
+                            {accordionContent}
                         </div>
                     </Accordian>)
         }
