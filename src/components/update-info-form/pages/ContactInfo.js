@@ -125,6 +125,7 @@ const ContactInfo = () => {
                     maxLength="51"
                     defaultValue={state.contactInfo.phone}
                     onChange={e => updateOnChangeValues(e)}
+                    //placeholder="+1 (000) 000-0000"
                     ref={register({
                       maxLength: {
                         value: 50,
@@ -144,11 +145,12 @@ const ContactInfo = () => {
                     maxLength="4"
                     defaultValue={state.contactInfo.undergrad}
                     onChange={e => updateOnChangeValues(e)}
+                    placeholder="YYYY"
                     ref={register({
-                      pattern: {
+                      /*pattern: {
                         value: /^(19|20)\d{2}$/,
                         message: "Must be a valid 4 digit graduation year, formatted yyyy",
-                      },
+                      },*/
                       maxLength: {
                         value: 4,
                         message: "Must be 4 characters or less",

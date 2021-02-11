@@ -27,10 +27,11 @@ const MailingAddress = () => {
   }
 
   //check country, check if seasonal address checked
-  const requiredFieldsCheck = state.mailingAddress.country === "US" ? state.mailingAddress.streetAddress !== '' && state.mailingAddress.city !== '' && state.mailingAddress.state !== '' && state.mailingAddress.zipcode !== '' : state.mailingAddress.streetAddress !== '';
+  let requiredFieldsCheck = state.mailingAddress.country === "US" ? state.mailingAddress.streetAddress !== '' && state.mailingAddress.city !== '' && state.mailingAddress.state !== '' && state.mailingAddress.zipcode !== '' : state.mailingAddress.streetAddress !== '';
   
   const requiredForUS = state.mailingAddress.country === "US" ? `required: { value: true, message: "This field is required" },` : null
-  
+  const requiredForSeasonalUS = state.mailingAddress.seasonalCountry === "US" ? `required: { value: true, message: "This field is required" },` : null
+
   const countryOptions = countries.map(country => {
     if (country.value === state.mailingAddress.country) {
       return (
@@ -166,6 +167,7 @@ const MailingAddress = () => {
                     id="seasonalStartDate"
                     defaultValue={state.mailingAddress.seasonalStartDate}
                     onChange={e => updateOnChangeValues(e)}
+                    placeholder="MM/DD"
                     ref={register({
                       required: { value: true, message: "Start date of seasonal address is required" },
                     })}
@@ -180,6 +182,7 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalEndDate"
                     id="seasonalEndDate"
+                    placeholder="MM/DD"
                     defaultValue={state.mailingAddress.seasonalEndDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -246,7 +249,7 @@ const MailingAddress = () => {
                     defaultValue={state.mailingAddress.seasonalState}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      
+                      requiredForSeasonalUS,
                     })}
                 />
                 {errors.seasonalState && (
@@ -262,7 +265,7 @@ const MailingAddress = () => {
                     defaultValue={state.mailingAddress.seasonalZipcode}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      requiredForUS,
+                      requiredForSeasonalUS,
                       /*pattern: {
                         value: /^\d{5}(?:[-\s]\d{4})?$/,
                         message: "Must be valid zip/postal code",

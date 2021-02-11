@@ -132,6 +132,9 @@ form{
     padding-left: 12px;
     border: 2px solid ${colors.formInputBorder};
     border-radius: 0;
+    ::placeholder{
+      color:${colors.checkboxInputGrey};
+    }
   }
   input[type='date']{
     display:inline-block;
