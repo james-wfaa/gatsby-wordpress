@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject } from '../form-helpers'
+import { StyledError, StyledTopError, variantObject } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import { colors } from '../../css-variables'
 import Buttons from './../FormButtons'
@@ -11,11 +11,15 @@ const SpouseInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setSpouseInfoOnchange } = actions;
 
-  const { register, handleSubmit, errors, formState: { isValid }} = useForm({
-    mode: "onChange",
-  })
+  const { register, handleSubmit, errors, formState: { submitCount }} = useForm()
   const submitForm = data =>{
     //setCurrentStep(8)
+
+    let currentOrder = state.numberOfSteps
+    let currentStep = state.currentStep
+    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+    let nextStep = currentOrder[currentPlaceInOrder + 1]
+    setCurrentStep(nextStep)
   }
   const updateOnChangeValues = (e) => {
     if(e.target.type === 'checkbox'){
@@ -37,6 +41,7 @@ const SpouseInfo = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="spouseInfo" onSubmit={handleSubmit(submitForm)} className="spouse-info">
+            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
               <legend>Spouse or Partner<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="firstname" className="half required">Spouse/Partner First Name
@@ -93,10 +98,10 @@ const SpouseInfo = () => {
                     defaultValue={state.spouseInfo.undergrad}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      pattern: {
+                      /*pattern: {
                         value: /^(19|20)\d{2}$/,
-                        message: "Must be a valid 4 digit graduation year, formatted YYYY",
-                      },
+                        message: "Must be a valid 4 digit graduation year",
+                      },*/
                     })}
                 />
                 {errors.undergrad && (
@@ -127,7 +132,13 @@ const SpouseInfo = () => {
               <label htmlFor="noSpouse">I am no longer with my spouse or partner.</label>
               <input type="radio" id="none" value="none" name="spouseUpdate" defaultChecked={state.spouseInfo.spouseUpdate === "none"} onClick={e => updateOnChangeValues(e)}/>
               <label htmlFor="none">None of the above.</label>
-              <Buttons next back disabled={ !requiredFieldsCheck || !isValid } />
+              <Buttons 
+                save 
+                back 
+                disabled={ !requiredFieldsCheck }
+                error={ requiredFieldsCheck && (Object.keys(errors).length !== 0) }
+                errors={errors}
+                submitCount={submitCount} />
             </form>
         </div>
     )
