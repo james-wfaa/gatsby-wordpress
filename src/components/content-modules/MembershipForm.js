@@ -4,7 +4,6 @@ import { AppContext } from "../../context/AppContext"
 import styled from "styled-components"
 import { colors, mixins, fonts, breakpoints } from "../css-variables"
 import PageSection from "../page-sections/PageSection"
-import PageSectionHeader from "../parts/PageSectionHeader"
 import { membershipFeeCalc } from "../../utils/tools"
 
 const FormWrapper = styled.div`
@@ -142,17 +141,12 @@ const FormSubmitButton = styled.button`
   height: 48px;
   color: ${colors.bgWhite};
   font-weight: bold;
-<<<<<<< HEAD
-  :disabled {
-    background-color: rgba(239, 239, 239, 0.5);
-=======
   :hover {
     box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
     cursor:pointer;
   }
   :disabled{
     background-color: rgba(239,239,239, 0.5);
->>>>>>> c40d5ceedec8b3a3c610587c3b41c66521e93762
     color: #fff;
     box-shadow: none;
     cursor:default;
@@ -637,20 +631,8 @@ const MembershipForm = () => {
                 <label for="joint">Joint</label>
               </StyledCheckbox>
             </FormSection>
-<<<<<<< HEAD
-            <p style={{ margin: `32px auto 0` }}>
-              You must answer all three questions before submitting
-            </p>
-            <FormSubmitButton
-              disabled={disabled}
-              onClick={e => handleSubmit(e)}
-            >
-              SUBMIT
-            </FormSubmitButton>
-=======
             <p style={{margin: `32px auto 0`, fontStyle: `italic`}}>You must answer all three questions before submitting. Thank you.</p>
             <FormSubmitButton disabled={disabled} onClick={(e) => handleSubmit(e)}>SUBMIT</FormSubmitButton>
->>>>>>> c40d5ceedec8b3a3c610587c3b41c66521e93762
           </QuestionForm>
         </PageSection>
       )}
