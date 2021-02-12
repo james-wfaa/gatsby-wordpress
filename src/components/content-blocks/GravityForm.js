@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { breakpoints, mixins, sizes } from '../css-variables'
+import { breakpoints, mixins, sizes, fonts, colors } from '../css-variables'
 import Block from './WordPressBlock'
 import GravityFormForm from '../gatsby-gravityforms-component/src/'
 import { useStaticQuery, graphql } from 'gatsby'
@@ -94,10 +94,15 @@ const GravityForm = ({className, id}) => {
 }
     
 const StyledGravityForm = styled(GravityForm)`
+${mixins.formStyles}
 max-width: 100%;
 margin: 0 auto;
 ul {
     text-align: left;
+    margin-bottom: 20px;
+}
+li{
+    list-style:none;
 }
 
 ul.gform_fields {
@@ -109,6 +114,8 @@ p {
 }
 button.gravityform__button {
     ${mixins.buttons}
+    border:none;
+    cursor:pointer;
 }
 a {
     ${mixins.a}
@@ -118,10 +125,12 @@ label.gfield_label {
     &--subfield {
         font-weight: normal;
     }
+    .gfield_required{
+        color: ${colors.badgerRed}
+    }
 }
 input {
-    width: 100%;
-    
+    width: 100%;  
 }
 .ginput_container {
     &_address,
@@ -145,11 +154,8 @@ input {
               }
         }
       }
-    
-
 }
 
-    
 `
 
 export default StyledGravityForm
