@@ -1,7 +1,7 @@
 import React from 'react'
 import ContentCard from "./ContentCard"
 
-const StoryContentCard = ({ className, title, category, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo }) => {
+const StoryContentCard = ({ className, title, category, excerpt, url, urlText, img, featureImg, caption, tags, size, promo }) => {
     
     url = `news${url}`
 
