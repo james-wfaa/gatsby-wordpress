@@ -6,18 +6,18 @@ import styled from 'styled-components'
 import { shortDate } from "../../utils/tools"
 
 
-const ContentCard = ({ className, startDate, endDate, title, category, venue, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo = false, moreLinkText, shortenedExcerpt, imgSources, dateLinkText }) => {
-    //const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
-    /*const fmtStartDate = shortDate(startDate)
+const ContentCard = ({ className, startDate, endDate, title, category, venue, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo = false }) => {
+    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
+    const fmtStartDate = shortDate(startDate)
     let fmtEndDate = null
     if (endDate && shortDate(endDate) !== fmtStartDate) {
         fmtEndDate = shortDate(endDate)
     }
     const dateLinkText = fmtEndDate ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
-    */
+    
     const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];
-    //const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
-    //const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt
+    const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
+    const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt
     const promoClass = promo ? 'promo' : ''
     const notSmall = (size !== 'S') ? "notsmall" : ""
 
@@ -25,7 +25,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
         size = "S";
     }
 
-/*
+
     const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
         ? null
         : (featureImg && typeof featureImg !== 'undefined' && featureImg.childImageSharp) ?
@@ -36,7 +36,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                     media: `(min-width: 1200px)`
                 }
             ]
-            :  img.childImageSharp.fluid*/
+            :  img.childImageSharp.fluid
     //console.log(title)
     //console.log(imgSources)
     return (

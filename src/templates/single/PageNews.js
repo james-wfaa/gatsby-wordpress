@@ -29,7 +29,7 @@ function WordPressPage({ data }) {
       return (
 
         <PageSection heading={category.name} stagger>
-          <CardSet items={category.posts.nodes} num={numberToShow} />
+          <CardSet items={category.posts.nodes} num={numberToShow} type="news"/>
         </PageSection>
       )
     }
