@@ -80,9 +80,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             case "acf/events-listing-section":
                 break
             case "acf/accordion-navigation":
-                if(block.dynamicContent){
-                    return <AccordionNavigation className={block.name.replace('/', '-')} blockContent={block.dynamicContent} />
-                }
+                return <AccordionNavigation className={block.name.replace('/', '-')} block={block} />
                 break
             case "core/columns":
                 return (<Column className={block.name.replace('/', '-')} block={block} />)

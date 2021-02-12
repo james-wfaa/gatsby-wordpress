@@ -6,16 +6,16 @@ import Accordian from "../parts/Accordian"
 import { element } from "prop-types";
 
 
-const AccordionNavigation = ({ blockContent, className }) => {
+const AccordionNavigation = ({ block, className }) => {
 
-
+    const blockContent = block.dynamicContent ? block.dynamicContent : ''
     const parsed = parse(blockContent)
 
-    const RenderedBlocks = (parsed.props.children) ? parsed.props.children.map((block) => {
+    const RenderedBlocks = (parsed.props.children) ? parsed.props.children.map((child) => {
         let accordionHeader = ''
         let accordionContent = ''
-        if(block.props && block.props.className == "accordion__item"){
-            block.props.children.map((element) => {
+        if(child.props && child.props.className == "accordion__item"){
+            child.props.children.map((element) => {
                 if(element.props){
                     switch(element.props.className){
                         case "accordion__header":
@@ -44,7 +44,7 @@ const AccordionNavigation = ({ blockContent, className }) => {
             <div className={className} id="Top">
                 { RenderedBlocks && (
                     
-                    <div className="content">
+                    <div className="AccordionNavigation">
                         {RenderedBlocks}
                     </div>
                 )}

@@ -86,9 +86,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
             case "core/separator":
                 RenderedBlocks.push(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
             case "acf/accordion-navigation":
-                if(block.dynamicContent){
-                    RenderedBlocks.push(<AccordionNavigation className={block.name.replace('/', '-')} blockContent={block.dynamicContent} />)
-                }
+                return <AccordionNavigation className={block.name.replace('/', '-')} block={block} />
                 break
             case "acf/product-story-listing":
                 if ( product) {

@@ -105,9 +105,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         const productcard = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
                         return (<div dangerouslySetInnerHTML={{__html: productcard}} />)
                     case "acf/accordion-navigation":
-                        if(block.dynamicContent){
-                            return <AccordionNavigation className={block.name.replace('/', '-')} blockContent={block.dynamicContent} />
-                        }
+                        return <AccordionNavigation className={block.name.replace('/', '-')} block={block} />
                         break
                     case "gravityforms/form":
                         console.log('form found')
