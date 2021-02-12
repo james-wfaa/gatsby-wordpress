@@ -10,6 +10,8 @@ const Accordian = ({opentext, closetext, children, useAsMenu}) => {
 
   const StyledWrapper = styled.div`
   background-color: ${colors.navcardGrey};
+  position: relative;
+  z-index: 5;
   
 
 `
