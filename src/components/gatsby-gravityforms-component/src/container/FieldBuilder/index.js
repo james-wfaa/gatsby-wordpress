@@ -81,6 +81,8 @@ const FieldBuilder = ({
             case 'email':
             case 'hidden':
             case 'phone':
+            case 'date':
+            case 'fileupload':
                 return (
                     <Input
                         errors={errors[inputName]}
