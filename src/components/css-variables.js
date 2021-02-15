@@ -1,4 +1,4 @@
-import downCaret from './../../static/down-caret-red.png'
+import downCaret from './../svg/down-caret-red.svg'
 
 export const baseSize = '18px';
 

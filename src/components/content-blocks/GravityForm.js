@@ -99,10 +99,11 @@ max-width: 100%;
 margin: 0 auto;
 ul {
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 li{
     list-style:none;
+    margin-bottom: 24px;
 }
 
 ul.gform_fields {
@@ -122,11 +123,13 @@ a {
 }
 label.gfield_label {
     font-weight: bold;
+    margin-bottom:12px;
     &--subfield {
         font-weight: normal;
     }
     .gfield_required{
-        color: ${colors.badgerRed}
+        color: ${colors.badgerRed};
+        margin-left: 5px;
     }
 }
 input {
@@ -154,6 +157,13 @@ input {
               }
         }
       }
+}
+.validation_message{
+    color:${colors.badgerRed};
+    font-size: 16px;
+}
+.gfield_description{
+    font-size:16px;
 }
 
 `
