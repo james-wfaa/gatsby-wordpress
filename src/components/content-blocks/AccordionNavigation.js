@@ -30,10 +30,8 @@ const AccordionNavigation = ({ block, className }) => {
                     }
                 }
             })
-            return (<Accordian opentext={accordionHeader} closetext={accordionHeader} >
-                        <div className={className}>
-                            {accordionContent}
-                        </div>
+            return (<Accordian opentext={accordionHeader} closetext={accordionHeader} useAsNav>
+                        {accordionContent}
                     </Accordian>)
         }
 
@@ -53,6 +51,22 @@ const AccordionNavigation = ({ block, className }) => {
 }
 
 const StyledAccordionNavigation = styled(AccordionNavigation)`
+
+border: 1px solid ${colors.cardBorder};
+border-top: 6px solid ${colors.cardBorder};
+
+.AccordionNavigation{
+    .AccordionWrap{
+        background-color: ${colors.bgWhite};
+        margin-left: 32px;
+    }
+
+    .accordion__content{
+        text-align: left;
+    }
+    
+}
+
 
 `
 
