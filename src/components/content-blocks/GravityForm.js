@@ -165,6 +165,11 @@ input {
 .gfield_description{
     font-size:16px;
 }
+.gfield_radio, .gfield_checkbox{
+    li{
+        margin-top:-26px;
+    }
+}
 
 `
 
