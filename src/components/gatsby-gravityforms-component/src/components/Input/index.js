@@ -49,7 +49,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, ...wrapProp
                 message: regex && strings.errors.pattern,
             },
         })}
-        type={type === 'phone' ? 'tel' : type === 'fileupload' ? 'file' : type}
+        type={type === 'phone' ? 'tel' : type === 'fileupload' ? 'file' : type === 'website' ? 'url' : type}
     /></InputSubfieldWrapper>) : (
         <InputWrapper
             errors={errors}
@@ -84,7 +84,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, ...wrapProp
                         message: regex && strings.errors.pattern,
                     },
                 })}
-                type={type === 'phone' ? 'tel' : type === 'fileupload' ? 'file' : type}
+                type={type === 'phone' ? 'tel' : type === 'fileupload' ? 'file' : type === 'website' ? 'url' : type}
             />
         </InputWrapper>
     )
