@@ -102,7 +102,6 @@ ul {
     margin-bottom: 24px;
 }
 li{
-    list-style:none;
     margin-bottom: 24px;
 }
 
@@ -138,6 +137,20 @@ input {
 input[type='date']{
     max-width: 250px;
 }
+.gfield_radio, .gfield_checkbox {
+    margin-left: 0;
+    li {
+        list-style:none;
+        margin-top:-26px;
+        label{
+            padding-left:0;
+            
+        }
+        input[type="radio"]:checked + label::after, input[type="checkbox"]:checked + label::after{
+            left: 3px;
+        }
+    }
+}
 .ginput_container {
     &_address,
     &_name {
@@ -168,9 +181,12 @@ input[type='date']{
 .gfield_description{
     font-size:16px;
 }
-.gfield_radio, .gfield_checkbox{
-    li{
-        margin-top:-26px;
+.gravityform__field__section{
+    label{
+        padding-bottom: 5px;
+        border-bottom: 2px solid ${colors.borderGrey};
+        text-transform: uppercase;
+        font-weight:900;
     }
 }
 
