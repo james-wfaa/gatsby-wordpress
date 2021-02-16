@@ -128,6 +128,7 @@ const StyledTitleSection = styled(TitleSection)`
             font-weight: normal;
             line-height: ${sizes.s26};
             margin: ${sizes.s24} 0;
+            display:block;
             p {
                 &:last-child {
                     margin-bottom: 0;
