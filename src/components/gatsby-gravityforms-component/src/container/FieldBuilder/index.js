@@ -190,6 +190,7 @@ const FieldBuilder = ({
                     />
                 )
             case 'html':
+            case 'section':
                 return (
                     <Html
                         fieldData={fieldData}
