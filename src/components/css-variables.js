@@ -975,6 +975,11 @@ export const mixins = {
             height: 48px;
             padding-left: 12px;
         }
+        input[type='file']{
+            border:none;
+            padding-left:0;
+            cursor:pointer;
+        }
         textarea{
             padding:8px 12px;
             border: 2px solid ${colors.formInputBorder};

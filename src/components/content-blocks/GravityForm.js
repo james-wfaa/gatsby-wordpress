@@ -96,7 +96,7 @@ const GravityForm = ({className, id}) => {
 const StyledGravityForm = styled(GravityForm)`
 ${mixins.formStyles}
 max-width: 100%;
-margin: 0 auto;
+margin: 0 auto 24px auto;
 ul {
     text-align: left;
     margin-bottom: 24px;
@@ -134,6 +134,9 @@ label.gfield_label {
 }
 input {
     width: 100%;  
+}
+input[type='date']{
+    max-width: 250px;
 }
 .ginput_container {
     &_address,
