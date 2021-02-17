@@ -61,11 +61,21 @@ const UpdateInfoForm = () =>  {
 }
 
 const StyledUpdateInfoForm = styled.div`
+${mixins.formStyles}
 div.excerpt{
   color: ${colors.copyText};
   a.red{
     color: ${colors.buttonRed};
     text-decoration: none;
+  }
+  margin-bottom:0;
+}
+.communications-success-page{
+  .content{
+    margin-bottom: 30px;
+    @media screen and ${breakpoints.laptopS} {
+      margin-bottom: 70px;
+    }
   }
 }
 form, .form-btns, .disclaimer{
@@ -200,7 +210,7 @@ form{
     }
     .checkboxWrap{
       margin: 0 auto;
-      max-width: 442px;
+      max-width: 390px;
     }
     input[type='checkbox'], input[type='radio'] {
       position: absolute !important;
@@ -290,6 +300,10 @@ form{
       height:96px;
       resize: none;
     }
+  }
+  margin-bottom: 30px;
+  @media screen and ${breakpoints.tabletL} {
+    margin-bottom: 70px;
   }
 }
 
@@ -418,14 +432,6 @@ form{
     bottom:-1px;
     top:unset;
     background-color:${colors.buttonRed};
-  }
-  .progress-bar-wrapper .progress::before{
-    content:'100';
-    color:${colors.buttonRed};
-    position:absolute;
-    right: -16px;
-    top:-40px;
-    font-weight:bold;
   }
   .successPageIcon{
     position:relative;

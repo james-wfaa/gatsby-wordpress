@@ -97,6 +97,7 @@ const SpouseInfo = () => {
                     maxLength="4"
                     defaultValue={state.spouseInfo.undergrad}
                     onChange={e => updateOnChangeValues(e)}
+                    placeholder="YYYY"
                     ref={register({
                       /*pattern: {
                         value: /^(19|20)\d{2}$/,

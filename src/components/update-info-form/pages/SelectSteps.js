@@ -71,7 +71,7 @@ const SelectSteps = () => {
                         <input type="checkbox" name="demographic" id="demographic" checked={state.identityStep} onChange={()=>updateCheckbox(4)} />
                         <label htmlFor="demographic" selected>Demographic/Identity/Country Information</label>
                         <input type="checkbox" name="spouse" id="spouse" checked={state.lifeEventStep} onChange={()=>updateCheckbox(5)} />
-                        <label htmlFor="spouse" selected>Spouse/Partner Update (Marriage/Divorce/Death)</label>
+                        <label htmlFor="spouse" selected>Spouse/Partner Update</label>
                     </div>
                     <Buttons back finish next disabled={!(state.addressStep || state.phoneStep || state.employmentStep || state.identityStep || state.lifeEventStep)}/>
                 </fieldset>
