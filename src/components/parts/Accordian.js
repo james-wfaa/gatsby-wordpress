@@ -125,7 +125,7 @@ const isOpenClass = open ? 'open' : ''
   return (
     <StyledWrapper className="AccordionWrap">
       <StyledClickWrapper onClick={() => clickHandler()} onKeyPress={() => clickHandler()} aria-label={useAsMenu ? menuToggleAriaLabel : null} tabIndex={useAsMenu ? '0' : null}>
-        <StyledInputWrapper>
+        <StyledInputWrapper className="AccordionInputWrap">
           <div className="menuTitle">
             {useAsNav ? (<h3> {!open ? opentext : closetext}</h3>):(
               <div>{!open ? opentext : closetext}</div>

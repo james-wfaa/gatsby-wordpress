@@ -1,7 +1,7 @@
 import React from "react"
 import parse from 'html-react-parser';
 import styled from 'styled-components'
-import { colors, sizes, breakpoints } from '../css-variables'
+import { colors, fonts,sizes, breakpoints } from '../css-variables'
 import Accordian from "../parts/Accordian"
 import { element } from "prop-types";
 
@@ -54,11 +54,29 @@ const StyledAccordionNavigation = styled(AccordionNavigation)`
 
 border: 1px solid ${colors.cardBorder};
 border-top: 6px solid ${colors.cardBorder};
+margin-top: 56px;
 
 .AccordionNavigation{
     .AccordionWrap{
         background-color: ${colors.bgWhite};
-        margin-left: 32px;
+        margin: 32px;
+        border-top: 8px ${colors.cardTitleBg} solid;
+    }
+
+    .AccordionWrap:first-child{
+        border-top: none;
+    }
+
+    .AccordionInputWrap{
+        margin: 32px 0px;
+
+        .menuTitle h3{
+            margin-bottom: 0px;
+            font-family: ${fonts.eaves};
+            font-weight: bold;
+            font-style: italic;
+            font-size: ${sizes.s36};
+        }
     }
 
     .accordion__content{
@@ -66,8 +84,6 @@ border-top: 6px solid ${colors.cardBorder};
     }
     
 }
-
-
 `
 
 export default StyledAccordionNavigation
