@@ -119,6 +119,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                         organizers={organizers}
                         eventDetails={eventDetails}
                         calendarLinks={EventLinksContent}
+                        showMapLink={showMapDetails()}
                     />
                 </div>
                 <div className="social-mobile">
@@ -153,6 +154,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     organizers={organizers}
                     eventDetails={eventDetails}
                     calendarLinks={EventLinksContent}
+                    showMapLink={showMapDetails()}
                 />
                 <div className="social-desktop">
                 { eventDetails && eventDetails.questions && (
