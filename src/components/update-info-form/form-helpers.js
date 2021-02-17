@@ -1,6 +1,7 @@
 import postalCodes from "postal-codes-js"
 import { colors } from '../css-variables'
 import styled from "styled-components"
+import formErrorIcon from "./../../svg/form-error-icon-red.svg"
 
 
 export const validatePostalCode = (value, country) => {
@@ -17,7 +18,7 @@ export const variantObject = {
 export const StyledError = styled.p`
   font-family: "Verlag A", "Verlag B";
   font-style: normal;
-  margin: 0 auto;
+  margin: 0 auto 0 24px;
   padding: 0;
   position: relative;
   color: ${colors.buttonRed};
@@ -27,7 +28,17 @@ export const StyledError = styled.p`
   line-height: 18px;
   + input{
     border: 2px solid ${colors.buttonRed} !important;
-    //background-image: ;
+    background-color: ${colors.errorBGYellow} ;
+  }
+  &:before{
+    content: ' ';
+    background-image: url(${formErrorIcon});
+    background-size: contain;
+    width: 14px;
+    height: 14px;
+    position:absolute;
+    left: -24px;
+    top: 2px;
   }
 `
 export const StyledTopError = styled.p`
@@ -38,7 +49,17 @@ export const StyledTopError = styled.p`
   font-size: 16px;
   position: absolute;
   color: ${colors.buttonRed};
-  top: -45px;
+  top: -40px;
+  left: calc(50% - 80px);
+  &:before{
+    content: ' ';
+    background-image: url(${formErrorIcon});
+    width: 16px;
+    height: 16px;
+    position:absolute;
+    left: -28px;
+    top: 3.5px;
+  }
   }
 `
 

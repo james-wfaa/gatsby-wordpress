@@ -27,7 +27,7 @@ const FormButtons = ({ next, back, save, finish, signup, disabled, error, errors
 
  return  (
         <div className="form-btns">
-            { submitCount > 0 && (Object.keys(errors).length === 0) && <p className="validFormMessage">All required information has been entered. Click below to save and continue to the next page. </p>}
+            { disabled && (<p className="validFormMessage">Please complete all required fields. </p>) }
             { back && <button className="back" onClick={() => handleBackBtn()}>Go Back</button>}
             { finish && <button
                 type="submit"

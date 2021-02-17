@@ -467,10 +467,13 @@ form{
   }
 }
 .validFormMessage{
-  top: -30px;
+  top: -42px;
   position: absolute;
   width: 100%;
   font-weight:bold;
+  @media screen and ${breakpoints.tabletS} {
+    top: -30px;
+  }
 }
 
 
