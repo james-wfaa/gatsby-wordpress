@@ -13,6 +13,7 @@ import UpdateSuccess from "../components/update-info-form/pages/UpdateSuccess"
 import CommunicationSuccess from "../components/update-info-form/pages/CommunicationSuccess"
 import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-variables'
 import downCaret from './../../static/down-caret-red.png'
+import formErrorIcon from "./../svg/form-error-icon-red.svg"
 
 const UpdateInfoForm = () =>  {
   const { state, actions } = useContext(AppContext);
@@ -408,13 +409,19 @@ form{
       font-family: ${fonts.verlag};
       font-style: normal;
       margin: 0 auto;
-      padding: 0;
+      padding: 0 0 0 24px;
       font-size: 16px;
       position: absolute;
       color: ${colors.buttonRed};
       text-transform: none;
-      right: -215px;
       font-weight:normal;
+      top: -36px;
+      background-image: url(${formErrorIcon});
+      background-repeat: no-repeat;
+      @media screen and ${breakpoints.tabletS} {
+        top: unset;
+        right: -215px;
+      }
     }
     @media screen and ${breakpoints.tabletS} {
       width: auto;
@@ -474,6 +481,9 @@ form{
   @media screen and ${breakpoints.tabletS} {
     top: -30px;
   }
+}
+.select-steps, .success-page{
+  .validFormMessage{display:none;}
 }
 
 

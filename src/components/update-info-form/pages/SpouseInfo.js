@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, StyledTopError, variantObject } from '../form-helpers'
+import { StyledError, StyledTopError, variantObject, currentYear } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import { colors } from '../../css-variables'
 import Buttons from './../FormButtons'
@@ -99,10 +99,17 @@ const SpouseInfo = () => {
                     onChange={e => updateOnChangeValues(e)}
                     placeholder="YYYY"
                     ref={register({
-                      /*pattern: {
-                        value: /^(19|20)\d{2}$/,
-                        message: "Must be a valid 4 digit graduation year",
-                      },*/
+                      validate: {
+                        validYear: value => value > 1847 && value <= currentYear,
+                      },
+                      maxLength: {
+                        value: 4,
+                        message: "Must be 4 characters or less",
+                      },
+                      pattern: {
+                        value: /^[0-9]*$/,
+                        message: "Numbers only, please",
+                      },
                     })}
                 />
                 {errors.undergrad && (

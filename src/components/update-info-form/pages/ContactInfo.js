@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, StyledTopError, variantObject } from '../form-helpers'
+import { StyledError, StyledTopError, variantObject, checkForLetters, currentYear } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from '../FormButtons'
 import { AppContext } from "../../../context/AppContext"
@@ -21,7 +21,6 @@ const ContactInfo = () => {
   }
   
   const requiredFieldsCheck = state.contactInfo.firstname !== '' && state.contactInfo.lastname !== '' && state.contactInfo.email !== '';
-
       return (
         <div>
             <IntroPageSection
@@ -118,6 +117,10 @@ const ContactInfo = () => {
                 {errors.phone && (
                   <StyledError>{errors.phone.message}</StyledError>
                 )}
+                {errors.phone?.type === "numbersOnly" && (
+                  <StyledError>Letters are not accepted as a valid phone number</StyledError>
+                )}
+                {console.log(errors)}
                 <input
                     type="phone"
                     name="phone"
@@ -125,18 +128,20 @@ const ContactInfo = () => {
                     maxLength="51"
                     defaultValue={state.contactInfo.phone}
                     onChange={e => updateOnChangeValues(e)}
-                    //placeholder="+1 (000) 000-0000"
                     ref={register({
-                      maxLength: {
-                        value: 50,
-                        message: "Cannot be more than 50 characters",
+                      validate: {
+                        numbersOnly: value => checkForLetters(value) === false,
                       },
-                    })}
+                    })
+                  }
                 />
               </label>
               <label htmlFor="undergrad" className="smallThird">Undergraduate Year (if applicable)
                 {errors.undergrad && (
                   <StyledError>{errors.undergrad.message}</StyledError>
+                )}
+                {errors.undergrad?.type === "numbersOnly" && (
+                  <StyledError>Letters are not accepted as a valid undergrad year</StyledError>
                 )}
                 <input
                     type="text"
@@ -147,13 +152,13 @@ const ContactInfo = () => {
                     onChange={e => updateOnChangeValues(e)}
                     placeholder="YYYY"
                     ref={register({
-                      /*pattern: {
-                        value: /^(19|20)\d{2}$/,
-                        message: "Must be a valid 4 digit graduation year, formatted yyyy",
-                      },*/
                       maxLength: {
                         value: 4,
                         message: "Must be 4 characters or less",
+                      },
+                      pattern: {
+                        value: /^[0-9]*$/,
+                        message: "Numbers only, please",
                       },
                     })}
                 />

@@ -1,11 +1,24 @@
 import postalCodes from "postal-codes-js"
-import { colors } from '../css-variables'
+import { colors, breakpoints } from '../css-variables'
 import styled from "styled-components"
 import formErrorIcon from "./../../svg/form-error-icon-red.svg"
 
 
 export const validatePostalCode = (value, country) => {
   return postalCodes.validate(country, value)
+}
+
+export const currentYear =  new Date().getFullYear();
+
+export const checkForLetters = (value) => {
+  let response
+  const regExp = /[a-zA-Z]/g;
+  if(regExp.test(value)){
+    response = true
+  } else {
+    response = false
+  }
+  return response
 }
 
 export const variantObject = {
@@ -49,7 +62,7 @@ export const StyledTopError = styled.p`
   font-size: 16px;
   position: absolute;
   color: ${colors.buttonRed};
-  top: -40px;
+  top: -50px;
   left: calc(50% - 80px);
   &:before{
     content: ' ';
@@ -60,6 +73,9 @@ export const StyledTopError = styled.p`
     left: -28px;
     top: 3.5px;
   }
+  @media screen and ${breakpoints.tabletS} {
+    top: -40px;
   }
+  
 `
 
