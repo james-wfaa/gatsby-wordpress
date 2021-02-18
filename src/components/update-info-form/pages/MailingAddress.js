@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject, StyledTopError } from '../form-helpers'
+import { StyledError, variantObject } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from '../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -53,7 +53,7 @@ const MailingAddress = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form className="mailing-address" onSubmit={handleSubmit(UpdateMailingAddressInfo)}>
-            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
+            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Mailing Address<span className="requiredInfo">*Required Information</span></legend>
               <hr />
               <label htmlFor="streetAddress">Street Address

@@ -1,8 +1,7 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, StyledTopError, variantObject, currentYear } from '../form-helpers'
+import { StyledError, variantObject, currentYear } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
-import { colors } from '../../css-variables'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
@@ -41,7 +40,7 @@ const SpouseInfo = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="spouseInfo" onSubmit={handleSubmit(submitForm)} className="spouse-info">
-            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
+            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Spouse or Partner<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="firstname" className="half required">Spouse/Partner First Name

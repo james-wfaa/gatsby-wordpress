@@ -9,9 +9,7 @@ import { variantObject } from '../form-helpers'
 const UpdateSuccess = () => {
     const { state, actions } = useContext(AppContext);
     const { setCurrentStep, setCommunicationsSignUpOnchange } = actions;
-    const { handleSubmit, errors, formState: { isValid, isDirty } } = useForm({
-        mode: "onChange",
-      })
+    const { handleSubmit, errors, } = useForm()
 
     const submitCommunicationsSignup = data =>{
         console.log(data)
@@ -34,7 +32,6 @@ const UpdateSuccess = () => {
     const content = `<div className="successPageIcon"></div>`
 
     const disableButton = state.communicationsSignUp.length > 0 ? false : true;
-    console.log(disableButton)
   
     return (
         <div className="success-page">

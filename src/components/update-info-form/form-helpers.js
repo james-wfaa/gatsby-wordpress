@@ -52,6 +52,21 @@ export const StyledError = styled.p`
     left: -24px;
     top: 2px;
   }
+  &.topError{
+    margin: 0 auto;
+    font-size: 16px;
+    top: -42px;
+    left: calc(50% - 80px);
+    &:before{
+      width: 16px;
+      height: 16px;
+      left: -28px;
+      top: 0;
+    }
+    @media screen and ${breakpoints.tabletS} {
+      top: -35px;
+    }
+  }
   &.bottomButtonError{
     top: -35px;
     font-size:16px;
@@ -61,30 +76,4 @@ export const StyledError = styled.p`
       top: -25px;
     }
   }
-  
 `
-export const StyledTopError = styled.p`
-  font-family: "Verlag A", "Verlag B";
-  font-style: normal;
-  margin: 0 auto;
-  padding: 0;
-  font-size: 16px;
-  position: absolute;
-  color: ${colors.buttonRed};
-  top: -50px;
-  left: calc(50% - 80px);
-  &:before{
-    content: ' ';
-    background-image: url(${formErrorIcon});
-    width: 16px;
-    height: 16px;
-    position:absolute;
-    left: -28px;
-    top: 3.5px;
-  }
-  @media screen and ${breakpoints.tabletS} {
-    top: -40px;
-  }
-  
-`
-

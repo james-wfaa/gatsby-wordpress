@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, StyledTopError, variantObject } from '../form-helpers'
+import { StyledError, variantObject } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -67,7 +67,7 @@ const IdentityInfo = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep} />
             <form className="identity-info" id="contact" onSubmit={handleSubmit(UpdateIdentityInfo)}>
-              { (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
+              { (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Race/Ethnicity/Identity<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <input type="checkbox" name="select1" id="select1" onChange={e => updateOnChangeValues(e)} defaultChecked={state.identityInfo.identity.includes("select1")}/>

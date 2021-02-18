@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, StyledTopError, variantObject, checkForLetters, currentYear } from '../form-helpers'
+import { StyledError, variantObject, checkForLetters, currentYear } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from '../FormButtons'
 import { AppContext } from "../../../context/AppContext"
@@ -31,7 +31,7 @@ const ContactInfo = () => {
               headingCompact
             />
             <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
-              { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
+              { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Contact Information<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="firstname" className="half required">First Name

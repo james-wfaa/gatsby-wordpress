@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, StyledTopError, variantObject, checkForLetters } from '../form-helpers'
+import { StyledError, variantObject, checkForLetters } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -75,7 +75,7 @@ const PhoneInfo = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="phoneInfo" onSubmit={handleSubmit(UpdatePhoneInfo)}>
-            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
+            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
             <legend>Phone Numbers<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="phoneNumber1" className="half">Phone Number 1
