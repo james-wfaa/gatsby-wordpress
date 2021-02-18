@@ -48,8 +48,9 @@ margin: ${sizes.s58} 0;
   margin: 3.222rem auto;
 }
 &.smallImg{
-  max-width: ${props => props.size + `px`};
-  min-width: ${props => props.size + `px`};
+  max-width: 280px;
+  min-width: 280px;
+  width: 280px;
   margin: 12px auto;
   @media screen and ${breakpoints.tablet} {
     float: left; 
