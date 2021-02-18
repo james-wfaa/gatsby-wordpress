@@ -242,7 +242,8 @@ const StyledPageSection = styled(PageSection)`
         > .core-table,
         > .core-buttons,
         > .core-columns,
-        > .gravityforms-form {
+        > .gravityforms-form,
+        > .wp-block-embed {
             min-width: 300px;
             width: 80%;
             max-width: 712px;

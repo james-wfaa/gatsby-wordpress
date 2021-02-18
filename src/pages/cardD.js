@@ -5,7 +5,7 @@ import PromoCardD from "../components/content-blocks/PromoCardD"
 import GenericPageSection from '../components/page-sections/GenericPageSection'
 import MobileHr from '../components/parts/MobileHr'
 
-export default () => {
+const CardDPage = () => {
     return (
 <Layout>
     <GenericPageSection>
@@ -294,3 +294,4 @@ export default () => {
 </Layout>
     )
 }
+export default CardDPage

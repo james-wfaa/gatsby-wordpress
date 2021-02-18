@@ -57,7 +57,7 @@ const StyledInputWrapper = styled.div`
   }
   .menuIcon{
     display: inline-block;
-    margin-left:12px;
+    margin-left:20px;
     width: 32px;
     span{
       display: inline-block;
@@ -97,7 +97,7 @@ const StyledInputWrapper = styled.div`
         border: 1px solid ${colors.buttonRed};
         border-radius: 50%;
         background-color:transparent;
-        top:4px;
+        top:2px;
       }
       span::before{
         -webkit-transform: rotate(-45deg) translate(-8.5px,13px);
@@ -120,10 +120,11 @@ const isOpenClass = open ? 'open' : ''
   const clickHandler = () => {
     setOpen(!open)
   }
+  const menuToggleAriaLabel = isOpenClass ? `Close ${opentext}` : `Open ${closetext}` ;
 
   return (
     <StyledWrapper>
-      <StyledClickWrapper onClick={() => clickHandler()}>
+      <StyledClickWrapper onClick={() => clickHandler()} onKeyPress={() => clickHandler()} aria-label={useAsMenu ? menuToggleAriaLabel : null} tabIndex={useAsMenu ? '0' : null}>
         <StyledInputWrapper>
           <div className="menuTitle">
             {!open ? opentext : closetext}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
+import { colors, mixins, sizes, breakpoints } from '../css-variables'
 import styled from 'styled-components'
 import EventLinksBlock from "./EventLinks"
 

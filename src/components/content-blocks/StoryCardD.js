@@ -28,15 +28,17 @@ const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat })=> {
     if(label && postTypes){
         switch(label){
             case 'Video':
-                break;
+                break
             case 'Link':
                 moreLinkText = <nobr>Via {linkFormat.linkAuthor} <span class="arrow"></span></nobr>
                 label = 'Story'
                 url = linkFormat.linkUrl
-                break;
+                break
             case 'Podcast': 
                 moreLinkText = <nobr>Listen <span class="arrow"></span></nobr>
-                break;
+                break
+            default: 
+                break
         }   
     }
     

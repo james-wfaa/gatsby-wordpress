@@ -65,7 +65,12 @@ export const shortDate = (date) => {
   if (!date) {
     return null
   }
-  const tmpDate = new Date(date.replace(/\s/, 'T'))
+  let tmpDate
+  if (typeof date !== 'string') {
+    tmpDate = new Date(date)
+  } else {
+    tmpDate = new Date(date.replace(/\s/, 'T'))
+  }
 
   const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June",
   "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
@@ -81,6 +86,12 @@ export const membershipFeeCalc = (graduate, age, type) => {
     installments: 0,
     oneYear: 0,
     twoYear: 0,
+    stringParams: {
+      full: "",
+      installments: "",
+      oneYear: "",
+      twoYear: "",
+    },
   }
   if (graduate) {
     if (type === "individual") {
@@ -89,12 +100,24 @@ export const membershipFeeCalc = (graduate, age, type) => {
         fees.installments = 29;
         fees.oneYear = 45;
         fees.twoYear = 79;
+        fees.stringParams = {
+          full: "?term=life&level=senior",
+          installments: "?term=life&level=senior&installments=yes",
+          oneYear: "?&level=senior",
+          twoYear: "?&level=senior",
+        }
         // gradYes & ageYes & individual
       } else {
         fees.full = 650;
         fees.installments = 34;
         fees.oneYear = 25;
         fees.twoYear = 44;
+        fees.stringParams = {
+          full: "?term=life&level=grad",
+          installments: "?term=life&level=grad&installments=yes",
+          oneYear: "?&level=grad",
+          twoYear: "?&level=grad",
+        }
         // gradYes & ageNo & individual
       }
     } else {
@@ -103,12 +126,24 @@ export const membershipFeeCalc = (graduate, age, type) => {
         fees.installments = 34;
         fees.oneYear = 55;
         fees.twoYear = 94;
+        fees.stringParams = {
+          full: "?term=life&level=senior&joint=yes",
+          installments: "?term=life&level=senior&joint=yes&installments=yes",
+          oneYear: "?&level=senior&joint=yes",
+          twoYear: "?&level=senior&joint=yes",
+        }
         // gradYes & ageYes & joint
       } else {
         fees.full = 750;
         fees.installments = 39;
         fees.oneYear = 35;
         fees.twoYear = 59;
+        fees.stringParams = {
+          full: "?term=life&level=grad&joint=yes",
+          installments: "?term=life&level=grad&joint=yes&installments=yes",
+          oneYear: "?&level=grad&joint=yes",
+          twoYear: "?&level=grad&joint=yes",
+        }
         // gradYes & ageNo & joint
       }
     }
@@ -119,12 +154,24 @@ export const membershipFeeCalc = (graduate, age, type) => {
         fees.installments = 29;
         fees.oneYear = 45;
         fees.twoYear = 79;
+        fees.stringParams = {
+          full: "?term=life&level=senior",
+          installments: "?term=life&level=senior&installments=yes",
+          oneYear: "?&level=senior",
+          twoYear: "?&level=senior",
+        }
         // gradNo & ageYes & individual
       } else {
         fees.full = 790;
         fees.installments = 41;
         fees.oneYear = 55;
         fees.twoYear = 94;
+        fees.stringParams = {
+          full: "?term=life",
+          installments: "?term=life&installments=yes",
+          oneYear: "",
+          twoYear: "",
+        }
         // gradNo & ageNo & individual
       }
     } else {
@@ -133,15 +180,28 @@ export const membershipFeeCalc = (graduate, age, type) => {
         fees.installments = 34;
         fees.oneYear = 55;
         fees.twoYear = 94;
+        fees.stringParams = {
+          full: "?term=life&level=senior&joint=yes",
+          installments: "?term=life&level=senior&joint=yes&installments=yes",
+          oneYear: "?&level=senior&joint=yes",
+          twoYear: "?&level=senior&joint=yes",
+        }
         // gradNo & ageYes & joint
       } else {
         fees.full = 890;
         fees.installments = 46;
         fees.oneYear = 65;
         fees.twoYear = 109;
+        fees.stringParams = {
+          full: "?term=life&joint=yes",
+          installments: "?term=life&joint=yes&installments=yes",
+          oneYear: "?&joint=yes",
+          twoYear: "?&joint=yes",
+        }
         // gradNo & ageNo & joint
       }
     }
   }
+
   return fees;
 }

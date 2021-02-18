@@ -5,7 +5,7 @@ import CardE from "../components/content-blocks/CardE"
 import Container from "../components/parts/Container"
 
 import PageSection from '../components/page-sections/PageSection'
-export default ({ data }) => {
+const CardEPage = ({ data }) => {
 
     return (
 <Layout>
@@ -38,6 +38,8 @@ export default ({ data }) => {
 </Layout>
     )
 }
+export default CardEPage
+
 export const pageQuery = graphql`
 query {
     asset29: file(relativePath: { eq: "asset-29@2x.png" }) {

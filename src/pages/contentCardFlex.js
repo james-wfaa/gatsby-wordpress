@@ -71,7 +71,7 @@ const taglist2 = [
 
 ]
 
-export default ({ data }) => {
+const ContentFlex = ({ data }) => {
 return (
 <Layout>
     <PageSection pad>
@@ -391,6 +391,8 @@ return (
 </Layout>
     )
 }
+
+export default ContentFlex
 
 export const pageQuery = graphql`
 query {

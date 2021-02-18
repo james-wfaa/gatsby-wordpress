@@ -2,14 +2,18 @@ import React from 'react'
 import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
 import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"
-import GravityForm from '../content-blocks/GravityForm'
+import EmbedBlock from "./EmbedBlock"
+import GravityForm from './GravityForm'
 
 import styled from 'styled-components'
 import { colors, breakpoints, mixins } from '../css-variables'
 import Block from './WordPressBlock'
 
 
-const WordPressContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
+const WordPressContentBlocks = ({className, blocks, content, eventCategory, product, stagger}) => {
+
+    // see if the product has event and/or post nodes
+
     const staggerBlocks = (stagger) 
         ? blocks.map((block) => {
             block.stagger = true
@@ -23,6 +27,8 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
     staggerBlocks.forEach((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
         const stagger = block.stagger
+
+        console.log(block.name)
 
         switch(block.name) {
             
@@ -67,23 +73,50 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 
                 break
         
+            case "core-embed/flickr":
+                return <EmbedBlock source={block.originalContent} type="flickr" />
+                break
+            case "core-embed/vimeo":
+                console.log('vimeo')
+                console.log(block)
+                //return <div>foo</div>//
+                RenderedBlocks.push(<PageSection borderTop={borderTop} stagger={stagger}>
+                    <EmbedBlock source={block.originalContent} type="vimeo" />
+                    </PageSection>)
+                break
             case "core/separator":
                 RenderedBlocks.push(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+            case "acf/product-story-listing":
+                if ( product) {
+                    const { slug, posts } = product
+                    const postsToShow = (posts?.nodes) ? posts.nodes : null
+                    const buttons = (postsToShow.length > 2) 
+                        ? [{
+                            link: `/posts/search/?category=${slug}`,
+                            text: 'See More WAA Stories'
+                        }]
+                        : null
+                    RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={postsToShow} size="M" /></PageSection>)    
+                }
+                
+                break
+        
             case "acf/events-listing-section":
                 console.log('events-listing-section')
-                if ( eventCategory) {
-                    const { slug, events } = eventCategory
+                if ( product) {
+                    const { slug, events } = product
                     const eventsToShow = (events?.nodes) ? events.nodes : null
                     const buttons = (eventsToShow.length > 2) 
                         ? [{
                             link: `/events/search/?category=${slug}`,
-                            text: 'See All Events'
+                            text: 'See More Events'
                         }]
                         : null
-                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)
+                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)    
                 }
                 
                 break
+            
             default:
                 console.log('default')
                 RenderedBlocks.push(<PageSectionFromBlocks blocks={[block]} heading="Default" borderTop={borderTop} stagger={stagger} />)

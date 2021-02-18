@@ -4,7 +4,7 @@ import GenericPageSection from "../components/page-sections/GenericPageSection"
 import AccordianSearch from "../components/parts/AccordianSearch"
 import Accordian from "../components/parts/Accordian"
 
-export default () => {
+const AccordionPage = () => {
   return (
     <Layout>
       <GenericPageSection>
@@ -17,3 +17,4 @@ export default () => {
     </Layout>
   )
 }
+export default AccordionPage

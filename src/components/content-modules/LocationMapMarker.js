@@ -35,19 +35,15 @@ const greatPlaceStyleHover = {
 class LocationMapMarker extends Component {
     
     static propTypes = {
-        // GoogleMap pass $hover props to hovered components
-        // to detect hover it uses internal mechanism, explained in x_distance_hover example
-        $hover: PropTypes.bool,
-        text: PropTypes.string
-      };
-    
-      static defaultProps = {};
+      // GoogleMap pass $hover props to hovered components
+      // to detect hover it uses internal mechanism, explained in x_distance_hover example
+      $hover: PropTypes.bool,
+      text: PropTypes.string
+    };
+  
+    static defaultProps = {};
 
-      shouldComponentUpdate = shouldPureComponentUpdate;
-
-    constructor(props) {
-        super(props);
-    }
+    shouldComponentUpdate = shouldPureComponentUpdate;
 
     render() {
         const style = this.props.$hover ? greatPlaceStyleHover : greatPlaceStyle;

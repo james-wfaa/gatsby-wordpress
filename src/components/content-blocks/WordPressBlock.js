@@ -9,12 +9,12 @@ const WordPressBlock = ({className, block}) => {
     //console.log(block)
     if (block) {
         if (block.originalContent) {
-            const blockContent = (block.isDynamic) 
+            const blockContent = (block.isDynamic)
             ? block.dynamicContent
-            : (block.saveContent) 
+            : (block.saveContent)
                 ? block.saveContent
-                : block.originalContent 
-                
+                : block.originalContent
+
             return (
                 <div className={className} dangerouslySetInnerHTML={{__html: blockContent}} />
             )
@@ -23,14 +23,14 @@ const WordPressBlock = ({className, block}) => {
             return (
                 <div className={className} dangerouslySetInnerHTML={{__html: block}} />
             )
-            
+
         }
-        
+
     }
     return null
-    
 
-    
+
+
 }
 
 const StyledWordPressBlock = styled(WordPressBlock)`
@@ -84,7 +84,7 @@ margin-right: auto;
 >h3{
     font-family: ${fonts.eaves};
     font-weight: bold;
-    font-style: italic; 
+    font-style: italic;
     color: ${colors.titleColor};
 }
 >h2 {
@@ -125,7 +125,7 @@ a {
     margin-bottom: ${sizes.s32};
 }
 
-> p, 
+> p,
 > h2,
 > h3,
 >.wp-block-image {
@@ -180,7 +180,7 @@ a {
     @media screen and ${breakpoints.tabletS} {
         margin: ${sizes.s12};
         width: auto;
-    }  
+    }
 }
 
 .wp-block-quote {
