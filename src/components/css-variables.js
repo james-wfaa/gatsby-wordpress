@@ -60,6 +60,7 @@ export const baseColors = {
     lightestGrey: '#F3F3F3',
     evenlighterGrey: '#F8F8F8',
     errorLightYellow: '#FFFFC9',
+    lightRed: '#FFCCCB',
 }
 export const colors = {
     startDateColor: baseColors.offBlack,
@@ -117,6 +118,7 @@ export const colors = {
     checkboxInputGrey: baseColors.darkGrey,
     formHeaderBGGrey: baseColors.lightestGrey,
     errorBGYellow: baseColors.errorLightYellow,
+    progressBarLightRed: baseColors.lightRed,
 }
 
 export const size = {

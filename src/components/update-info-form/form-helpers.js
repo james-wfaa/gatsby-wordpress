@@ -3,7 +3,6 @@ import { colors, breakpoints } from '../css-variables'
 import styled from "styled-components"
 import formErrorIcon from "./../../svg/form-error-icon-red.svg"
 
-
 export const validatePostalCode = (value, country) => {
   return postalCodes.validate(country, value)
 }
@@ -31,12 +30,11 @@ export const variantObject = {
 export const StyledError = styled.p`
   font-family: "Verlag A", "Verlag B";
   font-style: normal;
-  margin: 0 auto 0 24px;
+  margin: 12px auto 0 24px;
   padding: 0;
   color: ${colors.buttonRed};
-  position:absolute;
+  position:relative;
   font-size: 0.778rem;
-  top: 90px;
   line-height: 18px;
   + input{
     border: 2px solid ${colors.buttonRed} !important;
@@ -57,6 +55,7 @@ export const StyledError = styled.p`
     font-size: 16px;
     top: -42px;
     left: calc(50% - 80px);
+    position:absolute;
     &:before{
       width: 16px;
       height: 16px;
@@ -68,12 +67,13 @@ export const StyledError = styled.p`
     }
   }
   &.bottomButtonError{
-    top: -35px;
+    top: -50px;
     font-size:16px;
     display:inline-block;
     left: calc(50% - 100px);
+    position:absolute;
     @media screen and ${breakpoints.tabletS} {
-      top: -25px;
+      top: -35px;
     }
   }
 `

@@ -73,7 +73,7 @@ const StyledProgressBar = styled.div`
             }
         }
         .progress-step{
-            background-color: #ffcccb;
+            background-color: ${colors.progressBarLightRed};
             display: inline-block;
             height: 12px;
         }

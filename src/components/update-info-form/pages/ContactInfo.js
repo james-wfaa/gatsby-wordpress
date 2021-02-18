@@ -36,9 +36,6 @@ const ContactInfo = () => {
               <hr></hr>
               <label htmlFor="firstname" className="half required">First Name
                 <span className="required">*</span>
-                {errors.firstname && (
-                  <StyledError>{errors.firstname.message}</StyledError>
-                )}
                 <input
                     type="text"
                     name="firstname"
@@ -54,12 +51,12 @@ const ContactInfo = () => {
                       },
                     })}
                 />
+                {errors.firstname && (
+                  <StyledError>{errors.firstname.message}</StyledError>
+                )}
               </label>
               <label htmlFor="lastname" className="half leftMargin required">Last Name
                 <span className="required">*</span>
-                {errors.lastname && (
-                  <StyledError>{errors.lastname.message}</StyledError>
-                )}
                 <input
                     type="text"
                     name="lastname"
@@ -75,11 +72,11 @@ const ContactInfo = () => {
                       },
                     })}
                 />
+                {errors.lastname && (
+                  <StyledError>{errors.lastname.message}</StyledError>
+                )}
               </label>
               <label htmlFor="othernames">Other names you use or have used in the past (maiden names, nicknames, given names etc.)
-                {errors.othernames && (
-                    <StyledError>{errors.othernames.message}</StyledError>
-                  )}
                 <input
                     type="text"
                     name="othernames"
@@ -89,12 +86,12 @@ const ContactInfo = () => {
                     ref={register({
                     })}
                 />
+                {errors.othernames && (
+                    <StyledError>{errors.othernames.message}</StyledError>
+                  )}
               </label>
               <label htmlFor="email" className="half required">Preferred Email
                 <span className="required">*</span>
-                {errors.email && (
-                  <StyledError>{errors.email.message}</StyledError>
-                )}
                 <input
                     type="email"
                     name="email"
@@ -112,15 +109,11 @@ const ContactInfo = () => {
                       },
                     })}
                 />
+                {errors.email && (
+                  <StyledError>{errors.email.message}</StyledError>
+                )}
               </label>
               <label htmlFor="phone" className="half leftMargin">Mobile Phone
-                {errors.phone && (
-                  <StyledError>{errors.phone.message}</StyledError>
-                )}
-                {errors.phone?.type === "numbersOnly" && (
-                  <StyledError>Letters are not accepted as a valid phone number</StyledError>
-                )}
-                {console.log(errors)}
                 <input
                     type="phone"
                     name="phone"
@@ -135,14 +128,14 @@ const ContactInfo = () => {
                     })
                   }
                 />
+                {errors.phone && (
+                  <StyledError>{errors.phone.message}</StyledError>
+                )}
+                {errors.phone?.type === "numbersOnly" && (
+                  <StyledError>Letters are not accepted as a valid phone number</StyledError>
+                )}
               </label>
               <label htmlFor="undergrad" className="smallThird">Undergraduate Year (if applicable)
-                {errors.undergrad && (
-                  <StyledError>{errors.undergrad.message}</StyledError>
-                )}
-                {errors.undergrad?.type === "numbersOnly" && (
-                  <StyledError>Letters are not accepted as a valid undergrad year</StyledError>
-                )}
                 <input
                     type="text"
                     name="undergrad"
@@ -162,11 +155,14 @@ const ContactInfo = () => {
                       },
                     })}
                 />
+                {errors.undergrad && (
+                  <StyledError>{errors.undergrad.message}</StyledError>
+                )}
+                {errors.undergrad?.type === "numbersOnly" && (
+                  <StyledError>Letters are not accepted as a valid undergrad year</StyledError>
+                )}
               </label>
               <label htmlFor="postgrad" className="smallThird leftMargin">Postgraduate Year(s) (if applicable)
-                {errors.postgrad && (
-                  <StyledError>{errors.postgrad.message}</StyledError>
-                )}
                 <input
                     type="text"
                     name="postgrad"
@@ -176,6 +172,9 @@ const ContactInfo = () => {
                     ref={register({
                     })}
                 />
+                {errors.postgrad && (
+                  <StyledError>{errors.postgrad.message}</StyledError>
+                )}
               </label>
               
               <Buttons 

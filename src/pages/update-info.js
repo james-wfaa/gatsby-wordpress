@@ -129,10 +129,7 @@ form{
   label{
     margin-top: 24px;
     position:relative;
-    /*&.required:before {
-      content:" *";
-      color: ${colors.buttonRed};
-    }*/
+    vertical-align: top;
     span.required{
       color: ${colors.buttonRed};
     }
@@ -307,7 +304,6 @@ form{
     margin-bottom: 70px;
   }
 }
-
 
 .form-btns{
   margin: 58px auto;
