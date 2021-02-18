@@ -14,10 +14,13 @@ import CommunicationSuccess from "../components/update-info-form/pages/Communica
 import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-variables'
 import downCaret from './../../static/down-caret-red.png'
 
-
 const UpdateInfoForm = () =>  {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep } = actions;
+
+  useEffect(() => {
+    document.body.scrollTop = 0
+  }, [state.currentStep]);
 
   const renderCurrentStep = () => {
       switch(state.currentStep){
@@ -60,8 +63,9 @@ const UpdateInfoForm = () =>  {
 const StyledUpdateInfoForm = styled.div`
 div.excerpt{
   color: ${colors.copyText};
-  span.red{
+  a.red{
     color: ${colors.buttonRed};
+    text-decoration: none;
   }
 }
 form, .form-btns, .disclaimer{
@@ -85,7 +89,7 @@ form{
     margin-bottom: 12px;
     display:block;
     position:relative;
-    font-weight:bold;
+    font-weight:900;
     width: 100%;
     .requiredInfo{
       position:absolute;
@@ -128,6 +132,9 @@ form{
     padding-left: 12px;
     border: 2px solid ${colors.formInputBorder};
     border-radius: 0;
+    ::placeholder{
+      color:${colors.checkboxInputGrey};
+    }
   }
   input[type='date']{
     display:inline-block;
@@ -193,7 +200,7 @@ form{
     }
     .checkboxWrap{
       margin: 0 auto;
-      max-width: 390px;
+      max-width: 442px;
     }
     input[type='checkbox'], input[type='radio'] {
       position: absolute !important;
@@ -306,12 +313,12 @@ form{
     text-decoration: none;
     margin: ${sizes.s24} auto 0 ;
     border:none;
-    max-width:310px;
+    max-width:315px;
     border-radius: 0;
     &:hover {
       cursor:pointer;
     }
-    &.next, &.save{
+    &.next, &.save, &.signup{
       background-color: ${colors.buttonRed};
       color: ${colors.titleWhite};
       &:after{
@@ -334,6 +341,7 @@ form{
       &:disabled {
         background-color: ${colors.disabledButtonGrey};
         box-shadow:none;
+        cursor: default;
       }
     }
     &.back{
@@ -355,7 +363,6 @@ form{
         margin-right: 40px;
       }
     }
-    &.signup, 
     &.address{
       color:white;
       background-color: ${colors.buttonRed};
@@ -366,8 +373,14 @@ form{
     &#submitbutton{
       background-color: ${colors.buttonRed};
       color: ${colors.titleWhite};
+      &:hover {
+        background-color: ${colors.buttonHoverRed};
+        box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
+      }
       &:disabled {
         background-color: ${colors.disabledButtonGrey};
+        box-shadow: none;
+        cursor:default;
       }
       @media screen and ${breakpoints.tabletS} {
         margin-right: 40px;
@@ -446,6 +459,12 @@ form{
   .content{
     margin-bottom: 70px;
   }
+}
+.validFormMessage{
+  top: -30px;
+  position: absolute;
+  width: 100%;
+  font-weight:bold;
 }
 
 

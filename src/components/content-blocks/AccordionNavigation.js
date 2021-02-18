@@ -75,7 +75,14 @@ margin-top: 56px;
             font-family: ${fonts.eaves};
             font-weight: bold;
             font-style: italic;
-            font-size: ${sizes.s36};
+            font-size: ${sizes.s24};
+            line-height: ${sizes.s26};
+            text-transform: none;
+            @media screen and ${breakpoints.laptopS} {
+                font-size: ${sizes.s36};
+                line-height: ${sizes.s42};
+                
+            }
         }
     }
 
