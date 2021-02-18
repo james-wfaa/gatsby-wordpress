@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
 import styled from 'styled-components'
 import { AppContext } from "../../context/AppContext"
+import { StyledError } from './form-helpers'
 
 const FormButtons = ({ next, back, save, finish, signup, disabled, error, errors, submitCount }) => {
     const { state, actions } = useContext(AppContext);
@@ -23,11 +24,11 @@ const FormButtons = ({ next, back, save, finish, signup, disabled, error, errors
     const handleFinishBtn = () => {
       setCurrentStep(8)
     }
-    const errorClass = error ? 'errorMessage' : ''
 
  return  (
         <div className="form-btns">
             { disabled && (<p className="validFormMessage">Please complete all required fields. </p>) }
+            { error && (<StyledError className="bottomButtonError">Please correct error(s) above</StyledError>)}
             { back && <button className="back" onClick={() => handleBackBtn()}>Go Back</button>}
             { finish && <button
                 type="submit"
@@ -41,7 +42,7 @@ const FormButtons = ({ next, back, save, finish, signup, disabled, error, errors
                 name="savebutton"
                 id="savebutton"
                 disabled={disabled}
-                className={`save ${errorClass}`}>Save and Continue</button>}
+                className="save">Save and Continue</button>}
             { next && <button className="next" onClick={() => handleNextBtn()} disabled={disabled}>Save and Continue</button>}
             { signup && <button 
                 type="submit"

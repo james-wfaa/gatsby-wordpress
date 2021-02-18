@@ -33,7 +33,6 @@ export const StyledError = styled.p`
   font-style: normal;
   margin: 0 auto 0 24px;
   padding: 0;
-  position: relative;
   color: ${colors.buttonRed};
   position:absolute;
   font-size: 0.778rem;
@@ -53,6 +52,16 @@ export const StyledError = styled.p`
     left: -24px;
     top: 2px;
   }
+  &.bottomButtonError{
+    top: -35px;
+    font-size:16px;
+    display:inline-block;
+    left: calc(50% - 100px);
+    @media screen and ${breakpoints.tabletS} {
+      top: -25px;
+    }
+  }
+  
 `
 export const StyledTopError = styled.p`
   font-family: "Verlag A", "Verlag B";

@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, StyledTopError, variantObject } from '../form-helpers'
+import { StyledError, StyledTopError, variantObject, checkForLetters } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -88,10 +88,17 @@ const PhoneInfo = () => {
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       required: { value: true, message: "At least one valid phone number is required" },
+                      validate: {
+                        numbersOnly: value => checkForLetters(value) === false,
+                      },
                     })}
                 />
                 {errors.phoneNumber1 && (
                   <StyledError>{errors.phoneNumber1.message}</StyledError>
+                )}
+                {console.log(errors)}
+                {errors.phoneNumber1?.type === "numbersOnly" && (
+                  <StyledError>Letters are not accepted as a valid phone number</StyledError>
                 )}
               </label>
               <label htmlFor="phoneType1" className="half leftMargin">Phone Type 1
@@ -121,14 +128,16 @@ const PhoneInfo = () => {
                     defaultValue={state.phoneInfo.phoneNumber2}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      pattern: {
-                        value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
-                        message: "Must be a valid phone number",
+                      validate: {
+                        numbersOnly: value => checkForLetters(value) === false,
                       },
                     })}
                 />
                 {errors.phone && (
                   <StyledError>{errors.phone.message}</StyledError>
+                )}
+                {errors.phone?.type === "numbersOnly" && (
+                  <StyledError>Letters are not accepted as a valid phone number</StyledError>
                 )}
               </label>
               <label htmlFor="phoneType2" className="half leftMargin">Phone Type 2
@@ -156,14 +165,16 @@ const PhoneInfo = () => {
                     defaultValue={state.phoneInfo.phoneNumber3}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      pattern: {
-                        value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
-                        message: "Must be a valid phone number",
+                      validate: {
+                        numbersOnly: value => checkForLetters(value) === false,
                       },
                     })}
                 />
                 {errors.phoneNumber3 && (
                   <StyledError>{errors.phoneNumber3.message}</StyledError>
+                )}
+                {errors.phone?.type === "numbersOnly" && (
+                  <StyledError>Letters are not accepted as a valid phone number</StyledError>
                 )}
               </label>
               <label htmlFor="phoneType3" className="half leftMargin">Phone Type 3

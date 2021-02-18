@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject, StyledTopError, } from '../form-helpers'
+import { StyledError, variantObject, StyledTopError } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from '../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -56,23 +56,6 @@ const MailingAddress = () => {
             { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
               <legend>Mailing Address<span className="requiredInfo">*Required Information</span></legend>
               <hr />
-              <label htmlFor="addressType" className="half select-dropdown">Address Type
-                <select name="addressType" defaultValue={state.mailingAddress.addressType}>
-                  <option value="home">Home</option>
-                  <option value="business">Business</option>
-                </select>
-                {errors.addressType && (
-                  <StyledError>{errors.addressType.message}</StyledError>
-                )}
-              </label>
-              <label htmlFor="country" className="half leftMargin required">Country
-                <select name="country" onChange={e => updateOnChangeValues(e)} defaultValue={state.mailingAddress.country}>
-                  {countryOptions}
-                </select>
-                {errors.country && (
-                  <StyledError>{errors.country.message}</StyledError>
-                )}
-              </label>
               <label htmlFor="streetAddress">Street Address
                 <span className="required">*</span>
                 <input
@@ -148,6 +131,14 @@ const MailingAddress = () => {
                 />
                 {errors.zipcode && (
                   <StyledError>{errors.zipcode.message}</StyledError>
+                )}
+              </label>
+              <label htmlFor="country" className="half required">Country
+                <select name="country" onChange={e => updateOnChangeValues(e)} defaultValue={state.mailingAddress.country}>
+                  {countryOptions}
+                </select>
+                {errors.country && (
+                  <StyledError>{errors.country.message}</StyledError>
                 )}
               </label>
               <label htmlFor="seasonalResidence" >Do you have a seasonal residence?</label>

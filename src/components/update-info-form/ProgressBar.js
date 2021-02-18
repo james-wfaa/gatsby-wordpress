@@ -44,9 +44,9 @@ const StyledProgressBar = styled.div`
     background-color: white;
     position:relative;
     padding: 0 2rem;
-    @media screen and ${breakpoints.tabletS} {
-        max-width:896px;
-        margin:0 auto;
+    max-width:896px;
+    margin:0 auto;
+    @media screen and ${breakpoints.laptopS} {
         padding: 0;
     }
     .progress-bar-wrapper{

@@ -170,7 +170,7 @@ form{
   }
   
   
-  @media screen and ${breakpoints.tabletS} {
+  @media screen and ${breakpoints.tablet} {
     label.half, input.half  {
       width: 49%;
       display: inline-block;
