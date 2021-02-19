@@ -32,7 +32,7 @@ const SpouseInfo = () => {
       return (
         <div>
             <IntroPageSection
-              excerpt='Let us know if we should be aware of anything regarding your spouse or partner.'
+              excerpt='If there’s been a change or update regarding your spouse or partner please indicate that here. You can even add grad years for your spouse/partner. And always click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
               variantObject={variantObject}
               headingAlt

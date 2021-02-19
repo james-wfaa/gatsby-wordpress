@@ -24,7 +24,7 @@ const ContactInfo = () => {
       return (
         <div>
             <IntroPageSection
-              excerpt='We want to be certain we have the correct information for all UW Alumni and friends. Please take a minute to complete this brief form.'
+              excerpt='Make sure you stay in the know — and more connected to the UW and WAA! Please take a moment to complete this form with your current contact information to ensure you receive communications about events, programs, and services that matter to you.'
               heading='Update My Info'
               variantObject={variantObject}
               headingAlt

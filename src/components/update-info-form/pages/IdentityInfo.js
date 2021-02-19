@@ -59,7 +59,7 @@ const IdentityInfo = () => {
       return (
         <div>
             <IntroPageSection
-              excerpt='Please let us know anything you wish to share about your race/ethnicity as well as your identity.'
+              excerpt='Please provide information regarding how you would best identify yourself. And always click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
               variantObject={variantObject}
               headingAlt

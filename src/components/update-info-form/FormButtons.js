@@ -27,7 +27,7 @@ const FormButtons = ({ next, back, save, finish, signup, disabled, error, errors
 
  return  (
         <div className="form-btns">
-            { disabled && (<p className="validFormMessage">Please complete all required fields. </p>) }
+            { disabled && (<p className="validFormMessage">Please complete all required (<span className="red">*</span>) fields. </p>) }
             { error && (<StyledError className="bottomButtonError">Please correct error(s) above</StyledError>)}
             { back && <button className="back" onClick={() => handleBackBtn()}>Go Back</button>}
             { finish && <button

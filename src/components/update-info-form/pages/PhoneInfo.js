@@ -67,7 +67,7 @@ const PhoneInfo = () => {
       return (
         <div>
             <IntroPageSection
-              excerpt='Please update any phone numbers you wish to have on file. You only have to update one but can update multiple numbers if desired.'
+              excerpt='Please include any phone numbers you wish to have on file. You’re only required to provide one, but you can include multiple phone numbers if you choose. Important for Badgers living internationally: remember to include your country code. And always click “Save and Continue” after completing a page to ensure your changes are recorded.'
               heading='Update My Info'
               variantObject={variantObject}
               headingAlt

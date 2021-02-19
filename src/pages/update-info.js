@@ -194,8 +194,12 @@ form{
       width: 69%;
       display: inline-block;
     }
-    
- }
+  }
+  &#contact{
+    label.smallThird, input.smallThird  {
+      min-width:252px;
+    }
+  }
   
   &.select-steps, 
   &.identity-info,
@@ -488,6 +492,9 @@ form{
   a{
     color: ${colors.buttonRed};
   }
+}
+.red{
+  color:${colors.buttonRed};
 }
 `
 export default UpdateInfoForm

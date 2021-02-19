@@ -43,7 +43,7 @@ const EmploymentInfo = () => {
       return (
         <div>
             <IntroPageSection
-              excerpt='Please update your employment info and click “Save and Continue”.'
+              excerpt='Please make updates regarding your current employment status. And always click “Save and Continue” after completing a page to ensure your changes are recorded.'
               heading='Update My Info'
               variantObject={variantObject}
               headingAlt

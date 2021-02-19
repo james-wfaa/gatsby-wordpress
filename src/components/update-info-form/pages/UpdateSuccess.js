@@ -36,8 +36,8 @@ const UpdateSuccess = () => {
     return (
         <div className="success-page">
             <IntroPageSection
-            excerpt='Thanks so much for updating your info. Someone will be in contact with you if they have any questions about your submission. If you’d like to make any changes to your communication preferences in the future, simply email <a href="mailto:recordsupdates@supportuw.org" class="red">recordsupdates@supportuw.org</a> to let us know. '
-            heading='Thanks so much. Your info has been updated.'
+            excerpt='Thanks for taking the time to do a complete update of your information. Now you’re all set to receive messages, invitations, and more — and give you a better way to stay connected to UW–Madison and WAA. On, Wisconsin!'
+            heading='Thank you. Your information has been updated.'
             variantObject={variantObject}
             headingAlt
             headingCompact
@@ -50,19 +50,27 @@ const UpdateSuccess = () => {
                 <fieldset>
                     <div className="checkboxWrap">
                         <input type="checkbox" name="affinity-list-1" id="affinity-list-1" onChange={e => updateOnChangeValues(e)}/>
-                        <label htmlFor="affinity-list-1" selected>Affinity List 1</label>
+                        <label htmlFor="affinity-list-1" selected>Advocating for the UW</label>
                         <input type="checkbox" name="affinity-list-2" id="affinity-list-2" onChange={e => updateOnChangeValues(e)}/>
-                        <label htmlFor="affinity-list-2" selected>Affinity List 2</label>
+                        <label htmlFor="affinity-list-2" selected>Alumni Chapters</label>
                         <input type="checkbox" name="affinity-list-3" id="affinity-list-3" onChange={e => updateOnChangeValues(e)}/>
-                        <label htmlFor="affinity-list-3" selected>Affinity List 3</label>
+                        <label htmlFor="affinity-list-3" selected>Alumni Travel</label>
                         <input type="checkbox" name="affinity-list-4" id="affinity-list-4" onChange={e => updateOnChangeValues(e)}/>
-                        <label htmlFor="affinity-list-4" selected>Affinity List 4</label>
+                        <label htmlFor="affinity-list-4" selected>Career and Professional Networks</label>
                         <input type="checkbox" name="affinity-list-5" id="affinity-list-5" onChange={e => updateOnChangeValues(e)}/>
-                        <label htmlFor="affinity-list-5" selected>Affinity List 5</label>
+                        <label htmlFor="affinity-list-5" selected>Recent Grad Network</label>
                         <input type="checkbox" name="affinity-list-6" id="affinity-list-6" onChange={e => updateOnChangeValues(e)}/>
-                        <label htmlFor="affinity-list-6" selected>Affinity List 6</label>
+                        <label htmlFor="affinity-list-6" selected>WAA Membership</label>
                         <input type="checkbox" name="affinity-list-7" id="affinity-list-7" onChange={e => updateOnChangeValues(e)}/>
-                        <label htmlFor="affinity-list-7" selected>Affinity List 7</label>
+                        <label htmlFor="affinity-list-7" selected>African American Affinity Group</label>
+                        <input type="checkbox" name="affinity-list-8" id="affinity-list-8" onChange={e => updateOnChangeValues(e)}/>
+                        <label htmlFor="affinity-list-8" selected>American Indian Affinity Group</label>
+                        <input type="checkbox" name="affinity-list-9" id="affinity-list-9" onChange={e => updateOnChangeValues(e)}/>
+                        <label htmlFor="affinity-list-9" selected>APIDA Affinity Group</label>
+                        <input type="checkbox" name="affinity-list-10" id="affinity-list-10" onChange={e => updateOnChangeValues(e)}/>
+                        <label htmlFor="affinity-list-10" selected>Latinx Affinity Group</label>
+                        <input type="checkbox" name="affinity-list-11" id="affinity-list-11" onChange={e => updateOnChangeValues(e)}/>
+                        <label htmlFor="affinity-list-11" selected>LGBTQ+ Affinity Group</label>
                     </div>
                     <Buttons 
                         signup
