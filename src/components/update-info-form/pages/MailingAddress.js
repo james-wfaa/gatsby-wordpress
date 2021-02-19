@@ -28,7 +28,10 @@ const MailingAddress = () => {
 
   //check country, check if seasonal address checked
   let requiredFieldsCheck = state.mailingAddress.country === "US" ? state.mailingAddress.streetAddress !== '' && state.mailingAddress.city !== '' && state.mailingAddress.state !== '' && state.mailingAddress.zipcode !== '' : state.mailingAddress.streetAddress !== '';
-  
+  if (state.mailingAddress.seasonalResidence === "yes"){
+    let checkSeasonalAddressFields = state.mailingAddress.seasonalCountry === "US" ? state.mailingAddress.seasonalStreetAddress !== '' && state.mailingAddress.seasonalCity !== '' && state.mailingAddress.seasonalState !== '' && state.mailingAddress.seasonalZipcode !== '' : state.mailingAddress.seasonalStreetAddress !== ''
+    requiredFieldsCheck = requiredFieldsCheck && checkSeasonalAddressFields && state.mailingAddress.seasonalStartDate !== '' &&  state.mailingAddress.seasonalEndDate !== '';
+  }
   const requiredForUS = state.mailingAddress.country === "US" ? `required: { value: true, message: "This field is required" },` : null
   const requiredForSeasonalUS = state.mailingAddress.seasonalCountry === "US" ? `required: { value: true, message: "This field is required" },` : null
 
@@ -221,7 +224,7 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalCity"
                     id="seasonalCity"
-                    defaultValue={state.mailingAddress.city}
+                    defaultValue={state.mailingAddress.seasonalCity}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       

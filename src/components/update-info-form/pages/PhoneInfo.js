@@ -10,9 +10,8 @@ const PhoneInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setPhoneInfoOnchange } = actions;
 
-  const { register, handleSubmit, watch, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdatePhoneInfo = data =>{
-    console.log(data)
 
     let currentOrder = state.numberOfSteps
     let currentStep = state.currentStep
@@ -28,7 +27,6 @@ const PhoneInfo = () => {
     return(
       <div>
         <label htmlFor="seasonalStartDate" className="smallThird block">Start Date
-                <span className="required">*</span>
                 <input
                     type="text"
                     name="seasonalStartDate"
@@ -36,15 +34,13 @@ const PhoneInfo = () => {
                     defaultValue={state.phoneInfo.seasonalStartDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      required: { value: true, message: "Seasonal start date is required" },
                     })}
                 />
-                {errors.jobtitle && (
-                  <StyledError>{errors.jobtitle.message}</StyledError>
+                {errors.seasonalStartDate && (
+                  <StyledError>{errors.seasonalStartDate.message}</StyledError>
                 )}
               </label>
               <label htmlFor="seasonalEndDate" className="smallThird block">End Date
-                <span className="required">*</span>
                 <input
                     type="text"
                     name="seasonalEndDate"
@@ -52,11 +48,10 @@ const PhoneInfo = () => {
                     defaultValue={state.phoneInfo.seasonalEndDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      required: { value: true, message: "Seasonal end date is required" },
                     })}
                 />
-                {errors.jobtitle && (
-                  <StyledError>{errors.jobtitle.message}</StyledError>
+                {errors.seasonalEndDate && (
+                  <StyledError>{errors.seasonalEndDate.message}</StyledError>
                 )}
               </label>
       </div>
@@ -96,7 +91,6 @@ const PhoneInfo = () => {
                 {errors.phoneNumber1 && (
                   <StyledError>{errors.phoneNumber1.message}</StyledError>
                 )}
-                {console.log(errors)}
                 {errors.phoneNumber1?.type === "numbersOnly" && (
                   <StyledError>Letters are not accepted as a valid phone number</StyledError>
                 )}
@@ -133,10 +127,7 @@ const PhoneInfo = () => {
                       },
                     })}
                 />
-                {errors.phone && (
-                  <StyledError>{errors.phone.message}</StyledError>
-                )}
-                {errors.phone?.type === "numbersOnly" && (
+                {errors.phoneNumber2?.type === "numbersOnly" && (
                   <StyledError>Letters are not accepted as a valid phone number</StyledError>
                 )}
               </label>
@@ -173,7 +164,7 @@ const PhoneInfo = () => {
                 {errors.phoneNumber3 && (
                   <StyledError>{errors.phoneNumber3.message}</StyledError>
                 )}
-                {errors.phone?.type === "numbersOnly" && (
+                {errors.phoneNumber3?.type === "numbersOnly" && (
                   <StyledError>Letters are not accepted as a valid phone number</StyledError>
                 )}
               </label>

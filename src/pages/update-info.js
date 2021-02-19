@@ -195,7 +195,7 @@ form{
       display: inline-block;
     }
   }
-  &#contact{
+  &.contact-info{
     label.smallThird, input.smallThird  {
       min-width:252px;
     }
@@ -294,7 +294,7 @@ form{
       text-align:center;
     }
     .checkboxWrap{
-      max-width: 180px;
+      max-width: 320px;
     }
   }
   &.identity-info{
