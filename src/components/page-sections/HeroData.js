@@ -10,7 +10,7 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 const PageSection = ({className, preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, variantObject, bgImage, fromBlocks, children, productPage }) => {
   const background = typeof bgImage !== "undefined" && bgImage !== null
-  const excerptBottom = variantObject.scroll_color === '#9E9E9E'? 0 : sizes.s32
+  const excerptBottom = variantObject.scroll_color === '#9E9E9E'? 0 : buttons ? sizes.s32 : 0;
 
   const classesList = alt ? `${className} ${className}--alt` : className
   const altClass = alt ? ` ${className}--alt` : ""
@@ -60,7 +60,10 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
     margin-bottom: 0;
     h1,
     h2{
-      font-size: ${sizes.s54};
+      font-size: ${sizes.s36};
+      @media screen and ${breakpoints.tabletS} {
+        font-size: ${sizes.s42};
+      }
     }
     h2:after{
       display:none;

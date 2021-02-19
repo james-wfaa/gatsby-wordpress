@@ -84,6 +84,9 @@ const HeroIntroSection = ({
       background-color: ${variantObject.scroll_color};
     }
   `
+  if (!heroImage){
+    classes += ' noHero'
+  }
 
   return (
     <div className={classes}>
@@ -349,7 +352,13 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
         }
     }
     }
-    
+  }
+  &.noHero{
+    margin-top: 80px;
+    div.standardProductLabel:before{
+      top: -81px;
+      height:81px;
+    }
   }
 `
 

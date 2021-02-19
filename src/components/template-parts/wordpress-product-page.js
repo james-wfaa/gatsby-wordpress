@@ -35,10 +35,17 @@ function WordPressPage({ page }) {
   : ''
   return (
     <Layout title={title}>
-      { featuredImage?.node && (
+      { featuredImage?.node ? (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}
           heroSize="slim"
+          redHeading={title}
+          excerpt={excerpt}
+          buttons={normalizedButtons}
+          productPage
+        />
+      ) : (
+        <HeroIntroSection
           redHeading={title}
           excerpt={excerpt}
           buttons={normalizedButtons}
