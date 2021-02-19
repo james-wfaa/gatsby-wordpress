@@ -978,6 +978,9 @@ export const mixins = {
             border-radius: 0;
             height: 48px;
             padding-left: 12px;
+            ::placeholder{
+                color:${colors.checkboxInputGrey};
+            }
         }
         input[type='file']{
             border:none;
@@ -988,6 +991,9 @@ export const mixins = {
             padding:8px 12px;
             border: 2px solid ${colors.formInputBorder};
             border-radius: 0;
+            ::placeholder{
+                color:${colors.checkboxInputGrey};
+            }
         }
         select {
             display: block;
