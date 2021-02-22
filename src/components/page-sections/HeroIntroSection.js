@@ -84,6 +84,9 @@ const HeroIntroSection = ({
       background-color: ${variantObject.scroll_color};
     }
   `
+  if (!heroImage){
+    classes += ' noHero'
+  }
 
   return (
     <div className={classes}>
@@ -323,8 +326,8 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
       height: 40px;
       &:before{
         position: absolute;
-        top: -35px;
-        height: 35px;
+        top: -42px;
+        height: 48px;
         width: 100%;
         content: "";
         mix-blend-mode: multiply;
@@ -333,23 +336,23 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
       &:after {
         position: absolute;
         content: '';
-        top: -16px;
-        left:50%;
+        top: -22px;
+        left:calc(50% - 7px);
         height: 48px;
-        width: 9px;
+        width: 14px;
         z-index: 1;
         border-left: 2px solid ${colors.bgWhite};
         border-right: 2px solid ${colors.bgWhite};
         transform: skew(135deg);
-  
-        @media screen and ${breakpoints.tabletS} {
-          top: -18px;
-          height: 38px;
-          width: 11px;
-        }
+      }
     }
+  }
+  &.noHero{
+    margin-top: 80px;
+    div.standardProductLabel:before{
+      top: -81px;
+      height:81px;
     }
-    
   }
 `
 
