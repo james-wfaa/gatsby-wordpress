@@ -4,7 +4,7 @@ import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"
 import EmbedBlock from "./EmbedBlock"
 import styled from 'styled-components'
-import { breakpoints, mixins, sizes } from '../css-variables'
+import { breakpoints, mixins, sizes, fonts, colors } from '../css-variables'
 import Block from './WordPressBlock'
 import GravityForm from '../content-blocks/GravityForm'
 import { useStaticQuery, graphql } from 'gatsby'
@@ -191,6 +191,36 @@ hr.wp-block-separator {
         flex: 1 1 auto;
         flex-shrink: 1;
         min-width: 50px;
+    }
+}
+.core-freeform {
+    margin-bottom: ${sizes.s32};
+    text-align: left;
+    h2,
+    h3 {
+    font-family: ${fonts.eaves};
+    font-weight: bold;
+    font-style: italic;
+    color: ${colors.titleColor};
+}
+    h2 {
+        font-size: ${sizes.s32};
+        line-height: ${sizes.s36};
+        margin-bottom: ${sizes.s32};
+        margin-top: ${sizes.s48}; // ex: email login page
+        @media screen and ${breakpoints.tabletS} {
+            font-size: ${sizes.s36};
+            line-height: ${sizes.s42};
+            margin-top: ${sizes.s58}; // ex: email login page
+        }
+    }
+    h3 {
+        font-size: ${sizes.s26};
+        margin-bottom: ${sizes.s24};
+        line-height: ${sizes.s32};
+    }
+    a {
+        ${mixins.a}
     }
 }
 
