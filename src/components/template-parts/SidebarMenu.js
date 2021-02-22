@@ -50,6 +50,9 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
           font-weight: bold;
         }
       }
+      li{
+        margin-left:16px;
+      }
     }
     @media screen and ${breakpoints.laptopS} {
       border: none;
@@ -148,9 +151,29 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
   const ConditionalWrap = ({condition, wrap, children}) => condition ? wrap(children) : children;
 
   const items = menuItems.map(item => {
+    let secondChildren = {}
+    let thirdChildren = {}
+    if(item.wpChildren.nodes){
+      secondChildren.nodes = item.wpChildren.nodes.map( item => {
+        if(item.wpChildren.nodes){
+          thirdChildren.nodes = item.wpChildren.nodes.map( item => {
+            item.path = item.uri
+            item.label = item.title
+            return item
+          })
+        }
+        item.path = item.uri
+        item.label = item.title
+        return item
+      })
+    }
+
     return (
       <li>
         <a href={item.path} className={item.path === (typeof window !== "undefined" && window.location.pathname) ? 'active': ''}>{item.label}</a>
+        {secondChildren.nodes?.length > 0 ? (secondChildren.nodes.map(item => <li><a href={item.path}>{item.label}</a>
+            {thirdChildren.nodes?.length > 0 ? (thirdChildren.nodes.map(item => <li><a href={item.path}>{item.label}</a></li> )) : null }
+        </li>)) : null}
       </li>
     )
   })
