@@ -14,11 +14,12 @@ import {
 const url = typeof window !== 'undefined' ? window.location.href : '';
 
 const SocialShareLinks = props => {
-    const { className, url, title, excerpt, text, event } = props;
+    const { className, url, title, excerpt, text, event, tight = false } = props;
     const isEvent = event ? "eventShare" : "";
+    const displayTight = tight ? "displayTight" : "";
 
     return (
-        <div className = {`${className} ${isEvent}`}>
+        <div className = {`${className} ${isEvent} ${displayTight}`}>
             { text && (
                 <div className="socialText">{text}</div>
             )}
@@ -57,6 +58,13 @@ const StyledSocialShareLinks = styled(SocialShareLinks)
     margin-bottom: 31px;
     @media screen and ${breakpoints.tabletS} {
         margin-bottom: 61px;
+    }
+
+    &.displayTight{
+        margin-bottom: 40px;
+        @media screen and ${breakpoints.tabletS} {
+            margin-bottom: 20px;
+        }
     }
 
     .socialText{

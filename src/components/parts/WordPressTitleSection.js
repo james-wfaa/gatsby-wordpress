@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { sizes, colors, fonts, breakpoints } from '../css-variables'
 import FeaturedImage from "../content-blocks/FeaturedImage"
 
-const TitleSection = ({ className, heading, author, product, date, excerpt, series, event = false, smImg, size }) => {
+const TitleSection = ({ className, heading, author, product, date, excerpt, series, event = false, smImg, size, category }) => {
 
     console.log(product) 
 
@@ -39,6 +39,11 @@ const TitleSection = ({ className, heading, author, product, date, excerpt, seri
                 )}
                 { series && (
                     <div className={`${className}__series`}>{series}</div>
+                )}
+                { category && (
+                    <div className="noteCategory">
+                        Category: <a className="category__link" href={`/${category.slug}`}>{category.description}</a>                    
+                    </div>
                 )}
             </div>
             </div>
@@ -135,8 +140,26 @@ const StyledTitleSection = styled(TitleSection)`
                 }
             }
         }
+        .noteCategory{
+            display: block;
+            margin-top: 12px;
+            color: ${colors.categoryGrey};
 
-
+            a{
+                color: ${colors.categoryGrey};
+                text-decoration: none;
+                &:visited {
+                    color: ${colors.categoryGrey};
+                }
+                
+                &:hover {
+                    color: ${colors.linkTextHover};
+                }
+                &:active {
+                    color: ${colors.linkTextActive};
+                }
+            }
+        }
     }
 
     &__category{

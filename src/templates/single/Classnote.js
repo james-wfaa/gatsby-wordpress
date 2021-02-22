@@ -49,6 +49,7 @@ export const query = graphql`
         nodes {
           name
           slug
+          description
         }
       }
       classnoteDegrees {
