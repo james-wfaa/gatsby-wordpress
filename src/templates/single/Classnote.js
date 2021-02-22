@@ -57,6 +57,15 @@ export const query = graphql`
           slug
         }
       }
+      alumniNotesFields {
+        classnotesAuthor
+        classnotesOther
+        classnotesSubject
+        classnotesUrl
+        classnotesUrlname
+        fieldGroupName
+      }
+
     }
   }
 `

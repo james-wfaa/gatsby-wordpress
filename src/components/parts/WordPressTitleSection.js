@@ -20,8 +20,8 @@ const TitleSection = ({ className, heading, author, product, date, excerpt, seri
             <div className="titlesection">
                 {excerpt && (
                 <div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />)}
-                { author && author.node.name.toLowerCase() !== defaultAuthor.toLowerCase() &&  (
-                    <div className={`${className}__author`}>{author.node.name}</div>
+                { author && author.toLowerCase() !== defaultAuthor.toLowerCase() &&  (
+                    <div className={`${className}__author`}>{author}</div>
                 )}
                 { date && (
                     <div className={`${className}__date`}>{date}</div>
