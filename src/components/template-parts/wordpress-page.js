@@ -108,7 +108,7 @@ function WordPressPage({ page }) {
         <>
           <PageSectionHeader heading={title} />
           { wpMenu && (
-          <Menu name={wpMenu.name} menuItems={wpMenu.menuItems.nodes} width={width} />
+          <Menu name={wpMenu.name} link={wpMenu.link} menuItems={wpMenu.menuItems.nodes} width={width} />
         )}
           <PageSection pageTitle>
             <WordPressContent blocks={blocks} content={content} />
