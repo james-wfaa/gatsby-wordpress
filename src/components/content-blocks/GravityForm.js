@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { breakpoints, mixins, sizes } from '../css-variables'
+import { breakpoints, mixins, sizes, fonts, colors } from '../css-variables'
 import Block from './WordPressBlock'
 import GravityFormForm from '../gatsby-gravityforms-component/src/'
 import { useStaticQuery, graphql } from 'gatsby'
@@ -94,10 +94,15 @@ const GravityForm = ({className, id}) => {
 }
     
 const StyledGravityForm = styled(GravityForm)`
+${mixins.formStyles}
 max-width: 100%;
-margin: 0 auto;
+margin: 0 auto 24px auto;
 ul {
     text-align: left;
+    margin-bottom: 24px;
+}
+li{
+    margin-bottom: 24px;
 }
 
 ul.gform_fields {
@@ -109,19 +114,42 @@ p {
 }
 button.gravityform__button {
     ${mixins.buttons}
+    border:none;
+    cursor:pointer;
 }
 a {
     ${mixins.a}
 }
 label.gfield_label {
     font-weight: bold;
+    margin-bottom:12px;
     &--subfield {
         font-weight: normal;
     }
+    .gfield_required{
+        color: ${colors.badgerRed};
+        margin-left: 5px;
+    }
 }
 input {
-    width: 100%;
-    
+    width: 100%;  
+}
+input[type='date']{
+    max-width: 250px;
+}
+.gfield_radio, .gfield_checkbox {
+    margin-left: 0;
+    li {
+        list-style:none;
+        margin-top:-26px;
+        label{
+            padding-left:0;
+            
+        }
+        input[type="radio"]:checked + label::after, input[type="checkbox"]:checked + label::after{
+            left: 3px;
+        }
+    }
 }
 .ginput_container {
     &_address,
@@ -145,11 +173,23 @@ input {
               }
         }
       }
-    
-
+}
+.validation_message{
+    color:${colors.badgerRed};
+    font-size: 16px;
+}
+.gfield_description{
+    font-size:16px;
+}
+.gravityform__field__section{
+    label{
+        padding-bottom: 5px;
+        border-bottom: 2px solid ${colors.borderGrey};
+        text-transform: uppercase;
+        font-weight:900;
+    }
 }
 
-    
 `
 
 export default StyledGravityForm

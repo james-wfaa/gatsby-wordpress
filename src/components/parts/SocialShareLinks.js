@@ -14,7 +14,7 @@ import {
 const url = typeof window !== 'undefined' ? window.location.href : '';
 
 const SocialShareLinks = props => {
-    const { className, url, title, excerpt, text, link, event } = props;
+    const { className, url, title, excerpt, text, event } = props;
     const isEvent = event ? "eventShare" : "";
 
     return (

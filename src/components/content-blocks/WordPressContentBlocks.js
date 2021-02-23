@@ -4,13 +4,18 @@ import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"
 import EmbedBlock from "./EmbedBlock"
 import GravityForm from './GravityForm'
+import AccordionNavigation from './AccordionNavigation'
+
 
 import styled from 'styled-components'
 import { colors, breakpoints, mixins } from '../css-variables'
 import Block from './WordPressBlock'
 
 
-const WordPressContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
+const WordPressContentBlocks = ({className, blocks, content, eventCategory, product, stagger}) => {
+
+    // see if the product has event and/or post nodes
+
     const staggerBlocks = (stagger) 
         ? blocks.map((block) => {
             block.stagger = true
@@ -25,10 +30,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
         const stagger = block.stagger
 
-        console.log(block.name)
-
-        switch(block.name) {
-            
+        switch(block.name) {            
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
                     console.log('page-section')
@@ -83,21 +85,40 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 break
             case "core/separator":
                 RenderedBlocks.push(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+            case "acf/accordion-navigation":
+                return <AccordionNavigation className={block.name.replace('/', '-')} block={block} />
+                break
+            case "acf/product-story-listing":
+                if ( product) {
+                    const { slug, posts } = product
+                    const postsToShow = (posts?.nodes) ? posts.nodes : null
+                    const buttons = (postsToShow.length > 2) 
+                        ? [{
+                            link: `/posts/search/?category=${slug}`,
+                            text: 'See More WAA Stories'
+                        }]
+                        : null
+                    RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={postsToShow} size="M" /></PageSection>)    
+                }
+                
+                break
+        
             case "acf/events-listing-section":
                 console.log('events-listing-section')
-                if ( eventCategory) {
-                    const { slug, events } = eventCategory
+                if ( product) {
+                    const { slug, events } = product
                     const eventsToShow = (events?.nodes) ? events.nodes : null
                     const buttons = (eventsToShow.length > 2) 
                         ? [{
                             link: `/events/search/?category=${slug}`,
-                            text: 'See All Events'
+                            text: 'See More Events'
                         }]
                         : null
-                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)
+                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)    
                 }
                 
                 break
+            
             default:
                 console.log('default')
                 RenderedBlocks.push(<PageSectionFromBlocks blocks={[block]} heading="Default" borderTop={borderTop} stagger={stagger} />)

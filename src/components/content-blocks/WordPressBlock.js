@@ -81,13 +81,16 @@ margin-right: auto;
 
 
 >h2,
->h3{
+>h3,
+.core-freeform h2,
+.core-freeform h3 {
     font-family: ${fonts.eaves};
     font-weight: bold;
     font-style: italic;
     color: ${colors.titleColor};
 }
->h2 {
+>h2,
+.core-freeform h2 {
     font-size: ${sizes.s32};
     line-height: ${sizes.s36};
     margin-bottom: ${sizes.s32};
@@ -98,7 +101,8 @@ margin-right: auto;
         margin-top: ${sizes.s58}; // ex: email login page
     }
 }
->h3 {
+>h3,
+.core-freeform h3 {
     font-size: ${sizes.s26};
     margin-bottom: ${sizes.s24};
     line-height: ${sizes.s32};
@@ -123,6 +127,7 @@ a {
 }
 .core-freeform {
     margin-bottom: ${sizes.s32};
+    text-align: left;
 }
 
 > p,

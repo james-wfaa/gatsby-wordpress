@@ -31,7 +31,6 @@ const EventCardD = ({ startDate, endDate, title, eventsCategories, venue, excerp
           url={url}
           venue={venue}
           startDate={startDate}
-          shortenedExcerpt={shortenedExcerpt}
           dateLinkText={dateLinkText}
         />
     )

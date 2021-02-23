@@ -91,7 +91,7 @@ export const query = graphql`
           name
           slug
           pages {
-            nodes { 
+            nodes {
               title
               uri
             }
