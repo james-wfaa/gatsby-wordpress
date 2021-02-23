@@ -78,11 +78,10 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                       break
                     } else {
                       return (
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: block.originalContent,
-                          }}
-                        />
+                          <Block
+                            className={block.name.replace("/", "-")}
+                            block={block}
+                          />
                       )
                     }
                   case "core/paragraph":
@@ -104,7 +103,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                           block={block}
                         />
                       )
-                    }
+                    }                    
                   case "acf/testimonial":
                     const testimonial = block.isDynamic
                       ? block.dynamicContent
