@@ -7,11 +7,9 @@ import GridCardD from "../components/content-modules/GridCardD"
 import ContentCard from "../components/content-blocks/ContentCard"
 import StoryContentCard from "../components/content-blocks/StoryContentCard"
 import CardE from "../components/content-blocks/CardE"
-import PromoCardD from "../components/content-blocks/PromoCardD"
 import HeroIntroSection from "../components/page-sections/HeroIntroSection"
 import CommunicationForm from "../components/content-blocks/CommunicationForm"
 import SimpleSlider from "../components/content-modules/SimpleSlider"
-import { sizes, colors } from "../components/css-variables"
 
 const taglist2 = [
   {
@@ -46,7 +44,7 @@ const featuredbutton = [
   },
 ]
 
-export default ({ data }) => {
+const HomePage = ({ data }) => {
   const { events } = data
 
   const cardGridEvents = events.edges.slice(0,9)
@@ -79,23 +77,23 @@ export default ({ data }) => {
         >
           <CardE
             img={data.asset29}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
+            caption="Zipper ipsum dolor sit amet, consectetur adipiscing elit"
+            enhancedHomepageCaption
           />
           <CardE
             img={data.asset30}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
+            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+            enhancedHomepageCaption
           />
           <CardE
             img={data.square1}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{ color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
+            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+            enhancedHomepageCaption
           />
           <CardE
             img={data.squareBucky}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{ color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
+            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+            enhancedHomepageCaption
           />
         </SimpleSlider>
       </PageSection>
@@ -170,6 +168,8 @@ export default ({ data }) => {
     </Layout>
   )
 }
+
+export default HomePage
 
 export const pageQuery = graphql`
   query {

@@ -89,8 +89,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         path: updatedPath,
         context: {
           id,
-          nextPage: (contentNodes[i + 1] || {}).id,
-          previousPage: (contentNodes[i - 1] || {}).id,
         },
       })
     })

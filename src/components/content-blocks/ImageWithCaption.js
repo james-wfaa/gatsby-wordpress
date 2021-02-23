@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { mixins } from '../css-variables'
 
 
-const ImageWithCaption = ({ className, children }) => {
+const ImageWithCaption = ({ className, children, storyCaption }) => {
     return (
-        <div className={className}>
+        <div className={`${className} ${storyCaption}`}>
             {children}
         </div>
     )

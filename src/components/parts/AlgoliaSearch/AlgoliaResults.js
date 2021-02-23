@@ -1,7 +1,7 @@
 import { Link } from "gatsby"
 import { default as React } from "react"
 import styled from 'styled-components'
-import { breakpoints, colors } from "../../css-variables"
+import { colors } from "../../css-variables"
 import {
   connectStateResults,
   Highlight,

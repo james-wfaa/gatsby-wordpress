@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react"
+import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
@@ -64,6 +64,7 @@ function WordPressPage({ data }) {
           <EventContentCard key={event.url} size="L" img={cardImg} {...event.node} />
         )
     }
+    return ''
   })
   featuredEvents = featuredEvents.filter(function( element ) {
     return element !== undefined;

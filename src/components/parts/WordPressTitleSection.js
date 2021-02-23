@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import { sizes, colors, fonts, breakpoints } from '../css-variables'
 import FeaturedImage from "../content-blocks/FeaturedImage"
 
-const TitleSection = ({ className, heading, author, categories, date, excerpt, series, event = false, smImg, size }) => {
+const TitleSection = ({ className, heading, author, product, date, excerpt, series, event = false, smImg, size }) => {
+
+    console.log(product) 
 
     const classesList = !event ? `${className}` : `${className} ${className}--event`
-    const theCategory = !categories? null : categories.nodes[0]
     const defaultAuthor = "Wisconsin Alumni Association";
     //console.log(smImg)
 
@@ -17,15 +18,23 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
                 <h1>{heading}</h1>
             )}
             <div className="titlesection">
-                { author && author.node.name.toLowerCase() != defaultAuthor.toLowerCase() &&  (
+                {excerpt && (
+                <div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />)}
+                { author && author.node.name.toLowerCase() !== defaultAuthor.toLowerCase() &&  (
                     <div className={`${className}__author`}>{author.node.name}</div>
                 )}
                 { date && (
                     <div className={`${className}__date`}>{date}</div>
                 )}
-                { theCategory && (
+                { product && (
                     <div className={`${className}__category`}>
-                        <a className="category__item" href={`/${theCategory.slug}`}>{theCategory.name}</a>
+                        { product?.pages?.nodes?.uri && (
+                            <a className="category__item" href={`${product.pages.nodes[0].uri}`}>{product.name}</a>
+                        )}
+                        { !product?.pages?.nodes && (
+                            <>{product.name}</>
+                        )}
+                        
                         <span> &gt;</span></div>
                 )}
                 { series && (
@@ -33,15 +42,7 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
                 )}
             </div>
             </div>
-            
-            { smImg && excerpt && (
-                <div><FeaturedImage featuredImage={smImg} size={size}/><div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
-                </div>
-            )}
-            { !smImg && excerpt && (
-                <div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
-            )}
-
+            { smImg && (<FeaturedImage featuredImage={smImg} size={size}/>)}
         </div>
     )
 }
@@ -117,6 +118,23 @@ const StyledTitleSection = styled(TitleSection)`
             margin-top: ${sizes.s24};
 
         }
+        div:nth-child(2){
+            padding-left:0;
+            border-left:none;
+        }
+        .headingexcerpt{
+            text-align: left;
+            font-size: ${sizes.s18};
+            font-weight: normal;
+            line-height: ${sizes.s26};
+            margin: ${sizes.s24} 0;
+            display:block;
+            p {
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
 
 
     }
@@ -135,19 +153,6 @@ const StyledTitleSection = styled(TitleSection)`
         }
     }
 
-    .headingexcerpt{
-        text-align: left;
-        font-family: ${fonts.eaves};
-        font-size: ${sizes.s18};
-        line-height: ${sizes.s26};
-        margin-bottom: ${sizes.s32};
-        p {
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-    }
     .headersection {
         position: relative;
         :after {

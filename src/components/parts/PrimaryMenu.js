@@ -1,9 +1,8 @@
 import { Link } from "gatsby"
 import React, { useState, useEffect } from "react"
-import { colors, sizes, breakpoints } from "../css-variables"
-import styled, { css } from "styled-components"
+import { colors, sizes } from "../css-variables"
+import styled from "styled-components"
 import HeaderSocialIcons from "./HeaderSocialIcons"
-import Header from "../header"
 import LogoImage from "../../assets/svg/menuclouds.svg"
 import FbIcon from "../../svg/fb_icon_gray.svg" // Tell webpack this JS file uses this image
 import TwIcon from "../../svg/twitter_icon_gray.svg" // Tell webpack this JS file uses this image

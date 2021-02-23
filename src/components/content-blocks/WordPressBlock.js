@@ -9,12 +9,12 @@ const WordPressBlock = ({className, block}) => {
     //console.log(block)
     if (block) {
         if (block.originalContent) {
-            const blockContent = (block.isDynamic) 
+            const blockContent = (block.isDynamic)
             ? block.dynamicContent
-            : (block.saveContent) 
+            : (block.saveContent)
                 ? block.saveContent
-                : block.originalContent 
-                
+                : block.originalContent
+
             return (
                 <div className={className} dangerouslySetInnerHTML={{__html: blockContent}} />
             )
@@ -23,14 +23,14 @@ const WordPressBlock = ({className, block}) => {
             return (
                 <div className={className} dangerouslySetInnerHTML={{__html: block}} />
             )
-            
+
         }
-        
+
     }
     return null
-    
 
-    
+
+
 }
 
 const StyledWordPressBlock = styled(WordPressBlock)`
@@ -81,13 +81,16 @@ margin-right: auto;
 
 
 >h2,
->h3{
+>h3,
+.core-freeform h2,
+.core-freeform h3 {
     font-family: ${fonts.eaves};
     font-weight: bold;
-    font-style: italic; 
+    font-style: italic;
     color: ${colors.titleColor};
 }
->h2 {
+>h2,
+.core-freeform h2 {
     font-size: ${sizes.s32};
     line-height: ${sizes.s36};
     margin-bottom: ${sizes.s32};
@@ -98,7 +101,8 @@ margin-right: auto;
         margin-top: ${sizes.s58}; // ex: email login page
     }
 }
->h3 {
+>h3,
+.core-freeform h3 {
     font-size: ${sizes.s26};
     margin-bottom: ${sizes.s24};
     line-height: ${sizes.s32};
@@ -123,9 +127,10 @@ a {
 }
 .core-freeform {
     margin-bottom: ${sizes.s32};
+    text-align: left;
 }
 
-> p, 
+> p,
 > h2,
 > h3,
 >.wp-block-image {
@@ -180,7 +185,7 @@ a {
     @media screen and ${breakpoints.tabletS} {
         margin: ${sizes.s12};
         width: auto;
-    }  
+    }
 }
 
 .wp-block-quote {

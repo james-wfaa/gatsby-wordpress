@@ -5,7 +5,7 @@ import WordPressContent from "../content-blocks/WordPressBasicContentBlocks"
 import AccordianSearchAlgolia from "../../components/parts/AlgoliaSearch/AccordianSearchAlgolia-temp"
 import FeaturedImage from "../content-blocks/FeaturedImage"
 import CardSet from "../content-modules/CardSet"
-import ContentCardD from "../content-blocks/ContentCardD"
+import StoryCardD from "../content-blocks/StoryCardD"
 import GridCardD from "../content-modules/GridCardD"
 import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 
@@ -46,7 +46,7 @@ function WordPressPage({ page, posts }) {
   let postCards = cardGridPosts.map((post) => {
 
     return (
-      <ContentCardD {...post} />
+      <StoryCardD {...post} />
     )
   })
 

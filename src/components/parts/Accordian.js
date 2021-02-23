@@ -3,13 +3,15 @@ import styled from "styled-components"
 import { useSpring, animated } from "react-spring"
 import { colors, sizes } from "../css-variables"
 
-const Accordian = ({opentext, closetext, children, useAsMenu}) => {
+const Accordian = ({opentext, closetext, children, useAsMenu, useAsNav}) => {
   const [open, setOpen] = useState(false)
 
   const searchstyles = useSpring({ opacity: open ? 1 : 0, paddingBottom: `56px` })
 
   const StyledWrapper = styled.div`
   background-color: ${colors.navcardGrey};
+  position: relative;
+  z-index: 5;
   
 
 `
@@ -57,7 +59,7 @@ const StyledInputWrapper = styled.div`
   }
   .menuIcon{
     display: inline-block;
-    margin-left:12px;
+    margin-left:20px;
     width: 32px;
     span{
       display: inline-block;
@@ -97,7 +99,7 @@ const StyledInputWrapper = styled.div`
         border: 1px solid ${colors.buttonRed};
         border-radius: 50%;
         background-color:transparent;
-        top:4px;
+        top:2px;
       }
       span::before{
         -webkit-transform: rotate(-45deg) translate(-8.5px,13px);
@@ -120,13 +122,17 @@ const isOpenClass = open ? 'open' : ''
   const clickHandler = () => {
     setOpen(!open)
   }
+  const menuToggleAriaLabel = isOpenClass ? `Close ${opentext}` : `Open ${closetext}` ;
 
   return (
-    <StyledWrapper>
-      <StyledClickWrapper onClick={() => clickHandler()}>
-        <StyledInputWrapper>
+    <StyledWrapper className="AccordionWrap">
+      <StyledClickWrapper onClick={() => clickHandler()} onKeyPress={() => clickHandler()} aria-label={useAsMenu ? menuToggleAriaLabel : null} tabIndex={useAsMenu ? '0' : null}>
+        <StyledInputWrapper className="AccordionInputWrap">
           <div className="menuTitle">
-            {!open ? opentext : closetext}
+            {useAsNav ? (<h3> {!open ? opentext : closetext}</h3>):(
+              <div>{!open ? opentext : closetext}</div>
+            )}
+            
           </div>
           <p>
             { useAsMenu ? (<div className={`menuIcon ${isOpenClass}`}><span></span></div>) : (<span

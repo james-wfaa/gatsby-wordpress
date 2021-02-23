@@ -12,25 +12,7 @@ import HeroIntroSection from "../page-sections/HeroIntroSection"
 import SimpleSlider from "../content-modules/SimpleSlider"
 
 function WordPressGroupPage({ page }) {
-  const taglist2 = [
-    {
-      link: "#",
-      tag: "Tag 1",
-    },
-    {
-      link: "#",
-      tag: "Tag 2",
-    },
-    {
-      link: "#",
-      tag: "Tag 3",
-    },
-    {
-      link: "#",
-      tag: "Tag 4",
-    },
-  ]
-  
+ 
   const eventbutton = [
     {
       link: "/events",
@@ -44,7 +26,7 @@ function WordPressGroupPage({ page }) {
       text: "See all news and stories",
     },
   ]
-  const { title,  excerpt, content, ancestors, wpChildren, featuredImage, blocks, groups } = page
+  const { title,  excerpt, wpChildren, featuredImage, groups } = page
 
   const RenderedMenu = (wpChildren?.nodes) 
       ? wpChildren.nodes.map(item => {

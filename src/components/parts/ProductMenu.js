@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { colors, sizes, breakpoints, mixins } from '../css-variables'
+import { colors, sizes, breakpoints } from '../css-variables'
 import Accordian from "./Accordian"
 
 
@@ -41,6 +41,9 @@ margin: 0 auto;
     font-size: ${sizes.s18};
     line-height: ${sizes.s36};
     text-decoration: none;
+    &:hover {
+        color: ${colors.linkTextHover};
+    }
     
 }
 
