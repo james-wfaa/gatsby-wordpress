@@ -171,8 +171,8 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
     return (
       <li>
         <a href={item.path} className={item.path === (typeof window !== "undefined" && window.location.pathname) ? 'active': ''}>{item.label}</a>
-        {secondChildren.nodes?.length > 0 ? (secondChildren.nodes.map(item => <li><a href={item.path}>{item.label}</a>
-            {thirdChildren.nodes?.length > 0 ? (thirdChildren.nodes.map(item => <li><a href={item.path}>{item.label}</a></li> )) : null }
+        {secondChildren.nodes?.length > 0 ? (secondChildren.nodes.map(item => <li><a href={item.path} className={item.path === (typeof window !== "undefined" && window.location.pathname) ? 'active': ''}>{item.label}</a>
+            {thirdChildren.nodes?.length > 0 ? (thirdChildren.nodes.map(item => <li><a href={item.path} className={item.path === (typeof window !== "undefined" && window.location.pathname) ? 'active': ''}>{item.label}</a></li> )) : null }
         </li>)) : null}
       </li>
     )
