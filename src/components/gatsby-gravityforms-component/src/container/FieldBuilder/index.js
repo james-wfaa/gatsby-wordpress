@@ -59,7 +59,7 @@ const FieldBuilder = ({
 
         let errorKey = ''
 
-        console.log(field.type)
+        //(field.type)
         switch (field.type) {
             // Add note for unsupported captcha field
             case 'captcha':
@@ -81,6 +81,9 @@ const FieldBuilder = ({
             case 'email':
             case 'hidden':
             case 'phone':
+            case 'date':
+            case 'fileupload':
+            case 'website':
                 return (
                     <Input
                         errors={errors[inputName]}
@@ -187,6 +190,7 @@ const FieldBuilder = ({
                     />
                 )
             case 'html':
+            case 'section':
                 return (
                     <Html
                         fieldData={fieldData}

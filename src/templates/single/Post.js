@@ -91,6 +91,12 @@ export const query = graphql`
         nodes {
           name
           slug
+          pages {
+            nodes {
+              title
+              uri
+            }
+          }
         }
       }
     }

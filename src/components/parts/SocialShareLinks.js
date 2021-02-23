@@ -1,11 +1,7 @@
 import React from "react"
-import propTypes from "prop-types";
-import styled, { css }  from 'styled-components'
+import styled from 'styled-components'
 import { colors, breakpoints, sizes } from '../css-variables'
-import TiSocialTwitter from "../../svg/uwa__twitter_white_24x24.inline.svg";
-import {FaFacebookF} from "react-icons/fa";
-import {AiFillMail} from "react-icons/ai";
-import { ShareBlockStandard, ShareButtonIconOnly } from "react-custom-share";
+
 import {
     EmailShareButton,
     FacebookShareButton,
@@ -18,11 +14,12 @@ import {
 const url = typeof window !== 'undefined' ? window.location.href : '';
 
 const SocialShareLinks = props => {
-    const { className, url, title, excerpt, text, link, event } = props;
+    const { className, url, title, excerpt, text, event, tight = false } = props;
     const isEvent = event ? "eventShare" : "";
+    const displayTight = tight ? "displayTight" : "";
 
     return (
-        <div className = {`${className} ${isEvent}`}>
+        <div className = {`${className} ${isEvent} ${displayTight}`}>
             { text && (
                 <div className="socialText">{text}</div>
             )}
@@ -58,6 +55,18 @@ const StyledSocialShareLinks = styled(SocialShareLinks)
     width: 100%;
     align-items: center;
     justify-content: center;
+    margin-bottom: 31px;
+    @media screen and ${breakpoints.tabletS} {
+        margin-bottom: 61px;
+    }
+
+    &.displayTight{
+        margin-bottom: 40px;
+        @media screen and ${breakpoints.tabletS} {
+            margin-bottom: 20px;
+        }
+    }
+
     .socialText{
         font-size: ${sizes.s16};
         color: ${colors.toneRed};

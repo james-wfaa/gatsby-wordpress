@@ -1,3 +1,5 @@
+import downCaret from './../svg/down-caret-red.svg'
+
 export const baseSize = '18px';
 
 export const fonts = {
@@ -57,6 +59,8 @@ export const baseColors = {
     lightGrey: '#E0E0E0',
     lightestGrey: '#F3F3F3',
     evenlighterGrey: '#F8F8F8',
+    errorLightYellow: '#FFFFC9',
+    lightRed: '#FFCCCB',
 }
 export const colors = {
     startDateColor: baseColors.offBlack,
@@ -107,10 +111,14 @@ export const colors = {
     mapDetailsText: baseColors.offBlack,
     disabledGrey: baseColors.darkGrey,
     captionBlack: baseColors.offBlack,
-
-
-
-
+    formIntroBg: baseColors.lightestGrey,
+    formInputBorder: baseColors.lightGrey,
+    disabledButtonGrey: baseColors.grey,
+    captionRed: baseColors.mainRed,
+    checkboxInputGrey: baseColors.darkGrey,
+    formHeaderBGGrey: baseColors.lightestGrey,
+    errorBGYellow: baseColors.errorLightYellow,
+    progressBarLightRed: baseColors.lightRed,
 }
 
 export const size = {
@@ -407,12 +415,30 @@ export const mixins = {
             }
             figcaption {
                 text-align: left;
-                color: ${colors.captionGrey};
-                font-weight: bold;
-                font-size: ${sizes.s16};
+                color: ${colors.captionBlack};
+                &.marginTop{
+                    margin-top: ${sizes.s32};
+                }
+                &.center{
+                    text-align: center;
+                }
+                &.enhancedHomepageCaption{
+                    font-family:${fonts.eaves};
+                    font-style: italic;
+                    font-size: ${sizes.s26};
+                    color: ${colors.captionRed};
+                    font-weight: bold;
+                    margin-top: ${sizes.s32};
+                }
             }
         }
-
+        &.storyCaption {
+            figcaption{
+                color: ${colors.captionGrey};
+                font-size: ${sizes.s16};
+                font-weight: bold;
+            }
+        }
     }`,
     introHeading: `{
         position: absolute;
@@ -937,5 +963,109 @@ export const mixins = {
         h2{
             padding-top: ${sizes.s40};
         }
+    }`,
+    formStyles: `{
+        legend{
+            font-weight: 900;
+            font-size: 20px;
+        }
+        label, input, textarea  {
+            display: block;
+            width:100%;
+          }
+        input{
+            border: 2px solid ${colors.formInputBorder};
+            border-radius: 0;
+            height: 48px;
+            padding-left: 12px;
+            ::placeholder{
+                color:${colors.checkboxInputGrey};
+            }
+        }
+        input[type='file']{
+            border:none;
+            padding-left:0;
+            cursor:pointer;
+        }
+        textarea{
+            padding:8px 12px;
+            border: 2px solid ${colors.formInputBorder};
+            border-radius: 0;
+            ::placeholder{
+                color:${colors.checkboxInputGrey};
+            }
+        }
+        select {
+            display: block;
+            width:100%;
+            border-radius: 0;
+            margin-top: 12px;
+            height: 48px;
+            padding-left: 12px;
+            border: 2px solid ${colors.formInputBorder};
+            -webkit-appearance: none; /* Remove default arrow */
+            -moz-appearance: none;    /* Remove default arrow */
+            appearance: none;         /* Remove default arrow */
+            background-image: url(${downCaret});
+            background-repeat:no-repeat;
+            background-position: 96% 50%; 
+          }
+        input[type='checkbox'], input[type='radio'] {
+            position: absolute !important;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+            clip: rect(1px, 1px, 1px, 1px);
+          }
+          input[type='checkbox'] + label, input[type='radio'] + label{
+            display: block;
+            position: relative;
+            padding: 0 1.5rem;
+            cursor:pointer;
+          }
+          input[type='checkbox'] + label::before, input[type='radio'] + label::before {
+            content: '';
+            position: relative;
+            display: inline-block;
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+            border: 2px solid ${colors.checkboxInputGrey};
+            top: 3px;
+          }
+          input[type='radio'] + label::before {
+            border-radius: 50%;
+          }
+          input[type='checkbox']:checked + label::before, input[type='radio']:checked + label::before {
+            background: ${colors.buttonRed};
+            border: 2px solid ${colors.buttonRed};
+          }
+          input[type='checkbox']:checked + label::after, input[type='radio']:checked + label::after {
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 30px;
+            border-left: 2px solid white;
+            border-bottom: 2px solid white;
+            height: 8px;
+            width: 14px;
+            transform: rotate(-45deg);
+          }
+          input[type='radio']:checked + label::after {
+            content: '';
+            position: absolute;
+            border: 2px solid white;
+            top: 6px;
+            left: 30px;
+            height: 14px;
+            width: 14px;
+            border-radius: 50%;
+          }
+          input[type='checkbox']:focus + label::before, input[type='radio']:focus + label::before {
+            outline: #5d9dd5 solid 1px;
+            box-shadow: 0 0px 8px #5e9ed6;
+          }
+        
     }`
 }

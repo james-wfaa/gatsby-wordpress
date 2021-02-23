@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { colors, sizes, breakpoints } from '../css-variables'
+import { breakpoints } from '../css-variables'
 import Block from '../content-blocks/WordPressBlock'
 
 
@@ -11,6 +11,7 @@ const WordPressColumns = ({ block, className }) => {
         if(column.originalContent){
             return (<Block className={column.name.replace('/', '-')} block={column} />)
         }
+        
     }
     ) : null
       

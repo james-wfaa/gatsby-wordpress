@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import { sizes, colors, fonts, breakpoints } from '../css-variables'
 import FeaturedImage from "../content-blocks/FeaturedImage"
 
-const TitleSection = ({ className, heading, author, categories, date, excerpt, series, event = false, smImg, size }) => {
+const TitleSection = ({ className, heading, author, product, date, excerpt, series, event = false, smImg, size, category }) => {
+
+    console.log(product) 
 
     const classesList = !event ? `${className}` : `${className} ${className}--event`
-    const theCategory = !categories? null : categories.nodes[0]
     const defaultAuthor = "Wisconsin Alumni Association";
     //console.log(smImg)
 
@@ -17,31 +18,36 @@ const TitleSection = ({ className, heading, author, categories, date, excerpt, s
                 <h1>{heading}</h1>
             )}
             <div className="titlesection">
-                { author && author.node.name.toLowerCase() != defaultAuthor.toLowerCase() &&  (
-                    <div className={`${className}__author`}>{author.node.name}</div>
+                {excerpt && (
+                <div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />)}
+                { author && author.toLowerCase() !== defaultAuthor.toLowerCase() &&  (
+                    <div className={`${className}__author`}>{author}</div>
                 )}
                 { date && (
                     <div className={`${className}__date`}>{date}</div>
                 )}
-                { theCategory && (
+                { product && (
                     <div className={`${className}__category`}>
-                        <a className="category__item" href={`/${theCategory.slug}`}>{theCategory.name}</a>
+                        { product?.pages?.nodes?.uri && (
+                            <a className="category__item" href={`${product.pages.nodes[0].uri}`}>{product.name}</a>
+                        )}
+                        { !product?.pages?.nodes && (
+                            <>{product.name}</>
+                        )}
+                        
                         <span> &gt;</span></div>
                 )}
                 { series && (
                     <div className={`${className}__series`}>{series}</div>
                 )}
+                { category && (
+                    <div className="noteCategory">
+                        Category: <a className="category__link" href={`/${category.slug}`}>{category.description}</a>                    
+                    </div>
+                )}
             </div>
             </div>
-            
-            { smImg && excerpt && (
-                <div><FeaturedImage featuredImage={smImg} size={size}/><div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
-                </div>
-            )}
-            { !smImg && excerpt && (
-                <div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
-            )}
-
+            { smImg && (<FeaturedImage featuredImage={smImg} size={size}/>)}
         </div>
     )
 }
@@ -117,8 +123,43 @@ const StyledTitleSection = styled(TitleSection)`
             margin-top: ${sizes.s24};
 
         }
+        div:nth-child(2){
+            padding-left:0;
+            border-left:none;
+        }
+        .headingexcerpt{
+            text-align: left;
+            font-size: ${sizes.s18};
+            font-weight: normal;
+            line-height: ${sizes.s26};
+            margin: ${sizes.s24} 0;
+            display:block;
+            p {
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        .noteCategory{
+            display: block;
+            margin-top: 12px;
+            color: ${colors.categoryGrey};
 
-
+            a{
+                color: ${colors.categoryGrey};
+                text-decoration: none;
+                &:visited {
+                    color: ${colors.categoryGrey};
+                }
+                
+                &:hover {
+                    color: ${colors.linkTextHover};
+                }
+                &:active {
+                    color: ${colors.linkTextActive};
+                }
+            }
+        }
     }
 
     &__category{
@@ -135,19 +176,6 @@ const StyledTitleSection = styled(TitleSection)`
         }
     }
 
-    .headingexcerpt{
-        text-align: left;
-        font-family: ${fonts.eaves};
-        font-size: ${sizes.s18};
-        line-height: ${sizes.s26};
-        margin-bottom: ${sizes.s32};
-        p {
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-    }
     .headersection {
         position: relative;
         :after {

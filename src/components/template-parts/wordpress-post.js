@@ -15,6 +15,8 @@ function BlogPost({ data }) {
   let heroSize = heroImage.heroImage && heroImage.heroImage.mediaDetails.width ? heroImage.heroImage.mediaDetails.width : null
   let featSize = featuredImage?.node?.mediaDetails.width ? featuredImage?.node?.mediaDetails.width : null
   let size = featSize > heroSize ? featSize : heroSize
+
+  const product = (products?.nodes) ? products.nodes[0] : null
   
   let image = null
   if ((size >= 1080) && featuredImage?.node?.localFile?.childImageSharp.fluid){
@@ -29,7 +31,7 @@ function BlogPost({ data }) {
   //console.log(page)
   return (
     <Layout title={title}>
-        <TitleSection heading={title} author={author} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />
+        <TitleSection heading={title} author={author.node.name} product={product} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />
         {image && size >= 718 && (
             <FeaturedImage featuredImage={image} size={size}/>
         )}

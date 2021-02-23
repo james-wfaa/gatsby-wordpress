@@ -21,6 +21,7 @@ const SearchHits = ({ hits, hitHandler }) => {
       case "Event":
         return (
           <EventCard
+          key={hit.url}
           hit={hit}
           type={hit.type}
           url={hit.url}
@@ -35,6 +36,7 @@ const SearchHits = ({ hits, hitHandler }) => {
       case "Post":
         return (
           <PostCard
+          key={hit.url}
           hit={hit}
           url={hit.url}
           title={hit.title}

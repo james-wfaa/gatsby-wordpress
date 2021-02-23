@@ -27,10 +27,6 @@ class LocationMap extends Component {
 
   shouldComponentUpdate = shouldPureComponentUpdate;
 
-  constructor(props) {
-    super(props);
-  }
-
   _getZoom() {
     return (typeof window !== 'undefined' && window.innerWidth < this.props.breakpoint)
     ? this.props.mobileZoom

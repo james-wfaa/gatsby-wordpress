@@ -8,6 +8,7 @@ require("dotenv").config({
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
+//process.env.WP_DISABLE_POLLING = 1
 
 module.exports = {
   siteMetadata: {
@@ -26,6 +27,22 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-omni-font-loader",
+      options: {
+        mode: "render-blocking",
+        web: [
+          {
+            name: ["Verlag A", "Verlag B"],
+            file: "https://cloud.typography.com/7708974/664088/css/fonts.css"
+          },
+          {
+            name: ["mrs-eaves-xl-serif", "mrs-eaves-xl-serif-narrow"],
+            file: "https://use.typekit.net/suj0sae.css"
+          },
+        ],
+      },
+    },
+    {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
@@ -33,21 +50,23 @@ module.exports = {
         }
       }
     },
-    // Uncomment to index to Algolia on gatsby build command
-    // {
-    //   resolve: `gatsby-plugin-algolia`,
-    //   options: {
-    //     appId: process.env.GATSBY_ALGOLIA_APP_ID,
-    //     apiKey: process.env.ALGOLIA_ADMIN_KEY,
-    //     queries: require("./src/utils/algolia-queries")
-    //   },
-    // },
+    //Uncomment to index to Algolia on gatsby build command
+    /*
+     {
+       resolve: `gatsby-plugin-algolia`,
+       options: {
+         appId: process.env.GATSBY_ALGOLIA_APP_ID,
+         apiKey: process.env.ALGOLIA_ADMIN_KEY,
+         queries: require("./src/utils/algolia-queries")
+       },
+     },
+     */
     {
       resolve: `gatsby-source-wordpress-experimental`,
       options: {
         schema: {
-          requestConcurrency: 2, // currently set to undefined
-          previewRequestConcurrency: 2, // currently set to undefined
+          requestConcurrency: 4, // currently set to undefined
+          previewRequestConcurrency: 4, // currently set to undefined
           perPage: 50,
         },
         url:
@@ -61,6 +80,9 @@ module.exports = {
           graphql: {
             writeQueriesToDisk: true,
           },
+        },
+        production: {
+          allow404Images: true
         },
         type: {
           Post: {
@@ -79,6 +101,22 @@ module.exports = {
                 : // and we don't actually need more than 5000 in production for this particular site
                   5000,
           },
+          ClassnoteDegree: {
+            limit:
+              process.env.NODE_ENV === `development`
+                ? // Lets just pull 50 posts in development to make it easy on ourselves.
+                  20
+                : // and we don't actually need more than 5000 in production for this particular site
+                  5000,
+          },
+          Tag: {
+            limit:
+              process.env.NODE_ENV === `development`
+                ? // Lets just pull 50 posts in development to make it easy on ourselves.
+                  20
+                : // and we don't actually need more than 5000 in production for this particular site
+                  5000,
+          },
         },
       },
     },
@@ -87,8 +125,8 @@ module.exports = {
       options: {
           // Base URL needs to include protocol (http/https)
           baseUrl: 'https://uwalumni.wpengine.com',
-          //include: [], // Array of form IDs. Will only import these forms.
-          //exclude: [], // Array of form IDs. Will exclude these forms.
+          //include: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], // Array of form IDs. Will only import these forms.
+          exclude: [16], // Array of form IDs. Will exclude these forms.
           // Gravity Forms API
           allowSelfSigned: true,
           api: {

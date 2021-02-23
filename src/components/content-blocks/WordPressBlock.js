@@ -9,12 +9,12 @@ const WordPressBlock = ({className, block}) => {
     //console.log(block)
     if (block) {
         if (block.originalContent) {
-            const blockContent = (block.isDynamic) 
+            const blockContent = (block.isDynamic)
             ? block.dynamicContent
-            : (block.saveContent) 
+            : (block.saveContent)
                 ? block.saveContent
-                : block.originalContent 
-                
+                : block.originalContent
+
             return (
                 <div className={className} dangerouslySetInnerHTML={{__html: blockContent}} />
             )
@@ -23,14 +23,14 @@ const WordPressBlock = ({className, block}) => {
             return (
                 <div className={className} dangerouslySetInnerHTML={{__html: block}} />
             )
-            
+
         }
-        
+
     }
     return null
-    
 
-    
+
+
 }
 
 const StyledWordPressBlock = styled(WordPressBlock)`
@@ -81,16 +81,19 @@ margin-right: auto;
 
 
 >h2,
->h3{
+>h3,
+.core-freeform h2,
+.core-freeform h3 {
     font-family: ${fonts.eaves};
     font-weight: bold;
-    font-style: italic; 
+    font-style: italic;
     color: ${colors.titleColor};
 }
->h2 {
+>h2,
+.core-freeform h2 {
     font-size: ${sizes.s32};
-    line-height: ${sizes.s36};
-    margin-bottom: ${sizes.s32};
+    line-height: ${sizes.s38};
+    margin-bottom: ${sizes.s24};
     margin-top: ${sizes.s48}; // ex: email login page
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s36};
@@ -98,10 +101,24 @@ margin-right: auto;
         margin-top: ${sizes.s58}; // ex: email login page
     }
 }
->h3 {
+>h3,
+.core-freeform h3 {
     font-size: ${sizes.s26};
     margin-bottom: ${sizes.s24};
     line-height: ${sizes.s32};
+}
+
+>h4,
+>h5,
+>h6,
+.core-freeform h4,
+.core-freeform h5,
+.core-freeform h6 {
+    font-size: ${sizes.s18};
+    margin-bottom: ${sizes.s16};
+    line-height: ${sizes.s26};
+    color: ${colors.captionBlack};
+    font-weight: bold;
 }
 
 ul {
@@ -123,16 +140,30 @@ a {
 }
 .core-freeform {
     margin-bottom: ${sizes.s32};
+    text-align: left;
 }
 
-> p, 
+> p,
 > h2,
 > h3,
 >.wp-block-image {
     min-width: 300px;
-    max-width: 712px;
+    max-width: 303px;
     margin-left: auto;
     margin-right: auto;
+
+    @media screen and ${breakpoints.tabletS} {
+        max-width: 536px;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+    @media screen and ${breakpoints.laptopS} {
+        margin-left: 0;
+        max-width: 712px;
+    }
 }
 .callout-bold {
     font-weight: bold;
@@ -180,7 +211,7 @@ a {
     @media screen and ${breakpoints.tabletS} {
         margin: ${sizes.s12};
         width: auto;
-    }  
+    }
 }
 
 .wp-block-quote {
