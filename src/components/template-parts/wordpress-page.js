@@ -52,6 +52,8 @@ function WordPressPage({ page }) {
       topParent = ancestors.nodes[ancestors.nodes.length - 1]
     } else if(ancestors.nodes.length === 3){
       topParent = ancestors.nodes[ancestors.nodes.length - 2]
+    } else if(ancestors.nodes.length === 4){
+      topParent = ancestors.nodes[ancestors.nodes.length - 3]
     }
 
     if (topParent?.slug && topParent.slug === groupSlug) {
@@ -60,6 +62,8 @@ function WordPressPage({ page }) {
         menuRoot = ancestors.nodes[ancestors.nodes.length - 2]
       } else if(ancestors.nodes.length === 3){
         menuRoot = ancestors.nodes[ancestors.nodes.length - 3]
+      } else if(ancestors.nodes.length === 4){
+        menuRoot = ancestors.nodes[ancestors.nodes.length - 4]
       }
     }
    }
