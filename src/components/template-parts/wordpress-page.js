@@ -47,27 +47,23 @@ function WordPressPage({ page }) {
    }
    else {
     const groupSlug = 'groups'
-    let topParent
-    if(ancestors.nodes.length === 2){
-      topParent = ancestors.nodes[ancestors.nodes.length - 1]
-    } else if(ancestors.nodes.length === 3){
-      topParent = ancestors.nodes[ancestors.nodes.length - 2]
-    } else if(ancestors.nodes.length === 4){
-      topParent = ancestors.nodes[ancestors.nodes.length - 3]
+    //const topParent = ancestors.nodes[ancestors.nodes.length -1]
+    let topParent = ancestors.nodes[ancestors.nodes.length -1]
+    if(ancestors.nodes.length >= 2){
+      topParent = ancestors.nodes[1]
     }
+    
+    console.log('topParent:', topParent)
+    console.log(topParent?.slug && topParent.slug, groupSlug)
 
     if (topParent?.slug && topParent.slug === groupSlug) {
-      if(ancestors.nodes.length === 2){
-        // child or granchild of a Group/Chapter page
-        menuRoot = ancestors.nodes[ancestors.nodes.length - 2]
-      } else if(ancestors.nodes.length === 3){
-        menuRoot = ancestors.nodes[ancestors.nodes.length - 3]
-      } else if(ancestors.nodes.length === 4){
-        menuRoot = ancestors.nodes[ancestors.nodes.length - 4]
-      }
+      // child or granchild of a Group/Chapter page
+      //menuRoot = ancestors.nodes[ancestors.nodes.length -2]
+      menuRoot = ancestors.nodes[0]
+      
     }
+    console.log('menuRoot:', menuRoot, ancestors) 
    }
-   
  }
 
  if (menuRoot) {
