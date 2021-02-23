@@ -24,9 +24,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                 title = (block.isDynamic) ? block.dynamicContent : block.originalContent
                 break
             case "core/heading":
-                console.log ("normal heading")
                 if (block.originalContent.indexOf('<h2') > -1) {
-                    console.log ("normal h2 heading")
                     title = (block.isDynamic) ? block.dynamicContent : block.originalContent
                 }
                 break

@@ -92,8 +92,8 @@ margin-right: auto;
 >h2,
 .core-freeform h2 {
     font-size: ${sizes.s32};
-    line-height: ${sizes.s36};
-    margin-bottom: ${sizes.s32};
+    line-height: ${sizes.s38};
+    margin-bottom: ${sizes.s24};
     margin-top: ${sizes.s48}; // ex: email login page
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s36};
@@ -106,6 +106,19 @@ margin-right: auto;
     font-size: ${sizes.s26};
     margin-bottom: ${sizes.s24};
     line-height: ${sizes.s32};
+}
+
+>h4,
+>h5,
+>h6,
+.core-freeform h4,
+.core-freeform h5,
+.core-freeform h6 {
+    font-size: ${sizes.s18};
+    margin-bottom: ${sizes.s16};
+    line-height: ${sizes.s26};
+    color: ${colors.captionBlack};
+    font-weight: bold;
 }
 
 ul {
