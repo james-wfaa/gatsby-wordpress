@@ -148,9 +148,22 @@ a {
 > h3,
 >.wp-block-image {
     min-width: 300px;
-    max-width: 712px;
+    max-width: 303px;
     margin-left: auto;
     margin-right: auto;
+
+    @media screen and ${breakpoints.tabletS} {
+        max-width: 536px;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+    @media screen and ${breakpoints.laptopS} {
+        margin-left: 0;
+        max-width: 712px;
+    }
 }
 .callout-bold {
     font-weight: bold;

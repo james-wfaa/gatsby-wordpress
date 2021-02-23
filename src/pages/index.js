@@ -34,6 +34,15 @@ const IndexPage = () => (
         <Link to="/events">Events Calendar Page </Link>
       </li>
       </ul>
+      <h3>Alumni Notes -NEW-</h3>
+      <ul>
+      <li>
+          <Link to="/alumninote/greg-gautam-2/">Greg Gautam Recognition</Link>
+        </li>
+        <li>
+          <Link to="/alumninote/elmer-petersen/">Obituary Elmer Petersen</Link>
+        </li>
+      </ul>
       <h3>Product Pages</h3>
       <ul>
         <li>

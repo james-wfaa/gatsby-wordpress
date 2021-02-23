@@ -49,6 +49,7 @@ export const query = graphql`
         nodes {
           name
           slug
+          description
         }
       }
       classnoteDegrees {
@@ -57,6 +58,15 @@ export const query = graphql`
           slug
         }
       }
+      alumniNotesFields {
+        classnotesAuthor
+        classnotesOther
+        classnotesSubject
+        classnotesUrl
+        classnotesUrlname
+        fieldGroupName
+      }
+
     }
   }
 `

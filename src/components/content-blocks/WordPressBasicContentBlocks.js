@@ -210,7 +210,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
 
 const StyledWordPressContentBlocks = styled(WordPressContentBlocks)`
 /* Start Styles copied form WPBlock - should these be here?*/
-min-width: 300px;
+    min-width: 300px;
     width: 100%;
     max-width: 303px;
     margin-left: auto;
