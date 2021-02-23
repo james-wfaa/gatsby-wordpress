@@ -47,10 +47,20 @@ function WordPressPage({ page }) {
    }
    else {
     const groupSlug = 'groups'
-    const topParent = ancestors.nodes[ancestors.nodes.length -1]
+    let topParent
+    if(ancestors.nodes.length === 2){
+      topParent = ancestors.nodes[ancestors.nodes.length - 1]
+    } else if(ancestors.nodes.length === 3){
+      topParent = ancestors.nodes[ancestors.nodes.length - 2]
+    }
+
     if (topParent?.slug && topParent.slug === groupSlug) {
-     // child or granchild of a Group/Chapter page
-      menuRoot = ancestors.nodes[ancestors.nodes.length -2]
+      if(ancestors.nodes.length === 2){
+        // child or granchild of a Group/Chapter page
+        menuRoot = ancestors.nodes[ancestors.nodes.length - 2]
+      } else if(ancestors.nodes.length === 3){
+        menuRoot = ancestors.nodes[ancestors.nodes.length - 3]
+      }
     }
    }
    
