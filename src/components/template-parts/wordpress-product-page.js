@@ -5,11 +5,9 @@ import WordPressContentBlocks from "../content-blocks/WordPressContentBlocks"
 import ProductMenu from "../parts/ProductMenu"
 
 function WordPressPage({ page }) {
-  const {  excerpt, featuredImage, introButtons, eventListing, blocks, title, wpChildren } = page
+  const {  excerpt, featuredImage, introButtons, blocks, title, wpChildren } = page
   const { introButtons: buttons } = introButtons
 
-  /* extract the events to pass along with the blocks as helper data */
-  const { eventCategory } = eventListing
 
   const navContents = (wpChildren.nodes[0]) 
     ? wpChildren.nodes.map((node) => {
@@ -48,7 +46,7 @@ function WordPressPage({ page }) {
       { navContents && (
           <ProductMenu items={navContents} menuTitle={title} />
       )}
-      <WordPressContentBlocks blocks={blocks} eventCategory={eventCategory}/>
+      <WordPressContentBlocks blocks={blocks} />
     </Layout>
   )
 }
