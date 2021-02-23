@@ -18,6 +18,8 @@ const TitleSection = ({ className, heading, author, product, date, excerpt, seri
                 <h1>{heading}</h1>
             )}
             <div className="titlesection">
+                {excerpt && (
+                <div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />)}
                 { author && author.node.name.toLowerCase() !== defaultAuthor.toLowerCase() &&  (
                     <div className={`${className}__author`}>{author.node.name}</div>
                 )}
@@ -40,15 +42,7 @@ const TitleSection = ({ className, heading, author, product, date, excerpt, seri
                 )}
             </div>
             </div>
-            
-            { smImg && excerpt && (
-                <div><FeaturedImage featuredImage={smImg} size={size}/><div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
-                </div>
-            )}
-            { !smImg && excerpt && (
-                <div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
-            )}
-
+            { smImg && (<FeaturedImage featuredImage={smImg} size={size}/>)}
         </div>
     )
 }
@@ -124,6 +118,23 @@ const StyledTitleSection = styled(TitleSection)`
             margin-top: ${sizes.s24};
 
         }
+        div:nth-child(2){
+            padding-left:0;
+            border-left:none;
+        }
+        .headingexcerpt{
+            text-align: left;
+            font-size: ${sizes.s18};
+            font-weight: normal;
+            line-height: ${sizes.s26};
+            margin: ${sizes.s24} 0;
+            display:block;
+            p {
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
 
 
     }
@@ -142,19 +153,6 @@ const StyledTitleSection = styled(TitleSection)`
         }
     }
 
-    .headingexcerpt{
-        text-align: left;
-        font-family: ${fonts.eaves};
-        font-size: ${sizes.s18};
-        line-height: ${sizes.s26};
-        margin-bottom: ${sizes.s32};
-        p {
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-    }
     .headersection {
         position: relative;
         :after {

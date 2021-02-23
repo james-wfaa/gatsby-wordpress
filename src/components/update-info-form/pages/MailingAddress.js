@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
 import { StyledError, variantObject } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
@@ -12,20 +12,29 @@ const MailingAddress = () => {
   const { setCurrentStep, setMailingAddressOnchange } = actions;
   const [ countries ] = useState(countryList().getData())
 
-  const { register, handleSubmit, watch, errors, formState: { isValid } } = useForm({
-    mode: "onChange",
-  })
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateMailingAddressInfo = data =>{
     console.log(data)
+
+    let currentOrder = state.numberOfSteps
+    let currentStep = state.currentStep
+    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+    let nextStep = currentOrder[currentPlaceInOrder + 1]
+    setCurrentStep(nextStep)
   }
   const updateOnChangeValues = (e) => {
     setMailingAddressOnchange([e.target.name, e.target.value])
   }
 
-  const requiredFieldsCheck = state.mailingAddress.country === "US" ? state.mailingAddress.streetAddress !== '' && state.mailingAddress.city !== '' && state.mailingAddress.state !== '' && state.mailingAddress.zipcode !== '' : state.mailingAddress.streetAddress !== '';
-
+  //check country, check if seasonal address checked
+  let requiredFieldsCheck = state.mailingAddress.country === "US" ? state.mailingAddress.streetAddress !== '' && state.mailingAddress.city !== '' && state.mailingAddress.state !== '' && state.mailingAddress.zipcode !== '' : state.mailingAddress.streetAddress !== '';
+  if (state.mailingAddress.seasonalResidence === "yes"){
+    let checkSeasonalAddressFields = state.mailingAddress.seasonalCountry === "US" ? state.mailingAddress.seasonalStreetAddress !== '' && state.mailingAddress.seasonalCity !== '' && state.mailingAddress.seasonalState !== '' && state.mailingAddress.seasonalZipcode !== '' : state.mailingAddress.seasonalStreetAddress !== ''
+    requiredFieldsCheck = requiredFieldsCheck && checkSeasonalAddressFields && state.mailingAddress.seasonalStartDate !== '' &&  state.mailingAddress.seasonalEndDate !== '';
+  }
   const requiredForUS = state.mailingAddress.country === "US" ? `required: { value: true, message: "This field is required" },` : null
-  
+  const requiredForSeasonalUS = state.mailingAddress.seasonalCountry === "US" ? `required: { value: true, message: "This field is required" },` : null
+
   const countryOptions = countries.map(country => {
     if (country.value === state.mailingAddress.country) {
       return (
@@ -39,7 +48,7 @@ const MailingAddress = () => {
       return (
         <div>
             <IntroPageSection
-              excerpt='Please update your address. You will have the option to update multiple addresses after clicking “Save and Continue”.'
+              excerpt='Please update your primary or seasonal mailing address below. This way, you’ll receive communications on happenings in your area to help you stay connected to fellow Badgers nearby. Note that if you checked “Employment Information” on a previous form, you also have the option to update your business address coming up. And always click “Save and Continue” after completing a page to ensure your changes are recorded.'
               heading='Update My Info'
               variantObject={variantObject}
               headingAlt
@@ -47,25 +56,9 @@ const MailingAddress = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form className="mailing-address" onSubmit={handleSubmit(UpdateMailingAddressInfo)}>
+            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Mailing Address<span className="requiredInfo">*Required Information</span></legend>
               <hr />
-              <label htmlFor="addressType" className="half select-dropdown">Address Type
-                <select name="addressType" defaultValue={state.mailingAddress.addressType}>
-                  <option value="home">Home</option>
-                  <option value="business">Business</option>
-                </select>
-                {errors.addressType && (
-                  <StyledError>{errors.addressType.message}</StyledError>
-                )}
-              </label>
-              <label htmlFor="country" className="half leftMargin required">Country
-                <select name="country" onChange={e => updateOnChangeValues(e)} defaultValue={state.mailingAddress.country}>
-                  {countryOptions}
-                </select>
-                {errors.country && (
-                  <StyledError>{errors.country.message}</StyledError>
-                )}
-              </label>
               <label htmlFor="streetAddress">Street Address
                 <span className="required">*</span>
                 <input
@@ -137,14 +130,18 @@ const MailingAddress = () => {
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       requiredForUS,
-                      /*pattern: {
-                        value: /^\d{5}(?:[-\s]\d{4})?$/,
-                        message: "Must be valid zip/postal code",
-                      },*/
                     })}
                 />
                 {errors.zipcode && (
                   <StyledError>{errors.zipcode.message}</StyledError>
+                )}
+              </label>
+              <label htmlFor="country" className="half required">Country
+                <select name="country" onChange={e => updateOnChangeValues(e)} defaultValue={state.mailingAddress.country}>
+                  {countryOptions}
+                </select>
+                {errors.country && (
+                  <StyledError>{errors.country.message}</StyledError>
                 )}
               </label>
               <label htmlFor="seasonalResidence" >Do you have a seasonal residence?</label>
@@ -164,6 +161,7 @@ const MailingAddress = () => {
                     id="seasonalStartDate"
                     defaultValue={state.mailingAddress.seasonalStartDate}
                     onChange={e => updateOnChangeValues(e)}
+                    placeholder="MM/DD"
                     ref={register({
                       required: { value: true, message: "Start date of seasonal address is required" },
                     })}
@@ -178,6 +176,7 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalEndDate"
                     id="seasonalEndDate"
+                    placeholder="MM/DD"
                     defaultValue={state.mailingAddress.seasonalEndDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -186,23 +185,6 @@ const MailingAddress = () => {
                 />
                 {errors.jobtitle && (
                   <StyledError>{errors.jobtitle.message}</StyledError>
-                )}
-              </label>
-              <label htmlFor="seasonalAddressType" className="half select-dropdown">Address Type
-                <select name="seasonalAddressType" defaultValue={state.mailingAddress.seasonalAddressType}>
-                  <option value="home">Home</option>
-                  <option value="business">Business</option>
-                </select>
-                {errors.seasonalAddressType && (
-                  <StyledError>{errors.seasonalAddressType.message}</StyledError>
-                )}
-              </label>
-              <label htmlFor="seasonalCountry" className="half leftMargin required">Country
-                <select name="seasonalCountry" onChange={e => updateOnChangeValues(e)} defaultValue={state.mailingAddress.seasonalCountry}>
-                  {countryOptions}
-                </select>
-                {errors.seasonalCountry && (
-                  <StyledError>{errors.seasonalCountry.message}</StyledError>
                 )}
               </label>
               <label htmlFor="seasonalStreetAddress">Street Address
@@ -237,12 +219,12 @@ const MailingAddress = () => {
                 )}
               </label>
               <label htmlFor="seasonalCity" className="bigThird">City
-                {state.mailingAddress.seasonalCountry === 'US' ? <span className="required">*</span> : null}
+                <span className="required">*</span>
                 <input
                     type="text"
                     name="seasonalCity"
                     id="seasonalCity"
-                    defaultValue={state.mailingAddress.city}
+                    defaultValue={state.mailingAddress.seasonalCity}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       
@@ -261,7 +243,7 @@ const MailingAddress = () => {
                     defaultValue={state.mailingAddress.seasonalState}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      
+                      requiredForSeasonalUS,
                     })}
                 />
                 {errors.seasonalState && (
@@ -277,7 +259,7 @@ const MailingAddress = () => {
                     defaultValue={state.mailingAddress.seasonalZipcode}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      requiredForUS,
+                      requiredForSeasonalUS,
                       /*pattern: {
                         value: /^\d{5}(?:[-\s]\d{4})?$/,
                         message: "Must be valid zip/postal code",
@@ -288,12 +270,24 @@ const MailingAddress = () => {
                   <StyledError>{errors.seasonalZipcode.message}</StyledError>
                 )}
               </label>
+              <label htmlFor="seasonalCountry" className="half required">Country
+                <select name="seasonalCountry" onChange={e => updateOnChangeValues(e)} defaultValue={state.mailingAddress.seasonalCountry}>
+                  {countryOptions}
+                </select>
+                {errors.seasonalCountry && (
+                  <StyledError>{errors.seasonalCountry.message}</StyledError>
+                )}
+              </label>
               </div> ) : null }
 
               <Buttons 
-                next 
+                save 
                 back
-                disabled={ !requiredFieldsCheck || !isValid }  />
+                disabled={ !requiredFieldsCheck }
+                error={ requiredFieldsCheck && (Object.keys(errors).length !== 0) }
+                errors={errors}
+                submitCount={submitCount}
+                  />
             </form>
         </div>
     )

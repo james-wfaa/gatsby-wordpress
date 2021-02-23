@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
 import { StyledError, variantObject } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
@@ -12,13 +12,15 @@ const IdentityInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setIdentityInfo, setIdentityInfoOnchange } = actions;
   const [countries, setCountries] = useState(countryList().getData())
-  
 
-  const { register, handleSubmit, watch, errors } = useForm({
-    mode: "onBlur",
-  })
+  const { register, handleSubmit, watch, errors, formState: { submitCount } } = useForm()
   const UpdateIdentityInfo = data =>{
     //setIdentityInfo(data)
+    let currentOrder = state.numberOfSteps
+    let currentStep = state.currentStep
+    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+    let nextStep = currentOrder[currentPlaceInOrder + 1]
+    setCurrentStep(nextStep)
   }
   
   const updateOnChangeValues = (e) => {
@@ -57,7 +59,7 @@ const IdentityInfo = () => {
       return (
         <div>
             <IntroPageSection
-              excerpt='Please let us know anything you wish to share about your race/ethnicity as well as your identity.'
+              excerpt='Please provide information regarding how you would best identify yourself. And always click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
               variantObject={variantObject}
               headingAlt
@@ -65,6 +67,7 @@ const IdentityInfo = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep} />
             <form className="identity-info" id="contact" onSubmit={handleSubmit(UpdateIdentityInfo)}>
+              { (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Race/Ethnicity/Identity<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <input type="checkbox" name="select1" id="select1" onChange={e => updateOnChangeValues(e)} defaultChecked={state.identityInfo.identity.includes("select1")}/>
@@ -92,7 +95,7 @@ const IdentityInfo = () => {
                     type="textbox"
                     name="identitydescrip"
                     id="identitydescrip"
-                    maxLength="501"
+                    maxLength="500"
                     defaultValue={state.identityInfo.identitydescrip}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -107,7 +110,12 @@ const IdentityInfo = () => {
                   <StyledError>{errors.identitydescrip.message}</StyledError>
                 )}
               </label>
-              <Buttons next back />
+              <Buttons 
+                save 
+                back
+                error={ (Object.keys(errors).length !== 0) }
+                errors={errors}
+                submitCount={submitCount} />
             </form>
         </div>
     )
