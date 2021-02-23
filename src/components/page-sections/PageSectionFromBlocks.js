@@ -59,7 +59,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
         </SimpleSlider>)
 
         : (cardset)
-            ? (<CardSet>{
+            ? (<CardSet type="news">{
                 blocks.map((block) => {
                 const innerContent =  ((block.dynamicContent && block.dynamicContent !== "") ? block.dynamicContent : block.originalContent)
                 return innerContent
