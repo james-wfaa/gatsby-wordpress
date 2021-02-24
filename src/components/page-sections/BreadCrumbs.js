@@ -23,13 +23,16 @@ const BreadCrumbs = ({ links }) => {
       margin-bottom: 0;
     }
   `
+  let lastItem = links[links.length - 1]
+  
   let renderedLinks = links.map(link => {
+    const notLast = link !== lastItem ? true : false
     return (
       <BreadCrumb>
         <a href={link.url}>
           <p>{link.name}</p>
         </a>
-        <p>{`>`}</p>
+        {notLast && <p>{`>`}</p>}
       </BreadCrumb>
     )
   })
