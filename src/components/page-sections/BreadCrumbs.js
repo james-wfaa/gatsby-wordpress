@@ -14,12 +14,9 @@ const BreadCrumbs = ({ links, nounderline }) => {
   `
   const BreadCrumb = styled.div`
     display: flex;
-    margin: 12px 0 5px 5px;
+    margin: 12px 0 5px 3px;
     color: ${colors.copyText};
     font-size: ${sizes.s14};
-    @media screen and ${breakpoints.laptopS} {
-      margin: 12px 0 5px 5px;
-    }
     a {
       margin-right: 5px;
       color: ${colors.copyText};
@@ -27,12 +24,16 @@ const BreadCrumbs = ({ links, nounderline }) => {
       &.noUnderline{
         text-decoration: none;
       }
-      &:hover {
-        color: ${colors.badgerRed};
+      &:hover{
+        color:${colors.linkText};
+      }
+      &:active{
+        color:${colors.linkTextHover};
       }
     }
     p {
       margin-bottom: 0;
+      
     }
   `
   let underline = nounderline ? 'noUnderline' : null;
