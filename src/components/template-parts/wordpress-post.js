@@ -56,7 +56,9 @@ function BlogPost({ data }) {
         )}
         <WordPressBasicContentBlocks {...page} />
       <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
-      <PageSection id="post-listing" heading="Related News and Stories" topBorder buttons={buttons}><CardHandler items={relatedPostsToShow} size="M" type="news" /></PageSection>
+      {relatedPostsToShow.length > 0 && (
+        <PageSection id="post-listing" heading="Related News and Stories" topBorder buttons={buttons}><CardHandler items={relatedPostsToShow} size="M" type="news" /></PageSection>
+      )}
     </Layout>
   )
 }
