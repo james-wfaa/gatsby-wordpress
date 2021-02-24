@@ -86,7 +86,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             break
           case "acf/image-section":
             const imagesection = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
-            return (<ImageSection data={imagesection} />)
+            return (<ImageSection data={imagesection} defaultPage/>)
 
           case "acf/accordion-navigation":
             return (
