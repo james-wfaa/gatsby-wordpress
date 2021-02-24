@@ -1,32 +1,52 @@
 import React from "react"
 import styled from "styled-components"
-import { colors } from "../css-variables"
+import { colors, sizes, breakpoints } from "../css-variables"
 
-const BreadCrumbs = ({ links }) => {
+const BreadCrumbs = ({ links, nounderline }) => {
   const BreadCrumbSection = styled.div`
-    display: flex;
+    display: none;
+    width: 90%;
+    max-width: 1080px;
+    margin: 0 auto;
+    @media screen and ${breakpoints.tablet} {
+      display: flex;
+    }
   `
   const BreadCrumb = styled.div`
     display: flex;
-    margin: 5px;
-    color: ${colors.titleColor};
+    margin: 12px 0 5px 3px;
+    color: ${colors.copyText};
+    font-size: ${sizes.s14};
     a {
-      text-decoration: none;
       margin-right: 5px;
-      color: ${colors.titleColor};
+      color: ${colors.copyText};
       cursor: pointer;
+      &.noUnderline{
+        text-decoration: none;
+      }
+      &:hover{
+        color:${colors.linkText};
+      }
+      &:active{
+        color:${colors.linkTextHover};
+      }
     }
     p {
-      margin-right: 5px;
+      margin-bottom: 0;
+      
     }
   `
+  let underline = nounderline ? 'noUnderline' : null;
+  let lastItem = links[links.length - 1]
+
   let renderedLinks = links.map(link => {
+    const notLast = link !== lastItem ? true : false
     return (
       <BreadCrumb>
-        <a href={link.url}>
+        <a href={link.url} className={underline}>
           <p>{link.name}</p>
         </a>
-        <p>{`>`}</p>
+        {notLast && <p>{`>`}</p>}
       </BreadCrumb>
     )
   })
