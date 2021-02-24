@@ -12,11 +12,15 @@ const EmploymentInfo = () => {
   const { setCurrentStep, setEmploymentInfoOnchange } = actions;
   const [countries, setCountries] = useState(countryList().getData())
 
-  const { register, handleSubmit, watch, errors,  formState: { isValid } } = useForm({
-    mode: "onChange",
-  })
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateEmploymentInfo = data =>{
+    console.log(data)
 
+    let currentOrder = state.numberOfSteps
+    let currentStep = state.currentStep
+    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+    let nextStep = currentOrder[currentPlaceInOrder + 1]
+    setCurrentStep(nextStep)
   }
 
   const updateOnChangeValues = (e) => {
@@ -39,7 +43,7 @@ const EmploymentInfo = () => {
       return (
         <div>
             <IntroPageSection
-              excerpt='Please update your employment info and click “Save and Continue”.'
+              excerpt='Please make updates regarding your current employment status. And always click “Save and Continue” after completing a page to ensure your changes are recorded.'
               heading='Update My Info'
               variantObject={variantObject}
               headingAlt
@@ -47,6 +51,7 @@ const EmploymentInfo = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="contact" onSubmit={handleSubmit(UpdateEmploymentInfo)}>
+              { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Employment Info<span className="requiredInfo">*Required Information</span></legend>
               <hr />
               <label htmlFor="startDate" className="smallThird">Start Date
@@ -103,7 +108,6 @@ const EmploymentInfo = () => {
                     defaultValue={state.employmentInfo.streetAddress}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      
                     })}
                 />
                 {errors.streetAddress && (
@@ -178,7 +182,13 @@ const EmploymentInfo = () => {
                   <StyledError>{errors.country.message}</StyledError>
                 )}
               </label>
-              <Buttons next back disabled={ !requiredFieldsCheck || !isValid } />
+              <Buttons 
+                save 
+                back 
+                disabled={ !requiredFieldsCheck }
+                error={ requiredFieldsCheck && (Object.keys(errors).length !== 0) }
+                errors={errors}
+                submitCount={submitCount} />
             </form>
         </div>
     )

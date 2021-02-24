@@ -3,13 +3,15 @@ import styled from "styled-components"
 import { useSpring, animated } from "react-spring"
 import { colors, sizes } from "../css-variables"
 
-const Accordian = ({opentext, closetext, children, useAsMenu}) => {
+const Accordian = ({opentext, closetext, children, useAsMenu, useAsNav}) => {
   const [open, setOpen] = useState(false)
 
   const searchstyles = useSpring({ opacity: open ? 1 : 0, paddingBottom: `56px` })
 
   const StyledWrapper = styled.div`
   background-color: ${colors.navcardGrey};
+  position: relative;
+  z-index: 5;
   
 
 `
@@ -123,11 +125,14 @@ const isOpenClass = open ? 'open' : ''
   const menuToggleAriaLabel = isOpenClass ? `Close ${opentext}` : `Open ${closetext}` ;
 
   return (
-    <StyledWrapper>
+    <StyledWrapper className="AccordionWrap">
       <StyledClickWrapper onClick={() => clickHandler()} onKeyPress={() => clickHandler()} aria-label={useAsMenu ? menuToggleAriaLabel : null} tabIndex={useAsMenu ? '0' : null}>
-        <StyledInputWrapper>
+        <StyledInputWrapper className="AccordionInputWrap">
           <div className="menuTitle">
-            {!open ? opentext : closetext}
+            {useAsNav ? (<h3> {!open ? opentext : closetext}</h3>):(
+              <div>{!open ? opentext : closetext}</div>
+            )}
+            
           </div>
           <p>
             { useAsMenu ? (<div className={`menuIcon ${isOpenClass}`}><span></span></div>) : (<span

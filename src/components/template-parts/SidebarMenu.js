@@ -11,9 +11,6 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
     position: relative;
     border-top: 2px solid ${colors.bgActiveGrey};
     border-bottom: 2px solid ${colors.bgActiveGrey};
-    padding: 32px 0;
-    
-    margin-bottom: 32px;
 
     @media screen and ${breakpoints.tabletS} {
         width:100%;
@@ -37,12 +34,15 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
     li {
       list-style: none;
       margin: 0;
-      padding-top:8px;
-      padding-bottom: 8px;
+      padding-top:4px;
+      padding-bottom: 4px;
       a {
         text-decoration: none;
         color: ${colors.navMenuBlack};
         font-size: 18px;
+        padding-top:4px;
+        padding-bottom: 4px;
+        display:block;
         &:hover {
           color: ${colors.linkTextHover};
         }
@@ -57,6 +57,10 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
       padding: 0;
     }
     @media screen and ${breakpoints.laptopSMax}{
+      h4{
+        padding: 32px 0px;
+        margin-bottom: 0;
+      }
       .menuIcon{
         display: inline-block;
         margin-left:12px;
@@ -132,9 +136,6 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
     a {
       color: ${colors.buttonRed};
       text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
     }
   `
   useEffect(() => {

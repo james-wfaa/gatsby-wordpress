@@ -73,7 +73,7 @@ other and the UW.
       )}
       
       { eventsToShow && (
-        <PageSection heading="Upcoming Events" topBorder buttons={eventbutton}><CardHandler items={eventsToShow} size="M" /></PageSection>
+        <PageSection heading="Upcoming Events" topBorder buttons={eventbutton}><CardHandler items={eventsToShow} size="M" type="event"/></PageSection>
       )}
 
       <PageSection heading="Our Chapter Sponsors" topBorder>

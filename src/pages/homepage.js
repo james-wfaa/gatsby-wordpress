@@ -5,6 +5,7 @@ import PageSection from "../components/page-sections/PageSection"
 import ContentCardD from "../components/content-blocks/ContentCardD"
 import GridCardD from "../components/content-modules/GridCardD"
 import ContentCard from "../components/content-blocks/ContentCard"
+import StoryContentCard from "../components/content-blocks/StoryContentCard"
 import CardE from "../components/content-blocks/CardE"
 import HeroIntroSection from "../components/page-sections/HeroIntroSection"
 import CommunicationForm from "../components/content-blocks/CommunicationForm"
@@ -108,7 +109,7 @@ const HomePage = ({ data }) => {
           variableWidth
           centerPadding="100px"
         >
-          <ContentCard
+          <StoryContentCard
             title="All About That Bass"
             category="UW NOW"
             excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
@@ -117,7 +118,7 @@ const HomePage = ({ data }) => {
             tags={taglist2}
             size="L"
           />
-          <ContentCard
+          <StoryContentCard
             title="Four Conversation Starters Beyond “How about Them Badgers?”"
             category="UW NOW"
             excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
@@ -126,7 +127,7 @@ const HomePage = ({ data }) => {
             tags={taglist2}
             size="L"
           />
-          <ContentCard
+          <StoryContentCard
             title="More than Madison and Milwaukee"
             category="UW NOW"
             excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
@@ -135,7 +136,7 @@ const HomePage = ({ data }) => {
             tags={taglist2}
             size="L"
           />
-          <ContentCard
+          <StoryContentCard
             title="Coachella Valley"
             category="UW NOW"
             excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
@@ -145,7 +146,7 @@ const HomePage = ({ data }) => {
             size="L"
           />
 
-          <ContentCard
+          <StoryContentCard
             title="Coachella Valley"
             category="UW NOW"
             excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"

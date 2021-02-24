@@ -53,7 +53,7 @@ const SelectSteps = () => {
     return (
         <div>
             <IntroPageSection
-            excerpt='Thanks so much. Now, let us know what else you are wanting to update, if anything.'
+            excerpt='Great, thanks for making those updates. Now, please review the following areas and check the ones you’d like to modify. It’ll only take a few minutes and provide you with many more ways to feel connected. This information helps tailor messages to your location, interests, and more. Otherwise, simply choose Finish Update below.'
             heading='Update My Info'
             variantObject={variantObject}
             headingAlt
@@ -69,9 +69,9 @@ const SelectSteps = () => {
                         <input type="checkbox" name="employment" id="employment" checked={state.employmentStep} onChange={()=>updateCheckbox(3)}/>
                         <label htmlFor="employment" selected>Employment Information</label>
                         <input type="checkbox" name="demographic" id="demographic" checked={state.identityStep} onChange={()=>updateCheckbox(4)} />
-                        <label htmlFor="demographic" selected>Demographic/Identity/Country Information</label>
+                        <label htmlFor="demographic" selected>Race/Ethnicity/Identity Information</label>
                         <input type="checkbox" name="spouse" id="spouse" checked={state.lifeEventStep} onChange={()=>updateCheckbox(5)} />
-                        <label htmlFor="spouse" selected>Spouse Update (Marriage/Divorce/Death)</label>
+                        <label htmlFor="spouse" selected>Spouse/Partner Update</label>
                     </div>
                     <Buttons back finish next disabled={!(state.addressStep || state.phoneStep || state.employmentStep || state.identityStep || state.lifeEventStep)}/>
                 </fieldset>
