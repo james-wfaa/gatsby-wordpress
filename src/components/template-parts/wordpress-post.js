@@ -6,6 +6,7 @@ import WordPressBasicContentBlocks from "../content-blocks/WordPressBasicContent
 import TitleSection from '../parts/WordPressTitleSection'
 import SocialShareLinks from '../parts/SocialShareLinks'
 import FeaturedImage from "../content-blocks/FeaturedImage"
+import BreadCrumbs from "../../components/page-sections/BreadCrumbs"
 
 function BlogPost({ data }) {
   const { page } = data
@@ -28,9 +29,15 @@ function BlogPost({ data }) {
   } else if((size < 718) && featuredImage){
     image = featuredImage.node
   }
-  //console.log(page)
+  console.log(page)
+  let links = [
+    { url: "/", name: "Home" },
+    { url: "/news", name: "News & Stories" },
+    { url: link, name: title },
+  ]
   return (
     <Layout title={title}>
+        <BreadCrumbs links={links} />
         <TitleSection heading={title} author={author.node.name} product={product} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />
         {image && size >= 718 && (
             <FeaturedImage featuredImage={image} size={size}/>

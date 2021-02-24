@@ -1,23 +1,26 @@
 import React from "react"
 import styled from "styled-components"
-import { colors } from "../css-variables"
+import { colors, sizes } from "../css-variables"
 
 const BreadCrumbs = ({ links }) => {
   const BreadCrumbSection = styled.div`
     display: flex;
+    max-width: 1080px;
+    margin: 0 auto;
   `
   const BreadCrumb = styled.div`
     display: flex;
-    margin: 5px;
-    color: ${colors.titleColor};
+    margin: 5px 0 5px 5px;
+    color: ${colors.copyText};
+    font-size: ${sizes.s14};
     a {
-      text-decoration: none;
+      text-decoration: underline;
       margin-right: 5px;
-      color: ${colors.titleColor};
+      color: ${colors.copyText};
       cursor: pointer;
     }
     p {
-      margin-right: 5px;
+      margin-bottom: 0;
     }
   `
   let renderedLinks = links.map(link => {
