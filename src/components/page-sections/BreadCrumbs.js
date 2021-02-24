@@ -43,10 +43,11 @@ const BreadCrumbs = ({ links, nounderline }) => {
     const notLast = link !== lastItem ? true : false
     return (
       <BreadCrumb>
-        <a href={link.url} className={underline}>
+        {notLast && <a href={link.url} className={underline}>
           <p>{link.name}</p>
-        </a>
+        </a>}
         {notLast && <p>{`>`}</p>}
+        {!notLast && <p>{link.name}</p>}
       </BreadCrumb>
     )
   })
