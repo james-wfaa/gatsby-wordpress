@@ -27,6 +27,9 @@ const BreadCrumbs = ({ links, nounderline }) => {
       &.noUnderline{
         text-decoration: none;
       }
+      &:hover {
+        color: ${colors.badgerRed};
+      }
     }
     p {
       margin-bottom: 0;

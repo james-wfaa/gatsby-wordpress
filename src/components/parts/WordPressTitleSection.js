@@ -61,7 +61,7 @@ const StyledTitleSection = styled(TitleSection)`
     margin-right: auto;
     padding-top: ${sizes.s58};
     @media screen and ${breakpoints.tabletS} {
-        padding-top: ${sizes.s88};
+        padding-top: ${sizes.s45};
     }
 
     &.header--event{
