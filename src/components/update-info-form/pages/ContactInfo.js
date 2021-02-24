@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, StyledTopError, variantObject } from '../form-helpers'
+import { StyledError, variantObject, checkForLetters, currentYear } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from '../FormButtons'
 import { AppContext } from "../../../context/AppContext"
@@ -21,25 +21,21 @@ const ContactInfo = () => {
   }
   
   const requiredFieldsCheck = state.contactInfo.firstname !== '' && state.contactInfo.lastname !== '' && state.contactInfo.email !== '';
-
       return (
         <div>
             <IntroPageSection
-              excerpt='We want to be certain we have the correct information for all UW Alumni and friends. Please take a minute to complete this brief form.'
+              excerpt='Make sure you stay in the know — and more connected to the UW and WAA! Please take a moment to complete this form with your current contact information to ensure you receive communications about events, programs, and services that matter to you.'
               heading='Update My Info'
               variantObject={variantObject}
               headingAlt
               headingCompact
             />
-            <form id="contact" onSubmit={handleSubmit(UpdateContactInfo)}>
-              { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
+            <form id="contact" className="contact-info" onSubmit={handleSubmit(UpdateContactInfo)}>
+              { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Contact Information<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="firstname" className="half required">First Name
                 <span className="required">*</span>
-                {errors.firstname && (
-                  <StyledError>{errors.firstname.message}</StyledError>
-                )}
                 <input
                     type="text"
                     name="firstname"
@@ -55,12 +51,12 @@ const ContactInfo = () => {
                       },
                     })}
                 />
+                {errors.firstname && (
+                  <StyledError>{errors.firstname.message}</StyledError>
+                )}
               </label>
               <label htmlFor="lastname" className="half leftMargin required">Last Name
                 <span className="required">*</span>
-                {errors.lastname && (
-                  <StyledError>{errors.lastname.message}</StyledError>
-                )}
                 <input
                     type="text"
                     name="lastname"
@@ -76,11 +72,11 @@ const ContactInfo = () => {
                       },
                     })}
                 />
+                {errors.lastname && (
+                  <StyledError>{errors.lastname.message}</StyledError>
+                )}
               </label>
               <label htmlFor="othernames">Other names you use or have used in the past (maiden names, nicknames, given names etc.)
-                {errors.othernames && (
-                    <StyledError>{errors.othernames.message}</StyledError>
-                  )}
                 <input
                     type="text"
                     name="othernames"
@@ -90,12 +86,12 @@ const ContactInfo = () => {
                     ref={register({
                     })}
                 />
+                {errors.othernames && (
+                    <StyledError>{errors.othernames.message}</StyledError>
+                  )}
               </label>
               <label htmlFor="email" className="half required">Preferred Email
                 <span className="required">*</span>
-                {errors.email && (
-                  <StyledError>{errors.email.message}</StyledError>
-                )}
                 <input
                     type="email"
                     name="email"
@@ -113,11 +109,11 @@ const ContactInfo = () => {
                       },
                     })}
                 />
+                {errors.email && (
+                  <StyledError>{errors.email.message}</StyledError>
+                )}
               </label>
               <label htmlFor="phone" className="half leftMargin">Mobile Phone
-                {errors.phone && (
-                  <StyledError>{errors.phone.message}</StyledError>
-                )}
                 <input
                     type="phone"
                     name="phone"
@@ -125,19 +121,21 @@ const ContactInfo = () => {
                     maxLength="51"
                     defaultValue={state.contactInfo.phone}
                     onChange={e => updateOnChangeValues(e)}
-                    //placeholder="+1 (000) 000-0000"
                     ref={register({
-                      maxLength: {
-                        value: 50,
-                        message: "Cannot be more than 50 characters",
+                      validate: {
+                        numbersOnly: value => checkForLetters(value) === false,
                       },
-                    })}
+                    })
+                  }
                 />
+                {errors.phone && (
+                  <StyledError>{errors.phone.message}</StyledError>
+                )}
+                {errors.phone?.type === "numbersOnly" && (
+                  <StyledError>Letters are not accepted as a valid phone number</StyledError>
+                )}
               </label>
               <label htmlFor="undergrad" className="smallThird">Undergraduate Year (if applicable)
-                {errors.undergrad && (
-                  <StyledError>{errors.undergrad.message}</StyledError>
-                )}
                 <input
                     type="text"
                     name="undergrad"
@@ -147,21 +145,24 @@ const ContactInfo = () => {
                     onChange={e => updateOnChangeValues(e)}
                     placeholder="YYYY"
                     ref={register({
-                      /*pattern: {
-                        value: /^(19|20)\d{2}$/,
-                        message: "Must be a valid 4 digit graduation year, formatted yyyy",
-                      },*/
                       maxLength: {
                         value: 4,
                         message: "Must be 4 characters or less",
                       },
+                      pattern: {
+                        value: /^[0-9]*$/,
+                        message: "Numbers only, please",
+                      },
                     })}
                 />
+                {errors.undergrad && (
+                  <StyledError>{errors.undergrad.message}</StyledError>
+                )}
+                {errors.undergrad?.type === "numbersOnly" && (
+                  <StyledError>Letters are not accepted as a valid undergrad year</StyledError>
+                )}
               </label>
               <label htmlFor="postgrad" className="smallThird leftMargin">Postgraduate Year(s) (if applicable)
-                {errors.postgrad && (
-                  <StyledError>{errors.postgrad.message}</StyledError>
-                )}
                 <input
                     type="text"
                     name="postgrad"
@@ -171,6 +172,9 @@ const ContactInfo = () => {
                     ref={register({
                     })}
                 />
+                {errors.postgrad && (
+                  <StyledError>{errors.postgrad.message}</StyledError>
+                )}
               </label>
               
               <Buttons 

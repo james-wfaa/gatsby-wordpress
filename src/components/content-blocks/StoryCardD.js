@@ -2,6 +2,7 @@ import React from "react"
 import ContentCardD from './ContentCardD'
 
 const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat })=> {
+    url = `news${url}`
 
     let moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
 

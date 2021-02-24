@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject, StyledTopError, } from '../form-helpers'
+import { StyledError, variantObject } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from '../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -28,7 +28,10 @@ const MailingAddress = () => {
 
   //check country, check if seasonal address checked
   let requiredFieldsCheck = state.mailingAddress.country === "US" ? state.mailingAddress.streetAddress !== '' && state.mailingAddress.city !== '' && state.mailingAddress.state !== '' && state.mailingAddress.zipcode !== '' : state.mailingAddress.streetAddress !== '';
-  
+  if (state.mailingAddress.seasonalResidence === "yes"){
+    let checkSeasonalAddressFields = state.mailingAddress.seasonalCountry === "US" ? state.mailingAddress.seasonalStreetAddress !== '' && state.mailingAddress.seasonalCity !== '' && state.mailingAddress.seasonalState !== '' && state.mailingAddress.seasonalZipcode !== '' : state.mailingAddress.seasonalStreetAddress !== ''
+    requiredFieldsCheck = requiredFieldsCheck && checkSeasonalAddressFields && state.mailingAddress.seasonalStartDate !== '' &&  state.mailingAddress.seasonalEndDate !== '';
+  }
   const requiredForUS = state.mailingAddress.country === "US" ? `required: { value: true, message: "This field is required" },` : null
   const requiredForSeasonalUS = state.mailingAddress.seasonalCountry === "US" ? `required: { value: true, message: "This field is required" },` : null
 
@@ -45,7 +48,7 @@ const MailingAddress = () => {
       return (
         <div>
             <IntroPageSection
-              excerpt='Please update your address. You will have the option to update multiple addresses after clicking “Save and Continue”.'
+              excerpt='Please update your primary or seasonal mailing address below. This way, you’ll receive communications on happenings in your area to help you stay connected to fellow Badgers nearby. Note that if you checked “Employment Information” on a previous form, you also have the option to update your business address coming up. And always click “Save and Continue” after completing a page to ensure your changes are recorded.'
               heading='Update My Info'
               variantObject={variantObject}
               headingAlt
@@ -53,26 +56,9 @@ const MailingAddress = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form className="mailing-address" onSubmit={handleSubmit(UpdateMailingAddressInfo)}>
-            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
+            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Mailing Address<span className="requiredInfo">*Required Information</span></legend>
               <hr />
-              <label htmlFor="addressType" className="half select-dropdown">Address Type
-                <select name="addressType" defaultValue={state.mailingAddress.addressType}>
-                  <option value="home">Home</option>
-                  <option value="business">Business</option>
-                </select>
-                {errors.addressType && (
-                  <StyledError>{errors.addressType.message}</StyledError>
-                )}
-              </label>
-              <label htmlFor="country" className="half leftMargin required">Country
-                <select name="country" onChange={e => updateOnChangeValues(e)} defaultValue={state.mailingAddress.country}>
-                  {countryOptions}
-                </select>
-                {errors.country && (
-                  <StyledError>{errors.country.message}</StyledError>
-                )}
-              </label>
               <label htmlFor="streetAddress">Street Address
                 <span className="required">*</span>
                 <input
@@ -148,6 +134,14 @@ const MailingAddress = () => {
                 />
                 {errors.zipcode && (
                   <StyledError>{errors.zipcode.message}</StyledError>
+                )}
+              </label>
+              <label htmlFor="country" className="half required">Country
+                <select name="country" onChange={e => updateOnChangeValues(e)} defaultValue={state.mailingAddress.country}>
+                  {countryOptions}
+                </select>
+                {errors.country && (
+                  <StyledError>{errors.country.message}</StyledError>
                 )}
               </label>
               <label htmlFor="seasonalResidence" >Do you have a seasonal residence?</label>
@@ -230,7 +224,7 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalCity"
                     id="seasonalCity"
-                    defaultValue={state.mailingAddress.city}
+                    defaultValue={state.mailingAddress.seasonalCity}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       

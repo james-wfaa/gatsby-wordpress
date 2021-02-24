@@ -139,9 +139,6 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
     a {
       color: ${colors.buttonRed};
       text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
     }
   `
   useEffect(() => {

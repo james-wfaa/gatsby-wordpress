@@ -24,9 +24,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                 title = (block.isDynamic) ? block.dynamicContent : block.originalContent
                 break
             case "core/heading":
-                console.log ("normal heading")
                 if (block.originalContent.indexOf('<h2') > -1) {
-                    console.log ("normal h2 heading")
                     title = (block.isDynamic) ? block.dynamicContent : block.originalContent
                 }
                 break
@@ -61,7 +59,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
         </SimpleSlider>)
 
         : (cardset)
-            ? (<CardSet>{
+            ? (<CardSet type="news">{
                 blocks.map((block) => {
                 const innerContent =  ((block.dynamicContent && block.dynamicContent !== "") ? block.dynamicContent : block.originalContent)
                 return innerContent
@@ -80,11 +78,10 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                       break
                     } else {
                       return (
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: block.originalContent,
-                          }}
-                        />
+                          <Block
+                            className={block.name.replace("/", "-")}
+                            block={block}
+                          />
                       )
                     }
                   case "core/paragraph":
@@ -106,7 +103,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                           block={block}
                         />
                       )
-                    }
+                    }                    
                   case "acf/testimonial":
                     const testimonial = block.isDynamic
                       ? block.dynamicContent

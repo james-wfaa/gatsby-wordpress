@@ -37,7 +37,7 @@ function WordPressPage({ page }) {
     `
   )
   */
- //menuName = (ancestors) ? 
+ //menuName = (ancestors) ?
 
  //console.log(ancestors)
  if (ancestors?.nodes) {
@@ -67,17 +67,24 @@ function WordPressPage({ page }) {
  }
 
  if (menuRoot) {
-  //console.log(menuRoot)
-
-  wpMenu = {}
-  wpMenu.name = menuRoot.title
-  wpMenu.link = menuRoot.link
-  wpMenu.menuItems = {}
-  wpMenu.menuItems.nodes = menuRoot.wpChildren.nodes.map( item => {
-   item.path = item.uri
-   item.label = item.title
-   return item
- })
+   wpMenu = {}
+   wpMenu.name = menuRoot.title
+   wpMenu.link = menuRoot.link
+   wpMenu.menuItems = {}
+   wpMenu.menuItems.nodes = menuRoot.wpChildren.nodes.map(item => {
+     item.path = item.uri
+     item.label = item.title
+     return item
+   })
+   wpMenu.menuItems.nodes.sort((a,  b) => {
+     if (a.title < b.title) {
+       return -1
+     }
+     if (a.title > b.title) {
+       return 1
+     }
+     return 0
+   })
  }
 
 
@@ -102,7 +109,7 @@ function WordPressPage({ page }) {
         { wpMenu && (
           <Menu name={wpMenu.name} link={wpMenu.link} menuItems={wpMenu.menuItems.nodes} width={width} />
         )}
-          
+
           <PageSection heading={title} pageTitle leftAlign defaultPage divider>
             <WordPressContent blocks={blocks}  content={content} />
           </PageSection>
@@ -111,7 +118,7 @@ function WordPressPage({ page }) {
         <>
           <PageSectionHeader heading={title} />
           { wpMenu && (
-          <Menu name={wpMenu.name} menuItems={wpMenu.menuItems.nodes} width={width} />
+          <Menu name={wpMenu.name} link={wpMenu.link} menuItems={wpMenu.menuItems.nodes} width={width} />
         )}
           <PageSection pageTitle>
             <WordPressContent blocks={blocks} content={content} />

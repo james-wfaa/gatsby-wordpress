@@ -114,7 +114,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
                             text: 'See More Events'
                         }]
                         : null
-                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" /></PageSection>)    
+                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" type="event"/></PageSection>)
                 }
                 
                 break

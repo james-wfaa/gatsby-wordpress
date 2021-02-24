@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject, StyledTopError } from '../form-helpers'
+import { StyledError, variantObject } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -43,7 +43,7 @@ const EmploymentInfo = () => {
       return (
         <div>
             <IntroPageSection
-              excerpt='Please update your employment info and click “Save and Continue”.'
+              excerpt='Please make updates regarding your current employment status. And always click “Save and Continue” after completing a page to ensure your changes are recorded.'
               heading='Update My Info'
               variantObject={variantObject}
               headingAlt
@@ -51,7 +51,7 @@ const EmploymentInfo = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="contact" onSubmit={handleSubmit(UpdateEmploymentInfo)}>
-              { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
+              { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Employment Info<span className="requiredInfo">*Required Information</span></legend>
               <hr />
               <label htmlFor="startDate" className="smallThird">Start Date

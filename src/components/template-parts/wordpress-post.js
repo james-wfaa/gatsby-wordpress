@@ -31,7 +31,7 @@ function BlogPost({ data }) {
   //console.log(page)
   return (
     <Layout title={title}>
-        <TitleSection heading={title} author={author} product={product} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />
+        <TitleSection heading={title} author={author.node.name} product={product} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />
         {image && size >= 718 && (
             <FeaturedImage featuredImage={image} size={size}/>
         )}
