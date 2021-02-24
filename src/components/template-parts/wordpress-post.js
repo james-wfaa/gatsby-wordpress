@@ -6,15 +6,34 @@ import WordPressBasicContentBlocks from "../content-blocks/WordPressBasicContent
 import TitleSection from '../parts/WordPressTitleSection'
 import SocialShareLinks from '../parts/SocialShareLinks'
 import FeaturedImage from "../content-blocks/FeaturedImage"
+import PageSection from "../page-sections/PageSection"
+import CardHandler from "../content-modules/CardHandler"
+
 
 function BlogPost({ data }) {
   const { page } = data
-  const { title, content, featuredImage, categories, products, author, date, excerpt, heroImage, link } = page
+  const { title, content, featuredImage, categories, products, author, date, excerpt, heroImage, link, slug } = page
   console.log(heroImage, featuredImage)
 
   let heroSize = heroImage.heroImage && heroImage.heroImage.mediaDetails.width ? heroImage.heroImage.mediaDetails.width : null
   let featSize = featuredImage?.node?.mediaDetails.width ? featuredImage?.node?.mediaDetails.width : null
   let size = featSize > heroSize ? featSize : heroSize
+  let relatedPostsToShow = []
+  if(products && products.nodes){
+    products.nodes.map((product) => {
+      product.posts.nodes.map((post) => {
+        relatedPostsToShow.push(post) 
+        console.log(post.url)
+      })
+    })
+  }
+
+  const buttons = (relatedPostsToShow.length > 2) 
+      ? [{
+          link: `/posts/search/?category=${slug}`,
+          text: 'SEE ALL NEWS AND STORIES'
+      }]
+      : null
 
   const product = (products?.nodes) ? products.nodes[0] : null
   
@@ -37,6 +56,7 @@ function BlogPost({ data }) {
         )}
         <WordPressBasicContentBlocks {...page} />
       <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
+      <PageSection id="post-listing" heading="Related News and Stories" topBorder buttons={buttons}><CardHandler items={relatedPostsToShow} size="M" type="news" /></PageSection>
     </Layout>
   )
 }

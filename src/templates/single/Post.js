@@ -84,6 +84,29 @@ export const query = graphql`
         nodes {
           name
           slug
+          posts{
+            nodes {
+              title
+              url: uri
+              excerpt
+              featuredImage {
+                node {
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth: 712) {
+                        base64
+                        tracedSVG
+                        srcWebp
+                        srcSetWebp
+                        originalImg
+                        originalName
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
       products {
@@ -94,6 +117,29 @@ export const query = graphql`
             nodes {
               title
               uri
+            }
+          }
+          posts{
+            nodes {
+              title
+              url: uri
+              excerpt
+              featuredImage {
+                node {
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth: 712) {
+                        base64
+                        tracedSVG
+                        srcWebp
+                        srcSetWebp
+                        originalImg
+                        originalName
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
