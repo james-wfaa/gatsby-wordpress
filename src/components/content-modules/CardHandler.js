@@ -12,7 +12,7 @@ const CardHandler = ({ items, size, type }) => {
                 number of cards */
                 return (<CardSet items={items} num="2" type={type}/>)
             default:
-                return (<SimpleSliderItems items={items} size={size} />)
+                return (<SimpleSliderItems items={items} size={size} type={type} />)
         }
     } else {
         return (<div>No items found</div>)
