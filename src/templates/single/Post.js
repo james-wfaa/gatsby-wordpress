@@ -1,11 +1,14 @@
 import React from "react"
 import { graphql } from "gatsby"
 import BlogPost from "../../components/template-parts/wordpress-post"
+import FlaminglePost from "../../components/template-parts/wordpress-flamingle"
 
 const Post = ({ data }) => {
 //console.log('Post.js data:',data)
 
-return (<BlogPost data={data} />)
+const isFlamingle = data.page.askFlamingle?.abeQuestioner ? true : false
+
+return isFlamingle ? <FlaminglePost data={data} /> : <BlogPost data={data} />;
 }
 
 export default Post

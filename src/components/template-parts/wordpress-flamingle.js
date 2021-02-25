@@ -1,0 +1,93 @@
+import React from "react"
+
+import Layout from "../layout"
+import WordPressBasicContentBlocks from "../content-blocks/WordPressBasicContentBlocks"
+
+import TitleSection from '../parts/WordPressTitleSection'
+import SocialShareLinks from '../parts/SocialShareLinks'
+import FeaturedImage from "../content-blocks/FeaturedImage"
+import BreadCrumbs from "../page-sections/BreadCrumbs"
+import PageSection from "../page-sections/PageSection"
+import RecentPosts from "../page-sections/RecentPosts"
+import CardHandler from "../content-modules/CardHandler"
+
+
+function BlogPost({ data }) {
+  const { page } = data
+  const { id, title, content, featuredImage, categories, products, author, date, excerpt, heroImage, link, slug } = page
+  console.log('flamingle page!!', page)
+  let heroSize = heroImage.heroImage && heroImage.heroImage.mediaDetails.width ? heroImage.heroImage.mediaDetails.width : null
+  let featSize = featuredImage?.node?.mediaDetails.width ? featuredImage?.node?.mediaDetails.width : null
+  let size = featSize > heroSize ? featSize : heroSize
+  let relatedPostsToShow = []
+  if(products && products.nodes){
+    products.nodes.map((product) => {
+      product.posts.nodes.map((post) => {
+        relatedPostsToShow.push(post) 
+      })
+    })
+  }
+
+  let uniqueRelatedPosts = []
+  relatedPostsToShow.forEach((post) => {
+    if(!uniqueRelatedPosts.find(element => element.id === post.id) && post.id != id){
+      uniqueRelatedPosts.push(post)
+    }
+  })
+
+  const buttons = (uniqueRelatedPosts.length > 2) 
+      ? [{
+          link: `/posts/search/?category=${slug}`,
+          text: 'SEE ALL NEWS AND STORIES'
+      }]
+      : null
+
+  const product = (products?.nodes) ? products.nodes[0] : null
+  
+  let image = null
+  if ((size >= 1080) && featuredImage?.node?.localFile?.childImageSharp.fluid){
+    image = featuredImage?.node
+  } else if ((718 <= size && size < 1080) && heroImage?.heroImage?.localFile?.childImageSharp){
+    image = heroImage.heroImage
+  } else if ((718 <= size && size < 1080) && featuredImage?.node?.localFile?.childImageSharp){
+    image = featuredImage.node
+  } else if((size < 718) && featuredImage){
+    image = featuredImage.node
+  }
+  
+  let links = [
+    { url: "/", name: "Home" },
+    { url: "/news", name: "News & Stories" },
+    { url: link, name: title },
+  ]
+  return (
+    <Layout title={title}>
+        <BreadCrumbs links={links} />
+        <TitleSection heading={title} author={author.node.name} product={product} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />
+        {image && size >= 718 && (
+            <FeaturedImage featuredImage={image} size={size}/>
+        )}
+        <WordPressBasicContentBlocks {...page} />
+      <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
+      {relatedPostsToShow.length > 0 ? (
+        <PageSection id="post-listing" heading="Related News and Stories" topBorder buttons={buttons}><CardHandler items={uniqueRelatedPosts} size="M" type="news" /></PageSection>
+      ):(
+        <PageSection
+          heading="Featured News and Stories"
+          buttons={[
+            {
+              link: "/news/all",
+              text: "See All News and Stories",
+            },
+          ]}
+          topBorder
+          desktopOnly
+        >
+            <RecentPosts />
+        </PageSection>
+      )}
+    </Layout>
+  )
+}
+
+export default BlogPost
