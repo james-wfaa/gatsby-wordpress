@@ -11,8 +11,10 @@ import PromoCardD from "../content-blocks/PromoCardD"
 import HeroIntroSection from "../page-sections/HeroIntroSection"
 import SimpleSlider from "../content-modules/SimpleSlider"
 
-function WordPressGroupPage({ page }) {
- 
+function WordPressGroupPage({ page, options }) {
+  const{ chapters: chaptersText, varsityChapterText, recognizedChapterText, bascomChapterText } = options
+
+  
   const eventbutton = [
     {
       link: "/events",
@@ -49,7 +51,13 @@ function WordPressGroupPage({ page }) {
       })
       : null
 
-  const chapterType = 'A Wisconsin Alumni Association <a href="#">Bascom Chapter</a>'
+  const chapterType = 'recognized' // get this from the page data
+  const chapterTypeText = (chapterType === 'varsity')
+      ? varsityChapterText
+      : (chapterType === 'bascom' ) 
+        ? bascomChapterText
+        : recognizedChapterText
+
 
   const eventsToShow = (groups?.nodes && groups?.nodes[0]?.events.nodes) ? groups?.nodes[0]?.events.nodes : null
 
@@ -57,14 +65,13 @@ function WordPressGroupPage({ page }) {
     <Layout title={title}>
       <PageSection
         heading={title}
-        excerpt={chapterType}
+        excerpt={chapterTypeText}
         withSocial
         plainText
         pageTitle
       > { // this is static text... will live in a WP settings field somewhere... same for every chapter 
       }
-        Connect with us to celebrate UW pride, enjoy Badger spirit and build community with each 
-other and the UW.
+       <div dangerouslySetInnerHTML={{__html: chaptersText}} />
       </PageSection>
       <div style={{maxWidth: `1080px`, margin: `auto`, paddingBottom: `58px`}}>
 
