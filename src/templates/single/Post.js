@@ -151,6 +151,9 @@ export const query = graphql`
           }
         }
       }
+      askFlamingle {
+        abeQuestioner
+      }
     }
   }
 `
