@@ -5,7 +5,7 @@ import EventContentCard from '../content-blocks/EventContentCard'
 
 import styled from 'styled-components'
 
-const CardSet = ({className, items, children, num, type }) => {
+const CardSet = ({className, items, children, num, type="news" }) => {
     console.log(type)
     //const cards = items.map
     // trim array to the max size

@@ -98,7 +98,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
                             text: 'See More WAA Stories'
                         }]
                         : null
-                    RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={postsToShow} size="M" /></PageSection>)    
+                    RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={postsToShow} type="news" size="M" /></PageSection>)    
                 }
                 
                 break
