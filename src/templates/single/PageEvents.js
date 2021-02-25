@@ -53,7 +53,7 @@ function WordPressPage({ data }) {
     nextArrow: <RightArrow />,
     prevArrow: <LeftArrow />,
   }
-  console.log('events page events:',events)
+  //('events page events:',events)
   let featuredEvents = eventEdges.map((event) => {
     //console.log('featuredEvents event.node:',event.node)
     const { featuredEvent, featuredImage: img } = event.node

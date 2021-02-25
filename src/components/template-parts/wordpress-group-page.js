@@ -12,8 +12,9 @@ import HeroIntroSection from "../page-sections/HeroIntroSection"
 import SimpleSlider from "../content-modules/SimpleSlider"
 
 function WordPressGroupPage({ page, options }) {
-  const{ chapters: chaptersText, varsityChapterText, recognizedChapterText, bascomChapterText } = options
-
+  const { chapters: chaptersText, varsityChapterText, recognizedChapterText, bascomChapterText } = options
+  const { chapterLevel } = page
+  const { chapterLevel: level } = chapterLevel
   
   const eventbutton = [
     {
@@ -51,10 +52,9 @@ function WordPressGroupPage({ page, options }) {
       })
       : null
 
-  const chapterType = 'recognized' // get this from the page data
-  const chapterTypeText = (chapterType === 'varsity')
+  const chapterTypeText = (level === 'Varsity')
       ? varsityChapterText
-      : (chapterType === 'bascom' ) 
+      : (level === 'Bascom' ) 
         ? bascomChapterText
         : recognizedChapterText
 

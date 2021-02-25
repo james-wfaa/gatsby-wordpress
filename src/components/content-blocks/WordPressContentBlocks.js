@@ -77,7 +77,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
                 break
             case "core-embed/vimeo":
                 console.log('vimeo')
-                console.log(block)
+                //console.log(block)
                 //return <div>foo</div>//
                 RenderedBlocks.push(<PageSection borderTop={borderTop} stagger={stagger}>
                     <EmbedBlock source={block.originalContent} type="vimeo" />
