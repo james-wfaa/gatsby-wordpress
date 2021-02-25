@@ -5,8 +5,6 @@ import FeaturedImage from "../content-blocks/FeaturedImage"
 
 const TitleSection = ({ className, heading, author, product, date, excerpt, series, event = false, smImg, size, category }) => {
 
-    console.log(product) 
-
     const classesList = !event ? `${className}` : `${className} ${className}--event`
     const defaultAuthor = "Wisconsin Alumni Association";
     //console.log(smImg)
@@ -28,7 +26,7 @@ const TitleSection = ({ className, heading, author, product, date, excerpt, seri
                 )}
                 { product && (
                     <div className={`${className}__category`}>
-                        { product?.pages?.nodes?.uri && (
+                        { product?.pages?.nodes[0]?.uri && (
                             <a className="category__item" href={`${product.pages.nodes[0].uri}`}>{product.name}</a>
                         )}
                         { !product?.pages?.nodes && (

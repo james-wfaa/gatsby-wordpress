@@ -13,6 +13,7 @@ export default Post
 export const query = graphql`
   query post($id: String!) {
     page: wpPost(id: { eq: $id }) {
+      id
       title
       content
       blocks {
@@ -121,6 +122,7 @@ export const query = graphql`
           }
           posts{
             nodes {
+              id
               title
               url: uri
               excerpt
@@ -135,6 +137,10 @@ export const query = graphql`
                         srcSetWebp
                         originalImg
                         originalName
+                        src
+                        srcSet
+                        aspectRatio
+                        sizes
                       }
                     }
                   }

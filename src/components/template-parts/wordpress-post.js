@@ -7,13 +7,13 @@ import TitleSection from '../parts/WordPressTitleSection'
 import SocialShareLinks from '../parts/SocialShareLinks'
 import FeaturedImage from "../content-blocks/FeaturedImage"
 import PageSection from "../page-sections/PageSection"
+import RecentPosts from "../../components/page-sections/RecentPosts"
 import CardHandler from "../content-modules/CardHandler"
 
 
 function BlogPost({ data }) {
   const { page } = data
-  const { title, content, featuredImage, categories, products, author, date, excerpt, heroImage, link, slug } = page
-  console.log(heroImage, featuredImage)
+  const { id, title, content, featuredImage, categories, products, author, date, excerpt, heroImage, link, slug } = page
 
   let heroSize = heroImage.heroImage && heroImage.heroImage.mediaDetails.width ? heroImage.heroImage.mediaDetails.width : null
   let featSize = featuredImage?.node?.mediaDetails.width ? featuredImage?.node?.mediaDetails.width : null
@@ -23,12 +23,18 @@ function BlogPost({ data }) {
     products.nodes.map((product) => {
       product.posts.nodes.map((post) => {
         relatedPostsToShow.push(post) 
-        console.log(post.url)
       })
     })
   }
 
-  const buttons = (relatedPostsToShow.length > 2) 
+  let uniqueRelatedPosts = []
+  relatedPostsToShow.forEach((post) => {
+    if(!uniqueRelatedPosts.find(element => element.id === post.id) && post.id != id){
+      uniqueRelatedPosts.push(post)
+    }
+  })
+
+  const buttons = (uniqueRelatedPosts.length > 2) 
       ? [{
           link: `/posts/search/?category=${slug}`,
           text: 'SEE ALL NEWS AND STORIES'
@@ -56,8 +62,22 @@ function BlogPost({ data }) {
         )}
         <WordPressBasicContentBlocks {...page} />
       <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
-      {relatedPostsToShow.length > 0 && (
-        <PageSection id="post-listing" heading="Related News and Stories" topBorder buttons={buttons}><CardHandler items={relatedPostsToShow} size="M" type="news" /></PageSection>
+      {relatedPostsToShow.length > 0 ? (
+        <PageSection id="post-listing" heading="Related News and Stories" topBorder buttons={buttons}><CardHandler items={uniqueRelatedPosts} size="M" type="news" /></PageSection>
+      ):(
+        <PageSection
+          heading="Featured News and Stories"
+          buttons={[
+            {
+              link: "/news/all",
+              text: "See All News and Stories",
+            },
+          ]}
+          topBorder
+          desktopOnly
+        >
+            <RecentPosts />
+        </PageSection>
       )}
     </Layout>
   )
