@@ -58,6 +58,9 @@ const IndexPage = () => (
           <Link to="/alumni-directory">Alumni Directory</Link>
         </li>
         <li>
+          <Link to="/forward-under-40">Forward Under 40 (No Hero Image example)</Link>
+        </li>
+        <li>
           <Link to="/jamess-product">Product Page - James Test</Link>
         </li>
       </ul>
