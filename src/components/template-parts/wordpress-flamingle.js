@@ -11,8 +11,8 @@ import PageSection from "../page-sections/PageSection"
 import RecentPosts from "../page-sections/RecentPosts"
 import CardHandler from "../content-modules/CardHandler"
 import flamingleMasthead from "./../../svg/ask-flamingle-masthead.svg"
-import flamingleCap from "./../../svg/flamingle-initial-cap.svg"
-
+import flamingleIcon from "./../../svg/flamingle-initial-cap.svg"
+import Button from "./../parts/Button"
 
 function BlogPost({ data }) {
   const { page } = data
@@ -52,11 +52,13 @@ function BlogPost({ data }) {
   ]
   console.log(excerpt, 'excerpt')
 
-  let flamingleExcerpt = null;
+  //remove pesky paragraph tags
+  const excerptLength = excerpt.length
+  const flamingleExcerpt = excerpt.slice(3, excerptLength - 5);
 
   const StyledFlamingleWrapper = styled.div`
     
-    .flamingleMasthead, .flamingleCapWrapper{
+    .flamingleMasthead, .flamingleCapWrapper, .flamingleLinks{
       width: 80%;
       max-width: 712px;
       margin: 40px auto 0 auto;
@@ -78,13 +80,47 @@ function BlogPost({ data }) {
       margin:0 auto;
     }
     .socialText{
-      color: ${colors.flaminglePink};
+      color: ${colors.flamingleSocialGrey};
+    }
+    .socialText{
+      text-transform: uppercase; 
     }
     .shareButtons{
       button{
         path{
-          fill: ${colors.flaminglePink};
+          fill: ${colors.flamingleSocialGrey};
         }
+      }
+    }
+    .flamingleLinks{
+      margin-bottom: 88px;
+      div{
+        width: 50%;
+        display: inline-block;
+        text-align: center;
+        p{
+          color: ${colors.flaminglePink};
+          font-weight: bold;
+          margin-bottom: 40px;
+        }
+        a{
+          background-color:${colors.flaminglePink};
+        }
+        &.newsletterContainer{
+          a{
+            color:${colors.flaminglePink};
+            border: 1px solid ${colors.flaminglePink};
+            background-color: transparent;
+          }
+          .italicize{
+            font-style: italic;
+          }
+        }
+      }
+      hr{
+        height: 8px;
+        background-color: ${colors.sectionBorder};
+        margin-bottom: 32px;
       }
     }
     @media screen and ${breakpoints.tabletS} {
@@ -96,10 +132,21 @@ function BlogPost({ data }) {
         <BreadCrumbs links={links} />
         <StyledFlamingleWrapper>
             <img className="flamingleMasthead" src={flamingleMasthead}></img>
-            <TitleSection heading={excerpt} author={author.node.name} categories={categories} />
-            <div className="flamingleCapWrapper"><img src={flamingleCap}></img></div>
+            <TitleSection heading={flamingleExcerpt} author={author.node.name} categories={categories} />
+            <div className="flamingleCapWrapper"><img src={flamingleIcon}></img></div>
             <WordPressBasicContentBlocks {...page} />
           <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
+          <div className="flamingleLinks">
+            <hr></hr>
+            <div>
+              <p>Need Answers? Ask Flamingle HQ</p>
+              <Button link="/" text="Ask A Question" external />
+            </div>
+            <div className="newsletterContainer">
+              <p>View <span className="italicize">The Flamingle</span> Newsletter</p> 
+              <Button link="/" text="See All Posts" external />
+            </div>
+          </div>
           {relatedPostsToShow.length > 0 ? (
             <PageSection id="post-listing" heading="Related News and Stories" topBorder buttons={buttons}><CardHandler items={uniqueRelatedPosts} size="M" type="news" /></PageSection>
           ):(

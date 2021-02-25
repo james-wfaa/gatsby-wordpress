@@ -120,6 +120,7 @@ export const colors = {
     errorBGYellow: baseColors.errorLightYellow,
     progressBarLightRed: baseColors.lightRed,
     flaminglePink: baseColors.flamingle,
+    flamingleSocialGrey: baseColors.darkerGrey,
 }
 
 export const size = {
