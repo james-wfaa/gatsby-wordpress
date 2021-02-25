@@ -39,7 +39,7 @@ function WordPressPage({ page }) {
   */
  //menuName = (ancestors) ?
 
- //console.log(ancestors)
+ console.log('ancestors', ancestors)
  if (ancestors?.nodes) {
   // child page of a product page
   if (ancestors.nodes[0]?.template?.templateName === "Product Template") {
@@ -49,17 +49,14 @@ function WordPressPage({ page }) {
     const groupSlug = 'groups'
     //const topParent = ancestors.nodes[ancestors.nodes.length -1]
     let topParent = ancestors.nodes[ancestors.nodes.length -1]
-    if(ancestors.nodes.length >= 2){
+    /*if(ancestors.nodes.length >= 2){
       topParent = ancestors.nodes[1]
-    }
-    
-    console.log('topParent:', topParent)
-    console.log(topParent?.slug && topParent.slug, groupSlug)
+    }*/
 
     if (topParent?.slug && topParent.slug === groupSlug) {
       // child or granchild of a Group/Chapter page
-      //menuRoot = ancestors.nodes[ancestors.nodes.length -2]
-      menuRoot = ancestors.nodes[0]
+      menuRoot = ancestors.nodes[ancestors.nodes.length -2]
+      //menuRoot = ancestors.nodes[0]
       
     }
     console.log('menuRoot:', menuRoot, ancestors) 

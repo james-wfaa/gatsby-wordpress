@@ -7,6 +7,7 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
   console.log(name)
   const [open, setOpen] = useState(false)
   const menuMargin = open ? `32px` : 0;
+  
   const StyledMenu = styled.div`
     position: relative;
     border-top: 2px solid ${colors.bgActiveGrey};
@@ -24,6 +25,7 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
     @media screen and ${breakpoints.laptopS} {
         margin-left: 0;
         max-width: 712px;
+        margin-bottom: 58px;
     }
 
     ul {
