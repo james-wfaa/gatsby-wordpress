@@ -14,7 +14,7 @@ import Button from '../parts/Button'
 
 function BlogPost({ data }) {
   const { page } = data
-  const { title, content, featuredImage, categories, author, date, excerpt, link, alumniNotesFields, classnoteNotes } = page
+  const { title, featuredImage, date, excerpt, link, classnoteNotes } = page
   const StyledButtonWrapper = styled.div`
     min-width: 300px;
     width: 80%;
@@ -37,7 +37,7 @@ function BlogPost({ data }) {
   
   return (
     <Layout title={title}>
-        <TitleSection heading={title} category={classCategory} date={date} smImg={(718 > size) ? image : null} size={size} />
+        <TitleSection heading={title} category={classCategory} date={date} smImg={(718 > size) ? image : null} size={size} largeSpace/>
         {image && size >= 718 && (
             <FeaturedImage featuredImage={image} size={size}/>
         )}
