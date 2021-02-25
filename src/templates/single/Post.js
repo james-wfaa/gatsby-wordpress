@@ -6,7 +6,7 @@ import FlaminglePost from "../../components/template-parts/wordpress-flamingle"
 const Post = ({ data }) => {
 //console.log('Post.js data:',data)
 
-const isFlamingle = data.page.askFlamingle?.abeQuestioner ? true : false
+const isFlamingle = data.page.askFlamingle?.abeQuestioner !== null ? true : false
 
 return isFlamingle ? <FlaminglePost data={data} /> : <BlogPost data={data} />;
 }

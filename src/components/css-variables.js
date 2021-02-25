@@ -119,6 +119,7 @@ export const colors = {
     formHeaderBGGrey: baseColors.lightestGrey,
     errorBGYellow: baseColors.errorLightYellow,
     progressBarLightRed: baseColors.lightRed,
+    flaminglePink: baseColors.flamingle,
 }
 
 export const size = {
