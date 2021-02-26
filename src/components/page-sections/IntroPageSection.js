@@ -13,7 +13,7 @@ const StyledIntroPageSection = styled(HeroData)`
     padding-top: 88px;
   }
   .excerpt {
-    font-size:  ;
+    font-size: ${sizes.s26};
     line-height: ${sizes.s36};
     max-width: 896px;
 

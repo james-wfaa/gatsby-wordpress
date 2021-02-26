@@ -277,6 +277,9 @@ export const query = graphql`
           ...ProductPostCards
         }
       }
+      chapterLevel {
+        chapterLevel
+      }
     }
     allWp {
       nodes {

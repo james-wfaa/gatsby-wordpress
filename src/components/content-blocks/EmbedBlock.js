@@ -4,22 +4,22 @@ import parse from 'html-react-parser';
 const EmbedBlock = ({source, type}) => {
 
 
-  console.log(type)
-  console.log(source)
+  //console.log(type)
+  //console.log(source)
   let parsed
   //console.log(source.children)
   //console.log(parse(data.data))
   switch (type) {
     case "vimeo":
-      console.log(source)
+      //console.log(source)
       parsed = parse(source)
       if (
         parsed?.props?.children &&
         parsed.props.children?.props?.className &&
         parsed.props.children.props.className === "wp-block-embed__wrapper"
       ) {
-        console.log("match")
-        console.log(parsed.props.children.props.children)
+        //console.log("match")
+        //console.log(parsed.props.children.props.children)
         return (
           <div
             style={{
@@ -55,8 +55,8 @@ const EmbedBlock = ({source, type}) => {
         parsed.props.children?.props?.className &&
         parsed.props.children.props.className === "wp-block-embed__wrapper"
       ) {
-        console.log("match")
-        console.log(parsed.props.children.props.children)
+        //console.log("match")
+        //console.log(parsed.props.children.props.children)
         return (
           <div
             style={{
@@ -86,17 +86,17 @@ const EmbedBlock = ({source, type}) => {
       }
       break
     case "instagram":
-      console.log(source)
+      //console.log(source)
       parsed = parse(source)
-      console.log(parsed)
-      console.log(parsed.props)
+      //console.log(parsed)
+      //console.log(parsed.props)
       if (
         parsed?.props?.children &&
         parsed.props.children?.props?.className &&
         parsed.props.children.props.className === "wp-block-embed__wrapper"
       ) {
-        console.log("match")
-        console.log(parsed.props.children.props.children)
+        //console.log("match")
+        //console.log(parsed.props.children.props.children)
         return (
           <div
             style={{
@@ -134,7 +134,7 @@ const EmbedBlock = ({source, type}) => {
       const FlickrUrl = Array.isArray(FlickrUrlData)
         ? FlickrUrlData[0]
         : FlickrUrlData
-      console.log(FlickrUrl)
+      //console.log(FlickrUrl)
       return (
         <div
           style={{
@@ -168,8 +168,8 @@ const EmbedBlock = ({source, type}) => {
         parsed.props.children?.props?.className &&
         parsed.props.children.props.className === "wp-block-embed__wrapper"
       ) {
-        console.log("match")
-        console.log(parsed.props.children.props.children)
+        //console.log("match")
+        //console.log(parsed.props.children.props.children)
         return (
           <div
             style={{
