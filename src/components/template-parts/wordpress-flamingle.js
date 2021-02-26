@@ -16,7 +16,7 @@ import Button from "./../parts/Button"
 
 function BlogPost({ data }) {
   const { page } = data
-  const { id, title, content, featuredImage, categories, products, author, date, excerpt, heroImage, link, slug } = page
+  const { id, title, categories, products, author, excerpt, link, slug } = page
   console.log('flamingle page!!', page)
 
   let relatedPostsToShow = []
@@ -38,11 +38,9 @@ function BlogPost({ data }) {
   const buttons = (uniqueRelatedPosts.length > 2) 
       ? [{
           link: `/posts/search/?category=${slug}`,
-          text: 'SEE ALL NEWS AND STORIES'
+          text: 'See All Questions'
       }]
-      : null
-
-  const product = (products?.nodes) ? products.nodes[0] : null
+      : null;
   
   let links = [
     { url: "/", name: "Home" },
@@ -50,14 +48,12 @@ function BlogPost({ data }) {
     { url: "/news", name: "Ask Flamingle HQ" },
     { url: link, name: title },
   ]
-  console.log(excerpt, 'excerpt')
 
   //remove pesky paragraph tags
   const excerptLength = excerpt.length
   const flamingleExcerpt = excerpt.slice(3, excerptLength - 5);
 
   const StyledFlamingleWrapper = styled.div`
-    
     .flamingleMasthead, .flamingleCapWrapper, .flamingleLinks{
       width: 80%;
       max-width: 712px;
@@ -91,13 +87,19 @@ function BlogPost({ data }) {
           fill: ${colors.flamingleSocialGrey};
         }
       }
+      button:hover path{
+        fill: ${colors.flaminglePink};
+      }
     }
     .flamingleLinks{
       margin-bottom: 88px;
       div{
-        width: 50%;
+        width: 100%;
         display: inline-block;
         text-align: center;
+        @media screen and ${breakpoints.tabletS} {
+          width: 50%;
+        }
         p{
           color: ${colors.flaminglePink};
           font-weight: bold;
@@ -115,6 +117,10 @@ function BlogPost({ data }) {
           .italicize{
             font-style: italic;
           }
+          margin-top:58px;
+          @media screen and ${breakpoints.tabletS} {
+            margin-top:0;
+          }
         }
       }
       hr{
@@ -123,9 +129,7 @@ function BlogPost({ data }) {
         margin-bottom: 32px;
       }
     }
-    @media screen and ${breakpoints.tabletS} {
-       
-    }
+    
 `
   return (
     <Layout title={title}>
@@ -148,14 +152,14 @@ function BlogPost({ data }) {
             </div>
           </div>
           {relatedPostsToShow.length > 0 ? (
-            <PageSection id="post-listing" heading="Related News and Stories" topBorder buttons={buttons}><CardHandler items={uniqueRelatedPosts} size="M" type="news" /></PageSection>
+            <PageSection id="post-listing" heading="More From Ask Flamingle HQ" topBorder buttons={buttons}><CardHandler items={uniqueRelatedPosts} size="M" type="news" /></PageSection>
           ):(
             <PageSection
-              heading="Featured News and Stories"
+              heading="More From Ask Flamingle HQ"
               buttons={[
                 {
                   link: "/news/all",
-                  text: "See All News and Stories",
+                  text: "See All Questions",
                 },
               ]}
               topBorder
