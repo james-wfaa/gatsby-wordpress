@@ -5,20 +5,17 @@ import { breakpoints, colors } from '../css-variables'
 import WordPressBasicContentBlocks from "../content-blocks/WordPressBasicContentBlocks"
 import TitleSection from '../parts/WordPressTitleSection'
 import SocialShareLinks from '../parts/SocialShareLinks'
-import FeaturedImage from "../content-blocks/FeaturedImage"
 import BreadCrumbs from "../page-sections/BreadCrumbs"
 import PageSection from "../page-sections/PageSection"
-import RecentPosts from "../page-sections/RecentPosts"
-import CardHandler from "../content-modules/CardHandler"
 import flamingleMasthead from "./../../svg/ask-flamingle-masthead.svg"
 import flamingleIcon from "./../../svg/flamingle-initial-cap.svg"
 import Button from "./../parts/Button"
 import PromoCardD from "./../../components/content-blocks/PromoCardD"
+import GridCardD from "./../../components/content-modules/GridCardD"
 
 function BlogPost({ data }) {
   const { page } = data
   const { id, title, categories, products, author, excerpt, link, slug } = page
-  console.log('flamingle page!!', page)
 
   let relatedPostsToShow = []
   if(products && products.nodes){
@@ -50,11 +47,14 @@ function BlogPost({ data }) {
     { url: link, name: title },
   ]
 
-  //remove pesky paragraph tags
+  //remove pesky paragraph tags on excerpt
   const excerptLength = excerpt.length
   const flamingleExcerpt = excerpt.slice(3, excerptLength - 5);
 
-  const createRelatedPosts = () => {
+  const createRelatedCards = () => {
+     if(uniqueRelatedPosts.length > 9){
+       uniqueRelatedPosts.slice(0,8)
+      }
     const thePosts = uniqueRelatedPosts.map(post => {
       return <PromoCardD title={post.title} url={post.url} flamingle/>
     })
@@ -137,27 +137,11 @@ function BlogPost({ data }) {
         margin-bottom: 32px;
       }
     }
-    #post-listing{
+    #flamingle-post-listing{
       h2{
         color:${colors.flaminglePink};
-        :after{
-          background-color:${colors.flaminglePink};
-        }
       }
-      .content{
-        width: 80%;
-        max-width: 1080px;
-        margin: 0 auto;
-        display:flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        div{
-          margin-bottom: 24px;
-        }
-      } 
-    }
-    
-    
+    } 
 `
   return (
     <Layout title={title}>
@@ -179,10 +163,9 @@ function BlogPost({ data }) {
               <Button link="/" text="See All Posts" external />
             </div> 
           </div>
-        
-            <PageSection id="post-listing" heading="More From Ask Flamingle HQ" topBorder buttons={buttons}>
-              {createRelatedPosts()}
-            </PageSection>
+          <PageSection id="flamingle-post-listing" heading="More From Ask Flamingle HQ" topBorder buttons={buttons}>
+            <GridCardD>{createRelatedCards()}</GridCardD>
+          </PageSection> 
         </StyledFlamingleWrapper>
     </Layout>
   )
