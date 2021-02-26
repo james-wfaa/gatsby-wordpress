@@ -66,11 +66,18 @@ const IndexPage = () => (
       </ul>
       <h3>Story Pages</h3>
       <ul>
+      
         <li>
-          <Link to="/wordpress-story">Story Page - Long &amp; Winding Road (wide feature image) </Link>
+          <Link to="/news/uw-now-grebe-lyall-nettles-venable/">Story Page - small featured image </Link>
         </li>
         <li>
-          <Link to="/refocused">Story Page - "Refocused" (column-width feature image) </Link>
+          <Link to="/news/divine-nine-chapters/">Story Page - small featured image and Product Page link</Link>
+        </li>
+        <li>
+          <Link to="/news/wordpress-story">Story Page - Long &amp; Winding Road (wide feature image) </Link>
+        </li>
+        <li>
+          <Link to="/news/refocused">Story Page - "Refocused" (column-width feature image) </Link>
         </li>
       </ul>
     
