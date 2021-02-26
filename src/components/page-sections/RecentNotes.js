@@ -7,7 +7,7 @@ const RecentNotes = () => {
   const { allWpClassnote } = useStaticQuery(
     graphql`
       query {
-        allWpClassnote(limit: 6, sort: {order: DESC, fields: date}) {
+        allWpClassnote(limit: 10, sort: {order: DESC, fields: date}) {
           nodes {
             title
             excerpt

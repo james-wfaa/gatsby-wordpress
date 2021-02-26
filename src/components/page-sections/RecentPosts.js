@@ -7,7 +7,7 @@ const RecentPosts = () => {
   const { allWpPost } = useStaticQuery(
     graphql`
       query {
-        allWpPost(limit: 6, sort: {order: DESC, fields: date}) {
+        allWpPost(limit: 10, sort: {order: DESC, fields: date}) {
           nodes {
             title
             excerpt
