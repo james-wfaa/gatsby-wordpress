@@ -55,8 +55,11 @@ function BlogPost({ data }) {
      if(uniqueRelatedPosts.length > 9){
        uniqueRelatedPosts.slice(0,8)
       }
+      
     const thePosts = uniqueRelatedPosts.map(post => {
-      return <PromoCardD title={post.title} url={post.url} flamingle/>
+      const excerptLength = post.excerpt.length
+      const newExcerpt = post.excerpt.slice(3, excerptLength - 5);
+      return <PromoCardD title={newExcerpt} url={post.url} flamingle/>
     })
     return thePosts
   }
@@ -67,6 +70,19 @@ function BlogPost({ data }) {
       max-width: 712px;
       margin: 40px auto 0 auto;
       display:block;
+    }
+    .flamingleMasthead{
+      width: 90%;
+      @media screen and ${breakpoints.tabletS} {
+        width: 80%;
+      }
+    }
+    .flamingleMasthead + div{
+      padding-top: 48px;
+      @media screen and ${breakpoints.tabletS} {
+        padding-top: 58px;
+      }
+      
     }
     .flamingleCapWrapper{ 
       img{
@@ -121,6 +137,13 @@ function BlogPost({ data }) {
             color:${colors.flaminglePink};
             border: 1px solid ${colors.flaminglePink};
             background-color: transparent;
+            :hover{
+              color:${colors.titleWhite};
+              background-color:${colors.flaminglePink};
+            }
+            :active{
+              cursor:default;
+            }
           }
           .italicize{
             font-style: italic;
