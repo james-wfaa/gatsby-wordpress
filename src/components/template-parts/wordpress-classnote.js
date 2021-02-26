@@ -67,7 +67,7 @@ function BlogPost({ data }) {
         <WordPressBasicContentBlocks {...page} />
       {alumniNotesFields?.classnotesUrl && (
         <StyledExternalLink>
-          <div>For more information, visit <a href={alumniNotesFields.classnotesUrl}>{alumniNotesFields.classnotesUrlname}</a></div>
+          <div>For more information, visit <a href={alumniNotesFields.classnotesUrl}>{alumniNotesFields.classnotesUrlname}</a>.</div>
         </StyledExternalLink>
       )}
       <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link} tight/>
