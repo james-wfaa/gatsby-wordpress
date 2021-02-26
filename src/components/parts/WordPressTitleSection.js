@@ -3,15 +3,15 @@ import styled from 'styled-components'
 import { sizes, colors, fonts, breakpoints } from '../css-variables'
 import FeaturedImage from "../content-blocks/FeaturedImage"
 
-const TitleSection = ({ className, heading, author, product, date, excerpt, series, event = false, smImg, size, category }) => {
+const TitleSection = ({ className, heading, author, product, date, excerpt, series, event = false, smImg, size, category, largeSpace = false }) => {
 
 
     const classesList = !event ? `${className}` : `${className} ${className}--event`
     const defaultAuthor = "Wisconsin Alumni Association";
-    //console.log(smImg)
+    const largeSpacer = largeSpace ? "largeSpace" : "";
 
     return (
-        <div className={classesList}>
+        <div className={`${classesList} ${largeSpacer}`}>
             <div className="headersection">
             { heading && (
                 <h1>{heading}</h1>
@@ -61,6 +61,13 @@ const StyledTitleSection = styled(TitleSection)`
     padding-top: ${sizes.s58};
     @media screen and ${breakpoints.tabletS} {
         padding-top: ${sizes.s45};
+    }
+
+    &.largeSpace{
+        .titlesection{
+            margin-bottom: 58px;
+        }
+        
     }
 
     &.header--event{

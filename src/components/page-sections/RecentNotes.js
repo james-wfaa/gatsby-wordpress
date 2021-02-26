@@ -3,11 +3,11 @@ import { useStaticQuery, graphql } from "gatsby"
 import ContentCard from "../content-blocks/ContentCard"
 import SimpleSlider from "../content-modules/SimpleSlider"
 
-const RecentPosts = () => {
-  const { allWpPost } = useStaticQuery(
+const RecentNotes = () => {
+  const { allWpClassnote } = useStaticQuery(
     graphql`
       query {
-        allWpPost(limit: 10, sort: {order: DESC, fields: date}) {
+        allWpClassnote(limit: 10, sort: {order: DESC, fields: date}) {
           nodes {
             title
             excerpt
@@ -25,7 +25,7 @@ const RecentPosts = () => {
     `
   )
 
-  let postCards = allWpPost.nodes.map((post) => {
+  let postCards = allWpClassnote.nodes.map((post) => {
     const { featuredImage: img } = post
     const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
     return (
@@ -47,4 +47,4 @@ const RecentPosts = () => {
   )
 }
 
-export default RecentPosts
+export default RecentNotes
