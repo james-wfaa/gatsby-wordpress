@@ -164,6 +164,14 @@ function BlogPost({ data }) {
       h2{
         color:${colors.flaminglePink};
       }
+      *:after{
+        background-color:${colors.flaminglePink};
+      }
+      .content + div{
+        a{
+          background-color:${colors.flaminglePink};
+        }
+      }
     } 
 `
   return (
