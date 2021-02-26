@@ -226,6 +226,30 @@ display: block;
     .arrow {
         display:none; 
     }
+    &:hover {
+        box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
+        .title{
+            text-decoration: underline;
+        }
+        .wrapper{
+            :before, :after{
+                background-color: ${colors.flamingleCardHoverDiagonals};
+            }
+        }
+    }
+    &:active {
+        cursor:default;
+        .wrapper{
+            :before, :after{
+                background-color: ${colors.flamingleCardHoverDiagonals};
+            }
+        }
+    }
+    &:visited {
+        .title{
+            color: ${colors.linkVisitedGrey};
+        }
+    }
     
 }
 
