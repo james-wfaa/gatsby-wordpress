@@ -10,6 +10,8 @@ import Block from '../content-blocks/WordPressBlock'
 import Column from '../parts/WordPressColumns'
 import EmbedBlock from "../content-blocks/EmbedBlock"
 import AccordionNavigation from '../content-blocks/AccordionNavigation'
+import FooGallery from '../content-blocks/FooGallery'
+
 
 
 
@@ -225,6 +227,14 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                             />
                         </div>
                       )
+                    case "fooplugins/foogallery":
+                      return (
+                        <FooGallery
+                          className={block.name.replace("/", "-")}
+                          block={block}
+                        />
+                      )
+                      break
                   default:
                     //console.log('default block', block.name)
                     if (block.originalContent.length > 0) {

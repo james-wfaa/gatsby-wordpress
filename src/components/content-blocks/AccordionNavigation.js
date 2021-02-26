@@ -3,6 +3,7 @@ import parse from 'html-react-parser';
 import styled from 'styled-components'
 import { colors, fonts,sizes, breakpoints } from '../css-variables'
 import Accordian from "../parts/Accordian"
+import SimpleSlider from "../content-modules/SimpleSlider"
 import { element } from "prop-types";
 
 
