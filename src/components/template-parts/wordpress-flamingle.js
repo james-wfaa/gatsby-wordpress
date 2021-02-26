@@ -13,6 +13,7 @@ import CardHandler from "../content-modules/CardHandler"
 import flamingleMasthead from "./../../svg/ask-flamingle-masthead.svg"
 import flamingleIcon from "./../../svg/flamingle-initial-cap.svg"
 import Button from "./../parts/Button"
+import PromoCardD from "./../../components/content-blocks/PromoCardD"
 
 function BlogPost({ data }) {
   const { page } = data
@@ -53,6 +54,13 @@ function BlogPost({ data }) {
   const excerptLength = excerpt.length
   const flamingleExcerpt = excerpt.slice(3, excerptLength - 5);
 
+  const createRelatedPosts = () => {
+    const thePosts = uniqueRelatedPosts.map(post => {
+      return <PromoCardD title={post.title} url={post.url} flamingle/>
+    })
+    return thePosts
+  }
+
   const StyledFlamingleWrapper = styled.div`
     .flamingleMasthead, .flamingleCapWrapper, .flamingleLinks{
       width: 80%;
@@ -60,7 +68,7 @@ function BlogPost({ data }) {
       margin: 40px auto 0 auto;
       display:block;
     }
-    .flamingleCapWrapper{
+    .flamingleCapWrapper{ 
       img{
         float: left;
         margin: 0 12px 12px 0;
@@ -129,6 +137,26 @@ function BlogPost({ data }) {
         margin-bottom: 32px;
       }
     }
+    #post-listing{
+      h2{
+        color:${colors.flaminglePink};
+        :after{
+          background-color:${colors.flaminglePink};
+        }
+      }
+      .content{
+        width: 80%;
+        max-width: 1080px;
+        margin: 0 auto;
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        div{
+          margin-bottom: 24px;
+        }
+      } 
+    }
+    
     
 `
   return (
@@ -149,25 +177,12 @@ function BlogPost({ data }) {
             <div className="newsletterContainer">
               <p>View <span className="italicize">The Flamingle</span> Newsletter</p> 
               <Button link="/" text="See All Posts" external />
-            </div>
+            </div> 
           </div>
-          {relatedPostsToShow.length > 0 ? (
-            <PageSection id="post-listing" heading="More From Ask Flamingle HQ" topBorder buttons={buttons}><CardHandler items={uniqueRelatedPosts} size="M" type="news" /></PageSection>
-          ):(
-            <PageSection
-              heading="More From Ask Flamingle HQ"
-              buttons={[
-                {
-                  link: "/news/all",
-                  text: "See All Questions",
-                },
-              ]}
-              topBorder
-              desktopOnly
-            >
-                <RecentPosts />
+        
+            <PageSection id="post-listing" heading="More From Ask Flamingle HQ" topBorder buttons={buttons}>
+              {createRelatedPosts()}
             </PageSection>
-          )}
         </StyledFlamingleWrapper>
     </Layout>
   )

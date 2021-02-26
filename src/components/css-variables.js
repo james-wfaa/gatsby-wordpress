@@ -61,6 +61,7 @@ export const baseColors = {
     evenlighterGrey: '#F8F8F8',
     errorLightYellow: '#FFFFC9',
     lightRed: '#FFCCCB',
+    lightPink: '#FCEAF0',
 }
 export const colors = {
     startDateColor: baseColors.offBlack,
@@ -121,6 +122,7 @@ export const colors = {
     progressBarLightRed: baseColors.lightRed,
     flaminglePink: baseColors.flamingle,
     flamingleSocialGrey: baseColors.darkerGrey,
+    flamingleCardBG: baseColors.lightPink,
 }
 
 export const size = {
