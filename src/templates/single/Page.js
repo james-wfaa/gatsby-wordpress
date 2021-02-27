@@ -54,6 +54,7 @@ export const query = graphql`
       title
       excerpt
       content
+      slug
       ancestors {
         nodes {
           id

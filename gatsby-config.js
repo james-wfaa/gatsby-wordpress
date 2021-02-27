@@ -62,7 +62,7 @@ module.exports = {
      },
      */
     {
-      resolve: `gatsby-source-wordpress-experimental`,
+      resolve: `gatsby-source-wordpress`,
       options: {
         schema: {
           requestConcurrency: 4, // currently set to undefined
