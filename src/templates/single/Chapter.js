@@ -4,9 +4,6 @@ import Layout from "../../components/layout"
 
 
 function WpChapter({ data }) {
-  const { chapterDetails } = data
-
-
   return (
     <Layout>
       chapter
@@ -29,6 +26,8 @@ export const query = graphql`
         csInstagram
         csFacebook
         csCountry
+        csWechat
+        csSnapchat
       }
     }
   }

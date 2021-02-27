@@ -16,10 +16,12 @@ const AllChaptersData = () => {
               csInstagram
               csLatitude
               csLinkedin
-              csLongitude   
+              csLongitude 
+              csSnapchat  
               csState
               csTwitter
               csUrl
+              csWechat
             }
           }
         }
