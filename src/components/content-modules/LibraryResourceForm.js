@@ -8,7 +8,8 @@ const FormWrapper = styled.div`
   @media screen and ${breakpoints.tabletL} {
     max-width: 896px;
   }
-  padding: 54px 0;
+  padding: 8px 8px 54px 8px;
+  background-color: ${colors.bgLightGrey};
 `
 const InnerForm = styled.div`
   .firstline {
