@@ -11,7 +11,7 @@ const AccordionNavigation = ({ block, className }) => {
     const blockContent = block.dynamicContent ? block.dynamicContent : ''
     const parsed = parse(blockContent)
 
-    const RenderedBlocks = (parsed.props.children) ? parsed.props.children.map((child) => {
+    const RenderedBlocks = (parsed?.props?.children && Array.isArray(parsed.props.children)) ? parsed.props.children.map((child) => {
         let accordionHeader = ''
         let accordionContent = ''
         if(child.props && child.props.className == "accordion__item"){
@@ -39,7 +39,7 @@ const AccordionNavigation = ({ block, className }) => {
 
       
         return (
-            <div className={className} id="Top">
+            <div className={className}>
                 { RenderedBlocks && (
                     
                     <div className="AccordionNavigation">
