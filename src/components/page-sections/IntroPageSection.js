@@ -9,9 +9,11 @@ const StyledIntroPageSection = styled(HeroData)`
   background-color: ${props => props.variantObject.background_color};
   padding-top: 58px;
   padding-bottom: 58px;
-
+  @media screen and ${breakpoints.laptopS} {
+    padding-top: 88px;
+  }
   .excerpt {
-    font-size:  ;
+    font-size: ${sizes.s26};
     line-height: ${sizes.s36};
     max-width: 896px;
 

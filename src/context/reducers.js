@@ -23,7 +23,6 @@ const initialState = {
   identityStep: false,
   lifeEventStep: false,
   mailingAddress: {
-    addressType: 'Home',
     country: 'US',
     streetAddress: '',
     streetAddressLineTwo: '',

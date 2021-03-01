@@ -2,14 +2,16 @@ import React from "react"
 import styled from 'styled-components'
 import { mixins } from '../css-variables'
 
-const PageSectionHeader = ({ className, heading, headingAlt, headingCompact, pageTitle, withSocial, bgimage, fromBlocks, leftAlign }) => {
+
+const PageSectionHeader = ({ className, heading, headingAlt, headingCompact, pageTitle, groupPage, withSocial, bgimage, fromBlocks, leftAlign }) => {
 
     const classBgImage = bgimage ? ' bgimage' : ''
     const classSocialImage = withSocial ? ' social' : ''
     const classAlt = headingAlt ? ' headingAlt' : ''
     const classCompact = headingCompact ? ' compact' : ''
     const classLeft = leftAlign ? ' leftAlign' : ''
-    const classesList = `${className}${classAlt}${classCompact}${classBgImage}${classSocialImage}${classLeft}`
+    const classGroup = groupPage ? ' groupPage' : ''
+    const classesList = `${className}${classAlt}${classCompact}${classBgImage}${classGroup}${classSocialImage}${classLeft}`
     return (
         <div className={classesList}>
             { fromBlocks && (
@@ -20,10 +22,11 @@ const PageSectionHeader = ({ className, heading, headingAlt, headingCompact, pag
             )}
             { !fromBlocks && (!pageTitle || typeof pageTitle === 'undefined') && (
                 <h2 className={classLeft}>{heading}</h2>
-            )}
+            )}     
         </div>
     )
 }
+
 
 const StyledPageSectionHeader = styled(PageSectionHeader)`
     ${mixins.sectionHeader}

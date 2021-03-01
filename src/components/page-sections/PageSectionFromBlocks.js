@@ -24,9 +24,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                 title = (block.isDynamic) ? block.dynamicContent : block.originalContent
                 break
             case "core/heading":
-                console.log ("normal heading")
                 if (block.originalContent.indexOf('<h2') > -1) {
-                    console.log ("normal h2 heading")
                     title = (block.isDynamic) ? block.dynamicContent : block.originalContent
                 }
                 break
@@ -61,7 +59,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
         </SimpleSlider>)
 
         : (cardset)
-            ? (<CardSet>{
+            ? (<CardSet type="news">{
                 blocks.map((block) => {
                 const innerContent =  ((block.dynamicContent && block.dynamicContent !== "") ? block.dynamicContent : block.originalContent)
                 return innerContent
@@ -72,82 +70,173 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
 
                 //console.log(block.name)
 
-                switch(block.name) {
-                    case "acf/section-header":
-                        break
-                    case "core/heading":
-                        if (block.originalContent.indexOf('<h2') > -1) {
-                            break
-                        }
-                        else {
-                            return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
-                        }
-                    case "core/paragraph":
-                        if (block.originalContent.indexOf('excerpt') > 0) {
-                            if(excerpt){
-                                excerpt += (block.isDynamic) ? block.dynamicContent : block.originalContent
-                            }
-                            else{
-                                excerpt = (block.isDynamic) ? block.dynamicContent : block.originalContent
-                            }
-                            break
-                        }
-                        else{
-                            return (<Block className={block.name.replace('/', '-')} block={block} />)
-                        }
-                    case "acf/testimonial":
-                        const testimonial = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
-                        return (<Testimonial data={testimonial} />)
-                    case "acf/image-section":
-                        const imagesection = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
-                        return (<ImageSection data={imagesection} />)
-                    case "acf/product-card":
-                        const productcard = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
-                        return (<div dangerouslySetInnerHTML={{__html: productcard}} />)
-                    case "acf/accordion-navigation":
-                        return <AccordionNavigation className={block.name.replace('/', '-')} block={block} />
-                        break
-                    case "gravityforms/form":
-                        console.log('form found')
-                        const shortcode = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
-                        console.log(shortcode)
-                        let idStart = shortcode.indexOf('id="')
-                        if (idStart > -1) {
-                            idStart += 4
-                            let idEnd = shortcode.indexOf('"', idStart)
-                            console.log(idEnd)
-                            console.log(idStart)
-                            const formId = shortcode.substring(idStart,idEnd)
-                            console.log(formId)
-                            return (<GravityForm className={block.name.replace('/', '-')} id={formId} />)
-                        }
-                        
-                        break
+                switch (block.name) {
+                  case "acf/section-header":
+                    break
+                  case "core/heading":
+                    if (block.originalContent.indexOf("<h2") > -1) {
+                      break
+                    } else {
+                      return (
+                          <Block
+                            className={block.name.replace("/", "-")}
+                            block={block}
+                          />
+                      )
+                    }
+                  case "core/paragraph":
+                    if (block.originalContent.indexOf("excerpt") > 0) {
+                      if (excerpt) {
+                        excerpt += block.isDynamic
+                          ? block.dynamicContent
+                          : block.originalContent
+                      } else {
+                        excerpt = block.isDynamic
+                          ? block.dynamicContent
+                          : block.originalContent
+                      }
+                      break
+                    } else {
+                      return (
+                        <Block
+                          className={block.name.replace("/", "-")}
+                          block={block}
+                        />
+                      )
+                    }                    
+                  case "acf/testimonial":
+                    const testimonial = block.isDynamic
+                      ? block.dynamicContent
+                      : block.originalContent
+                    return <Testimonial data={testimonial} />
+                  case "acf/image-section":
+                    const imagesection = block.isDynamic
+                      ? block.dynamicContent
+                      : block.originalContent
+                    return <ImageSection data={imagesection} />
+                  case "acf/product-card":
+                    const productcard = block.isDynamic
+                      ? block.dynamicContent
+                      : block.originalContent
+                    return (
+                      <div dangerouslySetInnerHTML={{ __html: productcard }} />
+                    )
+                  case "acf/accordion-navigation":
+                    return (
+                      <AccordionNavigation
+                        className={block.name.replace("/", "-")}
+                        block={block}
+                      />
+                    )
+                    break
+                  case "gravityforms/form":
+                    //console.log("form found")
+                    const shortcode = block.isDynamic
+                      ? block.dynamicContent
+                      : block.originalContent
+                    //console.log(shortcode)
+                    let idStart = shortcode.indexOf('id="')
+                    if (idStart > -1) {
+                      idStart += 4
+                      let idEnd = shortcode.indexOf('"', idStart)
+                      //console.log(idEnd)
+                      //console.log(idStart)
+                      const formId = shortcode.substring(idStart, idEnd)
+                      //console.log(formId)
+                      return (
+                        <GravityForm
+                          className={block.name.replace("/", "-")}
+                          id={formId}
+                        />
+                      )
+                    }
 
-                    case "core/buttons":
-                        if(block.innerBlocks && block.innerBlocks[0].originalContent){
-                            let innerRenderedBlocks = [];
-                            block.innerBlocks.forEach((innerBlock) => {
-                                innerRenderedBlocks.push(<Block className={innerBlock.name.replace('/', '-')} block={innerBlock} />) 
-                            })
-                            console.log("blocks: " + innerRenderedBlocks)
-                            return (<div className={block.name.replace('/', '-')}>{innerRenderedBlocks}</div>)
-                        }
-                        break
-                    case "core/columns":
-                        return (<Column className={block.name.replace('/', '-')} block={block} />)
+                    break
 
-                    case "core-embed/vimeo":
-                        console.log('vimeo')
-                        console.log(block)
-                        //return <div>foo</div>//
-                        return (<div className="wp-block-embed"><EmbedBlock source={block.originalContent} type="vimeo" /></div>)
-                        break
-            
-                    default:
-                        //console.log('default block', block.name)
-                        
-                        return (<Block className={block.name.replace('/', '-')} block={block} />)
+                  case "core/buttons":
+                    if (
+                      block.innerBlocks &&
+                      block.innerBlocks[0].originalContent
+                    ) {
+                      let innerRenderedBlocks = []
+                      block.innerBlocks.forEach(innerBlock => {
+                        innerRenderedBlocks.push(
+                          <Block
+                            className={innerBlock.name.replace("/", "-")}
+                            block={innerBlock}
+                          />
+                        )
+                      })
+                      //console.log("blocks: " + innerRenderedBlocks)
+                      return (
+                        <div className={block.name.replace("/", "-")}>
+                          {innerRenderedBlocks}
+                        </div>
+                      )
+                    }
+                    break
+                  case "core/columns":
+                    return (
+                      <Column
+                        className={block.name.replace("/", "-")}
+                        block={block}
+                      />
+                    )
+
+                  case "core-embed/vimeo":
+                    //console.log("vimeo")
+                    //console.log(block)
+                    //return <div>foo</div>//
+                    return (
+                      <div className="wp-block-embed">
+                        <EmbedBlock
+                          source={block.originalContent}
+                          type="vimeo"
+                        />
+                      </div>
+                    )
+                    break
+                  case "core-embed/youtube":
+                    return (
+                      <div className="wp-block-embed">
+                        <EmbedBlock
+                          source={block.originalContent}
+                          type="youtube"
+                        />
+                      </div>
+                    )
+                    break
+                  case "core-embed/instagram":
+                    return (
+                      <div className="wp-block-embed">
+                        <EmbedBlock
+                          source={block.originalContent}
+                          type="instagram"
+                        />
+                      </div>
+                    )
+                    break
+                  case "core/embed":
+                      return (
+                        <div className="wp-block-embed">
+                            <EmbedBlock
+                            source={block.originalContent}
+                            type="base"
+                            />
+                        </div>
+                      )
+                  default:
+                    //console.log('default block', block.name)
+                    if (block.originalContent.length > 0) {
+                      return (
+                        <Block
+                          className={block.name.replace("/", "-")}
+                          block={block}
+                        />
+                      )
+                    } else {
+                      return null
+                    }
                 }
 
             })
