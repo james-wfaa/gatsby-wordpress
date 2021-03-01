@@ -4,7 +4,7 @@ import SimpleSliderItems from './SimpleSliderItems'
 
 const CardHandler = ({ items, size, sliderSize="S", type }) => {
 
-    console.log(size)
+    //console.log(size)
     if (items.length && items.length > 0) {
         switch(items.length) {
             case 1:
