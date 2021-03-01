@@ -108,17 +108,25 @@ margin-right: auto;
 }
 >h3,
 .core-freeform h3 {
-    font-size: ${sizes.s26};
+    font-size: ${sizes.s24};
     margin-bottom: ${sizes.s24};
-    line-height: ${sizes.s32};
+    line-height: ${sizes.s30};
+    @media screen and ${breakpoints.tabletS} {
+        font-size: ${sizes.s26};
+        line-height: ${sizes.s32};
+    }
 }
 
 >h4,
 .core-freeform h4 {
-    font-size: ${sizes.s26};
+    font-size: ${sizes.s24};
     margin-bottom: ${sizes.s24};
-    line-height: ${sizes.s32};
+    line-height: ${sizes.s30};
     color: ${colors.captionBlack};
+    @media screen and ${breakpoints.tabletS} {
+        font-size: ${sizes.s26};
+        line-height: ${sizes.s32};
+    }
 }
 
 >h5,
@@ -128,13 +136,12 @@ margin-right: auto;
     font-size: ${sizes.s18};
     line-height: ${sizes.s26};
     font-weight: bold;
+    margin-bottom: ${sizes.s16};
 }
 
 >h5,
 .core-freeform h5{
     color: ${colors.titleColor};
-    margin-bottom: ${sizes.s16};
-
 }
 
 >h6,
@@ -169,16 +176,26 @@ margin-right: auto;
 
     >h3,
     .core-freeform h3 {
-        font-size: ${sizes.s36};
+        font-size: ${sizes.s32};
         margin-bottom: ${sizes.s32};
-        line-height: ${sizes.s42};
+        line-height: ${sizes.s38};
+        margin-left: 0px;
+        margin-right: 0px;
+        @media screen and ${breakpoints.tabletS} {
+            font-size: ${sizes.s36};
+            line-height: ${sizes.s42};
+        }
     }
 
     >h4,
     .core-freeform h4 {
-        font-size: ${sizes.s26};
+        font-size: ${sizes.s24};
         margin-bottom: ${sizes.s24};
-        line-height: ${sizes.s32};
+        line-height: ${sizes.s30};
+        @media screen and ${breakpoints.tabletS} {
+            font-size: ${sizes.s26};
+            line-height: ${sizes.s32};
+        }
     }
 
     >h5,
@@ -199,6 +216,10 @@ margin-right: auto;
     >h6,
     .core-freeform h6 {
         color: ${colors.captionBlack};
+    }
+
+    >p{
+        margin-left: 0px;
     }
 }
 
