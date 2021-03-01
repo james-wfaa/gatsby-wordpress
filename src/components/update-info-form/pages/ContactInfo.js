@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject, checkForLetters, currentYear } from '../form-helpers'
+import { StyledError, variantObject, checkForLetters, currentYear, handleFormSubmit } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from '../FormButtons'
 import { AppContext } from "../../../context/AppContext"
@@ -13,6 +13,7 @@ const ContactInfo = () => {
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateContactInfo = data =>{
     //console.log(data)
+    handleFormSubmit(data)
     setCurrentStep(2)
   }
 

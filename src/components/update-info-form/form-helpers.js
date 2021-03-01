@@ -3,10 +3,21 @@ import { colors, breakpoints } from '../css-variables'
 import styled from "styled-components"
 import formErrorIcon from "./../../svg/form-error-icon-red.svg"
 
+export const handleFormSubmit = (data) => {
+  console.log('data', data)
+  return fetch("https://uwalumdev.wpengine.com/wp-json/formsubmit/v1/submit/79", {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  }).then(response => console.log(response.json()))
+}
+
 export const validatePostalCode = (value, country) => {
   return postalCodes.validate(country, value)
 }
-
+ 
 export const currentYear =  new Date().getFullYear();
 
 export const checkForLetters = (value) => {

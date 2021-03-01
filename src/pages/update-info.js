@@ -13,6 +13,7 @@ import UpdateSuccess from "../components/update-info-form/pages/UpdateSuccess"
 import CommunicationSuccess from "../components/update-info-form/pages/CommunicationSuccess"
 import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-variables'
 import formErrorIcon from "./../svg/form-error-icon-red.svg"
+import { handleFormSubmit } from './../components/update-info-form/form-helpers'
 
 const UpdateInfoForm = () =>  {
   const { state, actions } = useContext(AppContext);
@@ -45,9 +46,12 @@ const UpdateInfoForm = () =>  {
      }
    }
 
-  const onSubmit = (data) => {
-    console.log(data)
-  }
+  /*const onSubmit = (data) => {
+    
+    //handleFormSubmit(data)
+    //console.log(data)
+
+  }*/
 
   return (
     <Layout>
