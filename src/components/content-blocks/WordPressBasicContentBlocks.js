@@ -9,6 +9,7 @@ import Block from './WordPressBlock'
 import GravityForm from '../content-blocks/GravityForm'
 import { useStaticQuery, graphql } from 'gatsby'
 import Column from '../parts/WordPressColumns'
+import ImageSection from '../content-blocks/ImageSection'
 import AccordionNavigation from './AccordionNavigation'
 
 
@@ -83,6 +84,10 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
           case "core/group":
           case "acf/events-listing-section":
             break
+          case "acf/image-section":
+            const imagesection = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
+            return (<ImageSection data={imagesection} defaultPage/>)
+
           case "acf/accordion-navigation":
             return (
               <AccordionNavigation

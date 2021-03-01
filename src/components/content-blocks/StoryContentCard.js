@@ -3,7 +3,7 @@ import ContentCard from "./ContentCard"
 
 const StoryContentCard = ({ className, title, category, excerpt, url, urlText, img, featureImg, caption, tags, size, promo }) => {
     
-    url = `news${url}`
+    url = `/news${url}`
 
     return (
         <ContentCard

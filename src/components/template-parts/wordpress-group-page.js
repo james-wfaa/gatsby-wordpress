@@ -10,23 +10,46 @@ import CardE from "../content-blocks/CardE"
 import PromoCardD from "../content-blocks/PromoCardD"
 import HeroIntroSection from "../page-sections/HeroIntroSection"
 import SimpleSlider from "../content-modules/SimpleSlider"
+import AllChaptersData from "../page-sections/AllChapters"
 
-function WordPressGroupPage({ page }) {
- 
-  const eventbutton = [
-    {
-      link: "/events",
-      text: "All Events",
-    },
-  ]
+function WordPressGroupPage({  page, options }) {
+  const { chapters: chaptersText, varsityChapterText, recognizedChapterText, bascomChapterText } = options
+  const { chapterLevel } = page
+  const { chapterLevel: level } = chapterLevel
+
+  const chapterData = AllChaptersData()
+  const thisChapterArr = chapterData.nodes.filter(function (e) {
+    return e.chapterDetails.csUrl === page.slug
+})
+const thisChapter = thisChapterArr[0] ? thisChapterArr[0] : null
   
-  const featuredbutton = [
-    {
-      link: "#",
-      text: "See all news and stories",
-    },
-  ]
-  const { title,  excerpt, wpChildren, featuredImage, groups } = page
+const eventbutton = [
+  {
+    link: "/events",
+    text: "All Events",
+  },
+]
+  
+const featuredbutton = [
+  {
+    link: "#",
+    text: "See all news and stories",
+  },
+]
+const { title,  excerpt, wpChildren, featuredImage, groups } = page
+
+  if (wpChildren?.nodes) {
+    wpChildren.nodes.sort((a,  b) => {
+      if (a.title < b.title) {
+        return -1
+      }
+      if (a.title > b.title) {
+        return 1
+      }
+      return 0
+    })
+  }
+  
 
   const RenderedMenu = (wpChildren?.nodes) 
       ? wpChildren.nodes.map(item => {
@@ -36,22 +59,27 @@ function WordPressGroupPage({ page }) {
       })
       : null
 
-  const chapterType = 'A Wisconsin Alumni Association <a href="#">Bascom Chapter</a>'
+  const chapterTypeText = (level === 'Varsity')
+      ? varsityChapterText
+      : (level === 'Bascom' ) 
+        ? bascomChapterText
+        : recognizedChapterText
+
 
   const eventsToShow = (groups?.nodes && groups?.nodes[0]?.events.nodes) ? groups?.nodes[0]?.events.nodes : null
-
+  const social = thisChapter?.chapterDetails ? thisChapter : null
   return (
     <Layout title={title}>
       <PageSection
         heading={title}
-        excerpt={chapterType}
-        withSocial
+        excerpt={chapterTypeText}
+        withSocial={social}
         plainText
         pageTitle
-      > { // this is static text... will live in a WP settings field somewhere... same for every chapter 
-      }
-        Connect with us to celebrate UW pride, enjoy Badger spirit and build community with each 
-other and the UW.
+        groupPage
+      > 
+       <div className="groupPage" dangerouslySetInnerHTML={{__html: chaptersText}} />
+       
       </PageSection>
       <div style={{maxWidth: `1080px`, margin: `auto`, paddingBottom: `58px`}}>
 
@@ -113,5 +141,7 @@ other and the UW.
     </Layout>
   )
 }
+
+
 
 export default WordPressGroupPage

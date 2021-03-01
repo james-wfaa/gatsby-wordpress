@@ -13,6 +13,7 @@ export default Post
 export const query = graphql`
   query post($id: String!) {
     page: wpPost(id: { eq: $id }) {
+      id
       title
       content
       blocks {
@@ -49,6 +50,7 @@ export const query = graphql`
       featuredImage {
         node {
           caption
+          description
           mediaDetails {
             height
             width
@@ -84,6 +86,29 @@ export const query = graphql`
         nodes {
           name
           slug
+          posts{
+            nodes {
+              title
+              url: uri
+              excerpt
+              featuredImage {
+                node {
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth: 712) {
+                        base64
+                        tracedSVG
+                        srcWebp
+                        srcSetWebp
+                        originalImg
+                        originalName
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
       products {
@@ -94,6 +119,34 @@ export const query = graphql`
             nodes {
               title
               uri
+            }
+          }
+          posts{
+            nodes {
+              id
+              title
+              url: uri
+              excerpt
+              featuredImage {
+                node {
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth: 712) {
+                        base64
+                        tracedSVG
+                        srcWebp
+                        srcSetWebp
+                        originalImg
+                        originalName
+                        src
+                        srcSet
+                        aspectRatio
+                        sizes
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }

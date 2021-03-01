@@ -3,16 +3,15 @@ import styled from 'styled-components'
 import { sizes, colors, fonts, breakpoints } from '../css-variables'
 import FeaturedImage from "../content-blocks/FeaturedImage"
 
-const TitleSection = ({ className, heading, author, product, date, excerpt, series, event = false, smImg, size, category }) => {
+const TitleSection = ({ className, heading, author, product, date, excerpt, series, event = false, smImg, size, category, largeSpace = false }) => {
 
-    console.log(product) 
 
     const classesList = !event ? `${className}` : `${className} ${className}--event`
     const defaultAuthor = "Wisconsin Alumni Association";
-    //console.log(smImg)
+    const largeSpacer = largeSpace ? "largeSpace" : "";
 
     return (
-        <div className={classesList}>
+        <div className={`${classesList} ${largeSpacer}`}>
             <div className="headersection">
             { heading && (
                 <h1>{heading}</h1>
@@ -28,14 +27,14 @@ const TitleSection = ({ className, heading, author, product, date, excerpt, seri
                 )}
                 { product && (
                     <div className={`${className}__category`}>
-                        { product?.pages?.nodes?.uri && (
-                            <a className="category__item" href={`${product.pages.nodes[0].uri}`}>{product.name}</a>
+                        { product?.pages?.nodes[0]?.uri && (
+                            <a className="category__item" href={`${product.pages.nodes[0].uri}`}>{product.name}<span> &gt;</span></a>
                         )}
-                        { !product?.pages?.nodes && (
+                        { !product?.pages?.nodes[0] && (
                             <>{product.name}</>
                         )}
                         
-                        <span> &gt;</span></div>
+                        </div>
                 )}
                 { series && (
                     <div className={`${className}__series`}>{series}</div>
@@ -61,7 +60,14 @@ const StyledTitleSection = styled(TitleSection)`
     margin-right: auto;
     padding-top: ${sizes.s58};
     @media screen and ${breakpoints.tabletS} {
-        padding-top: ${sizes.s88};
+        padding-top: ${sizes.s45};
+    }
+
+    &.largeSpace{
+        .titlesection{
+            margin-bottom: 58px;
+        }
+        
     }
 
     &.header--event{

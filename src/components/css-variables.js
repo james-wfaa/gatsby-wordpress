@@ -27,6 +27,7 @@ export const sizes = {
     s22: '1.222rem',
     s24: '1.333rem',
     s26: '1.444rem',
+    s28: '1.555rem',
     s32: '1.778rem',
     s34: '1.889rem',
     s36: '2rem',
@@ -375,8 +376,13 @@ export const mixins = {
                 padding: 0;
             }
         }
-        
-
+        &.groupPage {
+            h1 {
+            @media screen and ${breakpoints.laptopS} {
+                font-size: ${sizes.s58};
+                line-height: ${sizes.s70};
+            }
+        }
         &.bgimage,
         &.headingAlt {
             h2 {
