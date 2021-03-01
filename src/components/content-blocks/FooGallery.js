@@ -16,7 +16,11 @@ const FooGallery = ({ block, className }) => {
     let RenderedBlocks = []
 
     if(parsed[0]){
-        RenderedBlocks = parsed[0].props.children
+        console.log(parsed[0])
+        parsed[0].props.children.map((child) => {
+            RenderedBlocks.push(child)
+        })
+        
 
     }
     else{
