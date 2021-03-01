@@ -100,6 +100,8 @@ margin-right: auto;
         line-height: ${sizes.s42};
         margin-top: ${sizes.s58}; // ex: email login page
     }
+
+    ${mixins.headingShortUnderline}
 }
 >h3,
 .core-freeform h3 {
