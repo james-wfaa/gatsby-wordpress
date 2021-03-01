@@ -4,7 +4,7 @@ import { colors, sizes, breakpoints } from "../css-variables"
 
 const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
 
-  console.log(name)
+  //console.log(name)
   const [open, setOpen] = useState(false)
   const menuMargin = open ? `32px` : 0;
   const StyledMenu = styled.div`
