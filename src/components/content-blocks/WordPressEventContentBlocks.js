@@ -21,7 +21,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
     const handleModal = () => {
       let currentshow = show;
       setShow(!currentshow)
-      console.log("Is Shown" + show);
+      //console.log("Is Shown" + show);
     }
     let mapLinkText = "View Map and Event Details";
     const showMapDetails = () => {
@@ -51,7 +51,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-        console.log(block.name)
+        //console.log(block.name)
         switch(block.name) {
             case "tribe/event-datetime":
             case "tribe/featured-image":
@@ -119,6 +119,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                         organizers={organizers}
                         eventDetails={eventDetails}
                         calendarLinks={EventLinksContent}
+                        showMapLink={showMapDetails()}
                     />
                 </div>
                 <div className="social-mobile">
@@ -153,6 +154,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     organizers={organizers}
                     eventDetails={eventDetails}
                     calendarLinks={EventLinksContent}
+                    showMapLink={showMapDetails()}
                 />
                 <div className="social-desktop">
                 { eventDetails && eventDetails.questions && (
