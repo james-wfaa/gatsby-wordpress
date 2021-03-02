@@ -7,7 +7,7 @@ import SearchResults from "../../components/parts/AlgoliaSearch/SearchPageAlgoli
 
 const EventsList = (props) => {
   const [events, setEvents] = useState([])
-  console.log(events)
+  //console.log(events)
   let contentCards = events.map(card => {
     return (
     <ContentCard
@@ -28,7 +28,7 @@ const EventsList = (props) => {
 
 
   return(
-  <Layout noborder>
+  <Layout title="Filtered Events" noborder>
     <SearchResults
       indices={[{name: "All"}]}
       results={false}

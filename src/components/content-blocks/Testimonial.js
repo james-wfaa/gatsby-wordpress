@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
+import { colors, sizes, breakpoints, fonts } from '../css-variables'
 import quotationMarks from '../../svg/Testimonial_Quotation_Marks_2x.svg'
 
 const Testimonial = ({ className, data }) => {

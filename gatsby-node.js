@@ -58,7 +58,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           break
       }
 
-      console.log("templatePath:",templatePath)
+      //console.log("templatePath:",templatePath)
 
       const contentTypeTemplate = contentTypeTemplates.find(
         (path) => path === templatePath
@@ -77,13 +77,18 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         )
       }
 
+      let updatedPath;
+      if (nodeType === 'Post') {
+        updatedPath = `/news${uri}`
+      } else {
+        updatedPath = uri
+      }
+
       await actions.createPage({
         component: resolve(contentTypeTemplate),
-        path: uri,
+        path: updatedPath,
         context: {
           id,
-          nextPage: (contentNodes[i + 1] || {}).id,
-          previousPage: (contentNodes[i - 1] || {}).id,
         },
       })
     })

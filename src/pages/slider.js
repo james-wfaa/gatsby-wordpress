@@ -3,7 +3,7 @@ import Layout from "../components/layout"
 import SimpleSlider from "../components/content-modules/SimpleSlider"
 import ContentCardD from "../components/content-blocks/ContentCardD"
 import GenericPageSection from "../components/page-sections/GenericPageSection"
-export default () => {
+const SliderPage = () => {
   return (
     <Layout>
       <GenericPageSection>
@@ -236,3 +236,5 @@ export default () => {
     </Layout>
   )
 }
+
+export default SliderPage

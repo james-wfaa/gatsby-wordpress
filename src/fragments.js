@@ -9,4 +9,94 @@ export const fragments = graphql`
       }
     }
   }
+  fragment Children on WpPage {
+    wpChildren {
+      nodes {
+        ... on WpPage {
+          id
+          title
+          uri
+          menuOrder
+          wpChildren {
+            nodes {
+              ... on WpPage {
+                id
+                title
+                uri
+                menuOrder
+                wpChildren {
+                  nodes {
+                    ... on WpPage {
+                      id
+                      title
+                      uri
+                      menuOrder
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  fragment ProductEventCards on WpProduct {
+    events {
+      nodes {
+        title
+        url: uri
+        startDate
+        endDate
+        venue {
+          title
+          city
+          state
+        }
+        excerpt
+        featuredImage {
+          node {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 712) {
+                  base64
+                  tracedSVG
+                  srcWebp
+                  srcSetWebp
+                  originalImg
+                  originalName
+                  aspectRatio
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  fragment ProductPostCards on WpProduct {
+    posts {
+      nodes {
+        title
+        url: uri
+        excerpt
+        featuredImage {
+          node {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 712) {
+                  base64
+                  tracedSVG
+                  srcWebp
+                  srcSetWebp
+                  originalImg
+                  originalName
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 `

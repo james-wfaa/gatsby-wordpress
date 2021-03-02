@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { sizes, colors, fonts, breakpoints } from '../css-variables'
+import { sizes, colors, breakpoints } from '../css-variables'
 
 import Img from "gatsby-image"
 
@@ -15,17 +15,17 @@ import Img from "gatsby-image"
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-const FeaturedImage = ({ className, featuredImage, event }) => {
+const FeaturedImage = ({ className, featuredImage, event, size }) => {
   const classes = (event) ? `${className} ${className}--event` : className
-
+  const imgSizeClass = (718 <= size && size < 1080) ? `mediumImg` : (size < 718) ? `smallImg` : ''
 
   return (
-    <div className={classes}>
-      <Img fluid={featuredImage.node.localFile.childImageSharp.fluid} />
-      { featuredImage.node.caption && (
+    <div className={`${classes} ${imgSizeClass}`} >
+      
+      <Img fluid={featuredImage.localFile.childImageSharp.fluid} />
+      { featuredImage.caption && (
         <div className={`${className}__captionSection`}>
-          <div className={`${className}__caption`} dangerouslySetInnerHTML={{ __html: featuredImage.node.caption }} />
-          <div className={`${className}__author`} dangerouslySetInnerHTML={{ __html: featuredImage.node.author.node.name }} />
+          <div className={`${className}__caption`} dangerouslySetInnerHTML={{ __html: featuredImage.caption }} />
         </div>
       )}
     </div>
@@ -41,6 +41,28 @@ position: relative;
 margin: ${sizes.s58} 0;
 &--event {
   margin: 0 0 48px;
+}
+&.mediumImg {
+  max-width:712px;
+  margin: 3.222rem auto;
+}
+&.smallImg{
+  max-width: 280px;
+  min-width: 280px;
+  width: 280px;
+  margin: 12px auto;
+  @media screen and ${breakpoints.tablet} {
+    float: left; 
+    margin: 5px 24px 12px 0;
+  }
+  @media screen and ${breakpoints.tabletL} {
+    &:before {
+      display: none;
+    }
+    &:after {
+      display: none;
+    }
+  }
 }
 
 @media screen and ${breakpoints.tabletS} {
@@ -131,8 +153,6 @@ margin: ${sizes.s58} 0;
 }
 
 
-
-
 &__captionSection{
   font-size: ${sizes.s16};
   line-height: ${sizes.s22};
@@ -141,18 +161,10 @@ margin: ${sizes.s58} 0;
   color: ${colors.captionGrey};
   margin-left: auto;
   margin-right: auto;
-  min-width: 300px;
-  max-width: 712px;
-  width: 80%;
-
+  width: 100%;
   text-align: left;
 
-  @media screen and ${breakpoints.tabletS} {
-    width: 536px;
-  }
   @media screen and ${breakpoints.laptopL} {
-    width: 160px;
-    min-width: 160px;
     float: right;
     margin-left: ${sizes.s24};
   }
@@ -172,5 +184,6 @@ margin: ${sizes.s58} 0;
 
 }
 `
+
 
 export default StyledFeaturedImage

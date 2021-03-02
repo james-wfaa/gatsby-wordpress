@@ -1,3 +1,5 @@
 import React from "react"
 
-export default () => <div>uwalumni.com | event</div>
+const Event6 = () => <div>uwalumni.com | event</div>
+
+export default Event6

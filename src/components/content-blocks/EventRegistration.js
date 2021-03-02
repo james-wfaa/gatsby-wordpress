@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
+import { colors, mixins, sizes, breakpoints } from '../css-variables'
 import styled from 'styled-components'
 import EventLinksBlock from "./EventLinks"
 
@@ -8,7 +8,7 @@ import { convertTime, compareDate } from "../../utils/tools"
 import GenericModal from '../content-modules/GenericModal'
 
 
-const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails, calendarLinks}) => {
+const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails, calendarLinks, showMapLink}) => {
 
     const classesList = `${className}`;
     const costDisplay = (cost) => {
@@ -29,11 +29,11 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
         }
     }
 
-    const organizerList = !organizers ? null : organizers.nodes.map((org) => (
+    const organizerList = organizers?.nodes?.map((org) => (
          <div className="organizer">{org.title}</div>
       ))
-    const addressString = (venue && venue.address) 
-        ? venue.title + '<br />' + venue.address + '<br />' + venue.city + ', ' + venue.state 
+    const addressString = (venue && venue.address)
+        ? `${venue.title} <br />${venue.address}<br >${venue.city ? venue.city : ""}${venue.state ? `, ${venue.state}` : ""} `
         : (venue)
             ? venue.title
             : null;
@@ -53,7 +53,24 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
         <div className={classesList}>
             {show ?
             <GenericModal
-            data={<EventLinksBlock>{calendarLinks}</EventLinksBlock>}
+            data={
+            <EventLinksBlock>
+                <div class="tribe-block tribe-block__events-link">
+					<div class="tribe-block__btn--link tribe-block__events-gcal">
+				        <a href="https://www.google.com/calendar/event?action=TEMPLATE&amp;text=Virtual+Wine+Tasting&amp;dates=20210228T080000/20210228T170000&amp;details=+%0A+%0AJoin+UW+alumnus+David+Eckert+%E2%80%9988%2C+owner+and+winemaker+of+the+Zo+Wines+boutique+winery+in+Sonoma+for+a+live%2C+virtual+wine+tasting+event+on+Friday%2C+Nov.+13+at+6%3A30+p.m.+CST.+%0AThe+event+includes+six+wine+samples+%2850+ml+size%29+sent+to+your+home+and+a+60-minute+Zoom+session+with+winemaker+David+Eckert+as+he+walks+you+through+a+remote+wine+tasting+experience+that+includes+assisting+you+in+your+evaluation+and+assessment+of+the+wines+and+helping+you+determine+things+you+like+about+wine.+%0AAttendees+must+purchase+a+wine+kit+directly+through+Zo+Wines+for+%2450.+Each+kit+serves+one+person.+%0AZoom+details+and+calendar+invites+will+be+provided+by+Zo+Wines+closer+to+the+event+date..+%0A+%0A+%0A+%0A&amp;location=In+Your+Home%2C+Anywhere&amp;trp=false&amp;sprop=website:https://uwalumni.wpengine.com&amp;ctz=Atlantic%2FAzores" title="Add to Google Calendar">
+					        <img style={{'maxWidth':'100%','width':'1024px'}} class=" inline-gatsby-image-wrapper" loading="eager" src="/static/e7fa23801e893ae661613678529fc411/null.svg" data-reactroot="" />
+					        Google Calendar
+                        </a>
+			        </div>
+                    <div class="tribe-block__btn--link tribe-block__events-ical">
+				        <a href="/event/virtual-wine-tasting/?ical=1" title="Download .ics file">
+					        <img style={{'max-width':'100%','width':'1024px'}} class=" inline-gatsby-image-wrapper" loading="eager" src="/static/e7fa23801e893ae661613678529fc411/null.svg" data-reactroot="" />
+					        iCal Export				
+                        </a>
+			        </div>
+			    </div>
+            </EventLinksBlock>
+            }
             opacity={0.9}
             closeCallback={() => handleModal()}/>
             : null}
@@ -76,13 +93,19 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
                     <div className="subHeader">WHERE</div>
                 )}
                 <div className="venue" dangerouslySetInnerHTML={{ __html: addressString }} />
-                { (venue && (venue.address || eventDetails.eventlocationDetails)) && (
+                { showMapLink && (
                     <a href="#EventMap" alt="View Map">{mapLinkText}</a>
                 )}
                 <div className="subHeader">COST</div>
                 <div className="amount ">{costDisplay(cost)}</div>
-                <div className="subHeader">ORGANIZER</div>
-                <div className="orgName ">{organizerList}</div>
+                {organizerList.length < 5 ?
+                    <>
+                    <div className="subHeader">ORGANIZER</div>
+                    <div className="orgName ">{organizerList}</div>
+                    </>
+                :
+                    null
+                }
 
             </div>
         </div>
@@ -90,7 +113,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
 }
 const StyledEventRegistration = styled(EventRegistration)`
 
-    
+
     font-size: ${sizes.s18};
     line-height: ${sizes.s26};
     margin-bottom: ${sizes.s32};
@@ -110,8 +133,8 @@ const StyledEventRegistration = styled(EventRegistration)`
         bottom: 0;
         left: 0;
         z-index: 100;
-       
-        .dateDay{   
+
+        .dateDay{
             padding: ${sizes.s16} 0 ${sizes.s16} 0;
             font-size: ${sizes.s18};
             line-height: ${sizes.s26};
@@ -127,11 +150,11 @@ const StyledEventRegistration = styled(EventRegistration)`
             @media screen and ${breakpoints.tabletS} {
                 max-width: 536px;
             }
-        
+
             &.compact {
                 margin-top: ${sizes.s40};
             }
-        
+
         }
 
         @media screen and ${breakpoints.tabletL} {
@@ -168,11 +191,11 @@ const StyledEventRegistration = styled(EventRegistration)`
             margin-bottom: ${sizes.s8};
             font-size: ${sizes.s14};
             line-height: ${sizes.s16};
-    
+
             @media screen and ${breakpoints.tabletL} {
                 border-bottom: none;
                 &:after {
-                    position: absolute; 
+                    position: absolute;
                     bottom: -2px;
                     left: 0;
                     width: ${sizes.s34};
@@ -188,7 +211,7 @@ const StyledEventRegistration = styled(EventRegistration)`
                 margin-top: 0;
             }
         }
-        
+
         a{
             ${mixins.a}
         }

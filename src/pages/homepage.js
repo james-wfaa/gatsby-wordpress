@@ -4,13 +4,11 @@ import Layout from "../components/layout"
 import PageSection from "../components/page-sections/PageSection"
 import ContentCardD from "../components/content-blocks/ContentCardD"
 import GridCardD from "../components/content-modules/GridCardD"
-import ContentCard from "../components/content-blocks/ContentCard"
+import StoryContentCard from "../components/content-blocks/StoryContentCard"
 import CardE from "../components/content-blocks/CardE"
-import PromoCardD from "../components/content-blocks/PromoCardD"
 import HeroIntroSection from "../components/page-sections/HeroIntroSection"
 import CommunicationForm from "../components/content-blocks/CommunicationForm"
 import SimpleSlider from "../components/content-modules/SimpleSlider"
-import { sizes, colors } from "../components/css-variables"
 
 const taglist2 = [
   {
@@ -45,7 +43,7 @@ const featuredbutton = [
   },
 ]
 
-export default ({ data }) => {
+const HomePage = ({ data }) => {
   const { events } = data
 
   const cardGridEvents = events.edges.slice(0,9)
@@ -78,23 +76,23 @@ export default ({ data }) => {
         >
           <CardE
             img={data.asset29}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
+            caption="Zipper ipsum dolor sit amet, consectetur adipiscing elit"
+            enhancedHomepageCaption
           />
           <CardE
             img={data.asset30}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
+            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+            enhancedHomepageCaption
           />
           <CardE
             img={data.square1}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{ color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
+            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+            enhancedHomepageCaption
           />
           <CardE
             img={data.squareBucky}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{ color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
+            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+            enhancedHomepageCaption
           />
         </SimpleSlider>
       </PageSection>
@@ -110,7 +108,7 @@ export default ({ data }) => {
           variableWidth
           centerPadding="100px"
         >
-          <ContentCard
+          <StoryContentCard
             title="All About That Bass"
             category="UW NOW"
             excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
@@ -119,7 +117,7 @@ export default ({ data }) => {
             tags={taglist2}
             size="L"
           />
-          <ContentCard
+          <StoryContentCard
             title="Four Conversation Starters Beyond “How about Them Badgers?”"
             category="UW NOW"
             excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
@@ -128,7 +126,7 @@ export default ({ data }) => {
             tags={taglist2}
             size="L"
           />
-          <ContentCard
+          <StoryContentCard
             title="More than Madison and Milwaukee"
             category="UW NOW"
             excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
@@ -137,7 +135,7 @@ export default ({ data }) => {
             tags={taglist2}
             size="L"
           />
-          <ContentCard
+          <StoryContentCard
             title="Coachella Valley"
             category="UW NOW"
             excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
@@ -147,7 +145,7 @@ export default ({ data }) => {
             size="L"
           />
 
-          <ContentCard
+          <StoryContentCard
             title="Coachella Valley"
             category="UW NOW"
             excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
@@ -169,6 +167,8 @@ export default ({ data }) => {
     </Layout>
   )
 }
+
+export default HomePage
 
 export const pageQuery = graphql`
   query {

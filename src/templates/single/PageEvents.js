@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from "react"
+import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
-import ContentCard from "../../components/content-blocks/ContentCard"
+import EventContentCard from "../../components/content-blocks/EventContentCard"
 import EventCardD from "../../components/content-blocks/EventCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
 import SimpleSlider from "../../components/content-modules/SimpleSlider"
@@ -19,7 +19,7 @@ function WordPressPage({ data }) {
   const { edges: eventEdges } = events
   const { title, featuredImage, eventCategories, excerpt, gridDetails  } = page
   const { categories } = eventCategories
-  console.log(eventCategories)
+  //console.log(eventCategories)
 
   const { backgroundImage } = gridDetails
 
@@ -31,23 +31,28 @@ function WordPressPage({ data }) {
     },
   ]
 
-  const cats = categories.map((item) => {
+  const cats = (categories) 
+  ? categories.map((item) => {
     const { categoryEvent, numberToShow } = item
     //console.log(item)
-    return (
-      <PageSection key={item.url} heading={categoryEvent.name} stagger>
-        <CardSet items={categoryEvent.events.nodes} num={numberToShow} />
-      </PageSection>
-    )
+    return (categoryEvent && categoryEvent.events.nodes.length > 0) 
+      ?
+      (
+        <PageSection key={item.url} heading={categoryEvent.name} stagger>
+          <CardSet items={categoryEvent.events.nodes} num={numberToShow} type="event"/>
+        </PageSection>
+      )
+      : null
   }
   )
+  : null
 
 
   const settings = {
     nextArrow: <RightArrow />,
     prevArrow: <LeftArrow />,
   }
-  console.log('events page events:',events)
+  //('events page events:',events)
   let featuredEvents = eventEdges.map((event) => {
     //console.log('featuredEvents event.node:',event.node)
     const { featuredEvent, featuredImage: img } = event.node
@@ -55,22 +60,23 @@ function WordPressPage({ data }) {
     //console.log( 'featuredEvent:',featuredEvent )
     if (featuredEvent) {
         return (
-          <ContentCard key={event.url} size="L" img={cardImg} {...event.node} />
+          <EventContentCard key={event.url} size="L" img={cardImg} {...event.node} />
         )
     }
+    return ''
   })
   featuredEvents = featuredEvents.filter(function( element ) {
     return element !== undefined;
  })
 
 
-  console.log('featuredEvents:',featuredEvents)
+  //console.log('featuredEvents:',featuredEvents)
 
 
 
   const cardGridEvents = eventEdges.slice(0,9)
   let eventCards = cardGridEvents.map((event) => {
-    console.log('building event tiles')
+    //console.log('building event tiles')
     return (
       <EventCardD key={event.url} {...event.node} />
     )
@@ -79,7 +85,7 @@ function WordPressPage({ data }) {
 
 
   return (
-    <Layout noborder>
+    <Layout title={title} noborder>
       { featuredImage && featuredImage.node && (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}

@@ -1,11 +1,12 @@
 import React from "react"
 import styled from 'styled-components'
-import { colors, sizes, breakpoints, fonts } from '../css-variables'
+import { colors, sizes, breakpoints, fonts, mixins } from '../css-variables'
 
-const ImageSection = ({ className, data }) => {
+const ImageSection = ({ className, data, defaultPage }) => {
+    const defaultClass = (defaultPage) ? 'default' : '';
 
     return (
-        <div className={`${className} image-section-wrapper`} dangerouslySetInnerHTML={{__html: data}} />
+        <div className={`${className} ${defaultClass} image-section-wrapper`} dangerouslySetInnerHTML={{__html: data}} />
     )
 }
 
@@ -42,13 +43,18 @@ const StyledImageSection = styled(ImageSection)`
         &+div.image-section-wrapper {
             border-top: 8px solid ${colors.sectionBorder};
         }
+        &.default {
+            width: 100%;
+        }
     }
 }
     
 .image-section {
     display: flex;
     flex-direction: column;
-
+    a {
+        ${mixins.textlink}
+    }
     &--small {
         .image-section__image {
             width: calc(100% - 72px);
