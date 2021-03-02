@@ -55,7 +55,6 @@ export const query = graphql`
       excerpt
       content
       slug
-      menuOrder
       ancestors {
         nodes {
           id

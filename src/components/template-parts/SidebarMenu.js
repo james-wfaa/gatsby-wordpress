@@ -7,6 +7,7 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
   //console.log(name)
   const [open, setOpen] = useState(false)
   const menuMargin = open ? `32px` : 0;
+  
   const StyledMenu = styled.div`
     position: relative;
     border-top: 2px solid ${colors.bgActiveGrey};
@@ -24,6 +25,7 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
     @media screen and ${breakpoints.laptopS} {
         margin-left: 0;
         max-width: 712px;
+        margin-bottom: 58px;
     }
 
     ul {
@@ -49,6 +51,9 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
         &.active {
           font-weight: bold;
         }
+      }
+      li{
+        margin-left:16px;
       }
     }
     @media screen and ${breakpoints.laptopS} {
@@ -145,9 +150,29 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
   const ConditionalWrap = ({condition, wrap, children}) => condition ? wrap(children) : children;
 
   const items = menuItems.map(item => {
+    let secondChildren = {}
+    let thirdChildren = {}
+    if(item?.wpChildren?.nodes){
+      secondChildren.nodes = item.wpChildren.nodes.map( item => {
+        if(item?.wpChildren?.nodes){
+          thirdChildren.nodes = item.wpChildren.nodes.map( item => {
+            item.path = item.uri
+            item.label = item.title
+            return item
+          })
+        }
+        item.path = item.uri
+        item.label = item.title
+        return item
+      })
+    }
+
     return (
       <li>
         <a href={item.path} className={item.path === (typeof window !== "undefined" && window.location.pathname) ? 'active': ''}>{item.label}</a>
+        {secondChildren?.nodes?.length > 0 ? (secondChildren.nodes.map(item => <li><a href={item.path} className={item.path === (typeof window !== "undefined" && window.location.pathname) ? 'active': ''}>{item.label}</a>
+            {thirdChildren?.nodes?.length > 0 ? (thirdChildren.nodes.map(item => <li><a href={item.path} className={item.path === (typeof window !== "undefined" && window.location.pathname) ? 'active': ''}>{item.label}</a></li> )) : null }
+        </li>)) : null}
       </li>
     )
   })
