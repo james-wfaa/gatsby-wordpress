@@ -91,6 +91,11 @@ const { title,  excerpt, wpChildren, featuredImage, groups } = page
           excerpt={excerpt}
         />
       )}
+      { !featuredImage && (
+        <PageSection
+          excerpt={excerpt}
+        />
+      )}
       </div>
       { RenderedMenu && (
         <PageSection popOut>
