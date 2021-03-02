@@ -2,13 +2,8 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 
-function WpChapter({ data }) {
-  const { venue } = data
-  const {
-    title,
-    content
-  } = venue
 
+function WpChapter({ data }) {
   return (
     <Layout>
       chapter
@@ -31,6 +26,8 @@ export const query = graphql`
         csInstagram
         csFacebook
         csCountry
+        csWechat
+        csSnapchat
       }
     }
   }

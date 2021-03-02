@@ -130,19 +130,19 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                     )
                     break
                   case "gravityforms/form":
-                    console.log("form found")
+                    //console.log("form found")
                     const shortcode = block.isDynamic
                       ? block.dynamicContent
                       : block.originalContent
-                    console.log(shortcode)
+                    //console.log(shortcode)
                     let idStart = shortcode.indexOf('id="')
                     if (idStart > -1) {
                       idStart += 4
                       let idEnd = shortcode.indexOf('"', idStart)
-                      console.log(idEnd)
-                      console.log(idStart)
+                      //console.log(idEnd)
+                      //console.log(idStart)
                       const formId = shortcode.substring(idStart, idEnd)
-                      console.log(formId)
+                      //console.log(formId)
                       return (
                         <GravityForm
                           className={block.name.replace("/", "-")}
@@ -167,7 +167,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                           />
                         )
                       })
-                      console.log("blocks: " + innerRenderedBlocks)
+                      //console.log("blocks: " + innerRenderedBlocks)
                       return (
                         <div className={block.name.replace("/", "-")}>
                           {innerRenderedBlocks}
@@ -184,8 +184,8 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                     )
 
                   case "core-embed/vimeo":
-                    console.log("vimeo")
-                    console.log(block)
+                    //console.log("vimeo")
+                    //console.log(block)
                     //return <div>foo</div>//
                     return (
                       <div className="wp-block-embed">
