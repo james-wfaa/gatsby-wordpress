@@ -21,15 +21,15 @@ function BlogPost({ data }) {
   if(products && products.nodes){
     products.nodes.map((product) => {
       product.posts.nodes.map((post) => {
-        relatedPostsToShow.push(post) 
+        return relatedPostsToShow.push(post) 
       })
     })
   }
 
   let uniqueRelatedPosts = []
   relatedPostsToShow.forEach((post) => {
-    if(!uniqueRelatedPosts.find(element => element.id === post.id) && post.id != id){
-      uniqueRelatedPosts.push(post)
+    if(!uniqueRelatedPosts.find(element => element.id === post.id) && post.id !== id){
+      return uniqueRelatedPosts.push(post)
     }
   })
 
@@ -179,9 +179,9 @@ function BlogPost({ data }) {
     <Layout title={title}>
         <BreadCrumbs links={links} />
         <StyledFlamingleWrapper>
-            <img className="flamingleMasthead" src={flamingleMasthead}></img>
+            <img className="flamingleMasthead" src={flamingleMasthead} alt="Flamingle Banner"></img>
             <TitleSection heading={flamingleExcerpt} author={author.node.name} categories={categories} />
-            <div className="flamingleCapWrapper"><img src={flamingleIcon}></img></div>
+            <div className="flamingleCapWrapper"><img src={flamingleIcon} alt="Flamingo Icon"></img></div>
             <WordPressBasicContentBlocks {...page} />
           <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
           <div className="flamingleLinks">

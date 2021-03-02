@@ -1,4 +1,4 @@
-import { at } from "lodash";
+//import { at } from "lodash";
 
 const initialState = {
   searchstring: "",
@@ -77,7 +77,6 @@ const initialState = {
   //End Update Info Form 
 };
 const types = {
-  SET_SEARCH_STRING: "SET_SEARCH_STRING",
   SET_SEARCH_STRING: "SET_SEARCH_STRING",
   SET_MEMBERSHIP_GRADUATE: "SET_MEMBERSHIP_GRADUATE",
   SET_MEMBERSHIP_AGE: "SET_MEMBERSHIP_AGE",
