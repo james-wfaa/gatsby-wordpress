@@ -37,7 +37,8 @@ function BlogPost({ data }) {
 
   const buttons = (uniqueRelatedPosts.length > 2) 
       ? [{
-          link: `/posts/search/?category=${slug}`,
+          //link: `/posts/search/?category=${slug}`,
+          link:'/news/flamingle',
           text: 'See All Questions'
       }]
       : null;
@@ -45,7 +46,7 @@ function BlogPost({ data }) {
   let links = [
     { url: "/", name: "Home" },
     { url: "/news", name: "News & Stories" },
-    { url: "/news", name: "Ask Flamingle HQ" },
+    { url: "/news/flamingle", name: "Ask Flamingle HQ" },
     { url: link, name: title },
   ]
 
@@ -197,11 +198,11 @@ function BlogPost({ data }) {
             <hr></hr>
             <div>
               <p>Need Answers? Ask Flamingle HQ</p>
-              <Button link="/" text="Ask A Question" external />
+              <Button link="/news/flamingle" text="Ask A Question" external />
             </div>
             <div className="newsletterContainer">
               <p>View <span className="italicize">The Flamingle</span> Newsletter</p> 
-              <Button link="/" text="See All Posts" external />
+              <Button link="/news/flamingle" text="See All Posts" external />
             </div> 
           </div>
           <PageSection id="flamingle-post-listing" heading="More From Ask Flamingle HQ" topBorder buttons={buttons}>
