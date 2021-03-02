@@ -10,27 +10,34 @@ import CardE from "../content-blocks/CardE"
 import PromoCardD from "../content-blocks/PromoCardD"
 import HeroIntroSection from "../page-sections/HeroIntroSection"
 import SimpleSlider from "../content-modules/SimpleSlider"
+import AllChaptersData from "../page-sections/AllChapters"
 
-function WordPressGroupPage({ page, options }) {
+function WordPressGroupPage({  page, options }) {
   const { chapters: chaptersText, varsityChapterText, recognizedChapterText, bascomChapterText } = options
   const { chapterLevel } = page
   const { chapterLevel: level } = chapterLevel
+
+  const chapterData = AllChaptersData()
+  const thisChapterArr = chapterData.nodes.filter(function (e) {
+    return e.chapterDetails.csUrl === page.slug
+})
+const thisChapter = thisChapterArr[0] ? thisChapterArr[0] : null
   
-  const eventbutton = [
-    {
-      link: "/events",
-      text: "All Events",
-    },
-  ]
+const eventbutton = [
+  {
+    link: "/events",
+    text: "All Events",
+  },
+]
   
-  const featuredbutton = [
-    {
-      link: "#",
-      text: "See all news and stories",
-    },
-  ]
-  const { title,  excerpt, wpChildren, featuredImage, groups } = page
-  
+const featuredbutton = [
+  {
+    link: "#",
+    text: "See all news and stories",
+  },
+]
+const { title,  excerpt, wpChildren, featuredImage, groups } = page
+
   if (wpChildren?.nodes) {
     wpChildren.nodes.sort((a,  b) => {
       if (a.title < b.title) {
@@ -60,18 +67,19 @@ function WordPressGroupPage({ page, options }) {
 
 
   const eventsToShow = (groups?.nodes && groups?.nodes[0]?.events.nodes) ? groups?.nodes[0]?.events.nodes : null
-
+  const social = thisChapter?.chapterDetails ? thisChapter : null
   return (
     <Layout title={title}>
       <PageSection
         heading={title}
         excerpt={chapterTypeText}
-        withSocial
+        withSocial={social}
         plainText
         pageTitle
-      > { // this is static text... will live in a WP settings field somewhere... same for every chapter 
-      }
-       <div dangerouslySetInnerHTML={{__html: chaptersText}} />
+        groupPage
+      > 
+       <div className="groupPage" dangerouslySetInnerHTML={{__html: chaptersText}} />
+       
       </PageSection>
       <div style={{maxWidth: `1080px`, margin: `auto`, paddingBottom: `58px`}}>
 
@@ -133,5 +141,7 @@ function WordPressGroupPage({ page, options }) {
     </Layout>
   )
 }
+
+
 
 export default WordPressGroupPage

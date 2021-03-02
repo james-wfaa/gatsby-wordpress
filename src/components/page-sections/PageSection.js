@@ -6,6 +6,11 @@ import BackgroundImage from 'gatsby-background-image'
 
 import PageSectionHeader from '../parts/PageSectionHeader'
 import PageSectionButtons from '../parts/PageSectionButtons'
+import FbIcon from '../../svg/fb_icon_gray.svg'
+import IgIcon from '../../svg/instagram_icon_gray.svg'
+import LiIcon from '../../svg/linkedin_icon_gray.svg'
+import TwIcon from '../../svg/twitter_icon_gray.svg'
+import WcIcon from '../../svg/wechat_icon_gray.svg'
 
 
 
@@ -18,6 +23,7 @@ const PageSection = ({
     headingCompact,
     leftAlign,
     pageTitle,
+    groupPage,
     withSocial,
     plainText,
     centered, // a centered-content page section e.g. Product Page or Aggregate Page
@@ -62,8 +68,11 @@ const PageSection = ({
                 { preheading && (
                 <div className={`${className}__preheading`}>{preheading}</div>
             )}
-                  { heading && (
-                <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} withSocial={withSocial} headingCompact={headingCompact} fromBlocks={fromBlocks} leftAlign={leftAlign} />
+            { heading && (
+                <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} groupPage={groupPage} withSocial={withSocial} headingCompact={headingCompact} fromBlocks={fromBlocks} leftAlign={leftAlign} />
+            )}
+            { withSocial && (
+                <StyledSocialIcons data={withSocial} />
             )}
             { excerpt && (
                 <div className="sectionexcerpt"  dangerouslySetInnerHTML={{ __html: excerpt }} />
@@ -86,6 +95,9 @@ const PageSection = ({
             { heading && (
                 <PageSectionHeader heading={heading} pageTitle={pageTitle} withSocial={withSocial} bgimage />
             )}
+            { withSocial && (
+                <StyledSocialIcons data={withSocial} />
+            )}
              { excerpt && (
                 <div className={`sectionexcerpt ${className}__excerpt ${className}__excerpt--bgimage`}  dangerouslySetInnerHTML={{ __html: excerpt }} />
             )}
@@ -94,10 +106,6 @@ const PageSection = ({
             </div>
             { buttons && (<PageSectionButtons buttons={buttons} bgimage buttonsAlt/>
             )}
-         
-
-
-
       </BackgroundImage>
         )
         }
@@ -106,6 +114,71 @@ const PageSection = ({
         </div>
     )
 }
+const SocialIcons = ({ className, data }) => {
+    return (
+      <ul className={className}>
+        { data?.chapterDetails?.csFacebook && (
+          <li><a className="fb" target="_blank" title={`${data.title} Facebook Page`} href={data.chapterDetails.csFacebook}></a></li>
+        )}
+        { data?.chapterDetails?.csTwitter && (
+          <li><a className="tw" target="_blank" title={`${data.title} Twitter Page`} href={`https://twitter.com/${data.chapterDetails.csTwitter}`}></a></li>
+        )}
+        { data?.chapterDetails?.csInstagram && (
+          <li><a className="ig" target="_blank" title={`${data.title}  Instagram Page`} href={`https://instagram.com/${data.chapterDetails.csInstagram}`}></a></li>
+        )}
+        { data?.chapterDetails?.csLinkedin && (
+          <li><a className="li" target="_blank" title={`${data.title}  LinkedIn Page`} href={data.chapterDetails.csLinkedin}></a></li> 
+        )}
+        { data?.chapterDetails?.csWechat && (
+          <li><a className="wc" target="_blank" title={`${data.title}  WeChat Page`} href={data.chapterDetails.csWechat}></a></li>
+        )}
+         { data?.chapterDetails?.csSnapchat && (
+          <li><a className="sc" title={`${data.title}  SnapChat Page`} href={data.chapterDetails.csSnapchat}></a></li>
+        )}  
+    </ul>
+    )
+  }
+  const StyledSocialIcons = styled(SocialIcons)`
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    max-width: 375px;
+    margin: 0 auto ${sizes.s32};
+    li {
+      display: block;
+      width: ${sizes.s28};
+      height: ${sizes.s28};
+      margin: 0 ${sizes.s24} 0 0;
+         
+      a {
+          display: block;
+          width: ${sizes.s28};
+          height: ${sizes.s28};
+          background-color: ${colors.badgerRed};
+          &:hover {
+              transform: scale(1.1);
+          }
+          &:active {
+            transform: scale(1);
+          }
+          &.fb {
+              mask: url(${FbIcon});
+          }
+          &.tw {
+              mask: url(${TwIcon});
+          }
+          &.ig {
+              mask: url(${IgIcon});
+          }
+          &.wc {
+              mask: url(${WcIcon});
+          }
+          &.li {
+              mask: url(${LiIcon});
+          }
+      }
+    }
+  `
 
 const StyledPageSection = styled(PageSection)`
 
@@ -227,11 +300,21 @@ const StyledPageSection = styled(PageSection)`
             color: ${colors.bgWhite} !important;
 
         }
-        &.withsocial {
-
-        }
     }
     /* some wordpress content pieces */
+
+    .groupPage {
+        > p {
+            min-width: 300px;
+            width: 80%;
+            max-width: 712px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            padding: 0 ${sizes.s16};
+        }
+    }
+
     .content.centered {
         > p,
         > .core-heading,
