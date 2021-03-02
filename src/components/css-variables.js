@@ -335,6 +335,21 @@ export const mixins = {
             height: ${sizes.s8};
         }
     }`,
+    headingShortUnderline: `
+        padding-bottom: ${sizes.s40};
+        margin-bottom: ${sizes.s32};
+        position: relative;
+        :after {
+            position: absolute;
+            bottom:0;
+            left: 0;
+            height: ${sizes.s8};
+            width: calc( 1.889rem * 2 );
+            background-color: #c5050c;
+            content: '';
+        }
+
+    `,
     sectionHeader: ` {
         text-align: center;
         position: relative;
