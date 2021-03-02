@@ -8,10 +8,11 @@ import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
 
 
-const PromoCardD = ({ className, title, url, isNav = false })=> {
+const PromoCardD = ({ className, title, url, isNav = false, flamingle })=> {
 
     const navClass = isNav ? `${className}__nav` : ''
-    const classes = `${className} ${navClass}`
+    const flamingleClass = flamingle ? 'flamingle' : ''
+    const classes = `${className} ${navClass} ${flamingleClass}`
 
     return (
         <CardD>
@@ -210,6 +211,44 @@ display: block;
             text-decoration: underline;
         }
 
+    }
+}
+&.flamingle{
+    background-color: ${colors.flamingleCardBG};
+    .title {
+        color:${colors.flaminglePink};
+    }
+    .wrapper{
+        :before, :after{
+            background-color: ${colors.flaminglePink};
+        }
+    }
+    .arrow {
+        display:none; 
+    }
+    &:hover {
+        box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
+        .title{
+            text-decoration: underline;
+        }
+        .wrapper{
+            :before, :after{
+                background-color: ${colors.flamingleCardHoverDiagonals};
+            }
+        }
+    }
+    &:active {
+        cursor:default;
+        .wrapper{
+            :before, :after{
+                background-color: ${colors.flamingleCardHoverDiagonals};
+            }
+        }
+    }
+    &:visited {
+        .title{
+            color: ${colors.linkVisitedGrey};
+        }
     }
     
 }

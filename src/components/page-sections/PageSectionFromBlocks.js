@@ -81,6 +81,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                           <Block
                             className={block.name.replace("/", "-")}
                             block={block}
+                            product
                           />
                       )
                     }
@@ -101,6 +102,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         <Block
                           className={block.name.replace("/", "-")}
                           block={block}
+                          product
                         />
                       )
                     }                    
@@ -165,6 +167,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                           <Block
                             className={innerBlock.name.replace("/", "-")}
                             block={innerBlock}
+                            product
                           />
                         )
                       })
@@ -233,6 +236,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         <Block
                           className={block.name.replace("/", "-")}
                           block={block}
+                          product
                         />
                       )
                     } else {

@@ -118,7 +118,7 @@ const StyledCheckbox = styled.div`
     content: '';
     position: absolute;
     border: 2px solid white;
-    top: 8.25px;
+    top: 8px;
     left: 30px;
     height: 14px;
     width: 14px;
@@ -137,8 +137,8 @@ const FormSubmitButton = styled.button`
   background-color: ${colors.badgerRed};
   margin: 40px auto;
   border: none;
-  width: 98px;
-  height: 48px;
+  min-width: 6.5rem;
+  padding: 11px;
   color: ${colors.bgWhite};
   font-weight: bold;
   :hover {
@@ -155,7 +155,6 @@ const FormSubmitButton = styled.button`
 const ClearButton = styled.div`
   border: 1px solid ${colors.badgerRed};
   padding: 10px;
-  width: 200px;
   cursor: pointer;
   p {
     color: ${colors.badgerRed};
@@ -170,14 +169,14 @@ const ClearButton = styled.div`
 const JoinButton = styled.div`
   margin: 40px auto;
   background: ${colors.badgerRed};
-  width: 120px;
-  height: 48px;
+  padding: 11px;
+  min-width: 116px;
+  display:inline-block;
   p {
     color: ${colors.bgWhite};
     font-size: 16px;
     font-weight: bold;
-    line-height: 48px;
-    height: 48px;
+    margin:0;
   }
   :hover {
     box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
