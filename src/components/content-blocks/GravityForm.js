@@ -189,6 +189,9 @@ input[type='date']{
         font-weight:900;
     }
 }
+.gform_hidden{
+    display: none !important;
+}
 
 `
 

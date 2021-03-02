@@ -38,6 +38,7 @@ const FieldBuilder = ({
             fieldSubLabelPlace || formData.subLabelPlacement
 
         const fieldData = { ...field, descriptionPlacement }
+        const isHiddenClass = field.type === "hidden" ? 'gform_hidden' : null
         let inputWrapperClass = classnames(
             'gfield',
             'gravityform__field',
@@ -49,7 +50,8 @@ const FieldBuilder = ({
             { gfield_contains_required: isRequired },
             { [`field_sublabel_${subLabelPlacement}`]: subLabelPlacement },
             `field_description_${descriptionPlacement}`,
-            `gfield_visibility_${visibility}`
+            `gfield_visibility_${visibility}`,
+            isHiddenClass
         )
 
         const wrapId = `field_${formData.formId}_${field.id}`
