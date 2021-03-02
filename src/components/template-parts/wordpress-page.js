@@ -39,21 +39,9 @@ function WordPressPage({ page }) {
   */
  //menuName = (ancestors) ?
 
- //console.log(ancestors)
  if (ancestors?.nodes) {
   // child page of a product page
-  if (ancestors.nodes[0]?.template?.templateName === "Product Template") {
-    menuRoot = ancestors.nodes[0]
-   }
-   else {
-    const groupSlug = 'groups'
-    const topParent = ancestors.nodes[ancestors.nodes.length -1]
-    if (topParent?.slug && topParent.slug === groupSlug) {
-     // child or granchild of a Group/Chapter page
-      menuRoot = ancestors.nodes[ancestors.nodes.length -2]
-    }
-   }
-
+  menuRoot = ancestors.nodes[0]
  }
 
  if (menuRoot) {
