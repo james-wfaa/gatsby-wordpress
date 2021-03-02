@@ -75,6 +75,9 @@ export const fragments = graphql`
                   originalImg
                   originalName
                   aspectRatio
+                  src
+                  srcSet
+                  sizes
                 }
               }
             }
@@ -100,6 +103,10 @@ export const fragments = graphql`
                   srcSetWebp
                   originalImg
                   originalName
+                  src
+                  srcSet
+                  aspectRatio
+                  sizes
                 }
               }
             }
