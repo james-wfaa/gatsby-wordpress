@@ -172,7 +172,14 @@ function BlogPost({ data }) {
       }
       .content + div{
         a{
-          background-color:${colors.flaminglePink};
+          background-color: ${colors.bgWhite};
+          color:${colors.flaminglePink};
+          border: 1px solid ${colors.flaminglePink};
+        }
+        a:hover{
+          background-color: ${colors.flaminglePink};
+          color: ${colors.titleWhite};
+          border: 1px solid ${colors.flaminglePink};
         }
       }
     } 

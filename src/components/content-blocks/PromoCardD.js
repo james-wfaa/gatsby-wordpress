@@ -217,6 +217,13 @@ display: block;
     background-color: ${colors.flamingleCardBG};
     .title {
         color:${colors.flaminglePink};
+        line-height: 30px;
+        font-size: 24px;
+        @media screen and ${breakpoints.laptopS} {
+            line-height: 42px;
+            font-size: 36px;      
+        }
+
     }
     .wrapper{
         :before, :after{
