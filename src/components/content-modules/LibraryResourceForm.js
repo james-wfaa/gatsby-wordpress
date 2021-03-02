@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import { colors, mixins, fonts, breakpoints } from "../css-variables"
+import { colors, mixins, fonts, sizes, breakpoints } from "../css-variables"
 
 const FormWrapper = styled.div`
   margin: 0 auto;
-  width: 90%;
-  @media screen and ${breakpoints.tabletL} {
-    max-width: 896px;
-  }
+  width: 100%;
   padding: 8px 8px 54px 8px;
-  background-color: ${colors.bgLightGrey};
+  
+  margin-bottom: ${sizes.s48};
+  text-align: left;
 `
 const InnerForm = styled.div`
   .firstline {
@@ -19,10 +18,12 @@ const InnerForm = styled.div`
   .inputlabel {
     margin-bottom: 4px;
   }
+  background-color: ${colors.bgLightGrey};
 `
 
 const FormSubmitButton = styled.button`
   background-color: ${colors.badgerRed};
+  display: inline-block;
   margin: 40px auto;
   border: none;
   width: 98px;
@@ -72,6 +73,12 @@ const LinkBlock = styled.div`
   }
 `
 
+const InputLabel = styled.div`
+  font-size: ${sizes.s18};
+  font-weight: bold;
+  color: ${colors.badgerRed};
+`
+
 const LbraryResourceForm = () => {
   const [memberNumber, setMemberNumber] = useState("")
   const [submitted, setSubmitted] = useState(false)
@@ -95,8 +102,8 @@ const LbraryResourceForm = () => {
   return (
     <FormWrapper>
       {!submitted || !member ? (
-        <InnerForm>
-          <p className="firstline">Library Access</p>
+        <div>
+          <InnerForm>
           {submitted && !member ? (
             <ErrorMessageVerbose>
               <p>
@@ -108,17 +115,16 @@ const LbraryResourceForm = () => {
               </p>
             </ErrorMessageVerbose>
           ) : null}
-          <p>
-            To access your library benefits, sign in using your WAA Member ID
-            and look for the Online Library Access Link
-          </p>
-          <p className="inputlabel">WAA Member Number</p>
+      
+          <InputLabel>Enter your WAA Member Number</InputLabel>
           <input
             type="text"
             value={memberNumber}
-            style={{ display: `block` }}
+            style={{ display: `inline-block` }}
             onChange={e => handleChange(e)}
-          />
+          /><FormSubmitButton onClick={e => handleSubmit(e)}>
+          SUBMIT
+        </FormSubmitButton>
           {submitted && !member ? (
             <div>
               <ErrorMessageInput>
@@ -126,15 +132,16 @@ const LbraryResourceForm = () => {
               </ErrorMessageInput>
             </div>
           ) : null}
-          <FormSubmitButton onClick={e => handleSubmit(e)}>
-            SUBMIT
-          </FormSubmitButton>
+          
         </InnerForm>
+
+        </div>
+        
       ) : (
         <div>
           {member && (
             <div>
-              <h3>You have access.</h3>
+              <h3>Thanks for being a member</h3>
               <LinkBlock>
                 <a href="https://www.uwalumni.com/membership/benefits/librarian/">
                   Ask a Reference Librarion
