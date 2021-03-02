@@ -26,7 +26,6 @@ const FeaturedImage = ({ className, featuredImage, event, size }) => {
       { featuredImage.caption && (
         <div className={`${className}__captionSection`}>
           <div className={`${className}__caption`} dangerouslySetInnerHTML={{ __html: featuredImage.caption }} />
-          <div className={`${className}__author`} dangerouslySetInnerHTML={{ __html: featuredImage.author.node.name }} />
         </div>
       )}
     </div>
@@ -48,10 +47,13 @@ margin: ${sizes.s58} 0;
   margin: 3.222rem auto;
 }
 &.smallImg{
-  max-width: ${props => props.size + `px`};
-  margin: 5px 12px 12px 0;
+  max-width: 280px;
+  min-width: 280px;
+  width: 280px;
+  margin: 12px auto;
   @media screen and ${breakpoints.tablet} {
     float: left; 
+    margin: 5px 24px 12px 0;
   }
   @media screen and ${breakpoints.tabletL} {
     &:before {
@@ -151,8 +153,6 @@ margin: ${sizes.s58} 0;
 }
 
 
-
-
 &__captionSection{
   font-size: ${sizes.s16};
   line-height: ${sizes.s22};
@@ -161,18 +161,10 @@ margin: ${sizes.s58} 0;
   color: ${colors.captionGrey};
   margin-left: auto;
   margin-right: auto;
-  min-width: 300px;
-  max-width: 712px;
-  width: 80%;
-
+  width: 100%;
   text-align: left;
 
-  @media screen and ${breakpoints.tabletS} {
-    width: 536px;
-  }
   @media screen and ${breakpoints.laptopL} {
-    width: 160px;
-    min-width: 160px;
     float: right;
     margin-left: ${sizes.s24};
   }
@@ -192,5 +184,6 @@ margin: ${sizes.s58} 0;
 
 }
 `
+
 
 export default StyledFeaturedImage

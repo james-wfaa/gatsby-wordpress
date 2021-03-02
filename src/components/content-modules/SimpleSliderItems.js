@@ -1,18 +1,27 @@
 import React from 'react'
 import ContentCard from "../../components/content-blocks/ContentCard"
 import SimpleSlider from './SimpleSlider'
+import StoryContentCard from '../content-blocks/StoryContentCard'
 import LeftArrow from "../../components/parts/SliderArrowLeft"
 import RightArrow from "../../components/parts/SliderArrowRight"
 
-const SimpleSliderItems = ({ items, size }) => {
+const SimpleSliderItems = ({ items, size, type }) => {
     let myItems = []
     items.forEach((item) => {
         //console.log(item)
         const { featuredImage: img } = item
         const cardImg = (img ?.node?.localFile) ? img.node.localFile : null
-        myItems.push(
+        if(type === "news"){
+          myItems.push(
+            <StoryContentCard size={size} img={cardImg} {...item} />
+          )
+        }
+        else{
+          myItems.push(
             <ContentCard size={size} img={cardImg} {...item} />
           )
+        }
+        
       })
     myItems = myItems.filter(function( element ) {
         return element !== undefined;
@@ -23,7 +32,7 @@ const SimpleSliderItems = ({ items, size }) => {
       }
 
     return (
-        <SimpleSlider
+        <SimpleSlider ko
             className="center"
             slidesToShow="1"
             dots

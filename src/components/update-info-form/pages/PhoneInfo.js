@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, StyledTopError, variantObject } from '../form-helpers'
+import { StyledError, variantObject, checkForLetters } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -10,9 +10,8 @@ const PhoneInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setPhoneInfoOnchange } = actions;
 
-  const { register, handleSubmit, watch, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdatePhoneInfo = data =>{
-    console.log(data)
 
     let currentOrder = state.numberOfSteps
     let currentStep = state.currentStep
@@ -28,7 +27,6 @@ const PhoneInfo = () => {
     return(
       <div>
         <label htmlFor="seasonalStartDate" className="smallThird block">Start Date
-                <span className="required">*</span>
                 <input
                     type="text"
                     name="seasonalStartDate"
@@ -36,15 +34,13 @@ const PhoneInfo = () => {
                     defaultValue={state.phoneInfo.seasonalStartDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      required: { value: true, message: "Seasonal start date is required" },
                     })}
                 />
-                {errors.jobtitle && (
-                  <StyledError>{errors.jobtitle.message}</StyledError>
+                {errors.seasonalStartDate && (
+                  <StyledError>{errors.seasonalStartDate.message}</StyledError>
                 )}
               </label>
               <label htmlFor="seasonalEndDate" className="smallThird block">End Date
-                <span className="required">*</span>
                 <input
                     type="text"
                     name="seasonalEndDate"
@@ -52,11 +48,10 @@ const PhoneInfo = () => {
                     defaultValue={state.phoneInfo.seasonalEndDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      required: { value: true, message: "Seasonal end date is required" },
                     })}
                 />
-                {errors.jobtitle && (
-                  <StyledError>{errors.jobtitle.message}</StyledError>
+                {errors.seasonalEndDate && (
+                  <StyledError>{errors.seasonalEndDate.message}</StyledError>
                 )}
               </label>
       </div>
@@ -67,7 +62,7 @@ const PhoneInfo = () => {
       return (
         <div>
             <IntroPageSection
-              excerpt='Please update any phone numbers you wish to have on file. You only have to update one but can update multiple numbers if desired.'
+              excerpt='Please include any phone numbers you wish to have on file. You’re only required to provide one, but you can include multiple phone numbers if you choose. Important for Badgers living internationally: remember to include your country code. And always click “Save and Continue” after completing a page to ensure your changes are recorded.'
               heading='Update My Info'
               variantObject={variantObject}
               headingAlt
@@ -75,7 +70,7 @@ const PhoneInfo = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="phoneInfo" onSubmit={handleSubmit(UpdatePhoneInfo)}>
-            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
+            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
             <legend>Phone Numbers<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="phoneNumber1" className="half">Phone Number 1
@@ -88,10 +83,16 @@ const PhoneInfo = () => {
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       required: { value: true, message: "At least one valid phone number is required" },
+                      validate: {
+                        numbersOnly: value => checkForLetters(value) === false,
+                      },
                     })}
                 />
                 {errors.phoneNumber1 && (
                   <StyledError>{errors.phoneNumber1.message}</StyledError>
+                )}
+                {errors.phoneNumber1?.type === "numbersOnly" && (
+                  <StyledError>Letters are not accepted as a valid phone number</StyledError>
                 )}
               </label>
               <label htmlFor="phoneType1" className="half leftMargin">Phone Type 1
@@ -121,14 +122,13 @@ const PhoneInfo = () => {
                     defaultValue={state.phoneInfo.phoneNumber2}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      pattern: {
-                        value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
-                        message: "Must be a valid phone number",
+                      validate: {
+                        numbersOnly: value => checkForLetters(value) === false,
                       },
                     })}
                 />
-                {errors.phone && (
-                  <StyledError>{errors.phone.message}</StyledError>
+                {errors.phoneNumber2?.type === "numbersOnly" && (
+                  <StyledError>Letters are not accepted as a valid phone number</StyledError>
                 )}
               </label>
               <label htmlFor="phoneType2" className="half leftMargin">Phone Type 2
@@ -156,14 +156,16 @@ const PhoneInfo = () => {
                     defaultValue={state.phoneInfo.phoneNumber3}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      pattern: {
-                        value: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
-                        message: "Must be a valid phone number",
+                      validate: {
+                        numbersOnly: value => checkForLetters(value) === false,
                       },
                     })}
                 />
                 {errors.phoneNumber3 && (
                   <StyledError>{errors.phoneNumber3.message}</StyledError>
+                )}
+                {errors.phoneNumber3?.type === "numbersOnly" && (
+                  <StyledError>Letters are not accepted as a valid phone number</StyledError>
                 )}
               </label>
               <label htmlFor="phoneType3" className="half leftMargin">Phone Type 3

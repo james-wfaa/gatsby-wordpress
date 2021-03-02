@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
-import ContentCard from "../../components/content-blocks/ContentCard"
+import EventContentCard from "../../components/content-blocks/EventContentCard"
 import EventCardD from "../../components/content-blocks/EventCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
 import SimpleSlider from "../../components/content-modules/SimpleSlider"
@@ -39,7 +39,7 @@ function WordPressPage({ data }) {
       ?
       (
         <PageSection key={item.url} heading={categoryEvent.name} stagger>
-          <CardSet items={categoryEvent.events.nodes} num={numberToShow} />
+          <CardSet items={categoryEvent.events.nodes} num={numberToShow} type="event"/>
         </PageSection>
       )
       : null
@@ -52,7 +52,7 @@ function WordPressPage({ data }) {
     nextArrow: <RightArrow />,
     prevArrow: <LeftArrow />,
   }
-  console.log('events page events:',events)
+  //('events page events:',events)
   let featuredEvents = eventEdges.map((event) => {
     //console.log('featuredEvents event.node:',event.node)
     const { featuredEvent, featuredImage: img } = event.node
@@ -60,7 +60,7 @@ function WordPressPage({ data }) {
     //console.log( 'featuredEvent:',featuredEvent )
     if (featuredEvent) {
         return (
-          <ContentCard key={event.url} size="L" img={cardImg} {...event.node} />
+          <EventContentCard key={event.url} size="L" img={cardImg} {...event.node} />
         )
     }
     return ''

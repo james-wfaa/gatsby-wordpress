@@ -34,6 +34,15 @@ const IndexPage = () => (
         <Link to="/events">Events Calendar Page </Link>
       </li>
       </ul>
+      <h3>Alumni Notes -NEW-</h3>
+      <ul>
+      <li>
+          <Link to="/alumninote/greg-gautam-2/">Greg Gautam Recognition</Link>
+        </li>
+        <li>
+          <Link to="/alumninote/elmer-petersen/">Obituary Elmer Petersen</Link>
+        </li>
+      </ul>
       <h3>Product Pages</h3>
       <ul>
         <li>
@@ -49,16 +58,26 @@ const IndexPage = () => (
           <Link to="/alumni-directory">Alumni Directory</Link>
         </li>
         <li>
+          <Link to="/forward-under-40">Forward Under 40 (No Hero Image example)</Link>
+        </li>
+        <li>
           <Link to="/jamess-product">Product Page - James Test</Link>
         </li>
       </ul>
       <h3>Story Pages</h3>
       <ul>
+      
         <li>
-          <Link to="/wordpress-story">Story Page - Long &amp; Winding Road (wide feature image) </Link>
+          <Link to="/news/uw-now-grebe-lyall-nettles-venable/">Story Page - small featured image </Link>
         </li>
         <li>
-          <Link to="/refocused">Story Page - "Refocused" (column-width feature image) </Link>
+          <Link to="/news/divine-nine-chapters/">Story Page - small featured image and Product Page link</Link>
+        </li>
+        <li>
+          <Link to="/news/wordpress-story">Story Page - Long &amp; Winding Road (wide feature image) </Link>
+        </li>
+        <li>
+          <Link to="/news/refocused">Story Page - "Refocused" (column-width feature image) </Link>
         </li>
       </ul>
     

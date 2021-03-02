@@ -1,8 +1,7 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, StyledTopError, variantObject } from '../form-helpers'
+import { StyledError, variantObject, currentYear } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
-import { colors } from '../../css-variables'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
@@ -33,7 +32,7 @@ const SpouseInfo = () => {
       return (
         <div>
             <IntroPageSection
-              excerpt='Let us know if we should be aware of anything regarding your spouse or partner.'
+              excerpt='If there’s been a change or update regarding your spouse or partner please indicate that here. You can even add grad years for your spouse/partner. And always click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
               variantObject={variantObject}
               headingAlt
@@ -41,7 +40,7 @@ const SpouseInfo = () => {
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="spouseInfo" onSubmit={handleSubmit(submitForm)} className="spouse-info">
-            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledTopError>Please correct error(s) below</StyledTopError>}
+            { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Spouse or Partner<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="firstname" className="half required">Spouse/Partner First Name
@@ -97,11 +96,19 @@ const SpouseInfo = () => {
                     maxLength="4"
                     defaultValue={state.spouseInfo.undergrad}
                     onChange={e => updateOnChangeValues(e)}
+                    placeholder="YYYY"
                     ref={register({
-                      /*pattern: {
-                        value: /^(19|20)\d{2}$/,
-                        message: "Must be a valid 4 digit graduation year",
-                      },*/
+                      validate: {
+                        validYear: value => value > 1847 && value <= currentYear,
+                      },
+                      maxLength: {
+                        value: 4,
+                        message: "Must be 4 characters or less",
+                      },
+                      pattern: {
+                        value: /^[0-9]*$/,
+                        message: "Numbers only, please",
+                      },
                     })}
                 />
                 {errors.undergrad && (

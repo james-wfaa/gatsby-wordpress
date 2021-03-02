@@ -8,7 +8,7 @@ require("dotenv").config({
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
-process.env.WP_DISABLE_POLLING = 1
+//process.env.WP_DISABLE_POLLING = 1
 
 module.exports = {
   siteMetadata: {
@@ -50,21 +50,23 @@ module.exports = {
         }
       }
     },
-    // Uncomment to index to Algolia on gatsby build command
-    // {
-    //   resolve: `gatsby-plugin-algolia`,
-    //   options: {
-    //     appId: process.env.GATSBY_ALGOLIA_APP_ID,
-    //     apiKey: process.env.ALGOLIA_ADMIN_KEY,
-    //     queries: require("./src/utils/algolia-queries")
-    //   },
-    // },
+    //Uncomment to index to Algolia on gatsby build command
+    /*
+     {
+       resolve: `gatsby-plugin-algolia`,
+       options: {
+         appId: process.env.GATSBY_ALGOLIA_APP_ID,
+         apiKey: process.env.ALGOLIA_ADMIN_KEY,
+         queries: require("./src/utils/algolia-queries")
+       },
+     },
+     */
     {
-      resolve: `gatsby-source-wordpress-experimental`,
+      resolve: `gatsby-source-wordpress`,
       options: {
         schema: {
-          requestConcurrency: 2, // currently set to undefined
-          previewRequestConcurrency: 2, // currently set to undefined
+          requestConcurrency: 4, // currently set to undefined
+          previewRequestConcurrency: 4, // currently set to undefined
           perPage: 50,
         },
         url:
@@ -100,6 +102,14 @@ module.exports = {
                   5000,
           },
           ClassnoteDegree: {
+            limit:
+              process.env.NODE_ENV === `development`
+                ? // Lets just pull 50 posts in development to make it easy on ourselves.
+                  20
+                : // and we don't actually need more than 5000 in production for this particular site
+                  5000,
+          },
+          Tag: {
             limit:
               process.env.NODE_ENV === `development`
                 ? // Lets just pull 50 posts in development to make it easy on ourselves.
