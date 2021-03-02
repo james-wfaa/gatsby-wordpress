@@ -286,6 +286,7 @@ hr.wp-block-separator {
         line-height: ${sizes.s42};
         margin-top: ${sizes.s58}; // ex: email login page
       }
+      
     }
     h3 {
       font-size: ${sizes.s26};
