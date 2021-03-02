@@ -42,9 +42,14 @@ const eventQuery = `{
             localFile {
               childImageSharp {
                 fluid {
+                  base64
+                  tracedSVG
+                  srcWebp
+                  srcSetWebp
+                  originalImg
+                  originalName
                   src
                   srcSet
-                  base64
                   aspectRatio
                   sizes
                 }
