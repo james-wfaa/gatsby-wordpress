@@ -21,7 +21,9 @@ function BlogPost({ data }) {
   if(products && products.nodes){
     products.nodes.map((product) => {
       product.posts.nodes.map((post) => {
-        relatedPostsToShow.push(post) 
+        if(post.askFlamingle?.abeQuestioner !== null){
+          relatedPostsToShow.push(post)
+        } 
       })
     })
   }
