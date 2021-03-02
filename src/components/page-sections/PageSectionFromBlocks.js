@@ -156,6 +156,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                   case "core/buttons":
                     if (
                       block.innerBlocks &&
+                      Array.isArray(block.innerBlocks) &&
                       block.innerBlocks[0].originalContent
                     ) {
                       let innerRenderedBlocks = []
