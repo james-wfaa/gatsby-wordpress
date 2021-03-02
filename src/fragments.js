@@ -16,18 +16,30 @@ export const fragments = graphql`
           id
           title
           uri
+          hideFromMenu {
+            hideFromMenu
+            fieldGroupName
+          }
           wpChildren {
             nodes {
               ... on WpPage {
                 id
                 title
                 uri
+                hideFromMenu {
+                  hideFromMenu
+                  fieldGroupName
+                }
                 wpChildren {
                   nodes {
                     ... on WpPage {
                       id
                       title
                       uri
+                      hideFromMenu {
+                        hideFromMenu
+                        fieldGroupName
+                      }
                     }
                   }
                 }

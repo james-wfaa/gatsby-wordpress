@@ -55,6 +55,10 @@ export const query = graphql`
       excerpt
       content
       slug
+      hideFromMenu {
+        hideFromMenu
+        fieldGroupName
+      }
       ancestors {
         nodes {
           id
@@ -64,6 +68,10 @@ export const query = graphql`
             id
             title
             link
+            hideFromMenu {
+              hideFromMenu
+              fieldGroupName
+            }
           }
           ... Children
           template {

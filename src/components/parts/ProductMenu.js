@@ -5,11 +5,19 @@ import Accordian from "./Accordian"
 
 
 const ProductMenu = ({ items, className, menuTitle }) => {
-    const itemsList = items.map((item) => (
-        <div className="menu__item" key={item.title}>
-            <a className="menu__link" href={item.uri}><span>{item.title}</span></a>
-        </div>
-      ))
+    const itemsList = items.map(item => {
+        //If hideFromMenu is true, then don't create menu listing
+        if(item.hideFromMenu && item.hideFromMenu.hideFromMenu){
+            return
+        }
+        
+        return (
+            <div className="menu__item" key={item.title}>
+                <a className="menu__link" href={item.uri}><span>{item.title}</span></a>
+            </div>
+        )
+    })
+
     const navOpenText =  menuTitle + ' menu' 
     const navCloseText = menuTitle + ' menu'
 
