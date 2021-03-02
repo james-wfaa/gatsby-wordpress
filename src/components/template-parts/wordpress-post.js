@@ -54,7 +54,7 @@ function BlogPost({ data }) {
   } else if((size < 718) && featuredImage){
     image = featuredImage.node
   }
-  console.log(page)
+  //console.log(page)
   let links = [
     { url: "/", name: "Home" },
     { url: "/news", name: "News & Stories" },

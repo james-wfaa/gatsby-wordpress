@@ -23,10 +23,10 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
     blocks.map((block) => {
         switch(block.name) {
             case "acf/section-header":
-                title = (block.isDynamic) ? block.dynamicContent : block.originalContent
+                title = (block && block.isDynamic) ? block.dynamicContent : block.originalContent
                 break
             case "core/heading":
-                if (block.originalContent.indexOf('<h2') > -1) {
+                if (block && block.originalContent.indexOf('<h2') > -1) {
                     title = (block.isDynamic) ? block.dynamicContent : block.originalContent
                 }
                 break
@@ -47,7 +47,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
         centerPadding="100px"
         >
             { blocks.map((block) => {
-                const innerContent =  ((block.dynamicContent && block.dynamicContent !== "") ? block.dynamicContent : block.originalContent)
+                const innerContent =  ((block?.dynamicContent && block.dynamicContent !== "") ? block.dynamicContent : block.originalContent)
                 if (block.name === "core/image") {
                     return (
                         <ImageWithCaption storyCaption="storyCaption" ><div dangerouslySetInnerHTML={{__html: innerContent}} /></ImageWithCaption>
@@ -63,26 +63,27 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
         : (cardset)
             ? (<CardSet type="news">{
                 blocks.map((block) => {
-                const innerContent =  ((block.dynamicContent && block.dynamicContent !== "") ? block.dynamicContent : block.originalContent)
+                const innerContent =  ((block?.dynamicContent && block.dynamicContent !== "") ? block.dynamicContent : block.originalContent)
                 return innerContent
 
 
             })}</CardSet>)
             : blocks.map((block) => {
 
-                //console.log(block.name)
+                //console.log(block)
 
                 switch (block.name) {
                   case "acf/section-header":
                     break
                   case "core/heading":
-                    if (block.originalContent.indexOf("<h2") > -1) {
+                    if (block?.originalContent.indexOf("<h2") > -1) {
                       break
                     } else {
                       return (
                           <Block
                             className={block.name.replace("/", "-")}
                             block={block}
+                            product
                           />
                       )
                     }
@@ -103,21 +104,22 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         <Block
                           className={block.name.replace("/", "-")}
                           block={block}
+                          product
                         />
                       )
                     }                    
                   case "acf/testimonial":
-                    const testimonial = block.isDynamic
+                    const testimonial = block?.isDynamic
                       ? block.dynamicContent
                       : block.originalContent
                     return <Testimonial data={testimonial} />
                   case "acf/image-section":
-                    const imagesection = block.isDynamic
+                    const imagesection = block?.isDynamic
                       ? block.dynamicContent
                       : block.originalContent
                     return <ImageSection data={imagesection} />
                   case "acf/product-card":
-                    const productcard = block.isDynamic
+                    const productcard = block?.isDynamic
                       ? block.dynamicContent
                       : block.originalContent
                     return (
@@ -132,19 +134,19 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                     )
                     break
                   case "gravityforms/form":
-                    console.log("form found")
-                    const shortcode = block.isDynamic
+                    //console.log("form found")
+                    const shortcode = block?.isDynamic
                       ? block.dynamicContent
                       : block.originalContent
-                    console.log(shortcode)
+                    //console.log(shortcode)
                     let idStart = shortcode.indexOf('id="')
                     if (idStart > -1) {
                       idStart += 4
                       let idEnd = shortcode.indexOf('"', idStart)
-                      console.log(idEnd)
-                      console.log(idStart)
+                      //console.log(idEnd)
+                      //console.log(idStart)
                       const formId = shortcode.substring(idStart, idEnd)
-                      console.log(formId)
+                      //console.log(formId)
                       return (
                         <GravityForm
                           className={block.name.replace("/", "-")}
@@ -157,8 +159,9 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
 
                   case "core/buttons":
                     if (
-                      block.innerBlocks &&
-                      block.innerBlocks[0].originalContent
+                      block?.innerBlocks &&
+                      Array.isArray(block.innerBlocks) &&
+                      block.innerBlocks[0]?.originalContent
                     ) {
                       let innerRenderedBlocks = []
                       block.innerBlocks.forEach(innerBlock => {
@@ -166,10 +169,11 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                           <Block
                             className={innerBlock.name.replace("/", "-")}
                             block={innerBlock}
+                            product
                           />
                         )
                       })
-                      console.log("blocks: " + innerRenderedBlocks)
+                      //console.log("blocks: " + innerRenderedBlocks)
                       return (
                         <div className={block.name.replace("/", "-")}>
                           {innerRenderedBlocks}
@@ -186,8 +190,8 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                     )
 
                   case "core-embed/vimeo":
-                    console.log("vimeo")
-                    console.log(block)
+                    //console.log("vimeo")
+                    //console.log(block)
                     //return <div>foo</div>//
                     return (
                       <div className="wp-block-embed">
@@ -242,6 +246,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         <Block
                           className={block.name.replace("/", "-")}
                           block={block}
+                          product
                         />
                       )
                     } else {

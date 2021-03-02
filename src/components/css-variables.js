@@ -27,6 +27,7 @@ export const sizes = {
     s22: '1.222rem',
     s24: '1.333rem',
     s26: '1.444rem',
+    s28: '1.555rem',
     s32: '1.778rem',
     s34: '1.889rem',
     s36: '2rem',
@@ -61,6 +62,8 @@ export const baseColors = {
     evenlighterGrey: '#F8F8F8',
     errorLightYellow: '#FFFFC9',
     lightRed: '#FFCCCB',
+    lightPink: '#FCEAF0',
+    darkRed: '#810000',
 }
 export const colors = {
     startDateColor: baseColors.offBlack,
@@ -119,6 +122,10 @@ export const colors = {
     formHeaderBGGrey: baseColors.lightestGrey,
     errorBGYellow: baseColors.errorLightYellow,
     progressBarLightRed: baseColors.lightRed,
+    flaminglePink: baseColors.flamingle,
+    flamingleSocialGrey: baseColors.darkerGrey,
+    flamingleCardBG: baseColors.lightPink,
+    flamingleCardHoverDiagonals: baseColors.darkRed,
 }
 
 export const size = {
@@ -328,6 +335,21 @@ export const mixins = {
             height: ${sizes.s8};
         }
     }`,
+    headingShortUnderline: `
+        padding-bottom: ${sizes.s40};
+        margin-bottom: ${sizes.s32};
+        position: relative;
+        :after {
+            position: absolute;
+            bottom:0;
+            left: 0;
+            height: ${sizes.s8};
+            width: calc( 1.889rem * 2 );
+            background-color: #c5050c;
+            content: '';
+        }
+
+    `,
     sectionHeader: ` {
         text-align: center;
         position: relative;
@@ -375,8 +397,13 @@ export const mixins = {
                 padding: 0;
             }
         }
-        
-
+        &.groupPage {
+            h1 {
+            @media screen and ${breakpoints.laptopS} {
+                font-size: ${sizes.s58};
+                line-height: ${sizes.s70};
+            }
+        }
         &.bgimage,
         &.headingAlt {
             h2 {

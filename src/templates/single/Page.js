@@ -15,7 +15,7 @@ const Page = ({ data }) => {
     
     const topParent = ancestors.nodes[ancestors.nodes.length -1]
     if (topParent?.slug && topParent.slug === groupSlug) {
-      console.log('this is a group page or subpage')
+      //console.log('this is a group page or subpage')
       if (ancestors.nodes.length > 1) {
         //console.log('this is a group sub page')
       } else {
@@ -54,6 +54,8 @@ export const query = graphql`
       title
       excerpt
       content
+      slug
+      menuOrder
       ancestors {
         nodes {
           id
