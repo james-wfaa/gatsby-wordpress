@@ -2,12 +2,12 @@ import React, { useContext } from "react"
 import styled from 'styled-components'
 import { AppContext } from "../../context/AppContext"
 import { StyledError } from './form-helpers'
-import { mixins, colors, fonts, sizes, breakpoints } from '../../components/css-variables'
+import { colors, fonts, sizes, breakpoints } from '../../components/css-variables'
 import formErrorIcon from "./../../svg/form-error-icon-red.svg"
 
 const FormButtons = ({ next, back, save, finish, signup, disabled, error, errors, submitCount }) => {
     const { state, actions } = useContext(AppContext);
-    const { setCurrentStep, setContactInfo, } = actions;
+    const { setCurrentStep, } = actions;
 
     const handleNextBtn = () => {
       let currentOrder = state.numberOfSteps

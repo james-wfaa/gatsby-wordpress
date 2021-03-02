@@ -1,5 +1,5 @@
 import React from 'react'
-import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
+import { colors, mixins, sizes } from '../css-variables'
 import Img from 'gatsby-image'
 import TagList from "../parts/TagList"
 import styled from 'styled-components'
