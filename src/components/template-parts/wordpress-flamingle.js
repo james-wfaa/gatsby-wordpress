@@ -198,7 +198,7 @@ function BlogPost({ data }) {
             <hr></hr>
             <div>
               <p>Need Answers? Ask Flamingle HQ</p>
-              <Button link="/news/flamingle" text="Ask A Question" external />
+              <Button link="mailto:flamingle@uwalumni.com" text="Ask A Question" external />
             </div>
             <div className="newsletterContainer">
               <p>View <span className="italicize">The Flamingle</span> Newsletter</p> 
