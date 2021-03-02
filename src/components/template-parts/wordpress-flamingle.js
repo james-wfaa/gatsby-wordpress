@@ -15,7 +15,7 @@ import GridCardD from "./../../components/content-modules/GridCardD"
 
 function BlogPost({ data }) {
   const { page } = data
-  const { id, title, categories, products, author, excerpt, link, slug } = page
+  const { id, title, categories, products, author, excerpt, link, slug, askFlamingle } = page
 
   let relatedPostsToShow = []
   if(products && products.nodes){
@@ -180,7 +180,7 @@ function BlogPost({ data }) {
         <BreadCrumbs links={links} />
         <StyledFlamingleWrapper>
             <img className="flamingleMasthead" src={flamingleMasthead}></img>
-            <TitleSection heading={flamingleExcerpt} author={author.node.name} categories={categories} />
+            <TitleSection heading={flamingleExcerpt} author={askFlamingle.abeQuestioner} categories={categories} />
             <div className="flamingleCapWrapper"><img src={flamingleIcon}></img></div>
             <WordPressBasicContentBlocks {...page} />
           <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
