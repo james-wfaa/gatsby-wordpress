@@ -22,6 +22,8 @@ const ProgressBar = ({ progress, currentStep }) => {
         case 7:
             increment = 14.285
             break;
+        default:
+            break;
      }
     let progressWidth = increment * current + '%'
     let currentPageProgressWidth = increment + '%'

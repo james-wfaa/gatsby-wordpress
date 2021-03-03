@@ -9,7 +9,7 @@ import { variantObject } from '../form-helpers'
 const UpdateSuccess = () => {
     const { state, actions } = useContext(AppContext);
     const { setCurrentStep, setCommunicationsSignUpOnchange } = actions;
-    const { handleSubmit, errors, } = useForm()
+    const { handleSubmit } = useForm()
 
     const submitCommunicationsSignup = data =>{
         console.log(data)

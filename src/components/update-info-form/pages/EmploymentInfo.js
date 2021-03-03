@@ -10,7 +10,7 @@ import countryList from "react-select-country-list"
 const EmploymentInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setEmploymentInfoOnchange } = actions;
-  const [countries, setCountries] = useState(countryList().getData())
+  const [countries, ] = useState(countryList().getData())
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateEmploymentInfo = data =>{
@@ -175,7 +175,7 @@ const EmploymentInfo = () => {
                 )}
               </label>
               <label htmlFor="country" className="required bigThird">Country
-                <select name="country" onChange={e => updateOnChangeValues(e)} defaultValue={state.employmentInfo.country}>
+                <select name="country" onBlur={e => updateOnChangeValues(e)} defaultValue={state.employmentInfo.country}>
                   {countryOptions}
                 </select>
                 {errors.country && (
