@@ -55,6 +55,11 @@ export const query = graphql`
       excerpt
       content
       slug
+      menuOrder
+      hideFromMenu {
+        hideFromMenu
+        fieldGroupName
+      }
       ancestors {
         nodes {
           id
@@ -64,6 +69,10 @@ export const query = graphql`
             id
             title
             link
+            hideFromMenu {
+              hideFromMenu
+              fieldGroupName
+            }
           }
           ... Children
           template {
@@ -158,6 +167,10 @@ export const query = graphql`
                           srcSetWebp
                           originalImg
                           originalName
+                          src
+                          srcSet
+                          aspectRatio
+                          sizes
                         }
                       }
                     }
@@ -190,7 +203,10 @@ export const query = graphql`
                           srcSetWebp
                           originalImg
                           originalName
+                          src
+                          srcSet
                           aspectRatio
+                          sizes
                         }
                       }
                     }
@@ -241,7 +257,10 @@ export const query = graphql`
                         srcSetWebp
                         originalImg
                         originalName
+                        src
+                        srcSet
                         aspectRatio
+                        sizes
                       }
                     }
                   }
