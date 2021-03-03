@@ -87,7 +87,7 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         schema: {
-          requestConcurrency: 2, // currently set to undefined
+          requestConcurrency: 4, // currently set to undefined
           previewRequestConcurrency: 4, // currently set to undefined
           perPage: 50,
         },
@@ -138,11 +138,6 @@ module.exports = {
                 : // and we don't actually need more than 5000 in production for this particular site
                   5000,
           },
-          MediaItem: {
-            localFile: {
-              requestConcurrency: 25
-            }
-          }
         },
       },
     },
