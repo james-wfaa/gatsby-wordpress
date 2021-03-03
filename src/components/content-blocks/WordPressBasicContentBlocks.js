@@ -11,6 +11,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import Column from '../parts/WordPressColumns'
 import ImageSection from '../content-blocks/ImageSection'
 import AccordionNavigation from './AccordionNavigation'
+import SpecialBlock from '../content-modules/SpecialBlock'
 
 
 
@@ -69,10 +70,11 @@ function handleSuccess({values, reset, confirmations}) {
 
 const WordPressContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
 
-    //console.log(AllGravityData())
+
 
         const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
+        console.log(block.name)
         switch (block.name) {
           case "core/separator":
             return (
@@ -87,6 +89,8 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
           case "acf/image-section":
             const imagesection = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
             return (<ImageSection data={imagesection} defaultPage/>)
+          case "acf/special-block":
+            return (<SpecialBlock block={block} />)
 
           case "acf/accordion-navigation":
             return (
@@ -270,29 +274,31 @@ hr.wp-block-separator {
     text-align: left;
     h2,
     h3 {
-    font-family: ${fonts.eaves};
-    font-weight: bold;
-    font-style: italic;
-    color: ${colors.titleColor};
-}
+      font-family: ${fonts.eaves};
+      font-weight: bold;
+      font-style: italic;
+      color: ${colors.titleColor};
+    }
     h2 {
-        font-size: ${sizes.s32};
-        line-height: ${sizes.s36};
-        margin-bottom: ${sizes.s32};
-        margin-top: ${sizes.s48}; // ex: email login page
-        @media screen and ${breakpoints.tabletS} {
-            font-size: ${sizes.s36};
-            line-height: ${sizes.s42};
-            margin-top: ${sizes.s58}; // ex: email login page
-        }
+      font-size: ${sizes.s32};
+      line-height: ${sizes.s36};
+      margin-bottom: ${sizes.s32};
+      margin-top: ${sizes.s48}; // ex: email login page
+      
+      @media screen and ${breakpoints.tabletS} {
+        font-size: ${sizes.s36};
+        line-height: ${sizes.s42};
+        margin-top: ${sizes.s58}; // ex: email login page
+      }
+      
     }
     h3 {
-        font-size: ${sizes.s26};
-        margin-bottom: ${sizes.s24};
-        line-height: ${sizes.s32};
+      font-size: ${sizes.s26};
+      margin-bottom: ${sizes.s24};
+      line-height: ${sizes.s32};
     }
     a {
-        ${mixins.a}
+      ${mixins.a}
     }
 }
 

@@ -13,6 +13,7 @@ import SimpleSlider from "../content-modules/SimpleSlider"
 import AllChaptersData from "../page-sections/AllChapters"
 
 function WordPressGroupPage({  page, options }) {
+  console.log(page)
   const { chapters: chaptersText, varsityChapterText, recognizedChapterText, bascomChapterText } = options
   const { chapterLevel } = page
   const { chapterLevel: level } = chapterLevel
@@ -40,10 +41,11 @@ const { title,  excerpt, wpChildren, featuredImage, groups } = page
 
   if (wpChildren?.nodes) {
     wpChildren.nodes.sort((a,  b) => {
-      if (a.title < b.title) {
+      
+      if ( a.menuOrder < b.menuOrder && (a.menuOrder)) {
         return -1
       }
-      if (a.title > b.title) {
+      if (a.menuOrder > b.menuOrder || (!a.menuOrder)) {
         return 1
       }
       return 0
@@ -88,6 +90,11 @@ const { title,  excerpt, wpChildren, featuredImage, groups } = page
           heroImage={featuredImage.node.localFile}
           heroSize="slim"
           variant="white"
+          excerpt={excerpt}
+        />
+      )}
+      { !featuredImage && (
+        <PageSection
           excerpt={excerpt}
         />
       )}

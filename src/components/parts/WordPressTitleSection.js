@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { sizes, colors, fonts, breakpoints } from '../css-variables'
+import { mixins, sizes, colors, fonts, breakpoints } from '../css-variables'
 import FeaturedImage from "../content-blocks/FeaturedImage"
 
 const TitleSection = ({ className, heading, author, product, date, excerpt, series, event = false, smImg, size, category, largeSpace = false }) => {
@@ -183,16 +183,7 @@ const StyledTitleSection = styled(TitleSection)`
     }
 
     .headersection {
-        position: relative;
-        :after {
-            position: absolute;
-            bottom:0;
-            left: 0;
-            height: ${sizes.s8};
-            width: calc( 1.889rem * 2 );
-            background-color: #c5050c;
-            content: '';
-        }
+        ${mixins.headingShortUnderline}
     }
 
 `
