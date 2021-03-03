@@ -16,18 +16,21 @@ export const fragments = graphql`
           id
           title
           uri
+          menuOrder
           wpChildren {
             nodes {
               ... on WpPage {
                 id
                 title
                 uri
+                menuOrder
                 wpChildren {
                   nodes {
                     ... on WpPage {
                       id
                       title
                       uri
+                      menuOrder
                     }
                   }
                 }
