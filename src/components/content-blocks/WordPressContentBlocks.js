@@ -30,7 +30,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
         const stagger = block.stagger
 
-        console.log(block.name)
+        //console.log(block.name)
 
         switch(block.name) {            
             case "core/group":
