@@ -115,8 +115,6 @@ const StyledTitleSection = styled(TitleSection)`
         line-height: ${sizes.s18};
         font-weight: bold;
         color: ${colors.copyText};
-        padding-bottom: ${sizes.s40};
-        margin-bottom: ${sizes.s32};
 
         >div{
             padding: 0 ${sizes.s10} 0 ${sizes.s10};

@@ -1,78 +1,19 @@
 import React from 'react'
-import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
-import PageSection from "../page-sections/PageSection"
-import CardHandler from "../content-modules/CardHandler"
+
 import EmbedBlock from "./EmbedBlock"
 import styled from 'styled-components'
 import { breakpoints, mixins, sizes, fonts, colors } from '../css-variables'
 import Block from './WordPressBlock'
 import GravityForm from '../content-blocks/GravityForm'
-import { useStaticQuery, graphql } from 'gatsby'
 import Column from '../parts/WordPressColumns'
 import ImageSection from '../content-blocks/ImageSection'
 import AccordionNavigation from './AccordionNavigation'
-
-
-
-const AllGravityData = () => {
-    const { allGfForm } = useStaticQuery(
-        graphql`
-            query {
-                allGfForm {
-                    edges {
-                        node {
-                            formId
-                            slug
-                            apiURL
-                            descriptionPlacement
-                            formFields {
-                                id
-                                label
-                                description
-                                descriptionPlacement
-                                type
-                                choices
-                                content
-                                errorMessage
-                                inputMaskValue
-                                isRequired
-                                visibility
-                                cssClass
-                                placeholder
-                                size
-                                defaultValue
-                                maxLength
-                            }
-                            button {
-                                text
-                            }
-                            confirmations {
-                                message
-                            }
-                        }
-                    }
-                }
-            }
-        `
-    )
-    return allGfForm
-}
-
-function handleError({values, error, reset}) {
-    //handle error
-}
-
-function handleSuccess({values, reset, confirmations}) {
-    //handle success
-}
-
+import SpecialBlock from '../content-modules/SpecialBlock'
 
 const WordPressContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
 
-    //console.log(AllGravityData())
-
         const RenderedBlocks = (blocks) ? blocks.map((block) => {
-        const borderTop = (block.originalContent.indexOf(' border-top') > 0)
+        //console.log(block.name)
         switch (block.name) {
           case "core/separator":
             return (
@@ -87,6 +28,8 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
           case "acf/image-section":
             const imagesection = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
             return (<ImageSection data={imagesection} defaultPage/>)
+          case "acf/special-block":
+            return (<SpecialBlock block={block} />)
 
           case "acf/accordion-navigation":
             return (

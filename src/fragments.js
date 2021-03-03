@@ -20,6 +20,7 @@ export const fragments = graphql`
             hideFromMenu
             fieldGroupName
           }
+          menuOrder
           wpChildren {
             nodes {
               ... on WpPage {
@@ -30,6 +31,7 @@ export const fragments = graphql`
                   hideFromMenu
                   fieldGroupName
                 }
+                menuOrder
                 wpChildren {
                   nodes {
                     ... on WpPage {
@@ -40,6 +42,7 @@ export const fragments = graphql`
                         hideFromMenu
                         fieldGroupName
                       }
+                      menuOrder
                     }
                   }
                 }

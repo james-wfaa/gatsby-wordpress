@@ -15,45 +15,11 @@ function WordPressPage({ page }) {
   // Temporary Query until dynamic menus added to page query
   let wpMenu = null
   let menuRoot = null
-  /*
-  const { wpMenu } = useStaticQuery(
-    graphql`
-      query {
-        wpMenu {
-          id
-          name
-          locations
-          count
-          menuItems {
-            nodes {
-              title
-              url
-              path
-              label
-            }
-          }
-        }
-      }
-    `
-  )
-  */
- //menuName = (ancestors) ?
 
- //console.log(ancestors)
+
  if (ancestors?.nodes) {
   // child page of a product page
-  if (ancestors.nodes[0]?.template?.templateName === "Product Template") {
-    menuRoot = ancestors.nodes[0]
-   }
-   else {
-    const groupSlug = 'groups'
-    const topParent = ancestors.nodes[ancestors.nodes.length -1]
-    if (topParent?.slug && topParent.slug === groupSlug) {
-     // child or granchild of a Group/Chapter page
-      menuRoot = ancestors.nodes[ancestors.nodes.length -2]
-    }
-   }
-
+  menuRoot = ancestors.nodes[0]
  }
 
  if (menuRoot) {
@@ -78,16 +44,7 @@ function WordPressPage({ page }) {
  }
 
 
-  const PageWrapper = styled.div`
-    display: grid;
-    grid-template-columns: 1fr;
-    max-width: 1080px;
-    margin: 58px 32px 0 32px;
-    @media screen and ${breakpoints.laptopS} {
-      grid-template-columns: 350px 1fr;
-      margin: 88px auto 0;
-    }
-  `
+
 
 
   return (
@@ -119,5 +76,15 @@ function WordPressPage({ page }) {
     </Layout>
   )
 }
+const PageWrapper = styled.div`
+display: grid;
+grid-template-columns: 1fr;
+max-width: 1080px;
+margin: 58px 32px 0 32px;
+@media screen and ${breakpoints.laptopS} {
+  grid-template-columns: 350px 1fr;
+  margin: 88px auto 0;
+}
+`
 
 export default WordPressPage
