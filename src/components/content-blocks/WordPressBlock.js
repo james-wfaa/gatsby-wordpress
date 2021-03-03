@@ -106,8 +106,7 @@ margin-right: auto;
 
     ${mixins.headingShortUnderline}
     &:after {
-        padding-bottom: ${sizes.s40};
-        margin-bottom: ${sizes.s32};
+       
     }
     
 }
