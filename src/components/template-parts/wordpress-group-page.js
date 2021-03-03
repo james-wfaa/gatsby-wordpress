@@ -39,7 +39,10 @@ const featuredbutton = [
 ]
 const { title,  excerpt, wpChildren, featuredImage, groups } = page
 
+
+
   if (wpChildren?.nodes) {
+    console.log(wpChildren.nodes)
     wpChildren.nodes.sort((a,  b) => {
       
       if ( a.menuOrder < b.menuOrder && (a.menuOrder)) {
