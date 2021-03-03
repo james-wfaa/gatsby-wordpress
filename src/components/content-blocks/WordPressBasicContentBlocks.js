@@ -74,7 +74,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
 
         const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-        console.log(block.name)
+        //console.log(block.name)
         switch (block.name) {
           case "core/separator":
             return (
@@ -290,6 +290,7 @@ hr.wp-block-separator {
         line-height: ${sizes.s42};
         margin-top: ${sizes.s58}; // ex: email login page
       }
+      
     }
     h3 {
       font-size: ${sizes.s26};

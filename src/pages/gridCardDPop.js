@@ -9,7 +9,6 @@ import PromoCardD from "../components/content-blocks/PromoCardD"
 
 
 const GridPop = ({ data }) => {
-  console.log('gridCardDPop page')
 
     return (
 <Layout>

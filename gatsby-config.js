@@ -87,7 +87,7 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         schema: {
-          requestConcurrency: 4, // currently set to undefined
+          requestConcurrency: 2, // currently set to undefined
           previewRequestConcurrency: 4, // currently set to undefined
           perPage: 50,
         },
@@ -140,7 +140,7 @@ module.exports = {
           },
           MediaItem: {
             localFile: {
-              requestConcurrency: 50
+              requestConcurrency: 25
             }
           }
         },
