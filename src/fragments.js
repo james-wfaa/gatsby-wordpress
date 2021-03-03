@@ -16,18 +16,30 @@ export const fragments = graphql`
           id
           title
           uri
+          hideFromMenu {
+            hideFromMenu
+            fieldGroupName
+          }
           wpChildren {
             nodes {
               ... on WpPage {
                 id
                 title
                 uri
+                hideFromMenu {
+                  hideFromMenu
+                  fieldGroupName
+                }
                 wpChildren {
                   nodes {
                     ... on WpPage {
                       id
                       title
                       uri
+                      hideFromMenu {
+                        hideFromMenu
+                        fieldGroupName
+                      }
                     }
                   }
                 }
@@ -63,6 +75,9 @@ export const fragments = graphql`
                   originalImg
                   originalName
                   aspectRatio
+                  src
+                  srcSet
+                  sizes
                 }
               }
             }
@@ -88,6 +103,10 @@ export const fragments = graphql`
                   srcSetWebp
                   originalImg
                   originalName
+                  src
+                  srcSet
+                  aspectRatio
+                  sizes
                 }
               }
             }

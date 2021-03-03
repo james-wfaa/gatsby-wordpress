@@ -302,6 +302,9 @@ export const pageQuery = graphql`
                     originalImg
                     originalName
                     aspectRatio
+                    src
+                    srcSet
+                    sizes
                   }
                 }
               }
