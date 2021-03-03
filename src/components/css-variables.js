@@ -336,8 +336,7 @@ export const mixins = {
         }
     }`,
     headingShortUnderline: `
-        padding-bottom: ${sizes.s40};
-        margin-bottom: ${sizes.s32};
+        
         position: relative;
         :after {
             position: absolute;
