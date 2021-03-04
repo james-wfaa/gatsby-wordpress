@@ -1,6 +1,8 @@
 import React from 'react'
 import LibraryResourceForm from './LibraryResourceForm'
 import MembershipForm from './MembershipForm'
+import SponsorAd from "../content-blocks/SponsorAd"
+
 import parse from 'html-react-parser';
 
 
@@ -17,7 +19,7 @@ const SpecialBlock = ({block}) => {
                     case 'membership-join':
                         return (<MembershipForm />)
                     case 'sponsors':
-
+                        return (<SponsorAd />)
                     default:
                         return (<>unknown block</>)
                 }
