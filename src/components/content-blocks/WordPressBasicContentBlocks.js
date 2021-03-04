@@ -43,7 +43,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
               <Column className={block.name.replace("/", "-")} block={block} />
             )
           case "core/buttons":
-            if (block.innerBlocks && block.innerBlocks[0].originalContent) {
+            if (block.innerBlocks && block.innerBlocks[0]?.originalContent) {
               let innerRenderedBlocks = []
               block.innerBlocks.forEach(innerBlock => {
                 innerRenderedBlocks.push(
