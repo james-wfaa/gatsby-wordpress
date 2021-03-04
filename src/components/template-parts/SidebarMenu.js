@@ -150,7 +150,6 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
   const ConditionalWrap = ({condition, wrap, children}) => condition ? wrap(children) : children;
 
   const items = menuItems.map(item => {
-    console.log(item.hideFromMenu.hideFromMenu)
     //If hideFromMenu is true, then don't create menu listing
     if(item.hideFromMenu && item.hideFromMenu.hideFromMenu){
       return

@@ -14,7 +14,7 @@ const EmploymentInfo = () => {
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateEmploymentInfo = data =>{
-    console.log(data)
+    //console.log(data)
 
     let currentOrder = state.numberOfSteps
     let currentStep = state.currentStep
