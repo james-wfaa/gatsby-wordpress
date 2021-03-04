@@ -15,12 +15,12 @@ import GridCardD from "./../../components/content-modules/GridCardD"
 
 function BlogPost({ data }) {
   const { page } = data
-  const { id, title, categories, products, author, excerpt, link, slug, askFlamingle } = page
+  const { id, title, categories, products, excerpt, link, askFlamingle } = page
 
   let relatedPostsToShow = []
   if(products && products.nodes){
-    products.nodes.map((product) => {
-      product.posts.nodes.map((post) => {
+    products.nodes.forEach((product) => {
+      product.posts.nodes.forEach((post) => {
         if(post.askFlamingle?.abeQuestioner !== null){
           relatedPostsToShow.push(post)
         } 

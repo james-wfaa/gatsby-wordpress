@@ -64,7 +64,7 @@ const StyledTitleSection = styled(TitleSection)`
     }
 
     &.largeSpace{
-        .titlesection{
+        .headersection{
             margin-bottom: 58px;
         }
         

@@ -14,7 +14,7 @@ const IndexPage = () => (
           <Link to="update-info">Update My Info (NEW)</Link>
         </li>
         <li>
-          <Link to="membership-join">Membership Join (NEW)</Link>
+          <Link to="membership">Membership Join (NEW)</Link>
         </li>
          
       <li>
