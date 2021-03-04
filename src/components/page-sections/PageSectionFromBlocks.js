@@ -10,8 +10,7 @@ import Block from '../content-blocks/WordPressBlock'
 import Column from '../parts/WordPressColumns'
 import EmbedBlock from "../content-blocks/EmbedBlock"
 import AccordionNavigation from '../content-blocks/AccordionNavigation'
-import SpecialBlock from '../content-modules/SpecialBlock'
-import parse from 'html-react-parser'; // because we need the ID of the special bloci
+
 
 
 
@@ -23,6 +22,8 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
     // get the title
     let title = null
     let id = null
+    let hasBorderTop = borderTop
+    let specialBlock = false
     blocks.map((block) => {
         switch(block.name) {
             case "acf/section-header":
@@ -135,18 +136,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         block={block}
                       />
                     )
-                  case "acf/special-block":
-                    const parsed = parse(block.dynamicContent)
-                    let target = null
-                    if (Array.isArray(parsed)) {
-                        target = parsed.map( element => {
-                            if (element?.props?.id) {
-                                console.log(element.props.id)
-                                id = element.props.id // get this from the block
-                            }
-                        })
-                    }
-                    return (<SpecialBlock block={block} />)
+                  
                   case "gravityforms/form":
                     //console.log("form found")
                     const shortcode = block?.isDynamic
@@ -263,7 +253,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
             })
 
     return (
-        <PageSection id={id} heading={title} topBorder={borderTop} fromBlocks stagger={stagger} centered={centered} excerpt={excerpt} >
+        <PageSection id={id} heading={title} topBorder={hasBorderTop} fromBlocks stagger={stagger} centered={centered} excerpt={excerpt} >
             { innerContent }
         </PageSection>
     )

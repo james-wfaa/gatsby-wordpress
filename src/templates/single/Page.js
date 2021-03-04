@@ -143,7 +143,7 @@ export const query = graphql`
           }
           buttonExternalLinkUrl
           buttonText
-          goToEvents
+          namedAnchor
         }
       }
       storyCategories {

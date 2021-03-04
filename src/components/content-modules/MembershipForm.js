@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect, useRef } from "react"
-import { Link } from "gatsby"
 import { AppContext } from "../../context/AppContext"
 import styled from "styled-components"
 import { colors, mixins, fonts, breakpoints } from "../css-variables"
@@ -7,15 +6,17 @@ import PageSection from "../page-sections/PageSection"
 import { membershipFeeCalc } from "../../utils/tools"
 
 const FormWrapper = styled.div`
+ 
+  
+`
+
+const QuestionForm = styled.form`
+  border: 1px solid ${colors.iconGrey};
   margin: 0 auto;
   width: 90%;
   @media screen and ${breakpoints.tabletL} {
     max-width: 896px;
   }
-`
-
-const QuestionForm = styled.form`
-  border: 1px solid ${colors.iconGrey};
 `
 
 const FormHeader = styled.div`
@@ -24,6 +25,8 @@ const FormHeader = styled.div`
   border-top: 3px solid ${colors.iconGrey};
   border-collapse: collapse;
   position:relative;
+  
+  
   p {
     margin: 0;
     font-size: 18px;
@@ -47,30 +50,53 @@ const FormHeader = styled.div`
 `
 
 const FormSection = styled.div`
-  padding: 48px;
+  padding: 24px;
   border-bottom: 9px solid ${colors.cardTitleBg};
+  @media screen and ${breakpoints.tabletL} {
+    padding: 48px;
+  }
   h3 {
-    font-size: 54px;
+    font-size: 42px;
     color: ${colors.badgerRed};
     font-family: ${fonts.eaves};
     font-style: italic;
+    margin-bottom: 16px;
+    @media screen and ${breakpoints.tabletL} {
+      font-size: 54px;
+      margin-bottom: 1.45rem;
+    }
   }
 `
 const FormQuestion = styled.p`
-  font-size: 32px;
+  font-size: 26px;
   font-family: ${fonts.eavesNarrow};
-  margin-bottom: 48px;
+  margin-bottom: 32px;
   font-style: italic;
   font-weight:bold;
+  line-height: 40px;
+  @media screen and ${breakpoints.tabletL} {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `
 const StyledCheckbox = styled.div`
   display: inline-block;
   margin: 12px;
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
   input,
   label {
     display: inline-block;
-    margin: 12px;
-    font-size: 26px;
+    margin: 8px;
+    font-size: 18px;
+    @media screen and ${breakpoints.tabletL} {
+      margin: 12px;
+      font-size: 26px;
+    }
   }
   input[type='radio'] {
     position: absolute !important;
@@ -83,8 +109,11 @@ const StyledCheckbox = styled.div`
   input[type='radio'] + label{
     display: block;
     position: relative;
-    padding: 0 1.5rem;
+    padding: 0 0.5rem;
     cursor:pointer;
+    @media screen and ${breakpoints.tabletL} {
+      padding: 0 1.5rem;
+    }
   }
   input[type='radio'] + label::before {
     content: '';
@@ -130,8 +159,12 @@ const StyledCheckbox = styled.div`
   }
 `
 const ClearFilterSection = styled.div`
-  margin-bottom: 58px;
   display: flex;
+  margin: 0 auto 58px;;
+  width: 90%;
+  @media screen and ${breakpoints.tabletL} {
+    max-width: 896px;
+  }
 `
 const FormSubmitButton = styled.button`
   background-color: ${colors.badgerRed};
@@ -224,7 +257,13 @@ const FeeBox = styled.div`
     padding: 58px 58px 0 58px;
   }
   border-top: 4px solid ${colors.iconGrey};
-  margin-bottom: 58px;
+  margin: 0 auto 58px;;
+  width: 90%;
+  @media screen and ${breakpoints.tabletL} {
+    max-width: 896px;
+  }
+  
+  
 `
 const CardWrapper = styled.div`
   width: 100% !important;
@@ -389,18 +428,9 @@ const MembershipForm = () => {
   return (
     <FormWrapper ref={scrollRef}>
       {showValues && fees ? (
-        <PageSection heading="Let's Find the Best Membership for You">
-          <p
-            style={{
-              fontSize: `26px`,
-              maxWidth: `896px`,
-              margin: `0 auto 58px`,
-            }}
-          >
-            Great, thanks for helping to determine the WAA membership that’s
-            right for you. Please check out the membership options below that
-            meet your current selections:
-          </p>
+        <PageSection id="membership-join" topBorder heading="Let's Find the Best Membership for You" excerpt=" Great, thanks for helping to determine the WAA membership that’s
+        right for you. Please check out the membership options below that
+        meet your current selections:">
           <ClearFilterSection>
             <ClearButton onClick={() => handleClear()}>
               <p>{clearText}</p>
@@ -529,18 +559,10 @@ const MembershipForm = () => {
           </FeeBox>
         </PageSection>
       ) : (
-        <PageSection heading="Let's Find the Best Membership for You">
-          <p
-            style={{
-              fontSize: `26px`,
-              maxWidth: `896px`,
-              margin: `0 auto 58px`,
-            }}
-          >
-            Joining for the first time? Or are you a long-time member who wants
-            to make sure you're getting the best deal? Either way, answer the
-            following questions to see what's right for you.
-          </p>
+        <PageSection id="membership-join" topBorder heading="Let's Find the Best Membership for You" excerpt="Joining for the first time? Or are you a long-time member who wants
+        to make sure you're getting the best deal? Either way, answer the
+        following questions to see what's right for you.">
+          
           <QuestionForm>
             <FormHeader>
               <p>IT'S AS EASY AS ONE, TWO, THREE</p>

@@ -55,11 +55,18 @@ function BlogPost({ data }) {
     image = featuredImage.node
   }
   //console.log(page)
-  let links = [
+  let links = (product?.pages?.nodes[0]?.uri) 
+    ? [
     { url: "/", name: "Home" },
     { url: "/news", name: "News & Stories" },
+    { url: product.pages.nodes[0].uri, name: product.name },
     { url: link, name: title },
-  ]
+    ]
+    : [
+      { url: "/", name: "Home" },
+      { url: "/news", name: "News & Stories" },
+      { url: link, name: title },
+    ]
   return (
     <Layout title={title}>
         <BreadCrumbs links={links} />
