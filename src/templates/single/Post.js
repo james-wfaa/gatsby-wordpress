@@ -105,6 +105,10 @@ export const query = graphql`
                         srcSetWebp
                         originalImg
                         originalName
+                        src
+                        srcSet
+                        aspectRatio
+                        sizes
                       }
                     }
                   }
@@ -149,6 +153,9 @@ export const query = graphql`
                     }
                   }
                 }
+              }
+              askFlamingle {
+                abeQuestioner
               }
             }
           }

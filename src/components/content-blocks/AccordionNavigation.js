@@ -71,16 +71,14 @@ margin-top: 56px;
         .menuTitle h3{
             margin-bottom: 0px;
             font-family: ${fonts.eaves};
+            color: ${colors.navMenuBlack};
             font-weight: bold;
             font-style: italic;
-            font-size: ${sizes.s24};
-            line-height: ${sizes.s26};
+            font-size: ${sizes.s26};
+            line-height: ${sizes.s32};
             text-transform: none;
-            @media screen and ${breakpoints.laptopS} {
-                font-size: ${sizes.s36};
-                line-height: ${sizes.s42};
-                
-            }
+            text-align: left;
+           
         }
     }
 

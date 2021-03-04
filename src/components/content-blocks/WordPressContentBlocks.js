@@ -5,7 +5,7 @@ import CardHandler from "../content-modules/CardHandler"
 import EmbedBlock from "./EmbedBlock"
 import GravityForm from './GravityForm'
 import AccordionNavigation from './AccordionNavigation'
-
+import SpecialBlock from '../content-modules/SpecialBlock'
 
 import styled from 'styled-components'
 import { colors, breakpoints, mixins } from '../css-variables'
@@ -30,7 +30,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
         const stagger = block.stagger
 
-        console.log(block.name)
+        //console.log(block.name)
 
         switch(block.name) {            
             case "core/group":
@@ -104,7 +104,8 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
                 }
                 
                 break
-        
+            case "acf/special-block":
+                RenderedBlocks.push(<SpecialBlock block={block} />)
             case "acf/events-listing-section":
                 //console.log('events-listing-section')
                 if ( product) {

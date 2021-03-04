@@ -3,12 +3,7 @@ import styled from "styled-components"
 import { useSpring, animated } from "react-spring"
 import { colors, sizes } from "../css-variables"
 
-const Accordian = ({opentext, closetext, children, useAsMenu, useAsNav}) => {
-  const [open, setOpen] = useState(false)
-
-  const searchstyles = useSpring({ opacity: open ? 1 : 0, paddingBottom: `56px` })
-
-  const StyledWrapper = styled.div`
+const StyledWrapper = styled.div`
   background-color: ${colors.navcardGrey};
   position: relative;
   z-index: 5;
@@ -118,6 +113,14 @@ const StyledInputWrapper = styled.div`
   
 
 `
+
+const Accordian = ({opentext, closetext, children, useAsMenu, useAsNav}) => {
+  const [open, setOpen] = useState(false)
+
+  const searchstyles = useSpring({ opacity: open ? 1 : 0, paddingBottom: `56px` })
+
+  
+
 const isOpenClass = open ? 'open' : ''
   const clickHandler = () => {
     setOpen(!open)

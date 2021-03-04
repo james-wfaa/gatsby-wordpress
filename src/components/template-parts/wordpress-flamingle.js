@@ -15,27 +15,30 @@ import GridCardD from "./../../components/content-modules/GridCardD"
 
 function BlogPost({ data }) {
   const { page } = data
-  const { id, title, categories, products, author, excerpt, link, slug } = page
+  const { id, title, categories, products, excerpt, link, askFlamingle } = page
 
   let relatedPostsToShow = []
   if(products && products.nodes){
-    products.nodes.map((product) => {
-      product.posts.nodes.map((post) => {
-        relatedPostsToShow.push(post) 
+    products.nodes.forEach((product) => {
+      product.posts.nodes.forEach((post) => {
+        if(post.askFlamingle?.abeQuestioner !== null){
+          relatedPostsToShow.push(post)
+        } 
       })
     })
   }
 
   let uniqueRelatedPosts = []
   relatedPostsToShow.forEach((post) => {
-    if(!uniqueRelatedPosts.find(element => element.id === post.id) && post.id != id){
-      uniqueRelatedPosts.push(post)
+    if(!uniqueRelatedPosts.find(element => element.id === post.id) && post.id !== id){
+      return uniqueRelatedPosts.push(post)
     }
   })
 
   const buttons = (uniqueRelatedPosts.length > 2) 
       ? [{
-          link: `/posts/search/?category=${slug}`,
+          //link: `/posts/search/?category=${slug}`,
+          link:'/news/flamingle',
           text: 'See All Questions'
       }]
       : null;
@@ -43,7 +46,7 @@ function BlogPost({ data }) {
   let links = [
     { url: "/", name: "Home" },
     { url: "/news", name: "News & Stories" },
-    { url: "/news", name: "Ask Flamingle HQ" },
+    { url: "/news/flamingle", name: "Ask Flamingle HQ" },
     { url: link, name: title },
   ]
 
@@ -170,7 +173,14 @@ function BlogPost({ data }) {
       }
       .content + div{
         a{
-          background-color:${colors.flaminglePink};
+          background-color: ${colors.bgWhite};
+          color:${colors.flaminglePink};
+          border: 1px solid ${colors.flaminglePink};
+        }
+        a:hover{
+          background-color: ${colors.flaminglePink};
+          color: ${colors.titleWhite};
+          border: 1px solid ${colors.flaminglePink};
         }
       }
     } 
@@ -180,7 +190,7 @@ function BlogPost({ data }) {
         <BreadCrumbs links={links} />
         <StyledFlamingleWrapper>
             <img className="flamingleMasthead" src={flamingleMasthead}></img>
-            <TitleSection heading={flamingleExcerpt} author={author.node.name} categories={categories} />
+            <TitleSection heading={flamingleExcerpt} author={askFlamingle.abeQuestioner} categories={categories} />
             <div className="flamingleCapWrapper"><img src={flamingleIcon}></img></div>
             <WordPressBasicContentBlocks {...page} />
           <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
@@ -188,11 +198,11 @@ function BlogPost({ data }) {
             <hr></hr>
             <div>
               <p>Need Answers? Ask Flamingle HQ</p>
-              <Button link="/" text="Ask A Question" external />
+              <Button link="mailto:flamingle@uwalumni.com" text="Ask A Question" external />
             </div>
             <div className="newsletterContainer">
               <p>View <span className="italicize">The Flamingle</span> Newsletter</p> 
-              <Button link="/" text="See All Posts" external />
+              <Button link="/news/flamingle" text="See All Posts" external />
             </div> 
           </div>
           <PageSection id="flamingle-post-listing" heading="More From Ask Flamingle HQ" topBorder buttons={buttons}>

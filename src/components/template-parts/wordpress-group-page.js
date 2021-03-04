@@ -13,7 +13,6 @@ import SimpleSlider from "../content-modules/SimpleSlider"
 import AllChaptersData from "../page-sections/AllChapters"
 
 function WordPressGroupPage({  page, options }) {
-  console.log(page)
   const { chapters: chaptersText, varsityChapterText, recognizedChapterText, bascomChapterText } = options
   const { chapterLevel } = page
   const { chapterLevel: level } = chapterLevel
@@ -38,6 +37,8 @@ const featuredbutton = [
   },
 ]
 const { title,  excerpt, wpChildren, featuredImage, groups } = page
+
+
 
   if (wpChildren?.nodes) {
     wpChildren.nodes.sort((a,  b) => {

@@ -24,6 +24,14 @@ const PageSectionButtons = ({ className, buttons, buttonsAlt, bgimage, compact }
 const StyledPageSectionButtons = styled(PageSectionButtons)`
     position: relative;
     margin: ${sizes.s32} ${sizes.s36} 0;
+    
+    > * {
+        display: flex;
+        justify-content: center;
+        > * {
+            margin-right: ${sizes.s16};
+        }
+    }
 
     @media screen and ${breakpoints.laptopS} {
         margin-top: ${sizes.s58};

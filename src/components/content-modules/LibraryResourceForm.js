@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
-import { colors, mixins, fonts, sizes, breakpoints } from "../css-variables"
+import { colors,  sizes } from "../css-variables"
 
 const FormWrapper = styled.div`
   margin: 0 auto;

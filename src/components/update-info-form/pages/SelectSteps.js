@@ -30,6 +30,8 @@ const SelectSteps = () => {
                 updateNumberOfSteps(!state.lifeEventStep, 7)
                 setLifeEventStep(!state.lifeEventStep)
                 break;
+            default:
+                break;
         }
     }
 

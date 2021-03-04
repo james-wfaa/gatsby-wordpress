@@ -100,7 +100,7 @@ const PhoneInfo = () => {
                   id="phoneType1" 
                   name="phoneType1" 
                   defaultValue={state.phoneInfo.phoneType1}
-                  onChange={e => updateOnChangeValues(e)}
+                  onBlur={e => updateOnChangeValues(e)}
                   ref={register({})}
                   >
                   <option value="home">Home</option>
@@ -134,7 +134,7 @@ const PhoneInfo = () => {
               <label htmlFor="phoneType2" className="half leftMargin">Phone Type 2
                 <select 
                   defaultValue={state.phoneInfo.phoneType2} 
-                  onChange={e => updateOnChangeValues(e)}
+                  onBlur={e => updateOnChangeValues(e)}
                   name="phoneType2"
                   ref={register({})}>
                   <option value="home">Home</option>
@@ -171,7 +171,7 @@ const PhoneInfo = () => {
               <label htmlFor="phoneType3" className="half leftMargin">Phone Type 3
                 <select 
                   defaultValue={state.phoneInfo.phoneType3} 
-                  onChange={e => updateOnChangeValues(e)}
+                  onBlur={e => updateOnChangeValues(e)}
                   name="phoneType3"
                   ref={register({})}>
                   <option value="home">Home</option>
