@@ -53,7 +53,8 @@ const GravityFormForm = ({
         if (!formLoading) {
             // Clean error
             setGeneralError('')
-
+            
+    console.log(values)
             // Check that at least one field has been filled in
             if (submissionHasOneFieldEntry(values)) {
                 setLoadingState(true)
@@ -64,7 +65,7 @@ const GravityFormForm = ({
                     id,
                     lambdaEndpoint: lambda,
                 })
-
+                console.log(data)
                 setLoadingState(false)
 
                 if (status === 'error') {
