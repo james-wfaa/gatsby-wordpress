@@ -30,6 +30,8 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
         const stagger = block.stagger
 
+        console.log(block.name)
+
         //console.log(block.name)
 
         switch(block.name) {            
@@ -106,6 +108,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
                 break
             case "acf/special-block":
                 RenderedBlocks.push(<SpecialBlock block={block} />)
+                break
             case "acf/events-listing-section":
                 //console.log('events-listing-section')
                 if ( product) {

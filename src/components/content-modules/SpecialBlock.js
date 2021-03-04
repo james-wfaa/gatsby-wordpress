@@ -16,9 +16,10 @@ const SpecialBlock = ({block}) => {
                         return (<LibraryResourceForm />)
                     case 'membership-join':
                         return (<MembershipForm />)
+                    case 'sponsors':
+
                     default:
-                        return (<>bad block</>)
-                        break
+                        return (<>unknown block</>)
                 }
             }
         })
