@@ -10,6 +10,8 @@ import Block from '../content-blocks/WordPressBlock'
 import Column from '../parts/WordPressColumns'
 import EmbedBlock from "../content-blocks/EmbedBlock"
 import AccordionNavigation from '../content-blocks/AccordionNavigation'
+import SpecialBlock from '../content-modules/SpecialBlock'
+
 
 
 
@@ -130,7 +132,8 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         block={block}
                       />
                     )
-                    break
+                  case "acf/special-block":
+                    return (<SpecialBlock block={block} />)
                   case "gravityforms/form":
                     //console.log("form found")
                     const shortcode = block?.isDynamic
