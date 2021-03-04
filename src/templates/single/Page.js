@@ -120,6 +120,9 @@ export const query = graphql`
       }
       featuredImage {
         node {
+          mediaDetails {
+            width
+          }
           localFile {
             ...HeroImage
           }

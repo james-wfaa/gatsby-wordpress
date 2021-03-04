@@ -21,13 +21,17 @@ const HeroIntroSection = ({
   excerpt,
   buttons,
   carouselItems,
-  productPage
+  productPage,
+  imageWidth
 }) => {
   const { width } = useWindowSize();
   let size
   if (heroSize === 'jumbo') {
     size = width > 655 ? "calc(100vh - 118px)" : "calc(100vh - 86px)"
   }
+
+  let imageWidthClass = imageWidth ? 'constrainWidth' : null
+  let imageHeightClass = imageWidth ? ' constrainHeight' : null
 
   const background = typeof heroImage !== "undefined" && heroImage !== null
 
@@ -93,7 +97,7 @@ const HeroIntroSection = ({
       {videoURL ? (
         <VimeoVideo videoURL={videoURL} heroSize={heroSize} heroHeading={heroHeading}/>
       ) : background ? (
-        <div style={{height: `${size}`}}>
+        <div style={{height: `${size}`}} className={`${imageWidthClass} ${imageHeightClass}`}>
         <BackgroundImage
           Tag="div"
           className={heroClasses}
@@ -126,7 +130,7 @@ const HeroIntroSection = ({
       : null}
       {productPage ? <div className="standardProductLabel"></div> :
          (heroSize === 'slim') ? 
-         <div style={{ position: `relative` }}>
+         <div style={{ position: `relative` }}  className={imageWidthClass}>
             <a
           className={downscrollClass}
           href={`#${className}__downscroll`}
@@ -353,6 +357,36 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
     div.standardProductLabel:before{
       top: -81px;
       height:81px;
+    }
+  }
+  .constrainWidth{
+    max-width: 718px;
+    margin: 0 auto;
+    div{
+      @media screen and ${breakpoints.laptopS} {
+        background-position: center bottom !important;
+        background-size: contain !important;
+      }
+      &:before{
+        @media screen and ${breakpoints.laptopS} {
+          background-position: center bottom !important;
+          background-size: contain !important;
+        }
+      }
+      &:after{
+        @media screen and ${breakpoints.laptopS} {
+          background-position: center bottom !important;
+          background-size: contain !important;
+        }
+      }
+    }
+  }
+  .constrainHeight{
+    div{
+        @media screen and ${breakpoints.laptopS} {
+          min-height: 300px;
+        }
+      }
     }
   }
 `
