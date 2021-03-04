@@ -3,62 +3,42 @@ import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
 import ContentCard from "../../components/content-blocks/ContentCard"
 import ContentBlockList from "../../components/content-modules/ContentBlockList"
-import AccordianSearch from "../../components/parts/AccordianSearch"
-import PaginationNav from "../../components/parts/PaginationNav"
-import SponsorAd from "../../components/content-blocks/SponsorAd"
 import SearchResults from "../../components/parts/AlgoliaSearch/SearchPageAlgolia"
 
-class EventsList extends React.Component {
+const EventsList = (props) => {
+  const [events, setEvents] = useState([])
+  //console.log(events)
+  let contentCards = events.map(card => {
+    return (
+    <ContentCard
+      key={`${card.url}`}
+      startDate={card.startDate}
+      endDate={card.endDate ? card.endDate : null}
+      title={card.title}
+      category={card.category}
+      venue={card.venue}
+      location={card.location}
+      img={card.featuredImage ? card.featuredImage.node.localFile: null}
+      featureImg={card.featuredImage ? card.featuredImage.node.localFile : null}
+      alt={card.alt}
+      url={card.url}
+      size={!card.featuredEvent ? "Wide" : "XXL"}
+    />)
+  })
 
-  render() {
-    console.log('PageEventsSearch - props - ',this.props)
 
-    const baseUri = '/events/search/'
-    const { events } = this.props.data
-
-    const { page, totalPages } = this.props.pageContext
-    const isFirst = page === 1
-    const isLast = page === totalPages
-    const prevPage = page - 1 === 1 ? baseUri : (page - 1).toString()
-    const nextPage = (page + 1).toString()
-    console.log('prev:', prevPage)
-    console.log('next:', nextPage)
-
-    const { edges: eventEdges } = events
-    let allEvents = eventEdges.map((event) => {
-      console.log('event.node:',event.node)
-      const { featuredEvent, featuredImage: img } = event.node
-      const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-      console.log( 'featuredEvent:',featuredEvent )
-      if (!featuredEvent) {
-        return (
-          <ContentCard size="Wide" img={cardImg} {...event.node} />
-        )
-      } else {
-        return (
-          <ContentCard size="XXL" img={cardImg} {...event.node} />
-        )
-      }
-    })
-    allEvents = allEvents.filter(function( element ) {
-      return element !== undefined;
-   })
-
-    return(
-
-    <Layout noborder>
-        <AccordianSearch />
-        <PageSection>
-          <ContentBlockList>{allEvents}</ContentBlockList>
-          <PaginationNav basepath={baseUri} page={page} totalPages={totalPages} isFirst={isFirst} isLast={isLast} />
-        </PageSection>
-        <PageSection>
-          <SponsorAd/>
-        </PageSection>
-
-    </Layout>
-    )
-  }
+  return(
+  <Layout title="Filtered Events" noborder>
+    <SearchResults
+      indices={[{name: "All"}]}
+      results={false}
+      callback={(arr) => setEvents(arr)}
+    />
+    <PageSection>
+      <ContentBlockList>{contentCards}</ContentBlockList>
+    </PageSection>
+  </Layout>
+  )
 }
 
 export default EventsList
