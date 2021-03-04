@@ -1,19 +1,45 @@
 import React from "react"
 import { graphql } from "gatsby"
 import BlogPost from "../../components/template-parts/wordpress-post"
+import FlaminglePost from "../../components/template-parts/wordpress-flamingle"
 
-export default ({ data }) => {
-console.log('Post.js data:',data)
+const Post = ({ data }) => {
+//console.log('Post.js data:',data)
 
-return (<BlogPost data={data} />)
+const isFlamingle = data.page.askFlamingle?.abeQuestioner !== null ? true : false
+
+return isFlamingle ? <FlaminglePost data={data} /> : <BlogPost data={data} />;
 }
 
+export default Post
+
 export const query = graphql`
-  query post($id: String!, $nextPage: String, $previousPage: String) {
+  query post($id: String!) {
     page: wpPost(id: { eq: $id }) {
+      id
       title
       content
-      date(formatString: "MMMM Do")
+      blocks {
+        name
+        isDynamic
+        originalContent
+        dynamicContent
+        innerBlocks {
+          name
+          isDynamic
+          originalContent
+          dynamicContent
+          innerBlocks {
+            name
+            isDynamic
+            originalContent
+            dynamicContent
+          }
+        }
+      }
+      uri
+      link
+      date(formatString: "MMM. DD, YYYY")
       excerpt
       author {
         node {
@@ -27,6 +53,11 @@ export const query = graphql`
       featuredImage {
         node {
           caption
+          description
+          mediaDetails {
+            height
+            width
+          }
           author{
             node{
               name
@@ -37,22 +68,102 @@ export const query = graphql`
           }
         }
       }
+      heroImage {
+        heroImage {
+          caption
+          mediaDetails {
+            height
+            width
+          }
+          author{
+            node{
+              name
+            }
+          }
+          localFile{
+            ...HeroImage
+          }
+        }
+      }
       categories {
         nodes {
           name
           slug
+          posts{
+            nodes {
+              title
+              url: uri
+              excerpt
+              featuredImage {
+                node {
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth: 712) {
+                        base64
+                        tracedSVG
+                        srcWebp
+                        srcSetWebp
+                        originalImg
+                        originalName
+                        src
+                        srcSet
+                        aspectRatio
+                        sizes
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
-    }
-
-    nextPage: wpPost(id: { eq: $nextPage }) {
-      title
-      uri
-    }
-
-    previousPage: wpPost(id: { eq: $previousPage }) {
-      title
-      uri
+      products {
+        nodes {
+          name
+          slug
+          pages {
+            nodes {
+              title
+              uri
+            }
+          }
+          posts{
+            nodes {
+              id
+              title
+              url: uri
+              excerpt
+              featuredImage {
+                node {
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth: 712) {
+                        base64
+                        tracedSVG
+                        srcWebp
+                        srcSetWebp
+                        originalImg
+                        originalName
+                        src
+                        srcSet
+                        aspectRatio
+                        sizes
+                      }
+                    }
+                  }
+                }
+              }
+              askFlamingle {
+                abeQuestioner
+              }
+            }
+          }
+        }
+      }
+      askFlamingle {
+        abeQuestioner
+      }
     }
   }
 `

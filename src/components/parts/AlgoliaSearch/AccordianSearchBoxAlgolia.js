@@ -48,9 +48,13 @@ const StyledInput = styled.input`
 
 export default connectSearchBox(
   ({ refine, currentRefinement, onFocus}) => {
+    const submitHandler = (e) => {
+      e.preventDefault();
+    }
+
     return (
       <StyledDiv>
-        <form>
+        <form onSubmit={e => submitHandler(e)}>
         <StyledInput
           type="text"
           placeholder="Search..."

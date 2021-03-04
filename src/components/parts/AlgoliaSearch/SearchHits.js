@@ -21,19 +21,22 @@ const SearchHits = ({ hits, hitHandler }) => {
       case "Event":
         return (
           <EventCard
+          key={hit.url}
           hit={hit}
           type={hit.type}
           url={hit.url}
           title={hit.title}
           excerpt={hit.excerpt}
           date={hit.date}
-          location={hit.venue.address}
+          city={hit.venue.city}
+          state={hit.venue.state}
           topResult={topResult}
         />
         )
       case "Post":
         return (
           <PostCard
+          key={hit.url}
           hit={hit}
           url={hit.url}
           title={hit.title}

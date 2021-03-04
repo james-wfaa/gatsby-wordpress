@@ -2,22 +2,24 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
-import ContentCard from "../../components/content-blocks/ContentCard"
-import ContentCardD from "../../components/content-blocks/ContentCardD"
+import EventContentCard from "../../components/content-blocks/EventContentCard"
+import EventCardD from "../../components/content-blocks/EventCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
 import SimpleSlider from "../../components/content-modules/SimpleSlider"
 import LeftArrow from "../../components/parts/SliderArrowLeft"
 import RightArrow from "../../components/parts/SliderArrowRight"
 import CardSet from "../../components/content-modules/CardSet"
 import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
-import AccordianSearch from "../../components/parts/AccordianSearch"
+import Accordian from "../../components/parts/Accordian"
+import AccordianSearchBox from "../../components/parts/AccordianSearchBox"
 
 function WordPressPage({ data }) {
+
   const { page, events } = data
   const { edges: eventEdges } = events
   const { title, featuredImage, eventCategories, excerpt, gridDetails  } = page
   const { categories } = eventCategories
-  console.log(eventCategories)
+  //console.log(eventCategories)
 
   const { backgroundImage } = gridDetails
 
@@ -29,54 +31,61 @@ function WordPressPage({ data }) {
     },
   ]
 
-  const cats = categories.map((item) => {
+  const cats = (categories) 
+  ? categories.map((item) => {
     const { categoryEvent, numberToShow } = item
-    console.log(item)
-    return (
-      <PageSection heading={categoryEvent.name} stagger>
-        <CardSet items={categoryEvent.events.nodes} num={numberToShow} />
-      </PageSection>
-    )
+    //console.log(item)
+    return (categoryEvent && categoryEvent.events.nodes.length > 0) 
+      ?
+      (
+        <PageSection key={item.url} heading={categoryEvent.name} stagger>
+          <CardSet items={categoryEvent.events.nodes} num={numberToShow} type="event"/>
+        </PageSection>
+      )
+      : null
   }
   )
+  : null
 
 
   const settings = {
     nextArrow: <RightArrow />,
     prevArrow: <LeftArrow />,
   }
-  console.log('events page events:',events)
+  //('events page events:',events)
   let featuredEvents = eventEdges.map((event) => {
-    console.log('featuredEvents event.node:',event.node)
+    //console.log('featuredEvents event.node:',event.node)
     const { featuredEvent, featuredImage: img } = event.node
     const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-    console.log( 'featuredEvent:',featuredEvent )
+    //console.log( 'featuredEvent:',featuredEvent )
     if (featuredEvent) {
         return (
-          <ContentCard size="L" img={cardImg} {...event.node} />
+          <EventContentCard key={event.url} size="L" img={cardImg} {...event.node} />
         )
     }
+    return ''
   })
   featuredEvents = featuredEvents.filter(function( element ) {
     return element !== undefined;
  })
 
- 
-  console.log('featuredEvents:',featuredEvents)
+
+  //console.log('featuredEvents:',featuredEvents)
 
 
 
   const cardGridEvents = eventEdges.slice(0,9)
   let eventCards = cardGridEvents.map((event) => {
-    console.log('building event tiles')
+    //console.log('building event tiles')
     return (
-      <ContentCardD {...event.node} />
+      <EventCardD key={event.url} {...event.node} />
     )
   })
-  console.log('eventCards:',eventCards)
+  //console.log('eventCards:',eventCards)
+
 
   return (
-    <Layout noborder>
+    <Layout title={title} noborder>
       { featuredImage && featuredImage.node && (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}
@@ -84,7 +93,9 @@ function WordPressPage({ data }) {
           redHeading={title}
           excerpt={excerpt}
         />)}
-        <AccordianSearch />
+        <Accordian opentext="SEARCH" closetext="CLOSE SEARCH">
+          <AccordianSearchBox navigationURL="/events/search" />
+        </Accordian>
         <PageSection>
         <SimpleSlider
             className="center"
@@ -146,7 +157,10 @@ export const query = graphql`
                           srcSetWebp
                           originalImg
                           originalName
+                          src
+                          srcSet
                           aspectRatio
+                          sizes
                         }
                       }
                     }
@@ -199,6 +213,10 @@ export const query = graphql`
                 srcSetWebp
                 originalImg
                 originalName
+                src
+                srcSet
+                aspectRatio
+                sizes
               }
             }
           }
@@ -224,7 +242,10 @@ export const query = graphql`
                     srcSetWebp
                     originalImg
                     originalName
+                    src
+                    srcSet
                     aspectRatio
+                    sizes
                   }
                 }
               }

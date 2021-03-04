@@ -1,12 +1,12 @@
 import React from 'react'
-import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
+import { colors, mixins, sizes } from '../css-variables'
 import Img from 'gatsby-image'
 import TagList from "../parts/TagList"
 import styled from 'styled-components'
 import { shortDate } from "../../utils/tools"
 
 
-const ContentCard = ({ className, startDate, endDate, title, category, venue, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size, promo = false }) => {
+const ContentCard = ({ className, startDate, endDate, title, category, venue, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo = false }) => {
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
     const fmtStartDate = shortDate(startDate)
     let fmtEndDate = null
@@ -14,6 +14,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
         fmtEndDate = shortDate(endDate)
     }
     const dateLinkText = fmtEndDate ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
+    
     const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];
     const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt
@@ -36,6 +37,8 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                 }
             ]
             :  img.childImageSharp.fluid
+    //console.log(title)
+    //console.log(imgSources)
     return (
 
         <div className={`${className} ${className}--${size} ${className}--${notSmall} ${promoClass}`}>

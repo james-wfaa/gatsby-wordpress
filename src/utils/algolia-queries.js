@@ -42,9 +42,14 @@ const eventQuery = `{
             localFile {
               childImageSharp {
                 fluid {
+                  base64
+                  tracedSVG
+                  srcWebp
+                  srcSetWebp
+                  originalImg
+                  originalName
                   src
                   srcSet
-                  base64
                   aspectRatio
                   sizes
                 }
@@ -113,7 +118,7 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
   }
 }
 
-function postToAlgoliaRecord({ node: { id, blocks, date, categories, ...rest } }) {
+function postToAlgoliaRecord({ node: { id, url, blocks, date, categories, ...rest } }) {
   let blockContent = [];
   let convertedcategories = categories.nodes;
   let dateTimestamp = new Date(date).getTime() / 1000
@@ -124,6 +129,7 @@ function postToAlgoliaRecord({ node: { id, blocks, date, categories, ...rest } }
   }
   return {
     objectID: id,
+    url: `/news${url}`,
     blocks: blockContent,
     categories: convertedcategories,
     date: dateTimestamp,

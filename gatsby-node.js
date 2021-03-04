@@ -51,9 +51,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         case '/events/':
           templatePath = `${contentTypeTemplateDirectory}${nodeType}Events.js`
           break
-        case '/events/calendar/':
-          templatePath = `${contentTypeTemplateDirectory}${nodeType}EventsCalendar.js`
-          break
         case '/news/':
           templatePath = `${contentTypeTemplateDirectory}${nodeType}News.js`
           break
@@ -61,7 +58,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           break
       }
 
-      console.log("templatePath:",templatePath)
+      //console.log("templatePath:",templatePath)
 
       const contentTypeTemplate = contentTypeTemplates.find(
         (path) => path === templatePath
@@ -80,13 +77,18 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         )
       }
 
+      let updatedPath;
+      if (nodeType === 'Post') {
+        updatedPath = `/news${uri}`
+      } else {
+        updatedPath = uri
+      }
+
       await actions.createPage({
         component: resolve(contentTypeTemplate),
-        path: uri,
+        path: updatedPath,
         context: {
           id,
-          nextPage: (contentNodes[i + 1] || {}).id,
-          previousPage: (contentNodes[i - 1] || {}).id,
         },
       })
     })
@@ -166,4 +168,13 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       })
     })
   )
+}
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    type WpBlockAttributesObject {
+      foobar: String
+    }
+  `;
+  createTypes(typeDefs);
 }

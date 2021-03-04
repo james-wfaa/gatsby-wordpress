@@ -2,7 +2,7 @@ import React from "react"
 import Layout from "../components/layout"
 import PageSection from '../components/page-sections/GenericPageSection'
 
-export default () => {
+const FooterPage = () => {
     return (
 <Layout>
     <PageSection pad>
@@ -17,3 +17,4 @@ export default () => {
 </Layout>
     )
 }         
+export default FooterPage

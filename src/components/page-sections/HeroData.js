@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { colors, sizes, breakpoints, fonts } from "../css-variables"
 import BackgroundImage from 'gatsby-background-image'
@@ -9,9 +8,9 @@ import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 
-const PageSection = ({className, preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, variantObject, bgImage, fromBlocks, children }) => {
+const PageSection = ({className, preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, variantObject, bgImage, fromBlocks, children, productPage }) => {
   const background = typeof bgImage !== "undefined" && bgImage !== null
-  const excerptBottom = variantObject.scroll_color === '#9E9E9E'? 0 : sizes.s32
+  const excerptBottom = variantObject.scroll_color === '#9E9E9E'? 0 : buttons ? sizes.s32 : 0;
 
   const classesList = alt ? `${className} ${className}--alt` : className
   const altClass = alt ? ` ${className}--alt` : ""
@@ -22,6 +21,7 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
   const hasNoHeading =
     !preheading && !heading ? ` ${className}--hasNoHeading` : ""
   const popClass = popOut ? `${className}__popOut` : ""
+  const removeHeadingAfter = productPage ? `productPage` : ""
 
   const StyledPageSection = styled.div`
   position: relative;
@@ -54,6 +54,19 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
       width: calc(${sizes.s34} * 2);
       background-color: ${variantObject.color};
       content: "";
+    }
+  }
+  &.productPage{
+    margin-bottom: 0;
+    h1,
+    h2{
+      font-size: ${sizes.s36};
+      @media screen and ${breakpoints.tabletS} {
+        font-size: ${sizes.s42};
+      }
+    }
+    h2:after{
+      display:none;
     }
   }
 
@@ -115,7 +128,7 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
   .excerpt {
     font-size: ${sizes.s24};
     line-height: ${sizes.s36};
-    max-width: 712px;
+    max-width: 896px;
     margin: 0 auto;
     margin-bottom: ${excerptBottom};
     padding: 0 ${sizes.s36};
@@ -161,7 +174,7 @@ const PageSection = ({className, preheading, heading, headingAlt, headingCompact
           )}
           {heading && (
             (
-            <div className="headingWrapper">
+            <div className={`headingWrapper ` + `${removeHeadingAfter}`}>
               <h2>{heading}</h2>
             </div>
           )

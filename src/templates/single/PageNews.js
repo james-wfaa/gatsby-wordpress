@@ -2,15 +2,15 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
-import WordPressContent from "../../components/content-blocks/WordPressContent"
+import WordPressContent from "../../components/content-blocks/WordPressContentBlocks"
 import CardSet from "../../components/content-modules/CardSet"
-import ContentCardD from "../../components/content-blocks/ContentCardD"
+import StoryCardD from "../../components/content-blocks/StoryCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
 import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 
 function WordPressPage({ data }) {
   const { page, posts } = data
-  const { title, excerpt, content, featuredImage, storyCategories, gridDetails } = page
+  const { title, excerpt, blocks, featuredImage, storyCategories, gridDetails } = page
 
   const { storycategoriesinner: categories } = storyCategories
   const { backgroundImage } = gridDetails
@@ -29,7 +29,7 @@ function WordPressPage({ data }) {
       return (
 
         <PageSection heading={category.name} stagger>
-          <CardSet items={category.posts.nodes} num={numberToShow} />
+          <CardSet items={category.posts.nodes} num={numberToShow} type="news"/>
         </PageSection>
       )
     }
@@ -39,18 +39,18 @@ function WordPressPage({ data }) {
   )
 
   const cardGridPosts = posts.nodes.slice(0,9)
-  console.log('cardGridPosts:',cardGridPosts)
+  //console.log('cardGridPosts:',cardGridPosts)
   let postCards = cardGridPosts.map((post) => {
-    console.log('post tiles post: ',post)
+    //console.log('post tiles post: ',post)
     return (
-      <ContentCardD {...post} />
+      <StoryCardD {...post} />
     )
   })
 
 
 
   return (
-    <Layout noborder>
+    <Layout title={title} noborder>
       { featuredImage && featuredImage.node && (
       <HeroIntroSection
           heroImage={featuredImage.node.localFile}
@@ -58,7 +58,7 @@ function WordPressPage({ data }) {
           redHeading={title}
           excerpt={excerpt}
       />)}
-      <WordPressContent content={content} />
+      <WordPressContent blocks={blocks} />
       <>{cats}</>
       <PageSection heading="Most Recent" bgImage={gridBgImage} buttons={moreButton}>
         <GridCardD>{postCards}</GridCardD>
@@ -105,6 +105,10 @@ export const query = graphql`
                           originalImg
                           originalName
                           aspectRatio
+                          base64
+                          src
+                          srcSet
+                          sizes
                         }
                       }
                     }
@@ -143,6 +147,10 @@ export const query = graphql`
                 srcSetWebp
                 originalImg
                 originalName
+                src
+                srcSet
+                aspectRatio
+                sizes
 
               }
             }
@@ -150,7 +158,7 @@ export const query = graphql`
         }
       }
     },
-    posts: allWpPost(limit: 100, sort: {order: ASC, fields: date}) {
+    posts: allWpPost(limit: 100, sort: {order: DESC, fields: date}) {
       nodes {
         title
         excerpt

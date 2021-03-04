@@ -2,11 +2,12 @@ import React from "react"
 import { graphql } from "gatsby"
 import WpEvent from "../../components/template-parts/wordpress-event"
 
-export default ({ data }) => {
+const Event = ({ data }) => {
   const { event } = data
-  console.log( 'event object:',event )
+  //console.log( 'event object:',event )
   return (<WpEvent page={event} />)
 }
+export default Event
 
 export const query = graphql`
   query event($id: String!) {
@@ -65,6 +66,7 @@ export const query = graphql`
         eventlocationDetails
         registrationUrl
         questions
+        virtualEvent
       }
       date(formatString: "dddd, MMM. D")
       endDate

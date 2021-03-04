@@ -8,8 +8,7 @@ import PromoCardD from "../components/content-blocks/PromoCardD"
 
 
 
-export default ({ data }) => {
-  console.log('gridCardDPop page')
+const GridPop = ({ data }) => {
 
     return (
 <Layout>
@@ -98,6 +97,7 @@ export default ({ data }) => {
 </Layout>
     )
 }
+export default GridPop
 
 export const pageQuery = graphql`
 query {

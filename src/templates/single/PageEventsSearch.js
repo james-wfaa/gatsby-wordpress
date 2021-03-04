@@ -1,5 +1,4 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React, { useState } from "react"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
 import ContentCard from "../../components/content-blocks/ContentCard"
@@ -7,7 +6,7 @@ import ContentBlockList from "../../components/content-modules/ContentBlockList"
 import AccordianSearch from "../../components/parts/AccordianSearch"
 import PaginationNav from "../../components/parts/PaginationNav"
 import SponsorAd from "../../components/content-blocks/SponsorAd"
-
+import SearchResults from "../../components/parts/AlgoliaSearch/SearchPageAlgolia"
 
 class EventsList extends React.Component {
 
@@ -64,53 +63,3 @@ class EventsList extends React.Component {
 
 export default EventsList
 
-
-export const query = graphql`
-  query eventsSearch($offset: Int!, $eventsPerPage: Int!) {
-    events: allWpEvent(
-      limit: $eventsPerPage,
-      skip: $offset,
-      sort: {order: ASC, fields: startDate}) {
-      edges {
-        node {
-          id
-          title
-          url: uri
-          excerpt
-          featuredEvent
-          featuredImage {
-            node {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 712) {
-                    base64
-                    tracedSVG
-                    srcWebp
-                    srcSetWebp
-                    originalImg
-                    originalName
-                    aspectRatio
-                  }
-                }
-              }
-            }
-          }
-          date
-          startDate
-          endDate
-          eventsCategories {
-            nodes {
-              name
-              url: uri
-            }
-          }
-          venue {
-            title
-            state
-            city
-          }
-        }
-      }
-    }
-  }
-`

@@ -6,7 +6,7 @@ import SponsorAd from "../components/content-blocks/SponsorAd"
 import GenericPageSection from '../components/page-sections/GenericPageSection'
 import MobileHr from '../components/parts/MobileHr'
 
-export default () => {
+const CardDPage = () => {
     return (
 <Layout>
 <GenericPageSection>
@@ -299,3 +299,4 @@ export default () => {
 </Layout>
     )
 }
+export default CardDPage

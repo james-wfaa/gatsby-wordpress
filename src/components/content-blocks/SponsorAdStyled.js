@@ -6,7 +6,7 @@ import { sizes, breakpoints, colors, fonts } from '../css-variables'
 const StyledSponsorAd = styled.div`
     max-width: 1080px;
     width: 254px;
-    margin: 0 auto;
+    margin: 0 auto ${sizes.s88};
     background-color: ${colors.sponsorAdBG};
     padding: 16px;
 

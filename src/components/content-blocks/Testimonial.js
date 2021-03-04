@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
+import { colors, sizes, breakpoints, fonts } from '../css-variables'
 import quotationMarks from '../../svg/Testimonial_Quotation_Marks_2x.svg'
 
 const Testimonial = ({ className, data }) => {
@@ -62,7 +62,7 @@ const StyledTestimonial = styled(Testimonial)`
             min-height: 100%;  
             top: 0px;
             left: 0px;
-            background-color: ${colors.testimonialGrey};
+            background-color: ${colors.bgActiveGrey};
         }
     }
     blockquote{

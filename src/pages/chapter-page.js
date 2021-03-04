@@ -42,7 +42,7 @@ const featuredbutton = [
   },
 ]
 
-export default ({ data }) => {
+const ChptPage = ({ data }) => {
 
   return (
     <Layout>
@@ -125,18 +125,26 @@ export default ({ data }) => {
           <CardE
             img={data.asset29}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
+            marginTop
+            center
           />
           <CardE
             img={data.asset30}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
+            marginTop
+            center
           />
           <CardE
             img={data.square1}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
+            marginTop
+            center
           />
           <CardE
             img={data.squareBucky}
             caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
+            marginTop
+            center
           />
         </SimpleSlider>
       </PageSection>
@@ -183,6 +191,7 @@ export default ({ data }) => {
     </Layout>
   )
 }
+export default ChptPage
 
 export const pageQuery = graphql`
   query {
