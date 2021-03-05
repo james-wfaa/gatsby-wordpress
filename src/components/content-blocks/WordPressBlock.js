@@ -9,7 +9,7 @@ const WordPressBlock = ({className, block, product = false}) => {
     //console.log(block)
     const isProduct = product ? 'product' : null
     if (block) {
-        if (block.originalContent) {
+        if (block.originalContent || block.dynamicContent || block.saveContent) {
             const blockContent = (block.isDynamic)
             ? block.dynamicContent
             : (block.saveContent)
