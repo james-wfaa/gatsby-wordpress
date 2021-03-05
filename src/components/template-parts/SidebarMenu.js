@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from "styled-components"
-import { colors, sizes, breakpoints } from "../css-variables"
+import { fonts, colors, sizes, breakpoints } from "../css-variables"
 
 const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
 
@@ -10,11 +10,15 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
   
   const StyledMenu = styled.div`
     position: relative;
+    font-family: ${fonts.verlag};
     border-top: 2px solid ${colors.bgActiveGrey};
     border-bottom: 2px solid ${colors.bgActiveGrey};
     h4 {
-      text-transform: uppercase;
+      font-family: ${fonts.verlag};
+      font-weight: bold;
       font-size: ${sizes.s16};
+      text-transform: uppercase;
+      padding: ${sizes.s16} 0;
     }
 
     @media screen and ${breakpoints.tabletS} {
@@ -30,10 +34,11 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
     @media screen and ${breakpoints.laptopS} {
         margin-left: 0;
         max-width: 712px;
-        margin-bottom: 58px;
+        margin-bottom: 0 !important;
         h4 {
           text-transform: uppercase;
           font-size: ${sizes.s18};
+          padding: 0 0 ${sizes.s24};
         }
     }
 
@@ -71,10 +76,7 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
       padding: 0;
     }
     @media screen and ${breakpoints.laptopSMax}{
-      h4{
-        padding: 32px 0px;
-        margin-bottom: 0;
-      }
+      
       .menuIcon{
         display: inline-block;
         margin-left:12px;
@@ -146,6 +148,8 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
     margin-bottom: ${menuMargin};
     @media screen and ${breakpoints.laptopS} {
       text-align: left;
+     
+      margin-bottom: 0;
     }
     a {
       color: ${colors.buttonRed};
