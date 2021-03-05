@@ -96,13 +96,15 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
                 if ( product) {
                     const { slug, posts } = product
                     const postsToShow = (posts?.nodes) ? posts.nodes : null
+                    let reducedPosts = postsToShow.slice(0,8)
+                    console.log(reducedPosts)
                     const buttons = (postsToShow.length > 2) 
                         ? [{
                             link: `/posts/search/?category=${slug}`,
                             text: 'See More WAA Stories'
                         }]
                         : null
-                    RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={postsToShow} type="news" size="M" /></PageSection>)    
+                    RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={reducedPosts} type="news" size="M" /></PageSection>)    
                 }
                 
                 break
