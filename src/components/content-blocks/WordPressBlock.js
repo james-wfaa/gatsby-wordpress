@@ -105,9 +105,7 @@ margin-right: auto;
     }
 
     ${mixins.headingShortUnderline}
-    &:after {
-       
-    }
+    
     
 }
 >h3,
