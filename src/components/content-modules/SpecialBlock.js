@@ -10,7 +10,7 @@ const SpecialBlock = ({block}) => {
     if (Array.isArray(parsed)) {
         target = parsed.map( element => {
             if (element?.props?.id) {
-                console.log(element.props.id)
+                //console.log(element.props.id)
                 switch(element.props.id) {
                     case 'library-lock-resources':
                         return (<LibraryResourceForm />)

@@ -12,6 +12,10 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
     position: relative;
     border-top: 2px solid ${colors.bgActiveGrey};
     border-bottom: 2px solid ${colors.bgActiveGrey};
+    h4 {
+      text-transform: uppercase;
+      font-size: ${sizes.s16};
+    }
 
     @media screen and ${breakpoints.tabletS} {
         width:100%;
@@ -20,12 +24,17 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
         padding-right: 0;
         margin-left: auto;
         margin-right: auto;
+        
 
     }
     @media screen and ${breakpoints.laptopS} {
         margin-left: 0;
         max-width: 712px;
         margin-bottom: 58px;
+        h4 {
+          text-transform: uppercase;
+          font-size: ${sizes.s18};
+        }
     }
 
     ul {
