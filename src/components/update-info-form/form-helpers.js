@@ -3,15 +3,42 @@ import { colors, breakpoints } from '../css-variables'
 import styled from "styled-components"
 import formErrorIcon from "./../../svg/form-error-icon-red.svg"
 
+
+
 export const handleFormSubmit = (data) => {
   console.log('data', data)
-  return fetch("https://uwalumdev.wpengine.com/wp-json/formsubmit/v1/submit/79", {
+  let tempStructure = {
+    "payload":{
+      '1': data.contactInfo.firstname,
+      '2': data.contactInfo.lastname,
+      '3': data.contactInfo.othernames,
+      '4': data.contactInfo.email,
+      '5': data.contactInfo.phone,
+      '6': data.contactInfo.undergrad,
+      '7': data.contactInfo.postgrad,
+      '8': data.mailingAddress.streetAddress,
+      '9': data.mailingAddress.streetAddressLineTwo,
+      '10': data.mailingAddress.city,
+      '11': data.mailingAddress.state,
+      '12': data.mailingAddress.zipcode,
+      '13': data.mailingAddress.seasonalResidence,
+      
+    },
+    'entry_id': 36,
+  }
+  
+
+  return fetch("https://uwalumdev.wpengine.com/wp-json/formsubmit/v1/submit/10", {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
     },
-    body: JSON.stringify(data),
-  }).then(response => console.log(response.json()))
+    body: JSON.stringify(tempStructure),
+  }).then(response => handleDataReturn(response.json()))
+}
+
+const handleDataReturn = (data) =>{
+  console.log(data)
 }
 
 export const validatePostalCode = (value, country) => {

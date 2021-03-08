@@ -13,7 +13,9 @@ const ContactInfo = () => {
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateContactInfo = data =>{
     //console.log(data)
-    handleFormSubmit(data)
+    
+    console.log(data, 'state', state)
+    handleFormSubmit(state)
     setCurrentStep(2)
   }
 

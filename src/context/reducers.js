@@ -74,6 +74,7 @@ const initialState = {
     uwGrad: false,
   },
   communicationsSignUp: [],
+  entry_id: null,
   //End Update Info Form 
 };
 const types = {
@@ -102,6 +103,7 @@ const types = {
   SET_SPOUSE_INFO: "SET_SPOUSE_INFO",
   SET_SPOUSE_INFO_ONCHANGE: "SET_SPOUSE_INFO_ONCHANGE",
   SET_COMMUNICATIONS_SIGNUP_ONCHANGE: "SET_COMMUNICATIONS_SIGNUP_ONCHANGE",
+  SET_ENTRY_ID: "SET_ENTRY_ID"
   //End Update Info Form 
 };
 
@@ -256,6 +258,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         communicationsSignUp: action.payload,
       };
+    case types.SET_ENTRY_ID:
+      return {
+        ...state,
+        entry_id: action.payload,
+      };
+    
     //End Update Info Form 
       
     default:
