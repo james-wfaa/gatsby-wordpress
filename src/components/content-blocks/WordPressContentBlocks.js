@@ -30,6 +30,8 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
         const stagger = block.stagger
 
+        console.log(block.name)
+
         //console.log(block.name)
 
         switch(block.name) {            
@@ -94,18 +96,21 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
                 if ( product) {
                     const { slug, posts } = product
                     const postsToShow = (posts?.nodes) ? posts.nodes : null
+                    let reducedPosts = postsToShow.slice(0,8)
+                    console.log(reducedPosts)
                     const buttons = (postsToShow.length > 2) 
                         ? [{
                             link: `/posts/search/?category=${slug}`,
                             text: 'See More WAA Stories'
                         }]
                         : null
-                    RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={postsToShow} type="news" size="M" /></PageSection>)    
+                    RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={reducedPosts} type="news" size="M" /></PageSection>)    
                 }
                 
                 break
             case "acf/special-block":
                 RenderedBlocks.push(<SpecialBlock block={block} />)
+                break
             case "acf/events-listing-section":
                 //console.log('events-listing-section')
                 if ( product) {

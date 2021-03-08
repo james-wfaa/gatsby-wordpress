@@ -28,7 +28,7 @@ const IdentityInfo = () => {
     //if checkbox, update array accordingly
     if(e.target.type === 'checkbox'){
         if(e.target.checked){
-          console.log(e.target.checked)
+          //console.log(e.target.checked)
           let newIdentity = [...state.identityInfo.identity, e.target.name]
           setIdentityInfoOnchange(['identity', newIdentity])
         } else {
@@ -43,7 +43,7 @@ const IdentityInfo = () => {
     }
     if(e.target.type === 'textarea'){
       let currentLength = e.target.value.length
-      console.log(currentLength)
+      //console.log(currentLength)
       if(currentLength > 500){
         charactersLeft = 0
       } else{

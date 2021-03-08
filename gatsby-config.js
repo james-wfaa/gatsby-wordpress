@@ -68,6 +68,7 @@ module.exports = {
               chatLabelOnline: { "*": "Live Chat" },
               chatLabelOffline: { "*": "Leave a message" },
             },
+            fields: [{ id: 1260807977350}],
           },
         },
       },

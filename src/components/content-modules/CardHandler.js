@@ -2,7 +2,7 @@ import React from 'react'
 import CardSet from './CardSet'
 import SimpleSliderItems from './SimpleSliderItems'
 
-const CardHandler = ({ items, size, sliderSize="S", type }) => {
+const CardHandler = ({ items, sliderSize="S", type }) => {
 
     //console.log(size)
     if (items.length && items.length > 0) {
