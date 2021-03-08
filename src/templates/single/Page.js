@@ -300,6 +300,21 @@ export const query = graphql`
       chapterLevel {
         chapterLevel
       }
+      chapterSponsors {
+        sponsors {
+          sponsorName
+          sponsorText
+          sponsorLogo {
+            localFile {
+              childImageSharp {
+                fixed {
+                  aspectRatio
+                }
+              }
+            }
+          }
+        }
+      }
     }
     allWp {
       nodes {
