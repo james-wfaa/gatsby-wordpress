@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject, checkForLetters } from '../form-helpers'
+import { StyledError, variantObject, checkForLetters, handleFormSubmit } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -12,12 +12,13 @@ const PhoneInfo = () => {
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdatePhoneInfo = data =>{
-
-    let currentOrder = state.numberOfSteps
-    let currentStep = state.currentStep
-    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
-    let nextStep = currentOrder[currentPlaceInOrder + 1]
-    setCurrentStep(nextStep)
+    handleFormSubmit(state).then(() => {
+      let currentOrder = state.numberOfSteps
+      let currentStep = state.currentStep
+      let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+      let nextStep = currentOrder[currentPlaceInOrder + 1]
+      setCurrentStep(nextStep)
+    })
   }
   const updateOnChangeValues = (e) => {
     setPhoneInfoOnchange([e.target.name, e.target.value])

@@ -6,40 +6,35 @@ import formErrorIcon from "./../../svg/form-error-icon-red.svg"
 
 
 export const handleFormSubmit = (data) => {
-  console.log('data', data)
+  //console.log('data', data)
   let tempStructure = {
     "payload":{
-      '1': data.contactInfo.firstname,
-      '2': data.contactInfo.lastname,
-      '3': data.contactInfo.othernames,
-      '4': data.contactInfo.email,
-      '5': data.contactInfo.phone,
-      '6': data.contactInfo.undergrad,
-      '7': data.contactInfo.postgrad,
-      '8': data.mailingAddress.streetAddress,
-      '9': data.mailingAddress.streetAddressLineTwo,
-      '10': data.mailingAddress.city,
-      '11': data.mailingAddress.state,
-      '12': data.mailingAddress.zipcode,
-      '13': data.mailingAddress.seasonalResidence,
-      
+      "contactInfo" : data.contactInfo,
+      "mailingAddress" : data.mailingAddress,
+      "phoneInfo" : data.phoneInfo,
+      "employmentInfo" : data.employmentInfo,
+      "identityInfo" : data.identityInfo,
+      "spouseInfo" : data.spouseInfo,
     },
-    'entry_id': 36,
+    'entry_id': data.entry_id,
   }
-  
+  //console.log(tempStructure)
 
-  return fetch("https://uwalumdev.wpengine.com/wp-json/formsubmit/v1/submit/10", {
+  return fetch("https://devwp.uwalumni.com/wp-json/formsubmit/v1/submit/1", {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
     },
     body: JSON.stringify(tempStructure),
-  }).then(response => handleDataReturn(response.json()))
+  }).then((response) => { 
+    return response.json().then((data) => {
+        return data;
+    }).catch((err) => {
+        console.log(err);
+    }) 
+});
 }
 
-const handleDataReturn = (data) =>{
-  console.log(data)
-}
 
 export const validatePostalCode = (value, country) => {
   return postalCodes.validate(country, value)

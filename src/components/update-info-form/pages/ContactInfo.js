@@ -8,15 +8,15 @@ import { AppContext } from "../../../context/AppContext"
 
 const ContactInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setContactInfoOnchange } = actions;
+  const { setCurrentStep, setContactInfoOnchange, setEntryId } = actions;
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateContactInfo = data =>{
-    //console.log(data)
+    handleFormSubmit(state).then((res) =>{
+      console.log('returned data', res)
+      setEntryId(res.entry_id)
+    }).then(setCurrentStep(2))
     
-    console.log(data, 'state', state)
-    handleFormSubmit(state)
-    setCurrentStep(2)
   }
 
   const updateOnChangeValues = (e) => {

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject } from '../form-helpers'
+import { StyledError, variantObject, handleFormSubmit } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from '../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -14,13 +14,15 @@ const MailingAddress = () => {
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateMailingAddressInfo = data =>{
-    //console.log(data)
-
-    let currentOrder = state.numberOfSteps
-    let currentStep = state.currentStep
-    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
-    let nextStep = currentOrder[currentPlaceInOrder + 1]
-    setCurrentStep(nextStep)
+    console.log(data)
+    handleFormSubmit(state).then(() => {
+      let currentOrder = state.numberOfSteps
+      let currentStep = state.currentStep
+      let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+      let nextStep = currentOrder[currentPlaceInOrder + 1]
+      setCurrentStep(nextStep)
+    })
+    
   }
   const updateOnChangeValues = (e) => {
     setMailingAddressOnchange([e.target.name, e.target.value])

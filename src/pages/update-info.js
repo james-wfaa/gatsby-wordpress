@@ -13,11 +13,9 @@ import UpdateSuccess from "../components/update-info-form/pages/UpdateSuccess"
 import CommunicationSuccess from "../components/update-info-form/pages/CommunicationSuccess"
 import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-variables'
 import formErrorIcon from "./../svg/form-error-icon-red.svg"
-import { handleFormSubmit } from './../components/update-info-form/form-helpers'
 
 const UpdateInfoForm = () =>  {
-  const { state, } = useContext(AppContext);
-  //const { setCurrentStep } = actions;
+  const { state } = useContext(AppContext);
 
   useEffect(() => {
     document.body.scrollTop = 0
@@ -47,13 +45,6 @@ const UpdateInfoForm = () =>  {
             break;
      }
    }
-
-  /*const onSubmit = (data) => {
-    
-    //handleFormSubmit(data)
-    //console.log(data)
-
-  }*/
 
   return (
     <Layout>
