@@ -14,7 +14,7 @@ import CardHandler from "../content-modules/CardHandler"
 
 function BlogPost({ data }) {
   const { page } = data
-  const { id, title, content, featuredImage, categories, products, author, date, excerpt, heroImage, link, slug } = page
+  const { id, title, featuredImage, categories, products, author, date, excerpt, heroImage, link, slug } = page
 
   let heroSize = heroImage.heroImage && heroImage.heroImage.mediaDetails.width ? heroImage.heroImage.mediaDetails.width : null
   let featSize = featuredImage?.node?.mediaDetails.width ? featuredImage?.node?.mediaDetails.width : null
@@ -30,7 +30,7 @@ function BlogPost({ data }) {
 
   let uniqueRelatedPosts = []
   relatedPostsToShow.forEach((post) => {
-    if(!uniqueRelatedPosts.find(element => element.id === post.id) && post.id != id){
+    if(!uniqueRelatedPosts.find(element => element.id === post.id) && post.id !== id){
       uniqueRelatedPosts.push(post)
     }
   })
@@ -55,11 +55,18 @@ function BlogPost({ data }) {
     image = featuredImage.node
   }
   //console.log(page)
-  let links = [
+  let links = (product?.pages?.nodes[0]?.uri) 
+    ? [
     { url: "/", name: "Home" },
     { url: "/news", name: "News & Stories" },
+    { url: product.pages.nodes[0].uri, name: product.name },
     { url: link, name: title },
-  ]
+    ]
+    : [
+      { url: "/", name: "Home" },
+      { url: "/news", name: "News & Stories" },
+      { url: link, name: title },
+    ]
   return (
     <Layout title={title}>
         <BreadCrumbs links={links} />

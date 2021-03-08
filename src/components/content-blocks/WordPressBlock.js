@@ -105,6 +105,8 @@ margin-right: auto;
     }
 
     ${mixins.headingShortUnderline}
+    
+    
 }
 >h3,
 .core-freeform h3 {
@@ -218,9 +220,7 @@ margin-right: auto;
         color: ${colors.captionBlack};
     }
 
-    >p{
-        margin-left: 0px;
-    }
+    
 }
 
 ul {

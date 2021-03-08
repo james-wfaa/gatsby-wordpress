@@ -15,11 +15,17 @@ import FooGallery from '../content-blocks/FooGallery'
 
 
 
+
+
+
 const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, centered }) => {
     // preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, children
 
     // get the title
     let title = null
+    let id = null
+    let hasBorderTop = borderTop
+    let specialBlock = false
     blocks.map((block) => {
         switch(block.name) {
             case "acf/section-header":
@@ -132,7 +138,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         block={block}
                       />
                     )
-                    break
+                  
                   case "gravityforms/form":
                     //console.log("form found")
                     const shortcode = block?.isDynamic
@@ -257,7 +263,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
             })
 
     return (
-        <PageSection heading={title} topBorder={borderTop} fromBlocks stagger={stagger} centered={centered} excerpt={excerpt} >
+        <PageSection id={id} heading={title} topBorder={hasBorderTop} fromBlocks stagger={stagger} centered={centered} excerpt={excerpt} >
             { innerContent }
         </PageSection>
     )

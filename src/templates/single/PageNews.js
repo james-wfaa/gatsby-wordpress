@@ -105,6 +105,10 @@ export const query = graphql`
                           originalImg
                           originalName
                           aspectRatio
+                          base64
+                          src
+                          srcSet
+                          sizes
                         }
                       }
                     }
@@ -143,6 +147,10 @@ export const query = graphql`
                 srcSetWebp
                 originalImg
                 originalName
+                src
+                srcSet
+                aspectRatio
+                sizes
 
               }
             }

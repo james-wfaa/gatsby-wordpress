@@ -33,13 +33,15 @@ function WordPressPage({ page }) {
 
   const normalizedButtons = (buttons)
     ? buttons.map(item=>{
-      let buttonLink = (item.goToEvents)
-        ? "#event-listing"
-        : (item.buttonLink?.uri)
-          ? item.buttonLink.uri
-          : (item.buttonExternalLinkUrl)
-            ? item.buttonExternalLinkUrl
-            : '#'
+      let buttonLink = (item?.buttonLink?.uri)
+      ? item.buttonLink.uri
+      : (item.buttonExternalLinkUrl)
+        ? item.buttonExternalLinkUrl
+        : ''
+
+      if (item?.namedAnchor) {
+        buttonLink = buttonLink + item.namedAnchor
+      }
       return {
         link: buttonLink,
         text: item.buttonText

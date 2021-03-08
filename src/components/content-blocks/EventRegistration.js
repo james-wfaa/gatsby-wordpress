@@ -46,7 +46,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
     const handleModal = () => {
       let currentshow = show;
       setShow(!currentshow)
-      console.log("Is Shown" + show);
+      //console.log("Is Shown" + show);
     }
 
     return(

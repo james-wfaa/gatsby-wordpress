@@ -30,6 +30,8 @@ const SelectSteps = () => {
                 updateNumberOfSteps(!state.lifeEventStep, 7)
                 setLifeEventStep(!state.lifeEventStep)
                 break;
+            default:
+                break;
         }
     }
 
@@ -46,7 +48,7 @@ const SelectSteps = () => {
     }
 
     const handleSubmit = data =>{
-        console.log(data)
+        //console.log(data)
         //setCurrentStep(8)
     }
   

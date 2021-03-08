@@ -10,10 +10,10 @@ import countryList from "react-select-country-list"
 let charactersLeft = 500
 const IdentityInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setIdentityInfo, setIdentityInfoOnchange } = actions;
-  const [countries, setCountries] = useState(countryList().getData())
+  const { setCurrentStep, setIdentityInfoOnchange } = actions;
+  const [countries, ] = useState(countryList().getData())
 
-  const { register, handleSubmit, watch, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateIdentityInfo = data =>{
     //setIdentityInfo(data)
     let currentOrder = state.numberOfSteps
@@ -28,7 +28,7 @@ const IdentityInfo = () => {
     //if checkbox, update array accordingly
     if(e.target.type === 'checkbox'){
         if(e.target.checked){
-          console.log(e.target.checked)
+          //console.log(e.target.checked)
           let newIdentity = [...state.identityInfo.identity, e.target.name]
           setIdentityInfoOnchange(['identity', newIdentity])
         } else {
@@ -43,7 +43,7 @@ const IdentityInfo = () => {
     }
     if(e.target.type === 'textarea'){
       let currentLength = e.target.value.length
-      console.log(currentLength)
+      //console.log(currentLength)
       if(currentLength > 500){
         charactersLeft = 0
       } else{
@@ -97,7 +97,7 @@ const IdentityInfo = () => {
                     id="identitydescrip"
                     maxLength="500"
                     defaultValue={state.identityInfo.identitydescrip}
-                    onChange={e => updateOnChangeValues(e)}
+                    onBlur={e => updateOnChangeValues(e)}
                     ref={register({
                       maxLength: {
                         value: 500,

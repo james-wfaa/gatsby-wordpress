@@ -68,6 +68,7 @@ module.exports = {
               chatLabelOnline: { "*": "Live Chat" },
               chatLabelOffline: { "*": "Leave a message" },
             },
+            fields: [{ id: 1260807977350}],
           },
         },
       },
@@ -87,8 +88,8 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         schema: {
-          requestConcurrency: 4, // currently set to undefined
-          previewRequestConcurrency: 4, // currently set to undefined
+          requestConcurrency: 5, // currently set to undefined
+          previewRequestConcurrency: 2, // currently set to undefined
           perPage: 50,
         },
         url:

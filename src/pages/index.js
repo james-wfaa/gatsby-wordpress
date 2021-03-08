@@ -14,7 +14,7 @@ const IndexPage = () => (
           <Link to="update-info">Update My Info (NEW)</Link>
         </li>
         <li>
-          <Link to="membership-join">Membership Join (NEW)</Link>
+          <Link to="membership">Membership Join (NEW)</Link>
         </li>
          
       <li>
@@ -70,14 +70,18 @@ const IndexPage = () => (
         <li>
           <Link to="/news/uw-now-grebe-lyall-nettles-venable/">Story Page - small featured image </Link>
         </li>
-        <li>
-          <Link to="/news/divine-nine-chapters/">Story Page - small featured image and Product Page link</Link>
-        </li>
+       
         <li>
           <Link to="/news/wordpress-story">Story Page - Long &amp; Winding Road (wide feature image) </Link>
         </li>
         <li>
           <Link to="/news/refocused">Story Page - "Refocused" (column-width feature image) </Link>
+        </li>
+      </ul>
+      <h3>Flamingle Pages</h3>
+      <ul>
+      <li>
+          <Link to="/news/divine-nine-chapters/">Divine Nine</Link>
         </li>
       </ul>
     

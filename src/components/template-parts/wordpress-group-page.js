@@ -38,12 +38,15 @@ const featuredbutton = [
 ]
 const { title,  excerpt, wpChildren, featuredImage, groups } = page
 
+
+
   if (wpChildren?.nodes) {
     wpChildren.nodes.sort((a,  b) => {
-      if (a.title < b.title) {
+      
+      if ( a.menuOrder < b.menuOrder && (a.menuOrder)) {
         return -1
       }
-      if (a.title > b.title) {
+      if (a.menuOrder > b.menuOrder || (!a.menuOrder)) {
         return 1
       }
       return 0
@@ -88,6 +91,11 @@ const { title,  excerpt, wpChildren, featuredImage, groups } = page
           heroImage={featuredImage.node.localFile}
           heroSize="slim"
           variant="white"
+          excerpt={excerpt}
+        />
+      )}
+      { !featuredImage && (
+        <PageSection
           excerpt={excerpt}
         />
       )}

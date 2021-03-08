@@ -215,6 +215,9 @@ const StyledPageSection = styled(PageSection)`
     }
     &.defaultClass {
         padding-top: 0;
+        @media screen and ${breakpoints.laptopS} {
+            width: 712px;
+        }
     }
     
     &.stagger:nth-child(even) {
