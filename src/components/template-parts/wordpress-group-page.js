@@ -14,8 +14,9 @@ import AllChaptersData from "../page-sections/AllChapters"
 
 function WordPressGroupPage({  page, options }) {
   const { chapters: chaptersText, varsityChapterText, recognizedChapterText, bascomChapterText } = options
-  const { chapterLevel } = page
+  const { chapterLevel, chapterSponsors } = page
   const { chapterLevel: level } = chapterLevel
+  const { sponsors } = chapterSponsors
 
   const chapterData = AllChaptersData()
   const thisChapterArr = chapterData.nodes.filter(function (e) {
@@ -23,13 +24,20 @@ function WordPressGroupPage({  page, options }) {
 })
 const thisChapter = thisChapterArr[0] ? thisChapterArr[0] : null
   
+console.log(sponsors)
+const RenderedSponsors = (sponsors) ? sponsors.map((sponsor) => {
+  const caption = sponsor?.sponsorName ? sponsor.sponsorName : ''
+  return (<CardE caption={caption} />)
+
+}) : null
+
+
 const eventbutton = [
   {
     link: "/events",
     text: "All Events",
   },
 ]
-  
 const featuredbutton = [
   {
     link: "#",
@@ -112,37 +120,23 @@ const { title,  excerpt, wpChildren, featuredImage, groups } = page
         <PageSection heading="Upcoming Events" topBorder buttons={eventbutton}><CardHandler items={eventsToShow} size="M" type="event"/></PageSection>
       )}
 
-      <PageSection heading="Our Chapter Sponsors" topBorder>
-        <SimpleSlider
-          className="center"
-          slidesToShow="1"
-          dots
-          centerMode
-          variableWidth
-          centerPadding="100px"
-        >
-          <CardE
-            img={page.asset29}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{textAlign:`center`, fontWeight: `normal`, color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
-          />
-          <CardE
-            img={page.asset30}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{textAlign:`center`, fontWeight: `normal`, color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
-          />
-          <CardE
-            img={page.square1}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{textAlign:`center`, fontWeight: `normal`, color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
-          />
-          <CardE
-            img={page.squareBucky}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut."
-            captionStyleProps={{textAlign:`center`, fontWeight: `normal`,color: `${colors.captionBlack}`, marginTop: `${sizes.s32}`, fontSize: `${sizes.s18}`}}
-          />
-        </SimpleSlider>
-      </PageSection>
+
+      { RenderedSponsors && (
+         <PageSection heading="Our Chapter Sponsors" topBorder>
+          <SimpleSlider
+            className="center"
+            slidesToShow="1"
+            dots
+            centerMode
+            variableWidth
+            centerPadding="100px"
+          >{RenderedSponsors}
+          </SimpleSlider>
+         </PageSection>
+
+      )}
+      
+     
       <PageSection heading="WAA Stories" buttons={featuredbutton} topBorder>
         <RecentPosts />
       </PageSection>

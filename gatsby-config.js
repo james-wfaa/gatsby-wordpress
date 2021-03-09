@@ -93,7 +93,7 @@ module.exports = {
           perPage: 50,
         },
         url:
-          process.env.WPGRAPHQL_URL || `https://uwalumni.wpengine.com/graphql`,
+          process.env.WPGRAPHQL_URL,
         verbose: true,
         develop: {
           hardCacheMediaFiles: true,
