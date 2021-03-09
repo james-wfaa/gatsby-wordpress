@@ -1,15 +1,13 @@
 import React from "react"
-import { colors, sizes } from "../css-variables"
 import Layout from "../layout"
 import PageSection from "../page-sections/PageSection"
 import GridCardD from "../content-modules/GridCardD"
 import CardHandler from "../content-modules/CardHandler"
+import SponsorHandler from "../content-modules/SponsorHandler"
 import RecentPosts from "../page-sections/RecentPosts"
-
-import CardE from "../content-blocks/CardE"
+import Sponsor from "../content-blocks/Sponsor"
 import PromoCardD from "../content-blocks/PromoCardD"
 import HeroIntroSection from "../page-sections/HeroIntroSection"
-import SimpleSlider from "../content-modules/SimpleSlider"
 import AllChaptersData from "../page-sections/AllChapters"
 
 function WordPressGroupPage({  page, options }) {
@@ -24,13 +22,9 @@ function WordPressGroupPage({  page, options }) {
 })
 const thisChapter = thisChapterArr[0] ? thisChapterArr[0] : null
   
-console.log(sponsors)
 const RenderedSponsors = (sponsors) ? sponsors.map((sponsor) => {
-  const caption = sponsor?.sponsorName ? sponsor.sponsorName : ''
-  return (<CardE caption={caption} />)
-
+  return (<Sponsor {...sponsor} />)
 }) : null
-
 
 const eventbutton = [
   {
@@ -123,15 +117,7 @@ const { title,  excerpt, wpChildren, featuredImage, groups } = page
 
       { RenderedSponsors && (
          <PageSection heading="Our Chapter Sponsors" topBorder>
-          <SimpleSlider
-            className="center"
-            slidesToShow="1"
-            dots
-            centerMode
-            variableWidth
-            centerPadding="100px"
-          >{RenderedSponsors}
-          </SimpleSlider>
+          <SponsorHandler>{RenderedSponsors}</SponsorHandler>
          </PageSection>
 
       )}

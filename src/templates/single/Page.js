@@ -307,8 +307,8 @@ export const query = graphql`
           sponsorLogo {
             localFile {
               childImageSharp {
-                fixed {
-                  aspectRatio
+                fixed(width: 312) {
+                  ...GatsbyImageSharpFixed
                 }
               }
             }
