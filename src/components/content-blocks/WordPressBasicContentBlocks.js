@@ -38,6 +38,15 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
               />
             )
             break
+          case "acf/staff-search":
+            console.log(block.dynamicContent)
+            return(
+              <Block
+                  className={block.name.replace("/", "-")}
+                  block={block}
+                  product
+                />
+            )
           case "core/columns":
             return (
               <Column className={block.name.replace("/", "-")} block={block} />
