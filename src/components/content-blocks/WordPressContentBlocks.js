@@ -93,7 +93,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
                 return <AccordionNavigation className={block.name.replace('/', '-')} block={block} />
                 break
             case "acf/staff-search":
-                console.log(block.dynamicContent)
+                //console.log(block.dynamicContent)
                 return(
                     <Block
                         className={block.name.replace("/", "-")}
@@ -106,7 +106,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
                     const { slug, posts } = product
                     const postsToShow = (posts?.nodes) ? posts.nodes : null
                     let reducedPosts = postsToShow.slice(0,8)
-                    console.log(reducedPosts)
+                    //console.log(reducedPosts)
                     const buttons = (postsToShow.length > 2) 
                         ? [{
                             link: `/posts/search/?category=${slug}`,

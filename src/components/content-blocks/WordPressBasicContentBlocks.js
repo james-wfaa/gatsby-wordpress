@@ -12,7 +12,7 @@ import SpecialBlock from '../content-modules/SpecialBlock'
 const WordPressContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
 
         const RenderedBlocks = (blocks) ? blocks.map((block) => {
-        console.log(block.name)
+        //console.log(block.name)
         switch (block.name) {
           case "core/separator":
             return (
@@ -39,7 +39,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             )
             break
           case "acf/staff-search":
-            console.log(block.dynamicContent)
+            //console.log(block.dynamicContent)
             return(
               <Block
                   className={block.name.replace("/", "-")}
