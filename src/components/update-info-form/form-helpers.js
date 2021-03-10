@@ -7,34 +7,27 @@ import formErrorIcon from "./../../svg/form-error-icon-red.svg"
 
 export const handleFormSubmit = (data) => {
   //console.log('data', data)
-  let tempStructure = {
-    "payload":{
-      "contactInfo" : data.contactInfo,
-      "mailingAddress" : data.mailingAddress,
-      "phoneInfo" : data.phoneInfo,
-      "employmentInfo" : data.employmentInfo,
-      "identityInfo" : data.identityInfo,
-      "spouseInfo" : data.spouseInfo,
-    },
+
+  let entryData = {
+    "payload":{ ...data.contactInfo, ...data.mailingAddress, ...data.phoneInfo, ...data.employmentInfo, ...data.identityInfo, ...data.spouseInfo},
     'entry_id': data.entry_id,
   }
   //console.log(tempStructure)
-
-  return fetch("https://devwp.uwalumni.com/wp-json/formsubmit/v1/submit/1", {
+  
+  return fetch("https://uwalumni.wpengine.com/wp-json/formsubmit/v1/submit/79", {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
     },
-    body: JSON.stringify(tempStructure),
+    body: JSON.stringify(entryData),
   }).then((response) => { 
     return response.json().then((data) => {
         return data;
     }).catch((err) => {
         console.log(err);
     }) 
-});
+  });
 }
-
 
 export const validatePostalCode = (value, country) => {
   return postalCodes.validate(country, value)

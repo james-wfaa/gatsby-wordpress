@@ -27,32 +27,32 @@ const PhoneInfo = () => {
   const renderSeasonalDates = () =>{
     return(
       <div>
-        <label htmlFor="seasonalStartDate" className="smallThird block">Start Date
+        <label htmlFor="seasonalPhoneStartDate" className="smallThird block">Start Date
                 <input
                     type="text"
-                    name="seasonalStartDate"
-                    id="seasonalStartDate"
-                    defaultValue={state.phoneInfo.seasonalStartDate}
+                    name="seasonalPhoneStartDate"
+                    id="seasonalPhoneStartDate"
+                    defaultValue={state.phoneInfo.seasonalPhoneStartDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                     })}
                 />
-                {errors.seasonalStartDate && (
-                  <StyledError>{errors.seasonalStartDate.message}</StyledError>
+                {errors.seasonalPhoneStartDate && (
+                  <StyledError>{errors.seasonalPhoneStartDate.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="seasonalEndDate" className="smallThird block">End Date
+              <label htmlFor="seasonalPhoneEndDate" className="smallThird block">End Date
                 <input
                     type="text"
-                    name="seasonalEndDate"
-                    id="seasonalEndDate"
-                    defaultValue={state.phoneInfo.seasonalEndDate}
+                    name="seasonalPhoneEndDate"
+                    id="seasonalPhoneEndDate"
+                    defaultValue={state.phoneInfo.seasonalPhoneEndDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                     })}
                 />
-                {errors.seasonalEndDate && (
-                  <StyledError>{errors.seasonalEndDate.message}</StyledError>
+                {errors.seasonalPhoneEndDate && (
+                  <StyledError>{errors.seasonalPhoneEndDate.message}</StyledError>
                 )}
               </label>
       </div>
@@ -104,11 +104,11 @@ const PhoneInfo = () => {
                   onBlur={e => updateOnChangeValues(e)}
                   ref={register({})}
                   >
-                  <option value="home">Home</option>
-                  <option value="mobile">Personal Cellular/Mobile</option>
-                  <option value="work">Work/Business</option>
-                  <option value="work-mobile">Work/Business Cellular/Mobile</option>
-                  <option value="seasonal">Seasonal</option>
+                  <option value="Home">Home</option>
+                  <option value="Personal Cellular/Mobile">Personal Cellular/Mobile</option>
+                  <option value="Work/Business">Work/Business</option>
+                  <option value="Work/Business Cellular/Mobile">Work/Business Cellular/Mobile</option>
+                  <option value="Seasonal">Seasonal</option>
                 </select>
                 {errors.phoneType1 && (
                   <StyledError>{errors.phoneType1.message}</StyledError>
@@ -138,11 +138,11 @@ const PhoneInfo = () => {
                   onBlur={e => updateOnChangeValues(e)}
                   name="phoneType2"
                   ref={register({})}>
-                  <option value="home">Home</option>
-                  <option value="mobile">Personal Cellular/Mobile</option>
-                  <option value="work">Work/Business</option>
-                  <option value="work-mobile">Work/Business Cellular/Mobile</option>
-                  <option value="seasonal">Seasonal</option>
+                  <option value="Home">Home</option>
+                  <option value="Personal Cellular/Mobile">Personal Cellular/Mobile</option>
+                  <option value="Work/Business">Work/Business</option>
+                  <option value="Work/Business Cellular/Mobile">Work/Business Cellular/Mobile</option>
+                  <option value="Seasonal">Seasonal</option>
                 </select>
                 {errors.phoneType2 && (
                   <StyledError>{errors.phoneType2.message}</StyledError>
@@ -175,11 +175,11 @@ const PhoneInfo = () => {
                   onBlur={e => updateOnChangeValues(e)}
                   name="phoneType3"
                   ref={register({})}>
-                  <option value="home">Home</option>
-                  <option value="mobile">Personal Cellular/Mobile</option>
-                  <option value="work">Work/Business</option>
-                  <option value="work-mobile">Work/Business Cellular/Mobile</option>
-                  <option value="seasonal">Seasonal</option>
+                  <option value="Home">Home</option>
+                  <option value="Personal Cellular/Mobile">Personal Cellular/Mobile</option>
+                  <option value="Work/Business">Work/Business</option>
+                  <option value="Work/Business Cellular/Mobile">Work/Business Cellular/Mobile</option>
+                  <option value="Seasonal">Seasonal</option>
                 </select>
                 {errors.phoneType3 && (
                   <StyledError>{errors.phoneType3.message}</StyledError>
