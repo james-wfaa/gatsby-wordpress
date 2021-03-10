@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
 import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"
@@ -6,13 +7,11 @@ import EmbedBlock from "./EmbedBlock"
 import GravityForm from './GravityForm'
 import AccordionNavigation from './AccordionNavigation'
 import SpecialBlock from '../content-modules/SpecialBlock'
-
-import styled from 'styled-components'
+import FeaturedEvent from '../content-modules/FeaturedEvent'
 import { colors, breakpoints, mixins } from '../css-variables'
 import Block from './WordPressBlock'
 
-
-const WordPressContentBlocks = ({className, blocks, content, eventCategory, product, stagger}) => {
+const WordPressContentBlocks = ({className, blocks, product, stagger}) => {
 
     // see if the product has event and/or post nodes
 
@@ -29,8 +28,6 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
     staggerBlocks.forEach((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
         const stagger = block.stagger
-
-        console.log(block.name)
 
         //console.log(block.name)
 
@@ -135,7 +132,9 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
                 }
                 
                 break
-            
+            case "acf/featured-event-block":
+                //console.log("featured event")
+                RenderedBlocks.push (<FeaturedEvent block={block} />)
             default:
                 //console.log('default')
                 RenderedBlocks.push(<PageSectionFromBlocks blocks={[block]} heading="Default" borderTop={borderTop} stagger={stagger} />)
