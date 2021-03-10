@@ -1,12 +1,41 @@
-// @todo once the source plugin is updated to the latest WPGQL version, we wont need this helper anymore
-export const normalizePath = path => {
-  if (!path?.endsWith(`/`)) {
-    path = `${path}/`
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _axios = _interopRequireDefault(require("axios"));
+
+var _default = async ({
+  baseUrl,
+  formData,
+  id,
+  lambdaEndpoint
+}) => {
+  let lambaData = {
+    baseUrl: baseUrl,
+    formid: id,
+    payload: formData
+  };
+  let result;
+
+  try {
+    result = await _axios.default.post(lambdaEndpoint, lambaData, {
+      responseType: 'json'
+    });
+  } catch (err) {
+    // Pass back error
+    return {
+      status: 'error',
+      data: err.response
+    };
   }
 
-  if (!path?.startsWith(`/`)) {
-    path = `/${path}`
-  }
+  return {
+    status: 'success',
+    data: result
+  };
+};
 
-  return path
-}
+exports.default = _default;
