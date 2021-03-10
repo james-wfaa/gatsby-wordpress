@@ -97,33 +97,50 @@ const DetailsDiv = styled.div`
   margin-bottom: 24px;
 `
 
-const PostCard = ({ hit, initialBlock, title, topResult, url}) => {
+const PostCard = ({ initialBlock, title, topResult, url }) => {
+  let truncatedText
 
-  let truncatedText = initialBlock.length < 325 ? initialBlock : initialBlock.substr(0, 326) + "..."
+  if (initialBlock) {
+    truncatedText =
+      initialBlock.length < 325
+        ? initialBlock
+        : initialBlock.substr(0, 326) + "..."
+  } else {
+    truncatedText = ""
+  }
 
   return (
     <CardWrapper className={topResult ? "topResult" : null}>
       <Link to={url}>
-      {topResult ?
-        <CardHeader>
-          <p>BEST BET</p>
-        </CardHeader>
-        : null}
-      {topResult ?
-        <DetailsDiv>
-          <p><span className="cardType">STORY</span></p>
-          <h3>{title}</h3>
-        </DetailsDiv>
-        :
-        <>
-          <p><span className="cardType">STORY</span></p>
-          <h3>{title}</h3>
-        </>
-    }
-        <p><span className="tags">Tag 1, tag 2, tag 3</span></p>
-        {initialBlock ?
-        <div className="excerpt" dangerouslySetInnerHTML={{__html: truncatedText}}></div>
-        : null}
+        {topResult ? (
+          <CardHeader>
+            <p>BEST BET</p>
+          </CardHeader>
+        ) : null}
+        {topResult ? (
+          <DetailsDiv>
+            <p>
+              <span className="cardType">STORY</span>
+            </p>
+            <h3>{title}</h3>
+          </DetailsDiv>
+        ) : (
+          <>
+            <p>
+              <span className="cardType">STORY</span>
+            </p>
+            <h3>{title}</h3>
+          </>
+        )}
+        <p>
+          <span className="tags">Tag 1, tag 2, tag 3</span>
+        </p>
+        {initialBlock ? (
+          <div
+            className="excerpt"
+            dangerouslySetInnerHTML={{ __html: truncatedText }}
+          ></div>
+        ) : null}
       </Link>
     </CardWrapper>
   )
