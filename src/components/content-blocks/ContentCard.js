@@ -100,7 +100,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                                     <div className={`${className}__venue`}>{venue.title}</div>
                                 )}
                                 { venue && venue.city && venue.state && (
-                                    <div className={`venue venue--${size}`}>{venue.city},{venue.state}</div>
+                                    <div className={`venue venue--${size}`}>{venue.city}, {venue.state}</div>
                                 )}
                             </div>
                         )}
