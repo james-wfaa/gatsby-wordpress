@@ -8,6 +8,7 @@ function WordPressPage({ page }) {
   const { introButtons: buttons } = introButtons
   const normalizedButtons = (buttons) ? buttons.map(item=>{
     return {
+      key: item.link.url,
       link: item.link.uri,
       text: item.text
     }

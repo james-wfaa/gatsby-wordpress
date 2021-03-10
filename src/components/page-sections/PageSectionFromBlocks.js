@@ -11,11 +11,6 @@ import Column from '../parts/WordPressColumns'
 import EmbedBlock from "../content-blocks/EmbedBlock"
 import AccordionNavigation from '../content-blocks/AccordionNavigation'
 
-
-
-
-
-
 const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, centered }) => {
     // preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, children
 
@@ -74,7 +69,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
             })}</CardSet>)
             : blocks.map((block) => {
 
-                //console.log(block)
+                console.log(block)
 
                 switch (block.name) {
                   case "acf/section-header":
