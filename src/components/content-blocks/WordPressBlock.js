@@ -105,9 +105,7 @@ margin-right: auto;
     }
 
     ${mixins.headingShortUnderline}
-    &:after {
-       
-    }
+    
     
 }
 >h3,
@@ -222,9 +220,7 @@ margin-right: auto;
         color: ${colors.captionBlack};
     }
 
-    >p{
-        margin-left: 0px;
-    }
+    
 }
 
 ul {

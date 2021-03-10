@@ -14,7 +14,7 @@ const MailingAddress = () => {
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateMailingAddressInfo = data =>{
-    console.log(data)
+    //console.log(data)
 
     let currentOrder = state.numberOfSteps
     let currentStep = state.currentStep

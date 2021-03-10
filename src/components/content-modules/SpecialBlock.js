@@ -1,6 +1,8 @@
 import React from 'react'
 import LibraryResourceForm from './LibraryResourceForm'
 import MembershipForm from './MembershipForm'
+import SponsorAd from "../content-blocks/SponsorAd"
+
 import parse from 'html-react-parser';
 
 
@@ -10,15 +12,16 @@ const SpecialBlock = ({block}) => {
     if (Array.isArray(parsed)) {
         target = parsed.map( element => {
             if (element?.props?.id) {
-                console.log(element.props.id)
+                //console.log(element.props.id)
                 switch(element.props.id) {
                     case 'library-lock-resources':
                         return (<LibraryResourceForm />)
                     case 'membership-join':
                         return (<MembershipForm />)
+                    case 'sponsors':
+                        return (<SponsorAd />)
                     default:
-                        return (<>bad block</>)
-                        break
+                        return (<>unknown block</>)
                 }
             }
         })

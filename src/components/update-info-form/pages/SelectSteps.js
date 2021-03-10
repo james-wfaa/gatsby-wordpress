@@ -48,7 +48,7 @@ const SelectSteps = () => {
     }
 
     const handleSubmit = data =>{
-        console.log(data)
+        //console.log(data)
         //setCurrentStep(8)
     }
   
