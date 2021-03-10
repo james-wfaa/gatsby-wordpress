@@ -34,6 +34,7 @@ function WordPressPage({ page }) {
           redHeading={title}
           excerpt={heroIntroExcerpt}
           buttons={normalizedButtons}
+          productPage
         />
       )}
 
