@@ -92,7 +92,7 @@ const HeroIntroSection = ({
     <div className={classes}>
       {videoURL ? (
         <VimeoVideo videoURL={videoURL} heroSize={heroSize} heroHeading={heroHeading}/>
-      ) : background ? (
+      ) : ( background && heroImage?.childImageSharp?.fluid ) ? (
         <div style={{height: `${size}`}}>
         <BackgroundImage
           Tag="div"

@@ -336,6 +336,7 @@ const StyledPageSection = styled(PageSection)`
         > .core-separator,
         > .gravityforms-form,
         > .acf-accordion-navigation,
+        > .acf-staff-search,
         > .wp-block-separator,
         > .wp-block-embed {
             min-width: 300px;

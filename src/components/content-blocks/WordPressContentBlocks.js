@@ -89,12 +89,21 @@ const WordPressContentBlocks = ({className, blocks, product, stagger}) => {
             case "acf/accordion-navigation":
                 return <AccordionNavigation className={block.name.replace('/', '-')} block={block} />
                 break
+            case "acf/staff-search":
+                //console.log(block.dynamicContent)
+                return(
+                    <Block
+                        className={block.name.replace("/", "-")}
+                        block={block}
+                        product
+                    />
+                )
             case "acf/product-story-listing":
                 if ( product) {
                     const { slug, posts } = product
                     const postsToShow = (posts?.nodes) ? posts.nodes : null
                     let reducedPosts = postsToShow.slice(0,8)
-                    console.log(reducedPosts)
+                    //console.log(reducedPosts)
                     const buttons = (postsToShow.length > 2) 
                         ? [{
                             link: `/posts/search/?category=${slug}`,

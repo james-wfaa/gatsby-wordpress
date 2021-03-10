@@ -131,6 +131,14 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         block={block}
                       />
                     )
+                  case "acf/staff-search":
+                    return(
+                      <Block
+                          className={block.name.replace("/", "-")}
+                          block={block}
+                          product
+                        />
+                    )
                   
                   case "gravityforms/form":
                     //console.log("form found")
