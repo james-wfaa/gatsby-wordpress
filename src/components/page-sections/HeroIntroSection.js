@@ -28,7 +28,7 @@ const HeroIntroSection = ({
   if (heroSize === 'jumbo') {
     size = width > 655 ? "calc(100vh - 118px)" : "calc(100vh - 86px)"
   }
-
+  
   const background = typeof heroImage !== "undefined" && heroImage !== null
 
   let classes = className
