@@ -12,7 +12,7 @@ import { colors, breakpoints, mixins } from '../css-variables'
 import Block from './WordPressBlock'
 
 
-const WordPressContentBlocks = ({className, blocks, content, eventCategory, product, stagger}) => {
+const WordPressContentBlocks = ({className, blocks, product, stagger}) => {
 
     // see if the product has event and/or post nodes
 
@@ -29,8 +29,6 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
     staggerBlocks.forEach((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
         const stagger = block.stagger
-
-        console.log(block.name)
 
         //console.log(block.name)
 
