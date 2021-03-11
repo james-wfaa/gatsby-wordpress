@@ -63,12 +63,9 @@ module.exports = {
                 select: "WAA Customer Service",
               },
             },
-            contactOptions: {
-              enabled: true,
-              chatLabelOnline: { "*": "Live Chat" },
-              chatLabelOffline: { "*": "Leave a message" },
+            contactForm: {
+              fields: [{ id: 1260807977350}] 
             },
-            fields: [{ id: 1260807977350}],
           },
         },
       },
@@ -93,7 +90,7 @@ module.exports = {
           perPage: 50,
         },
         url:
-          process.env.WPGRAPHQL_URL || `https://uwalumni.wpengine.com/graphql`,
+          process.env.WPGRAPHQL_URL,
         verbose: true,
         develop: {
           hardCacheMediaFiles: true,

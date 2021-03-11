@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { useSpring, animated } from "react-spring"
 import algoliasearch from "algoliasearch/lite"
-import { InstantSearch, RefinementList, Configure, connectHits } from "react-instantsearch-dom"
+import {
+  InstantSearch,
+  RefinementList,
+  Configure,
+} from "react-instantsearch-dom"
 import { colors, sizes, breakpoints } from "../../css-variables"
 import AccordianSearchBoxAlgolia from "./AccordianSearchBoxAlgolia"
 import AlgoliaResults from "./AlgoliaResults"
@@ -169,21 +173,24 @@ const AccordianSearchAlgolia = props => {
   }
 
   // Hits Return if rendering results outside of Accordian
-  useEffect(() => {
-    if (!props.results) {
-      let index = searchClient.initIndex('All')
-      index.search(query).then(({hits}) => {
-        const returnedHits = hits.filter(hit => hit.type === "Event")
-        props.callback(returnedHits)
-      })
-    }
-  }, [query])
+  useEffect(
+    (props, searchClient) => {
+      if (!props.results) {
+        let index = searchClient.initIndex("All")
+        index.search(query).then(({ hits }) => {
+          const returnedHits = hits.filter(hit => hit.type === "Event")
+          props.callback(returnedHits)
+        })
+      }
+    },
+    [query]
+  )
   //
 
   return (
     <StyledWrapper>
       <StyledInputWrapper>
-        <h4 onClick={() => clickHandler()}>
+        <h4 onClick={() => clickHandler()} onKeyDown={() => clickHandler()}>
           {!open ? `Expand Event Search` : `Close Search`}
         </h4>
         <p>
@@ -202,85 +209,83 @@ const AccordianSearchAlgolia = props => {
         <StyledButtonWrapper>
           <animated.div style={searchstyles}>
             <InstantSearch
-            searchClient={searchClient}
-            indexName={indices[0].name}
-            onSearchStateChange={({ query }) => setQuery(query)}
+              searchClient={searchClient}
+              indexName={indices[0].name}
+              onSearchStateChange={({ query }) => setQuery(query)}
             >
-            <Configure
-              filters={filters}
-              hitsPerPage={5}
-            />
-            <AccordianSearchBoxAlgolia onFocus={() => setFocus(true)} hasFocus={hasFocus} />
-            <FilterBox>
-              <FilteredDiv>
-                <FilterButton
-                  className="date"
-                  onClick={() => handleDateOpen()}
-                >
-                  Date
-                </FilterButton>
-                {dateopen ? (
-                  <DateFilter
+              <Configure filters={filters} hitsPerPage={5} />
+              <AccordianSearchBoxAlgolia
+                onFocus={() => setFocus(true)}
+                hasFocus={hasFocus}
+              />
+              <FilterBox>
+                <FilteredDiv>
+                  <FilterButton
                     className="date"
-                    handleStartDate={(date) => handleStartDate(date)}
-                    handleEndDate={(date) => handleEndDate(date)}
-                  />
-                ) : null}
-              </FilteredDiv>
-              <FilteredDiv>
-                <FilterButton
-                  className="location"
-                  onClick={() => setLocationOpen(!locationopen)}
-                >
-                  Location
-                </FilterButton>
-                {locationopen ? (
-                  <LocationFilter>
-                    <RefinementList attribute="venue.address" />
-                  </LocationFilter>
-                ) : null}
-              </FilteredDiv>
-              <FilteredDiv>
-                <FilterButton
-                  className="category"
-                  onClick={() => setCategoryOpen(!categoryopen)}
-                >
-                  Category
-                </FilterButton>
-                {categoryopen ? (
-                  <CategoryFilter>
-                    <RefinementList attribute="categories.name" />
-                  </CategoryFilter>
-                ) : null}
-              </FilteredDiv>
-              <FilteredDiv>
-                <FilterButton
-                  className="filters"
-                  onClick={() => setFiltersOpen(!filtersopen)}
-                >
-                  Filters
-                </FilterButton>
-                {filtersopen ? (
-                  <FiltersFilter>
-                    <RefinementList attribute="filters" />
-                  </FiltersFilter>
-                ) : null}
-              </FilteredDiv>
-            </FilterBox>
-            {props.results ?
-              <>
-                <ResultsBoxWrapper>
-                <AlgoliaResults
-                  show={query && query.length > 0 && hasFocus}
-                  indices={indices}
-                />
-              </ResultsBoxWrapper>
-              <AlgoliaPagination />
-              </>
-            : null}
-
-          </InstantSearch>
-
+                    onClick={() => handleDateOpen()}
+                  >
+                    Date
+                  </FilterButton>
+                  {dateopen ? (
+                    <DateFilter
+                      className="date"
+                      handleStartDate={date => handleStartDate(date)}
+                      handleEndDate={date => handleEndDate(date)}
+                    />
+                  ) : null}
+                </FilteredDiv>
+                <FilteredDiv>
+                  <FilterButton
+                    className="location"
+                    onClick={() => setLocationOpen(!locationopen)}
+                  >
+                    Location
+                  </FilterButton>
+                  {locationopen ? (
+                    <LocationFilter>
+                      <RefinementList attribute="venue.address" />
+                    </LocationFilter>
+                  ) : null}
+                </FilteredDiv>
+                <FilteredDiv>
+                  <FilterButton
+                    className="category"
+                    onClick={() => setCategoryOpen(!categoryopen)}
+                  >
+                    Category
+                  </FilterButton>
+                  {categoryopen ? (
+                    <CategoryFilter>
+                      <RefinementList attribute="categories.name" />
+                    </CategoryFilter>
+                  ) : null}
+                </FilteredDiv>
+                <FilteredDiv>
+                  <FilterButton
+                    className="filters"
+                    onClick={() => setFiltersOpen(!filtersopen)}
+                  >
+                    Filters
+                  </FilterButton>
+                  {filtersopen ? (
+                    <FiltersFilter>
+                      <RefinementList attribute="filters" />
+                    </FiltersFilter>
+                  ) : null}
+                </FilteredDiv>
+              </FilterBox>
+              {props.results ? (
+                <>
+                  <ResultsBoxWrapper>
+                    <AlgoliaResults
+                      show={query && query.length > 0 && hasFocus}
+                      indices={indices}
+                    />
+                  </ResultsBoxWrapper>
+                  <AlgoliaPagination />
+                </>
+              ) : null}
+            </InstantSearch>
           </animated.div>
         </StyledButtonWrapper>
       ) : null}

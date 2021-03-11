@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
 import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"
@@ -6,13 +7,11 @@ import EmbedBlock from "./EmbedBlock"
 import GravityForm from './GravityForm'
 import AccordionNavigation from './AccordionNavigation'
 import SpecialBlock from '../content-modules/SpecialBlock'
-
-import styled from 'styled-components'
+import FeaturedEvent from '../content-modules/FeaturedEvent'
 import { colors, breakpoints, mixins } from '../css-variables'
 import Block from './WordPressBlock'
 
-
-const WordPressContentBlocks = ({className, blocks, content, eventCategory, product, stagger}) => {
+const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
 
     // see if the product has event and/or post nodes
 
@@ -31,8 +30,6 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
         const stagger = block.stagger
 
         console.log(block.name)
-
-        //console.log(block.name)
 
         switch(block.name) {            
             case "core/group":
@@ -92,41 +89,76 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, prod
             case "acf/accordion-navigation":
                 return <AccordionNavigation className={block.name.replace('/', '-')} block={block} />
                 break
+            case "acf/staff-search":
+                return(
+                    <Block
+                        className={block.name.replace("/", "-")}
+                        block={block}
+                    />
+                )
             case "acf/product-story-listing":
-                if ( product) {
-                    const { slug, posts } = product
-                    const postsToShow = (posts?.nodes) ? posts.nodes : null
-                    let reducedPosts = postsToShow.slice(0,8)
-                    console.log(reducedPosts)
-                    const buttons = (postsToShow.length > 2) 
+                if ( products) {
+                    console.log(products)
+                    let combinedPosts = []
+                    if (products?.nodes) {
+                        products.nodes.forEach((product) => {
+                            const { slug, posts } = product 
+                            const postsToShow = (posts?.nodes && posts.nodes.length > 0) ? posts.nodes : null
+
+                            if (postsToShow) {
+                                console.log(postsToShow)
+                                postsToShow.forEach((postToShow)  => {
+                                    combinedPosts.push(postToShow)
+                                })
+                            }
+                        })
+                    }
+                    
+                    let reducedPosts = combinedPosts.slice(0,8)
+                    
+                    const buttons = (reducedPosts.length > 2) 
                         ? [{
-                            link: `/posts/search/?category=${slug}`,
+                            link: `/posts/`,
                             text: 'See More WAA Stories'
                         }]
                         : null
                     RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={reducedPosts} type="news" size="M" /></PageSection>)    
+                } else {
+                    console.log('no product found')
                 }
                 
+                break
+            case "acf/events-listing-section":
+                //console.log('events-listing-section')
+                if ( products) { // FIX THIS
+                    let combinedEvents = []
+                    if (products?.nodes) {
+                        products.nodes.forEach((product) => {
+                            const { slug, events } = product 
+                            const eventsToShow = (events?.nodes) ? events.nodes : null
+                            if (eventsToShow) {
+                                eventsToShow.forEach((eventToShow)  => {
+                                    combinedEvents.push(eventToShow)
+                                })
+                            }
+                        })
+                    }
+                    
+                    const buttons = (combinedEvents.length > 2) 
+                        ? [{
+                            link: `/events/`,
+                            text: 'See More Events'
+                        }]
+                        : null
+                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={combinedEvents} size="M" type="event"/></PageSection>)
+                }
                 break
             case "acf/special-block":
                 RenderedBlocks.push(<SpecialBlock block={block} />)
                 break
-            case "acf/events-listing-section":
-                //console.log('events-listing-section')
-                if ( product) {
-                    const { slug, events } = product
-                    const eventsToShow = (events?.nodes) ? events.nodes : null
-                    const buttons = (eventsToShow.length > 2) 
-                        ? [{
-                            link: `/events/search/?category=${slug}`,
-                            text: 'See More Events'
-                        }]
-                        : null
-                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={eventsToShow} size="M" type="event"/></PageSection>)
-                }
-                
-                break
-            
+            case "acf/featured-event-block":
+                //console.log("featured event")
+                RenderedBlocks.push (<FeaturedEvent block={block} />)
             default:
                 //console.log('default')
                 RenderedBlocks.push(<PageSectionFromBlocks blocks={[block]} heading="Default" borderTop={borderTop} stagger={stagger} />)

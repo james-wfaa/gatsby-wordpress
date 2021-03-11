@@ -5,9 +5,12 @@ import WordPressContentBlocks from "../content-blocks/WordPressContentBlocks"
 import ProductMenu from "../parts/ProductMenu"
 
 function WordPressPage({ page }) {
-  const {  excerpt, featuredImage, introButtons, products, blocks, title, wpChildren } = page
+  const {  excerpt, featuredImage, introButtons, heroIntroSection, products, blocks, title, wpChildren } = page
   const { introButtons: buttons } = introButtons
+  const { heroHeading, introExcerpt, introHeading } = heroIntroSection
 
+  const heroIntroExcerpt = (introExcerpt) ? introExcerpt : excerpt
+  const heroOverlayHeading = (heroHeading) ? `<span>${heroHeading}</span> ON` : null
 
   const product = (products?.nodes) ? products.nodes[0] : null
   //console.log(product)
@@ -54,15 +57,17 @@ function WordPressPage({ page }) {
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}
           heroSize="slim"
+          heroHeading={heroOverlayHeading}
           redHeading={title}
-          excerpt={excerpt}
+          excerpt={heroIntroExcerpt}
           buttons={normalizedButtons}
           productPage
         />
       ) : (
         <HeroIntroSection
           redHeading={title}
-          excerpt={excerpt}
+          heroHeading={heroOverlayHeading}
+          excerpt={heroIntroExcerpt}
           buttons={normalizedButtons}
           productPage
         />
@@ -70,7 +75,7 @@ function WordPressPage({ page }) {
       { navContents && (
           <ProductMenu items={navContents} menuTitle={title} />
       )}
-      <WordPressContentBlocks product={product} blocks={blocks} />
+      <WordPressContentBlocks products={products} blocks={blocks} />
     </Layout>
   )
 }

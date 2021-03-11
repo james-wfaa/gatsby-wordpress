@@ -13,11 +13,6 @@ import AccordionNavigation from '../content-blocks/AccordionNavigation'
 import FooGallery from '../content-blocks/FooGallery'
 
 
-
-
-
-
-
 const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, centered }) => {
     // preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, children
 
@@ -137,6 +132,14 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         className={block.name.replace("/", "-")}
                         block={block}
                       />
+                    )
+                  case "acf/staff-search":
+                    return(
+                      <Block
+                          className={block.name.replace("/", "-")}
+                          block={block}
+                          product
+                        />
                     )
                   
                   case "gravityforms/form":

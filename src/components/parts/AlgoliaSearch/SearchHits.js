@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useEffect } from "react"
 import EventCard from './cards/EventCard'
 import PostCard from './cards/PostCard'
 
@@ -21,17 +21,17 @@ const SearchHits = ({ hits, hitHandler }) => {
       case "Event":
         return (
           <EventCard
-          key={hit.url}
-          hit={hit}
-          type={hit.type}
-          url={hit.url}
-          title={hit.title}
-          excerpt={hit.excerpt}
-          date={hit.date}
-          city={hit.venue.city}
-          state={hit.venue.state}
-          topResult={topResult}
-        />
+            key={hit.url}
+            hit={hit}
+            type={hit.type}
+            url={hit.url}
+            title={hit.title}
+            excerpt={hit.excerpt}
+            date={hit.date}
+            city={hit.venue?.city}
+            state={hit.venue?.state}
+            topResult={topResult}
+          />
         )
       case "Post":
         return (
