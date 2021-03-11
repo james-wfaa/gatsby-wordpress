@@ -55,7 +55,7 @@ const SelectSteps = () => {
     return (
         <div>
             <IntroPageSection
-            excerpt='Great, thanks for making those updates. Now, please review the following areas and check the ones you’d like to modify. It’ll only take a few minutes and provide you with many more ways to feel connected. This information helps tailor messages to your location, interests, and more. Otherwise, simply choose Finish Update below.'
+            excerpt='Great! Thanks for making those updates. Now, please review the following areas and check the ones you’d like to modify. It’ll only take a few minutes and will provide you with many more ways to feel connected. This information helps tailor messages to your location, interests, and more. Otherwise, simply choose "Finish Update" below.'
             heading='Update My Info'
             variantObject={variantObject}
             headingAlt
@@ -73,7 +73,7 @@ const SelectSteps = () => {
                         <input type="checkbox" name="demographic" id="demographic" checked={state.identityStep} onChange={()=>updateCheckbox(4)} />
                         <label htmlFor="demographic" selected>Race/Ethnicity/Identity Information</label>
                         <input type="checkbox" name="spouse" id="spouse" checked={state.lifeEventStep} onChange={()=>updateCheckbox(5)} />
-                        <label htmlFor="spouse" selected>Spouse/Partner Update</label>
+                        <label htmlFor="spouse" selected>Spouse/Partner</label>
                     </div>
                     <Buttons back finish next disabled={!(state.addressStep || state.phoneStep || state.employmentStep || state.identityStep || state.lifeEventStep)}/>
                 </fieldset>

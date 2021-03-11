@@ -76,7 +76,7 @@ const ContactInfo = () => {
                   <StyledError>{errors.lastname.message}</StyledError>
                 )}
               </label>
-              <label htmlFor="othernames">Other names you use or have used in the past (maiden names, nicknames, given names etc.)
+              <label htmlFor="othernames">Other names you use or have used in the past (maiden name, nicknames, given name, etc.)
                 <input
                     type="text"
                     name="othernames"
