@@ -75,10 +75,10 @@ const HeroIntroSection = ({
   let redboxClass = background
     ? `redbox redbox--background`
     : `redbox`
-  let downscrollClass = `${className}__downscroll`
+  let downscrollClass = `${className}__downscroll downscroll`
   if (heroSize !== "jumbo") {
     redboxClass += ` redbox--slim`
-    downscrollClass += ` ${className}__downscroll--slim`
+    downscrollClass += ` ${className}__downscroll--slim downscroll`
     classes += ` ${className}--slim`
   }
 
@@ -128,30 +128,30 @@ const HeroIntroSection = ({
           )}
         </>
       : null}
-      {productPage ? <div className="standardProductLabel"></div> :
-         (heroSize === 'slim') ? 
-         <div style={{ position: `relative` }}  className={imageWidthClass}>
-            <a
-          className={downscrollClass}
-          href={`#${className}__downscroll`}
-          title="Scroll down to content"
-          css={downscrollStyle}
-        >
-            <div className="downscroll_after" style={{backgroundColor: variantObject.background_color}}></div>
-          </a>
-        </div> 
-      : 
-      <div style={{ position: `relative` }}>
-        <a
-          className={downscrollClass}
-          href={`#${className}__downscroll`}
-          title="Scroll down to content"
-          css={downscrollStyle}
-        >
-          <div className="downscroll_main">down</div>
-          <div className="downscroll_after" style={{backgroundColor: variantObject.background_color}}></div>
-        </a>
-      </div> 
+      {productPage 
+        ? <div className="standardProductLabel"></div> 
+        : (heroSize === 'slim') 
+          ? <div style={{ position: `relative` }}  className={imageWidthClass}>
+              <a
+                className={downscrollClass}
+                href={`#${className}__downscroll`}
+                title="Scroll down to content"
+                css={downscrollStyle}
+              >
+                <div className="downscroll_after" style={{backgroundColor: variantObject.background_color}}></div>
+              </a>
+            </div> 
+          : <div style={{ position: `relative` }}>
+              <a
+                className={downscrollClass}
+                href={`#${className}__downscroll`}
+                title="Scroll down to content"
+                css={downscrollStyle}
+              >
+                <div className="downscroll_main">down</div>
+                <div className="downscroll_after" style={{backgroundColor: variantObject.background_color}}></div>
+              </a>
+            </div> 
       }
 
       <div className={redboxClass}>
@@ -194,6 +194,7 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
   &--slim {
     margin-bottom: -40px;
   }
+
   .downanchor {
     display: block;
     width: 1px;
@@ -379,6 +380,18 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
           background-size: contain !important;
         }
       }
+    }
+    .downscroll {
+      &:before {
+        display: none;
+      }
+      
+      &--slim {
+        display: none;
+      }
+    }
+    .downscroll_after {
+      display: none;
     }
   }
   .constrainHeight{
