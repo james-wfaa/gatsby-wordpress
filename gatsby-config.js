@@ -63,12 +63,9 @@ module.exports = {
                 select: "WAA Customer Service",
               },
             },
-            contactOptions: {
-              enabled: true,
-              chatLabelOnline: { "*": "Live Chat" },
-              chatLabelOffline: { "*": "Leave a message" },
+            contactForm: {
+              fields: [{ id: 1260807977350}] 
             },
-            fields: [{ id: 1260807977350}],
           },
         },
       },
