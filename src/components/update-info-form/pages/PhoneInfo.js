@@ -114,7 +114,7 @@ const PhoneInfo = () => {
                   <StyledError>{errors.phoneType1.message}</StyledError>
                 )}
               </label>
-              {state.phoneInfo.phoneType1 === "seasonal" ? renderSeasonalDates() : null}
+              {state.phoneInfo.phoneType1 === "Seasonal" ? renderSeasonalDates() : null}
               <label htmlFor="phoneNumber2" className="half">Phone Number 2
                 <input
                     type="phone"
@@ -148,7 +148,7 @@ const PhoneInfo = () => {
                   <StyledError>{errors.phoneType2.message}</StyledError>
                 )}
               </label>
-              {state.phoneInfo.phoneType2 === "seasonal" ? renderSeasonalDates() : null}
+              {state.phoneInfo.phoneType2 === "Seasonal" ? renderSeasonalDates() : null}
               <label htmlFor="phoneNumber3" className="half">Phone Number 3
                 <input
                     type="phone"
@@ -185,7 +185,7 @@ const PhoneInfo = () => {
                   <StyledError>{errors.phoneType3.message}</StyledError>
                 )}
               </label>
-              {state.phoneInfo.phoneType3 === "seasonal" ? renderSeasonalDates() : null}
+              {state.phoneInfo.phoneType3 === "Seasonal" ? renderSeasonalDates() : null}
               <Buttons 
                 save 
                 back
