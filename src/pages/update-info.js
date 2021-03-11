@@ -15,8 +15,7 @@ import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-var
 import formErrorIcon from "./../svg/form-error-icon-red.svg"
 
 const UpdateInfoForm = () =>  {
-  const { state, } = useContext(AppContext);
-  //const { setCurrentStep } = actions;
+  const { state } = useContext(AppContext);
 
   useEffect(() => {
     document.body.scrollTop = 0
@@ -46,10 +45,6 @@ const UpdateInfoForm = () =>  {
             break;
      }
    }
-
-  /*const onSubmit = (data) => {
-    console.log(data)
-  }*/
 
   return (
     <Layout>
