@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import styled from "styled-components"
-import CheckBox from "../../Checkbox"
+
 
 const FiltersFilter = props => {
   const FiltersDiv = styled.div`
