@@ -75,7 +75,7 @@ function WordPressPage({ page }) {
       { navContents && (
           <ProductMenu items={navContents} menuTitle={title} />
       )}
-      <WordPressContentBlocks product={product} blocks={blocks} />
+      <WordPressContentBlocks products={products} blocks={blocks} />
     </Layout>
   )
 }

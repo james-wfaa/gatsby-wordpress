@@ -4,7 +4,7 @@ export const fragments = graphql`
   fragment HeroImage on File {
     childImageSharp {
       fluid(maxWidth: 2880) {
-        ...GatsbyImageSharpFluid_tracedSVG
+        ...GatsbyImageSharpFluid
         aspectRatio
       }
     }
@@ -72,7 +72,6 @@ export const fragments = graphql`
               childImageSharp {
                 fluid(maxWidth: 712) {
                   base64
-                  tracedSVG
                   srcWebp
                   srcSetWebp
                   originalImg
@@ -101,7 +100,6 @@ export const fragments = graphql`
               childImageSharp {
                 fluid(maxWidth: 712) {
                   base64
-                  tracedSVG
                   srcWebp
                   srcSetWebp
                   originalImg
