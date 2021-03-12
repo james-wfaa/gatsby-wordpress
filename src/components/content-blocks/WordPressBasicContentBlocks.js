@@ -12,7 +12,7 @@ import SpecialBlock from '../content-modules/SpecialBlock'
 const WordPressContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
 
         const RenderedBlocks = (blocks) ? blocks.map((block) => {
-        //console.log(block.name)
+        console.log(block.name)
         switch (block.name) {
           case "core/separator":
             return (

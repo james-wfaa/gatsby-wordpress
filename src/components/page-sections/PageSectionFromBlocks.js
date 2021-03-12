@@ -71,7 +71,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
             })}</CardSet>)
             : blocks.map((block) => {
 
-                //console.log(block)
+                console.log(block)
 
                 switch (block.name) {
                   case "acf/section-header":
