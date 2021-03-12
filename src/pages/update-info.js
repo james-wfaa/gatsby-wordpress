@@ -15,8 +15,7 @@ import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-var
 import formErrorIcon from "./../svg/form-error-icon-red.svg"
 
 const UpdateInfoForm = () =>  {
-  const { state, } = useContext(AppContext);
-  //const { setCurrentStep } = actions;
+  const { state } = useContext(AppContext);
 
   useEffect(() => {
     document.body.scrollTop = 0
@@ -47,15 +46,12 @@ const UpdateInfoForm = () =>  {
      }
    }
 
-  /*const onSubmit = (data) => {
-    console.log(data)
-  }*/
-
   return (
     <Layout>
       <StyledUpdateInfoForm>
         { renderCurrentStep() }
-        {console.log(state)}
+        {//console.log(state)
+        }
         { !(state.currentStep === 8 || state.currentStep === 9) && <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our <a href="/">Privacy Statement</a>.</p>} 
       </StyledUpdateInfoForm>
     </Layout>

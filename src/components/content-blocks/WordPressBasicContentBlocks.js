@@ -38,6 +38,15 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
               />
             )
             break
+          case "acf/staff-search":
+            //console.log(block.dynamicContent)
+            return(
+              <Block
+                  className={block.name.replace("/", "-")}
+                  block={block}
+                  product
+                />
+            )
           case "core/columns":
             return (
               <Column className={block.name.replace("/", "-")} block={block} />
@@ -85,11 +94,17 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
           //Add case to handle news/stories that use the freeform block but do not have blocks... and then use content instead of original content because it has the html tags
           //Also added css below that is duplicated from WPBlock
           case "core/freeform":
-            return (
+            /*return (
               <div
                 className={block.name.replace("/", "-")}
                 dangerouslySetInnerHTML={{ __html: content }}
               />
+            )*/
+            return (
+              <Block
+                    className={block.name.replace("/", "-")}
+                    block={block}
+                  />
             )
             break
           case "core-embed/flickr":
@@ -207,6 +222,12 @@ hr.wp-block-separator {
         min-width: 50px;
     }
 }
+h2 {
+  padding-bottom: 0; // REMOVE H2 UNDERLINE FROM DEFAULT PAGES
+  &:after {
+    display: none; // REMOVE H2 UNDERLINE FROM DEFAULT PAGES
+  }
+}
 .core-freeform {
     margin-bottom: ${sizes.s32};
     text-align: left;
@@ -222,6 +243,10 @@ hr.wp-block-separator {
       line-height: ${sizes.s36};
       margin-bottom: ${sizes.s32};
       margin-top: ${sizes.s48}; // ex: email login page
+      padding-bottom: 0;
+      &:after {
+        display: none; // REMOVE H2 UNDERLINE FROM DEFAULT PAGES
+      }
       
       @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s36};
@@ -238,6 +263,16 @@ hr.wp-block-separator {
     a {
       ${mixins.a}
     }
+}
+.core-buttons {
+  .core-button {
+    &:first-child {
+      @media screen and ${breakpoints.tabletS} {
+        margin-left: 0;
+      }
+    }
+    
+  }
 }
 
 `

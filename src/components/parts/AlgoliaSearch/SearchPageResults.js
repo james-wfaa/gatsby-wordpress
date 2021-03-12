@@ -1,13 +1,10 @@
-import React, {useState, useEffect} from "react"
-import { Link } from 'gatsby'
+import React, { useState } from "react"
 import styled from 'styled-components'
-import { breakpoints, colors } from "../../css-variables"
+import { colors } from "../../css-variables"
 import {
   connectStateResults,
-  Highlight,
   Index,
-  Snippet,
-  connectHits
+  connectHits,
 } from "react-instantsearch-dom"
 import Hits from './SearchHits'
 
@@ -74,14 +71,13 @@ const HitsInIndex = ({ index }) => {
   )
 }
 
-const SearchResult = ({ indices, className }) => {
+const SearchResult = ({ indices }) => {
   return (
-  <ResultsWrapper>
-    {indices.map(index => (
-      <HitsInIndex index={index} key={index.name} />
-    ))}
-  </ResultsWrapper>
-
+    <ResultsWrapper>
+      {indices.map(index => (
+        <HitsInIndex index={index} key={index.name} />
+      ))}
+    </ResultsWrapper>
   )
 }
 

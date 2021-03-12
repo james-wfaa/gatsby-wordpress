@@ -53,6 +53,11 @@ export const query = graphql`
     page: wpPage(id: { eq: $id }) {
       title
       excerpt
+      heroIntroSection {
+        introHeading
+        introExcerpt
+        heroHeading
+      }
       content
       slug
       menuOrder
@@ -302,6 +307,21 @@ export const query = graphql`
       }
       chapterLevel {
         chapterLevel
+      }
+      chapterSponsors {
+        sponsors {
+          sponsorName
+          sponsorText
+          sponsorLogo {
+            localFile {
+              childImageSharp {
+                fixed(width: 312) {
+                  ...GatsbyImageSharpFixed
+                }
+              }
+            }
+          }
+        }
       }
     }
     allWp {

@@ -27,6 +27,7 @@ const PageSection = ({
     withSocial,
     plainText,
     centered, // a centered-content page section e.g. Product Page or Aggregate Page
+    feature, // restores full top padding when there's no title
     popOut,
     excerpt,
     buttons,
@@ -55,6 +56,7 @@ const PageSection = ({
     const onlyChildClass = onlyChild ? ' onlychild' : ''
     const hasPreHeading = preheading && !heading ?  ' hasPreHeading' : ''
     const hasNoHeading = !preheading && !heading ? ' hasNoHeading' : ''
+    const featureClass = feature ? ' feature' : ''
     const popClass = popOut ? `${className}__popOut` : ''
     const staggerClass = (stagger) ? ' stagger' : ''
     const defaultClass = (defaultPage) ? ' defaultClass' : ''
@@ -62,7 +64,7 @@ const PageSection = ({
     const centeredContentClass = (centered) ? ' centered' : ''
 
     return (
-        <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading}${defaultClass} ${bgClass}`}  >
+        <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading}${featureClass}${defaultClass} ${bgClass}`}  >
             { ! background &&  (
             <div className={`${className}__innerwrap   ${popClass}${dividerClass}` }>
                 { preheading && (
@@ -247,6 +249,9 @@ const StyledPageSection = styled(PageSection)`
     }
     &.hasNoHeading {
         padding-top: 58px;
+        &.feature {
+            padding-top: 88px;
+        }
     }
     
     &--addPad {
@@ -331,6 +336,7 @@ const StyledPageSection = styled(PageSection)`
         > .core-separator,
         > .gravityforms-form,
         > .acf-accordion-navigation,
+        > .acf-staff-search,
         > .wp-block-separator,
         > .wp-block-embed {
             min-width: 300px;
@@ -349,7 +355,10 @@ const StyledPageSection = styled(PageSection)`
             @media screen and ${breakpoints.tabletS} {
                 flex-direction: row;
             }        
-        }        
+        }  
+        > div {
+            margin: 0 auto;
+        }      
     }
 
 

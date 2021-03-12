@@ -2,12 +2,17 @@ import React from "react"
 import Layout from "../components/layout"
 import ContentCardD from "../components/content-blocks/ContentCardD"
 import PromoCardD from "../components/content-blocks/PromoCardD"
+import SponsorAd from "../components/content-blocks/SponsorAd"
 import GenericPageSection from '../components/page-sections/GenericPageSection'
 import MobileHr from '../components/parts/MobileHr'
 
 const CardDPage = () => {
     return (
 <Layout>
+<GenericPageSection>
+        <SponsorAd  className="Text" />
+    </GenericPageSection>
+
     <GenericPageSection>
         <MobileHr />
     </GenericPageSection>

@@ -113,6 +113,7 @@ export const colors = {
     bgLightGrey: baseColors.evenlighterGrey,
     mapDetailsText: baseColors.offBlack,
     disabledGrey: baseColors.darkGrey,
+    sponsorAdBG: baseColors.darkerGrey,
     captionBlack: baseColors.offBlack,
     formIntroBg: baseColors.lightestGrey,
     formInputBorder: baseColors.lightGrey,
@@ -985,6 +986,39 @@ export const mixins = {
             }
         }
     }`,
+    sponsorAd: `{
+        figure {
+            max-width: 302px;
+            margin: 0;
+
+            @media screen and ${breakpoints.mobileL} {
+                max-width: 1080px;
+            }
+    
+            BackgroundImage {
+                width: 100%;
+            }
+
+            .imgSmall{
+                @media screen and ${breakpoints.mobileL} {
+                    display: none;
+                }    
+            }
+            .imgLarge{
+                display: none;
+
+                @media screen and ${breakpoints.mobileL} {
+                    display: block;
+                }    
+            }
+            .caption {
+                margin-top: ${sizes.s32};
+                font-weight: bold;
+            }
+        }
+        
+    }`,
+
     socialStyles: `{
         width: 100%;  
         margin: ${sizes.s40} auto ${sizes.s48} auto;

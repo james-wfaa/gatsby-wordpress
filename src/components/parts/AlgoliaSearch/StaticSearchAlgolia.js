@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import algoliasearch from "algoliasearch/lite"
-import { InstantSearch, RefinementList, Configure, ScrollTo, connectHits } from "react-instantsearch-dom"
-import { colors, sizes, breakpoints } from "../../css-variables"
+import {
+  InstantSearch,
+  RefinementList,
+  Configure,
+  ScrollTo,
+} from "react-instantsearch-dom"
+import { colors } from "../../css-variables"
 import AccordianSearchBoxAlgolia from "./AccordianSearchBoxAlgolia"
 import SearchPageResults from "./SearchPageResults"
 import AlgoliaPagination from "./AlgoliaPagination"
@@ -85,19 +90,22 @@ const AccordianSearchAlgolia = props => {
                   let newlabel;
                   switch (item.label) {
                     case "Event":
-                      newlabel = "Events";
-                      break;
-                      case "Post":
-                        newlabel = "News/Stories";
-                        break;
-                        case "Page":
-                          newlabel = "Pages";
-                          break;
-                        }
-                        return ({
-                          ...item,
-                          label: newlabel,
-                        })
+                      newlabel = "Events"
+                      break
+                    case "Post":
+                      newlabel = "News/Stories"
+                      break
+                    case "Page":
+                      newlabel = "Pages"
+                      break
+                    default:
+                      newlabel = ""
+                      break
+                  }
+                      return ({
+                        ...item,
+                        label: newlabel,
+                      })
                       })
                     }
                     />

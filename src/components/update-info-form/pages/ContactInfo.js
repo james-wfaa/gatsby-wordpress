@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject, checkForLetters, currentYear } from '../form-helpers'
+import { StyledError, variantObject, checkForLetters, currentYear, handleFormSubmit } from '../form-helpers'
 import IntroPageSection from '../../page-sections/IntroPageSection'
 import Buttons from '../FormButtons'
 import { AppContext } from "../../../context/AppContext"
@@ -8,12 +8,15 @@ import { AppContext } from "../../../context/AppContext"
 
 const ContactInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setContactInfoOnchange } = actions;
+  const { setCurrentStep, setContactInfoOnchange, setEntryId } = actions;
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateContactInfo = data =>{
-    //console.log(data)
-    setCurrentStep(2)
+    handleFormSubmit(state).then((res) =>{
+      console.log('returned data', res)
+      setEntryId(res.entry_id)
+    }).then(setCurrentStep(2))
+    
   }
 
   const updateOnChangeValues = (e) => {

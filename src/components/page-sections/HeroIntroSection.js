@@ -29,10 +29,14 @@ const HeroIntroSection = ({
   if (heroSize === 'jumbo') {
     size = width > 655 ? "calc(100vh - 118px)" : "calc(100vh - 86px)"
   }
+<<<<<<< HEAD
 
   let imageWidthClass = imageWidth ? 'constrainWidth' : null
   let imageHeightClass = imageWidth ? ' constrainHeight' : null
 
+=======
+  
+>>>>>>> master
   const background = typeof heroImage !== "undefined" && heroImage !== null
 
   let classes = className

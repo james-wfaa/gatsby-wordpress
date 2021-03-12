@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import styled from "styled-components"
-import { colors, sizes, breakpoints } from "../css-variables"
+import { colors } from "../css-variables"
 import { navigate } from "gatsby"
 import { AppContext } from "../../context/AppContext"
 import Search from "../../svg/search.svg"
@@ -15,25 +15,24 @@ const StyledDiv = styled.div`
     display: grid;
     grid-template-columns: 1fr 30px;
     span {
-    width: 43px;
-    display: flex;
-    align-items: center;
+      width: 43px;
+      display: flex;
+      align-items: center;
 
-    a {
-      display: block;
-      width: 19px;
-      height: 19px;
-      margin-bottom: 4px;
-      background-color: ${colors.navMenuBlack};
-      cursor: pointer;
-      mask: url(${Search});
-      &:hover {
-        background-color: ${colors.buttonRed};
+      .accordianbox {
+        display: block;
+        width: 19px;
+        height: 19px;
+        margin-bottom: 4px;
+        background-color: ${colors.navMenuBlack};
+        cursor: pointer;
+        mask: url(${Search});
+        &:hover {
+          background-color: ${colors.buttonRed};
+        }
       }
     }
   }
-  }
-
 `
 
 const StyledInput = styled.input`
@@ -50,7 +49,7 @@ const StyledInput = styled.input`
 
 const AccordianSearchBox = props => {
 
-  const { state, dispatch, actions } = useContext(AppContext);
+  const { state, actions } = useContext(AppContext)
   const { setSearchString } = actions;
 
 
@@ -63,11 +62,9 @@ const AccordianSearchBox = props => {
       <form
         onSubmit={event => {
           event.preventDefault()
-          navigate(
-            props.navigationURL,
-            {
-              state: {string: state.searchstring}
-            })
+          navigate(props.navigationURL, {
+            state: { string: state.searchstring },
+          })
         }}
       >
         <StyledInput
@@ -78,15 +75,16 @@ const AccordianSearchBox = props => {
           className="st-default-search-input"
         />
         <span>
-          <a
-          onClick={()=> {
-            navigate(
-              props.navigationURL,
-              {
-                state: {string: state.searchstring}
+          <div
+            onClick={() => {
+              navigate(props.navigationURL, {
+                state: { string: state.searchstring },
               })
-          }}
-          style={{ backgroundColor: `${colors.buttonRed}` }}></a>
+            }}
+            ariaLabel={`Click to Search`}
+            style={{ backgroundColor: `${colors.buttonRed}` }}
+            className="accordianbox"
+          ></div>
         </span>
       </form>
     </StyledDiv>

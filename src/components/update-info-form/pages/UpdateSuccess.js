@@ -12,19 +12,19 @@ const UpdateSuccess = () => {
     const { handleSubmit } = useForm()
 
     const submitCommunicationsSignup = data =>{
-        console.log(data)
+        //console.log(data)
         setCurrentStep(9)
     }
 
     const updateOnChangeValues = (e) => {
         if(e.target.checked){
-            console.log(state.communicationsSignUp)
+            //console.log(state.communicationsSignUp)
             let newList = [...state.communicationsSignUp, e.target.name]
-            console.log(newList)
+            //console.log(newList)
             setCommunicationsSignUpOnchange(newList)
           } else {
             let newList = [...state.communicationsSignUp.filter(a => a !== e.target.name)]
-            console.log(newList)
+            //console.log(newList)
             setCommunicationsSignUpOnchange(newList)
         }
         

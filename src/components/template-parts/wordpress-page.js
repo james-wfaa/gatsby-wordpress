@@ -63,11 +63,11 @@ function WordPressPage({ page }) {
         </>
         :
         <>
-          <PageSectionHeader heading={title} />
+          <PageSectionHeader heading={title} pageTitle />
           { wpMenu && (
           <Menu name={wpMenu.name} link={wpMenu.link} menuItems={wpMenu.menuItems.nodes} width={width} />
         )}
-          <PageSection pageTitle>
+          <PageSection >
             <WordPressContent blocks={blocks} content={content} />
           </PageSection>
         </>
