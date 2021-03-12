@@ -64,14 +64,19 @@ module.exports = {
               },
             },
             contactForm: {
-              fields: [{ id: 1260807977350}] 
+              fields: [{ id: 1260807977350}],
+              launcher: {
+                chatLabel: {
+                '*': 'Ask WAA'
+                }
+              } 
             },
           },
         },
       },
     },
     //Uncomment to index to Algolia on gatsby build command
-    /*
+    
      {
        resolve: `gatsby-plugin-algolia`,
        options: {
@@ -80,7 +85,7 @@ module.exports = {
          queries: require("./src/utils/algolia-queries")
        },
      },
-     */
+     
     {
       resolve: `gatsby-source-wordpress`,
       options: {
