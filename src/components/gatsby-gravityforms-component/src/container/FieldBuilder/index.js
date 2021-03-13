@@ -20,6 +20,7 @@ const FieldBuilder = ({
     register,
     errors,
     setValue,
+    onChange
 }) => {
     // Loop through fields and create
     return formData.formFields.map(field => {
@@ -152,6 +153,7 @@ const FieldBuilder = ({
                         register={register}
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
+                        onChange={onChange}
                     />
                 )
             case 'name':

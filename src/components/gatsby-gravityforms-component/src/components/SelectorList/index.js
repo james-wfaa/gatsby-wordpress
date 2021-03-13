@@ -6,7 +6,7 @@ import strings from '../../utils/strings'
 import InputWrapper from '../InputWrapper'
 
 // TODO: Enable Select All Choice
-const SelectorList = ({ errors, fieldData, name, register, ...wrapProps }) => {
+const SelectorList = ({ errors, fieldData, name, register, onChange, ...wrapProps }) => {
     const { choices, cssClass, isRequired, size, type } = fieldData
     const options = JSON.parse(choices)
     return (
@@ -38,6 +38,7 @@ const SelectorList = ({ errors, fieldData, name, register, ...wrapProps }) => {
                                 })}
                                 type={type}
                                 value={value}
+                                onChange={() => onChange(fieldData.id, value, choiceID)}
                             />
                             &nbsp;
                             <label htmlFor={`${name}_${choiceID}`}>

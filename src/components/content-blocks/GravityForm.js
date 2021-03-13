@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { breakpoints, mixins, sizes, fonts, colors } from '../css-variables'
 import Block from './WordPressBlock'
@@ -23,6 +23,7 @@ const AllGravityData = () => {
                                 descriptionPlacement
                                 type
                                 choices
+                                conditionalLogic
                                 content
                                 errorMessage
                                 inputMaskValue
@@ -74,8 +75,48 @@ function handleSuccess({values, reset, confirmations}) {
 }
 
 const GravityForm = ({className, id}) => {
+    const [formData, setFormData] = useState([]);
+    const [checkboxFieldData, setCheckboxFieldData] = useState({});
+    const [keepTrackOfCheckboxes, setkeepTrackOfCheckboxes] = useState([]);
+    //const [choices, setChoices] = useState({});
     //console.log(id)
     const gfData = AllGravityData()
+    useEffect(() => {
+        let selectCurrentForm = gfData.edges.filter(function (e) {
+            return e.node.formId == id
+        })
+        setFormData(selectCurrentForm[0].node)
+      }, []);
+    
+    //console.log(formData)
+
+    const handleFieldChange = (fieldId, value, inputId) => {
+        let input = `input_${fieldId}_${inputId}`;
+        let checkForInput = keepTrackOfCheckboxes.includes(input)
+        if (checkForInput){
+            const updateCheckboxData = {
+                ...checkboxFieldData
+            }
+            delete updateCheckboxData[input]
+
+            setCheckboxFieldData(updateCheckboxData)
+
+            let updateChecks = keepTrackOfCheckboxes
+            setkeepTrackOfCheckboxes(updateChecks.filter(i => i !== input))
+        } else{
+            setCheckboxFieldData(checkboxFieldData => ({
+                ...checkboxFieldData,
+                [input]:value
+            }))
+
+            let updateChecks = keepTrackOfCheckboxes
+            setkeepTrackOfCheckboxes(updateChecks.concat(input))
+        }
+
+        console.log(input, checkboxFieldData, keepTrackOfCheckboxes)
+        
+    }
+
     //console.log (gfData.edges)
     let thisForm = gfData.edges.filter(function (e) {
         return e.node.formId == id
@@ -95,6 +136,8 @@ const GravityForm = ({className, id}) => {
                         lambda={`${fullhostname}/wp-json/formsubmit/v1/submit/${id}`}
                         successCallback={handleSuccess}
                         errorCallback={handleError}
+                        onChange={handleFieldChange}
+                        checkboxes={checkboxFieldData}
                     />
         </div>
     )
