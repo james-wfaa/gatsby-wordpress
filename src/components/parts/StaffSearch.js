@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react"
-import parse from 'html-react-parser';
+import React, { useState } from "react"
 import styled from 'styled-components'
 import { useForm } from "react-hook-form"
-import { breakpoints, fonts, sizes, colors, mixins } from '../css-variables'
+import { breakpoints, sizes, colors, mixins } from '../css-variables'
 import SearchIcon from "../../svg/search.svg"
 
 
@@ -172,10 +171,6 @@ const StaffSearchModal = () => {
             return null
         }
         
-    }
-
-    const searchHandler = e => {
-        setSearchText(e.target.value)
     }
 
   return (

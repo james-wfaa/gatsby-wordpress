@@ -27,11 +27,13 @@ const PageSection = ({
     withSocial,
     plainText,
     centered, // a centered-content page section e.g. Product Page or Aggregate Page
+    feature, // restores full top padding when there's no title
     popOut,
     excerpt,
     buttons,
     buttonsAlt,
     buttonsCompact,
+    backgroundColor,
     alt,
     topBorder,
     bgImage,
@@ -55,6 +57,7 @@ const PageSection = ({
     const onlyChildClass = onlyChild ? ' onlychild' : ''
     const hasPreHeading = preheading && !heading ?  ' hasPreHeading' : ''
     const hasNoHeading = !preheading && !heading ? ' hasNoHeading' : ''
+    const featureClass = feature ? ' feature' : ''
     const popClass = popOut ? `${className}__popOut` : ''
     const staggerClass = (stagger) ? ' stagger' : ''
     const defaultClass = (defaultPage) ? ' defaultClass' : ''
@@ -62,14 +65,14 @@ const PageSection = ({
     const centeredContentClass = (centered) ? ' centered' : ''
 
     return (
-        <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading}${defaultClass} ${bgClass}`}  >
+        <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading}${featureClass}${defaultClass} ${bgClass}`}  >
             { ! background &&  (
             <div className={`${className}__innerwrap   ${popClass}${dividerClass}` }>
                 { preheading && (
                 <div className={`${className}__preheading`}>{preheading}</div>
             )}
             { heading && (
-                <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} groupPage={groupPage} withSocial={withSocial} headingCompact={headingCompact} fromBlocks={fromBlocks} leftAlign={leftAlign} />
+                <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} groupPage={groupPage} withSocial={withSocial} excerpt={excerpt} headingCompact={headingCompact} fromBlocks={fromBlocks} leftAlign={leftAlign} />
             )}
             { withSocial && (
                 <StyledSocialIcons data={withSocial} />
@@ -110,7 +113,6 @@ const PageSection = ({
         )
         }
 
-
         </div>
     )
 }
@@ -127,14 +129,14 @@ const SocialIcons = ({ className, data }) => {
           <li><a className="ig" target="_blank" title={`${data.title}  Instagram Page`} href={`https://instagram.com/${data.chapterDetails.csInstagram}`}></a></li>
         )}
         { data?.chapterDetails?.csLinkedin && (
-          <li><a className="li" target="_blank" title={`${data.title}  LinkedIn Page`} href={data.chapterDetails.csLinkedin}></a></li> 
+          <li><a className="li" target="_blank" title={`${data.title}  LinkedIn Page`} href={data.chapterDetails.csLinkedin}></a></li>
         )}
         { data?.chapterDetails?.csWechat && (
           <li><a className="wc" target="_blank" title={`${data.title}  WeChat Page`} href={data.chapterDetails.csWechat}></a></li>
         )}
          { data?.chapterDetails?.csSnapchat && (
           <li><a className="sc" title={`${data.title}  SnapChat Page`} href={data.chapterDetails.csSnapchat}></a></li>
-        )}  
+        )}
     </ul>
     )
   }
@@ -149,7 +151,7 @@ const SocialIcons = ({ className, data }) => {
       width: ${sizes.s28};
       height: ${sizes.s28};
       margin: 0 ${sizes.s24} 0 0;
-         
+
       a {
           display: block;
           width: ${sizes.s28};
@@ -181,7 +183,7 @@ const SocialIcons = ({ className, data }) => {
   `
 
 const StyledPageSection = styled(PageSection)`
-
+    background-color: ${props => props.backgroundColor ? props.backgroundColor : null};
     &.desktopOnly {
         display: none;
         @media screen and ${breakpoints.laptopS} {
@@ -211,7 +213,7 @@ const StyledPageSection = styled(PageSection)`
                 padding-bottom: 88px;
             }
         }
-        
+
     }
     &.defaultClass {
         padding-top: 0;
@@ -219,7 +221,7 @@ const StyledPageSection = styled(PageSection)`
             width: 712px;
         }
     }
-    
+
     &.stagger:nth-child(even) {
         background-color: ${colors.bgActiveGrey};
     }
@@ -240,15 +242,18 @@ const StyledPageSection = styled(PageSection)`
     }
     &.leftAlign {
         text-align: left;
-        
+
     }
     &.hasPreHeading {
         padding-top: 0;
     }
     &.hasNoHeading {
         padding-top: 58px;
+        &.feature {
+            padding-top: 88px;
+        }
     }
-    
+
     &--addPad {
         padding-bottom: 116px;
     }
@@ -332,6 +337,7 @@ const StyledPageSection = styled(PageSection)`
         > .StaffSearch,
         > .gravityforms-form,
         > .acf-accordion-navigation,
+        > .acf-staff-search,
         > .wp-block-separator,
         > .wp-block-embed {
             min-width: 300px;
@@ -349,8 +355,11 @@ const StyledPageSection = styled(PageSection)`
 
             @media screen and ${breakpoints.tabletS} {
                 flex-direction: row;
-            }        
-        }        
+            }
+        }
+        > div {
+            margin: 0 auto;
+        }
     }
 
 

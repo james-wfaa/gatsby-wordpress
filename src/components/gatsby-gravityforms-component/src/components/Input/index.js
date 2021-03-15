@@ -6,7 +6,7 @@ import InputWrapper from '../InputWrapper'
 import InputSubfieldWrapper from '../InputSubfieldWrapper'
 
 const Input = ({ errors, fieldData, name, register, value, subfield, ...wrapProps }) => {
-    //console.log(fieldData)
+    
     const {
         cssClass,
         inputMaskValue,
@@ -15,6 +15,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, ...wrapProp
         placeholder,
         size,
         type,
+        id
     } = fieldData
     const regex = inputMaskValue ? new RegExp(inputMaskValue) : false
     return (subfield) ? (<InputSubfieldWrapper
@@ -32,9 +33,9 @@ const Input = ({ errors, fieldData, name, register, value, subfield, ...wrapProp
             size
         )}
         defaultValue={value}
-        id={name}
+        id={`input_${id.replace(".", "_")}`}
         maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
-        name={name} 
+        name={`input_${id.replace(".", "_")}`}
         placeholder={placeholder}
         ref={register({
             required: isRequired && strings.errors.required,

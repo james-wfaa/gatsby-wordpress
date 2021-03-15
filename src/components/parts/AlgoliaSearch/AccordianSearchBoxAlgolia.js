@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { colors, sizes, breakpoints } from "../../css-variables"
+import { colors } from "../../css-variables"
 import { connectSearchBox } from "react-instantsearch-dom"
 import Search from "../../../svg/search.svg"
 
@@ -19,7 +19,7 @@ const StyledDiv = styled.div`
     display: flex;
     align-items: center;
 
-    a {
+    button {
       display: block;
       width: 19px;
       height: 19px;
@@ -55,17 +55,20 @@ export default connectSearchBox(
     return (
       <StyledDiv>
         <form onSubmit={e => submitHandler(e)}>
-        <StyledInput
-          type="text"
-          placeholder="Search..."
-          aria-label="Search"
-          onChange={e => refine(e.target.value)}
-          value={currentRefinement}
-          onFocus={onFocus}
-        />
-      </form>
-      <span>
-          <a style={{ backgroundColor: `${colors.buttonRed}` }}></a>
+          <StyledInput
+            type="text"
+            placeholder="Search..."
+            ariaLabel="SearchInput"
+            onChange={e => refine(e.target.value)}
+            value={currentRefinement}
+            onFocus={onFocus}
+          />
+        </form>
+        <span>
+          <button
+            ariaLabel="SearchButton"
+            style={{ backgroundColor: `${colors.buttonRed}` }}
+          ></button>
         </span>
       </StyledDiv>
     )

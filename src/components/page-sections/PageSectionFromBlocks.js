@@ -9,12 +9,8 @@ import CardSet from "../content-modules/CardSet"
 import Block from '../content-blocks/WordPressBlock'
 import Column from '../parts/WordPressColumns'
 import EmbedBlock from "../content-blocks/EmbedBlock"
+import SpecialBlock from '../content-modules/SpecialBlock'
 import AccordionNavigation from '../content-blocks/AccordionNavigation'
-
-
-
-
-
 
 const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, centered }) => {
     // preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, children
@@ -23,7 +19,6 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
     let title = null
     let id = null
     let hasBorderTop = borderTop
-    let specialBlock = false
     blocks.map((block) => {
         switch(block.name) {
             case "acf/section-header":
@@ -136,6 +131,16 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         block={block}
                       />
                     )
+                  case "acf/staff-search":
+                    return(
+                      <Block
+                          className={block.name.replace("/", "-")}
+                          block={block}
+                          product
+                        />
+                    )
+                  case "acf/special-block":
+                    return (<SpecialBlock block={block} />)
                   
                   case "gravityforms/form":
                     //console.log("form found")
