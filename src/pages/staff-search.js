@@ -12,9 +12,12 @@ const { width } = '750px'
 const StaffSearchPage = () => {
   return (
     <Layout>
-      <PageSection>
+      <PageSection centered>
         <StaffSearchModal
         />
+      </PageSection>
+      <PageSection heading="SECOND" pageTitle><div>Organizer template</div>
+        <div>Test</div>
       </PageSection>
 
     </Layout>
