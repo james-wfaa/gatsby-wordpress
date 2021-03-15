@@ -251,7 +251,8 @@ const queries = [
   },
   {
     query: classNoteQuery,
-    transformer: ({ data }) => data.posts.edges.map(classNoteToAlgoliaRecord),
+    transformer: ({ data }) =>
+      data.classnotes.edges.map(classNoteToAlgoliaRecord),
     indexName: `All`,
     settings: {
       attributesToSnippet: [`blocks:40`],
