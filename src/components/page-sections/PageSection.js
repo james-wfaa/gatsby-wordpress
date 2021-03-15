@@ -71,7 +71,7 @@ const PageSection = ({
                 <div className={`${className}__preheading`}>{preheading}</div>
             )}
             { heading && (
-                <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} groupPage={groupPage} withSocial={withSocial} headingCompact={headingCompact} fromBlocks={fromBlocks} leftAlign={leftAlign} />
+                <PageSectionHeader heading={heading} headingAlt={headingAlt} pageTitle={pageTitle} groupPage={groupPage} withSocial={withSocial} excerpt={excerpt} headingCompact={headingCompact} fromBlocks={fromBlocks} leftAlign={leftAlign} />
             )}
             { withSocial && (
                 <StyledSocialIcons data={withSocial} />

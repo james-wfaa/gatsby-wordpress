@@ -7,17 +7,18 @@ const AllChaptersData = () => {
   const { allWpChapter } = useStaticQuery(
     graphql`
       query {
-        allWpChapter(limit: 200, sort: {order: DESC, fields: date}) {
+        allWpChapter(limit: 200, sort: { order: DESC, fields: date }) {
           nodes {
             title
+            content
             chapterDetails {
               csCountry
               csFacebook
               csInstagram
               csLatitude
               csLinkedin
-              csLongitude 
-              csSnapchat  
+              csLongitude
+              csSnapchat
               csState
               csTwitter
               csUrl

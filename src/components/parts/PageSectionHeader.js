@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { mixins } from '../css-variables'
 
 
-const PageSectionHeader = ({ className, heading, headingAlt, headingCompact, pageTitle, groupPage, withSocial, bgimage, fromBlocks, leftAlign }) => {
+const PageSectionHeader = ({ className, heading, headingAlt, headingCompact, pageTitle, excerpt, groupPage, withSocial, bgimage, fromBlocks, leftAlign }) => {
 
     const classBgImage = bgimage ? ' bgimage' : ''
     const classSocialImage = withSocial ? ' social' : ''
@@ -11,7 +11,9 @@ const PageSectionHeader = ({ className, heading, headingAlt, headingCompact, pag
     const classCompact = headingCompact ? ' compact' : ''
     const classLeft = leftAlign ? ' leftAlign' : ''
     const classGroup = groupPage ? ' groupPage' : ''
-    const classesList = `${className}${classAlt}${classCompact}${classBgImage}${classGroup}${classSocialImage}${classLeft}`
+    const classExcerpt = excerpt ? ' excerpt' : ''
+    const classesList = `${className}${classAlt}${classCompact}${classBgImage}${classGroup}${classSocialImage}${classLeft}${classExcerpt}`
+   
     return (
         <div className={classesList}>
             { fromBlocks && (
