@@ -6,8 +6,8 @@ import PageSection from "../page-sections/PageSection"
 import { membershipFeeCalc } from "../../utils/tools"
 
 const FormWrapper = styled.div`
- 
-  
+
+
 `
 
 const QuestionForm = styled.form`
@@ -25,8 +25,8 @@ const FormHeader = styled.div`
   border-top: 3px solid ${colors.iconGrey};
   border-collapse: collapse;
   position:relative;
-  
-  
+
+
   p {
     margin: 0;
     font-size: 18px;
@@ -262,8 +262,8 @@ const FeeBox = styled.div`
   @media screen and ${breakpoints.tabletL} {
     max-width: 896px;
   }
-  
-  
+
+
 `
 const CardWrapper = styled.div`
   width: 100% !important;
@@ -370,7 +370,7 @@ const MembershipForm = () => {
     return combinedText
   }
 
-  const recentGradText = state.membershipGraduate ? `RECENT GRAD` : `PRIOR GRAD`
+  const recentGradText = state.membershipGraduate ? `- RECENT GRAD` : null
   const membershipTypeText =
     state.membershipType === "individual" ? `INDIVIDUAL` : `JOINT`
   const baseJoinUrl = "https://secure.uwalumni.com/join"
@@ -454,7 +454,7 @@ const MembershipForm = () => {
               <FeeCard>
                 <FeeCardHeader>
                   <FeeParamList>
-                    LIFETIME - {recentGradText} - {membershipTypeText}
+                    LIFETIME {recentGradText} - {membershipTypeText}
                   </FeeParamList>
                   <h2>Pay in Full</h2>
                 </FeeCardHeader>
@@ -477,7 +477,7 @@ const MembershipForm = () => {
               <FeeCard>
                 <FeeCardHeader>
                   <FeeParamList>
-                    LIFETIME - {recentGradText} - {membershipTypeText}
+                    LIFETIME {recentGradText} - {membershipTypeText}
                   </FeeParamList>
                   <h2>Installments</h2>
                 </FeeCardHeader>
@@ -515,7 +515,7 @@ const MembershipForm = () => {
               <FeeCard>
                 <FeeCardHeader>
                   <FeeParamList>
-                    ANNUAL - {recentGradText} - {membershipTypeText}
+                    ANNUAL {recentGradText} - {membershipTypeText}
                   </FeeParamList>
                   <h2>Two Year</h2>
                 </FeeCardHeader>
@@ -538,7 +538,7 @@ const MembershipForm = () => {
               <FeeCard>
                 <FeeCardHeader>
                   <FeeParamList>
-                    ANNUAL - {recentGradText} - {membershipTypeText}
+                    ANNUAL {recentGradText} - {membershipTypeText}
                   </FeeParamList>
                   <h2>One Year</h2>
                 </FeeCardHeader>
@@ -562,7 +562,7 @@ const MembershipForm = () => {
         <PageSection id="membership-join" topBorder heading="Let's Find the Best Membership for You" excerpt="Joining for the first time? Or are you a long-time member who wants
         to make sure you're getting the best deal? Either way, answer the
         following questions to see what's right for you.">
-          
+
           <QuestionForm>
             <FormHeader>
               <p>IT'S AS EASY AS ONE, TWO, THREE</p>
@@ -652,7 +652,7 @@ const MembershipForm = () => {
                 <label for="joint">Joint</label>
               </StyledCheckbox>
             </FormSection>
-            <p style={{margin: `32px auto 0`, fontStyle: `italic`}}>You must answer all three questions before submitting. Thank you.</p>
+            {disabled ? <p style={{margin: `32px auto 0`, fontStyle: `italic`}}>You must answer all three questions before submitting. Thank you.</p> : null}
             <FormSubmitButton disabled={disabled} onClick={(e) => handleSubmit(e)}>SUBMIT</FormSubmitButton>
           </QuestionForm>
         </PageSection>
