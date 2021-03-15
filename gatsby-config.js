@@ -64,7 +64,12 @@ module.exports = {
               },
             },
             contactForm: {
-              fields: [{ id: 1260807977350}] 
+              fields: [{ id: 1260807977350}],
+              launcher: {
+                chatLabel: {
+                '*': 'Ask WAA'
+                }
+              } 
             },
           },
         },

@@ -69,6 +69,10 @@ export const useActions = (state, dispatch) => {
   function setCommunicationsSignUpOnchange(array) {
     dispatch({ type: types.SET_COMMUNICATIONS_SIGNUP_ONCHANGE, payload: array})
   }
+  function setEntryId(str) {
+    dispatch({ type: types.SET_ENTRY_ID, payload: str });
+  }
+  
   
 
   return {
@@ -93,6 +97,7 @@ export const useActions = (state, dispatch) => {
     setCommunicationsSignUpOnchange,
     setMembershipGraduate,
     setMembershipAge,
-    setMembershipType
+    setMembershipType,
+    setEntryId
   };
 };

@@ -28,7 +28,7 @@ const HeroIntroSection = ({
   if (heroSize === 'jumbo') {
     size = width > 655 ? "calc(100vh - 118px)" : "calc(100vh - 86px)"
   }
-
+  
   const background = typeof heroImage !== "undefined" && heroImage !== null
 
   let classes = className
@@ -92,7 +92,7 @@ const HeroIntroSection = ({
     <div className={classes}>
       {videoURL ? (
         <VimeoVideo videoURL={videoURL} heroSize={heroSize} heroHeading={heroHeading}/>
-      ) : background ? (
+      ) : ( background && heroImage?.childImageSharp?.fluid ) ? (
         <div style={{height: `${size}`}}>
         <BackgroundImage
           Tag="div"

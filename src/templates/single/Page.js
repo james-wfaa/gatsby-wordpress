@@ -53,6 +53,11 @@ export const query = graphql`
     page: wpPage(id: { eq: $id }) {
       title
       excerpt
+      heroIntroSection {
+        introHeading
+        introExcerpt
+        heroHeading
+      }
       content
       slug
       menuOrder

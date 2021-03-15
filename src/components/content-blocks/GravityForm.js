@@ -65,10 +65,12 @@ const AllGravityData = () => {
 
 function handleError({values, error, reset}) {
     //handle error
+    console.log(values, error)
 }
 
 function handleSuccess({values, reset, confirmations}) {
     //handle success
+    console.log(values, confirmations)
 }
 
 const GravityForm = ({className, id}) => {
@@ -79,13 +81,18 @@ const GravityForm = ({className, id}) => {
         return e.node.formId == id
     })
     //console.log(thisForm)
-
+    let fullhostname = 'https://uwalumni.wpengine.com'
+    /*if (typeof window !== 'undefined') {
+    const { protocol, hostname } = window.location;
+    fullhostname = protocol.concat("//").concat(hostname);
+    }*/
+    
     return (
         <div className={className}>
             <GravityFormForm
                         id={id}
                         formData={gfData}
-                        lambda={process.env.LAMBDA_ENDPOINT}
+                        lambda={`${fullhostname}/wp-json/formsubmit/v1/submit/${id}`}
                         successCallback={handleSuccess}
                         errorCallback={handleError}
                     />

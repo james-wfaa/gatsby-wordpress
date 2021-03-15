@@ -48,7 +48,6 @@ import SponsorAdStyled from "./SponsorAdStyled"
       }
     `);
   
-    console.log('Data? ' + data);
     const { allWp } = data
     const { siteOptions } = allWp.nodes[0]
     const { SponsorAd } = siteOptions

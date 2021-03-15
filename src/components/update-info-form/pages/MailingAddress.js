@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject } from '../form-helpers'
-import IntroPageSection from '../../page-sections/IntroPageSection'
+import { StyledError, variantObject, handleFormSubmit } from '../form-helpers'
+import { colors } from '../../css-variables'
+import PageSection from '../../page-sections/PageSection'
 import Buttons from '../FormButtons'
 import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
@@ -14,13 +15,15 @@ const MailingAddress = () => {
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateMailingAddressInfo = data =>{
-    //console.log(data)
-
-    let currentOrder = state.numberOfSteps
-    let currentStep = state.currentStep
-    let currentPlaceInOrder = currentOrder.indexOf(currentStep)
-    let nextStep = currentOrder[currentPlaceInOrder + 1]
-    setCurrentStep(nextStep)
+    console.log(data)
+    handleFormSubmit(state).then(() => {
+      let currentOrder = state.numberOfSteps
+      let currentStep = state.currentStep
+      let currentPlaceInOrder = currentOrder.indexOf(currentStep)
+      let nextStep = currentOrder[currentPlaceInOrder + 1]
+      setCurrentStep(nextStep)
+    })
+    
   }
   const updateOnChangeValues = (e) => {
     setMailingAddressOnchange([e.target.name, e.target.value])
@@ -47,12 +50,12 @@ const MailingAddress = () => {
   })
       return (
         <div>
-            <IntroPageSection
+            <PageSection
               excerpt='Please update your primary or seasonal mailing address below. This way, you’ll receive communications on happenings in your area to help you stay connected to fellow Badgers nearby. Note that if you checked “Employment Information” on a previous form, you also have the option to update your business address coming up. And always click “Save and Continue” after completing a page to ensure your changes are recorded.'
               heading='Update My Info'
-              variantObject={variantObject}
               headingAlt
               headingCompact
+              backgroundColor={colors.formIntroBg}
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form className="mailing-address" onSubmit={handleSubmit(UpdateMailingAddressInfo)}>

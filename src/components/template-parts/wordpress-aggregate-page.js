@@ -4,10 +4,16 @@ import HeroIntroSection from "../page-sections/HeroIntroSection"
 import WordPressContentBlocks from "../content-blocks/WordPressContentBlocks"
 
 function WordPressPage({ page }) {
-  const {  title, excerpt, featuredImage, introButtons, blocks } = page
+  const {  title, excerpt, featuredImage,  heroIntroSection, introButtons, products, blocks } = page
   const { introButtons: buttons } = introButtons
+  const { heroHeading, introExcerpt, introHeading } = heroIntroSection
+  const heroIntroExcerpt = (introExcerpt) ? introExcerpt : excerpt
+  const heroOverlayHeading = (heroHeading) ? `<span>${heroHeading}</span> ON` : null
+
+  console.log('aggregate')
   const normalizedButtons = (buttons) ? buttons.map(item=>{
     return {
+      key: item.link.url,
       link: item.link.uri,
       text: item.text
     }
@@ -25,14 +31,16 @@ function WordPressPage({ page }) {
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}
           heroSize="slim"
+          heroHeading={heroOverlayHeading}
           redHeading={title}
-          excerpt={excerpt}
+          excerpt={heroIntroExcerpt}
           buttons={normalizedButtons}
+          productPage
         />
       )}
 
 
-    <WordPressContentBlocks blocks={blocks} stagger />
+    <WordPressContentBlocks products={products} blocks={blocks} stagger />
 
 
     </Layout>

@@ -40,25 +40,25 @@ const initialState = {
     seasonalZipcode: '',
   },
   phoneInfo: {
-    phoneType1: 'home',
+    phoneType1: 'Home',
     phoneNumber1: '',
-    phoneType2: 'mobile',
+    phoneType2: 'Personal Cellular/Mobile',
     phoneNumber2: '',
-    phoneType3: 'work',
+    phoneType3: 'Work/Business',
     phoneNumber3: '',
-    seasonalStartDate: '',
-    seasonalEndDate: '',
+    seasonalPhoneStartDate: '',
+    seasonalPhoneEndDate: '',
   },
   employmentInfo: {
     businessName: '',
     jobTitle: '',
     startDate: '',
-    streetAddress: '',
-    streetAddressLineTwo: '',
-    city: '',
-    state: '',
-    zipcode: '',
-    country: 'US',
+    businessStreetAddress: '',
+    businessStreetAddressLineTwo: '',
+    businessCity: '',
+    businessState: '',
+    businessZipcode: '',
+    businessCountry: 'US',
   },
   identityInfo: {
     identity: [],
@@ -66,14 +66,15 @@ const initialState = {
     identitydescrip: '',
   },
   spouseInfo: {
-    firstname: '',
-    lastname: '',
-    undergrad: '',
-    postgrad: '',
+    spouseFirstname: '',
+    spouseLastname: '',
+    spouseUndergrad: '',
+    spousePostgrad: '',
     spouseUpdate: '',
     uwGrad: false,
   },
   communicationsSignUp: [],
+  entry_id: null,
   //End Update Info Form 
 };
 const types = {
@@ -102,6 +103,7 @@ const types = {
   SET_SPOUSE_INFO: "SET_SPOUSE_INFO",
   SET_SPOUSE_INFO_ONCHANGE: "SET_SPOUSE_INFO_ONCHANGE",
   SET_COMMUNICATIONS_SIGNUP_ONCHANGE: "SET_COMMUNICATIONS_SIGNUP_ONCHANGE",
+  SET_ENTRY_ID: "SET_ENTRY_ID"
   //End Update Info Form 
 };
 
@@ -256,6 +258,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         communicationsSignUp: action.payload,
       };
+    case types.SET_ENTRY_ID:
+      return {
+        ...state,
+        entry_id: action.payload,
+      };
+    
     //End Update Info Form 
       
     default:
