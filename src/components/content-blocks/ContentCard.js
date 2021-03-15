@@ -13,6 +13,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
     if (endDate && shortDate(endDate) !== fmtStartDate) {
         fmtEndDate = shortDate(endDate)
     }
+    console.log(img)
     const dateLinkText = fmtEndDate ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
     
     const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];
@@ -36,8 +37,8 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                 }
             ]
             :  img.childImageSharp.fluid
-    //console.log(title)
-    //console.log(imgSources)
+    console.log(title)
+    console.log(imgSources)
     return (
 
         <div className={`${className} ${className}--${size} ${className}--${notSmall} ${promoClass}`}>

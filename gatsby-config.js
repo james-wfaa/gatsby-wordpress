@@ -68,7 +68,13 @@ module.exports = {
               launcher: {
                 chatLabel: {
                 '*': 'Ask WAA'
-                }
+                },
+                chatLabelOffline: {
+                '*': 'Ask WAA' 
+                },
+                chatLabelOnline: {
+                '*': 'Ask WAA' 
+                },
               } 
             },
           },

@@ -8,7 +8,7 @@ import RightArrow from "../../components/parts/SliderArrowRight"
 const SimpleSliderItems = ({ items, size, type }) => {
     let myItems = []
     items.forEach((item) => {
-        //console.log(item)
+        console.log(item)
         const { featuredImage: img } = item
         const cardImg = (img ?.node?.localFile) ? img.node.localFile : null
         if(type === "news"){
@@ -32,7 +32,7 @@ const SimpleSliderItems = ({ items, size, type }) => {
       }
 
     return (
-        <SimpleSlider ko
+        <SimpleSlider 
             className="center"
             slidesToShow="1"
             dots

@@ -2,6 +2,8 @@ import React from 'react'
 import ContentCard from "./ContentCard"
 
 const EventContentCard = ({ className, startDate, endDate, title, category, venue, excerpt, url, urlText, img, featureImg, caption, tags, size, promo }) => {
+ console.log('event content card')
+  console.log(img)
   return (
         <ContentCard
           className={className}

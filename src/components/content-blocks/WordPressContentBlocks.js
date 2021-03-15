@@ -106,7 +106,7 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                             const postsToShow = (posts?.nodes && posts.nodes.length > 0) ? posts.nodes : null
 
                             if (postsToShow) {
-                                console.log(postsToShow)
+                                //console.log(postsToShow)
                                 postsToShow.forEach((postToShow)  => {
                                     combinedPosts.push(postToShow)
                                 })
