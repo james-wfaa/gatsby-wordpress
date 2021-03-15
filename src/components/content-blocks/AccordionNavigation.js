@@ -1,7 +1,7 @@
 import React from "react"
 import parse from 'html-react-parser';
 import styled from 'styled-components'
-import { colors, fonts,sizes, breakpoints } from '../css-variables'
+import { colors, fonts,sizes } from '../css-variables'
 import Accordian from "../parts/Accordian"
 
 const AccordionNavigation = ({ block, className }) => {
@@ -13,7 +13,7 @@ const AccordionNavigation = ({ block, className }) => {
         let accordionHeader = ''
         let accordionContent = ''
         if(child.props && child.props.className === "accordion__item"){
-            child.props.children.map((element) => {
+            child.props.children.forEach((element) => {
                 if(element.props){
                     switch(element.props.className){
                         case "accordion__header":
@@ -31,7 +31,7 @@ const AccordionNavigation = ({ block, className }) => {
             return (<Accordian opentext={accordionHeader} closetext={accordionHeader} useAsNav>
                         {accordionContent}
                     </Accordian>)
-        }
+        } return null
 
     }) : null
 

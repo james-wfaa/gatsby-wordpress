@@ -107,6 +107,12 @@ const IndexPage = () => (
         <Link to="/event/badger-cafe-threats-to-peace-around-the-world/">Badger Café: “Threats to Peace around the World”</Link>
       </li>
     </ul>
+    <h3>Modules</h3>
+    <ul>
+      <li>
+        <Link to="/staff-search">Staff Search</Link>
+      </li>
+    </ul>
      
      
      
