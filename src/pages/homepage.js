@@ -56,7 +56,7 @@ const HomePage = ({ data }) => {
     <Layout noborder>
       <HeroIntroSection
           heroImage={data.homeBg}
-          videoURL="https://player.vimeo.com/external/461136161.hd.mp4?s=281b7ccea86e048329dcfc896f384c27773db220&profile_id=175"
+          videoURL="https://player.vimeo.com/external/523946487.hd.mp4?s=65ae00f23e75bb574174a88ea656c8079cade0fa&profile_id=175"
           // variant="white"
           heroSize="jumbo"
           heroHeading="<span>Badger</span> ON"
