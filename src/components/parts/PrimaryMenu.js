@@ -12,24 +12,24 @@ import LiIcon from "../../svg/linkedin_icon_gray.svg" // Tell webpack this JS fi
 
 const menuItems = {
   "Alumni Communities": [
-    { tag: "WAA Membership", url: "/membership" },
-    { tag: "Chapters and Groups", url: "/chapters" },
-    { tag: "Badger Bridge Online Network", url: "/badger-bridge" },
-    { tag: "Recent UW Grads", url: "/recent-grads" },
+    { tag: "Become a WAA Member", url: "/membership" },
+    { tag: "WAA Member Community", url: "/membership/for-members" },
+    { tag: "Chapters & Groups", url: "/groups" },
+    { tag: "Badger Bridge Online Network", url: "/alumni-directory" },
+    { tag: "Diverse Alumni", url: "/diverse-alumni" },
+    { tag: "Recent Grads", url: "/recent-grads" },
   ],
   "Events & Activities": [
-    { tag: "Upcoming Events", url: "/upcoming-events" },
-    { tag: "Activities Near Me", url: "/near-me" },
-    { tag: "Pride Category Events", url: "/pride" },
-    { tag: "Discover & Learn with WAA", url: "/discover" },
-    { tag: "Badger Athletic Events", url: "/athletic-events" },
-    { tag: "Trips with WAA", url: "/trips" },
+    { tag: "Upcoming Activities", url: "/events" },
+    { tag: "Signature Events & Activities", url: "/signature-events" },
+    { tag: "Learning & Enrichment Programs", url: "/learning" },
+    { tag: "Badger Athletic Events", url: "/athletics" },
+    { tag: "Travel Tours", url: "/travel" },
   ],
-  "Stories": [
+  "News & Stories": [
     { tag: "News & Stories", url: "/news" },
     { tag: "Alumni Achievements", url: "/alumni-achievements" },
-    { tag: "Our Publications", url: "/publications" },
-    { tag: "News from the UW", url: "/news-from-uw" },
+    { tag: "WAA Publications", url: "/publications" },
   ],
   "Ways to Support": [
     { tag: "Advocate for the UW", url: "/advocate" },
@@ -39,9 +39,9 @@ const menuItems = {
   "Resources & Services": [
     { tag: "Alumni Directory", url: "/alumni-directory" },
     { tag: "Career Resources", url: "/career-resources" },
-    { tag: "Library Access", url: "/library-access" },
-    { tag: "Alumni Store", url: "/alumni-store" },
-    { tag: "Alumni Partners", url: "/alumni-partners" },
+    { tag: "UW Library Resources", url: "/about/library" },
+    { tag: "Alumni Store", url: "https://www.uwalumnistore.com" },
+    { tag: "Alumni Perks", url: "/about/alumni-perks" },
   ],
 }
 
@@ -232,11 +232,20 @@ const PrimaryMenu2 = () => {
   useEffect(() => {
     if (select !== null) {
       let links = menuItems[select].map(link => {
-        return (
-          <li>
-            <Link to={link.url}>{link.tag}</Link>
-          </li>
-        )
+        if(link.url === "https://www.uwalumnistore.com" ){
+          return (
+            <li>
+              <a href={link.url} target="_blank">{link.tag}</a>
+            </li>
+          )
+        }
+        else{
+          return (
+            <li>
+              <Link to={link.url}>{link.tag}</Link>
+            </li>
+          )
+        }
       })
       setChildLinks(links)
     }
@@ -259,13 +268,13 @@ const PrimaryMenu2 = () => {
                 <Link to="/about">About WAA</Link>
               </li>
               <li>
-                <Link to="/contact">Contact WAA</Link>
+                <Link to="/contact-waa">Contact WAA</Link>
               </li>
               <li>
-                <Link to="/update">Update My Info</Link>
+                <Link to="/update-info">Update My Info</Link>
               </li>
               <li>
-                <Link to="/email">Log into Email</Link>
+                <Link to="/email">Log Into Email</Link>
               </li>
             </ul>
             <SocialLinks>

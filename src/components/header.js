@@ -79,7 +79,7 @@ const Header = ({ noborder }) => {
                     textDecoration: `none`,
                   }}
                 >
-                  Log into Email
+                  Log Into Email
                 </Link>
               </li>
               
