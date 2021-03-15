@@ -127,6 +127,7 @@ export const colors = {
     flamingleSocialGrey: baseColors.darkerGrey,
     flamingleCardBG: baseColors.lightPink,
     flamingleCardHoverDiagonals: baseColors.darkRed,
+    searchFontGrey: baseColors.darkGrey,
 }
 
 export const size = {
