@@ -33,6 +33,7 @@ const PageSection = ({
     buttons,
     buttonsAlt,
     buttonsCompact,
+    backgroundColor,
     alt,
     topBorder,
     bgImage,
@@ -112,7 +113,6 @@ const PageSection = ({
         )
         }
 
-
         </div>
     )
 }
@@ -129,14 +129,14 @@ const SocialIcons = ({ className, data }) => {
           <li><a className="ig" target="_blank" title={`${data.title}  Instagram Page`} href={`https://instagram.com/${data.chapterDetails.csInstagram}`}></a></li>
         )}
         { data?.chapterDetails?.csLinkedin && (
-          <li><a className="li" target="_blank" title={`${data.title}  LinkedIn Page`} href={data.chapterDetails.csLinkedin}></a></li> 
+          <li><a className="li" target="_blank" title={`${data.title}  LinkedIn Page`} href={data.chapterDetails.csLinkedin}></a></li>
         )}
         { data?.chapterDetails?.csWechat && (
           <li><a className="wc" target="_blank" title={`${data.title}  WeChat Page`} href={data.chapterDetails.csWechat}></a></li>
         )}
          { data?.chapterDetails?.csSnapchat && (
           <li><a className="sc" title={`${data.title}  SnapChat Page`} href={data.chapterDetails.csSnapchat}></a></li>
-        )}  
+        )}
     </ul>
     )
   }
@@ -151,7 +151,7 @@ const SocialIcons = ({ className, data }) => {
       width: ${sizes.s28};
       height: ${sizes.s28};
       margin: 0 ${sizes.s24} 0 0;
-         
+
       a {
           display: block;
           width: ${sizes.s28};
@@ -183,7 +183,7 @@ const SocialIcons = ({ className, data }) => {
   `
 
 const StyledPageSection = styled(PageSection)`
-
+    background-color: ${props => props.backgroundColor ? props.backgroundColor : null};
     &.desktopOnly {
         display: none;
         @media screen and ${breakpoints.laptopS} {
@@ -213,7 +213,7 @@ const StyledPageSection = styled(PageSection)`
                 padding-bottom: 88px;
             }
         }
-        
+
     }
     &.defaultClass {
         padding-top: 0;
@@ -221,7 +221,7 @@ const StyledPageSection = styled(PageSection)`
             width: 712px;
         }
     }
-    
+
     &.stagger:nth-child(even) {
         background-color: ${colors.bgActiveGrey};
     }
@@ -242,7 +242,7 @@ const StyledPageSection = styled(PageSection)`
     }
     &.leftAlign {
         text-align: left;
-        
+
     }
     &.hasPreHeading {
         padding-top: 0;
@@ -253,7 +253,7 @@ const StyledPageSection = styled(PageSection)`
             padding-top: 88px;
         }
     }
-    
+
     &--addPad {
         padding-bottom: 116px;
     }
@@ -354,11 +354,11 @@ const StyledPageSection = styled(PageSection)`
 
             @media screen and ${breakpoints.tabletS} {
                 flex-direction: row;
-            }        
-        }  
+            }
+        }
         > div {
             margin: 0 auto;
-        }      
+        }
     }
 
 
