@@ -2,6 +2,7 @@ import React from 'react'
 import LibraryResourceForm from './LibraryResourceForm'
 import MembershipForm from './MembershipForm'
 import SponsorAd from "../content-blocks/SponsorAd"
+import ChapterSearch from "../parts/ChapterSearch/ChapterSearch"
 
 import parse from 'html-react-parser';
 
@@ -18,6 +19,8 @@ const SpecialBlock = ({block}) => {
                         return (<LibraryResourceForm />)
                     case 'membership-join':
                         return (<MembershipForm />)
+                    case 'chpater-search':
+                        return (<ChapterSearch />)
                     case 'sponsors':
                         return (<SponsorAd />)
                     default:

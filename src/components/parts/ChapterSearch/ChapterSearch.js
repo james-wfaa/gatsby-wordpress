@@ -112,12 +112,16 @@ const ChapterSearch = () => {
     margin: 0 auto;
     @media screen and ${breakpoints.tablet} {
       grid-template-columns: 1fr 1fr;
+      width: 530px;
     }
   `
 
   const FilteredDiv = styled.div`
     position: relative;
     width: 252px;
+    color: ${colors.titleWhite};
+    
+   
   `
   const FilteredSelect = styled.select`
     position: relative;
@@ -183,8 +187,8 @@ const ChapterSearch = () => {
         topBorder
         heading="Find Badgers Near You"
         excerpt="Use the filters below to find a chapter in your country or U.S. State"
-      ></PageSection>
-      <StyledButtonWrapper>
+      >
+         <StyledButtonWrapper>
         <FilterBox>
           <FilteredDiv>
             <FilteredSelect
@@ -208,7 +212,7 @@ const ChapterSearch = () => {
               onChange={e => setSelectedState(e.target.value)}
               value={selectedState}
             >
-              <option value="All U.S. States" disabled>
+              <option className="titleOption" value="All U.S. States" disabled>
                 All U.S. States
               </option>
               {stateoptions.map(state => {
@@ -232,6 +236,8 @@ const ChapterSearch = () => {
           filteredChapters.map(chapter => <ChapterCard chapter={chapter} />)
         )}
       </ResultsBoxWrapper>
+      </PageSection>
+     
     </StyledWrapper>
   )
 }
