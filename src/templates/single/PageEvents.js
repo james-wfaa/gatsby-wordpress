@@ -90,7 +90,7 @@ categories.forEach((item) => {
       { featuredImage && featuredImage.node && (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}
-          heroHeading="<span>Badger</span> ON"
+          videoURL="https://player.vimeo.com/external/524440389.hd.mp4?s=ebee9d64e105fc60c3075fe901ed7a6e50aeebf8&profile_id=174"
           redHeading={title}
           excerpt={excerpt}
         />)}
