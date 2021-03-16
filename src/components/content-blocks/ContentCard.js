@@ -13,7 +13,6 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
     if (endDate && shortDate(endDate) !== fmtStartDate) {
         fmtEndDate = shortDate(endDate)
     }
-    //console.log(img)
     const dateLinkText = fmtEndDate ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
     
     const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];
@@ -21,6 +20,8 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt
     const promoClass = promo ? 'promo' : ''
     const notSmall = (size !== 'S') ? "notsmall" : ""
+
+    //console.log(category)
 
     if(!sizes.includes(size) || promo ){
         size = "S";
