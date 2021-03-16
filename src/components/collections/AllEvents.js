@@ -30,6 +30,7 @@ const AllEvents = () => {
                 }
                 link
                 url
+                featuredEvent
                 featuredImage {
                     node {
                     localFile {
@@ -40,6 +41,7 @@ const AllEvents = () => {
                 eventsCategories {
                     nodes {
                     name
+                    slug
                     url: uri
                     events {
                         nodes {
@@ -54,6 +56,12 @@ const AllEvents = () => {
                         }
                     }
                     }
+                }
+                products {
+                  nodes {
+                    slug
+                    name
+                  }
                 }
                 eventDetails {
                     eventFullSoldOut

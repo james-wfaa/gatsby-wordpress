@@ -7,7 +7,6 @@ import GridCardD from "../components/content-modules/GridCardD"
 import StoryContentCard from "../components/content-blocks/StoryContentCard"
 import CardE from "../components/content-blocks/CardE"
 import HeroIntroSection from "../components/page-sections/HeroIntroSection"
-import CommunicationForm from "../components/content-blocks/CommunicationForm"
 import SimpleSlider from "../components/content-modules/SimpleSlider"
 
 const taglist2 = [
@@ -94,9 +93,6 @@ const HomePage = ({ data }) => {
           />
         </SimpleSlider>
       </PageSection>
-
-      <CommunicationForm />
-
       <PageSection heading="Featured Stories" buttons={featuredbutton} alt>
         <SimpleSlider
           className="center"

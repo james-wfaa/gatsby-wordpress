@@ -1,8 +1,6 @@
 import React from "react"
-
 import Layout from "../layout"
 import WordPressBasicContentBlocks from "../content-blocks/WordPressBasicContentBlocks"
-
 import TitleSection from '../parts/WordPressTitleSection'
 import SocialShareLinks from '../parts/SocialShareLinks'
 import FeaturedImage from "../content-blocks/FeaturedImage"
@@ -10,6 +8,7 @@ import BreadCrumbs from "../../components/page-sections/BreadCrumbs"
 import PageSection from "../page-sections/PageSection"
 import RecentPosts from "../../components/page-sections/RecentPosts"
 import CardHandler from "../content-modules/CardHandler"
+import { ProductStories } from "../collections/RecentStories"
 
 
 function BlogPost({ data }) {
@@ -19,6 +18,10 @@ function BlogPost({ data }) {
   let heroSize = heroImage.heroImage && heroImage.heroImage.mediaDetails.width ? heroImage.heroImage.mediaDetails.width : null
   let featSize = featuredImage?.node?.mediaDetails.width ? featuredImage?.node?.mediaDetails.width : null
   let size = featSize > heroSize ? featSize : heroSize
+
+  /* getting unique related posts from product nodes - replace this with the static query to boost build time */
+  //let pStories = ProductStories(products)
+  //console.log(pStories)
   let relatedPostsToShow = []
   if(products && products.nodes){
     products.nodes.map((product) => {
@@ -29,11 +32,14 @@ function BlogPost({ data }) {
   }
 
   let uniqueRelatedPosts = []
-  relatedPostsToShow.forEach((post) => {
-    if(!uniqueRelatedPosts.find(element => element.id === post.id) && post.id !== id){
-      uniqueRelatedPosts.push(post)
-    }
-  })
+  if (Array.isArray(relatedPostsToShow)) {
+    relatedPostsToShow.forEach((post) => {
+      if(!uniqueRelatedPosts.find(element => element.id === post.id) && post.id !== id){
+        uniqueRelatedPosts.push(post)
+      }
+    })
+  }
+  
 
   const buttons = (uniqueRelatedPosts.length > 2) 
       ? [{

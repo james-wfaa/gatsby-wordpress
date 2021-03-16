@@ -21,6 +21,8 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
     const promoClass = promo ? 'promo' : ''
     const notSmall = (size !== 'S') ? "notsmall" : ""
 
+    //console.log(category)
+
     if(!sizes.includes(size) || promo ){
         size = "S";
     }
