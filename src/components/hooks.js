@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react"
+import { useState, useEffect, useLayoutEffect } from "react"
 
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({

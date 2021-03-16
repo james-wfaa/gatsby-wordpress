@@ -1,13 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-function WpReusableBlock({ data }) {
-  const { reusableBlock } = data
-  const {
-    title,
-    content
-  } = reusableBlock
-
+function WpReusableBlock({ data }) {  
   return (
     <div>Reusable Block template</div>
   )

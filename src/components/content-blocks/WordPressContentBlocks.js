@@ -35,15 +35,15 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
                     //console.log('page-section')
-                    RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} borderTop={borderTop} stagger={stagger} centered />)
+                    RenderedBlocks.push(<PageSectionFromBlocks key={block.id} blocks={block.innerBlocks} borderTop={borderTop} stagger={stagger} centered />)
                 }
                 if (block.innerBlocks && block.originalContent.indexOf(' gallery') > 0) {
                     //console.log('gallery')
-                    RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} gallery borderTop={borderTop} stagger={stagger} />)
+                    RenderedBlocks.push(<PageSectionFromBlocks key={block.id} blocks={block.innerBlocks} gallery borderTop={borderTop} stagger={stagger} />)
                 }
                 if (block.innerBlocks && block.originalContent.indexOf(' card-set') > 0) {
                     //console.log('card-set')
-                    RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} cardset borderTop={borderTop} stagger={stagger} />)
+                    RenderedBlocks.push(<PageSectionFromBlocks key={block.id} blocks={block.innerBlocks} cardset borderTop={borderTop} stagger={stagger} />)
                 }
 
                 break

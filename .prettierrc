@@ -1,4 +1,11 @@
 {
   "arrowParens": "avoid",
-  "semi": false
+  "semi": false,
+  "printWidth": 80,
+  "tabWidth": 4,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "jsxBracketSameLine": true,
+  "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
+  "importOrderSeparation": true
 }

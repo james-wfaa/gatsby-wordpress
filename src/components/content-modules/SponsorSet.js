@@ -1,6 +1,5 @@
 import React from 'react'
 import { sizes, breakpoints } from '../css-variables'
-import Sponsor from '../content-blocks/Sponsor'
 
 import styled from 'styled-components'
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react"
 import styled from "styled-components"
 import { colors, sizes, breakpoints } from "../../css-variables"
 import PageSection from "../../page-sections/PageSection"
-import AllChaptersData from "../../page-sections/AllChapters"
+import AllChaptersData from "../../collections/AllChapters"
 // import countryList from "react-select-country-list"
 import ChapterCard from "./ChapterCard"
 
