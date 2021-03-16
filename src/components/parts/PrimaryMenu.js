@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import { colors, sizes } from "../css-variables"
 import styled from "styled-components"
 import HeaderSocialIcons from "./HeaderSocialIcons"
-import LogoImage from "../../assets/svg/menuclouds.svg"
+import LogoImage from "../../assets/svg/main_nav_illustration.svg" 
 import FbIcon from "../../svg/fb_icon_gray.svg" // Tell webpack this JS file uses this image
 import TwIcon from "../../svg/twitter_icon_gray.svg" // Tell webpack this JS file uses this image
 import IgIcon from "../../svg/instagram_icon_gray.svg" // Tell webpack this JS file uses this image
@@ -182,9 +182,8 @@ const Logo = styled.div`
   top: 50%;
   left: 70%;
   transform: translate(-50%, -50%);
-  opacity: 0.4;
-  height: 300px;
-  width: 70%;
+  height: 600px;
+  width: 100%;
   background-image: url(${LogoImage});
   background-repeat: no-repeat;
   background-position: center;
