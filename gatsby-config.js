@@ -63,19 +63,30 @@ module.exports = {
                 select: "WAA Customer Service",
               },
             },
+            launcher: {
+              chatLabel: {
+              '*': 'Ask WAA'
+              },
+            },
+            fields: [{ id: 1260807977350}],
+            contactOptions: {
+              enabled: true,
+              contactButton: { '*': 'Ask WAA'}
+            },
+            helpCenter: {
+              title: {
+              '*': 'Ask WAA'
+              }
+            },
             contactForm: {
-              fields: [{ id: 1260807977350}],
-              launcher: {
-                chatLabel: {
+              title: {
                 '*': 'Ask WAA'
-                },
-                chatLabelOffline: {
-                '*': 'Ask WAA' 
-                },
-                chatLabelOnline: {
-                '*': 'Ask WAA' 
-                },
-              } 
+              }
+            },
+            chat: {
+              title: {
+              '*': 'Ask WAA'
+              }
             },
           },
         },
