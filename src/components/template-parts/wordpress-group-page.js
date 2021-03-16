@@ -8,7 +8,7 @@ import RecentPosts from "../page-sections/RecentPosts"
 import Sponsor from "../content-blocks/Sponsor"
 import PromoCardD from "../content-blocks/PromoCardD"
 import HeroIntroSection from "../page-sections/HeroIntroSection"
-import AllChaptersData from "../page-sections/AllChapters"
+import AllChaptersData from "../collections/AllChapters"
 
 function WordPressGroupPage({  page, options }) {
   const { chapters: chaptersText, varsityChapterText, recognizedChapterText, bascomChapterText } = options

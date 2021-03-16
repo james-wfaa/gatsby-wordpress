@@ -1,7 +1,4 @@
-import React from 'react'
 import { useStaticQuery, graphql } from "gatsby"
-import ContentCard from "../content-blocks/ContentCard"
-import SimpleSlider from "../content-modules/SimpleSlider"
 
 const AllChaptersData = () => {
   const { allWpChapter } = useStaticQuery(

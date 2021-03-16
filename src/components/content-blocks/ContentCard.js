@@ -21,6 +21,8 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
     const promoClass = promo ? 'promo' : ''
     const notSmall = (size !== 'S') ? "notsmall" : ""
 
+    //console.log(category)
+
     if(!sizes.includes(size) || promo ){
         size = "S";
     }
@@ -36,8 +38,6 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                 }
             ]
             :  img.childImageSharp.fluid
-    //console.log(title)
-    //console.log(imgSources)
     return (
 
         <div className={`${className} ${className}--${size} ${className}--${notSmall} ${promoClass}`}>

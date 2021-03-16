@@ -16,7 +16,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
         switch (block.name) {
           case "core/separator":
             return (
-              <div
+              <div 
                 dangerouslySetInnerHTML={{ __html: block.originalContent }}
               />
             )
@@ -94,43 +94,33 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
           //Add case to handle news/stories that use the freeform block but do not have blocks... and then use content instead of original content because it has the html tags
           //Also added css below that is duplicated from WPBlock
           case "core/freeform":
-            /*return (
-              <div
-                className={block.name.replace("/", "-")}
-                dangerouslySetInnerHTML={{ __html: content }}
-              />
-            )*/
             return (
               <Block
                     className={block.name.replace("/", "-")}
                     block={block}
+                    key={block.id}
                   />
             )
-            break
           case "core-embed/flickr":
-            return <EmbedBlock data={block.originalContent} />
-            break
+            return <EmbedBlock data={block.originalContent} key={block.id} />
           case "core-embed/vimeo":
             return (
               <div className="wp-block-embed">
                 <EmbedBlock source={block.originalContent} type="vimeo" />
               </div>
             )
-            break
           case "core-embed/youtube":
             return (
               <div className="wp-block-embed">
                 <EmbedBlock source={block.originalContent} type="youtube" />
               </div>
             )
-            break
           case "core-embed/instagram":
             return (
               <div className="wp-block-embed">
                 <EmbedBlock source={block.originalContent} type="instagram" />
               </div>
             )
-            break
           case "core/embed":
             return (
               <div className="wp-block-embed">
@@ -157,7 +147,6 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
     return(
         <div className={className} id="Top">
             { RenderedBlocks && (
-
                 <div className="content">
                     {RenderedBlocks}
                 </div>

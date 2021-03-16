@@ -29,21 +29,21 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
         const stagger = block.stagger
 
-        console.log(block.name)
+        //console.log(block.name)
 
         switch(block.name) {            
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
                     //console.log('page-section')
-                    RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} borderTop={borderTop} stagger={stagger} centered />)
+                    RenderedBlocks.push(<PageSectionFromBlocks key={block.id} blocks={block.innerBlocks} borderTop={borderTop} stagger={stagger} centered />)
                 }
                 if (block.innerBlocks && block.originalContent.indexOf(' gallery') > 0) {
                     //console.log('gallery')
-                    RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} gallery borderTop={borderTop} stagger={stagger} />)
+                    RenderedBlocks.push(<PageSectionFromBlocks key={block.id} blocks={block.innerBlocks} gallery borderTop={borderTop} stagger={stagger} />)
                 }
                 if (block.innerBlocks && block.originalContent.indexOf(' card-set') > 0) {
                     //console.log('card-set')
-                    RenderedBlocks.push(<PageSectionFromBlocks blocks={block.innerBlocks} cardset borderTop={borderTop} stagger={stagger} />)
+                    RenderedBlocks.push(<PageSectionFromBlocks key={block.id} blocks={block.innerBlocks} cardset borderTop={borderTop} stagger={stagger} />)
                 }
 
                 break
@@ -98,7 +98,7 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                 )
             case "acf/product-story-listing":
                 if ( products) {
-                    console.log(products)
+                    //console.log(products)
                     let combinedPosts = []
                     if (products?.nodes) {
                         products.nodes.forEach((product) => {
@@ -106,7 +106,7 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                             const postsToShow = (posts?.nodes && posts.nodes.length > 0) ? posts.nodes : null
 
                             if (postsToShow) {
-                                console.log(postsToShow)
+                                //console.log(postsToShow)
                                 postsToShow.forEach((postToShow)  => {
                                     combinedPosts.push(postToShow)
                                 })
@@ -124,7 +124,7 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                         : null
                     RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={reducedPosts} type="news" size="M" /></PageSection>)    
                 } else {
-                    console.log('no product found')
+                    //console.log('no product found')
                 }
                 
                 break

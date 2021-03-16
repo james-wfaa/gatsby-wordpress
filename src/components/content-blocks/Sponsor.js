@@ -15,10 +15,10 @@ const Sponsor = ({ className, sponsorName, sponsorText, sponsorLogo }) => {
     return (
         <div className={className}>
             <figure >
-                {sponsorLogo?.localFile?.childImageSharp?.fixed && (
+                {sponsorLogo?.localFile?.childImageSharp?.fluid && (
                     <Img 
                         className={`${className}__img`}
-                        fixed={sponsorLogo.localFile.childImageSharp.fixed}
+                        fluid={sponsorLogo.localFile.childImageSharp.fluid}
                     />
                 )}
                 {!sponsorLogo && sponsorName && (
