@@ -81,6 +81,8 @@ const StyledHeader = styled.header`
       margin: 0;
       height: 100%;
       padding: 0 1.5rem;
+      padding-top: 2px;
+
       li {
         display: inline-block;
         height: 100%;
@@ -93,6 +95,11 @@ const StyledHeader = styled.header`
         }
         a {
           color: ${colors.titleWhite};
+          text-decoration: none;
+
+          :hover{
+            text-decoration: underline;
+          }
         }
       }
     }
