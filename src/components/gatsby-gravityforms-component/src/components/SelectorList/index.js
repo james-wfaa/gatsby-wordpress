@@ -24,6 +24,11 @@ const SelectorList = ({ errors, fieldData, name, register, onChange, handleField
             <ul className={`gfield_${type}`} id={name}>
                 {options.map(({ isSelected, text, value }, index) => {
                     const choiceID = index + 1
+                    const matchInput = fieldData.inputs ? fieldData.inputs.filter(input => value == input.label) : null
+                    const actualId = matchInput ? matchInput[0].id : null
+                    const newInput = actualId ? `input_${actualId.replace('.', '_')}` : null
+                    const newSubmitId = actualId ? actualId.substring(2) : null
+
                     return (
                         <li key={`${name}-${index + 1}`}>
                             <input
@@ -36,14 +41,14 @@ const SelectorList = ({ errors, fieldData, name, register, onChange, handleField
                                 )}
                                 defaultChecked={isSelected}
                                 id={`${name}_${choiceID}`}
-                                name={`input_${fieldData.id}`}
+                                name={newInput !== null ? newInput : `input_${fieldData.id}`}
                                 ref={register({
                                     required:
                                         isRequired && strings.errors.required,
                                 })}
                                 type={type}
                                 value={value}
-                                onChange={() => handleBothOnChangeCalls(fieldData.id, value, choiceID)}
+                                onChange={() => handleBothOnChangeCalls(fieldData.id, value, newSubmitId ? newSubmitId : choiceID)}
                             />
                             &nbsp;
                             <label htmlFor={`${name}_${choiceID}`}>
