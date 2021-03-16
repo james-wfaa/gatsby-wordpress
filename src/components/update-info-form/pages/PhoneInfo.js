@@ -1,7 +1,8 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
 import { StyledError, variantObject, checkForLetters, handleFormSubmit } from '../form-helpers'
-import IntroPageSection from '../../page-sections/IntroPageSection'
+import PageSection from '../../page-sections/PageSection'
+import { colors } from '../../css-variables'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
@@ -62,12 +63,12 @@ const PhoneInfo = () => {
 
       return (
         <div>
-            <IntroPageSection
+            <PageSection
               excerpt='Please include any phone numbers you wish to have on file. You’re only required to provide one, but you can include multiple phone numbers if you choose. Important for Badgers living internationally: remember to include your country code. And always click “Save and Continue” after completing a page to ensure your changes are recorded.'
               heading='Update My Info'
-              variantObject={variantObject}
               headingAlt
               headingCompact
+              backgroundColor={colors.formIntroBg}
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="phoneInfo" onSubmit={handleSubmit(UpdatePhoneInfo)}>

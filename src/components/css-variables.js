@@ -127,6 +127,7 @@ export const colors = {
     flamingleSocialGrey: baseColors.darkerGrey,
     flamingleCardBG: baseColors.lightPink,
     flamingleCardHoverDiagonals: baseColors.darkRed,
+    searchFontGrey: baseColors.darkGrey,
 }
 
 export const size = {
@@ -357,6 +358,9 @@ export const mixins = {
         position: relative;
         padding-bottom:  ${sizes.s40};
         margin-bottom: ${sizes.s58};
+        &.excerpt {
+            margin-bottom: ${sizes.s32};
+        }
         
         &:after {
             position: absolute;

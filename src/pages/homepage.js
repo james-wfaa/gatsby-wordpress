@@ -56,10 +56,8 @@ const HomePage = ({ data }) => {
     <Layout noborder>
       <HeroIntroSection
           heroImage={data.homeBg}
-          videoURL="https://player.vimeo.com/external/461136161.hd.mp4?s=281b7ccea86e048329dcfc896f384c27773db220&profile_id=175"
-          // variant="white"
+          videoURL="https://player.vimeo.com/external/523946487.hd.mp4?s=65ae00f23e75bb574174a88ea656c8079cade0fa&profile_id=175"
           heroSize="jumbo"
-          heroHeading="<span>Badger</span> ON"
           redHeading="Continue Your Wisconsin Experience"
           excerpt="<p>The Wisconsin Alumni Association is here for you to carry on as a proud Badger. It’s a community built on meeting the needs of today’s alumni. Whether you want to keep learning, celebrating traditions, or connecting with the UW, this is the place for you to Badger On.
         </p>"

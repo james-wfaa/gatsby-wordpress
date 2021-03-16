@@ -68,7 +68,13 @@ module.exports = {
               launcher: {
                 chatLabel: {
                 '*': 'Ask WAA'
-                }
+                },
+                chatLabelOffline: {
+                '*': 'Ask WAA' 
+                },
+                chatLabelOnline: {
+                '*': 'Ask WAA' 
+                },
               } 
             },
           },
@@ -76,7 +82,7 @@ module.exports = {
       },
     },
     //Uncomment to index to Algolia on gatsby build command
-    /*
+    
      {
        resolve: `gatsby-plugin-algolia`,
        options: {
@@ -85,7 +91,7 @@ module.exports = {
          queries: require("./src/utils/algolia-queries")
        },
      },
-     */
+     
     {
       resolve: `gatsby-source-wordpress`,
       options: {
@@ -93,6 +99,8 @@ module.exports = {
           requestConcurrency: 5, // currently set to undefined
           previewRequestConcurrency: 2, // currently set to undefined
           perPage: 50,
+          typePrefix: `Wp`,
+          timeout: 120 * 1000,
         },
         url:
           process.env.WPGRAPHQL_URL,

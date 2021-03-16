@@ -1,9 +1,10 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject, currentYear, handleFormSubmit } from '../form-helpers'
-import IntroPageSection from '../../page-sections/IntroPageSection'
+import { StyledError, currentYear, handleFormSubmit } from '../form-helpers'
+import PageSection from '../../page-sections/PageSection'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
+import { colors } from '../../css-variables'
 import { AppContext } from "../../../context/AppContext"
 
 const SpouseInfo = () => {
@@ -32,12 +33,12 @@ const SpouseInfo = () => {
 
       return (
         <div>
-            <IntroPageSection
+            <PageSection
               excerpt='If there’s been a change or update regarding your spouse or partner please indicate that here. You can even add grad years for your spouse/partner. And always click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
-              variantObject={variantObject}
               headingAlt
               headingCompact
+              backgroundColor={colors.formIntroBg}
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="spouseInfo" onSubmit={handleSubmit(submitForm)} className="spouse-info">
