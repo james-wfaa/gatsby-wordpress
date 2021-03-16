@@ -112,8 +112,6 @@ const GravityForm = ({className, id}) => {
             let updateChecks = keepTrackOfCheckboxes
             setkeepTrackOfCheckboxes(updateChecks.concat(input))
         }
-
-        console.log(input, checkboxFieldData, keepTrackOfCheckboxes)
         
     }
 

@@ -6,9 +6,14 @@ import strings from '../../utils/strings'
 import InputWrapper from '../InputWrapper'
 
 // TODO: Enable Select All Choice
-const SelectorList = ({ errors, fieldData, name, register, onChange, ...wrapProps }) => {
+const SelectorList = ({ errors, fieldData, name, register, onChange, handleFieldChange, fieldHidden, ...wrapProps }) => {
     const { choices, cssClass, isRequired, size, type } = fieldData
     const options = JSON.parse(choices)
+
+    const handleBothOnChangeCalls = (fieldData, value, choiceID) => {
+        onChange(fieldData, value, choiceID)
+        handleFieldChange(fieldData, value, choiceID)
+    }
     return (
         <InputWrapper
             errors={errors}
@@ -38,7 +43,7 @@ const SelectorList = ({ errors, fieldData, name, register, onChange, ...wrapProp
                                 })}
                                 type={type}
                                 value={value}
-                                onChange={() => onChange(fieldData.id, value, choiceID)}
+                                onChange={() => handleBothOnChangeCalls(fieldData.id, value, choiceID)}
                             />
                             &nbsp;
                             <label htmlFor={`${name}_${choiceID}`}>

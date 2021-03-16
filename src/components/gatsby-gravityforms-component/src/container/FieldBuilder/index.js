@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import get from 'lodash/get'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Address from '../../components/Address'
 import Captcha from '../../components/Captcha'
@@ -22,6 +22,37 @@ const FieldBuilder = ({
     setValue,
     onChange
 }) => {
+    const [fieldValues, setfieldValues] = useState({});
+    useEffect(() => {
+        formData.formFields.map(field => {
+            if(field.type === 'radio'){
+                populateChoiceValues(field)
+            }
+        })
+    }, []);
+
+    const populateChoiceValues = (field) => {
+        const selected = JSON.parse(field.choices).filter(choice => {
+            return choice.isSelected
+        })
+        setfieldValues({ ...fieldValues, [field.id]: selected.length ? selected[0].value : '' } )
+    }
+
+    const handleFieldChange = (fieldId, value, inputId) => {
+    
+        let fieldInfo = formData.formFields.filter(field => field.id === fieldId)
+        
+        if((fieldInfo[0].type === 'radio') && inputId){
+            setfieldValues({
+                ...fieldValues,
+                [fieldId]: {
+                    [inputId]: value,
+                },
+            })
+        }
+        //add default or other cases if not radio/replacing value
+    }
+
     // Loop through fields and create
     return formData.formFields.map(field => {
         // Set the wrapper classes
@@ -62,6 +93,52 @@ const FieldBuilder = ({
 
         let errorKey = ''
 
+        //CONDITIONAL LOGIC
+        const handleConditionalLogic = (field) => {
+            const rulesMet = JSON.parse(field.conditionalLogic).rules.map(rule => {
+                let conditionalValue = fieldValues[rule.fieldId]
+
+                if (typeof conditionalValue == 'object') {
+                    let matchKey = Object.keys(conditionalValue).filter(key => fieldValues[rule.fieldId][key] == rule.value)
+                    conditionalValue = matchKey ? fieldValues[rule.fieldId][matchKey] : false
+                }
+                switch (rule.operator) {
+                    case 'is':
+                        return conditionalValue == rule.value
+    
+                    case 'is not':
+                        return conditionalValue != rule.value
+    
+                    case 'greater than':
+                        return conditionalValue > rule.value
+    
+                    case 'less than':
+                        return conditionalValue < rule.value
+    
+                    case 'contains':
+                        return conditionalValue.indexOf(rule.value) >= 0
+    
+                    case 'starts with':
+                        return conditionalValue.indexOf(rule.value) == 0
+    
+                    case 'ends with':
+                        return conditionalValue.indexOf(rule.value) == conditionalValue.length - rule.value.length
+                }
+            })
+            
+            if (JSON.parse(field.conditionalLogic).actionType == 'show') {
+                return JSON.parse(field.conditionalLogic).logicType == 'all' ? rulesMet.indexOf(false) >= 0 : rulesMet.indexOf(true) < 0
+            } else {
+                return JSON.parse(field.conditionalLogic).logicType == 'all' ? rulesMet.indexOf(true) < 0 : rulesMet.indexOf(false) >= 0
+            }
+        }
+        const fieldHidden = (field) => {
+            if (typeof JSON.parse(field.conditionalLogic) == 'object' && field.conditionalLogic !== null) {
+                return handleConditionalLogic(field)
+            }
+            return false
+        }
+
         //(field.type)
         switch (field.type) {
             // Add note for unsupported captcha field
@@ -101,6 +178,7 @@ const FieldBuilder = ({
                         }
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
+                        fieldHidden={fieldHidden(field)}
                     />
                 )
             case 'textarea':
@@ -154,6 +232,8 @@ const FieldBuilder = ({
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
                         onChange={onChange}
+                        handleFieldChange={handleFieldChange}
+                        fieldHidden={fieldHidden(field)}
                     />
                 )
             case 'name':
