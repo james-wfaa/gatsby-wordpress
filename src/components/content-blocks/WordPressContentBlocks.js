@@ -98,7 +98,7 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                 )
             case "acf/product-story-listing":
                 if ( products) {
-                    console.log(products)
+                    //console.log(products)
                     let combinedPosts = []
                     if (products?.nodes) {
                         products.nodes.forEach((product) => {

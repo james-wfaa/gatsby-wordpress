@@ -65,12 +65,12 @@ const AllGravityData = () => {
 
 function handleError({values, error, reset}) {
     //handle error
-    console.log(values, error)
+    //console.log(values, error)
 }
 
 function handleSuccess({values, reset, confirmations}) {
     //handle success
-    console.log(values, confirmations)
+    //console.log(values, confirmations)
 }
 
 const GravityForm = ({className, id}) => {
