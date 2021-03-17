@@ -522,7 +522,7 @@ const MembershipForm = () => {
                 <div className="contentwrap">
                   <Fee>${fees.twoYear}</Fee>
                   <h3>Best Value</h3>
-                  <a href={`${baseJoinUrl}${fees.stringParams.oneYear}`} target="_blank">
+                  <a href={`${baseJoinUrl}${fees.stringParams.twoYear}`} target="_blank">
                     <JoinButton  >
                       <p>JOIN</p>
                     </JoinButton>
@@ -545,7 +545,7 @@ const MembershipForm = () => {
                 <div className="contentwrap">
                   <Fee>${fees.oneYear}</Fee>
                   <h3>Most Popular</h3>
-                  <a href={`${baseJoinUrl}${fees.stringParams.twoYear}`} target="_blank">
+                  <a href={`${baseJoinUrl}${fees.stringParams.oneYear}`} target="_blank">
                     <JoinButton  >
                       <p>JOIN</p>
                     </JoinButton>
