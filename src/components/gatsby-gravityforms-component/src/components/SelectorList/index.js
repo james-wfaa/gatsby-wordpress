@@ -10,6 +10,8 @@ const SelectorList = ({ errors, fieldData, name, register, onChange, handleField
     const { choices, cssClass, isRequired, size, type } = fieldData
     const options = JSON.parse(choices)
 
+    const fieldHiddenClass = fieldHidden === true ? 'gform_hidden' : ''
+
     const handleBothOnChangeCalls = (fieldData, value, choiceID) => {
         onChange(fieldData, value, choiceID)
         handleFieldChange(fieldData, value, choiceID)
@@ -20,6 +22,7 @@ const SelectorList = ({ errors, fieldData, name, register, onChange, handleField
             inputData={fieldData}
             labelFor={name}
             {...wrapProps}
+            fieldHidden={fieldHidden}
         >
             <ul className={`gfield_${type}`} id={name}>
                 {options.map(({ isSelected, text, value }, index) => {
@@ -37,7 +40,8 @@ const SelectorList = ({ errors, fieldData, name, register, onChange, handleField
                                     `gravityform__field__input__${type}--` +
                                         choiceID,
                                     cssClass,
-                                    size
+                                    size,
+                                    fieldHiddenClass
                                 )}
                                 defaultChecked={isSelected}
                                 id={`${name}_${choiceID}`}

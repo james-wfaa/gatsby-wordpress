@@ -12,6 +12,7 @@ const Textarea = ({
     value,
     wrapClassName,
     wrapId,
+    fieldHidden
 }) => {
     const {
         cssClass,
@@ -31,6 +32,7 @@ const Textarea = ({
             labelFor={name}
             wrapClassName={wrapClassName}
             wrapId={wrapId}
+            fieldHidden={fieldHidden}
         >
             <textarea
                 aria-invalid={errors}
