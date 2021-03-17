@@ -39,6 +39,12 @@ const RecentStories = () => {
       allWpPost
     )
   }
+
+  const ProductStories = ({products}) => {
+    const recentStories = RecentStories()
+
+    return recentStories
+  }
   
   
   export default RecentStories

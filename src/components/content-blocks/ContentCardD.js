@@ -3,9 +3,12 @@ import styled from 'styled-components'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import CardD from './CardD'
 
-const ContentCardD = ({ className, startDate, title, venue, excerpt, url, label, moreLinkText, shortenedExcerpt, dateLinkText })=> {
-
-   //console.log('ContentCardD title: ',title)
+const ContentCardD = ({ className, startDate, title, venue, virtualEvent, excerpt, url, label, moreLinkText, shortenedExcerpt, dateLinkText })=> {
+   const resolvedVenue = (virtualEvent)
+    ? "Online Event"
+    : (venue?.title)
+        ? venue.title
+        : null
 
     return (
         <CardD>
@@ -27,11 +30,11 @@ const ContentCardD = ({ className, startDate, title, venue, excerpt, url, label,
                             <div className={`${className}__category`}>{label}</div>
                         )}
                     </div>
-                    { venue?.title && (
-                        <div className={`${className}__venue`}>{venue.title}</div>
+                    { resolvedVenue && (
+                        <div className={`${className}__venue`}>{resolvedVenue}</div>
                     )}
                     { venue?.city && venue.state && (
-                        <div className={`${className}__location`}>{venue.city},{venue.state}</div>
+                        <div className={`${className}__location`}>{venue.city}, {venue.state}</div>
                     )}
                     { excerpt && (!startDate) && (
                         <div className={`${className}__excerpt excerpt`}>

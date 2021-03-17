@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
 import { StyledError, variantObject, handleFormSubmit } from '../form-helpers'
-import IntroPageSection from '../../page-sections/IntroPageSection'
+import PageSection from '../../page-sections/PageSection'
 import Buttons from './../FormButtons'
+import { colors } from '../../css-variables'
 import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
 import countryList from "react-select-country-list"
@@ -43,12 +44,12 @@ const EmploymentInfo = () => {
 
       return (
         <div>
-            <IntroPageSection
+            <PageSection
               excerpt='Please make updates regarding your current employment status. And always click “Save and Continue” after completing a page to ensure your changes are recorded.'
               heading='Update My Info'
-              variantObject={variantObject}
               headingAlt
               headingCompact
+              backgroundColor={colors.formIntroBg}
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="contact" onSubmit={handleSubmit(UpdateEmploymentInfo)}>

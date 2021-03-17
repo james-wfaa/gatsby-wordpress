@@ -13,45 +13,78 @@ import { colors, sizes, breakpoints } from './css-variables'
 
 //import { breakpoints } from './parts/breakpoints'
 
-const navPrivacy = {
-  name:"Privacy",
+const navPolicy = {
+  name:"WFAA POLICIES & INFO",
   items:[
     {
+      "title":"Digital Community Guidelines",
+      "url":"https://www.advanceuw.org/digital-community-guidelines/?utm_source=uwalumni&utm_medium=referral&utm_content=footer"
+    },
+    {
+      "title": "Event Participation Waivers",
+      "url": "https://www.advanceuw.org/event-waiver/?utm_source=uwalumni&utm_medium=referral&utm_content=footer"
+    },
+    {
+      "title":"Privacy",
+      "url":"https://www.advanceuw.org/privacy-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=footer"
+    },
+    {
+      "title":"Refund/Event Cancellation",
+      "url":"https://www.advanceuw.org/refund-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=footer"
+    },
+    {
       "title":"Terms & Conditions",
-      "url":"https://wp.advanceuw.org/benefits/"
-    },
-    {
-      "title": "Event Cancellation Policy",
-      "url": "https://wp.advanceuw.org/teams1/"
-    },
-    {
-      "title":"Contact Us",
-      "url":"https://wp.advanceuw.org/teams2/"
+      "url":"https://www.advanceuw.org/terms-and-conditions/?utm_source=uwalumni&utm_medium=referral&utm_content=footer"
     }
 ]};
 const navAbout = {
-  name:"About WAA",
+  name:"WISCONSIN ALUMNI ASSOCIATION®",
   items:[
     {
-      "title":"Career Opportunities",
-      "url":"https://wp.advanceuw.org/benefits2/"
+      "title":"About WAA",
+      "url":"/about"
     },
     {
-      "title": "For News Media",
-      "url": "https://wp.advanceuw.org/teams3/"
+      "title":"Alumni Advisory Council",
+      "url":"/about/alumni-advisory-council"
     },
     {
-      "title":"Ad Opportunities",
-      "url":"https://wp.advanceuw.org/teams4/"
+      "title": "Career Opportunities at WFAA",
+      "url": "https://www.advanceuw.org/careers?utm_source=uwalumni&utm_medium=referral&utm_content=footer"
     },
     {
-      "title":"For Chapter, Affinity and Affilliate Leaders",
-      "url":"https://wp.advanceuw.org/btw1/"
+      "title":"Diversity & Inclusion",
+      "url":"/about/diversity-strategic-plans"
+    },
+    {
+      "title":"For News Media",
+      "url":"/about/for-news-media/"
+    },
+    {
+      "title":"For WAA Group Leaders",
+      "url":"/TBD"
     },
 ]};
   
 const navStudents = {
-  name:"Students",
+  name:"STUDENTS",
+  items:[
+    {
+      "title":"Commencement & Recent Grads",
+      "url":"/recent-grads"
+    },
+    {
+      "title":"Homecoming Committee",
+      "url":"/homecoming-committee"
+    },
+    {
+      "title":"WASB",
+      "url":"/wasb"
+    },
+]};
+
+const navContact = {
+  name:"CONTACT US",
   items:[
     {
       "title":"Commencement",
@@ -95,15 +128,15 @@ const navSection = ({ className }) =>(
   <div className={className}>
     <div className="external-link">
     <div>University of Wisconsin&#8212;Madison</div>
-    <a href="https://www.wisc.edu/?utm_source=advanceuw&utm_medium=referral&utm_content=footer">wisc.edu</a>
+    <a href="https://www.wisc.edu">wisc.edu</a>
     </div>
     <div className="external-link">
-    <div>University of Wisconsin Foundation<br/>and Alumni Association</div>
-    <a href="https://www.advanceuw.org?utm_source=advanceuw&utm_medium=referral&utm_content=footer">advanceuw.org</a>
+    <div>Wisconsin Foundation and Alumni Association</div>
+    <a href="https://www.advanceuw.org?utm_source=uwalumni&utm_medium=referral&utm_content=footer">advanceuw.org</a>
     </div>
     <div className="external-link">
     <div>University of Wisconsin Foundation</div>
-    <a href="https://www.supportuw.org?utm_source=advanceuw&utm_medium=referral&utm_content=footer">supportuw.org</a>
+    <a href="https://www.supportuw.org/?utm_source=uwalumni&utm_medium=referral&utm_content=footer">supportuw.org</a>
     </div>
   </div>
 )
@@ -112,12 +145,26 @@ const StyledNavSection = styled(navSection)``
 
 const Social = ({className})=>(
   <ul className={className}>
-    <li><a className="fb" title="Wisconsin Alumni Association Facebook Page" href="https://www.facebook.com"></a></li>
-    <li><a className="tw" title="Wisconsin Alumni Association Twitter Page" href="https://www.twitter.com"></a></li>
-    <li><a className="ig" title="Wisconsin Alumni Association Instagram Page" href="https://www.instagram.com"></a></li>
-    <li><a className="wc" title="Wisconsin Alumni Association WeChat Page" href="https://www.wechat.com"></a></li>
-    <li><a className="li" title="Wisconsin Alumni Association LinkedIn Page" href="https://www.linkedin.com"></a></li>
+    <li><a className="fb" title="Follow WAA on Facebook" href="https://www.facebook.com/wisalumni"></a></li>
+    <li><a className="tw" title="Follow WAA on Twitter" href="https://www.twitter.com/wisalumni"></a></li>
+    <li><a className="ig" title="Follow WAA on Instagram" href="https://www.instagram.com/wisalumni"></a></li>
+    <li><a className="wc" title="Follow WAA on Facebook WeChat" href="/wechat"></a></li>
+    <li><a className="li" title="Follow WAA on Facebook LinkedIn" href="https://www.linkedin.com/company/wisconsin-alumni-association"></a></li>
   </ul>
+)
+
+const ContactUs = ({className})=>(
+  <nav className={className}>
+    <a href="/contact-waa">
+      <div className="footer-menu__title">CONTACT US</div>
+    </a>
+    <ul>
+      <li>650 N. Lake Street</li>
+      <li>Madison, WI 53706</li>
+      <li>608-262-2551 or 888-947-2586</li>
+      <li><a href="mailto:waa@supportuw.org">waa@supportuw.org</a></li>
+    </ul>
+  </nav>
 )
   
 const WfaaFooter = ({ className }) =>  (
@@ -135,14 +182,11 @@ const WfaaFooter = ({ className }) =>  (
       </div>
       <div className="footer__column">
         <WfaaFooterMenu menu={navAbout} pageLink="/about/" />
-        <WfaaFooterMenu menu={navStudents} pageLink="/students/" />
+        <ContactUs className="contact-section" />
       </div>
       <div className="footer__column">
-        <WfaaFooterMenu menu={navPrivacy} pageLink="/privacy/" />
-        <p>
-          <span>Questions:</span>
-          <span><a href="mailto:wfaa@supportuw.org">wfaa@supportuw.org</a></span>
-        </p>
+        <WfaaFooterMenu menu={navStudents} pageLink="/students/" />
+        <WfaaFooterMenu menu={navPolicy} pageLink="/privacy/" />
       </div>
       <div className="footer__column">
         <StyledNavSection className="nav-section"></StyledNavSection>

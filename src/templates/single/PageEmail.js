@@ -29,7 +29,7 @@ const WordPressEmailPage = ({ className, data }) => {
     })
     let adSpot = randomAdGenerator(1, (filteredAds.length))
     setCurrentAd(filteredAds[adSpot])
-  }, [])
+  }, [ads])
 
   return (
     <Layout title={title}>

@@ -19,9 +19,11 @@ const FeaturedEvent = ({ block }) => {
             }
         }) 
     }
+    //console.log(theEvent)
+    const eventImg = (theEvent?.featuredImage?.node?.localFile) ? theEvent.featuredImage.node.localFile : null
     return (
         <PageSection centered feature>
-            <EventContentCard size="XXL" {...theEvent} />
+            <EventContentCard size="XXL" {...theEvent} url={theEvent.link} img={eventImg} featureImg={eventImg}/>
         </PageSection>
        
     )

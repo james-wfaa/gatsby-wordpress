@@ -56,7 +56,7 @@ const GravityFormForm = ({
             // Clean error
             setGeneralError('')
             
-    console.log(values)
+    //console.log(values)
             // Check that at least one field has been filled in
             if (submissionHasOneFieldEntry(values)) {
                 setLoadingState(true)

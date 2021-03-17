@@ -1,10 +1,10 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import IntroPageSection from "../../page-sections/IntroPageSection"
+import PageSection from "../../page-sections/PageSection"
+import { colors } from '../../css-variables'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
-import { variantObject } from '../form-helpers'
 
 const UpdateSuccess = () => {
     const { state, actions } = useContext(AppContext);
@@ -27,23 +27,24 @@ const UpdateSuccess = () => {
             //console.log(newList)
             setCommunicationsSignUpOnchange(newList)
         }
-        
+
     }
     const content = `<div className="successPageIcon"></div>`
 
     const disableButton = state.communicationsSignUp.length > 0 ? false : true;
-  
+
     return (
         <div className="success-page">
-            <IntroPageSection
+            <PageSection
             excerpt='Thanks for taking the time to do a complete update of your information. Now you’re all set to receive messages, invitations, and more — and give you a better way to stay connected to UW–Madison and WAA. On, Wisconsin!'
             heading='Thank you. Your information has been updated.'
-            variantObject={variantObject}
             headingAlt
             headingCompact
             content={content}
-            />
-            <div className="successPageIcon"></div>
+            backgroundColor={colors.formIntroBg}
+            >
+                <div className="successPageIcon"></div>
+            </PageSection>
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form className="success-page" onSubmit={handleSubmit(submitCommunicationsSignup)}>
                 <legend>Are you interested in receiving communications about any of the following?</legend>
@@ -72,7 +73,7 @@ const UpdateSuccess = () => {
                         <input type="checkbox" name="affinity-list-11" id="affinity-list-11" onChange={e => updateOnChangeValues(e)}/>
                         <label htmlFor="affinity-list-11" selected>LGBTQ+ Affinity Group</label>
                     </div>
-                    <Buttons 
+                    <Buttons
                         signup
                         disabled={disableButton} />
                 </fieldset>
