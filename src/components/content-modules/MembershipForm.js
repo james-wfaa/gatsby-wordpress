@@ -11,11 +11,12 @@ const FormWrapper = styled.div`
 `
 
 const QuestionForm = styled.form`
-  border: 1px solid ${colors.iconGrey};
   margin: 0 auto;
-  width: 90%;
+  width: 100%;
   @media screen and ${breakpoints.tabletL} {
     max-width: 896px;
+    width: 90%;
+    border: 1px solid ${colors.iconGrey};
   }
 `
 
@@ -257,10 +258,13 @@ const FeeBox = styled.div`
     padding: 58px 58px 0 58px;
   }
   border-top: 4px solid ${colors.iconGrey};
-  margin: 0 auto 58px;;
-  width: 90%;
+  margin: 0 auto 58px;
   @media screen and ${breakpoints.tabletL} {
     max-width: 896px;
+  }
+  width: 100%;
+  @media screen and ${breakpoints.tabletL} {
+    width: 90%;
   }
   
   
