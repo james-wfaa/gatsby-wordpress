@@ -1,8 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
 import BlogPost from "../../components/template-parts/wordpress-post"
-import AltPost from "../../components/template-parts/wordpress-post-alt"
-import VideoPost from "../../components/template-parts/wordpress-post-video"
 import FlaminglePost from "../../components/template-parts/wordpress-flamingle"
 
 const Post = ({ data }) => {

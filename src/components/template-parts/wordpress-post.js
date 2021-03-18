@@ -8,7 +8,7 @@ import BreadCrumbs from "../../components/page-sections/BreadCrumbs"
 import PageSection from "../page-sections/PageSection"
 import RecentPosts from "../../components/page-sections/RecentPosts"
 import CardHandler from "../content-modules/CardHandler"
-import EmbedBlock from "./EmbedBlock"
+import EmbedBlock from "../content-blocks/EmbedBlock"
 
 import { ProductStories } from "../collections/RecentStories"
 
@@ -21,10 +21,9 @@ function BlogPost({ data }) {
   let featSize = featuredImage?.node?.mediaDetails.width ? featuredImage?.node?.mediaDetails.width : null
   let size = featSize > heroSize ? featSize : heroSize
 
-  const isVideo = page.acfAlternatePostType?.alternateposttype === 'video' ? true : false
-  const hasVideo = page.videoFormat?.vimeoId
+  const isVideo = page.videoFormat?.vimeoId
 
-  const isAlt = page.acfAlternatePostType?.alternateposttype === ('poll' || 'quiz' ) ? true : false
+  const isAlt = page.acfAlternatePostType?.alternateposttype === ('poll' || 'quiz' || 'scrapbook' || 'podcast' ) ? true : false
 
   const postHeader = (isVideo || isAlt) 
   ? (<TitleSection heading={title} author={author.node.name} product={product} categories={categories} date={date} size={size} />)
