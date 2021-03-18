@@ -1,6 +1,8 @@
 import React from "react"
 import { graphql } from "gatsby"
 import BlogPost from "../../components/template-parts/wordpress-post"
+import AltPost from "../../components/template-parts/wordpress-post-alt"
+import VideoPost from "../../components/template-parts/wordpress-post-video"
 import FlaminglePost from "../../components/template-parts/wordpress-flamingle"
 
 const Post = ({ data }) => {
@@ -8,7 +10,20 @@ const Post = ({ data }) => {
 
 const isFlamingle = data.page.askFlamingle?.abeQuestioner !== null ? true : false
 
-return isFlamingle ? <FlaminglePost data={data} /> : <BlogPost data={data} />;
+const isVideo = data.page.acfAlternatePostType?.alternateposttypename === 'video' ? true : false
+
+const isAlt = data.page.acfAlternatePostType?.alternateposttypename !== ('story' || null ) ? true : false
+
+
+const innerContent = (isFlamingle) ? ( <FlaminglePost data={data} />)
+:(isVideo) ? (<VideoPost data={data} />)
+  :(isAlt) ? (<AltPost data={data} />)
+  :(<BlogPost data={data} />)
+
+console.log("type:" + innerContent)
+
+return innerContent;
+
 }
 
 export default Post
@@ -136,6 +151,10 @@ export const query = graphql`
       }
       askFlamingle {
         abeQuestioner
+      }
+
+      acfAlternatePostType{
+        alternateposttype
       }
     }
   }
