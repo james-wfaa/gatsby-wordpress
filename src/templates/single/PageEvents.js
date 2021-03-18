@@ -67,7 +67,7 @@ categories.forEach((item) => {
   let featuredEventItems = []
   eventEdges.forEach((event) => {
     console.log(event)
-    const { featuredEvent, featuredImage: img } = event
+    const { featuredEvent } = event
     if (featuredEvent) {
         featuredEventItems.push(
           event

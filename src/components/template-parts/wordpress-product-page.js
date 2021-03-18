@@ -7,13 +7,10 @@ import ProductMenu from "../parts/ProductMenu"
 function WordPressPage({ page }) {
   const {  excerpt, featuredImage, introButtons, heroIntroSection, products, blocks, title, wpChildren } = page
   const { introButtons: buttons } = introButtons
-  const { heroHeading, introExcerpt, introHeading } = heroIntroSection
+  const { heroHeading, introExcerpt } = heroIntroSection
 
   const heroIntroExcerpt = (introExcerpt) ? introExcerpt : excerpt
   const heroOverlayHeading = (heroHeading) ? `<span>${heroHeading}</span> ON` : null
-
-  const product = (products?.nodes) ? products.nodes[0] : null
-  //console.log(product)
 
   const navContents = (wpChildren.nodes[0])
     ? wpChildren.nodes.map((node) => {

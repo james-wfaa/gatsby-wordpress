@@ -1,8 +1,7 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
 import { colors } from "../../css-variables"
-import styled from 'styled-components'
-import { StyledError, checkForLetters, currentYear, handleFormSubmit } from '../form-helpers'
+import { StyledError, checkForLetters, handleFormSubmit } from '../form-helpers'
 import PageSection from "../../page-sections/PageSection"
 import Buttons from '../FormButtons'
 import { AppContext } from "../../../context/AppContext"
