@@ -4,8 +4,10 @@ import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import InputWrapper from '../../components/InputWrapper'
 
-const Html = ({ fieldData, name, wrapClassName, ...wrapProps }) => {
+const Html = ({ fieldData, name, wrapClassName, fieldHidden, ...wrapProps }) => {
     const { content, cssClass, type } = fieldData
+
+    const fieldHiddenClass = fieldHidden === true ? 'gform_hidden' : ''
 
     return (
         <InputWrapper
@@ -18,7 +20,8 @@ const Html = ({ fieldData, name, wrapClassName, ...wrapProps }) => {
                 'gfield_html_formatted',
                 'gfield_no_follows_desc',
                 'gravityform__' + type + '__wrap',
-                cssClass
+                cssClass,
+                fieldHiddenClass
             )}
         >
             {ReactHtmlParser(content)}
