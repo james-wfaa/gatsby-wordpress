@@ -51,7 +51,7 @@ const MailingAddress = () => {
       return (
         <div>
             <PageSection
-              excerpt='Please update your primary or seasonal mailing address below. This way, you’ll receive communications on happenings in your area to help you stay connected to fellow Badgers nearby. Note that if you checked “Employment Information” on a previous form, you also have the option to update your business address coming up. And always click “Save and Continue” after completing a page to ensure your changes are recorded.'
+              excerpt='Please update your primary or seasonal mailing address below. By doing so, you’ll receive communications on happenings in your area to help you stay connected to fellow Badgers nearby. Note that if you checked “Employment Information” on a previous form, you also have the option to update your business address coming up. Click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
               headingAlt
               headingCompact
