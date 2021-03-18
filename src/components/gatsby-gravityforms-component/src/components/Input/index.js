@@ -5,8 +5,7 @@ import strings from '../../utils/strings'
 import InputWrapper from '../InputWrapper'
 import InputSubfieldWrapper from '../InputSubfieldWrapper'
 
-const Input = ({ errors, fieldData, name, register, value, subfield, ...wrapProps }) => {
-    
+const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden, ...wrapProps }) => {
     const {
         cssClass,
         inputMaskValue,
@@ -22,6 +21,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, ...wrapProp
         errors={errors}
         inputData={fieldData}
         labelFor={name}
+        fieldHidden={fieldHidden}
         {...wrapProps}
     > <input
         aria-invalid={errors}
@@ -56,6 +56,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, ...wrapProp
             errors={errors}
             inputData={fieldData}
             labelFor={name}
+            fieldHidden={fieldHidden}
             {...wrapProps}
         >
             <input

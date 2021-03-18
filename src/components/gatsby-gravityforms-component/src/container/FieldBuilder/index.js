@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import get from 'lodash/get'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Address from '../../components/Address'
 import Captcha from '../../components/Captcha'
@@ -20,7 +20,62 @@ const FieldBuilder = ({
     register,
     errors,
     setValue,
+    onChange
 }) => {
+    //console.log(formData)
+    const [fieldValues, setfieldValues] = useState({});
+    useEffect(() => {
+        formData.formFields.map(field => {
+            //console.log(field, field.type)
+            if(field.type === 'radio' || field.type === 'checkbox'){
+                populateChoiceValues(field)
+            }
+        })
+    }, []);
+
+    const populateChoiceValues = (field) => {
+        const selected = JSON.parse(field.choices).filter(choice => {
+            return choice.isSelected
+        })
+        setfieldValues({ ...fieldValues, [field.id]: selected.length ? selected[0].value : '' } )
+    }
+
+    const handleFieldChange = (fieldId, value, inputId) => {
+    
+        let fieldInfo = formData.formFields.filter(field => field.id === fieldId)
+        
+        if((fieldInfo[0].type === 'radio' ) && inputId){
+            setfieldValues({
+                ...fieldValues,
+                [fieldId]: {
+                    [inputId]: value,
+                },
+            })
+        }
+        if((fieldInfo[0].type === 'checkbox') && inputId){
+            let checkIfExists = typeof fieldValues[fieldId] === 'object' ? Object.values(fieldValues[fieldId]).includes(value) : false;
+
+            if(checkIfExists){
+                const updatefv = {
+                    ...fieldValues
+                }
+                delete updatefv[fieldId][inputId]
+    
+                setfieldValues(updatefv)
+
+            }else{
+                setfieldValues({
+                    ...fieldValues,
+                    [fieldId]: {
+                        ...fieldValues[fieldId],
+                        [inputId]: value,
+                    },
+                })
+            }
+        }
+        //add default or other cases if not radio/replacing value
+    }
+
     // Loop through fields and create
     return formData.formFields.map(field => {
         // Set the wrapper classes
@@ -61,6 +116,58 @@ const FieldBuilder = ({
 
         let errorKey = ''
 
+        //CONDITIONAL LOGIC
+        const handleConditionalLogic = (field) => {
+            const rulesMet = JSON.parse(field.conditionalLogic).rules.map(rule => {
+                let conditionalValue = fieldValues[rule.fieldId]
+                //console.log(conditionalValue, field, fieldValues)
+
+                if (typeof conditionalValue == 'object') {
+                    let matchKey = Object.keys(conditionalValue).filter(key => fieldValues[rule.fieldId][key] == rule.value)
+                    conditionalValue = matchKey && fieldValues[rule.fieldId][matchKey] ? fieldValues[rule.fieldId][matchKey] : false
+                }
+                //console.log(typeof conditionalValue)
+                switch (rule.operator) {
+                    case 'is':
+                        return conditionalValue == rule.value
+    
+                    case 'is not':
+                        return conditionalValue != rule.value
+    
+                    case 'greater than':
+                        return conditionalValue > rule.value
+    
+                    case 'less than':
+                        return conditionalValue < rule.value
+    
+                    case 'contains':
+                        return typeof conditionalValue === 'array' || typeof conditionalValue === 'string' ? conditionalValue.indexOf(rule.value) >= 0 : false
+    
+                    case 'starts with':
+                        return conditionalValue.indexOf(rule.value) == 0
+    
+                    case 'ends with':
+                        return conditionalValue.indexOf(rule.value) == conditionalValue.length - rule.value.length
+                }
+                //console.log(conditionalValue, field.id, fieldValues)
+            })
+            
+            //console.log(rulesMet, rulesMet.indexOf(false))
+            
+            if (JSON.parse(field.conditionalLogic).actionType == 'show') {
+                return JSON.parse(field.conditionalLogic).logicType == 'all' ? rulesMet.indexOf(false) >= 0 : rulesMet.indexOf(true) < 0
+            } else {
+                return JSON.parse(field.conditionalLogic).logicType == 'all' ? rulesMet.indexOf(true) < 0 : rulesMet.indexOf(false) >= 0
+            }
+        }
+        const fieldHidden = (field) => {
+            if (typeof JSON.parse(field.conditionalLogic) == 'object' && field.conditionalLogic !== null) {
+                return handleConditionalLogic(field)
+            }
+            return false
+        }
+        //console.log(fieldHidden(field), field.id)
+
         //(field.type)
         switch (field.type) {
             // Add note for unsupported captcha field
@@ -100,6 +207,7 @@ const FieldBuilder = ({
                         }
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
+                        fieldHidden={fieldHidden(field)}
                     />
                 )
             case 'textarea':
@@ -112,6 +220,7 @@ const FieldBuilder = ({
                         register={register}
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
+                        fieldHidden={fieldHidden(field)}
                     />
                 )
             case 'select':
@@ -152,6 +261,9 @@ const FieldBuilder = ({
                         register={register}
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
+                        onChange={onChange}
+                        handleFieldChange={handleFieldChange}
+                        fieldHidden={fieldHidden(field)}
                     />
                 )
             case 'name':
@@ -170,6 +282,7 @@ const FieldBuilder = ({
                         }
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
+                        fieldHidden={fieldHidden(field)}
                     />
                 )
             case 'address':
@@ -189,6 +302,7 @@ const FieldBuilder = ({
                         }
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
+                        fieldHidden={fieldHidden(field)}
                     />
                 )
             case 'html':
@@ -200,6 +314,7 @@ const FieldBuilder = ({
                         name={inputName}
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
+                        fieldHidden={fieldHidden(field)}
                     />
                 )
 

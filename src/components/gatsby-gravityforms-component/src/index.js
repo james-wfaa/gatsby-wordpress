@@ -28,6 +28,8 @@ const GravityFormForm = ({
     presetValues = {},
     successCallback = ({ reset }) => reset(),
     errorCallback,
+    onChange,
+    checkboxes
 }) => {
     // Pull in form functions
     const {
@@ -58,6 +60,12 @@ const GravityFormForm = ({
             // Check that at least one field has been filled in
             if (submissionHasOneFieldEntry(values)) {
                 setLoadingState(true)
+
+                if(Object.keys(checkboxes).length > 0){
+                    values = {...values, ...checkboxes}
+
+                }
+                console.log('updated values', values)
 
                 const { data, status } = await passToGravityForms({
                     baseUrl: singleForm.apiURL,
@@ -148,6 +156,7 @@ const GravityFormForm = ({
                                     presetValues={presetValues}
                                     register={register}
                                     setValue={setValue}
+                                    onChange={onChange}
                                 />
                             </ul>
                         </div>

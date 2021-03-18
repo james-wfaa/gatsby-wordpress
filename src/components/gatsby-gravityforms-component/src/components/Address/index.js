@@ -6,7 +6,7 @@ import strings from '../../utils/strings'
 import InputWrapper from '../InputWrapper'
 import Input from '../Input'
 
-const Address = ({ errors, fieldData, name,  register, value, ...wrapProps }) => {
+const Address = ({ errors, fieldData, name,  register, value, fieldHidden, ...wrapProps }) => {
     //console.log(fieldData)
     //console.log(inputs)
     //console.log(value)
@@ -21,7 +21,6 @@ const Address = ({ errors, fieldData, name,  register, value, ...wrapProps }) =>
         type,
         inputs,
     } = fieldData
-
  
 
     let renderedSubfields = []
@@ -82,6 +81,7 @@ const Address = ({ errors, fieldData, name,  register, value, ...wrapProps }) =>
             name={subfield.label}
             register={subfield.register}
             //value={value}
+            fieldHidden={fieldHidden}
         />)
     })
 return (
@@ -90,6 +90,7 @@ return (
             inputData={fieldData}
             labelFor={name}
             {...wrapProps}
+            fieldHidden={fieldHidden}
         >{inputFields}</InputWrapper>
 )
 }
