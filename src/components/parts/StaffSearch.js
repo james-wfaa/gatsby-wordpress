@@ -158,7 +158,7 @@ const StaffSearchModal = () => {
 
     const getSearchResults = (input) =>{
         if(input.searchinput){
-            return fetch("https://uwalumdev.wpengine.com/wp-json/staffsearch/v1/search?s=" + input.searchinput)
+            return fetch("https://uwalumni.wpengine.com/wp-json/staffsearch/v1/search?s=" + input.searchinput)
             .then((response) => { 
                 return response.json().then((data) => {
                     return data
@@ -185,6 +185,11 @@ const StaffSearchModal = () => {
                 id="searchinput"
                 placeholder="Search by name"
                 ref={register({
+                    required: { value: true, message: "Enter a search term" },
+                    minLength: {
+                    value: 2,
+                    message: "Must be greater than 2 letters",
+                    },
                 })}
                 />
                 {errors.searchinput && (
