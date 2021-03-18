@@ -120,8 +120,18 @@ const ChapterSearch = () => {
     position: relative;
     width: 252px;
     color: ${colors.titleWhite};
-    
-   
+    &:after{
+      content:'';
+          border: solid #ffffff;
+          border-width: 0 2px 2px 0;
+          display: inline-block;
+          padding: 4px;
+          transform: rotate(45deg);
+          -webkit-transform: rotate(45deg);
+          position:absolute;
+          left: 14px;
+          top:16px;
+    }
   `
   const FilteredSelect = styled.select`
     position: relative;
