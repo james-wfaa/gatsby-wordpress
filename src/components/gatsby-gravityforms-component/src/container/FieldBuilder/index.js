@@ -116,7 +116,7 @@ const FieldBuilder = ({
 
         let errorKey = ''
 
-        console.log(field.type)
+        //console.log(field.type)
         //CONDITIONAL LOGIC
         const handleConditionalLogic = (field) => {
             const rulesMet = JSON.parse(field.conditionalLogic).rules.map(rule => {

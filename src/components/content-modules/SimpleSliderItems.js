@@ -7,7 +7,7 @@ import LeftArrow from "../../components/parts/SliderArrowLeft"
 import RightArrow from "../../components/parts/SliderArrowRight"
 
 const SimpleSliderItems = ({ items, size, type }) => {
-  console.log(items)
+  //console.log(items)
     let myItems = []
     items.forEach((item) => {
         //console.log(item)

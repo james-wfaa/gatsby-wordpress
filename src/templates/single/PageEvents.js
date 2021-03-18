@@ -22,7 +22,6 @@ function WordPressPage({ data }) {
   const { backgroundImage } = gridDetails
   //console.log(backgroundImage)
 
-  console.log(allevents)
 
   const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
   const moreButton = [
@@ -31,21 +30,16 @@ function WordPressPage({ data }) {
       text: "All Events",
     },
   ]
-  console.log(categories)
   let displayCategories = []
   
 categories.forEach((item) => {
-  console.log(item)
     const { categoryEvent, numberToShow } = item
     const { slug } = categoryEvent
     let categoryEvents = []
     allevents.nodes.forEach((event) => {
-      console.log(event)
       if (event?.eventsCategories?.nodes) {
         event.eventsCategories.nodes.forEach((cat) => {
-          console.log(cat)
           if (cat.slug === slug) {
-            console.log('match')
             categoryEvents.push(event)
           }
         })
@@ -53,7 +47,6 @@ categories.forEach((item) => {
       
     })
 
-    console.log(categoryEvents)
 
     if (categoryEvents) {
       displayCategories.push(
@@ -66,7 +59,6 @@ categories.forEach((item) => {
     
   let featuredEventItems = []
   eventEdges.forEach((event) => {
-    console.log(event)
     const { featuredEvent } = event
     if (featuredEvent) {
         featuredEventItems.push(
@@ -74,12 +66,9 @@ categories.forEach((item) => {
         )
     }
   })
-  console.log(featuredEventItems)
 
   const cardGridEvents = eventEdges.slice(0,9)
   let eventCards = cardGridEvents.map((event) => {
-    console.log(event)
-    console.log(event.link)
     return (
       <EventCardD key={event.url} {...event} url={event.link} />
     )
