@@ -43,6 +43,8 @@ function BlogPost({ data }) {
       : null
 
   const product = (products?.nodes) ? products.nodes[0] : null
+
+  console.log("VIDEO")
   
   let image = null
   if ((size >= 1080) && featuredImage?.node?.localFile?.childImageSharp.fluid){
@@ -71,9 +73,6 @@ function BlogPost({ data }) {
     <Layout title={title}>
         <BreadCrumbs links={links} />
         <TitleSection heading={title} author={author.node.name} product={product} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />
-        {image && size >= 718 && (
-            <FeaturedImage featuredImage={image} size={size}/>
-        )}
         <WordPressBasicContentBlocks {...page} />
       <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
       {relatedPostsToShow.length > 0 ? (

@@ -35,6 +35,8 @@ function BlogPost({ data }) {
     }
   })
 
+  console.log("ALTPOST")
+
   const buttons = (uniqueRelatedPosts.length > 2) 
       ? [{
           link: `/posts/search/?category=${slug}`,

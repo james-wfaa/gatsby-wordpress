@@ -10,19 +10,7 @@ const Post = ({ data }) => {
 
 const isFlamingle = data.page.askFlamingle?.abeQuestioner !== null ? true : false
 
-const isVideo = data.page.acfAlternatePostType?.alternateposttypename === 'video' ? true : false
-
-const isAlt = data.page.acfAlternatePostType?.alternateposttypename !== ('story' || null ) ? true : false
-
-
-const innerContent = (isFlamingle) ? ( <FlaminglePost data={data} />)
-:(isVideo) ? (<VideoPost data={data} />)
-  :(isAlt) ? (<AltPost data={data} />)
-  :(<BlogPost data={data} />)
-
-console.log("type:" + innerContent)
-
-return innerContent;
+return isFlamingle ? <FlaminglePost data={data} /> : <BlogPost data={data} />;
 
 }
 
@@ -155,6 +143,10 @@ export const query = graphql`
 
       acfAlternatePostType{
         alternateposttype
+      }
+
+      videoFormat {
+        vimeoId
       }
     }
   }
