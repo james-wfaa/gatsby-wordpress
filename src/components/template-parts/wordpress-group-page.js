@@ -40,8 +40,9 @@ const featuredbutton = [
 ]
 const { title,  excerpt, wpChildren, featuredImage, groups } = page
 
-
-
+const imageWidth = featuredImage?.node?.mediaDetails?.width
+  ? featuredImage.node.mediaDetails.width
+  : null
   if (wpChildren?.nodes) {
     wpChildren.nodes.sort((a,  b) => {
       
@@ -94,6 +95,7 @@ const { title,  excerpt, wpChildren, featuredImage, groups } = page
           heroSize="slim"
           variant="white"
           excerpt={excerpt}
+          imageWidth={imageWidth}
         />
       )}
       { !featuredImage && (

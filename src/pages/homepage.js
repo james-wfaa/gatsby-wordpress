@@ -7,7 +7,6 @@ import GridCardD from "../components/content-modules/GridCardD"
 import StoryContentCard from "../components/content-blocks/StoryContentCard"
 import CardE from "../components/content-blocks/CardE"
 import HeroIntroSection from "../components/page-sections/HeroIntroSection"
-import CommunicationForm from "../components/content-blocks/CommunicationForm"
 import SimpleSlider from "../components/content-modules/SimpleSlider"
 
 const taglist2 = [
@@ -73,34 +72,58 @@ const HomePage = ({ data }) => {
           centerPadding="100px"
         >
           <CardE
-            img={data.asset29}
-            caption="Zipper ipsum dolor sit amet, consectetur adipiscing elit"
+            img={data.img1}
+            caption="Strengthen UW Connections"
             enhancedHomepageCaption
+            pillar
           />
           <CardE
-            img={data.asset30}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+            img={data.img2}
+            caption="Stay in the Know"
             enhancedHomepageCaption
+            pillar
           />
           <CardE
-            img={data.square1}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+            img={data.img3}
+            caption="Share Your UW Pride"
             enhancedHomepageCaption
+            pillar
           />
           <CardE
-            img={data.squareBucky}
-            caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+            img={data.img4}
+            caption="Continue Your Pursuit of Knowledge"
             enhancedHomepageCaption
+            pillar
+          />
+           <CardE
+            img={data.img5}
+            caption="Boost Your Badger Spirit"
+            enhancedHomepageCaption
+            pillar
+          />
+          <CardE
+            img={data.img6}
+            caption="Build Your Badger Network"
+            enhancedHomepageCaption
+            pillar
+          />
+          <CardE
+            img={data.img7}
+            caption="Satisfy Your Wanderlust"
+            enhancedHomepageCaption
+            pillar
+          />
+          <CardE
+            img={data.img8}
+            caption="Make a Difference"
+            enhancedHomepageCaption
+            pillar
           />
         </SimpleSlider>
       </PageSection>
-
-      <CommunicationForm />
-
       <PageSection heading="Featured Stories" buttons={featuredbutton} alt>
         <SimpleSlider
           className="center"
-          slidesToShow="1"
           dots
           centerMode
           variableWidth
@@ -248,6 +271,62 @@ export const pageQuery = graphql`
       childImageSharp {
         fluid(quality: 95, maxWidth: 2000) {
           ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    img1: file(relativePath: { eq: "1_benefit_connect_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    img2: file(relativePath: { eq: "2_benefit_inform_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    img3: file(relativePath: { eq: "3_benefit_pride_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    img4: file(relativePath: { eq: "4_benefit_enrich_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    img5: file(relativePath: { eq: "5_benefit_spirit_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    img6: file(relativePath: { eq: "6_benefit_prof_adv_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    img7: file(relativePath: { eq: "7_benefit_travel_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    img8: file(relativePath: { eq: "8_benefit_support_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
         }
       }
     }

@@ -2,12 +2,10 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
-import EventContentCard from "../../components/content-blocks/EventContentCard"
+import AllEvents from "../../components/collections/AllEvents"
 import EventCardD from "../../components/content-blocks/EventCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
-import SimpleSlider from "../../components/content-modules/SimpleSlider"
-import LeftArrow from "../../components/parts/SliderArrowLeft"
-import RightArrow from "../../components/parts/SliderArrowRight"
+import CardHandler from "../../components/content-modules/CardHandler"
 import CardSet from "../../components/content-modules/CardSet"
 import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 import Accordian from "../../components/parts/Accordian"
@@ -15,13 +13,16 @@ import AccordianSearchBox from "../../components/parts/AccordianSearchBox"
 
 function WordPressPage({ data }) {
 
-  const { page, events } = data
-  const { edges: eventEdges } = events
+  const { page } = data
+  const allevents = AllEvents()
+  const { nodes: eventEdges } = allevents
   const { title, featuredImage, eventCategories, excerpt, gridDetails  } = page
   const { categories } = eventCategories
-  //console.log(eventCategories)
 
   const { backgroundImage } = gridDetails
+  //console.log(backgroundImage)
+
+  console.log(allevents)
 
   const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
   const moreButton = [
@@ -30,66 +31,66 @@ function WordPressPage({ data }) {
       text: "All Events",
     },
   ]
-
-  const cats = (categories) 
-  ? categories.map((item) => {
+  console.log(categories)
+  let displayCategories = []
+  
+categories.forEach((item) => {
+  console.log(item)
     const { categoryEvent, numberToShow } = item
-    //console.log(item)
-    return (categoryEvent && categoryEvent.events.nodes.length > 0) 
-      ?
-      (
-        <PageSection key={item.url} heading={categoryEvent.name} stagger>
-          <CardSet items={categoryEvent.events.nodes} num={numberToShow} type="event"/>
+    const { slug } = categoryEvent
+    let categoryEvents = []
+    allevents.nodes.forEach((event) => {
+      console.log(event)
+      if (event?.eventsCategories?.nodes) {
+        event.eventsCategories.nodes.forEach((cat) => {
+          console.log(cat)
+          if (cat.slug === slug) {
+            console.log('match')
+            categoryEvents.push(event)
+          }
+        })
+      }
+      
+    })
+
+    console.log(categoryEvents)
+
+    if (categoryEvents) {
+      displayCategories.push(
+        <PageSection key={item.slug} heading={categoryEvent.name} stagger>
+          <CardSet items={categoryEvents} num={numberToShow} type="event"/>
         </PageSection>
       )
-      : null
-  }
-  )
-  : null
-
-
-  const settings = {
-    nextArrow: <RightArrow />,
-    prevArrow: <LeftArrow />,
-  }
-  //('events page events:',events)
-  let featuredEvents = eventEdges.map((event) => {
-    //console.log('featuredEvents event.node:',event.node)
-    const { featuredEvent, featuredImage: img } = event.node
-    const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-    //console.log( 'featuredEvent:',featuredEvent )
+    }
+})
+    
+  let featuredEventItems = []
+  eventEdges.forEach((event) => {
+    console.log(event)
+    const { featuredEvent, featuredImage: img } = event
     if (featuredEvent) {
-        return (
-          <EventContentCard key={event.url} size="L" img={cardImg} {...event.node} />
+        featuredEventItems.push(
+          event
         )
     }
-    return ''
   })
-  featuredEvents = featuredEvents.filter(function( element ) {
-    return element !== undefined;
- })
-
-
-  //console.log('featuredEvents:',featuredEvents)
-
-
+  console.log(featuredEventItems)
 
   const cardGridEvents = eventEdges.slice(0,9)
   let eventCards = cardGridEvents.map((event) => {
-    //console.log('building event tiles')
+    console.log(event)
+    console.log(event.link)
     return (
-      <EventCardD key={event.url} {...event.node} />
+      <EventCardD key={event.url} {...event} url={event.link} />
     )
   })
-  //console.log('eventCards:',eventCards)
-
 
   return (
     <Layout title={title} noborder>
       { featuredImage && featuredImage.node && (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}
-          heroHeading="<span>Badger</span> ON"
+          videoURL="https://player.vimeo.com/external/524440389.hd.mp4?s=ebee9d64e105fc60c3075fe901ed7a6e50aeebf8&profile_id=174"
           redHeading={title}
           excerpt={excerpt}
         />)}
@@ -97,18 +98,9 @@ function WordPressPage({ data }) {
           <AccordianSearchBox navigationURL="/events/search" />
         </Accordian>
         <PageSection>
-        <SimpleSlider
-            className="center"
-            slidesToShow="1"
-            dots
-            centerMode
-            variableWidth
-            centerPadding="100px"
-            {...settings}
-          >{featuredEvents}
-        </SimpleSlider>
-      </PageSection>
-      <>{cats}</>
+          <CardHandler items={featuredEventItems} type="event" size="L" />
+        </PageSection>
+      <>{displayCategories}</>
       <PageSection heading="At a Glance" bgImage={gridBgImage} buttons={moreButton}>
         <GridCardD>{eventCards}</GridCardD>
       </PageSection>
@@ -139,50 +131,8 @@ export const query = graphql`
       eventCategories {
         categories {
           categoryEvent: category {
-            events {
-              nodes {
-                id
-                title
-                url: uri
-                excerpt
-                featuredEvent
-                featuredImage {
-                  node {
-                    localFile {
-                      childImageSharp {
-                        fluid(maxWidth: 712) {
-                          base64
-                          tracedSVG
-                          srcWebp
-                          srcSetWebp
-                          originalImg
-                          originalName
-                          src
-                          srcSet
-                          aspectRatio
-                          sizes
-                        }
-                      }
-                    }
-                  }
-                }
-                date
-                startDate
-                endDate
-                eventsCategories {
-                  nodes {
-                    name
-                    url: uri
-                  }
-                }
-                venue {
-                  title
-                  state
-                  city
-                }
-              }
-            }
             name
+            slug
           }
           numberToShow
         }
@@ -222,52 +172,6 @@ export const query = graphql`
           }
         }
       }
-    },
-    events: allWpEvent(limit: 100, sort: {order: ASC, fields: startDate}) {
-      edges {
-        node {
-          id
-          title
-          url: uri
-          excerpt
-          featuredEvent
-          featuredImage {
-            node {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 712) {
-                    base64
-                    tracedSVG
-                    srcWebp
-                    srcSetWebp
-                    originalImg
-                    originalName
-                    src
-                    srcSet
-                    aspectRatio
-                    sizes
-                  }
-                }
-              }
-            }
-          }
-          date
-          startDate
-          endDate
-          eventsCategories {
-            nodes {
-              name
-              url: uri
-            }
-          }
-          venue {
-            title
-            state
-            city
-          }
-        }
-      }
     }
-
   }
 `
