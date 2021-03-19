@@ -113,7 +113,6 @@ export const query = graphql`
                     childImageSharp {
                       fluid(maxWidth: 712) {
                         base64
-                        tracedSVG
                         srcWebp
                         srcSetWebp
                         originalImg
@@ -136,6 +135,12 @@ export const query = graphql`
       }
       askFlamingle {
         abeQuestioner
+      }
+      postExternalAuthors {
+        nodes {
+          name
+          slug
+        }
       }
     }
   }
