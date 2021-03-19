@@ -8,7 +8,7 @@ import BreadCrumbs from "../../components/page-sections/BreadCrumbs"
 import PageSection from "../page-sections/PageSection"
 import RecentPosts from "../../components/page-sections/RecentPosts"
 import CardHandler from "../content-modules/CardHandler"
-import EmbedBlock from "../content-blocks/EmbedBlock"
+import EmbedVideoFormatHandler from "../content-blocks/EmbedVideoFormatHandler"
 
 import { ProductStories } from "../collections/RecentStories"
 
@@ -92,6 +92,9 @@ function BlogPost({ data }) {
         {postHeader}
         {image && size >= 718 && !isVideo && !isAlt && (
             <FeaturedImage featuredImage={image} size={size}/>
+        )}
+        {isVideo && (
+          <EmbedVideoFormatHandler source={isVideo} />
         )}
         <WordPressBasicContentBlocks {...page} />
       <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
