@@ -20,10 +20,6 @@ function WordPressPage({ page }) {
   }
   ) : null
 
-
-
-
-
   return (
     <Layout title={title}>
       { featuredImage && (
