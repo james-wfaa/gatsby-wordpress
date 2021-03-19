@@ -10,7 +10,6 @@ function WordPressPage({ page }) {
   const heroIntroExcerpt = (introExcerpt) ? introExcerpt : excerpt
   const heroOverlayHeading = (heroHeading) ? `<span>${heroHeading}</span> ON` : null
 
-  console.log('aggregate')
   const normalizedButtons = (buttons) ? buttons.map(item=>{
     return {
       key: item.link.url,

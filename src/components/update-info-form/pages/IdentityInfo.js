@@ -62,7 +62,7 @@ const IdentityInfo = () => {
       return (
         <div>
             <PageSection
-              excerpt='Please provide information regarding how you would best identify yourself. And always click “Save and Continue” after completing the page to ensure your changes are recorded.'
+              excerpt='Please provide information regarding how you identify yourself. Click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
               headingAlt
               headingCompact
@@ -75,14 +75,14 @@ const IdentityInfo = () => {
               <hr></hr>
               <input type="checkbox" name="American Indian/Alaska Native" id="select1" onChange={e => updateOnChangeValues(e)} defaultChecked={state.identityInfo.identity.includes("American Indian/Alaska Native")}/>
               <label htmlFor="select1" selected>American Indian/Alaska Native</label>
-              <input type="checkbox" name="Black/African American" id="select2" onChange={e => updateOnChangeValues(e)} defaultChecked={state.identityInfo.identity.includes("Black/African American")}/>
-              <label htmlFor="select2" selected>Black/African American</label>
-              <input type="checkbox" name="Native Hawaiian/Other Pacific Islander" id="select3" onChange={e => updateOnChangeValues(e)} defaultChecked={state.identityInfo.identity.includes("Native Hawaiian/Other Pacific Islander")}/>
-              <label htmlFor="select3" selected>Native Hawaiian/Other Pacific Islander</label>
-              <input type="checkbox" name="Asian/Asian American" id="select4" onChange={e => updateOnChangeValues(e)} defaultChecked={state.identityInfo.identity.includes("Asian/Asian American")}/>
-              <label htmlFor="select4" selected>Asian/Asian American</label>
-              <input type="checkbox" name="Hispanic/Latinx" id="select5" onChange={e => updateOnChangeValues(e)} defaultChecked={state.identityInfo.identity.includes("Hispanic/Latinx")}/>
-              <label htmlFor="select5" selected>Hispanic/Latinx</label>
+              <input type="checkbox" name="Asian/Asian American" id="select2" onChange={e => updateOnChangeValues(e)} defaultChecked={state.identityInfo.identity.includes("Asian/Asian American")}/>
+              <label htmlFor="select2" selected>Asian/Asian American</label>
+              <input type="checkbox" name="Black/African-American" id="select3" onChange={e => updateOnChangeValues(e)} defaultChecked={state.identityInfo.identity.includes("Black/African-American")}/>
+              <label htmlFor="select3" selected>Black/African American</label>
+              <input type="checkbox" name="Hispanic/Latinx" id="select4" onChange={e => updateOnChangeValues(e)} defaultChecked={state.identityInfo.identity.includes("Hispanic/Latinx")}/>
+              <label htmlFor="select4" selected>Hispanic/Latinx</label>
+              <input type="checkbox" name="Native Hawaiian/Other Pacific Islander" id="select5" onChange={e => updateOnChangeValues(e)} defaultChecked={state.identityInfo.identity.includes("Native Hawaiian/Other Pacific Islander")}/>
+              <label htmlFor="select5" selected>Native Hawaiian/Other Pacific Islander</label>
               <input type="checkbox" name="White/Caucasian" id="select6" onChange={e => updateOnChangeValues(e)} defaultChecked={state.identityInfo.identity.includes("White/Caucasian")}/>
               <label htmlFor="select6" selected>White/Caucasian</label>
               <input type="checkbox" name="Not Specified" id="select7" onChange={e => updateOnChangeValues(e)} defaultChecked={state.identityInfo.identity.includes("Not Specified")}/>

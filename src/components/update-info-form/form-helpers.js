@@ -6,15 +6,39 @@ import formErrorIcon from "./../../svg/form-error-icon-red.svg"
 
 
 export const handleFormSubmit = (data) => {
-  //console.log('data', data)
 
   let entryData = {
     "payload":{ ...data.contactInfo, ...data.mailingAddress, ...data.phoneInfo, ...data.employmentInfo, ...data.identityInfo, ...data.spouseInfo},
     'entry_id': data.entry_id,
   }
-  //console.log(tempStructure)
   
   return fetch("https://uwalumni.wpengine.com/wp-json/formsubmit/v1/submit/79", {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify(entryData),
+  }).then((response) => { 
+    return response.json().then((data) => {
+        return data;
+    }).catch((err) => {
+        console.log(err);
+    }) 
+  });
+}
+
+export const handleCommFormSubmit = (data) => {
+
+  let entryData = {
+    "payload":{ 
+      "communicationsSignUp": data.communicationsSignUp, 
+      "firstname":data.contactInfo.firstname,
+      "lastname":data.contactInfo.lastname,
+      "email": data.contactInfo.email
+    }
+  }
+  
+  return fetch("https://uwalumni.wpengine.com/wp-json/formsubmit/v1/submit/80", {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
