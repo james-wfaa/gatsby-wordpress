@@ -237,7 +237,7 @@ input[type='date']{
         font-weight:900;
     }
 }
-.gform_hidden{
+.gform_hidden, .gfield_visibility_administrative{
     display: none !important;
 }
 

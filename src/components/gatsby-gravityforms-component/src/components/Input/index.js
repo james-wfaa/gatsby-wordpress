@@ -17,6 +17,8 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         id
     } = fieldData
     const regex = inputMaskValue ? new RegExp(inputMaskValue) : false
+    const pageTitle = document.querySelector("title").textContent.replace(' | Wisconsin Alumni Association', '')
+
     return (subfield) ? (<InputSubfieldWrapper
         errors={errors}
         inputData={fieldData}
@@ -32,7 +34,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
             cssClass,
             size
         )}
-        defaultValue={value}
+        defaultValue={value !== '{embed_post:post_title}' ? value : pageTitle}
         id={`input_${id.replace(".", "_")}`}
         maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
         name={`input_${id.replace(".", "_")}`}
@@ -68,7 +70,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
                     cssClass,
                     size
                 )}
-                defaultValue={value}
+                defaultValue={value !== '{embed_post:post_title}' ? value : pageTitle}
                 id={name}
                 maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
                 name={name}
