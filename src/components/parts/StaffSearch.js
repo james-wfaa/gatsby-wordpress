@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import styled from 'styled-components'
 import { useForm } from "react-hook-form"
 import { breakpoints, sizes, colors, mixins } from '../css-variables'
+import SearchIcon from "../../svg/search.svg"
+
 
 const StyledStaffSearch = styled.div`
     text-align: left;
@@ -21,20 +23,46 @@ const StyledStaffSearch = styled.div`
             display: block;
             border: 2px solid ${colors.formInputBorder};
             margin-top: 12px;
+            margin-bottom: 40px;
             width: 100%;
             padding: ${sizes.s10} ${sizes.s16};
             @media screen and ${breakpoints.tabletS} {
                 width: 436px;
             }
         }
-        input:focus{
+        input:focus, button:focus{
             outline: none;
         }
         .staffSubmit{
             ${mixins.buttons};
             margin-top: 40px;
             border: none;
-            padding: ${sizes.s10} ${sizes.s16};
+            padding: ${sizes.s14} ${sizes.s16};
+            
+            position: relative;
+            width: 100%;
+
+            :after {
+                position: absolute;
+                bottom: 32%;
+                left: calc( 50% + ${sizes.s42} );
+                width: ${sizes.s20};
+                height: ${sizes.s20};
+                background-color: ${colors.bgWhite};
+                -webkit-mask-image: url(${SearchIcon});
+                mask: url(${SearchIcon}) no-repeat;
+                content: '';
+            }
+
+            @media screen and ${breakpoints.tabletS} {
+                width: 130px;
+                text-align: left;
+
+                :after {
+                    left: calc( 50% + ${sizes.s26} );
+                }
+            }
+          
         }
     }
 
@@ -129,18 +157,20 @@ const StaffSearchModal = () => {
     }
 
     const getSearchResults = (input) =>{
-        return fetch("https://uwalumdev.wpengine.com/wp-json/staffsearch/v1/search?s=" + input.searchinput)
-        .then((response) => { 
-            return response.json().then((data) => {
-                return data
-            }).catch((err) => {
-                console.log(err)
-            }) 
-        });
-    }
-
-    const searchHandler = e => {
-        setSearchText(e.target.value)
+        if(input.searchinput){
+            return fetch("https://uwalumni.wpengine.com/wp-json/staffsearch/v1/search?s=" + input.searchinput)
+            .then((response) => { 
+                return response.json().then((data) => {
+                    return data
+                }).catch((err) => {
+                    console.log(err)
+                }) 
+            });
+        }
+        else{
+            return null
+        }
+        
     }
 
   return (
@@ -155,19 +185,24 @@ const StaffSearchModal = () => {
                 id="searchinput"
                 placeholder="Search by name"
                 ref={register({
+                    required: { value: true, message: "Enter a search term" },
+                    minLength: {
+                    value: 2,
+                    message: "Must be greater than 2 letters",
+                    },
                 })}
                 />
                 {errors.searchinput && (
                 <StyledError>{errors.searchinput.message}</StyledError>
                 )}
-                <input
+                <button
                 type="submit"
                 name="submitbutton"
                 id="submitbutton"
                 className="staffSubmit"
                 value="Search"
                 disabled={Object.keys(errors).length > 0 ? true : false}
-                />
+                >Search</button>
             </fieldset>
         </form>
        

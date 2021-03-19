@@ -104,7 +104,7 @@ export const membershipFeeCalc = (graduate, age, type) => {
           full: "?term=life&level=senior",
           installments: "?term=life&level=senior&installments=yes",
           oneYear: "?&level=senior",
-          twoYear: "?&level=senior",
+          twoYear: "?&level=senior&term=2year",
         }
         // gradYes & ageYes & individual
       } else {
@@ -116,7 +116,7 @@ export const membershipFeeCalc = (graduate, age, type) => {
           full: "?term=life&level=grad",
           installments: "?term=life&level=grad&installments=yes",
           oneYear: "?&level=grad",
-          twoYear: "?&level=grad",
+          twoYear: "?&level=grad&term=2year",
         }
         // gradYes & ageNo & individual
       }
@@ -130,7 +130,7 @@ export const membershipFeeCalc = (graduate, age, type) => {
           full: "?term=life&level=senior&joint=yes",
           installments: "?term=life&level=senior&joint=yes&installments=yes",
           oneYear: "?&level=senior&joint=yes",
-          twoYear: "?&level=senior&joint=yes",
+          twoYear: "?&level=senior&joint=yes&term=2year",
         }
         // gradYes & ageYes & joint
       } else {
@@ -142,7 +142,7 @@ export const membershipFeeCalc = (graduate, age, type) => {
           full: "?term=life&level=grad&joint=yes",
           installments: "?term=life&level=grad&joint=yes&installments=yes",
           oneYear: "?&level=grad&joint=yes",
-          twoYear: "?&level=grad&joint=yes",
+          twoYear: "?&level=grad&joint=yes&term=2year",
         }
         // gradYes & ageNo & joint
       }
@@ -158,7 +158,7 @@ export const membershipFeeCalc = (graduate, age, type) => {
           full: "?term=life&level=senior",
           installments: "?term=life&level=senior&installments=yes",
           oneYear: "?&level=senior",
-          twoYear: "?&level=senior",
+          twoYear: "?&level=senior&term=2year",
         }
         // gradNo & ageYes & individual
       } else {
@@ -170,7 +170,7 @@ export const membershipFeeCalc = (graduate, age, type) => {
           full: "?term=life",
           installments: "?term=life&installments=yes",
           oneYear: "",
-          twoYear: "",
+          twoYear: "&term=2year",
         }
         // gradNo & ageNo & individual
       }
@@ -184,7 +184,7 @@ export const membershipFeeCalc = (graduate, age, type) => {
           full: "?term=life&level=senior&joint=yes",
           installments: "?term=life&level=senior&joint=yes&installments=yes",
           oneYear: "?&level=senior&joint=yes",
-          twoYear: "?&level=senior&joint=yes",
+          twoYear: "?&level=senior&joint=yes&term=2year",
         }
         // gradNo & ageYes & joint
       } else {
@@ -196,7 +196,7 @@ export const membershipFeeCalc = (graduate, age, type) => {
           full: "?term=life&joint=yes",
           installments: "?term=life&joint=yes&installments=yes",
           oneYear: "?&joint=yes",
-          twoYear: "?&joint=yes",
+          twoYear: "?&joint=yes&term=2year",
         }
         // gradNo & ageNo & joint
       }

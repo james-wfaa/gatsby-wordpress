@@ -1,8 +1,7 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
 import { colors } from "../../css-variables"
-import styled from 'styled-components'
-import { StyledError, checkForLetters, currentYear, handleFormSubmit } from '../form-helpers'
+import { StyledError, checkForLetters, handleFormSubmit } from '../form-helpers'
 import PageSection from "../../page-sections/PageSection"
 import Buttons from '../FormButtons'
 import { AppContext } from "../../../context/AppContext"
@@ -15,7 +14,7 @@ const ContactInfo = () => {
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateContactInfo = data =>{
     handleFormSubmit(state).then((res) =>{
-      console.log('returned data', res)
+      //console.log('returned data', res)
       setEntryId(res.entry_id)
     }).then(setCurrentStep(2))
 
@@ -96,8 +95,8 @@ const ContactInfo = () => {
               )}
             </label>
             <label htmlFor="othernames">
-              Other names you use or have used in the past (maiden names,
-              nicknames, given names etc.)
+              Other names you use or have used in the past (maiden name,
+              nicknames, given name etc.)
               <input
                 type="text"
                 name="othernames"
