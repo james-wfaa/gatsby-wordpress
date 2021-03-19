@@ -13,7 +13,12 @@ import { ProductStories } from "../collections/RecentStories"
 
 function BlogPost({ data }) {
   const { page } = data
-  const { id, title, featuredImage, categories, products, author, date, excerpt, heroImage, link, slug } = page
+  console.log(page)
+  const { id, title, featuredImage, categories, products, author, postExternalAuthors, date, excerpt, heroImage, link, slug } = page
+
+  const displayAuthor = (postExternalAuthors?.nodes && postExternalAuthors.nodes[0]?.name)
+    ? postExternalAuthors.nodes[0].name
+    : author.node.name
 
   let heroSize = heroImage.heroImage && heroImage.heroImage.mediaDetails.width ? heroImage.heroImage.mediaDetails.width : null
   let featSize = featuredImage?.node?.mediaDetails.width ? featuredImage?.node?.mediaDetails.width : null
@@ -60,6 +65,8 @@ function BlogPost({ data }) {
   } else if((size < 718) && featuredImage){
     image = featuredImage.node
   }
+
+  console.log(image)
   //console.log(page)
   let links = (product?.pages?.nodes[0]?.uri) 
     ? [
@@ -76,7 +83,7 @@ function BlogPost({ data }) {
   return (
     <Layout title={title}>
         <BreadCrumbs links={links} />
-        <TitleSection heading={title} author={author.node.name} product={product} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />
+        <TitleSection heading={title} author={displayAuthor} product={product} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />
         {image && size >= 718 && (
             <FeaturedImage featuredImage={image} size={size}/>
         )}
