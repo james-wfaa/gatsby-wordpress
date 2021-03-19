@@ -20,7 +20,7 @@ const CardSet = ({className, items, children, num, size="M", type="news" }) => {
         
         return (type === "news" )
             ? (<StoryContentCard size={size} img={cardImg} {...item} />) 
-            : (<EventContentCard size={size} img={cardImg} {...item} />)
+            : (<EventContentCard size={size} img={cardImg} {...item} url={item.link} />)
         })
     
     return (
