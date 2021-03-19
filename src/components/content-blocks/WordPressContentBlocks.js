@@ -170,7 +170,6 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
         }
     }
     )
-    console.log(RenderedBlocks)
 
     return(
         <div className={className}>{RenderedBlocks}</div>

@@ -20,11 +20,6 @@ function WordPressPage({ page }) {
   }
   ) : null
 
-  console.log(blocks)
-
-
-
-
   return (
     <Layout title={title}>
       { featuredImage && (
