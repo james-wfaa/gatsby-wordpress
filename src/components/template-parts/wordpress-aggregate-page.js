@@ -20,6 +20,7 @@ function WordPressPage({ page }) {
   }
   ) : null
 
+  console.log(blocks)
 
 
 
