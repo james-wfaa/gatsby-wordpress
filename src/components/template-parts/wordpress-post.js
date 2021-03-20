@@ -15,9 +15,11 @@ import { ProductStories } from "../collections/RecentStories"
 
 function BlogPost({ data }) {
   const { page } = data
-  const { id, title, featuredImage, categories, products, author, date, excerpt, heroImage, link, slug } = page
-  console.log(products)
+  const { id, title, featuredImage, categories, products, author, postExternalAuthors, date, excerpt, heroImage, link, slug } = page
   const product = (products?.nodes && Array.isArray(products.nodes)) ? products.nodes[0] : null
+  const displayAuthor = (postExternalAuthors?.nodes && postExternalAuthors.nodes[0]?.name)
+    ? postExternalAuthors.nodes[0].name
+    : author.node.name
 
   let heroSize = heroImage.heroImage && heroImage.heroImage.mediaDetails.width ? heroImage.heroImage.mediaDetails.width : null
   let featSize = featuredImage?.node?.mediaDetails.width ? featuredImage?.node?.mediaDetails.width : null
@@ -25,12 +27,14 @@ function BlogPost({ data }) {
 
   const isVideo = page.videoFormat?.vimeoId
 
-  const isAlt = page.acfAlternatePostType?.alternateposttype === ('poll' || 'quiz' || 'scrapbook' || 'podcast' ) ? true : false
+  const isAlt = (
+    page.acfAlternatePostType?.alternateposttype === 'poll' || 
+    page.acfAlternatePostType?.alternateposttype === 'quiz' || 
+    page.acfAlternatePostType?.alternateposttype === 'scrapbook' || 
+    page.acfAlternatePostType?.alternateposttype === 'podcast' 
+  ) 
 
-  const postHeader = (isVideo || isAlt) 
-  ? (<TitleSection heading={title} author={author.node.name} product={product} categories={categories} date={date} size={size} />)
-  : (<TitleSection heading={title} author={author.node.name} product={product} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />)
-
+  
 
 
 
@@ -73,7 +77,14 @@ function BlogPost({ data }) {
   } else if((size < 718) && featuredImage){
     image = featuredImage.node
   }
+
+  console.log(image)
   //console.log(page)
+
+  const postHeader = (isVideo || isAlt) 
+  ? (<TitleSection heading={title} author={displayAuthor} product={product} categories={categories} date={date} size={size} />)
+  : (<TitleSection heading={title} author={displayAuthor} product={product} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />)
+
   let links = (product?.pages?.nodes[0]?.uri) 
     ? [
     { url: "/", name: "Home" },
@@ -91,7 +102,7 @@ function BlogPost({ data }) {
         <BreadCrumbs links={links} />
         {postHeader}
         {image && size >= 718 && !isVideo && !isAlt && (
-            <FeaturedImage featuredImage={image} size={size}/>
+          <FeaturedImage featuredImage={image} size={size}/>
         )}
         {isVideo && (
           <EmbedVideoFormatHandler source={isVideo} />
