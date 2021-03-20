@@ -264,6 +264,10 @@ h2 {
   }
 }
 
+.wp-block-embed{
+  margin-bottom: 26px;
+}
+
 `
 
 export default StyledWordPressContentBlocks

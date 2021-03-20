@@ -9,6 +9,7 @@ const Post = ({ data }) => {
 const isFlamingle = data.page.askFlamingle?.abeQuestioner !== null ? true : false
 
 return isFlamingle ? <FlaminglePost data={data} /> : <BlogPost data={data} />;
+
 }
 
 export default Post
@@ -135,6 +136,12 @@ export const query = graphql`
       }
       askFlamingle {
         abeQuestioner
+      }
+      acfAlternatePostType{
+        alternateposttype
+      }
+      videoFormat {
+        vimeoId
       }
       postExternalAuthors {
         nodes {

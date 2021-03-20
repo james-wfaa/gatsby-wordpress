@@ -8,14 +8,15 @@ import BreadCrumbs from "../../components/page-sections/BreadCrumbs"
 import PageSection from "../page-sections/PageSection"
 import RecentPosts from "../../components/page-sections/RecentPosts"
 import CardHandler from "../content-modules/CardHandler"
+import EmbedVideoFormatHandler from "../content-blocks/EmbedVideoFormatHandler"
+
 import { ProductStories } from "../collections/RecentStories"
 
 
 function BlogPost({ data }) {
   const { page } = data
-  console.log(page)
   const { id, title, featuredImage, categories, products, author, postExternalAuthors, date, excerpt, heroImage, link, slug } = page
-
+  const product = (products?.nodes && Array.isArray(products.nodes)) ? products.nodes[0] : null
   const displayAuthor = (postExternalAuthors?.nodes && postExternalAuthors.nodes[0]?.name)
     ? postExternalAuthors.nodes[0].name
     : author.node.name
@@ -23,6 +24,19 @@ function BlogPost({ data }) {
   let heroSize = heroImage.heroImage && heroImage.heroImage.mediaDetails.width ? heroImage.heroImage.mediaDetails.width : null
   let featSize = featuredImage?.node?.mediaDetails.width ? featuredImage?.node?.mediaDetails.width : null
   let size = featSize > heroSize ? featSize : heroSize
+
+  const isVideo = page.videoFormat?.vimeoId
+
+  const isAlt = (
+    page.acfAlternatePostType?.alternateposttype === 'poll' || 
+    page.acfAlternatePostType?.alternateposttype === 'quiz' || 
+    page.acfAlternatePostType?.alternateposttype === 'scrapbook' || 
+    page.acfAlternatePostType?.alternateposttype === 'podcast' 
+  ) 
+
+  
+
+
 
   /* getting unique related posts from product nodes - replace this with the static query to boost build time */
   //let pStories = ProductStories(products)
@@ -45,15 +59,13 @@ function BlogPost({ data }) {
     })
   }
   
-
+  console.log("POST")
   const buttons = (uniqueRelatedPosts.length > 2) 
       ? [{
           link: `/posts/search/?category=${slug}`,
           text: 'SEE ALL NEWS AND STORIES'
       }]
       : null
-
-  const product = (products?.nodes) ? products.nodes[0] : null
   
   let image = null
   if ((size >= 1080) && featuredImage?.node?.localFile?.childImageSharp.fluid){
@@ -68,6 +80,11 @@ function BlogPost({ data }) {
 
   console.log(image)
   //console.log(page)
+
+  const postHeader = (isVideo || isAlt) 
+  ? (<TitleSection heading={title} author={displayAuthor} product={product} categories={categories} date={date} size={size} />)
+  : (<TitleSection heading={title} author={displayAuthor} product={product} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />)
+
   let links = (product?.pages?.nodes[0]?.uri) 
     ? [
     { url: "/", name: "Home" },
@@ -83,9 +100,12 @@ function BlogPost({ data }) {
   return (
     <Layout title={title}>
         <BreadCrumbs links={links} />
-        <TitleSection heading={title} author={displayAuthor} product={product} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />
-        {image && size >= 718 && (
-            <FeaturedImage featuredImage={image} size={size}/>
+        {postHeader}
+        {image && size >= 718 && !isVideo && !isAlt && (
+          <FeaturedImage featuredImage={image} size={size}/>
+        )}
+        {isVideo && (
+          <EmbedVideoFormatHandler source={isVideo} />
         )}
         <WordPressBasicContentBlocks {...page} />
       <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
