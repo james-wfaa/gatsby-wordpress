@@ -16,6 +16,8 @@ import { ProductStories } from "../collections/RecentStories"
 function BlogPost({ data }) {
   const { page } = data
   const { id, title, featuredImage, categories, products, author, date, excerpt, heroImage, link, slug } = page
+  console.log(products)
+  const product = (products?.nodes && Array.isArray(products.nodes)) ? products.nodes[0] : null
 
   let heroSize = heroImage.heroImage && heroImage.heroImage.mediaDetails.width ? heroImage.heroImage.mediaDetails.width : null
   let featSize = featuredImage?.node?.mediaDetails.width ? featuredImage?.node?.mediaDetails.width : null
@@ -60,8 +62,6 @@ function BlogPost({ data }) {
           text: 'SEE ALL NEWS AND STORIES'
       }]
       : null
-
-  const product = (products?.nodes) ? products.nodes[0] : null
   
   let image = null
   if ((size >= 1080) && featuredImage?.node?.localFile?.childImageSharp.fluid){
