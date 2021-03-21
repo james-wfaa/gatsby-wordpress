@@ -63,15 +63,37 @@ module.exports = {
                 select: "WAA Customer Service",
               },
             },
+            launcher: {
+              chatLabel: {
+              '*': 'Ask WAA'
+              },
+            },
+            fields: [{ id: 1260807977350}],
+            contactOptions: {
+              enabled: true,
+              contactButton: { '*': 'Ask WAA'}
+            },
+            helpCenter: {
+              title: {
+              '*': 'Ask WAA'
+              }
+            },
             contactForm: {
-              fields: [{ id: 1260807977350}] 
+              title: {
+                '*': 'Ask WAA'
+              }
+            },
+            chat: {
+              title: {
+              '*': 'Ask WAA'
+              }
             },
           },
         },
       },
     },
     //Uncomment to index to Algolia on gatsby build command
-    /*
+    
      {
        resolve: `gatsby-plugin-algolia`,
        options: {
@@ -80,7 +102,7 @@ module.exports = {
          queries: require("./src/utils/algolia-queries")
        },
      },
-     */
+     
     {
       resolve: `gatsby-source-wordpress`,
       options: {
@@ -88,6 +110,8 @@ module.exports = {
           requestConcurrency: 5, // currently set to undefined
           previewRequestConcurrency: 2, // currently set to undefined
           perPage: 50,
+          typePrefix: `Wp`,
+          timeout: 120 * 1000,
         },
         url:
           process.env.WPGRAPHQL_URL,
@@ -108,7 +132,7 @@ module.exports = {
             limit:
               process.env.NODE_ENV === `development`
                 ? // Lets just pull 50 posts in development to make it easy on ourselves.
-                  50
+                  3000
                 : // and we don't actually need more than 5000 in production for this particular site
                   5000,
           },

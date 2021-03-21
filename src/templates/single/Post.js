@@ -9,6 +9,7 @@ const Post = ({ data }) => {
 const isFlamingle = data.page.askFlamingle?.abeQuestioner !== null ? true : false
 
 return isFlamingle ? <FlaminglePost data={data} /> : <BlogPost data={data} />;
+
 }
 
 export default Post
@@ -89,33 +90,6 @@ export const query = graphql`
         nodes {
           name
           slug
-          posts{
-            nodes {
-              title
-              url: uri
-              excerpt
-              featuredImage {
-                node {
-                  localFile {
-                    childImageSharp {
-                      fluid(maxWidth: 712) {
-                        base64
-                        tracedSVG
-                        srcWebp
-                        srcSetWebp
-                        originalImg
-                        originalName
-                        src
-                        srcSet
-                        aspectRatio
-                        sizes
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
         }
       }
       products {
@@ -140,7 +114,6 @@ export const query = graphql`
                     childImageSharp {
                       fluid(maxWidth: 712) {
                         base64
-                        tracedSVG
                         srcWebp
                         srcSetWebp
                         originalImg
@@ -163,6 +136,18 @@ export const query = graphql`
       }
       askFlamingle {
         abeQuestioner
+      }
+      acfAlternatePostType{
+        alternateposttype
+      }
+      videoFormat {
+        vimeoId
+      }
+      postExternalAuthors {
+        nodes {
+          name
+          slug
+        }
       }
     }
   }

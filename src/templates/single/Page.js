@@ -125,6 +125,9 @@ export const query = graphql`
       }
       featuredImage {
         node {
+          mediaDetails {
+            width
+          }
           localFile {
             ...HeroImage
           }
@@ -312,8 +315,8 @@ export const query = graphql`
           sponsorLogo {
             localFile {
               childImageSharp {
-                fixed(width: 312) {
-                  ...GatsbyImageSharpFixed
+                fluid(maxWidth: 312) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }

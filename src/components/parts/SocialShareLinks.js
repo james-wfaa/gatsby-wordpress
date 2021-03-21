@@ -11,8 +11,6 @@ import {
     EmailIcon
   } from "react-share";
 
-const url = typeof window !== 'undefined' ? window.location.href : '';
-
 const SocialShareLinks = props => {
     const { className, url, title, excerpt, text, event, tight = false } = props;
     const isEvent = event ? "eventShare" : "";
@@ -23,7 +21,7 @@ const SocialShareLinks = props => {
             { text && (
                 <div className="socialText">{text}</div>
             )}
-            <ul class="shareButtons">
+            <ul className="shareButtons">
                 <li>
                     <FacebookShareButton quote={title} url={url} target="_blank">
                         <FacebookIcon size={52} iconFillColor={colors.buttonRed} />

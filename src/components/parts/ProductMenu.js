@@ -8,7 +8,7 @@ const ProductMenu = ({ items, className, menuTitle }) => {
     const itemsList = items.map(item => {
         //If hideFromMenu is true, then don't create menu listing
         if(item.hideFromMenu && item.hideFromMenu.hideFromMenu){
-            return
+            return null
         }
         
         return (

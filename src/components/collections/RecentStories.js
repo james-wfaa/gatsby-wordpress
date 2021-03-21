@@ -1,4 +1,3 @@
-import React from 'react'
 import { useStaticQuery, graphql } from "gatsby"
 
 const RecentStories = () => {
@@ -39,7 +38,6 @@ const RecentStories = () => {
       allWpPost
     )
   }
-  
   
   export default RecentStories
   

@@ -11,6 +11,7 @@ const WordPressColumns = ({ block, className }) => {
         if(column.originalContent){
             return (<Block className={column.name.replace('/', '-')} block={column} />)
         }
+        return null
         
     }
     ) : null

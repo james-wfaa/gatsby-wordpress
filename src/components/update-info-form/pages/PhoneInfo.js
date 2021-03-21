@@ -1,7 +1,8 @@
 import React, { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject, checkForLetters, handleFormSubmit } from '../form-helpers'
-import IntroPageSection from '../../page-sections/IntroPageSection'
+import { StyledError, checkForLetters, handleFormSubmit } from '../form-helpers'
+import PageSection from '../../page-sections/PageSection'
+import { colors } from '../../css-variables'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
@@ -62,12 +63,12 @@ const PhoneInfo = () => {
 
       return (
         <div>
-            <IntroPageSection
-              excerpt='Please include any phone numbers you wish to have on file. You’re only required to provide one, but you can include multiple phone numbers if you choose. Important for Badgers living internationally: remember to include your country code. And always click “Save and Continue” after completing a page to ensure your changes are recorded.'
+            <PageSection
+              excerpt='Please include any phone numbers you wish to have on file. You’re only required to provide one, but you can include multiple phone numbers if you choose. For Badgers living internationally: remember to include your country code. Click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
-              variantObject={variantObject}
               headingAlt
               headingCompact
+              backgroundColor={colors.formIntroBg}
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="phoneInfo" onSubmit={handleSubmit(UpdatePhoneInfo)}>
@@ -114,7 +115,7 @@ const PhoneInfo = () => {
                   <StyledError>{errors.phoneType1.message}</StyledError>
                 )}
               </label>
-              {state.phoneInfo.phoneType1 === "seasonal" ? renderSeasonalDates() : null}
+              {state.phoneInfo.phoneType1 === "Seasonal" ? renderSeasonalDates() : null}
               <label htmlFor="phoneNumber2" className="half">Phone Number 2
                 <input
                     type="phone"
@@ -148,7 +149,7 @@ const PhoneInfo = () => {
                   <StyledError>{errors.phoneType2.message}</StyledError>
                 )}
               </label>
-              {state.phoneInfo.phoneType2 === "seasonal" ? renderSeasonalDates() : null}
+              {state.phoneInfo.phoneType2 === "Seasonal" ? renderSeasonalDates() : null}
               <label htmlFor="phoneNumber3" className="half">Phone Number 3
                 <input
                     type="phone"
@@ -185,7 +186,7 @@ const PhoneInfo = () => {
                   <StyledError>{errors.phoneType3.message}</StyledError>
                 )}
               </label>
-              {state.phoneInfo.phoneType3 === "seasonal" ? renderSeasonalDates() : null}
+              {state.phoneInfo.phoneType3 === "Seasonal" ? renderSeasonalDates() : null}
               <Buttons 
                 save 
                 back

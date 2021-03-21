@@ -165,7 +165,7 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
   const items = menuItems.map(item => {
     //If hideFromMenu is true, then don't create menu listing
     if(item.hideFromMenu && item.hideFromMenu.hideFromMenu){
-      return
+      return null
     }
     return (
       <li>

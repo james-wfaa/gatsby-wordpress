@@ -8,15 +8,18 @@ import Column from '../parts/WordPressColumns'
 import ImageSection from '../content-blocks/ImageSection'
 import AccordionNavigation from './AccordionNavigation'
 import SpecialBlock from '../content-modules/SpecialBlock'
+import FooGallery from '../content-blocks/FooGallery'
 
 const WordPressContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
 
         const RenderedBlocks = (blocks) ? blocks.map((block) => {
-        console.log(block.name)
+          //console.log(block.name)
+
         switch (block.name) {
+
           case "core/separator":
             return (
-              <div
+              <div key={`${block.name}{${block.originalContent}`}
                 dangerouslySetInnerHTML={{ __html: block.originalContent }}
               />
             )
@@ -26,13 +29,14 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             break
           case "acf/image-section":
             const imagesection = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
-            return (<ImageSection data={imagesection} defaultPage/>)
+            return (<ImageSection key={`${block.name}{${block.originalContent}`} data={imagesection} defaultPage/>)
           case "acf/special-block":
-            return (<SpecialBlock block={block} />)
+            return (<SpecialBlock key={`${block.name}{${block.originalContent}`} block={block} />)
 
           case "acf/accordion-navigation":
             return (
               <AccordionNavigation
+                key={`${block.name}{${block.originalContent}`}
                 className={block.name.replace("/", "-")}
                 block={block}
               />
@@ -42,6 +46,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             //console.log(block.dynamicContent)
             return(
               <Block
+                key={`${block.name}{${block.originalContent}`}
                   className={block.name.replace("/", "-")}
                   block={block}
                   product
@@ -49,7 +54,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
             )
           case "core/columns":
             return (
-              <Column className={block.name.replace("/", "-")} block={block} />
+              <Column className={block.name.replace("/", "-")} block={block} key={`${block.name}{${block.originalContent}`} />
             )
           case "core/buttons":
             if (block.innerBlocks && block.innerBlocks[0]?.originalContent) {
@@ -59,11 +64,12 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                   <Block
                     className={innerBlock.name.replace("/", "-")}
                     block={innerBlock}
+                    key={`${block.name}{${block.originalContent}`}
                   />
                 )
               })
               return (
-                <div className={block.name.replace("/", "-")}>
+                <div key={`${block.name}{${block.originalContent}`} className={block.name.replace("/", "-")}>
                   {innerRenderedBlocks}
                 </div>
               )
@@ -83,6 +89,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
               //(formId)
               return (
                 <GravityForm
+                  key={`${block.name}{${block.originalContent}`}
                   className={block.name.replace("/", "-")}
                   id={formId}
                 />
@@ -94,53 +101,51 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
           //Add case to handle news/stories that use the freeform block but do not have blocks... and then use content instead of original content because it has the html tags
           //Also added css below that is duplicated from WPBlock
           case "core/freeform":
-            /*return (
-              <div
-                className={block.name.replace("/", "-")}
-                dangerouslySetInnerHTML={{ __html: content }}
-              />
-            )*/
             return (
               <Block
                     className={block.name.replace("/", "-")}
                     block={block}
+                    key={`${block.name}{${block.originalContent}`}
                   />
             )
-            break
           case "core-embed/flickr":
-            return <EmbedBlock data={block.originalContent} />
-            break
+            return <EmbedBlock data={block.originalContent} key={`${block.name}{${block.originalContent}`} />
           case "core-embed/vimeo":
             return (
-              <div className="wp-block-embed">
-                <EmbedBlock source={block.originalContent} type="vimeo" />
+              <div className="wp-block-embed" key={`${block.name}{${block.originalContent}`}>
+                <EmbedBlock source={block.originalContent}  type="vimeo" />
               </div>
             )
-            break
           case "core-embed/youtube":
             return (
-              <div className="wp-block-embed">
+              <div className="wp-block-embed" key={`${block.name}{${block.originalContent}`}>
                 <EmbedBlock source={block.originalContent} type="youtube" />
               </div>
             )
-            break
           case "core-embed/instagram":
             return (
-              <div className="wp-block-embed">
+              <div className="wp-block-embed" key={`${block.name}{${block.originalContent}`}>
                 <EmbedBlock source={block.originalContent} type="instagram" />
               </div>
             )
-            break
           case "core/embed":
             return (
-              <div className="wp-block-embed">
+              <div className="wp-block-embed" key={`${block.name}{${block.originalContent}`}>
                 <EmbedBlock source={block.originalContent} type="base" />
               </div>
+            )
+          case "fooplugins/foogallery":
+            // we have to pass in the whole content to get good image sources
+            return (
+                <FooGallery
+                className={block.name.replace("/", "-")}
+                content={content}
+                />
             )
           default:
             if (block.originalContent.length > 0) {
                 return (
-                  <Block
+                  <Block key={`${block.name}{${block.originalContent}`}
                     className={block.name.replace("/", "-")}
                     block={block}
                   />
@@ -157,7 +162,6 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
     return(
         <div className={className} id="Top">
             { RenderedBlocks && (
-
                 <div className="content">
                     {RenderedBlocks}
                 </div>
@@ -273,6 +277,10 @@ h2 {
     }
     
   }
+}
+
+.wp-block-embed{
+  margin-bottom: 26px;
 }
 
 `

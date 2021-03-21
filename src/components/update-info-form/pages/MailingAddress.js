@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject, handleFormSubmit } from '../form-helpers'
-import IntroPageSection from '../../page-sections/IntroPageSection'
+import { StyledError, handleFormSubmit } from '../form-helpers'
+import { colors } from '../../css-variables'
+import PageSection from '../../page-sections/PageSection'
 import Buttons from '../FormButtons'
 import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
@@ -49,12 +50,12 @@ const MailingAddress = () => {
   })
       return (
         <div>
-            <IntroPageSection
-              excerpt='Please update your primary or seasonal mailing address below. This way, you’ll receive communications on happenings in your area to help you stay connected to fellow Badgers nearby. Note that if you checked “Employment Information” on a previous form, you also have the option to update your business address coming up. And always click “Save and Continue” after completing a page to ensure your changes are recorded.'
+            <PageSection
+              excerpt='Please update your primary or seasonal mailing address below. By doing so, you’ll receive communications on happenings in your area to help you stay connected to fellow Badgers nearby. Note that if you checked “Employment Information” on a previous form, you also have the option to update your business address coming up. Click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
-              variantObject={variantObject}
               headingAlt
               headingCompact
+              backgroundColor={colors.formIntroBg}
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form className="mailing-address" onSubmit={handleSubmit(UpdateMailingAddressInfo)}>
