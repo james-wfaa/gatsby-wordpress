@@ -65,7 +65,7 @@ const GravityFormForm = ({
                     values = {...values, ...checkboxes}
 
                 }
-                console.log('updated values', values)
+                //console.log('updated values', values)
 
                 const { data, status } = await passToGravityForms({
                     baseUrl: singleForm.apiURL,
@@ -73,7 +73,7 @@ const GravityFormForm = ({
                     id,
                     lambdaEndpoint: lambda,
                 })
-                console.log(data)
+                //console.log(data)
                 setLoadingState(false)
 
                 if (status === 'error') {

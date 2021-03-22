@@ -12,7 +12,7 @@ const SimpleSliderItems = ({ items, size, type }) => {
     items.forEach((item) => {
         //console.log(item)
         const { featuredImage: img } = item
-        const cardImg = (img ?.node?.localFile) ? img.node.localFile : null
+        const cardImg = (img?.node?.localFile) ? img.node.localFile : null
 
         switch (type) {
           case 'news': 

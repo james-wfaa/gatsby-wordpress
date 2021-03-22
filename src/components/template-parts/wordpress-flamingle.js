@@ -189,9 +189,9 @@ function BlogPost({ data }) {
     <Layout title={title}>
         <BreadCrumbs links={links} />
         <StyledFlamingleWrapper>
-            <img className="flamingleMasthead" src={flamingleMasthead}></img>
+            <img className="flamingleMasthead" alt='' src={flamingleMasthead}></img>
             <TitleSection heading={flamingleExcerpt} author={askFlamingle.abeQuestioner} categories={categories} />
-            <div className="flamingleCapWrapper"><img src={flamingleIcon}></img></div>
+            <div className="flamingleCapWrapper"><img src={flamingleIcon} alt=''></img></div>
             <WordPressBasicContentBlocks {...page} />
           <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
           <div className="flamingleLinks">

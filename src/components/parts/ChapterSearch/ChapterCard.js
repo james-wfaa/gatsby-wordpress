@@ -84,23 +84,6 @@ const CardWrapper = styled.div`
   }
 `
 
-const CardHeader = styled.div`
-  background-color: ${colors.cardBorder};
-  p {
-    color: ${colors.bgWhite};
-    font-size: 14px;
-    .bestBet {
-      color: #00ccff;
-    }
-  }
-`
-
-const DetailsDiv = styled.div`
-  background: ${colors.cardTitleBg};
-  padding: 16px 0 0 0;
-  margin-bottom: 24px;
-`
-
 const ChapterCard = ({ chapter }) => {
   return (
     <CardWrapper>

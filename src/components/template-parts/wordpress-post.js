@@ -1,6 +1,6 @@
 import React from "react"
 import Layout from "../layout"
-import WordPressBasicContentBlocks from "../content-blocks/WordPressBasicContentBlocks"
+import WpStoryContentBlocks from "../content-blocks/WpStoryContentBlocks"
 import TitleSection from '../parts/WordPressTitleSection'
 import SocialShareLinks from '../parts/SocialShareLinks'
 import FeaturedImage from "../content-blocks/FeaturedImage"
@@ -9,9 +9,6 @@ import PageSection from "../page-sections/PageSection"
 import RecentPosts from "../../components/page-sections/RecentPosts"
 import CardHandler from "../content-modules/CardHandler"
 import EmbedVideoFormatHandler from "../content-blocks/EmbedVideoFormatHandler"
-
-import { ProductStories } from "../collections/RecentStories"
-
 
 function BlogPost({ data }) {
   const { page } = data
@@ -43,8 +40,8 @@ function BlogPost({ data }) {
   //console.log(pStories)
   let relatedPostsToShow = []
   if(products && products.nodes){
-    products.nodes.map((product) => {
-      product.posts.nodes.map((post) => {
+    products.nodes.forEach((product) => {
+      product.posts.nodes.forEach((post) => {
         relatedPostsToShow.push(post) 
       })
     })
@@ -58,8 +55,6 @@ function BlogPost({ data }) {
       }
     })
   }
-  
-  console.log("POST")
   const buttons = (uniqueRelatedPosts.length > 2) 
       ? [{
           link: `/posts/search/?category=${slug}`,
@@ -77,10 +72,6 @@ function BlogPost({ data }) {
   } else if((size < 718) && featuredImage){
     image = featuredImage.node
   }
-
-  console.log(image)
-  //console.log(page)
-
   const postHeader = (isVideo || isAlt) 
   ? (<TitleSection heading={title} author={displayAuthor} product={product} categories={categories} date={date} size={size} />)
   : (<TitleSection heading={title} author={displayAuthor} product={product} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />)
@@ -107,7 +98,7 @@ function BlogPost({ data }) {
         {isVideo && (
           <EmbedVideoFormatHandler source={isVideo} />
         )}
-        <WordPressBasicContentBlocks {...page} />
+        <WpStoryContentBlocks {...page} />
       <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
       {relatedPostsToShow.length > 0 ? (
         <PageSection id="post-listing" heading="Related News and Stories" topBorder buttons={buttons}><CardHandler items={uniqueRelatedPosts.slice(0,10)} size="M" sliderSize="S" type="news" /></PageSection>

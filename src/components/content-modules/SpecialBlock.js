@@ -30,6 +30,7 @@ const SpecialBlock = ({block}) => {
                         return (<>unknown block</>)
                 }
             }
+            return null
         })
     }
     return target

@@ -70,9 +70,6 @@ const IndexPage = () => (
           <Link to="/news/uw-now-grebe-lyall-nettles-venable/">Story Page - small featured image </Link>
         </li>
         <li>
-          <Link to="/news/wordpress-story">Story Page - Long &amp; Winding Road (wide feature image) </Link>
-        </li>
-        <li>
           <Link to="/news/refocused">Story Page - "Refocused" (column-width feature image) </Link>
         </li> 
         <li>
