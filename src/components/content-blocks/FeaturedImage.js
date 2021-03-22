@@ -19,17 +19,19 @@ const FeaturedImage = ({ className, featuredImage, event, size }) => {
   const classes = (event) ? `${className} ${className}--event` : className
   const imgSizeClass = (718 <= size && size < 1080) ? `mediumImg` : (size < 718) ? `smallImg` : ''
 
-  return (
+  return (featuredImage?.localFile?.childImageSharp?.fluid) 
+    ?(
     <div className={`${classes} ${imgSizeClass}`} >
       
       <Img fluid={featuredImage.localFile.childImageSharp.fluid} />
-      { featuredImage.caption && (
+      { featuredImage?.caption && (
         <div className={`${className}__captionSection`}>
           <div className={`${className}__caption`} dangerouslySetInnerHTML={{ __html: featuredImage.caption }} />
         </div>
       )}
     </div>
   )
+  : null
 }
 
 const StyledFeaturedImage = styled(FeaturedImage)`

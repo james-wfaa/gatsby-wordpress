@@ -3,6 +3,7 @@ import parse from 'html-react-parser'
 import styled from 'styled-components'
 import SimpleSlider from '../content-modules/SimpleSlider'
 import CardE from './CardE'
+import { array } from "prop-types"
 
 
 const FooGallery = ({ content, className }) => {
@@ -27,30 +28,31 @@ const FooGallery = ({ content, className }) => {
     const getGalleryImages = () => {
         let galleryImages = []
         if (fooGallery?.props?.children) {
-            fooGallery.props.children.forEach((child) => {
-                if (child?.props?.className === 'fg-item') {
-                    console.log('item')
-                    if (child?.props?.children) {
-                        child.props.children.forEach((innerChild) => {
-                            if (innerChild.props.className === "fg-item-inner" && innerChild.props?.children) {
-                                innerChild.props.children.forEach((item) => {
-                                    if (item.type === "a") {
-                                        if (item.props?.children) {
-                                            if (item.props.children?.props?.className === "fg-image-wrap") {
-                                                const {  title: caption, alt, "data-src-fg":dataSrcFg } = item.props.children.props.children.props
-                                                galleryImages.push(
-                                                <CardE fooImage={dataSrcFg} caption={caption} alt={alt} />
-                                                )
-                                                
+            if (Array.isArray(fooGallery.props.children)) {
+                fooGallery.props.children.forEach((child) => {
+                    if (child?.props?.className === 'fg-item') {
+                        if (child?.props?.children) {
+                            child.props.children.forEach((innerChild) => {
+                                if (innerChild.props.className === "fg-item-inner" && innerChild.props?.children) {
+                                    innerChild.props.children.forEach((item) => {
+                                        if (item.type === "a") {
+                                            if (item.props?.children) {
+                                                if (item.props.children?.props?.className === "fg-image-wrap") {
+                                                    const {  title: caption, alt, "data-src-fg":dataSrcFg } = item.props.children.props.children.props
+                                                    galleryImages.push(
+                                                    <CardE fooImage={dataSrcFg} caption={caption} alt={alt} />
+                                                    )
+                                                    
+                                                }
                                             }
                                         }
-                                    }
-                                })
-                            }
-                        })
+                                    })
+                                }
+                            })
+                        }
                     }
-                }
-            })
+                })
+            } 
         }
         return(galleryImages)
     }
