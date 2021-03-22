@@ -84,7 +84,7 @@ const AccordianSearchAlgolia = props => {
               <p>Included in Results:</p>
               <RefinementList
               attribute="type"
-              defaultRefinement={['Event', 'Post']}
+              defaultRefinement={['Event', 'Post', 'Classnote']}
               transformItems={items =>
                 items.map(item => {
                   let newlabel;
@@ -97,6 +97,9 @@ const AccordianSearchAlgolia = props => {
                       break
                     case "Page":
                       newlabel = "Pages"
+                      break
+                    case "Classnote":
+                      newlabel = "Alumni Note"
                       break
                     default:
                       newlabel = ""

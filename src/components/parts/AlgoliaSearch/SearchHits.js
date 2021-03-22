@@ -44,6 +44,17 @@ const SearchHits = ({ hits, hitHandler }) => {
           topResult={topResult}
         />
         )
+      case "Classnote":
+        return (
+          <PostCard
+          key={hit.url}
+          hit={hit}
+          url={hit.url}
+          title={hit.title}
+          // initialBlock={hit.blocks[0]}
+          topResult={topResult}
+        />
+        )
       default:
         return null
     }
