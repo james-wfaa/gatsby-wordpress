@@ -14,7 +14,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
         fmtEndDate = shortDate(endDate)
     }
     const dateLinkText = fmtEndDate ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
-    
+
     const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];
     const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt
@@ -128,7 +128,7 @@ const StyledContentCard = styled(ContentCard)`
     .title {
         ${mixins.cardTitle}
     }
-    
+
     &.promo{
         background-color: ${colors.bgRed};
         border: 1px solid ${colors.bgRed};
