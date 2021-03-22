@@ -95,7 +95,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
                     <div className="subHeader">WHERE</div>
                 )}
                 <div className="venue" dangerouslySetInnerHTML={{ __html: addressString }} />
-                { showMapLink && (
+                { showMapLink && !eventDetails.trip && (
                     <a href="#EventMap" alt="View Map">{mapLinkText}</a>
                 )}
                 <div className="subHeader">COST</div>
