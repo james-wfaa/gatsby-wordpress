@@ -265,6 +265,15 @@ a {
     @media screen and ${breakpoints.laptopS} {
         margin-left: 0;
         max-width: 712px;
+
+        .alignright{
+            float: right;
+            margin: 20px 16px;
+        }
+        .alignleft{
+            float: left;
+            margin: 20px 16px;
+        }
     }
 }
 .callout-bold {
