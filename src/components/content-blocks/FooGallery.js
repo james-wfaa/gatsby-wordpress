@@ -1,24 +1,21 @@
 import React from "react"
 import parse from 'html-react-parser'
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
 import styled from 'styled-components'
 import SimpleSlider from '../content-modules/SimpleSlider'
 import CardE from './CardE'
-import { getJsonObjects } from "../../utils/tools"
-import { colors, sizes } from '../css-variables'
-import { element } from "prop-types"
+
 
 const FooGallery = ({ content, className }) => {
 
-    //console.log(content)
+
     
-    const parsed = (typeof content === "String") 
+    const parsed = (typeof content === "string") 
         ? parse(content, { trim: true })
         : null
+
     let fooGallery = null
     if (Array.isArray(parsed)) {
         parsed.forEach((block) => {
-            //console.log(block)
             if (block.type === 'div' && block.props.className.indexOf('foogallery') > -1) {
                 fooGallery = block
             }
@@ -32,6 +29,7 @@ const FooGallery = ({ content, className }) => {
         if (fooGallery?.props?.children) {
             fooGallery.props.children.forEach((child) => {
                 if (child?.props?.className === 'fg-item') {
+                    console.log('item')
                     if (child?.props?.children) {
                         child.props.children.forEach((innerChild) => {
                             if (innerChild.props.className === "fg-item-inner" && innerChild.props?.children) {
