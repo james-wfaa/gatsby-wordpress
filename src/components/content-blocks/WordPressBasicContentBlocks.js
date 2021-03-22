@@ -167,7 +167,10 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 </div>
             )}
             { !RenderedBlocks && (
-                <Block className={className} block={content} />
+              <div className="content core-freeform">
+              {[content]}
+              </div>
+               
             )}
         </div>
     )
