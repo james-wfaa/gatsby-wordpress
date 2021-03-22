@@ -83,23 +83,6 @@ const navStudents = {
     },
 ]};
 
-const navContact = {
-  name:"CONTACT US",
-  items:[
-    {
-      "title":"Commencement",
-      "url":"https://wp.advanceuw.org/benefits3/"
-    },
-    {
-      "title":"WASB",
-      "url":"https://wp.advanceuw.org/btw3/"
-    },
-    {
-      "title":"HOCO (Student Group)",
-      "url":"https://wp.advanceuw.org/jobs3/"
-    },
-]};
-
 const StyledCrest = styled.div`
 margin: 0;
   position: relative;
@@ -145,11 +128,11 @@ const StyledNavSection = styled(navSection)``
 
 const Social = ({className})=>(
   <ul className={className}>
-    <li><a className="fb" title="Follow WAA on Facebook" href="https://www.facebook.com/wisalumni"></a></li>
-    <li><a className="tw" title="Follow WAA on Twitter" href="https://www.twitter.com/wisalumni"></a></li>
-    <li><a className="ig" title="Follow WAA on Instagram" href="https://www.instagram.com/wisalumni"></a></li>
-    <li><a className="wc" title="Follow WAA on Facebook WeChat" href="/wechat"></a></li>
-    <li><a className="li" title="Follow WAA on Facebook LinkedIn" href="https://www.linkedin.com/company/wisconsin-alumni-association"></a></li>
+    <li><a className="fb" title="Follow WAA on Facebook" href="https://www.facebook.com/wisalumni">&nbsp;</a></li>
+    <li><a className="tw" title="Follow WAA on Twitter" href="https://www.twitter.com/wisalumni">&nbsp;</a></li>
+    <li><a className="ig" title="Follow WAA on Instagram" href="https://www.instagram.com/wisalumni">&nbsp;</a></li>
+    <li><a className="wc" title="Follow WAA on Facebook WeChat" href="/wechat">&nbsp;</a></li>
+    <li><a className="li" title="Follow WAA on Facebook LinkedIn" href="https://www.linkedin.com/company/wisconsin-alumni-association">&nbsp;</a></li>
   </ul>
 )
 

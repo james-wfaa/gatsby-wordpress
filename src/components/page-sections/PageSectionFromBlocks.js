@@ -11,6 +11,8 @@ import Column from '../parts/WordPressColumns'
 import EmbedBlock from "../content-blocks/EmbedBlock"
 import SpecialBlock from '../content-modules/SpecialBlock'
 import AccordionNavigation from '../content-blocks/AccordionNavigation'
+import FooGallery from '../content-blocks/FooGallery'
+
 
 const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, centered }) => {
     // preheading, heading, headingAlt, headingCompact, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, bgImage, children
@@ -19,7 +21,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
     let title = null
     let id = null
     let hasBorderTop = borderTop
-    blocks.map((block) => {
+    blocks.forEach((block) => {
         switch(block.name) {
             case "acf/section-header":
                 title = (block && block.isDynamic) ? block.dynamicContent : block.originalContent
@@ -210,7 +212,6 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         />
                       </div>
                     )
-                    break
                   case "core-embed/youtube":
                     return (
                       <div className="wp-block-embed">
@@ -220,7 +221,6 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         />
                       </div>
                     )
-                    break
                   case "core-embed/instagram":
                     return (
                       <div className="wp-block-embed">
@@ -230,7 +230,6 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                         />
                       </div>
                     )
-                    break
                   case "core/embed":
                       return (
                         <div className="wp-block-embed">
@@ -239,6 +238,13 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                             type="base"
                             />
                         </div>
+                      )
+                    case "fooplugins/foogallery":
+                      return (
+                        <FooGallery
+                          className={block.name.replace("/", "-")}
+                          block={block}
+                        />
                       )
                   default:
                     //console.log('default block', block.name)
@@ -254,6 +260,7 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                       return null
                     }
                 }
+                return null
 
             })
 

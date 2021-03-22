@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { colors, breakpoints, mixins } from '../css-variables'
 import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
 import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"
@@ -8,7 +9,6 @@ import GravityForm from './GravityForm'
 import AccordionNavigation from './AccordionNavigation'
 import SpecialBlock from '../content-modules/SpecialBlock'
 import FeaturedEvent from '../content-modules/FeaturedEvent'
-import { colors, breakpoints, mixins } from '../css-variables'
 import Block from './WordPressBlock'
 
 const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
@@ -155,6 +155,7 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                     RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={combinedEvents} size="M" type="event"/></PageSection>)
                 }
                 break
+           
             case "acf/special-block":
                 RenderedBlocks.push(<SpecialBlock block={block} />)
                 break
