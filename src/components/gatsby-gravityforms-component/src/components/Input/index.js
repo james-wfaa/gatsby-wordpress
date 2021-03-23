@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useRef, useLayoutEffect, useEffect, useState} from 'react'
 import strings from '../../utils/strings'
 import InputWrapper from '../InputWrapper'
 import InputSubfieldWrapper from '../InputSubfieldWrapper'
@@ -17,7 +17,35 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         id
     } = fieldData
     const regex = inputMaskValue ? new RegExp(inputMaskValue) : false
-    const pageTitle = document.querySelector("title").textContent.replace(' | Wisconsin Alumni Association', '')
+    const [defaultValue, setDefaultValue] = useState(null);
+    
+    //check if things are loaded, component did mount
+    const firstUpdate = useRef(true);
+    useLayoutEffect(() => {
+        if (firstUpdate.current) {
+        firstUpdate.current = false;
+        return;
+        }
+    });
+    //console.log(firstUpdate, firstUpdate.current === false)
+    useEffect(() => {
+        setDefaultValue(updateDefaultValue())
+        
+    }, [firstUpdate.current]);
+    
+    const updateDefaultValue = () =>{
+        const fieldValue = fieldData.inputName ? fieldData.inputName : null //if it's a hidden field, the parameter value is stored under inputName
+        const hiddenFieldType = fieldData.type === 'hidden' ? true : false
+        const adminField = fieldData.visibility === 'administrative' ? true : false
+        const checkForPageTitle = adminField && fieldData.defaultValue === '{embed_post:post_title}' ? true : false //if it's a regular text field w/visibility set to admin, the value is stored under defaultValue
+        const pageTitle = firstUpdate.current === false ? document.querySelector("title").textContent.replace(' | Wisconsin Alumni Association', '') : null
+        const paramToCheck = fieldValue && fieldValue !== '' ? fieldValue : null
+        const queryToCheck = firstUpdate.current === false ? new URLSearchParams(document.location.search.substring(1)): null;
+        const param = hiddenFieldType && paramToCheck && queryToCheck ? queryToCheck.get(paramToCheck) : null;
+        //still need to add check to validate param value
+        const hiddenValue = checkForPageTitle ? pageTitle : hiddenFieldType && param ? param : null; //if defaultValue exists, set to defaultvalue, otherwise, check if param exists in query - returns null if it does not
+        return hiddenValue !== null ? hiddenValue : value
+    }
 
     return (subfield) ? (<InputSubfieldWrapper
         errors={errors}
@@ -34,7 +62,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
             cssClass,
             size
         )}
-        defaultValue={value !== '{embed_post:post_title}' ? value : pageTitle}
+        defaultValue={defaultValue}
         id={`input_${id.replace(".", "_")}`}
         maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
         name={`input_${id.replace(".", "_")}`}
@@ -70,7 +98,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
                     cssClass,
                     size
                 )}
-                defaultValue={value !== '{embed_post:post_title}' ? value : pageTitle}
+                defaultValue={defaultValue}
                 id={name}
                 maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
                 name={name}
