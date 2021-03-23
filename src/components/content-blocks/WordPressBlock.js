@@ -276,11 +276,14 @@ a {
         .alignright{
             float: right;
             margin-left:24px;
+            margin-top: 8px;
+            margin-bottom: 0px;
         }
         .alignleft{
             float: left;
             margin-right: 24px;
-
+            margin-bottom: 0px;
+            margin-top: 8px;
         }
         .aligncenter{
             text-align: center;
