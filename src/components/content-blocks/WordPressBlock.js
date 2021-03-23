@@ -265,17 +265,29 @@ a {
     @media screen and ${breakpoints.laptopS} {
         margin-left: 0;
         max-width: 712px;
+    }
+}
+
+>.wp-block-image {
+    @media screen and ${breakpoints.laptopS} {
+        margin-left: 0;
+        max-width: 712px;
 
         .alignright{
             float: right;
-            margin: 20px 16px;
+            margin-left:24px;
         }
         .alignleft{
             float: left;
-            margin: 20px 16px;
+            margin-right: 24px;
+
+        }
+        .aligncenter{
+            text-align: center;
         }
     }
 }
+
 .callout-bold {
     font-weight: bold;
     font-family: ${fonts.verlag};

@@ -190,6 +190,7 @@ hr.wp-block-separator {
     ${mixins.separator}
 }
 .core-paragraph, 
+.core-image,
 .core-heading, 
 .core-columns,
 .core-freeform {
