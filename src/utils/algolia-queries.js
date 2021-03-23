@@ -166,6 +166,72 @@ const classNoteQuery = `{
   }
 }`
 
+const PageQuery = `
+  pages: allWpPage {
+    edges {
+      node {
+      title
+      date
+      link
+      excerpt
+      content
+      featuredImage {
+        node {
+          localFile {
+            ...HeroImage
+          }
+        }
+      }
+      blocks {
+        name
+        originalContent
+        dynamicContent
+        innerBlocks {
+          name
+          originalContent
+          dynamicContent
+          innerBlocks {
+            name
+            originalContent
+            dynamicContent
+          }
+        }
+      }
+      HalfPageAd {
+        adList {
+          fieldGroupName
+          adButtonLink {
+            ... on WpPage {
+              id
+              uri
+            }
+            ... on WpPost {
+              id
+              uri
+            }
+            ... on WpEvent {
+              id
+              url
+              uri
+            }
+          }
+          adButtonText
+          adActive
+          adCopy
+          adHeading
+          adImage {
+            id
+            localFile {
+              ...HeroImage
+            }
+          }
+        }
+      }
+      }
+    }
+  }
+}`
+
 function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, eventsCategories, ...rest } }) {
   let blockOriginalContent = [];
   let blockDynamicContent = [];
@@ -226,6 +292,17 @@ function classNoteToAlgoliaRecord({ node: { id, date, link, ...rest } }) {
   }
 }
 
+function pageToAlgoliaRecord({node: { id, date, link, ...rest}}) {
+  let dateTimestamp = new Date(date).getTime() / 1000
+  return {
+    objectID: id,
+    type: "Page",
+    url: link,
+    date: dateTimestamp,
+    ...rest,
+  }
+}
+
 const queries = [
   {
     query: eventQuery,
@@ -259,6 +336,16 @@ const queries = [
     settings: {
       attributesToSnippet: [`blocks:40`],
       attributesForFaceting: [`categories.name`, `type`, `filterOnly(date)`],
+    },
+  },
+  {
+    query: pageQuery,
+    transformer: ({ data }) =>
+      data.pages.edges.map(pageToAlgoliaRecord),
+    indexName: `All`,
+    settings: {
+      attributesToSnippet: [`blocks:40`],
+      attributesForFaceting: [`type`, `filterOnly(date)`],
     },
   },
 ]
