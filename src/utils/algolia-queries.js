@@ -166,7 +166,7 @@ const classNoteQuery = `{
   }
 }`
 
-const PageQuery = `
+const pageQuery = `
   pages: allWpPage {
     edges {
       node {
