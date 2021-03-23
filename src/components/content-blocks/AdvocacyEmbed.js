@@ -6,7 +6,7 @@ const AdvocacyEmbed = ({ block }) => {
   const advocacyId = (parsed?.props?.id) ? (parsed.props.id) : null
 
   const addScript = url => {
-    if (document.getElementById('advocacy-actionwidget-code')) {
+    if (typeof document  === `undefined` || document.getElementById('advocacy-actionwidget-code')) {
       return
     }
     const script = document.createElement("script")
