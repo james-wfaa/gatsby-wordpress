@@ -214,12 +214,14 @@ function postToAlgoliaRecord({ node: { id, url, blocks, date, categories, ...res
   }
 }
 
-function classNoteToAlgoliaRecord({ node: { id, date, ...rest } }) {
+function classNoteToAlgoliaRecord({ node: { id, date, link, ...rest } }) {
   let dateTimestamp = new Date(date).getTime() / 1000
   return {
     objectID: id,
-    type: "Classnote",
+    type: "Post",
+    url: link,
     date: dateTimestamp,
+    categories: [{name: "Classnote"}],
     ...rest,
   }
 }
