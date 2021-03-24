@@ -12,6 +12,7 @@ export default Event
 export const query = graphql`
   query event($id: String!) {
     event: wpEvent(id: { eq: $id }) {
+      id
       title
       excerpt
       content
@@ -56,6 +57,46 @@ export const query = graphql`
               date(formatString: "dddd, MMM. D")
               endDate
               startDate
+            }
+          }
+        }
+      }
+      products {
+        nodes {
+          name
+          slug
+          pages {
+            nodes {
+              title
+              uri
+            }
+          }
+          events{
+            nodes {
+              id
+              slug
+              title
+              url: uri
+              excerpt
+              featuredImage {
+                node {
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth: 712) {
+                        base64
+                        srcWebp
+                        srcSetWebp
+                        originalImg
+                        originalName
+                        src
+                        srcSet
+                        aspectRatio
+                        sizes
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
