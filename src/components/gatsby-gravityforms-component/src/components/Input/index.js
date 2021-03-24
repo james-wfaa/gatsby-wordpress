@@ -33,7 +33,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         
     }, [firstUpdate.current]);
     
-    const updateDefaultValue = () =>{
+    const updateDefaultValue = () => {
         const fieldValue = fieldData.inputName ? fieldData.inputName : null //if it's a hidden field, the parameter value is stored under inputName
         const hiddenFieldType = fieldData.type === 'hidden' ? true : false
         const adminField = fieldData.visibility === 'administrative' ? true : false
@@ -42,8 +42,8 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         const paramToCheck = fieldValue && fieldValue !== '' ? fieldValue : null
         const queryToCheck = firstUpdate.current === false ? new URLSearchParams(document.location.search.substring(1)): null;
         const param = hiddenFieldType && paramToCheck && queryToCheck ? queryToCheck.get(paramToCheck) : null;
-        //still need to add check to validate param value
-        const hiddenValue = checkForPageTitle ? pageTitle : hiddenFieldType && param ? param : null; //if defaultValue exists, set to defaultvalue, otherwise, check if param exists in query - returns null if it does not
+        
+        const hiddenValue = checkForPageTitle ? pageTitle : hiddenFieldType && param && param.match(/^[0-9a-zA-Z\-]+$/)? param : null; //if defaultValue exists, set to defaultvalue, otherwise, check if param exists in query - returns null if it does not
         return hiddenValue !== null ? hiddenValue : value
     }
 
