@@ -3,6 +3,8 @@ import Layout from "../layout"
 import WordPressEventContentBlocks from "../content-blocks/WordPressEventContentBlocks"
 import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"
+import UpcomingEvents from "../../components/page-sections/UpcomingEvents"
+
 
 
 
@@ -52,8 +54,22 @@ function WordPressPage({ page }) {
             <FeaturedImage featuredImage={featuredImage.node} event/>
         )}
         <WordPressEventContentBlocks {...page} />
-        {uniqueRelatedPosts.length > 0 && (
-        <PageSection id="post-listing" heading="Related Events" topBorder buttons={buttons}><CardHandler items={uniqueRelatedPosts.slice(0,10)} size="M" sliderSize="S" type="news" /></PageSection>
+        {uniqueRelatedPosts.length > 0 ? (
+        <PageSection id="post-listing" heading="Related Events" topBorder buttons={buttons}><CardHandler items={uniqueRelatedPosts.slice(0,10)} size="M" sliderSize="S" type="event" /></PageSection>
+        ):(
+        <PageSection
+          heading="Upcoming Events"
+          buttons={[
+            {
+              link: "/event/all",
+              text: "See All Upcoming Events",
+            },
+          ]}
+          topBorder
+          desktopOnly
+        >
+            <UpcomingEvents />
+        </PageSection>
         )}
     </Layout>
   )
