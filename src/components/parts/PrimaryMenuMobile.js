@@ -126,6 +126,7 @@ const SocialLinks = styled.div`
         width: ${sizes.s24};
         height: ${sizes.s24};
         background-color: ${colors.iconGrey};
+        font-size: 0;
         &:hover {
           background-color: ${colors.buttonRed};
         }
