@@ -368,6 +368,31 @@ a {
         max-width: 536px;
     }
 }
+
+.wp-block-table{
+    border: 1px solid ${colors.borderGrey};
+    border-bottom: none;
+    margin-top: 58px;
+    margin-bottom: 88px;
+
+    &.hasLabels{
+        tr:first-child{
+            font-weight: bold;
+            border-bottom: 4px solid ${colors.borderGrey};
+        }
+    }
+
+    td{
+        padding: 16px;
+        border-right: 1px solid ${colors.borderGrey};
+    }
+    td:last-child{
+        border-right: none;
+    }
+    tr:nth-child(even) {
+        background-color: ${colors.tableRowGrey};
+    }
+}
 `
 
 

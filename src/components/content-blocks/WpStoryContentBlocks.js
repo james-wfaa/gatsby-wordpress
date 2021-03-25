@@ -191,6 +191,7 @@ hr.wp-block-separator {
 }
 .core-paragraph, 
 .core-image,
+.core-table,
 .core-heading, 
 .core-columns,
 .core-freeform {
