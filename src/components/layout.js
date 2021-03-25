@@ -49,12 +49,18 @@ const Layout = ({ children, img, url, excerpt, noborder, title }) => {
         return;
         }
     });
-    //update height after things are loaded or if window width changes
+    //update height after things are loaded or if window width changes or when modal is closed
     useEffect(() => {
-        const height = document.getElementById('alert').clientHeight
-        setalertHeight(height)
-        
+      if(alertText || marketingInterruptorText){
+        updateHeight()
+      }
     }, [firstUpdate.current, width]);
+
+    const updateHeight = () =>{
+      let height =  document.getElementById('alert') ? document.getElementById('alert').clientHeight : 0
+      setalertHeight(height)
+      console.log('height updated', document.getElementById('alert') ? document.getElementById('alert').clientHeight : 0)
+    }
   
   return (
     <>
@@ -69,7 +75,7 @@ const Layout = ({ children, img, url, excerpt, noborder, title }) => {
         <main>{children}</main>
         <Footer />
       </div>
-      {alertText || marketingInterruptorText ? <Alert alertText={alertText} marketingInterruptorText={marketingInterruptorText}/> : null}
+      {alertText || marketingInterruptorText ? <Alert alertText={alertText} marketingInterruptorText={marketingInterruptorText} updateHeight={setalertHeight}/> : null}
     </>
   )
 }

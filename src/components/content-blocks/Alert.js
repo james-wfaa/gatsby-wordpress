@@ -1,26 +1,43 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import styled from 'styled-components'
 import { sizes, breakpoints, fonts, colors } from '../css-variables'
+import Cookies from "js-cookie";
 
-  const Alert = ({alertText, marketingInterruptorText}) => {
+  const Alert = ({alertText, marketingInterruptorText, updateHeight}) => {
+
+    const [cookieStatus, setCookieStatus] = useState(false);
+    
     const handleAlertClose = () => {
-      console.log('close me!')
+      //var inTwoMinutes = new Date(new Date().getTime() + 2 * 60 * 1000); //for troubleshooting
+      Cookies.set('alert', 'hide', {expires: 1});
+      setCookieStatus(true)
+      updateHeight(0)
     }
 
-    const handleShowAlert = () => {
-
-    }
+    //initial check for cookie
+    useEffect(() => {
+      const checkForCookie = Cookies.get('alert')
+      if(checkForCookie === undefined){
+        setCookieStatus(false)
+      } else {
+        setCookieStatus(true)
+      }
+    }, []);
     
     return (
-      alertText ? 
-      <StyledAlert id="alert" >
-        <div className="alertcontent" dangerouslySetInnerHTML={{__html: alertText}}></div>
-        <div className="closeAlertBtn" onClick={handleAlertClose}></div>
+      alertText && !cookieStatus? 
+      <StyledAlert id="alert">
+        <div className="alertContentWrap">
+          <div className="alertcontent" dangerouslySetInnerHTML={{__html: alertText}}></div>
+          <div className="closeAlertBtn" onClick={handleAlertClose}></div>
+        </div>
       </StyledAlert> : 
-      marketingInterruptorText ? 
+      marketingInterruptorText && !cookieStatus ? 
       <StyledMarketingInterruptor id="alert">
-        <div className="alertcontent" dangerouslySetInnerHTML={{__html: marketingInterruptorText}}></div>
-        <div className="closeAlertBtn" onClick={handleAlertClose}></div>
+        <div className="alertContentWrap">
+          <div className="alertcontent" dangerouslySetInnerHTML={{__html: marketingInterruptorText}}></div>
+          <div className="closeAlertBtn" onClick={handleAlertClose}></div>
+        </div>
       </StyledMarketingInterruptor> : null
     )
   };
@@ -30,9 +47,20 @@ import { sizes, breakpoints, fonts, colors } from '../css-variables'
   const StyledAlert = styled.div`
   width: 100%;
   background-color: #FFE691;
-  padding: ${sizes.s24};
+  padding: ${sizes.s24} 0;
   position: absolute;
   top: 86px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 5px 4px;
+  z-index: 10;
+  .alertContentWrap{
+    width: 88%;
+    margin: 0 auto;
+    max-width: 1080px;
+    position: relative;
+  }
+  .alertcontent{
+    padding-right: 32px;
+  }
   a{
     color: #C5050C;
   }
@@ -43,25 +71,69 @@ import { sizes, breakpoints, fonts, colors } from '../css-variables'
   }
   @media screen and ${breakpoints.tabletS} {
     top: 118px;
-    p{
-      font-size: ${sizes.s26};
-      line-height: ${sizes.s36};
+    .alertContentWrap{
+      width: 90%;
+    }
+    .alertcontent{
+      padding-right: 48px;
     }
   }
+  .closeAlertBtn{
+    width: 24px;
+    height: 24px;
+    border: 1px solid ${colors.buttonRed};
+    border-radius: 50%;
+    background-color: white;
+    top: 2px;
+    right: 0;
+    position:absolute;
+    :hover{
+      cursor: pointer;
+    }
+    :before{
+      content: '';
+      -webkit-transform: rotate(-45deg) translate(-8.5px,13px);
+      -ms-transform: rotate(-45deg) translate(-8.5px,13px);
+      transform: rotate(-45deg) translate(-8.5px,13px);
+      width: 16px;
+      height: 1px;
+      background-color: ${colors.buttonRed};
+      position: absolute;
+      top: -5px;
+      left: 0px;
+    }
+    :after{
+      content: '';
+      -webkit-transform: rotate(45deg) translate(-8px,-13px);
+      -ms-transform: rotate(45deg) translate(-8px,-13px);
+      transform: rotate(45deg) translate(-8px,-13px);
+      width: 16px;
+      height: 1px;
+      background-color: ${colors.buttonRed};
+      position: absolute;
+      bottom:-4px;
+      left:0px;
+    }
+}
 `
 const StyledMarketingInterruptor = styled.div`
   width: 100%;
   padding: ${sizes.s32} 0;
   position:absolute;
   top: 86px;
-  .alertcontent{
+  box-shadow: rgba(0, 0, 0, 0.1) 0 5px 4px;
+  z-index: 10;
+  .alertContentWrap{
     width: 88%;
     margin: 0 auto;
-    padding-right: 24px;
     max-width: 1080px;
+    position: relative;
+  }
+  .alertcontent{
+    padding-right: 32px;
   }
   h1,h2,h3,h4,h5,h6{
-    margin: 0 24px 24px 0;
+    margin: 0 8px 24px 0;
     padding:0;
     color:#C5050C;
     font-size: ${sizes.s24};
@@ -82,9 +154,11 @@ const StyledMarketingInterruptor = styled.div`
   }
   @media screen and ${breakpoints.tabletS} {
     top: 118px;
+    .alertContentWrap{
+      width: 90%;
+    }
     .alertcontent{
       padding-right: 48px;
-      width: 90%;
     }
     h1,h2,h3,h4,h5,h6{
       font-size: ${sizes.s36};
@@ -103,8 +177,8 @@ const StyledMarketingInterruptor = styled.div`
       border: 1px solid ${colors.buttonRed};
       border-radius: 50%;
       background-color: white;
-      top:32px;
-      right: 8%;
+      top: 0;
+      right: 0;
       position:absolute;
       :hover{
         cursor: pointer;
