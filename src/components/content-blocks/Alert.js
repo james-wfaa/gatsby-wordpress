@@ -29,14 +29,18 @@ import Cookies from "js-cookie";
       <StyledAlert id="alert">
         <div className="alertContentWrap">
           <div className="alertcontent" dangerouslySetInnerHTML={{__html: alertText}}></div>
-          <div className="closeAlertBtn" onClick={handleAlertClose}></div>
+          <div className="closeAlertBtn" onClick={handleAlertClose}>
+            <p className="hoverText">Dismiss for 24 hours</p>
+          </div>
         </div>
       </StyledAlert> : 
       marketingInterruptorText && !cookieStatus ? 
       <StyledMarketingInterruptor id="alert">
         <div className="alertContentWrap">
           <div className="alertcontent" dangerouslySetInnerHTML={{__html: marketingInterruptorText}}></div>
-          <div className="closeAlertBtn" onClick={handleAlertClose}></div>
+          <div className="closeAlertBtn" onClick={handleAlertClose}>
+            <p className="hoverText">Dismiss for 24 hours</p>
+          </div>
         </div>
       </StyledMarketingInterruptor> : null
     )
@@ -90,6 +94,9 @@ import Cookies from "js-cookie";
     :hover{
       cursor: pointer;
     }
+    :hover .hoverText{
+      display:block;
+    }
     :before{
       content: '';
       -webkit-transform: rotate(-45deg) translate(-8.5px,13px);
@@ -114,7 +121,34 @@ import Cookies from "js-cookie";
       bottom:-4px;
       left:0px;
     }
-}
+    .hoverText{
+      font-size: 16px;
+      color: ${colors.badgerRed};
+      line-height: 16px;
+      width: max-content;
+      top: -38px;
+      position: absolute;
+      right: -6px;
+      display:none;
+      background-color: white;
+      padding: 5px 7px;
+      box-shadow: rgba(0, 0, 0, 0.25) 0 1px 5px;
+      :after {
+        content: "";
+        display: inline-block !important;
+        width: 0;
+        height: 0;
+        border-left: 6px solid white;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        vertical-align: middle;
+        transform: rotate(90deg);
+        bottom: -9px;
+        position: absolute;
+        right: 12px;
+      }
+    }
+  }
 `
 const StyledMarketingInterruptor = styled.div`
   width: 100%;
@@ -183,6 +217,9 @@ const StyledMarketingInterruptor = styled.div`
       :hover{
         cursor: pointer;
       }
+      :hover .hoverText{
+        display:block;
+      }
       :before{
         content: '';
         -webkit-transform: rotate(-45deg) translate(-8.5px,13px);
@@ -207,5 +244,32 @@ const StyledMarketingInterruptor = styled.div`
         bottom:-4px;
         left:0px;
       }
-  }
+      .hoverText{
+        font-size: 16px;
+        color: ${colors.badgerRed};
+        line-height: 16px;
+        width: max-content;
+        top: -38px;
+        position: absolute;
+        right: -6px;
+        display:none;
+        background-color: white;
+        padding: 5px 7px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0 1px 5px;
+        :after {
+          content: "";
+          display: inline-block !important;
+          width: 0;
+          height: 0;
+          border-left: 6px solid white;
+          border-top: 6px solid transparent;
+          border-bottom: 6px solid transparent;
+          vertical-align: middle;
+          transform: rotate(90deg);
+          bottom: -9px;
+          position: absolute;
+          right: 12px;
+        }
+      }
+    }
 `
