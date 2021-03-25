@@ -59,7 +59,6 @@ const Layout = ({ children, img, url, excerpt, noborder, title }) => {
     const updateHeight = () =>{
       let height =  document.getElementById('alert') ? document.getElementById('alert').clientHeight : 0
       setalertHeight(height)
-      console.log('height updated', document.getElementById('alert') ? document.getElementById('alert').clientHeight : 0)
     }
   
   return (
