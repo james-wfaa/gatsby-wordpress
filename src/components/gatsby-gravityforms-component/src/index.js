@@ -39,8 +39,8 @@ const GravityFormForm = ({
         reset,
         setError,
         setValue,
-    } = useForm()
-
+        formState: { isValid },
+    } = useForm({mode : 'onTouched'})
     const [generalError, setGeneralError] = useState('')
     const [formLoading, setLoadingState] = useState(false)
 
@@ -168,6 +168,7 @@ const GravityFormForm = ({
                                 className="gravityform__button gform_button button"
                                 id={`gform_submit_button_${id}`}
                                 type="submit"
+                                disabled={!isValid}
                             >
                                 {formLoading ? (
                                     <span className="gravityform__button__loading_span">

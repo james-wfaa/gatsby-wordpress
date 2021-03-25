@@ -164,6 +164,13 @@ button.gravityform__button {
     ${mixins.buttons}
     border:none;
     cursor:pointer;
+    :disabled{
+        background-color: #CCCCCC;
+        cursor: auto;
+        :hover{
+            box-shadow:none;
+        }
+    }
 }
 a {
     ${mixins.a}
