@@ -113,6 +113,12 @@ export const fragments = graphql`
             }
           }
         }
+        acfAlternatePostType{
+          alternateposttype
+        }
+        videoFormat {
+          vimeoId
+        }
       }
     }
   }

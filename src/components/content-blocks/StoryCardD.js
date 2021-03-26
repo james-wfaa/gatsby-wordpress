@@ -1,7 +1,7 @@
 import React from "react"
 import ContentCardD from './ContentCardD'
 
-const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat })=> {
+const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat, acfAlternatePostType })=> {
     url = `/news${url}`
 
     let moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
@@ -12,6 +12,8 @@ const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat })=> {
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength && endIdx > 0) ? excerpt.substring(0,excerpt.indexOf(' ', maxLength)) + ' ...' : excerpt
     
     const postTypes = (terms && terms.nodes && terms.nodes.length > 0) ? terms.nodes : null;
+    const altPostType = acfAlternatePostType?.alternateposttype ? acfAlternatePostType.alternateposttype : null
+
     let label = null;
     if (postTypes && postTypes.length > 0){
         terms.nodes.map((node)=>{
@@ -41,6 +43,11 @@ const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat })=> {
             default: 
                 break
         }   
+    }
+
+    //update display based on alt post types
+    if(altPostType != "story"){
+        label = altPostType
     }
     
     return (

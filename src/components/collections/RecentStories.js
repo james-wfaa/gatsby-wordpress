@@ -29,6 +29,12 @@ const RecentStories = () => {
                 linkAuthor
                 linkUrl
               }
+              acfAlternatePostType{
+                alternateposttype
+              }
+              videoFormat {
+                vimeoId
+              }
             }
           }
         }
