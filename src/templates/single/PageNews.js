@@ -25,11 +25,22 @@ function WordPressPage({ data }) {
 
   const cats = categories.map((item) => {
     const { category, numberToShow } = item
-    
+    let linkPath
+    switch(category && category.slug) {
+      case 'news':
+        linkPath = 'all'
+        break
+      case 'askflamingle':
+        linkPath = `all?pub=${category.slug}`
+        break
+      default:
+        linkPath = `all?filter=${category.slug}`
+        break
+    }
     if (category && category.name) {
       const catButton = [
         {
-          link: `/news/${category.slug === 'news' ? 'all' : `all?filter=${category.slug}`}`,
+          link: `/news/${linkPath}`,
           text: `See All ${category.name}`,
         },
       ]
