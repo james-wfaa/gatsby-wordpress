@@ -25,10 +25,17 @@ function WordPressPage({ data }) {
 
   const cats = categories.map((item) => {
     const { category, numberToShow } = item
+    
     if (category && category.name) {
-      return (
+      const catButton = [
+        {
+          link: `/news/${category.slug === 'news' ? 'all' : `all?filter=${category.slug}`}`,
+          text: `See All ${category.name}`,
+        },
+      ]
 
-        <PageSection heading={category.name} stagger>
+      return (
+        <PageSection heading={category.name} stagger  buttons={category?.posts?.nodes?.length > numberToShow ? catButton : null}>
           <CardSet items={category.posts.nodes} num={numberToShow} type="news"/>
         </PageSection>
       )
