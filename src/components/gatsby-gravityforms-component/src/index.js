@@ -39,10 +39,11 @@ const GravityFormForm = ({
         reset,
         setError,
         setValue,
-        formState: { isValid },
+        formState: { isValid, isDirty, isSubmitted },
     } = useForm({mode : 'onTouched'})
     const [generalError, setGeneralError] = useState('')
     const [formLoading, setLoadingState] = useState(false)
+    const [errorList, setErrorList] = useState()
 
     // State for confirmation message
     const [confirmationMessage, setConfirmationMessage] = useState('')
@@ -65,7 +66,7 @@ const GravityFormForm = ({
                     values = {...values, ...checkboxes}
 
                 }
-                console.log('updated values', values)
+                //console.log('updated values', values)
 
                 const { data, status } = await passToGravityForms({
                     baseUrl: singleForm.apiURL,
@@ -73,10 +74,12 @@ const GravityFormForm = ({
                     id,
                     lambdaEndpoint: lambda,
                 })
-                console.log(data)
+                //console.log(data)
                 setLoadingState(false)
 
-                if (status === 'error') {
+                const returnData = data?.data
+
+                if (status === 'error' || returnData?.is_valid === false) {
                     // Handle the errors
                     // First check to make sure we have the correct data
 
@@ -86,6 +89,23 @@ const GravityFormForm = ({
                             data.validation_messages,
                             setError
                         )
+                    } else if(returnData?.is_valid === false){
+                        if(returnData?.validation_messages && Object.keys(returnData?.validation_messages).length > 0){
+                            let newList = []
+                            Object.keys(returnData?.validation_messages).forEach(function(key) {
+                                const id = key.replace('.', '_')
+                                const fieldId = `input_${id}`
+                                newList.push(`${fieldId} : ${returnData?.validation_messages[key]}`)
+                            })
+                            setErrorList(newList)
+                            setGeneralError('formHasErrorWithMsg')
+                            /*handleGravityFormsValidationErrors(
+                                returnData.validation_messages,
+                                setError
+                            )*/
+                        } else{
+                            setGeneralError('formHasError')
+                        }
                     } else {
                         // Seemed to be an unknown issue
                         setGeneralError('unknownError')
@@ -135,7 +155,7 @@ const GravityFormForm = ({
                         onSubmit={handleSubmit(onSubmitCallback)}
                     >
                         {generalError && (
-                            <FormGeneralError errorCode={generalError} />
+                            <FormGeneralError errorCode={generalError} errorList={errorList}/>
                         )}
                         <div className="gform_body">
                             <ul
@@ -168,7 +188,7 @@ const GravityFormForm = ({
                                 className="gravityform__button gform_button button"
                                 id={`gform_submit_button_${id}`}
                                 type="submit"
-                                disabled={!isValid}
+                                disabled={isSubmitted ? !isDirty : !isDirty || !isValid }
                             >
                                 {formLoading ? (
                                     <span className="gravityform__button__loading_span">
@@ -195,9 +215,11 @@ GravityFormForm.defaultProps = {
 GravityFormForm.propTypes = {
     errorCallback: PropTypes.func,
     formData: PropTypes.object.isRequired,
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     lambda: PropTypes.string,
     successCallback: PropTypes.func,
+    onChange: PropTypes.func,
+    checkboxes: PropTypes.object,
 }
 
 export default GravityFormForm
