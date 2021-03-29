@@ -22,13 +22,14 @@ const FooGallery = ({ content, className }) => {
             }
         })
     }
-    
+    console.log(fooGallery)
 
 
     const getGalleryImages = () => {
         let galleryImages = []
         if (fooGallery?.props?.children) {
             if (Array.isArray(fooGallery.props.children)) {
+                console.log(fooGallery.props.children)
                 fooGallery.props.children.forEach((child) => {
                     if (child?.props?.className === 'fg-item') {
                         if (child?.props?.children) {

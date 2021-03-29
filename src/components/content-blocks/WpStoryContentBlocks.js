@@ -15,7 +15,7 @@ const WpStoryContentBlocks = ({className, blocks, content, eventCategory, stagge
 
   //console.log(content)
         const RenderedBlocks = (blocks) ? blocks.map((block) => {
-          //console.log(block.name)
+          console.log(block.name)
 
         switch (block.name) {
 
@@ -139,6 +139,7 @@ const WpStoryContentBlocks = ({className, blocks, content, eventCategory, stagge
           
           case "fooplugins/foogallery":
             // we have to pass in the whole content to get good image sources
+            console.log('found a foo gallery')
             return (
                 <FooGallery
                 className={block.name.replace("/", "-")}
