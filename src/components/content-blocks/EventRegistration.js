@@ -38,7 +38,9 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
             ? venue.title
             : null;
     const registrationLink = eventDetails.registrationUrl ? eventDetails.registrationUrl : '';
-    const registrationText = eventDetails.eventFullSoldOut ? eventDetails.eventFullText : 'Register';
+    const registrationText = eventDetails.eventFullSoldOut ? eventDetails.eventFullText 
+    : eventDetails.trip ? 'Book Now' : 'Register';
+
     const regIsFull = eventDetails.eventFullSoldOut;
     const [show, setShow] = useState(false);
     const mapLinkText = (venue && venue.address) ? "View Map and Event Details" : "View Event Details";
@@ -93,7 +95,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
                     <div className="subHeader">WHERE</div>
                 )}
                 <div className="venue" dangerouslySetInnerHTML={{ __html: addressString }} />
-                { showMapLink && (
+                { showMapLink && !eventDetails.trip && (
                     <a href="#EventMap" alt="View Map">{mapLinkText}</a>
                 )}
                 <div className="subHeader">COST</div>
