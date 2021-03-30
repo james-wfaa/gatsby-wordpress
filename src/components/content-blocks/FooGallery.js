@@ -3,13 +3,10 @@ import parse from 'html-react-parser'
 import styled from 'styled-components'
 import SimpleSlider from '../content-modules/SimpleSlider'
 import CardE from './CardE'
-import { array } from "prop-types"
 
 
-const FooGallery = ({ content, className }) => {
-
-
-    
+const FooGallery = ({ content, id, className }) => {
+    //console.log('FooGallery ' , id)
     const parsed = (typeof content === "string") 
         ? parse(content, { trim: true })
         : null
@@ -17,18 +14,20 @@ const FooGallery = ({ content, className }) => {
     let fooGallery = null
     if (Array.isArray(parsed)) {
         parsed.forEach((block) => {
-            if (block.type === 'div' && block.props.className.indexOf('foogallery') > -1) {
+           // console.log(block)
+            if (block.type === 'div' && block?.props?.id && block.props.id === id) {
                 fooGallery = block
             }
         })
     }
-    
+    //console.log(fooGallery)
 
 
     const getGalleryImages = () => {
         let galleryImages = []
         if (fooGallery?.props?.children) {
             if (Array.isArray(fooGallery.props.children)) {
+                //console.log(fooGallery.props.children)
                 fooGallery.props.children.forEach((child) => {
                     if (child?.props?.className === 'fg-item') {
                         if (child?.props?.children) {
@@ -53,6 +52,48 @@ const FooGallery = ({ content, className }) => {
                     }
                 })
             } 
+            else if (fooGallery.props.children?.props?.className && fooGallery.props.children.props.className === "fiv-inner") {
+                //console.log(fooGallery.props.children.props.children)
+                fooGallery.props.children.props.children.forEach((child) => {
+                    if (child?.props?.className === 'fiv-inner-container') {
+                        //console.log('found the items')
+                        if (child?.props?.children) {
+                            
+                            child.props.children.forEach((innerChild) => {
+                               // console.log(innerChild)
+                                if (innerChild.props.className === "fg-item" && innerChild.props?.children) {
+                                    //console.log('fg-item')
+                                    innerChild.props.children.forEach((item) => {
+                                        if (item.props.className === "fg-item-inner" && item.props?.children) {
+                                            //console.log('fg-item-inner')
+
+                                            item.props.children.forEach((inner) => {
+                                                
+                                                if (inner.type === "a") {
+                                                   // console.log('inner type a', inner)
+                                                    if (inner.props?.children) {
+                                                        //console.log(inner.props.children)
+                                                        if (inner.props.children?.props?.className === "fg-image-wrap") {
+                                                           // console.log('here it is')
+                                                            const {  title: caption, alt, "data-src-fg":dataSrcFg } = inner.props.children.props.children.props
+                                                            galleryImages.push(
+                                                            <CardE fooImage={dataSrcFg} caption={caption} alt={alt} />
+                                                            )
+                                                            
+                                                        }
+                                                    }
+                                                }
+                                            })
+                                        }
+                                    })
+                                }
+                            })
+                        }
+                    }
+                })
+               // console.log(fooGallery.props.children.props.children)
+            }
+
         }
         return(galleryImages)
     }
