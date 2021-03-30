@@ -6,7 +6,7 @@ import WordPressContentBlocks from "../content-blocks/WordPressContentBlocks"
 function WordPressPage({ page }) {
   const {  title, excerpt, featuredImage,  heroIntroSection, introButtons, products, blocks } = page
   const { introButtons: buttons } = introButtons
-  const { heroHeading, introExcerpt, introHeading } = heroIntroSection
+  const { heroHeading, introExcerpt } = heroIntroSection
   const heroIntroExcerpt = (introExcerpt) ? introExcerpt : excerpt
   const heroOverlayHeading = (heroHeading) ? `<span>${heroHeading}</span> ON` : null
 
@@ -19,10 +19,6 @@ function WordPressPage({ page }) {
 
   }
   ) : null
-
-
-
-
 
   return (
     <Layout title={title}>

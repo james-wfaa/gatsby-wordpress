@@ -42,7 +42,7 @@ const BreadCrumbs = ({ links, nounderline }) => {
   let renderedLinks = links.map(link => {
     const notLast = link !== lastItem ? true : false
     return (
-      <BreadCrumb>
+      <BreadCrumb key={link.url} >
         {notLast && <a href={link.url} className={underline}>
           <p>{link.name}</p>
         </a>}

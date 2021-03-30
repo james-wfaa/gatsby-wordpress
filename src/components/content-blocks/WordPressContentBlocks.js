@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { colors, breakpoints, mixins } from '../css-variables'
 import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
 import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"
@@ -8,7 +9,6 @@ import GravityForm from './GravityForm'
 import AccordionNavigation from './AccordionNavigation'
 import SpecialBlock from '../content-modules/SpecialBlock'
 import FeaturedEvent from '../content-modules/FeaturedEvent'
-import { colors, breakpoints, mixins } from '../css-variables'
 import Block from './WordPressBlock'
 
 const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
@@ -54,7 +54,8 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
             case "core/table":
             case "core/image":
             case "core/html":
-                return (<Block className={block.name.replace('/', '-')} block={block.originalContent} />)
+                // these should do nothing, since they are not in a PageSection group
+                //return (<Block className={block.name.replace('/', '-')} block={block.originalContent} />)
                 break
             case "gravityforms/form":
                 //console.log('form found')
@@ -74,7 +75,7 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                 break
         
             case "core-embed/flickr":
-                return <EmbedBlock source={block.originalContent} type="flickr" />
+                RenderedBlocks.push(<EmbedBlock source={block.originalContent} type="flickr" />)
                 break
             case "core-embed/vimeo":
                 //console.log('vimeo')
@@ -86,16 +87,18 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                 break
             case "core/separator":
                 RenderedBlocks.push(<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+                break
             case "acf/accordion-navigation":
-                return <AccordionNavigation className={block.name.replace('/', '-')} block={block} />
+                RenderedBlocks.push(<AccordionNavigation className={block.name.replace('/', '-')} block={block} />)
                 break
             case "acf/staff-search":
-                return(
+                RenderedBlocks.push(
                     <Block
                         className={block.name.replace("/", "-")}
                         block={block}
                     />
                 )
+                break
             case "acf/product-story-listing":
                 if ( products) {
                     let combinedPosts = []
@@ -152,19 +155,23 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                     RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={combinedEvents} size="M" type="event"/></PageSection>)
                 }
                 break
+           
             case "acf/special-block":
                 RenderedBlocks.push(<SpecialBlock block={block} />)
                 break
             case "acf/featured-event-block":
                 //console.log("featured event")
                 RenderedBlocks.push (<FeaturedEvent block={block} />)
+                break
             default:
                 //console.log('default')
                 RenderedBlocks.push(<PageSectionFromBlocks blocks={[block]} heading="Default" borderTop={borderTop} stagger={stagger} />)
+                break
                 
         }
     }
     )
+
     return(
         <div className={className}>{RenderedBlocks}</div>
     )

@@ -1,4 +1,3 @@
-import React from 'react'
 import { useStaticQuery, graphql } from "gatsby"
 
 const RecentStories = () => {
@@ -30,6 +29,12 @@ const RecentStories = () => {
                 linkAuthor
                 linkUrl
               }
+              acfAlternatePostType{
+                alternateposttype
+              }
+              videoFormat {
+                vimeoId
+              }
             }
           }
         }
@@ -39,13 +44,6 @@ const RecentStories = () => {
       allWpPost
     )
   }
-
-  const ProductStories = ({products}) => {
-    const recentStories = RecentStories()
-
-    return recentStories
-  }
-  
   
   export default RecentStories
   

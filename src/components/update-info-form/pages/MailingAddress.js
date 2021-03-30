@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject, handleFormSubmit } from '../form-helpers'
+import { StyledError, handleFormSubmit } from '../form-helpers'
 import { colors } from '../../css-variables'
 import PageSection from '../../page-sections/PageSection'
 import Buttons from '../FormButtons'

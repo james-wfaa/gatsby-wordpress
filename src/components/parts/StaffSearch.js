@@ -111,10 +111,10 @@ const StyledError = styled.p`
   `
 
 const StaffSearchModal = () => {
-    const { register, handleSubmit, watch, errors } = useForm({
+    const { register, handleSubmit, errors } = useForm({
         mode: "onChange",
     })
-    const [searchText, setSearchText] = useState("")
+    //const [searchText, setSearchText] = useState("")
     const [filteredResults, setFilteredResults] = useState([])
 
     let rendered = filteredResults.map(item => {

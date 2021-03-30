@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { shortDate } from "../../utils/tools"
 
 
-const ContentCard = ({ className, startDate, endDate, title, category, venue, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo = false }) => {
+const ContentCard = ({ className, startDate, endDate, title, category, venue, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo = false, acfAlternatePostType, videoFormat }) => {
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
     const fmtStartDate = shortDate(startDate)
     let fmtEndDate = null
@@ -14,14 +14,20 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
         fmtEndDate = shortDate(endDate)
     }
     const dateLinkText = fmtEndDate ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
-    
+
     const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];
     const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt
     const promoClass = promo ? 'promo' : ''
     const notSmall = (size !== 'S') ? "notsmall" : ""
 
-    //console.log(category)
+    let altPostType = acfAlternatePostType?.alternateposttype ? acfAlternatePostType.alternateposttype : null
+
+    if(videoFormat?.vimeoId){
+        altPostType = "Video"
+    }
+
+    const displayCategory = category ? category : (altPostType ? altPostType : null);
 
     if(!sizes.includes(size) || promo ){
         size = "S";
@@ -49,8 +55,8 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                     )}
                     { !startDate && (
                         <>
-                            { category && (
-                                <div className={`category category--${size} `}>{category}</div>
+                            { displayCategory && (
+                                <div className={`category category--${size} `}>{displayCategory}</div>
                             )}
                             <h3 className={`title title--${size}`}>
                                 <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
@@ -82,8 +88,8 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                                     <h3 className={`title title--${size}`}>
                                         <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
                                     </h3>
-                                    { category && (
-                                        <div className={`category category--${size}`}>{category}</div>
+                                    { displayCategory && (
+                                        <div className={`category category--${size}`}>{displayCategory}</div>
                                     )}
                                 </>
                             )}
@@ -128,7 +134,7 @@ const StyledContentCard = styled(ContentCard)`
     .title {
         ${mixins.cardTitle}
     }
-    
+
     &.promo{
         background-color: ${colors.bgRed};
         border: 1px solid ${colors.bgRed};
