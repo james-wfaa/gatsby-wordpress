@@ -9,6 +9,8 @@ import ImageSection from './ImageSection'
 import AccordionNavigation from './AccordionNavigation'
 import SpecialBlock from '../content-modules/SpecialBlock'
 import FooGallery from './FooGallery'
+import parse from 'html-react-parser'
+
 
 const WpStoryContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
 
@@ -139,10 +141,17 @@ const WpStoryContentBlocks = ({className, blocks, content, eventCategory, stagge
           
           case "fooplugins/foogallery":
             // we have to pass in the whole content to get good image sources
+            //console.log('found a foo gallery', block)
+            // pass the ID
+            const parsedFoo = parse(block.dynamicContent, { trim: true })
+            const fooId = parsedFoo?.props?.id ? parsedFoo.props.id : null
+            //console.log(parsedFoo)
+            //console.log(fooId)
             return (
                 <FooGallery
                 className={block.name.replace("/", "-")}
                 content={content}
+                id={fooId}
                 />
             )
           default:
@@ -190,6 +199,8 @@ hr.wp-block-separator {
     ${mixins.separator}
 }
 .core-paragraph, 
+.core-image,
+.core-table,
 .core-heading, 
 .core-columns,
 .core-freeform {

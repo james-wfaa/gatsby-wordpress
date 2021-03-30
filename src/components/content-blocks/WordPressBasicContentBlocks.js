@@ -9,6 +9,8 @@ import ImageSection from '../content-blocks/ImageSection'
 import AccordionNavigation from './AccordionNavigation'
 import SpecialBlock from '../content-modules/SpecialBlock'
 import FooGallery from '../content-blocks/FooGallery'
+import AdvocacyEmbed from "../content-blocks/AdvocacyEmbed"
+
 
 const WordPressContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
 
@@ -41,7 +43,8 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 block={block}
               />
             )
-            break
+          case "acf/advocacy-embed":
+            return <AdvocacyEmbed block={block} />
           case "acf/staff-search":
             //console.log(block.dynamicContent)
             return(
@@ -167,7 +170,10 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 </div>
             )}
             { !RenderedBlocks && (
-                <Block className={className} block={content} />
+              <div className="content core-freeform">
+              {[content]}
+              </div>
+               
             )}
         </div>
     )

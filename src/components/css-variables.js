@@ -128,6 +128,7 @@ export const colors = {
     flamingleCardBG: baseColors.lightPink,
     flamingleCardHoverDiagonals: baseColors.darkRed,
     searchFontGrey: baseColors.darkGrey,
+    tableRowGrey: baseColors.lightestGrey,
 }
 
 export const size = {
