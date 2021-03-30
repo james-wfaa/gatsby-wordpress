@@ -300,6 +300,12 @@ export const query = graphql`
             originalContent
             dynamicContent
             saveContent
+            innerBlocks {
+              name
+              originalContent
+              dynamicContent
+              saveContent
+            }
           }
         }
       }

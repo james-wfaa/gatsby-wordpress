@@ -12,6 +12,8 @@ import EmbedBlock from "../content-blocks/EmbedBlock"
 import SpecialBlock from '../content-modules/SpecialBlock'
 import AccordionNavigation from '../content-blocks/AccordionNavigation'
 import FooGallery from '../content-blocks/FooGallery'
+import AdvocacyEmbed from "../content-blocks/AdvocacyEmbed"
+
 
 
 const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, centered }) => {
@@ -70,9 +72,6 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
 
             })}</CardSet>)
             : blocks.map((block) => {
-
-                //console.log(block)
-
                 switch (block.name) {
                   case "acf/section-header":
                     break
@@ -108,7 +107,9 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
                           product
                         />
                       )
-                    }                    
+                    }
+                  case "acf/advocacy-embed":
+                    return <AdvocacyEmbed block={block} />
                   case "acf/testimonial":
                     const testimonial = block?.isDynamic
                       ? block.dynamicContent
