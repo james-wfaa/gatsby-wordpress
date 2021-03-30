@@ -16,6 +16,7 @@ export const fragments = graphql`
           id
           title
           uri
+          dateGmt
           hideFromMenu {
             hideFromMenu
             fieldGroupName
@@ -27,6 +28,7 @@ export const fragments = graphql`
                 id
                 title
                 uri
+                dateGmt
                 hideFromMenu {
                   hideFromMenu
                   fieldGroupName
@@ -38,6 +40,7 @@ export const fragments = graphql`
                       id
                       title
                       uri
+                      dateGmt
                       hideFromMenu {
                         hideFromMenu
                         fieldGroupName
