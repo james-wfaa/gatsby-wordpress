@@ -88,13 +88,29 @@ const StyledStaffSearch = styled.div`
             .staffTitle{
                 font-style: italic;
             }
+            .staffNumber{
+                a{
+                    color: ${colors.copyText};
+                }
+            }
             .staffMail{
                 a{
-                    color: ${colors.copyText}
+                    color: ${colors.copyText};
+                    text-transform: lowercase;
                 }
             }
         }
         
+    }
+
+    .noResults{
+        font-family: "Verlag A", "Verlag B";
+        font-style: normal;
+        margin: 0 auto;
+        padding: 0;
+        font-size: 18px;
+        position: relative;
+        padding-top: 58px;
     }
 
 `
@@ -116,8 +132,11 @@ const StaffSearchModal = () => {
     })
     //const [searchText, setSearchText] = useState("")
     const [filteredResults, setFilteredResults] = useState([])
+    const [dontShowNoResults, setdontShowNoResults] = useState([])
 
     let rendered = filteredResults.map(item => {
+        let displayPhone = item["telephoneNumber"].replace( "1-", '')
+        let linkPhone = "tel:+" + item["telephoneNumber"]
         return (
             <div className="staffItem">
                 {item["givenName"] && (
@@ -137,7 +156,7 @@ const StaffSearchModal = () => {
                 )}
                 {item["telephoneNumber"] && (
                     <div className="staffNumber">
-                        {item["telephoneNumber"]}
+                        <a href={linkPhone}>{displayPhone}</a>
                     </div>
                 )}
                 {item["mail"] && (
@@ -152,7 +171,15 @@ const StaffSearchModal = () => {
 
     const onSubmit = data => {
         getSearchResults(data).then(results => {
-            setFilteredResults(results)
+            if(results.length === 0){
+                setFilteredResults(results)
+                setdontShowNoResults(false)
+            }
+            else{
+                setFilteredResults(results)
+                setdontShowNoResults(true)
+            }
+            
         })
     }
 
@@ -206,7 +233,7 @@ const StaffSearchModal = () => {
             </fieldset>
         </form>
        
-        <div className="staffSearchResults"></div>
+        {!dontShowNoResults && (<div className="noResults">Sorry, your search didn’t return any matches. Please try again or contact us for more information.</div>)}
         <div className="staffSearchResults">{rendered}</div>
     </StyledStaffSearch>
   )
