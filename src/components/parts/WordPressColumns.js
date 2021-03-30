@@ -18,7 +18,7 @@ const WordPressColumns = ({ block, className }) => {
     const RenderedColumns = (Columns) ? Columns.map((column) => {
         if (column?.innerBlocks) {
             const innerContent = column.innerBlocks.map((block) => {
-                console.log(block.name)
+                //console.log(block.name)
                 switch (block.name) {
                   case "acf/section-header":
                     break
@@ -197,7 +197,7 @@ const WordPressColumns = ({ block, className }) => {
         }
         
         if(column.originalContent){
-            console.log(column)
+            //console.log(column)
             return (<Block className={column.name.replace('/', '-')} block={column} />)
         }
         return null
