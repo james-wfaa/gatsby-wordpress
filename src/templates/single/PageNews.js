@@ -31,6 +31,9 @@ function WordPressPage({ data }) {
         linkPath = 'all'
         break
       case 'askflamingle':
+      case 'badger-insider':
+      case 'badger-vibes':
+      case 'on-wisconsin':
         linkPath = `all?pub=${category.slug}`
         break
       default:
