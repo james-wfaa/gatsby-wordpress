@@ -88,7 +88,7 @@ const AccordianSearchAlgolia = props => {
               />
               {/* <RefinementList
               attribute="type"
-              defaultRefinement={['Event', 'Post']}
+              defaultRefinement={['Event', 'Post', 'Page']}
               transformItems={items =>
                 items.map(item => {
                   let newlabel;
