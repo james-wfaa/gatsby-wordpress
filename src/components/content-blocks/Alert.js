@@ -6,39 +6,55 @@ import Cookies from "js-cookie";
   const Alert = ({alertText, marketingInterruptorText, updateHeight}) => {
 
     const [cookieStatus, setCookieStatus] = useState(false);
+    const [marketingCookieStatus, setMarketingCookieStatus] = useState(false);
     
-    const handleAlertClose = () => {
+    const handleAlertClose = (type) => {
       //var inTwoMinutes = new Date(new Date().getTime() + 2 * 60 * 1000); //for troubleshooting
-      Cookies.set('alert', 'hide', {expires: 1});
-      setCookieStatus(true)
-      updateHeight(0)
+      if(type === 'alert'){
+        Cookies.set('alert', 'hide', {expires: 1});
+        setCookieStatus(true)
+      } else if(type === 'marketing'){
+        Cookies.set('marketingAlert', 'hide', {expires: 1});
+        setMarketingCookieStatus(true)
+      }
     }
 
     //initial check for cookie
     useEffect(() => {
       const checkForCookie = Cookies.get('alert')
+      const checkForMarketingCookie = Cookies.get('marketingAlert')
       if(checkForCookie === undefined){
         setCookieStatus(false)
-      } else {
+      } else if (checkForCookie !== undefined){
         setCookieStatus(true)
       }
+      if (checkForMarketingCookie === undefined){
+        setMarketingCookieStatus(false)
+      } else if (checkForMarketingCookie !== undefined){
+        setMarketingCookieStatus(true)
+      } 
     }, []);
+    //update height when alert status changes
+    useEffect(() => {
+      let height =  document.getElementById('alert') ? document.getElementById('alert').clientHeight : 0
+      updateHeight(height)
+    }, [cookieStatus, marketingCookieStatus]);
     
     return (
       alertText && !cookieStatus? 
       <StyledAlert id="alert">
         <div className="alertContentWrap">
           <div className="alertcontent" dangerouslySetInnerHTML={{__html: alertText}}></div>
-          <div className="closeAlertBtn" onClick={handleAlertClose}>
+          <div className="closeAlertBtn" onClick={() => handleAlertClose('alert')}>
             <p className="hoverText">Dismiss for 24 hours</p>
           </div>
         </div>
       </StyledAlert> : 
-      marketingInterruptorText && !cookieStatus ? 
+      marketingInterruptorText && !marketingCookieStatus ? 
       <StyledMarketingInterruptor id="alert">
         <div className="alertContentWrap">
           <div className="alertcontent" dangerouslySetInnerHTML={{__html: marketingInterruptorText}}></div>
-          <div className="closeAlertBtn" onClick={handleAlertClose}>
+          <div className="closeAlertBtn" onClick={() => handleAlertClose('marketing')}>
             <p className="hoverText">Dismiss for 24 hours</p>
           </div>
         </div>
