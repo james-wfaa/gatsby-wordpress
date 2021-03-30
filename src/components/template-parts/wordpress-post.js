@@ -12,7 +12,7 @@ import EmbedVideoFormatHandler from "../content-blocks/EmbedVideoFormatHandler"
 
 function BlogPost({ data }) {
   const { page } = data
-  const { id, title, featuredImage, categories, products, author, postExternalAuthors, date, excerpt, heroImage, link, slug } = page
+  const { id, title, featuredImage, categories, products, author, postExternalAuthors, date, excerpt, heroImage, link, slug, acfAlternatePostType } = page
   const product = (products?.nodes && Array.isArray(products.nodes)) ? products.nodes[0] : null
   const displayAuthor = (postExternalAuthors?.nodes && postExternalAuthors.nodes[0]?.name)
     ? postExternalAuthors.nodes[0].name

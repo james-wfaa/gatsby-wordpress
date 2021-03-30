@@ -130,6 +130,12 @@ export const query = graphql`
               askFlamingle {
                 abeQuestioner
               }
+              acfAlternatePostType{
+                alternateposttype
+              }
+              videoFormat {
+                vimeoId
+              }
             }
           }
         }

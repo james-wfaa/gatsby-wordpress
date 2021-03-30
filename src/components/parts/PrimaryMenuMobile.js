@@ -42,7 +42,7 @@ const menuItems = {
     { tag: "Career Resources", url: "/career-resources" },
     { tag: "UW Library Resources", url: "/about/library" },
     { tag: "Alumni Store", url: "https://www.uwalumnistore.com" },
-    { tag: "Alumni Perks", url: "/about/alumni-perks" },
+    { tag: "Alumni Partners & Perks", url: "/about/partners-perks" },
   ],
 }
 

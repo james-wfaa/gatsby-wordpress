@@ -184,6 +184,12 @@ export const query = graphql`
                     }
                   }
                 }
+                acfAlternatePostType{
+                  alternateposttype
+                }
+                videoFormat {
+                  vimeoId
+                }
               }
             }
           }
