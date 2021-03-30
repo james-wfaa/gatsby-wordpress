@@ -78,6 +78,7 @@ const GravityFormForm = ({
                 setLoadingState(false)
 
                 const returnData = data?.data
+                //console.log(returnData)
 
                 if (status === 'error' || returnData?.is_valid === false) {
                     // Handle the errors
@@ -87,22 +88,24 @@ const GravityFormForm = ({
                         // Pass messages to handle that sets react-hook-form errors
                         handleGravityFormsValidationErrors(
                             data.validation_messages,
-                            setError
+                            setError,
+                            singleForm
                         )
                     } else if(returnData?.is_valid === false){
                         if(returnData?.validation_messages && Object.keys(returnData?.validation_messages).length > 0){
-                            let newList = []
+                            /*let newList = []
                             Object.keys(returnData?.validation_messages).forEach(function(key) {
                                 const id = key.replace('.', '_')
                                 const fieldId = `input_${id}`
                                 newList.push(`${fieldId} : ${returnData?.validation_messages[key]}`)
                             })
                             setErrorList(newList)
-                            setGeneralError('formHasErrorWithMsg')
-                            /*handleGravityFormsValidationErrors(
+                            setGeneralError('formHasErrorWithMsg')*/
+                            handleGravityFormsValidationErrors(
                                 returnData.validation_messages,
-                                setError
-                            )*/
+                                setError,
+                                singleForm
+                            )
                         } else{
                             setGeneralError('formHasError')
                         }
