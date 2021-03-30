@@ -80,6 +80,13 @@ export const query = graphql`
                     linkAuthor
                     linkUrl
                 }
+                acfAlternatePostType{
+                    alternateposttype
+                }
+                videoFormat {
+                    vimeoId
+                }
+            
             }
         }
     }
