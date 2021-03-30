@@ -119,7 +119,9 @@ const FieldBuilder = ({
         //console.log(field.type)
         //CONDITIONAL LOGIC
         const handleConditionalLogic = (field) => {
-            const rulesMet = JSON.parse(field.conditionalLogic).rules.map(rule => {
+            const rulesMet = !(field?.conditionalLogic) || !(JSON.parse(field.conditionalLogic)?.rules)
+                ? null
+                : JSON.parse(field.conditionalLogic).rules.map(rule => {
                 let conditionalValue = fieldValues[rule.fieldId]
                 //console.log(conditionalValue, field, fieldValues)
 
@@ -155,10 +157,14 @@ const FieldBuilder = ({
             
             //console.log(rulesMet, rulesMet.indexOf(false))
             
-            if (JSON.parse(field.conditionalLogic).actionType == 'show') {
-                return JSON.parse(field.conditionalLogic).logicType == 'all' ? rulesMet.indexOf(false) >= 0 : rulesMet.indexOf(true) < 0
+            if (JSON.parse(field.conditionalLogic)?.actionType && JSON.parse(field.conditionalLogic).actionType == 'show') {
+                return JSON.parse(field.conditionalLogic)?.logicType && JSON.parse(field.conditionalLogic).logicType == 'all' 
+                    ? rulesMet && rulesMet.indexOf(false) >= 0 
+                    : rulesMet && rulesMet.indexOf(true) < 0
             } else {
-                return JSON.parse(field.conditionalLogic).logicType == 'all' ? rulesMet.indexOf(true) < 0 : rulesMet.indexOf(false) >= 0
+                return JSON.parse(field.conditionalLogic)?.logicType && JSON.parse(field.conditionalLogic).logicType == 'all' 
+                    ? rulesMet && rulesMet.indexOf(true) < 0 
+                    : rulesMet && rulesMet.indexOf(false) >= 0
             }
         }
         const fieldHidden = (field) => {
