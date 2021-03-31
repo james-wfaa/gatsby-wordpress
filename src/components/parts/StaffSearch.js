@@ -19,7 +19,7 @@ const StyledStaffSearch = styled.div`
             margin-top: ${sizes.s24};
         }
         input{
-            color: ${colors.searchFontGrey};
+            color: ${colors.formTextBlack};
             display: block;
             border: 2px solid ${colors.formInputBorder};
             margin-top: 12px;
@@ -133,9 +133,10 @@ const StaffSearchModal = () => {
     //const [searchText, setSearchText] = useState("")
     const [filteredResults, setFilteredResults] = useState([])
     const [dontShowNoResults, setdontShowNoResults] = useState([])
+    const reg = /(^1-)/g
 
     let rendered = filteredResults.map(item => {
-        let displayPhone = item["telephoneNumber"].replace( "1-", '')
+        let displayPhone = item["telephoneNumber"].replace( reg, '')
         let linkPhone = "tel:+" + item["telephoneNumber"]
         return (
             <div className="staffItem">

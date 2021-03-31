@@ -1,7 +1,7 @@
 import React from "react"
 import parse from 'html-react-parser';
 import styled from 'styled-components'
-import { colors, fonts,sizes } from '../css-variables'
+import { colors, fonts,sizes, mixins } from '../css-variables'
 import Accordian from "../parts/Accordian"
 
 const AccordionNavigation = ({ block, className }) => {
@@ -59,6 +59,25 @@ margin-top: 56px;
         background-color: ${colors.bgWhite};
         margin: 32px;
         border-top: 8px ${colors.cardTitleBg} solid;
+
+        h3{
+            margin-bottom: 0px;
+            font-family: ${fonts.eaves};
+            color: ${colors.navMenuBlack};
+            font-weight: bold;
+            font-style: italic;
+            font-size: ${sizes.s28};
+            line-height: ${sizes.s34};
+            text-transform: none;
+            text-align: left;
+        }
+
+        h4{
+            font-weight: bold;
+            font-size: ${sizes.s20};
+            line-height: ${sizes.s28};
+            margin-bottom: 16px;
+        }
     }
 
     .AccordionWrap:first-child{
@@ -67,23 +86,15 @@ margin-top: 56px;
 
     .AccordionInputWrap{
         margin: 32px 0px;
-
-        .menuTitle h3{
-            margin-bottom: 0px;
-            font-family: ${fonts.eaves};
-            color: ${colors.navMenuBlack};
-            font-weight: bold;
-            font-style: italic;
-            font-size: ${sizes.s26};
-            line-height: ${sizes.s32};
-            text-transform: none;
-            text-align: left;
-           
-        }
     }
 
     .accordion__content{
         text-align: left;
+
+        a{
+            ${mixins.a}
+        }
+
     }
     
 }
