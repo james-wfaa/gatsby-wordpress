@@ -97,7 +97,7 @@ const DetailsDiv = styled.div`
   margin-bottom: 24px;
 `
 
-const PostCard = ({ initialBlock, title, topResult, url }) => {
+const PostCard = ({ initialBlock, title, topResult, url, categories }) => {
   let truncatedText
 
   if (initialBlock) {
@@ -108,6 +108,8 @@ const PostCard = ({ initialBlock, title, topResult, url }) => {
   } else {
     truncatedText = ""
   }
+
+  let type = categories[0].name === "Classnote" ? 'CLASSNOTE' : 'STORY'
 
   return (
     <CardWrapper className={topResult ? "topResult" : null}>
@@ -120,14 +122,14 @@ const PostCard = ({ initialBlock, title, topResult, url }) => {
         {topResult ? (
           <DetailsDiv>
             <p>
-              <span className="cardType">STORY</span>
+              <span className="cardType">{type}</span>
             </p>
             <h3>{title}</h3>
           </DetailsDiv>
         ) : (
           <>
             <p>
-              <span className="cardType">STORY</span>
+              <span className="cardType">{type}</span>
             </p>
             <h3>{title}</h3>
           </>

@@ -35,16 +35,31 @@ const SearchHits = ({ hits, hitHandler }) => {
           />
         )
       case "Post":
-        return (
-          <PostCard
-          key={hit.url}
-          hit={hit}
-          url={hit.url}
-          title={hit.title}
-          initialBlock={hit.blocks[0]}
-          topResult={topResult}
-        />
-        )
+        if (hit?.categories[0]?.name === 'Classnote') {
+            return (
+                <PostCard
+                    key={hit.url}
+                    hit={hit}
+                    url={hit.url}
+                    title={hit.title}
+                    initialBlock={hit.excerpt}
+                    topResult={topResult}
+                    categories={hit.categories}
+                />
+            )
+        } else {
+            return (
+                <PostCard
+                    key={hit.url}
+                    hit={hit}
+                    url={hit.url}
+                    title={hit.title}
+                    initialBlock={hit.blocks[0]}
+                    categories={hit.categories}
+                    topResult={topResult}
+                />
+            )
+        }
       case "Page":
         return (
           <PageCard

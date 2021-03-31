@@ -68,10 +68,7 @@ const AlgoliaArchivePage = props => {
                     searchClient={searchClient}
                     indexName={props.indices[0].name}
                     onSearchStateChange={({ query }) => setQuery(query)}>
-                    <Configure
-                        filters={props.filters}
-                        hitsPerPage={10}
-                    />
+                    <Configure filters={props.filters} hitsPerPage={10} />
                     <ScrollTo>
                         <SelectionsWrapper>
                             <AccordianSearchBoxAlgolia
@@ -79,48 +76,14 @@ const AlgoliaArchivePage = props => {
                                 onFocus={() => setFocus(true)}
                                 hasFocus={hasFocus}
                             />
-                            <RefinementChoices>
-                                <p>Included in Results:</p>
-                                <RefinementList
-                                    attribute="type"
-                                    defaultRefinement={[
-                                        'Event',
-                                        'Post',
-                                        'Page',
-                                    ]}
-                                    transformItems={items =>
-                                        items.map(item => {
-                                            let newlabel
-                                            switch (item.label) {
-                                                case 'Event':
-                                                    newlabel = 'Events'
-                                                    break
-                                                case 'Post':
-                                                    newlabel = 'News/Stories'
-                                                    break
-                                                case 'Page':
-                                                    newlabel = 'Pages'
-                                                    break
-                                                default:
-                                                    newlabel = ''
-                                                    break
-                                            }
-                                            return {
-                                                ...item,
-                                                label: newlabel,
-                                            }
-                                        })
-                                    }
-                                />
-                            </RefinementChoices>
                         </SelectionsWrapper>
                     </ScrollTo>
-                    <SearchPageResults_TextList indices={props.indices} />
-                    {/* <SearchPageResults
+                    {/* <SearchPageResults_TextList indices={props.indices} /> */}
+                    <SearchPageResults
                         show={query && query.length > 0 && hasFocus}
                         indices={props.indices}
                     />
-                    <AlgoliaPagination /> */}
+                    <AlgoliaPagination />
                 </InstantSearch>
             </div>
         </StyledWrapper>

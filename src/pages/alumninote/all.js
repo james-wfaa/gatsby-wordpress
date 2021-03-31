@@ -32,7 +32,7 @@ const NoteAll = ({ data }) => {
             grid-column-gap: ${sizes.s24};
         }
     `
-    
+
     return (
         <Layout>
             <PageSection heading="All Alumni Notes">
@@ -49,21 +49,3 @@ const NoteAll = ({ data }) => {
 
 export default NoteAll
 
-export const query = graphql`
-    query AllAlumniNotes {
-        notes: allWpClassnote(limit: 100, sort: { order: DESC, fields: date }) {
-            nodes {
-                title
-                excerpt
-                featuredImage {
-                    node {
-                        localFile {
-                            ...HeroImage
-                        }
-                    }
-                }
-                url: uri
-            }
-        }
-    }
-`
