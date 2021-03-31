@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from "styled-components"
 import { useSpring, animated } from "react-spring"
-import { colors, sizes } from "../css-variables"
+import { colors, sizes, breakpoints } from "../css-variables"
 
 const StyledWrapper = styled.div`
   background-color: ${colors.navcardGrey};
@@ -51,6 +51,32 @@ const StyledInputWrapper = styled.div`
     font-weight: bold;
     color: ${colors.badgerRed};
     font-size: ${sizes.s16};
+  }
+  .navIcon{
+    background: #c5050c;
+    height: 18px;
+    width: 2px;
+    margin: 0.5em auto;
+    position: absolute;
+    right: 12px;
+    top: 7px;
+    @media screen and ${breakpoints.tabletS} {
+      top: 10px;
+      right: 26px;
+
+    }
+    &:after {
+      background: #c5050c;
+      content: "";
+      height: 2px;
+      left: -8px;
+      position: absolute;
+      top: 8px;
+      width: 18px;
+    }
+    &.open{
+      transform: rotate(45deg);
+    }
   }
   .menuIcon{
     display: inline-block;
@@ -138,7 +164,9 @@ const isOpenClass = open ? 'open' : ''
             
           </div>
           <p>
-            { useAsMenu ? (<div className={`menuIcon ${isOpenClass}`}><span></span></div>) : (<span
+            { useAsMenu ? (<div className={`menuIcon ${isOpenClass}`}><span></span></div>) 
+            : useAsNav ? (<div className={`navIcon ${isOpenClass}`}><span></span></div>)
+            :(<span
               style={{
                 transform: !open
                   ? `rotate(-180deg) scale(1.5, 1)`

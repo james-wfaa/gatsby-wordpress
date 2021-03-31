@@ -1,7 +1,7 @@
 import React from "react"
 import parse from 'html-react-parser';
 import styled from 'styled-components'
-import { colors, fonts,sizes, mixins } from '../css-variables'
+import { colors, fonts,sizes, mixins, breakpoints } from '../css-variables'
 import Accordian from "../parts/Accordian"
 
 const AccordionNavigation = ({ block, className }) => {
@@ -57,8 +57,8 @@ margin-top: 56px;
 .AccordionNavigation{
     .AccordionWrap{
         background-color: ${colors.bgWhite};
-        margin: 32px;
-        border-top: 8px ${colors.cardTitleBg} solid;
+        margin: 24px;
+        border-bottom: 8px ${colors.cardTitleBg} solid;
 
         h3{
             margin-bottom: 0px;
@@ -66,8 +66,8 @@ margin-top: 56px;
             color: ${colors.navMenuBlack};
             font-weight: bold;
             font-style: italic;
-            font-size: ${sizes.s28};
-            line-height: ${sizes.s34};
+            font-size: ${sizes.s24};
+            line-height: ${sizes.s30};
             text-transform: none;
             text-align: left;
         }
@@ -77,11 +77,30 @@ margin-top: 56px;
             font-size: ${sizes.s20};
             line-height: ${sizes.s28};
             margin-bottom: 16px;
+            padding-top: 32px;
+            border-top: 2px solid ${colors.navMenuBorderGrey};
+        }
+
+        h4:first-child{
+            padding-top: 0px;
+            border-top: none;
+        }
+
+        @media screen and ${breakpoints.tabletS} {
+            margin: 32px;
+            h3{
+                font-size: ${sizes.s28};
+                line-height: ${sizes.s34};
+            }
+        }
+
+        .separator{
+            ${mixins.separator}
         }
     }
 
-    .AccordionWrap:first-child{
-        border-top: none;
+    .AccordionWrap:last-child{
+        border-bottom: none;
     }
 
     .AccordionInputWrap{
