@@ -20,6 +20,26 @@ const ChapterSearch = () => {
     return [...new Set(valueArr)].sort()
   }
 
+/*
+  const getStateOptions = chapterData => {
+    let valueArr = []
+    chapterData.forEach(chapter => {
+      if (chapter?.chapterDetails?.csState) {
+        console.log(chapter.chapterDetails.csState)
+        let stateObj = stateoptions.filter(obj => {
+          return obj.VALUE === chapter.chapterDetails.csState
+        })
+        valueArr.push(stateObj[0])
+      }
+      
+    })
+    return [...new Set(valueArr)].sort((a, b) => (a.LABEL > b.LABEL) ? 1 : -1)
+
+  }
+
+  console.log(getStateOptions(chapterData))
+  */
+
   const stateoptions = [
     { LABEL: "Alabama", VALUE: "AL" },
     { LABEL: "Alaska", VALUE: "AK" },
