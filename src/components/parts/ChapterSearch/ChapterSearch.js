@@ -23,12 +23,8 @@ const ChapterSearch = () => {
   const stateoptions = [
     { LABEL: "Alabama", VALUE: "AL" },
     { LABEL: "Alaska", VALUE: "AK" },
-    { LABEL: "American Samoa", VALUE: "AS" },
     { LABEL: "Arizona", VALUE: "AZ" },
     { LABEL: "Arkansas", VALUE: "AR" },
-    { LABEL: "Armed Forces (AE)", VALUE: "AE" },
-    { LABEL: "Armed Forces Americas", VALUE: "AA" },
-    { LABEL: "Armed Forces Pacific", VALUE: "AP" },
     { LABEL: "California", VALUE: "CA" },
     { LABEL: "Colorado", VALUE: "CO" },
     { LABEL: "Connecticut", VALUE: "CT" },
@@ -36,7 +32,6 @@ const ChapterSearch = () => {
     { LABEL: "District Of Columbia", VALUE: "DC" },
     { LABEL: "Florida", VALUE: "FL" },
     { LABEL: "Georgia", VALUE: "GA" },
-    { LABEL: "Guam", VALUE: "GU" },
     { LABEL: "Hawaii", VALUE: "HI" },
     { LABEL: "Idaho", VALUE: "ID" },
     { LABEL: "Illinois", VALUE: "IL" },
@@ -65,7 +60,6 @@ const ChapterSearch = () => {
     { LABEL: "Oklahoma", VALUE: "OK" },
     { LABEL: "Oregon", VALUE: "OR" },
     { LABEL: "Pennsylvania", VALUE: "PA" },
-    { LABEL: "Puerto Rico", VALUE: "PR" },
     { LABEL: "Rhode Island", VALUE: "RI" },
     { LABEL: "South Carolina", VALUE: "SC" },
     { LABEL: "South Dakota", VALUE: "SD" },
@@ -73,7 +67,6 @@ const ChapterSearch = () => {
     { LABEL: "Texas", VALUE: "TX" },
     { LABEL: "Utah", VALUE: "UT" },
     { LABEL: "Vermont", VALUE: "VT" },
-    { LABEL: "Virgin Islands", VALUE: "VI" },
     { LABEL: "Virginia", VALUE: "VA" },
     { LABEL: "Washington", VALUE: "WA" },
     { LABEL: "West Virginia", VALUE: "WV" },
@@ -195,7 +188,7 @@ const ChapterSearch = () => {
               value={selectedCountry}
             >
               <option value="All Countries" disabled>
-                All Countries
+                Search by Country
               </option>
               {getCountryOptions(chapterData).map(country => {
                 return <option value={country}>{country}</option>
@@ -210,7 +203,7 @@ const ChapterSearch = () => {
               value={selectedState}
             >
               <option className="titleOption" value="All U.S. States" disabled>
-                All U.S. States
+                Search by U.S. State
               </option>
               {stateoptions.map(state => {
                 return <option value={state.VALUE}>{state.LABEL}</option>
