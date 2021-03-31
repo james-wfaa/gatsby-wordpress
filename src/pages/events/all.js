@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { sizes, breakpoints } from '../../components/css-variables'
 import Layout from '../../components/layout'
 import PageSection from '../../components/page-sections/PageSection'
+import AlgoliaArchivePage from '../../components/parts/AlgoliaSearch/AlgoliaArchivePage'
 import StoryContentCard from '../../components/content-blocks/StoryContentCard'
 
 const EventsAll = ({ data }) => {
@@ -31,21 +32,26 @@ const EventsAll = ({ data }) => {
             grid-column-gap: ${sizes.s24};
         }
     `
-    let cards = data.events.nodes.map(card => {
-        return (
-            <StoryContentCard
-                category={card.category}
-                title={card.title}
-                url={card.url}
-                excerpt={card.excerpt}
-                img={card?.featuredImage?.node?.localFile}
-            />
-        )
-    })
+    // let cards = data.events.nodes.map(card => {
+    //     return (
+    //         <StoryContentCard
+    //             category={card.category}
+    //             title={card.title}
+    //             url={card.url}
+    //             excerpt={card.excerpt}
+    //             img={card?.featuredImage?.node?.localFile}
+    //         />
+    //     )
+    // })
     return (
         <Layout>
             <PageSection heading="All Events">
-                <CardContainer>{cards}</CardContainer>
+            <AlgoliaArchivePage
+                indices={[{name: "All"}]}
+                results={false}
+                filters={'type:Event'}
+            />
+                {/* <CardContainer>{cards}</CardContainer> */}
             </PageSection>
         </Layout>
     )
