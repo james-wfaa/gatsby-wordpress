@@ -1,40 +1,49 @@
-import { useState, useEffect, useLayoutEffect } from "react"
+import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 
 export const useWindowSize = () => {
-  const [windowSize, setWindowSize] = useState({
-    width: undefined,
-    height: undefined,
-  })
+    const [windowSize, setWindowSize] = useState({
+        width: undefined,
+        height: undefined,
+    })
 
-  useEffect(() => {
-    function handleResize() {
-      // Set window width/height to state
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      })
-    }
+    useEffect(() => {
+        function handleResize() {
+            // Set window width/height to state
+            setWindowSize({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            })
+        }
 
-    // Add event listener
-    window.addEventListener("resize", handleResize)
+        // Add event listener
+        window.addEventListener('resize', handleResize)
 
-    // Call handler right away so state gets updated with initial window size
-    handleResize()
+        // Call handler right away so state gets updated with initial window size
+        handleResize()
 
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize)
-  }, []) // Empty array ensures that effect is only run on mount
+        // Remove event listener on cleanup
+        return () => window.removeEventListener('resize', handleResize)
+    }, []) // Empty array ensures that effect is only run on mount
 
-  return windowSize
+    return windowSize
 }
 
 export const useLockBodyScroll = () => {
-  useLayoutEffect(() => {
-    // Get original body overflow
-    const originalStyle = window.getComputedStyle(document.body).overflow
-    // Prevent scrolling on mount
-    document.body.style.overflow = "hidden auto"
-    // Re-enable scrolling when component unmounts
-    return () => (document.body.style.overflow = originalStyle)
-  }, []) // Empty array ensures effect is only run on mount and unmount
+    useLayoutEffect(() => {
+        // Get original body overflow
+        const originalStyle = window.getComputedStyle(document.body).overflow
+        // Prevent scrolling on mount
+        document.body.style.overflow = 'hidden auto'
+        // Re-enable scrolling when component unmounts
+        return () => (document.body.style.overflow = originalStyle)
+    }, []) // Empty array ensures effect is only run on mount and unmount
+}
+
+export const useIsMounted = () => {
+  const isMounted = useRef(false)
+  useEffect(() => {
+      isMounted.current = true
+      return () => (isMounted.current = false)
+  }, [])
+  return isMounted
 }
