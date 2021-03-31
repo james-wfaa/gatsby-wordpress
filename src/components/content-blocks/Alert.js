@@ -50,7 +50,7 @@ import Cookies from "js-cookie";
           </div>
         </div>
       </StyledAlert> : 
-      marketingInterruptorText && !marketingCookieStatus ? 
+      !alertText && marketingInterruptorText && !marketingCookieStatus ? 
       <StyledMarketingInterruptor id="alert">
         <div className="alertContentWrap">
           <div className="alertcontent" dangerouslySetInnerHTML={{__html: marketingInterruptorText}}></div>
@@ -183,7 +183,7 @@ const StyledMarketingInterruptor = styled.div`
     padding-right: 32px;
   }
   h1,h2,h3,h4,h5,h6{
-    margin: 0 8px 24px 0;
+    margin: 0 8px 12px 0;
     padding:0;
     color:#C5050C;
     font-size: ${sizes.s24};
