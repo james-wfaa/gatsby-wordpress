@@ -89,33 +89,6 @@ export const query = graphql`
         nodes {
           name
           slug
-          posts{
-            nodes {
-              title
-              url: uri
-              excerpt
-              featuredImage {
-                node {
-                  localFile {
-                    childImageSharp {
-                      fluid(maxWidth: 712) {
-                        base64
-                        tracedSVG
-                        srcWebp
-                        srcSetWebp
-                        originalImg
-                        originalName
-                        src
-                        srcSet
-                        aspectRatio
-                        sizes
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
         }
       }
       products {
@@ -156,6 +129,12 @@ export const query = graphql`
               }
               askFlamingle {
                 abeQuestioner
+              }
+              acfAlternatePostType{
+                alternateposttype
+              }
+              videoFormat {
+                vimeoId
               }
             }
           }

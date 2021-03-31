@@ -127,6 +127,8 @@ export const colors = {
     flamingleSocialGrey: baseColors.darkerGrey,
     flamingleCardBG: baseColors.lightPink,
     flamingleCardHoverDiagonals: baseColors.darkRed,
+    searchFontGrey: baseColors.darkGrey,
+    tableRowGrey: baseColors.lightestGrey,
 }
 
 export const size = {
@@ -357,6 +359,9 @@ export const mixins = {
         position: relative;
         padding-bottom:  ${sizes.s40};
         margin-bottom: ${sizes.s58};
+        &.excerpt {
+            margin-bottom: ${sizes.s32};
+        }
         
         &:after {
             position: absolute;
@@ -425,6 +430,7 @@ export const mixins = {
     }`,
     imageWithCaption: `{
         figure {
+            width: 100%;
             max-width: 254px;
             margin: 0;
             @media screen and ${breakpoints.tabletS} {
@@ -440,7 +446,6 @@ export const mixins = {
 
             img {
                 width: 100%;
-
             }
             figcaption {
                 text-align: left;
@@ -466,6 +471,12 @@ export const mixins = {
                 color: ${colors.captionGrey};
                 font-size: ${sizes.s16};
                 font-weight: bold;
+            }
+        }
+        &.pillar {
+            width: 254px;
+            @media screen and ${breakpoints.tabletS} {
+                width: 344px;
             }
         }
     }`,

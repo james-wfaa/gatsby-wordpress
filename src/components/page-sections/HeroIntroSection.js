@@ -21,14 +21,18 @@ const HeroIntroSection = ({
   excerpt,
   buttons,
   carouselItems,
-  productPage
+  productPage,
+  imageWidth
 }) => {
   const { width } = useWindowSize();
   let size
   if (heroSize === 'jumbo') {
     size = width > 655 ? "calc(100vh - 118px)" : "calc(100vh - 86px)"
   }
-  
+
+  let imageWidthClass = imageWidth ? 'constrainWidth' : null
+  let imageHeightClass = imageWidth ? ' constrainHeight' : null
+
   const background = typeof heroImage !== "undefined" && heroImage !== null
 
   let classes = className
@@ -71,10 +75,10 @@ const HeroIntroSection = ({
   let redboxClass = background
     ? `redbox redbox--background`
     : `redbox`
-  let downscrollClass = `${className}__downscroll`
+  let downscrollClass = `${className}__downscroll downscroll`
   if (heroSize !== "jumbo") {
     redboxClass += ` redbox--slim`
-    downscrollClass += ` ${className}__downscroll--slim`
+    downscrollClass += ` ${className}__downscroll--slim downscroll`
     classes += ` ${className}--slim`
   }
 
@@ -91,7 +95,7 @@ const HeroIntroSection = ({
   return (
     <div className={classes}>
       {videoURL ? (
-        <VimeoVideo videoURL={videoURL} heroSize={heroSize} heroHeading={heroHeading}/>
+        <VimeoVideo videoURL={videoURL} heroSize={heroSize} />
       ) : ( background && heroImage?.childImageSharp?.fluid ) ? (
         <div style={{height: `${size}`}}>
         <BackgroundImage
@@ -124,30 +128,30 @@ const HeroIntroSection = ({
           )}
         </>
       : null}
-      {productPage ? <div className="standardProductLabel"></div> :
-         (heroSize === 'slim') ? 
-         <div style={{ position: `relative` }}>
-            <a
-          className={downscrollClass}
-          href={`#${className}__downscroll`}
-          title="Scroll down to content"
-          css={downscrollStyle}
-        >
-            <div className="downscroll_after" style={{backgroundColor: variantObject.background_color}}></div>
-          </a>
-        </div> 
-      : 
-      <div style={{ position: `relative` }}>
-        <a
-          className={downscrollClass}
-          href={`#${className}__downscroll`}
-          title="Scroll down to content"
-          css={downscrollStyle}
-        >
-          <div className="downscroll_main">down</div>
-          <div className="downscroll_after" style={{backgroundColor: variantObject.background_color}}></div>
-        </a>
-      </div> 
+      {productPage 
+        ? <div className="standardProductLabel"></div> 
+        : (heroSize === 'slim') 
+          ? <div style={{ position: `relative` }}  className={imageWidthClass}>
+              <a
+                className={downscrollClass}
+                href={`#${className}__downscroll`}
+                title="Scroll down to content"
+                css={downscrollStyle}
+              >
+                <div className="downscroll_after" style={{backgroundColor: variantObject.background_color}}></div>
+              </a>
+            </div> 
+          : <div style={{ position: `relative` }}>
+              <a
+                className={downscrollClass}
+                href={`#${className}__downscroll`}
+                title="Scroll down to content"
+                css={downscrollStyle}
+              >
+                <div className="downscroll_main">down</div>
+                <div className="downscroll_after" style={{backgroundColor: variantObject.background_color}}></div>
+              </a>
+            </div> 
       }
 
       <div className={redboxClass}>
@@ -190,6 +194,7 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
   &--slim {
     margin-bottom: -40px;
   }
+
   .downanchor {
     display: block;
     width: 1px;
@@ -353,6 +358,48 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
     div.standardProductLabel:before{
       top: -81px;
       height:81px;
+    }
+  }
+  .constrainWidth{
+    max-width: 718px;
+    margin: 0 auto;
+    div{
+      @media screen and ${breakpoints.laptopS} {
+        background-position: center bottom !important;
+        background-size: contain !important;
+      }
+      &:before{
+        @media screen and ${breakpoints.laptopS} {
+          background-position: center bottom !important;
+          background-size: contain !important;
+        }
+      }
+      &:after{
+        @media screen and ${breakpoints.laptopS} {
+          background-position: center bottom !important;
+          background-size: contain !important;
+        }
+      }
+    }
+    .downscroll {
+      &:before {
+        display: none;
+      }
+      
+      &--slim {
+        display: none;
+      }
+    }
+    .downscroll_after {
+      display: none;
+    }
+  }
+  .constrainHeight{
+    div{
+        @media screen and ${breakpoints.laptopS} {
+          min-height: 300px;
+        }
+      }
     }
   }
 `

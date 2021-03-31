@@ -2,26 +2,34 @@ import React from 'react'
 import ContentCard from "../../components/content-blocks/ContentCard"
 import SimpleSlider from './SimpleSlider'
 import StoryContentCard from '../content-blocks/StoryContentCard'
+import EventContentCard from '../content-blocks/EventContentCard'
 import LeftArrow from "../../components/parts/SliderArrowLeft"
 import RightArrow from "../../components/parts/SliderArrowRight"
 
 const SimpleSliderItems = ({ items, size, type }) => {
+  //console.log(items)
     let myItems = []
     items.forEach((item) => {
         //console.log(item)
         const { featuredImage: img } = item
-        const cardImg = (img ?.node?.localFile) ? img.node.localFile : null
-        if(type === "news"){
-          myItems.push(
-            <StoryContentCard size={size} img={cardImg} {...item} />
-          )
+        const cardImg = (img?.node?.localFile) ? img.node.localFile : null
+        switch (type) {
+          case 'news': 
+            myItems.push(
+              <StoryContentCard size={size} img={cardImg} {...item} />
+            )
+            break
+          case 'event':
+            myItems.push(
+              <EventContentCard size={size} img={cardImg} {...item} />
+            )
+            break
+          default: 
+            myItems.push(
+              <ContentCard size={size} img={cardImg} {...item} />
+            )
+            break
         }
-        else{
-          myItems.push(
-            <ContentCard size={size} img={cardImg} {...item} />
-          )
-        }
-        
       })
     myItems = myItems.filter(function( element ) {
         return element !== undefined;
@@ -32,7 +40,7 @@ const SimpleSliderItems = ({ items, size, type }) => {
       }
 
     return (
-        <SimpleSlider ko
+        <SimpleSlider 
             className="center"
             slidesToShow="1"
             dots

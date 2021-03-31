@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useMemo } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { colors, sizes, breakpoints } from "../../css-variables"
 import PageSection from "../../page-sections/PageSection"
-import AllChaptersData from "../../page-sections/AllChapters"
+import AllChaptersData from "../../collections/AllChapters"
 // import countryList from "react-select-country-list"
 import ChapterCard from "./ChapterCard"
 
@@ -99,12 +99,26 @@ const ChapterSearch = () => {
     margin: 0 auto;
     @media screen and ${breakpoints.tablet} {
       grid-template-columns: 1fr 1fr;
+      width: 530px;
     }
   `
 
   const FilteredDiv = styled.div`
     position: relative;
     width: 252px;
+    color: ${colors.titleWhite};
+    &:after{
+      content:'';
+          border: solid #ffffff;
+          border-width: 0 2px 2px 0;
+          display: inline-block;
+          padding: 4px;
+          transform: rotate(45deg);
+          -webkit-transform: rotate(45deg);
+          position:absolute;
+          left: 14px;
+          top:16px;
+    }
   `
   const FilteredSelect = styled.select`
     position: relative;
@@ -170,8 +184,8 @@ const ChapterSearch = () => {
         topBorder
         heading="Find Badgers Near You"
         excerpt="Use the filters below to find a chapter in your country or U.S. State"
-      ></PageSection>
-      <StyledButtonWrapper>
+      >
+         <StyledButtonWrapper>
         <FilterBox>
           <FilteredDiv>
             <FilteredSelect
@@ -195,7 +209,7 @@ const ChapterSearch = () => {
               onChange={e => setSelectedState(e.target.value)}
               value={selectedState}
             >
-              <option value="All U.S. States" disabled>
+              <option className="titleOption" value="All U.S. States" disabled>
                 All U.S. States
               </option>
               {stateoptions.map(state => {
@@ -219,6 +233,8 @@ const ChapterSearch = () => {
           filteredChapters.map(chapter => <ChapterCard chapter={chapter} />)
         )}
       </ResultsBoxWrapper>
+      </PageSection>
+     
     </StyledWrapper>
   )
 }

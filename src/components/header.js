@@ -52,34 +52,18 @@ const Header = ({ noborder }) => {
         <div className={`__rednav ${open || opensearch ? "suppress" : ""}`}>
           <div className="inner">
             <ul>
-              <li>
-                <Link
-                  to="/email"
-                  style={{
-                    textDecoration: `none`,
-                  }}
-                >
-                  Activities Near Me
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/update-info"
-                  style={{
-                    textDecoration: `none`,
-                  }}
-                >
-                  Update My Info
-                </Link>
+            <li>
+              <Link
+                to="/update-info"
+              >
+                Update My Info
+              </Link>
               </li>
               <li>
                 <Link
                   to="/email"
-                  style={{
-                    textDecoration: `none`,
-                  }}
                 >
-                  Log into Email
+                  Log Into Email
                 </Link>
               </li>
               

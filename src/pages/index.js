@@ -66,16 +66,32 @@ const IndexPage = () => (
       </ul>
       <h3>Story Pages</h3>
       <ul>
-      
         <li>
           <Link to="/news/uw-now-grebe-lyall-nettles-venable/">Story Page - small featured image </Link>
         </li>
-       
-        <li>
-          <Link to="/news/wordpress-story">Story Page - Long &amp; Winding Road (wide feature image) </Link>
-        </li>
         <li>
           <Link to="/news/refocused">Story Page - "Refocused" (column-width feature image) </Link>
+        </li> 
+        <li>
+          <Link to="/news/best-of-the-best">Story Page - "Best of the Best" </Link>
+        </li>
+        <li> 
+          <Link to="/news/quick-tips-for-the-eager-entrepreneur">Story Page - "Quick Tips for the Eager Entrepreneur</Link>
+        </li> 
+        <li>
+          <Link to="/news/poll-best-campus-fireplace/">POLL - "Best Campus Fireplace" </Link>
+        </li>
+        <li>
+          <Link to="/news/poll-flamingle-bowl-game/">POLL - "Flamingo Bowl Game" </Link>
+        </li>
+        <li>
+          <Link to="/news/serious-vs-satire-daily-cardinal/">QUIZ - "Serious vs Satire" </Link>
+        </li>
+        <li>
+          <Link to="/news/presidents-and-chancellors-matching/">QUIZ - "Presidents and Chancellors Matching" </Link>
+        </li>
+        <li>
+          <Link to="/news/homecoming-highlights-video-2016/">VIDEO - "Homecoming Highlights Video 2016" </Link>
         </li>
       </ul>
       <h3>Flamingle Pages</h3>
@@ -105,6 +121,12 @@ const IndexPage = () => (
       </li>
       <li>
         <Link to="/event/badger-cafe-threats-to-peace-around-the-world/">Badger Café: “Threats to Peace around the World”</Link>
+      </li>
+    </ul>
+    <h3>Modules</h3>
+    <ul>
+      <li>
+        <Link to="/staff-search">Staff Search</Link>
       </li>
     </ul>
      

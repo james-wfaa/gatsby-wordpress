@@ -1,35 +1,29 @@
 import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import { breakpoints, fonts, colors } from "../../css-variables"
+import { breakpoints, sizes, fonts, colors } from "../../css-variables"
 
 const CardWrapper = styled.div`
-  padding: 0 0 32px 0;
+  
   margin: 0;
   max-width: 716px;
+  text-align: left;
+  padding: 0 32px 32px;
+  @media screen and ${breakpoints.tabletL} {
+    padding: 0 0 32px 0;
+  }
   .cardType {
-    font-size: 13px;
+    font-size: ${sizes.s14};
+    line-height: ${sizes.s14};
     color: ${colors.categoryGrey};
+    margin-bottom: ${sizes.s16};
     font-weight: 800;
-    @media screen and ${breakpoints.tabletS} {
-      font-size: 14px;
-    }
+    text-transform: uppercase;
   }
-  .tags {
-    font-size: 14px;
-    color: ${colors.categoryGrey};
-    font-weight: bold;
-    @media screen and ${breakpoints.tabletS} {
-      font-size: 15px;
-    }
-  }
-  .datetime,
   .excerpt,
   .excerpt > * {
-    font-size: 16px;
-    @media screen and ${breakpoints.tabletS} {
-      font-size: 18px;
-    }
+    font-size: ${sizes.s18};
+    line-height: ${sizes.s26};
   }
   a {
     cursor: pointer;
@@ -39,6 +33,11 @@ const CardWrapper = styled.div`
     }
     p:not(:last-child) {
       padding-bottom: 16px;
+    }
+    &:hover {
+      h3 {
+        text-decoration: underline;
+      }
     }
   }
   a:hover,
@@ -59,10 +58,6 @@ const CardWrapper = styled.div`
       font-size: 26px;
     }
   }
-  .datetime {
-    font-weight: bold;
-    padding-bottom: 24px;
-  }
   &:not(.topResult) {
     ::before {
       content: "";
@@ -70,7 +65,7 @@ const CardWrapper = styled.div`
       height: 8px;
       width: 100%;
       background-color: ${colors.cardTitleBg};
-      margin-bottom: 32px;
+      margin-bottom: 26px;
     }
   }
   &.topResult {
@@ -89,34 +84,12 @@ const CardWrapper = styled.div`
   }
 `
 
-const CardHeader = styled.div`
-  background-color: ${colors.cardBorder};
-  p {
-    color: ${colors.bgWhite};
-    font-size: 14px;
-    .bestBet {
-      color: #00ccff;
-    }
-  }
-`
-
-const DetailsDiv = styled.div`
-  background: ${colors.cardTitleBg};
-  padding: 16px 0 0 0;
-  margin-bottom: 24px;
-`
-
 const ChapterCard = ({ chapter }) => {
   return (
     <CardWrapper>
+      <div className="cardType">Chapter/Groups</div>
       <Link to={`/chapter/${chapter.chapterDetails.csUrl}`}>
-        <>
-          <p>
-            <span className="cardType">Chapter/Groups</span>
-          </p>
-          <h3>{chapter.title}</h3>
-          {/* <p className="datetime">{parsedDate}, {parsedTime} {locationString}</p> */}
-        </>
+      <h3>{chapter.title}</h3>
         {chapter.content ? (
           <div
             className="excerpt"

@@ -5,10 +5,8 @@ import EventContentCard from '../content-blocks/EventContentCard'
 
 import styled from 'styled-components'
 
-const CardSet = ({className, items, children, num, type="news" }) => {
-   //console.log(type)
-    //const cards = items.map
-    // trim array to the max size
+const CardSet = ({className, items, children, num, size="M", type="news" }) => {
+
     const limitedItems = (items) ? items.slice(0, num) : null
 
     let cards = (children)
@@ -19,11 +17,12 @@ const CardSet = ({className, items, children, num, type="news" }) => {
 
         const { featuredEvent, featuredImage: img } = item
         const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-
-        //console.log('num: ',num)
-        return (num === 3)
-            ? type === "news" ? (<StoryContentCard size="S" img={cardImg} {...item} />) : (<EventContentCard size="S" img={cardImg} {...item} />)
-            : type === "news" ? (<StoryContentCard size="M" img={cardImg} {...item} />) : (<EventContentCard size="M" img={cardImg} {...item} />)
+        console.log("CardSet")
+        console.log(item)
+        
+        return (type === "news" )
+            ? (<StoryContentCard size={size} img={cardImg} {...item} />) 
+            : (<EventContentCard size={size} img={cardImg} {...item} url={item.link} />)
         })
     
     return (

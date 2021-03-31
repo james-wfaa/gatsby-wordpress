@@ -18,14 +18,18 @@ const InputSubfieldWrapper = ({
     labelFor,
     wrapClassName,
     wrapId,
+    fieldHidden
 }) => {
     //console.log(label)
+    const fieldHiddenClass = fieldHidden === true ? 'gform_hidden' : ''
+
     return (
         <div
             className={classnames(
                 wrapClassName,
                 errors && 'gravityform__field--error',
-                cssClass, 'subfield__wrapper'
+                cssClass, 'subfield__wrapper',
+                fieldHiddenClass
             )}
             id={wrapId}
         >

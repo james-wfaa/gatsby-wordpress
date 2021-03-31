@@ -37,7 +37,7 @@ function WordPressPage({ data }) {
 
   }
   )
-
+  //console.log(posts)
   const cardGridPosts = posts.nodes.slice(0,9)
   //console.log('cardGridPosts:',cardGridPosts)
   let postCards = cardGridPosts.map((post) => {
@@ -54,7 +54,7 @@ function WordPressPage({ data }) {
       { featuredImage && featuredImage.node && (
       <HeroIntroSection
           heroImage={featuredImage.node.localFile}
-          heroHeading="<span>Badger</span> ON"
+          videoURL="https://player.vimeo.com/external/524412999.hd.mp4?s=1fc14eaf00fbfe6d5453b7a3bdda0b11487479cb&profile_id=175"
           redHeading={title}
           excerpt={excerpt}
       />)}
@@ -113,6 +113,12 @@ export const query = graphql`
                       }
                     }
                   }
+                }
+                acfAlternatePostType{
+                  alternateposttype
+                }
+                videoFormat {
+                  vimeoId
                 }
               }
             }
@@ -183,6 +189,13 @@ export const query = graphql`
           linkAuthor
           linkUrl
         }
+        acfAlternatePostType{
+          alternateposttype
+        }
+        videoFormat {
+          vimeoId
+        }
+  
       }
     }
 

@@ -125,6 +125,9 @@ export const query = graphql`
       }
       featuredImage {
         node {
+          mediaDetails {
+            width
+          }
           localFile {
             ...HeroImage
           }
@@ -180,6 +183,12 @@ export const query = graphql`
                       }
                     }
                   }
+                }
+                acfAlternatePostType{
+                  alternateposttype
+                }
+                videoFormat {
+                  vimeoId
                 }
               }
             }
@@ -291,6 +300,12 @@ export const query = graphql`
             originalContent
             dynamicContent
             saveContent
+            innerBlocks {
+              name
+              originalContent
+              dynamicContent
+              saveContent
+            }
           }
         }
       }
@@ -312,8 +327,8 @@ export const query = graphql`
           sponsorLogo {
             localFile {
               childImageSharp {
-                fixed(width: 312) {
-                  ...GatsbyImageSharpFixed
+                fluid(maxWidth: 312) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }

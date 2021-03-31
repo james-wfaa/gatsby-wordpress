@@ -2,18 +2,19 @@ import React from "react"
 import ContentCardD from './ContentCardD'
 import { shortDate } from "../../utils/tools"
 
-const EventCardD = ({ startDate, endDate, title, eventsCategories, venue, excerpt, url, urlText })=> {
+const EventCardD = ({ startDate, endDate, title, eventsCategories, products, eventDetails, venue, excerpt, url, urlText })=> {
 
+
+    //console.log(url)
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
+    const { virtualEvent } = eventDetails
 
     /* let's make this a helper available anywhere we need to nicely shorten an excerpt */
     const maxLength = (title.length <= 28) ? 200 : 160
     const endIdx = (excerpt) ? excerpt.indexOf(' ', maxLength) : null
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength && endIdx > 0) ? excerpt.substring(0,excerpt.indexOf(' ', maxLength)) + ' ...' : excerpt
-
-
-    const categories = (eventsCategories && eventsCategories.nodes && eventsCategories.nodes.length > 0) ? eventsCategories.nodes : null
-    const label = categories && categories[0].name ? categories[0].name : null
+    const label = (products?.nodes && Array.isArray(products.nodes) && products.nodes[0]?.name )? products.nodes[0].name : null
+    //console.log(label)
 
     const fmtStartDate = shortDate(startDate)
     let fmtEndDate = null
@@ -21,6 +22,7 @@ const EventCardD = ({ startDate, endDate, title, eventsCategories, venue, excerp
         fmtEndDate = shortDate(endDate)
     }
     const dateLinkText = (fmtEndDate) ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
+   
     return (
         <ContentCardD
           title={title}
@@ -30,6 +32,7 @@ const EventCardD = ({ startDate, endDate, title, eventsCategories, venue, excerp
           moreLinkText={moreLinkText}
           url={url}
           venue={venue}
+          virtualEvent={virtualEvent}
           startDate={startDate}
           dateLinkText={dateLinkText}
         />

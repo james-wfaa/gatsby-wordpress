@@ -8,7 +8,7 @@ import RecentPosts from "../page-sections/RecentPosts"
 import Sponsor from "../content-blocks/Sponsor"
 import PromoCardD from "../content-blocks/PromoCardD"
 import HeroIntroSection from "../page-sections/HeroIntroSection"
-import AllChaptersData from "../page-sections/AllChapters"
+import AllChaptersData from "../collections/AllChapters"
 
 function WordPressGroupPage({  page, options }) {
   const { chapters: chaptersText, varsityChapterText, recognizedChapterText, bascomChapterText } = options
@@ -40,8 +40,9 @@ const featuredbutton = [
 ]
 const { title,  excerpt, wpChildren, featuredImage, groups } = page
 
-
-
+const imageWidth = featuredImage?.node?.mediaDetails?.width
+  ? featuredImage.node.mediaDetails.width
+  : null
   if (wpChildren?.nodes) {
     wpChildren.nodes.sort((a,  b) => {
       
@@ -94,6 +95,7 @@ const { title,  excerpt, wpChildren, featuredImage, groups } = page
           heroSize="slim"
           variant="white"
           excerpt={excerpt}
+          imageWidth={imageWidth}
         />
       )}
       { !featuredImage && (

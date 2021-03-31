@@ -4,20 +4,25 @@ import {  mixins } from '../css-variables'
 
 import Img from 'gatsby-image'
 
-const CardE = ({ className, img, caption, marginTop, center, enhancedHomepageCaption}) => {
+const CardE = ({ className, img, fooImage, alt, caption, marginTop, center, enhancedHomepageCaption, pillar}) => {
     
-    const marginTopClass = marginTop ? 'marginTop' : ''
-    const centerClass = center ? 'center' : ''
-    const enhancedHomepageCaptionClass = enhancedHomepageCaption ? 'enhancedHomepageCaption' : ''
+    const marginTopClass = marginTop ? ' marginTop' : ''
+    const centerClass = center ? ' center' : ''
+    const enhancedHomepageCaptionClass = enhancedHomepageCaption ? ' enhancedHomepageCaption' : ''
+    const pillarClass = (pillar) ? ' pillar' : ''
 
     return (
-        <div className={className}>
+        <div className={`${className}${pillarClass}`}>
             <figure >
                 {img && (
                     <Img 
-                        className={`${className}__img`}
+                        className={`${className}__img `}
                         fluid={img.childImageSharp.fluid}
+                        alt={alt}
                     />
+                )}
+                {fooImage && (
+                    <img alt={alt} src={fooImage} />
                 )}
             <figcaption className={`${marginTopClass} ${centerClass} ${enhancedHomepageCaptionClass}`}>{caption}</figcaption>
             </figure>
