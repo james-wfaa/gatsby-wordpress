@@ -16,26 +16,22 @@ const StyledClickWrapper = styled.div`
 `
 const StyledInputWrapper = styled.div`
 
-  &.navWrap{
-    @media screen and ${breakpoints.tabletS} {
-      width: max-content;
-    }
-    .menuTitle{
-      max-width: 215px;
-      @media screen and ${breakpoints.mobileL} {
-        max-width: 275px;
-      }
-      @media screen and ${breakpoints.tabletS} {
-        max-width: 500px;
-      }
-    }
-  }
   display: grid;
   grid-template-columns: 1fr 30px;
   max-width: 500px;
   margin: 0 auto;
   align-items: center;
   width: max-content;
+
+  &.navWrap{
+    width: 100%;
+    grid-template-columns: 85% 30px;
+    @media screen and ${breakpoints.tabletS} {
+      grid-template-columns: 1fr 30px;
+    }
+
+  }
+
   
   h4 {
     justify-self: center;
