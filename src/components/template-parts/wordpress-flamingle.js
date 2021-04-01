@@ -66,7 +66,7 @@ function BlogPost({ data }) {
       
     const thePosts = uniqueRelatedPosts.map(post => {
       const excerptLength = post.excerpt.length
-      const newExcerpt = post.excerpt.slice(3, excerptLength - 5);
+      const newExcerpt = decodeHtml(post.excerpt.slice(3, excerptLength - 5));
       const url = `/news${post.url}`
       return <PromoCardD title={newExcerpt} url={url} flamingle/>
     })
