@@ -107,8 +107,8 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         schema: {
-          requestConcurrency: 5, // currently set to undefined
-          previewRequestConcurrency: 2, // currently set to undefined
+          requestConcurrency: 5, 
+          previewRequestConcurrency: 2, 
           perPage: 50,
           typePrefix: `Wp`,
           timeout: 120 * 1000,
