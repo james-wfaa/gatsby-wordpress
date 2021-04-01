@@ -160,6 +160,11 @@ module.exports = {
                 : // and we don't actually need more than 5000 in production for this particular site
                   5000,
           },
+          MediaItem: {
+            localFile: {
+              requestConcurrency: 50
+            }
+          },
         },
       },
     },
