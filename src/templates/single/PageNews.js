@@ -24,17 +24,21 @@ function WordPressPage({ data }) {
   ]
 
   const cats = categories.map((item) => {
-    const { category, numberToShow } = item
+    const { category, product, numberToShow } = item
     if (category && category.name) {
       return (
-
         <PageSection heading={category.name} stagger>
           <CardSet items={category.posts.nodes} num={numberToShow} type="news"/>
         </PageSection>
       )
+    } else if (!category && product && product.name){
+        return (
+          <PageSection heading={product.name} stagger>
+            <CardSet items={product.posts.nodes} num={numberToShow} type="news"/>
+          </PageSection>
+        )
     }
     return (<div/>)
-
   }
   )
   //console.log(posts)
@@ -86,6 +90,44 @@ export const query = graphql`
       storyCategories {
         storycategoriesinner {
           category {
+            slug
+            name
+            posts {
+              nodes {
+                title
+                url: uri
+                excerpt
+                featuredImage {
+                  node {
+                    localFile {
+                      childImageSharp {
+                        fluid(maxWidth: 712) {
+                          base64
+                          tracedSVG
+                          srcWebp
+                          srcSetWebp
+                          originalImg
+                          originalName
+                          aspectRatio
+                          base64
+                          src
+                          srcSet
+                          sizes
+                        }
+                      }
+                    }
+                  }
+                }
+                acfAlternatePostType{
+                  alternateposttype
+                }
+                videoFormat {
+                  vimeoId
+                }
+              }
+            }
+          }
+          product {
             slug
             name
             posts {
