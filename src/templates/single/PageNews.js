@@ -37,7 +37,7 @@ function WordPressPage({ data }) {
 
   }
   )
-  console.log(posts)
+  //console.log(posts)
   const cardGridPosts = posts.nodes.slice(0,9)
   //console.log('cardGridPosts:',cardGridPosts)
   let postCards = cardGridPosts.map((post) => {
