@@ -50,9 +50,14 @@ function BlogPost({ data }) {
     { url: link, name: title },
   ]
 
-  //remove pesky paragraph tags on excerpt
+  function decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  }
+  //remove pesky paragraph tags on excerpt and decode html entities
   const excerptLength = excerpt.length
-  const flamingleExcerpt = excerpt.slice(3, excerptLength - 5);
+  const flamingleExcerpt = decodeHtml(excerpt.slice(3, excerptLength - 5));
 
   const createRelatedCards = () => {
      if(uniqueRelatedPosts.length > 9){
