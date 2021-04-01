@@ -15,12 +15,28 @@ const StyledClickWrapper = styled.div`
   cursor: pointer;
 `
 const StyledInputWrapper = styled.div`
+
+  &.navWrap{
+    @media screen and ${breakpoints.tabletS} {
+      width: max-content;
+    }
+    .menuTitle{
+      max-width: 215px;
+      @media screen and ${breakpoints.mobileL} {
+        max-width: 275px;
+      }
+      @media screen and ${breakpoints.tabletS} {
+        max-width: 500px;
+      }
+    }
+  }
   display: grid;
   grid-template-columns: 1fr 30px;
-  width: max-content;
   max-width: 500px;
   margin: 0 auto;
   align-items: center;
+  width: max-content;
+  
   h4 {
     justify-self: center;
     font-family: "Verlag A", "Verlag B";
@@ -143,7 +159,10 @@ const StyledInputWrapper = styled.div`
 const Accordian = ({opentext, closetext, children, useAsMenu, useAsNav}) => {
   const [open, setOpen] = useState(false)
 
-  const searchstyles = useSpring({ opacity: open ? 1 : 0, paddingBottom: `56px` })
+  const searchStylesPadding = useAsNav ? '0px' : '56px'
+  const navClassName = useAsNav ? "navWrap" : ""
+
+  const searchstyles = useSpring({ opacity: open ? 1 : 0, paddingBottom: searchStylesPadding })
 
   
 
@@ -156,7 +175,7 @@ const isOpenClass = open ? 'open' : ''
   return (
     <StyledWrapper className="AccordionWrap">
       <StyledClickWrapper onClick={() => clickHandler()} onKeyPress={() => clickHandler()} aria-label={useAsMenu ? menuToggleAriaLabel : null} tabIndex={useAsMenu ? '0' : null}>
-        <StyledInputWrapper className="AccordionInputWrap">
+        <StyledInputWrapper className={`AccordionInputWrap ${navClassName}`}>
           <div className="menuTitle">
             {useAsNav ? (<h3> {!open ? opentext : closetext}</h3>):(
               <div>{!open ? opentext : closetext}</div>
