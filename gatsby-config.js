@@ -107,8 +107,8 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         schema: {
-          requestConcurrency: 5, // currently set to undefined
-          previewRequestConcurrency: 2, // currently set to undefined
+          requestConcurrency: 5, 
+          previewRequestConcurrency: 2, 
           perPage: 50,
           typePrefix: `Wp`,
           timeout: 120 * 1000,
@@ -132,7 +132,7 @@ module.exports = {
             limit:
               process.env.NODE_ENV === `development`
                 ? // Lets just pull 50 posts in development to make it easy on ourselves.
-                  50
+                  100
                 : // and we don't actually need more than 5000 in production for this particular site
                   5000,
           },
@@ -159,6 +159,11 @@ module.exports = {
                   20
                 : // and we don't actually need more than 5000 in production for this particular site
                   5000,
+          },
+          MediaItem: {
+            localFile: {
+              requestConcurrency: 50
+            }
           },
         },
       },

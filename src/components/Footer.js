@@ -17,24 +17,37 @@ const navPolicy = {
   name:"WFAA POLICIES & INFO",
   items:[
     {
+      "title":"CASL Opt In",
+      "url":"/about/casl-opt-in/"
+    },
+    {
       "title":"Digital Community Guidelines",
-      "url":"https://www.advanceuw.org/digital-community-guidelines/?utm_source=uwalumni&utm_medium=referral&utm_content=footer"
+      "url":"https://www.advanceuw.org/digital-community-guidelines/?utm_source=uwalumni&utm_medium=referral&utm_content=footer",
+      "target": "_blank"
     },
     {
       "title": "Event Participation Waivers",
-      "url": "https://www.advanceuw.org/event-waiver/?utm_source=uwalumni&utm_medium=referral&utm_content=footer"
+      "url": "https://www.advanceuw.org/event-waiver/?utm_source=uwalumni&utm_medium=referral&utm_content=footer",
+      "target": "_blank"
     },
     {
-      "title":"Privacy",
-      "url":"https://www.advanceuw.org/privacy-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=footer"
+      "title":"GDPR",
+      "url":"/about/gdpr/"
+    },
+    {
+      "title":"Privacy Policy",
+      "url":"https://www.advanceuw.org/privacy-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=footer",
+      "target": "_blank"
     },
     {
       "title":"Refund/Event Cancellation",
-      "url":"https://www.advanceuw.org/refund-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=footer"
+      "url":"https://www.advanceuw.org/refund-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=footer",
+      "target": "_blank"
     },
     {
       "title":"Terms & Conditions",
-      "url":"https://www.advanceuw.org/terms-and-conditions/?utm_source=uwalumni&utm_medium=referral&utm_content=footer"
+      "url":"https://www.advanceuw.org/terms-and-conditions/?utm_source=uwalumni&utm_medium=referral&utm_content=footer",
+      "target": "_blank"
     }
 ]};
 const navAbout = {
@@ -50,7 +63,8 @@ const navAbout = {
     },
     {
       "title": "Career Opportunities at WFAA",
-      "url": "https://www.advanceuw.org/careers?utm_source=uwalumni&utm_medium=referral&utm_content=footer"
+      "url": "https://www.advanceuw.org/careers?utm_source=uwalumni&utm_medium=referral&utm_content=footer",
+      "target": "_blank"
     },
     {
       "title":"Diversity & Inclusion",
@@ -62,7 +76,7 @@ const navAbout = {
     },
     {
       "title":"For WAA Group Leaders",
-      "url":"/TBD"
+      "url":"/groups/resources"
     },
 ]};
   
@@ -80,23 +94,6 @@ const navStudents = {
     {
       "title":"WASB",
       "url":"/wasb"
-    },
-]};
-
-const navContact = {
-  name:"CONTACT US",
-  items:[
-    {
-      "title":"Commencement",
-      "url":"https://wp.advanceuw.org/benefits3/"
-    },
-    {
-      "title":"WASB",
-      "url":"https://wp.advanceuw.org/btw3/"
-    },
-    {
-      "title":"HOCO (Student Group)",
-      "url":"https://wp.advanceuw.org/jobs3/"
     },
 ]};
 
@@ -128,15 +125,15 @@ const navSection = ({ className }) =>(
   <div className={className}>
     <div className="external-link">
     <div>University of Wisconsin&#8212;Madison</div>
-    <a href="https://www.wisc.edu">wisc.edu</a>
+    <a href="https://www.wisc.edu" target="_blank">wisc.edu</a>
     </div>
     <div className="external-link">
     <div>Wisconsin Foundation and Alumni Association</div>
-    <a href="https://www.advanceuw.org?utm_source=uwalumni&utm_medium=referral&utm_content=footer">advanceuw.org</a>
+    <a href="https://www.advanceuw.org?utm_source=uwalumni&utm_medium=referral&utm_content=footer" target="_blank">advanceuw.org</a>
     </div>
     <div className="external-link">
     <div>University of Wisconsin Foundation</div>
-    <a href="https://www.supportuw.org/?utm_source=uwalumni&utm_medium=referral&utm_content=footer">supportuw.org</a>
+    <a href="https://www.supportuw.org/?utm_source=uwalumni&utm_medium=referral&utm_content=footer" target="_blank">supportuw.org</a>
     </div>
   </div>
 )
@@ -145,11 +142,11 @@ const StyledNavSection = styled(navSection)``
 
 const Social = ({className})=>(
   <ul className={className}>
-    <li><a className="fb" title="Follow WAA on Facebook" href="https://www.facebook.com/wisalumni"></a></li>
-    <li><a className="tw" title="Follow WAA on Twitter" href="https://www.twitter.com/wisalumni"></a></li>
-    <li><a className="ig" title="Follow WAA on Instagram" href="https://www.instagram.com/wisalumni"></a></li>
-    <li><a className="wc" title="Follow WAA on Facebook WeChat" href="/wechat"></a></li>
-    <li><a className="li" title="Follow WAA on Facebook LinkedIn" href="https://www.linkedin.com/company/wisconsin-alumni-association"></a></li>
+    <li><a className="fb" title="Follow WAA on Facebook" href="https://www.facebook.com/wisalumni" target="_blank">&nbsp;</a></li>
+    <li><a className="tw" title="Follow WAA on Twitter" href="https://www.twitter.com/wisalumni" target="_blank">&nbsp;</a></li>
+    <li><a className="ig" title="Follow WAA on Instagram" href="https://www.instagram.com/wisalumni" target="_blank">&nbsp;</a></li>
+    <li><a className="wc" title="Learn more about following WAA on WeChat" href="/wechat">&nbsp;</a></li>
+    <li><a className="li" title="Follow WAA on LinkedIn" href="https://www.linkedin.com/company/wisconsin-alumni-association" target="_blank">&nbsp;</a></li>
   </ul>
 )
 
@@ -159,10 +156,10 @@ const ContactUs = ({className})=>(
       <div className="footer-menu__title">CONTACT US</div>
     </a>
     <ul>
-      <li>650 N. Lake Street</li>
-      <li>Madison, WI 53706</li>
-      <li>608-262-2551 or 888-947-2586</li>
-      <li><a href="mailto:waa@supportuw.org">waa@supportuw.org</a></li>
+      <li>650 N. Lake Street
+      <br/>Madison, WI 53706</li>
+      <li><a href="tel:+1-608-262-2551">608-262-2551</a> or <a href="tel:+1-888-947-2586">888-947-2586</a></li>
+      <li><a href="mailto:waa@uwalumni.com">waa@uwalumni.com</a></li>
     </ul>
   </nav>
 )
@@ -181,12 +178,12 @@ const WfaaFooter = ({ className }) =>  (
         
       </div>
       <div className="footer__column">
-        <WfaaFooterMenu menu={navAbout} pageLink="/about/" />
+        <WfaaFooterMenu menu={navAbout} />
         <ContactUs className="contact-section" />
       </div>
       <div className="footer__column">
-        <WfaaFooterMenu menu={navStudents} pageLink="/students/" />
-        <WfaaFooterMenu menu={navPolicy} pageLink="/privacy/" />
+        <WfaaFooterMenu menu={navStudents} />
+        <WfaaFooterMenu menu={navPolicy} />
       </div>
       <div className="footer__column">
         <StyledNavSection className="nav-section"></StyledNavSection>

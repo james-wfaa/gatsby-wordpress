@@ -25,10 +25,31 @@ function WordPressPage({ data }) {
 
   const cats = categories.map((item) => {
     const { category, numberToShow } = item
+    let linkPath
+    switch(category && category.slug) {
+      case 'news':
+        linkPath = 'all'
+        break
+      case 'askflamingle':
+      case 'badger-insider':
+      case 'badger-vibes':
+      case 'on-wisconsin':
+        linkPath = `all?pub=${category.slug}`
+        break
+      default:
+        linkPath = `all?filter=${category.slug}`
+        break
+    }
     if (category && category.name) {
-      return (
+      const catButton = [
+        {
+          link: `/news/${linkPath}`,
+          text: `See All ${category.name}`,
+        },
+      ]
 
-        <PageSection heading={category.name} stagger>
+      return (
+        <PageSection heading={category.name} stagger  buttons={category?.posts?.nodes?.length > numberToShow ? catButton : null}>
           <CardSet items={category.posts.nodes} num={numberToShow} type="news"/>
         </PageSection>
       )
@@ -37,7 +58,7 @@ function WordPressPage({ data }) {
 
   }
   )
-  console.log(posts)
+  //console.log(posts)
   const cardGridPosts = posts.nodes.slice(0,9)
   //console.log('cardGridPosts:',cardGridPosts)
   let postCards = cardGridPosts.map((post) => {
@@ -114,6 +135,12 @@ export const query = graphql`
                     }
                   }
                 }
+                acfAlternatePostType{
+                  alternateposttype
+                }
+                videoFormat {
+                  vimeoId
+                }
               }
             }
           }
@@ -183,6 +210,13 @@ export const query = graphql`
           linkAuthor
           linkUrl
         }
+        acfAlternatePostType{
+          alternateposttype
+        }
+        videoFormat {
+          vimeoId
+        }
+  
       }
     }
 

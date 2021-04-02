@@ -3,17 +3,19 @@ import EmbedBlock from "./EmbedBlock"
 import styled from 'styled-components'
 import { breakpoints, mixins, sizes, fonts, colors } from '../css-variables'
 import Block from './WordPressBlock'
-import GravityForm from '../content-blocks/GravityForm'
+import GravityForm from './GravityForm'
 import Column from '../parts/WordPressColumns'
-import ImageSection from '../content-blocks/ImageSection'
+import ImageSection from './ImageSection'
 import AccordionNavigation from './AccordionNavigation'
 import SpecialBlock from '../content-modules/SpecialBlock'
-import FooGallery from '../content-blocks/FooGallery'
-import AdvocacyEmbed from "../content-blocks/AdvocacyEmbed"
+import FooGallery from './FooGallery'
+import parse from 'html-react-parser'
 
 
-const WordPressContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
+const WpStoryContentBlocks = ({className, blocks, content }) => {
 
+
+  //console.log(content)
         const RenderedBlocks = (blocks) ? blocks.map((block) => {
           //console.log(block.name)
 
@@ -25,7 +27,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 dangerouslySetInnerHTML={{ __html: block.originalContent }}
               />
             )
-            break
+            
           case "core/group":
           case "acf/events-listing-section":
             break
@@ -43,8 +45,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 block={block}
               />
             )
-          case "acf/advocacy-embed":
-            return <AdvocacyEmbed block={block} />
+            
           case "acf/staff-search":
             //console.log(block.dynamicContent)
             return(
@@ -77,7 +78,8 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 </div>
               )
             }
-            break
+            return null
+            
           case "gravityforms/form":
             const shortcode = block.isDynamic
               ? block.dynamicContent
@@ -137,12 +139,20 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 <EmbedBlock source={block.originalContent} type="base" />
               </div>
             )
+          
           case "fooplugins/foogallery":
             // we have to pass in the whole content to get good image sources
+            //console.log('found a foo gallery', block)
+            // pass the ID
+            const parsedFoo = parse(block.dynamicContent, { trim: true })
+            const fooId = parsedFoo?.props?.id ? parsedFoo.props.id : null
+            //console.log(parsedFoo)
+            //console.log(fooId)
             return (
                 <FooGallery
                 className={block.name.replace("/", "-")}
                 content={content}
+                id={fooId}
                 />
             )
           default:
@@ -170,51 +180,50 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 </div>
             )}
             { !RenderedBlocks && (
-              <div className="content core-freeform">
-              {[content]}
-              </div>
-               
+                <Block className={className} block={content} />
             )}
         </div>
     )
 
 }
 
-const StyledWordPressContentBlocks = styled(WordPressContentBlocks)`
+const StyledWpStoryContentBlocks = styled(WpStoryContentBlocks)`
 /* Start Styles copied form WPBlock - should these be here?*/
-    min-width: 300px;
-    width: 100%;
-    max-width: 303px;
-    margin-left: auto;
-    margin-right: auto;
 
-@media screen and ${breakpoints.tabletS} {
-    max-width: 536px;
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
-
-}
-@media screen and ${breakpoints.laptopS} {
-    max-width: 712px;
-}
+  
 .core-freeform {
     margin-bottom: ${sizes.s32};
 }
 /* End Styles copied form WPBlock*/
 
-margin: 0 auto;
-position: relative;
-display: block;
-max-width: 100%;
-@media screen and ${breakpoints.laptopS} {
-    max-width: 712px;
-}
-
 hr.wp-block-separator {
     ${mixins.separator}
 }
+.core-paragraph, 
+.core-image,
+.core-table,
+.core-heading, 
+.core-columns,
+.core-freeform {
+  min-width: 300px;
+  width: 100%;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  @media screen and ${breakpoints.tabletS} {
+    max-width: 536px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  
+  }
+  @media screen and ${breakpoints.laptopS} {
+    max-width: 712px;
+  }
+}
+
+
 
 .core-columns{
     max-width: 303px;
@@ -291,4 +300,4 @@ h2 {
 
 `
 
-export default StyledWordPressContentBlocks
+export default StyledWpStoryContentBlocks

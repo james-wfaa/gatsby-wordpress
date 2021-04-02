@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, variantObject, handleFormSubmit } from '../form-helpers'
+import { StyledError, handleFormSubmit } from '../form-helpers'
 import PageSection from '../../page-sections/PageSection'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -100,7 +100,7 @@ const IdentityInfo = () => {
                     id="identitydescrip"
                     maxLength="500"
                     defaultValue={state.identityInfo.identitydescrip}
-                    onBlur={e => updateOnChangeValues(e)}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       maxLength: {
                         value: 500,

@@ -4,6 +4,7 @@ import algoliasearch from "algoliasearch/lite"
 import {
   InstantSearch,
   RefinementList,
+  MenuSelect,
   Configure,
   ScrollTo,
 } from "react-instantsearch-dom"
@@ -82,9 +83,12 @@ const AccordianSearchAlgolia = props => {
               <AccordianSearchBoxAlgolia defaultRefinement={props.searchString} onFocus={() => setFocus(true)} hasFocus={hasFocus} />
             <RefinementChoices>
               <p>Included in Results:</p>
-              <RefinementList
+              <MenuSelect
+                attribute="type"
+              />
+              {/* <RefinementList
               attribute="type"
-              defaultRefinement={['Event', 'Post']}
+              defaultRefinement={['Event', 'Post', 'Page']}
               transformItems={items =>
                 items.map(item => {
                   let newlabel;
@@ -108,7 +112,7 @@ const AccordianSearchAlgolia = props => {
                       })
                       })
                     }
-                    />
+                    /> */}
             </RefinementChoices>
           </SelectionsWrapper>
         </ScrollTo>

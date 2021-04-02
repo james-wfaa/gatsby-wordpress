@@ -42,7 +42,7 @@ const menuItems = {
     { tag: "Career Resources", url: "/career-resources" },
     { tag: "UW Library Resources", url: "/about/library" },
     { tag: "Alumni Store", url: "https://www.uwalumnistore.com" },
-    { tag: "Alumni Perks", url: "/about/alumni-perks" },
+    { tag: "Alumni Partners & Perks", url: "/about/partners-perks" },
   ],
 }
 
@@ -126,6 +126,7 @@ const SocialLinks = styled.div`
         width: ${sizes.s24};
         height: ${sizes.s24};
         background-color: ${colors.iconGrey};
+        font-size: 0;
         &:hover {
           background-color: ${colors.buttonRed};
         }

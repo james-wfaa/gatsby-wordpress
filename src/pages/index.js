@@ -1,143 +1,408 @@
 import React from "react"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
-import PageSection from "../components/page-sections/GenericPageSection"
-import { Link } from "gatsby"
+import PageSection from "../components/page-sections/PageSection"
+import ContentCardD from "../components/content-blocks/ContentCardD"
+import GridCardD from "../components/content-modules/GridCardD"
+import StoryContentCard from "../components/content-blocks/StoryContentCard"
+import CardE from "../components/content-blocks/CardE"
+import HeroIntroSection from "../components/page-sections/HeroIntroSection"
+import SimpleSlider from "../components/content-modules/SimpleSlider"
 
+const taglist2 = [
+  {
+    link: "#",
+    tag: "Tag 1",
+  },
+  {
+    link: "#",
+    tag: "Tag 2",
+  },
+  {
+    link: "#",
+    tag: "Tag 3",
+  },
+  {
+    link: "#",
+    tag: "Tag 4",
+  },
+]
 
-const IndexPage = () => (
-  <Layout>
-    <PageSection pad>
-      <h1>uwalumni.com redesign - development work in progress</h1>
-      <h2>Full Pages / Templates</h2>
-      <ul>
-        <li>
-          <Link to="update-info">Update My Info (NEW)</Link>
-        </li>
-        <li>
-          <Link to="membership">Membership Join (NEW)</Link>
-        </li>
-         
-      <li>
-        <Link to="/email">Email Login</Link>
-      </li>
-  
-      <li>
-        <Link to="/product-aggregate">Product Aggregate</Link>
-      </li>
-      <li>
-        <Link to="/homepage">Full Homepage </Link>
-      </li>
-      <li>
-        <Link to="/news">News/Stories Page</Link>
-      </li>
-      <li>
-        <Link to="/events">Events Calendar Page </Link>
-      </li>
-      </ul>
-      <h3>Alumni Notes -NEW-</h3>
-      <ul>
-      <li>
-          <Link to="/alumninote/greg-gautam-2/">Greg Gautam Recognition</Link>
-        </li>
-        <li>
-          <Link to="/alumninote/elmer-petersen/">Obituary Elmer Petersen</Link>
-        </li>
-      </ul>
-      <h3>Product Pages</h3>
-      <ul>
-        <li>
-          <Link to="/gpu">Grandparents University</Link>
-        </li>
-        <li>
-          <Link to="/founders-day">Founders Day</Link>
-        </li>
-        <li>
-          <Link to="/reunions">Reunions</Link>
-        </li>
-        <li>
-          <Link to="/alumni-directory">Alumni Directory</Link>
-        </li>
-        <li>
-          <Link to="/forward-under-40">Forward Under 40 (No Hero Image example)</Link>
-        </li>
-        <li>
-          <Link to="/jamess-product">Product Page - James Test</Link>
-        </li>
-      </ul>
-      <h3>Story Pages</h3>
-      <ul>
-        <li>
-          <Link to="/news/uw-now-grebe-lyall-nettles-venable/">Story Page - small featured image </Link>
-        </li>
-        <li>
-          <Link to="/news/wordpress-story">Story Page - Long &amp; Winding Road (wide feature image) </Link>
-        </li>
-        <li>
-          <Link to="/news/refocused">Story Page - "Refocused" (column-width feature image) </Link>
-        </li> 
-        <li>
-          <Link to="/news/best-of-the-best">Story Page - "Best of the Best" </Link>
-        </li>
-        <li> 
-          <Link to="/news/quick-tips-for-the-eager-entrepreneur">Story Page - "Quick Tips for the Eager Entrepreneur</Link>
-        </li> 
-        <li>
-          <Link to="/news/poll-best-campus-fireplace/">POLL - "Best Campus Fireplace" </Link>
-        </li>
-        <li>
-          <Link to="/news/poll-flamingle-bowl-game/">POLL - "Flamingo Bowl Game" </Link>
-        </li>
-        <li>
-          <Link to="/news/serious-vs-satire-daily-cardinal/">QUIZ - "Serious vs Satire" </Link>
-        </li>
-        <li>
-          <Link to="/news/presidents-and-chancellors-matching/">QUIZ - "Presidents and Chancellors Matching" </Link>
-        </li>
-        <li>
-          <Link to="/news/homecoming-highlights-video-2016/">VIDEO - "Homecoming Highlights Video 2016" </Link>
-        </li>
-      </ul>
-      <h3>Flamingle Pages</h3>
-      <ul>
-      <li>
-          <Link to="/news/divine-nine-chapters/">Divine Nine</Link>
-        </li>
-      </ul>
-    
-    <h3>Default Pages</h3>
-    <ul>
-    <li>
-        <Link to="/gpu/majors/">GPU / Majors</Link>
-      </li>
-      <li>
-        <Link to="/gpu/scrapbooks/">GPU / Scrapbooks</Link>
-      </li>
-      <li>
-        <Link to="/alumni-directory/opt-out/">Opt out of Badger Bridge</Link>
-      </li>
+const eventbutton = [
+  {
+    link: "/events",
+    text: "Calendar",
+  },
+]
 
-    </ul>
-    <h3>Event Pages</h3>
-    <ul>
-    <li>
-        <Link to="/event/planarians">Planarians to Parasites</Link>
-      </li>
-      <li>
-        <Link to="/event/badger-cafe-threats-to-peace-around-the-world/">Badger Café: “Threats to Peace around the World”</Link>
-      </li>
-    </ul>
-    <h3>Modules</h3>
-    <ul>
-      <li>
-        <Link to="/staff-search">Staff Search</Link>
-      </li>
-    </ul>
-     
-     
-     
+const featuredbutton = [
+  {
+    link: "/news",
+    text: "See all news and stories",
+  },
+]
 
- 
-    </PageSection>
-  </Layout>
-)
-export default IndexPage
+const HomePage = ({ data }) => {
+  const { events } = data
+
+  const cardGridEvents = events.edges.slice(0,9)
+  let eventCards = cardGridEvents.map((event) => {
+    return (
+      <ContentCardD {...event.node} />
+    )
+  })
+  return (
+    <Layout noborder>
+      <HeroIntroSection
+          heroImage={data.homeBg}
+          videoURL="https://player.vimeo.com/external/523946487.hd.mp4?s=65ae00f23e75bb574174a88ea656c8079cade0fa&profile_id=175"
+          heroSize="jumbo"
+          redHeading="Continue Your Wisconsin Experience"
+          excerpt="<p>The Wisconsin Alumni Association is here for you to carry on as a proud Badger. It’s a community built on meeting the needs of today’s alumni. Whether you want to keep learning, celebrating traditions, or connecting with the UW, this is the place for you to Badger On.
+        </p>"
+        />
+
+      <PageSection>
+        <SimpleSlider
+          className="center"
+          slidesToShow="1"
+          dots
+          centerMode
+          variableWidth
+          centerPadding="100px"
+        >
+          <CardE
+            img={data.img1}
+            caption="Strengthen UW Connections"
+            enhancedHomepageCaption
+            pillar
+          />
+          <CardE
+            img={data.img2}
+            caption="Stay in the Know"
+            enhancedHomepageCaption
+            pillar
+          />
+          <CardE
+            img={data.img3}
+            caption="Share Your UW Pride"
+            enhancedHomepageCaption
+            pillar
+          />
+          <CardE
+            img={data.img4}
+            caption="Continue Your Pursuit of Knowledge"
+            enhancedHomepageCaption
+            pillar
+          />
+           <CardE
+            img={data.img5}
+            caption="Boost Your Badger Spirit"
+            enhancedHomepageCaption
+            pillar
+          />
+          <CardE
+            img={data.img6}
+            caption="Build Your Badger Network"
+            enhancedHomepageCaption
+            pillar
+          />
+          <CardE
+            img={data.img7}
+            caption="Satisfy Your Wanderlust"
+            enhancedHomepageCaption
+            pillar
+          />
+          <CardE
+            img={data.img8}
+            caption="Make a Difference"
+            enhancedHomepageCaption
+            pillar
+          />
+        </SimpleSlider>
+      </PageSection>
+      <PageSection heading="Featured Stories" buttons={featuredbutton} alt>
+        <SimpleSlider
+          className="center"
+          dots
+          centerMode
+          variableWidth
+          centerPadding="100px"
+        >
+          <StoryContentCard
+            title="All About That Bass"
+            category="UW NOW"
+            excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
+            url="##"
+            img={data.cardImage1}
+            tags={taglist2}
+            size="L"
+          />
+          <StoryContentCard
+            title="Four Conversation Starters Beyond “How about Them Badgers?”"
+            category="UW NOW"
+            excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
+            url="##"
+            img={data.cardImage6}
+            tags={taglist2}
+            size="L"
+          />
+          <StoryContentCard
+            title="More than Madison and Milwaukee"
+            category="UW NOW"
+            excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
+            url="##"
+            img={data.cardImage3}
+            tags={taglist2}
+            size="L"
+          />
+          <StoryContentCard
+            title="Coachella Valley"
+            category="UW NOW"
+            excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
+            url="##"
+            img={data.cardImage7}
+            tags={taglist2}
+            size="L"
+          />
+
+          <StoryContentCard
+            title="Coachella Valley"
+            category="UW NOW"
+            excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
+            url="##"
+            img={data.cardImage5}
+            tags={taglist2}
+            size="L"
+          />
+        </SimpleSlider>
+      </PageSection>
+
+      <PageSection
+        heading="Events at a Glance"
+        buttons={eventbutton}
+        bgImage={data.gridBg}
+      >
+        <GridCardD>{eventCards}</GridCardD>
+      </PageSection>
+    </Layout>
+  )
+}
+
+export default HomePage
+
+export const pageQuery = graphql`
+  query {
+    homeBg: file(relativePath: { eq: "pier-bg@2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 2000, quality: 100) {
+          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluidLimitPresentationSize
+        }
+      }
+    }
+    eventsBg: file(relativePath: { eq: "badger-events-hero@2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 2000, quality: 100) {
+          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluidLimitPresentationSize
+        }
+      }
+    }
+    cardImage1: file(relativePath: { eq: "Feb_Richard_Davis_Web_01@2x.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 720, quality: 100) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    cardImage2: file(relativePath: { eq: "12_DutchWaterways_header@2x.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 720, quality: 100) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    cardImage3: file(relativePath: { eq: "17LEARN_JakeWood_manis_29.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 720, quality: 100) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    cardImage4: file(relativePath: { eq: "lead_720_405@2x.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1080, quality: 100) {
+          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluidLimitPresentationSize
+        }
+      }
+    }
+    cardImage5: file(relativePath: { eq: "lead_720_405-2-1-a@2x.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 712, quality: 100) {
+          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluidLimitPresentationSize
+        }
+      }
+    }
+    cardImage6: file(relativePath: { eq: "fball_ILL_band18_0556-3@2x.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 712, quality: 100) {
+          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluidLimitPresentationSize
+        }
+      }
+    }
+    cardImage7: file(
+      relativePath: {
+        eq: "19AP_DowntownMadisonInc_NewFacesNPlaces_Manis_13@2x.png"
+      }
+    ) {
+      childImageSharp {
+        fluid(maxWidth: 712, quality: 100) {
+          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluidLimitPresentationSize
+        }
+      }
+    }
+
+    gridBg: file(relativePath: { eq: "well-read-bucky-bg@2x.jpg" }) {
+      childImageSharp {
+        fluid(quality: 95, maxWidth: 2000) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    img1: file(relativePath: { eq: "1_benefit_connect_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    img2: file(relativePath: { eq: "2_benefit_inform_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    img3: file(relativePath: { eq: "3_benefit_pride_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    img4: file(relativePath: { eq: "4_benefit_enrich_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    img5: file(relativePath: { eq: "5_benefit_spirit_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    img6: file(relativePath: { eq: "6_benefit_prof_adv_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    img7: file(relativePath: { eq: "7_benefit_travel_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    img8: file(relativePath: { eq: "8_benefit_support_d_344x344_2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 344) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+
+    asset29: file(relativePath: { eq: "asset-29@2x.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    asset30: file(relativePath: { eq: "asset-30@2x.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    square1: file(relativePath: { eq: "square1@2x.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    squareBucky: file(relativePath: { eq: "squareBucky@2x.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    events: allWpEvent(limit: 100, sort: {order: ASC, fields: startDate}) {
+      edges {
+        node {
+          id
+          title
+          url: uri
+          excerpt
+          featuredEvent
+          featuredImage {
+            node {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 712) {
+                    base64
+                    tracedSVG
+                    srcWebp
+                    srcSetWebp
+                    originalImg
+                    originalName
+                    aspectRatio
+                    src
+                    srcSet
+                    sizes
+                  }
+                }
+              }
+            }
+          }
+          date
+          startDate
+          endDate
+          eventsCategories {
+            nodes {
+              name
+              url: uri
+            }
+          }
+          venue {
+            title
+            state
+            city
+          }
+        }
+      }
+    }
+  }
+`
