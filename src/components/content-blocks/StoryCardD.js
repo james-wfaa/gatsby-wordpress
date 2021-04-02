@@ -2,7 +2,11 @@ import React from "react"
 import ContentCardD from './ContentCardD'
 
 const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat, acfAlternatePostType })=> {
+
     url = `/news${url}`
+
+    const external = linkFormat?.linkUrl
+
 
    
 
@@ -37,7 +41,6 @@ const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat, acfAltern
                 break
             case 'Link':
                 moreLinkText = <nobr>Via {linkFormat.linkAuthor} <span class="arrow"></span></nobr>
-                url = linkFormat.linkUrl
                 break
             case 'Podcast': 
                 moreLinkText = <nobr>Listen <span class="arrow"></span></nobr>
@@ -61,6 +64,8 @@ const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat, acfAltern
           shortenedExcerpt={shortenedExcerpt}
           moreLinkText={moreLinkText}
           url={resolvedUrl}
+          external={external}
+          linkFormat={linkFormat}
         />
     )
 }
