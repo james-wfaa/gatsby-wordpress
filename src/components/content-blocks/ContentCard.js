@@ -123,7 +123,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, postForma
                                 )}
                             </div>
                         )}
-                            { (shortenedExcerpt && !startDate) && (
+                            { (urlText && !startDate) && (
                                 <a href={finalUrl} target={target} className={`excerpt excerpt--${size} readmore`}>{urlText}</a>
                             )}
                             { tags && (

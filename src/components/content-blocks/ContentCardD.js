@@ -39,10 +39,14 @@ const ContentCardD = ({ className, startDate, title, venue, virtualEvent, excerp
                     { venue?.city && venue.state && (
                         <div className={`${className}__location`}>{venue.city}, {venue.state}</div>
                     )}
-                    { excerpt && (!startDate) && (
+                    { !startDate && (
                         <div className={`${className}__excerpt excerpt`}>
-                            <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
-                            <span> </span>
+                            { excerpt && (
+                            <>
+                                <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
+                                <span> </span>
+                            </>
+                            )}
                             { url && (
                                 <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>
                             )}
