@@ -200,6 +200,7 @@ hr.wp-block-separator {
     ${mixins.separator}
 }
 .core-paragraph, 
+.core-list,
 .core-image,
 .core-table,
 .core-heading, 
