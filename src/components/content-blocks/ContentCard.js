@@ -7,7 +7,7 @@ import { shortDate } from "../../utils/tools"
 
 
 const ContentCard = ({ className, startDate, endDate, title, category, postFormats, linkFormat, venue, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo = false, acfAlternatePostType, videoFormat }) => {
-    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
+    // moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
     const fmtStartDate = shortDate(startDate)
     let fmtEndDate = null
     if (endDate && shortDate(endDate) !== fmtStartDate) {
@@ -38,8 +38,9 @@ const ContentCard = ({ className, startDate, endDate, title, category, postForma
         ? linkFormat.linkUrl
         : url
 
-        console.log(finalUrl)
-
+    const target = linkFormat?.linkUrl
+        ? '_blank'
+        : '_self'
     
     if(!sizes.includes(size) || promo ){
         size = "S";
@@ -71,12 +72,12 @@ const ContentCard = ({ className, startDate, endDate, title, category, postForma
                                 <div className={`category category--${size} `}>{displayCategory}</div>
                             )}
                             <h3 className={`title title--${size}`}>
-                                <a href={finalUrl} dangerouslySetInnerHTML={{ __html: title }}/>
+                                <a href={finalUrl} target={target} dangerouslySetInnerHTML={{ __html: title }}/>
                             </h3>
                         </>
                     )}
                     {imgSources && (
-                        <a href={finalUrl} className={`imgzoomlink headerImg`} >
+                        <a href={finalUrl}  target={target} className={`imgzoomlink headerImg`} >
                             <Img
                                 className={`img`}
                                 fluid={imgSources}
@@ -86,7 +87,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, postForma
                 </div>
                 <div className={`contentwrap contentwrap--${size}`}>
                     {imgSources && (
-                        <a href={finalUrl} className={`imgzoomlink bodyImg`} >
+                        <a href={finalUrl}  target={target} className={`imgzoomlink bodyImg`} >
                             <Img
                                 className={`img`}
                                 fluid={imgSources}
@@ -98,7 +99,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, postForma
                             { startDate && (
                                 <>
                                     <h3 className={`title title--${size}`}>
-                                        <a href={finalUrl} dangerouslySetInnerHTML={{ __html: title }}/>
+                                        <a href={finalUrl} target={target} dangerouslySetInnerHTML={{ __html: title }}/>
                                     </h3>
                                     { displayCategory && (
                                         <div className={`category category--${size}`}>{displayCategory}</div>
@@ -123,7 +124,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, postForma
                             </div>
                         )}
                             { (shortenedExcerpt && !startDate) && (
-                                <a href={finalUrl} className={`excerpt excerpt--${size} readmore`}>{moreLinkText}</a>
+                                <a href={finalUrl} target={target} className={`excerpt excerpt--${size} readmore`}>{urlText}</a>
                             )}
                             { tags && (
                                 <TagList
@@ -146,6 +147,28 @@ const StyledContentCard = styled(ContentCard)`
     .title {
         ${mixins.cardTitle}
     }
+    .arrow {
+        border: solid #c5050c;
+        border-width: 0 1px 1px 0;
+        display: inline-block;
+        padding: 3px;
+        transform: rotate(-90deg);
+        -webkit-transform: rotate(-90deg);
+        margin-left: 8px;
+        margin-bottom: 4px;
+      }
+      
+      .arrow:before{
+          content:'';
+        width:13px;
+        height:1px;
+        background: #c5050c;
+        left:-5px;
+        bottom:4px;
+        position:absolute;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+      }
 
     &.promo{
         background-color: ${colors.bgRed};
