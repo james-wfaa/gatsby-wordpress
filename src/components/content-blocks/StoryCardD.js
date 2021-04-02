@@ -24,7 +24,9 @@ const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat, acfAltern
     ? <nobr>Via {linkFormat.linkAuthor} <span class="arrow"></span></nobr>
     : altPostType === "Podcast"
         ? <nobr>Listen <span class="arrow"></span></nobr>
-        : <nobr>{urlText} &gt; : Read More &gt;</nobr>
+        : urlText
+            ? <nobr>{urlText} &gt;</nobr>
+            : <nobr>Read More &gt;</nobr>
 
     console.log(title, moreLinkText)
     
