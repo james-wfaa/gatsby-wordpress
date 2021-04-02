@@ -339,8 +339,37 @@ a {
         width: auto;
     }
 }
-
-.wp-block-quote {
+//styles for block quotes on news and stories
+&.core-quote{
+    margin:0 auto;
+    clear: both; //need this for left float
+    .wp-block-quote {
+        color: ${colors.badgerRed};
+        font-family: ${fonts.eavesNarrow};
+        font-style: italic;
+        font-size: ${sizes.s24};
+        line-height: ${sizes.s38};
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        max-width: 712px;
+        @media screen and ${breakpoints.laptopS} {
+            width: 252px;
+            float: right;
+            margin: 24px -126px 24px 24px;
+            &.has-text-align-left{
+                float: left;
+                margin: 24px 24px 24px -126px;
+            }
+            &.has-text-align-right{
+                float: right;
+                margin: 24px -126px 24px 24px;
+            }
+        }
+    }
+}
+//not sure if I can delete this or if it is used elsewhere, commenting out for now
+/*.wp-block-quote {
     color: ${colors.badgerRed};
     font-family: ${fonts.eavesNarrow};
     font-style: italic;
@@ -367,8 +396,7 @@ a {
     @media screen and ${breakpoints.laptopS} {
         max-width: 536px;
     }
-}
-
+}*/
 .wp-block-table{
     border: 1px solid ${colors.borderGrey};
     border-bottom: none;
