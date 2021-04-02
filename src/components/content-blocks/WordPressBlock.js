@@ -403,11 +403,14 @@ a {
     margin-top: 58px;
     margin-bottom: 88px;
 
-    &.hasLabels{
-        tr:first-child{
-            font-weight: bold;
-            border-bottom: 4px solid ${colors.borderGrey};
-        }
+    th{
+        font-weight: bold;
+        border-bottom: 4px solid ${colors.borderGrey};
+        padding: 16px;
+        border-right: 1px solid ${colors.borderGrey};
+    }
+    th:last-child{
+        border-right: none;
     }
 
     td{
