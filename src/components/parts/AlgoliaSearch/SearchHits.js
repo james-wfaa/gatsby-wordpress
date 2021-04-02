@@ -37,6 +37,11 @@ const SearchHits = ({ hits, hitHandler }) => {
       case "Post":
         console.log(hit)
         const hitblock = hit?.blocks && typeof hit.blocks !== "undefined"  ? hit.blocks[0] : null
+        /* check for "link" */
+        const format = hit?.postFormats?.nodes?.[0]?.name && hit.postFormats.nodes[0].name === 'Link'
+          ? 'link'
+          : null
+
         return (
           <PostCard
           key={hit.url}
@@ -45,6 +50,7 @@ const SearchHits = ({ hits, hitHandler }) => {
           title={hit.title}
           initialBlock={hitblock}
           topResult={topResult}
+          postFormat={format}
         />
         )
       case "Page":
