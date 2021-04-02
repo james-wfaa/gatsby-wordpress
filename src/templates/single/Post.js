@@ -9,7 +9,6 @@ const Post = ({ data }) => {
 const isFlamingle = data.page.askFlamingle?.abeQuestioner !== null ? true : false
 
 return isFlamingle ? <FlaminglePost data={data} /> : <BlogPost data={data} />;
-
 }
 
 export default Post
@@ -114,6 +113,7 @@ export const query = graphql`
                     childImageSharp {
                       fluid(maxWidth: 712) {
                         base64
+                        tracedSVG
                         srcWebp
                         srcSetWebp
                         originalImg
@@ -129,6 +129,12 @@ export const query = graphql`
               }
               askFlamingle {
                 abeQuestioner
+              }
+              acfAlternatePostType{
+                alternateposttype
+              }
+              videoFormat {
+                vimeoId
               }
             }
           }
@@ -149,6 +155,7 @@ export const query = graphql`
           slug
         }
       }
+
     }
   }
 `

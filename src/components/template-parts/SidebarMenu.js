@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from "styled-components"
 import { fonts, colors, sizes, breakpoints } from "../css-variables"
 
-const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
+const SidebarMenu = ({name="Menu Title", link='/', menuItems, width, hideNews}) => {
 
   //console.log(name)
   const [open, setOpen] = useState(false)
@@ -169,8 +169,12 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width}) => {
     }
     return (
       <li>
-        <a href={item.path} className={item.path === (typeof window !== "undefined" && window.location.pathname) ? 'active': ''}>{item.label}</a>
-        {item?.wpChildren?.nodes?.length > 0 ? (item.wpChildren.nodes.map(item => <li><a href={item.uri} className={item.uri === (typeof window !== "undefined" && window.location.pathname) ? 'active': ''}>{item.title}</a>
+        <a 
+          href={item.path} 
+          className={item.path === (typeof window !== "undefined" && window.location.pathname) || (hideNews && item.title === "Chapter News" && window.location.pathname.indexOf('news/') > -1) ? 'active': ''}
+        >{item.label}</a>
+        {item?.wpChildren?.nodes?.length > 0 && (!(hideNews && item.label === 'Chapter News')) ? (item.wpChildren.nodes.map(item => <li><a href={item.uri} 
+        className={item.uri === (typeof window !== "undefined" && window.location.pathname) ? 'active': ''}>{item.title}</a>
             {item?.wpChildren?.nodes?.length > 0 ? (item.wpChildren.nodes.map(item => <li><a href={item.uri} className={item.uri === (typeof window !== "undefined" && window.location.pathname) ? 'active': ''}>{item.title}</a></li> )) : null }
         </li>)) : null}
       </li>

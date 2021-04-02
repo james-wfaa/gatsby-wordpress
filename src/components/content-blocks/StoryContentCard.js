@@ -1,7 +1,7 @@
 import React from 'react'
 import ContentCard from "./ContentCard"
 
-const StoryContentCard = ({ className, title, category, excerpt, url, urlText, img, featureImg, caption, tags, size, promo }) => {
+const StoryContentCard = ({ className, title, category, excerpt, url, urlText, img, featureImg, caption, tags, size, promo, acfAlternatePostType, videoFormat }) => {
     
     url = `/news${url}`
 
@@ -19,6 +19,8 @@ const StoryContentCard = ({ className, title, category, excerpt, url, urlText, i
           urlText={urlText}
           img={img}
           promo={promo}
+          acfAlternatePostType={acfAlternatePostType}
+          videoFormat={videoFormat}
         />
     )
 }

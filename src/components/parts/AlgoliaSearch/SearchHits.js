@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import EventCard from './cards/EventCard'
 import PostCard from './cards/PostCard'
+import PageCard from './cards/PageCard'
 
 const SearchHits = ({ hits, hitHandler }) => {
 
@@ -34,14 +35,28 @@ const SearchHits = ({ hits, hitHandler }) => {
           />
         )
       case "Post":
+        console.log(hit)
+        const hitblock = hit?.blocks && typeof hit.blocks !== "undefined"  ? hit.blocks[0] : null
         return (
           <PostCard
           key={hit.url}
           hit={hit}
           url={hit.url}
           title={hit.title}
-          initialBlock={hit.blocks[0]}
+          initialBlock={hitblock}
           topResult={topResult}
+        />
+        )
+      case "Page":
+        return (
+          <PageCard
+          key={hit.url}
+          hit={hit}
+          url={hit.url}
+          title={hit.title}
+          // initialBlock={hit.blocks[0]}
+          topResult={topResult}
+          excerpt={hit.excerpt}
         />
         )
       default:
