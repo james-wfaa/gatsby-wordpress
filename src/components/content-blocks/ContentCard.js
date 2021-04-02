@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { shortDate } from "../../utils/tools"
 
 
-const ContentCard = ({ className, startDate, endDate, title, category, venue, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo = false, acfAlternatePostType, videoFormat }) => {
+const ContentCard = ({ className, startDate, endDate, title, category, postFormats, linkFormat, venue, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo = false, acfAlternatePostType, videoFormat }) => {
     const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
     const fmtStartDate = shortDate(startDate)
     let fmtEndDate = null
@@ -21,14 +21,26 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
     const promoClass = promo ? 'promo' : ''
     const notSmall = (size !== 'S') ? "notsmall" : ""
 
-    let altPostType = acfAlternatePostType?.alternateposttype ? acfAlternatePostType.alternateposttype : null
+    let altPostType = acfAlternatePostType?.alternateposttype 
+        ? acfAlternatePostType.alternateposttype 
+        : videoFormat?.vimeoId
+            ? "Video"
+            : null
+    
 
-    if(videoFormat?.vimeoId){
-        altPostType = "Video"
-    }
+    const displayCategory = category 
+        ? category
+        : altPostType 
+            ? altPostType 
+            : null
 
-    const displayCategory = category ? category : (altPostType ? altPostType : null);
+    const finalUrl = linkFormat?.linkUrl 
+        ? linkFormat.linkUrl
+        : url
 
+        console.log(finalUrl)
+
+    
     if(!sizes.includes(size) || promo ){
         size = "S";
     }
@@ -50,7 +62,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                 <div className={`headersection headersection--${size}`}>
                     { startDate && (
                         <div className={`date date--${size}`}>
-                            <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
+                            <a href={finalUrl} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
                         </div>
                     )}
                     { !startDate && (
@@ -59,12 +71,12 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                                 <div className={`category category--${size} `}>{displayCategory}</div>
                             )}
                             <h3 className={`title title--${size}`}>
-                                <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
+                                <a href={finalUrl} dangerouslySetInnerHTML={{ __html: title }}/>
                             </h3>
                         </>
                     )}
                     {imgSources && (
-                        <a href={url} className={`imgzoomlink headerImg`} >
+                        <a href={finalUrl} className={`imgzoomlink headerImg`} >
                             <Img
                                 className={`img`}
                                 fluid={imgSources}
@@ -74,7 +86,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                 </div>
                 <div className={`contentwrap contentwrap--${size}`}>
                     {imgSources && (
-                        <a href={url} className={`imgzoomlink bodyImg`} >
+                        <a href={finalUrl} className={`imgzoomlink bodyImg`} >
                             <Img
                                 className={`img`}
                                 fluid={imgSources}
@@ -86,7 +98,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                             { startDate && (
                                 <>
                                     <h3 className={`title title--${size}`}>
-                                        <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
+                                        <a href={finalUrl} dangerouslySetInnerHTML={{ __html: title }}/>
                                     </h3>
                                     { displayCategory && (
                                         <div className={`category category--${size}`}>{displayCategory}</div>
@@ -111,7 +123,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                             </div>
                         )}
                             { (shortenedExcerpt && !startDate) && (
-                                <a href={url} className={`excerpt excerpt--${size} readmore`}>{moreLinkText}</a>
+                                <a href={finalUrl} className={`excerpt excerpt--${size} readmore`}>{moreLinkText}</a>
                             )}
                             { tags && (
                                 <TagList

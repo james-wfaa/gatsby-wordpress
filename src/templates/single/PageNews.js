@@ -10,7 +10,7 @@ import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 
 function WordPressPage({ data }) {
   const { page, posts } = data
-  const { title, excerpt, blocks, featuredImage, storyCategories, gridDetails } = page
+  const { title, excerpt, blocks, featuredImage, storyCategories, product, gridDetails } = page
 
   const { storycategoriesinner: categories } = storyCategories
   const { backgroundImage } = gridDetails
@@ -43,29 +43,34 @@ function WordPressPage({ data }) {
       }
     }
     
-    if (category && category.name) {
+    if (category?.name) {
       const catButton = [
         {
           link: `/news/${linkPath}`,
           text: `See All ${category.name}`,
         },
       ]
+    }
+    const cardItems = (category?.name && category?.posts?.nodes) 
+      ? category.posts.nodes
+      : (!category && product?.name && product?.posts?.nodes)
+        ? product.posts.nodes
+        : null
 
+    if (cardItems) {
       return (
-        <PageSection heading={category.name} stagger  buttons={category?.posts?.nodes?.length > numberToShow ? catButton : null}>
-          <CardSet items={category.posts.nodes} num={numberToShow} type="news"/>
+        <PageSection heading={category.name} stagger>
+          <CardSet items={cardItems} num={numberToShow} type="news"/>
         </PageSection>
       )
-    }
+    } 
     return (<div/>)
-
-  }
-  )
+  })
   //console.log(posts)
   const cardGridPosts = posts.nodes.slice(0,9)
   //console.log('cardGridPosts:',cardGridPosts)
   let postCards = cardGridPosts.map((post) => {
-    //console.log('post tiles post: ',post)
+    console.log('post tiles post: ',post)
     return (
       <StoryCardD {...post} />
     )
@@ -110,6 +115,56 @@ export const query = graphql`
       storyCategories {
         storycategoriesinner {
           category {
+            slug
+            name
+            posts {
+              nodes {
+                title
+                url: uri
+                excerpt
+                linkFormat {
+                  linkUrl
+                  linkAuthor
+                }
+                featuredImage {
+                  node {
+                    localFile {
+                      childImageSharp {
+                        fluid(maxWidth: 712) {
+                          base64
+                          tracedSVG
+                          srcWebp
+                          srcSetWebp
+                          originalImg
+                          originalName
+                          aspectRatio
+                          base64
+                          src
+                          srcSet
+                          sizes
+                        }
+                      }
+                    }
+                  }
+                }
+                postFormats {
+                  nodes {
+                    name
+                    link
+                    uri
+                    slug
+                  }
+                }
+                acfAlternatePostType{
+                  alternateposttype
+                }
+                videoFormat {
+                  vimeoId
+                }
+              }
+            }
+          }
+          product {
             slug
             name
             posts {
