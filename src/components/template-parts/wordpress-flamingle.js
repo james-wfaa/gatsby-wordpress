@@ -49,21 +49,23 @@ function BlogPost({ data }) {
     { url: "/news/flamingle", name: "Ask Flamingle HQ" },
     { url: link, name: title },
   ]
-
-  function decodeHtml(html) {
-    var txt = document.createElement("textarea");
-    txt.innerHTML = html;
-    return txt.value;
+  
+  const decodeHtml = (html) =>{
+    if(typeof document !== "undefined"){
+      var txt = document.createElement("textarea");
+      txt.innerHTML = html;
+      return txt.value;
+    }
   }
+  
   //remove pesky paragraph tags on excerpt and decode html entities
   const excerptLength = excerpt.length
   const flamingleExcerpt = decodeHtml(excerpt.slice(3, excerptLength - 5));
-
   const createRelatedCards = () => {
      if(uniqueRelatedPosts.length > 9){
        uniqueRelatedPosts.slice(0,8)
       }
-      
+
     const thePosts = uniqueRelatedPosts.map(post => {
       const excerptLength = post.excerpt.length
       const newExcerpt = decodeHtml(post.excerpt.slice(3, excerptLength - 5));
