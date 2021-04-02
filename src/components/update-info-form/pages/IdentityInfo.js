@@ -100,7 +100,7 @@ const IdentityInfo = () => {
                     id="identitydescrip"
                     maxLength="500"
                     defaultValue={state.identityInfo.identitydescrip}
-                    onBlur={e => updateOnChangeValues(e)}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       maxLength: {
                         value: 500,
