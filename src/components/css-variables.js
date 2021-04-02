@@ -414,7 +414,7 @@ export const mixins = {
         &.bgimage,
         &.headingAlt {
             h2 {
-                color: ${colors.titleWhite}
+                color: ${colors.titleWhite};
             }
             &:after {
                 background-color: ${colors.bgWhite};
