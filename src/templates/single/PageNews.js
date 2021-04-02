@@ -58,7 +58,7 @@ function WordPressPage({ data }) {
 
   }
   )
-  console.log(posts)
+  //console.log(posts)
   const cardGridPosts = posts.nodes.slice(0,9)
   //console.log('cardGridPosts:',cardGridPosts)
   let postCards = cardGridPosts.map((post) => {
@@ -135,6 +135,12 @@ export const query = graphql`
                     }
                   }
                 }
+                acfAlternatePostType{
+                  alternateposttype
+                }
+                videoFormat {
+                  vimeoId
+                }
               }
             }
           }
@@ -204,6 +210,13 @@ export const query = graphql`
           linkAuthor
           linkUrl
         }
+        acfAlternatePostType{
+          alternateposttype
+        }
+        videoFormat {
+          vimeoId
+        }
+  
       }
     }
 

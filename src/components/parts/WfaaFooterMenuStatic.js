@@ -3,12 +3,17 @@ import React from 'react'
 const FooterMenu = ({ menu, pageLink="#" }) => {
 
   const { name, items } = menu
-
+  
+  const isLink = (pageLink != "#")
       return (
         <nav className="footer-menu">
-          <a href={pageLink}>
+          {isLink ? 
+          (<a href={pageLink}>
             <div className="footer-menu__title" dangerouslySetInnerHTML={{ __html: name }} />
-          </a>
+          </a>)
+          :(
+            <div className="footer-menu__title" dangerouslySetInnerHTML={{ __html: name }} />
+          )}
           <ul>
             {menu &&
               items.map(
@@ -18,6 +23,7 @@ const FooterMenu = ({ menu, pageLink="#" }) => {
                       className="nav-link active"
                       href={prop.url}
                       alt={prop.title}
+                      target={prop.target}
                     >
                       {prop.title}
                     </a>

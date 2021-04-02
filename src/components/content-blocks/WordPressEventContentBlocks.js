@@ -27,7 +27,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
     const showMapDetails = () => {
         let showMap = true;
         if(eventDetails){
-            if ((eventDetails.virtualEvent && !eventDetails.eventlocationDetails) || !venue){
+            if ((eventDetails.virtualEvent && !eventDetails.eventlocationDetails) || !venue || eventDetails.trip){
                 showMap = false;
             }
         }

@@ -184,6 +184,12 @@ export const query = graphql`
                     }
                   }
                 }
+                acfAlternatePostType{
+                  alternateposttype
+                }
+                videoFormat {
+                  vimeoId
+                }
               }
             }
           }
@@ -294,6 +300,12 @@ export const query = graphql`
             originalContent
             dynamicContent
             saveContent
+            innerBlocks {
+              name
+              originalContent
+              dynamicContent
+              saveContent
+            }
           }
         }
       }

@@ -85,18 +85,35 @@ const CardWrapper = styled.div`
 `
 
 const ChapterCard = ({ chapter }) => {
+  const url = chapter?.chapterDetails?.csUrl
   return (
     <CardWrapper>
       <div className="cardType">Chapter/Groups</div>
-      <Link to={`/chapter/${chapter.chapterDetails.csUrl}`}>
-      <h3>{chapter.title}</h3>
-        {chapter.content ? (
-          <div
-            className="excerpt"
-            dangerouslySetInnerHTML={{ __html: chapter.content }}
-          ></div>
-        ) : null}
-      </Link>
+      { url ? (
+        <Link to={`/groups/${chapter.chapterDetails.csUrl}`}>
+        <h3>{chapter.title}</h3>
+          {chapter.content ? (
+            <div
+              className="excerpt"
+              dangerouslySetInnerHTML={{ __html: chapter.content }}
+            ></div>
+          ) : null}
+        </Link>
+
+      ) : (
+        <>
+          <h3>{chapter.title}</h3>
+          {chapter?.content ? (
+            <div
+              className="excerpt"
+              dangerouslySetInnerHTML={{ __html: chapter.content }}
+            ></div>
+          ) : null}
+        </>
+      )
+      }
+
+      
     </CardWrapper>
   )
 }
