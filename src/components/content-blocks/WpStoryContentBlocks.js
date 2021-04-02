@@ -12,7 +12,7 @@ import FooGallery from './FooGallery'
 import parse from 'html-react-parser'
 
 
-const WpStoryContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
+const WpStoryContentBlocks = ({className, blocks, content }) => {
 
 
   //console.log(content)
@@ -27,7 +27,7 @@ const WpStoryContentBlocks = ({className, blocks, content, eventCategory, stagge
                 dangerouslySetInnerHTML={{ __html: block.originalContent }}
               />
             )
-            break
+            
           case "core/group":
           case "acf/events-listing-section":
             break
@@ -45,7 +45,7 @@ const WpStoryContentBlocks = ({className, blocks, content, eventCategory, stagge
                 block={block}
               />
             )
-            break
+            
           case "acf/staff-search":
             //console.log(block.dynamicContent)
             return(
@@ -78,7 +78,8 @@ const WpStoryContentBlocks = ({className, blocks, content, eventCategory, stagge
                 </div>
               )
             }
-            break
+            return null
+            
           case "gravityforms/form":
             const shortcode = block.isDynamic
               ? block.dynamicContent
