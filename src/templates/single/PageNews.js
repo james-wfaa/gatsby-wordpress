@@ -26,20 +26,23 @@ function WordPressPage({ data }) {
   const cats = categories.map((item) => {
     const { category, numberToShow } = item
     let linkPath
-    switch(category && category.slug) {
-      case 'news':
-        linkPath = 'all'
-        break
-      case 'askflamingle':
-      case 'badger-insider':
-      case 'badger-vibes':
-      case 'on-wisconsin':
-        linkPath = `all?pub=${category.slug}`
-        break
-      default:
-        linkPath = `all?filter=${category.slug}`
-        break
+    if (category?.slug) {
+      switch(category.slug) {
+        case 'news':
+          linkPath = 'all'
+          break
+        case 'askflamingle':
+        case 'badger-insider':
+        case 'badger-vibes':
+        case 'on-wisconsin':
+          linkPath = `all?pub=${category.slug}`
+          break
+        default:
+          linkPath = `all?filter=${category.slug}`
+          break
+      }
     }
+    
     if (category && category.name) {
       const catButton = [
         {
