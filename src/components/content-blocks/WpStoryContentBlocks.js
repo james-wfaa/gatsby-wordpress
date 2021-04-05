@@ -134,8 +134,9 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
               </div>
             )
           case "core/embed":
+            const embedWrapperClass = block?.originalContent && block?.originalContent.includes('flickr') || block?.originalContent.includes('tryinteract') ? 'embed-wrapper' : null;
             return (
-              <div className="wp-block-embed" key={`${block.name}{${block.originalContent}`}>
+              <div className={`wp-block-embed ${embedWrapperClass}`} key={`${block.name}{${block.originalContent}`}>
                 <EmbedBlock source={block.originalContent} type="base" />
               </div>
             )
@@ -204,7 +205,8 @@ hr.wp-block-separator {
 .core-table,
 .core-heading, 
 .core-columns,
-.core-freeform {
+.core-freeform,
+.embed-wrapper {
   min-width: 300px;
   width: 100%;
   max-width: 300px;
@@ -296,6 +298,15 @@ h2 {
 
 .wp-block-embed{
   margin-bottom: 26px;
+  .quiz-embed{
+    padding-bottom: 150% !important;
+    @media screen and ${breakpoints.tabletS} {
+      padding-bottom: 108% !important;
+    }
+    @media screen and ${breakpoints.laptopS} {
+      padding-bottom: 100% !important;
+    }
+  }
 }
 
 `
