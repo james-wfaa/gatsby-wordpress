@@ -84,7 +84,6 @@ const EmbedBlock = ({source, type}) => {
           </div>
         )
       }
-      break
     case "instagram":
       //console.log(source)
       parsed = parse(source)
@@ -127,7 +126,7 @@ const EmbedBlock = ({source, type}) => {
           </div>
         )
       }
-      break
+      
     case "flickr":
       const FlickrData = parse(source.data)
       const FlickrUrlData = FlickrData.props.children.props.children
@@ -163,14 +162,12 @@ const EmbedBlock = ({source, type}) => {
       )
     case "base":
       parsed = parse(source)
-      if (
+
+      return (
         parsed?.props?.children &&
         parsed.props.children?.props?.className &&
         parsed.props.children.props.className === "wp-block-embed__wrapper"
-      ) {
-        //console.log("match")
-        //console.log(parsed.props.children.props.children)
-        return (
+      ) ? (
           <div
             style={{
               position: "relative",
@@ -196,8 +193,7 @@ const EmbedBlock = ({source, type}) => {
             ></iframe>
           </div>
         )
-      }
-      break
+      : null
     default:
       return null
   }

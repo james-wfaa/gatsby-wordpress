@@ -20,6 +20,7 @@ export const query = graphql`
       title
       content
       blocks {
+        order
         name
         isDynamic
         originalContent
@@ -143,6 +144,19 @@ export const query = graphql`
       askFlamingle {
         abeQuestioner
       }
+      acfAlternatePostType{
+        alternateposttype
+      }
+      videoFormat {
+        vimeoId
+      }
+      postExternalAuthors {
+        nodes {
+          name
+          slug
+        }
+      }
+
     }
   }
 `

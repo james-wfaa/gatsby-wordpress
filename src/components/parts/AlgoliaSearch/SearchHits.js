@@ -35,13 +35,16 @@ const SearchHits = ({ hits, hitHandler }) => {
           />
         )
       case "Post":
+        console.log(hit)
+        const hitblock = hit?.blocks && typeof hit.blocks !== "undefined"  ? hit.blocks[0] : null
+
         return (
           <PostCard
           key={hit.url}
           hit={hit}
           url={hit.url}
           title={hit.title}
-          initialBlock={hit.blocks[0]}
+          initialBlock={hitblock}
           topResult={topResult}
         />
         )

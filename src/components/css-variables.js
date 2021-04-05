@@ -129,6 +129,7 @@ export const colors = {
     flamingleCardHoverDiagonals: baseColors.darkRed,
     searchFontGrey: baseColors.darkGrey,
     tableRowGrey: baseColors.lightestGrey,
+    formTextBlack: baseColors.black,
 }
 
 export const size = {
@@ -414,7 +415,7 @@ export const mixins = {
         &.bgimage,
         &.headingAlt {
             h2 {
-                color: ${colors.titleWhite}
+                color: ${colors.titleWhite};
             }
             &:after {
                 background-color: ${colors.bgWhite};
