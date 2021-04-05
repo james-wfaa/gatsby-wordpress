@@ -31,7 +31,7 @@ const taglist2 = [
 const eventbutton = [
   {
     link: "/events",
-    text: "Calendar",
+    text: "All Events",
   },
 ]
 
