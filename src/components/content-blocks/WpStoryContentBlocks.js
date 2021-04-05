@@ -8,6 +8,7 @@ import Column from '../parts/WordPressColumns'
 import ImageSection from './ImageSection'
 import AccordionNavigation from './AccordionNavigation'
 import SpecialBlock from '../content-modules/SpecialBlock'
+import Shortcode from '../content-modules/Shortcode'
 import FooGallery from './FooGallery'
 import parse from 'html-react-parser'
 
@@ -17,7 +18,7 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
 
   //console.log(content)
         const RenderedBlocks = (blocks) ? blocks.map((block) => {
-          //console.log(block.name)
+        //console.log(block.name)
 
         switch (block.name) {
 
@@ -27,7 +28,10 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
                 dangerouslySetInnerHTML={{ __html: block.originalContent }}
               />
             )
-            
+          case "core/shortcode":
+            return (
+              <Shortcode block={block} />
+            )
           case "core/group":
           case "acf/events-listing-section":
             break
@@ -206,7 +210,8 @@ hr.wp-block-separator {
 .core-table,
 .core-heading, 
 .core-columns,
-.core-freeform {
+.core-freeform,
+.core-shortcode {
   min-width: 300px;
   width: 100%;
   max-width: 300px;
@@ -295,11 +300,10 @@ h2 {
     
   }
 }
-
-.wp-block-embed{
+.wp-block-embed,
+.core-shortcode { 
   margin-bottom: 26px;
 }
-
 `
 
 export default StyledWpStoryContentBlocks
