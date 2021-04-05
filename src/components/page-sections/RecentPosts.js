@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStaticQuery, graphql } from "gatsby"
-import ContentCard from "../content-blocks/ContentCard"
+import StoryContentCard from "../content-blocks/StoryContentCard"
 import SimpleSlider from "../content-modules/SimpleSlider"
 
 const RecentPosts = () => {
@@ -29,7 +29,7 @@ const RecentPosts = () => {
     const { featuredImage: img } = post
     const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
     return (
-      <ContentCard key={post.url} img={cardImg} {...post} />
+      <StoryContentCard key={post.url} img={cardImg} {...post} />
     )
   })
 
