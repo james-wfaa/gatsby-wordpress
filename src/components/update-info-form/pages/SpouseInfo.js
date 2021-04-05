@@ -36,7 +36,6 @@ const SpouseInfo = () => {
             <PageSection
               excerpt='If there’s been a change regarding your spouse or partner, please indicate that here. If your spouse/partner is a UW-Madison alum, you can even add grad years. Click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
-              headingAlt
               headingCompact
               backgroundColor={colors.formIntroBg}
             />

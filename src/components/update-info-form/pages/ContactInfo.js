@@ -34,7 +34,6 @@ const ContactInfo = () => {
           <PageSection
             excerpt="Make sure you stay in the know — and more connected to the UW and WAA! Please take a moment to complete this form with your current contact information to ensure you receive communications about events, programs, and services that matter to you."
             heading="Update My Info"
-            headingAlt
             headingCompact
             backgroundColor={colors.formIntroBg}
           />

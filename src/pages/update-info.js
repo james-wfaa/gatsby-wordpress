@@ -68,6 +68,9 @@ div.excerpt{
   }
   margin-bottom:0;
 }
+div.sectionexcerpt{
+  margin-top: 32px;
+}
 .communications-success-page{
   .content{
     margin-bottom: 30px;
