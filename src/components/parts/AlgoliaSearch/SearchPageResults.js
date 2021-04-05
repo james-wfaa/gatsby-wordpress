@@ -7,8 +7,10 @@ import {
   connectHits,
 } from "react-instantsearch-dom"
 import Hits from './SearchHits'
+import CardHits from './SearchHitsCards'
 
 const CustomHits = connectHits(Hits)
+const CustomCardHits = connectHits(CardHits)
 
 const ResultsWrapper = styled.div`
   width: 80%;
@@ -21,6 +23,18 @@ const ResultsWrapper = styled.div`
       color: ${colors.bgRed}
     }
   }
+`
+const CardResultsWrapper = styled.div`
+    width: 80%;
+    max-width: 1074px;
+    margin: 0 auto;
+    a {
+        text-decoration: none;
+        span {
+            font-family: 'Verlag A', 'Verlag B';
+            color: ${colors.bgRed};
+        }
+    }
 `
 
 const HitCounterWrapper = styled.div`
@@ -35,15 +49,22 @@ const TotalWrapper = (props) => {
   const [lastHit, setLastHit] = useState(1)
 
   const hitHandler = (first, last) => {
-    setFirstHit(first);
-    setLastHit(last);
+      setFirstHit(first)
+      setLastHit(last)
   }
-
   return (
-    <>
-      <HitCount firstHit={firstHit} lastHit={lastHit} />
-      <CustomHits hitHandler={(first, last) => hitHandler(first, last)} />
-    </>
+      <>
+          <HitCount firstHit={firstHit} lastHit={lastHit} />
+          {props.cardtype === 'ContentCard' ? (
+              <CustomCardHits
+                  hitHandler={(first, last) => hitHandler(first, last)}
+              />
+          ) : (
+              <CustomHits
+                  hitHandler={(first, last) => hitHandler(first, last)}
+              />
+          )}
+      </>
   )
 }
 
@@ -62,23 +83,40 @@ const HitCount = connectStateResults(({ searchResults, firstHit, lastHit }) => {
 
 
 
-const HitsInIndex = ({ index }) => {
-  return (
-    <Index indexName={index.name}>
-      <TotalWrapper />
-
-    </Index>
-  )
+const HitsInIndex = ({ index, cardtype }) => {
+    return (
+        <Index indexName={index.name}>
+            <TotalWrapper cardtype={cardtype} />
+        </Index>
+    )
 }
 
-const SearchResult = ({ indices }) => {
-  return (
-    <ResultsWrapper>
-      {indices.map(index => (
-        <HitsInIndex index={index} key={index.name} />
-      ))}
-    </ResultsWrapper>
-  )
+const SearchResult = ({ indices, cardtype }) => {
+    return (
+              <>
+                        {cardtype === 'ContentCard' ? ( ( ( (
+                                  <CardResultsWrapper>
+                                      {indices.map(index => (
+                                          <HitsInIndex
+                                                    index={index}
+                                                    key={index.name}
+                                                    cardtype={cardtype}
+                                          />
+                                      ))}
+                                  </CardResultsWrapper>
+                  )   )   )   ) : ( ( ( (
+                                        <ResultsWrapper>
+                                      {indices.map(index => (
+                                          <HitsInIndex
+                                                    index={index}
+                                                    key={index.name}
+                                                    cardtype={cardtype}
+                                          />
+                                      ))}
+                                  </ResultsWrapper>
+            )      )      )      )}
+              </>
+    )
 }
 
 export default SearchResult

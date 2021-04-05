@@ -9,7 +9,6 @@ import {
 } from 'react-instantsearch-dom'
 import { colors } from '../../css-variables'
 import AccordianSearchBoxAlgolia from './AccordianSearchBoxAlgolia'
-import SearchPageResults_TextList from './SearchPageResults_TextList'
 import SearchPageResults from './SearchPageResults'
 import AlgoliaPagination from './AlgoliaPagination'
 
@@ -68,7 +67,7 @@ const AlgoliaArchivePage = props => {
                     searchClient={searchClient}
                     indexName={props.indices[0].name}
                     onSearchStateChange={({ query }) => setQuery(query)}>
-                    <Configure filters={props.filters} hitsPerPage={10} />
+                    <Configure filters={props.filters} hitsPerPage={9} />
                     <ScrollTo>
                         <SelectionsWrapper>
                             <AccordianSearchBoxAlgolia
@@ -78,10 +77,10 @@ const AlgoliaArchivePage = props => {
                             />
                         </SelectionsWrapper>
                     </ScrollTo>
-                    {/* <SearchPageResults_TextList indices={props.indices} /> */}
                     <SearchPageResults
                         show={query && query.length > 0 && hasFocus}
                         indices={props.indices}
+                        cardtype='ContentCard'
                     />
                     <AlgoliaPagination />
                 </InstantSearch>
