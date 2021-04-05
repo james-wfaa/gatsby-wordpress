@@ -23,7 +23,7 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
 
           case "core/separator":
             return (
-              <div key={`${block.name}{${block.originalContent}`}
+              <div key={block.order}
                 dangerouslySetInnerHTML={{ __html: block.originalContent }}
               />
             )
@@ -33,14 +33,14 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
             break
           case "acf/image-section":
             const imagesection = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
-            return (<ImageSection key={`${block.name}{${block.originalContent}`} data={imagesection} defaultPage/>)
+            return (<ImageSection key={block.order} data={imagesection} defaultPage/>)
           case "acf/special-block":
-            return (<SpecialBlock key={`${block.name}{${block.originalContent}`} block={block} />)
+            return (<SpecialBlock key={block.order} block={block} />)
 
           case "acf/accordion-navigation":
             return (
               <AccordionNavigation
-                key={`${block.name}{${block.originalContent}`}
+                key={block.order}
                 className={block.name.replace("/", "-")}
                 block={block}
               />
@@ -50,7 +50,7 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
             //console.log(block.dynamicContent)
             return(
               <Block
-                key={`${block.name}{${block.originalContent}`}
+                key={block.order}
                   className={block.name.replace("/", "-")}
                   block={block}
                   product
@@ -58,7 +58,7 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
             )
           case "core/columns":
             return (
-              <Column className={block.name.replace("/", "-")} block={block} key={`${block.name}{${block.originalContent}`} />
+              <Column className={block.name.replace("/", "-")} block={block} key={block.order} />
             )
           case "core/buttons":
             if (block.innerBlocks && block.innerBlocks[0]?.originalContent) {
@@ -68,12 +68,12 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
                   <Block
                     className={innerBlock.name.replace("/", "-")}
                     block={innerBlock}
-                    key={`${block.name}{${block.originalContent}`}
+                    key={block.order}
                   />
                 )
               })
               return (
-                <div key={`${block.name}{${block.originalContent}`} className={block.name.replace("/", "-")}>
+                <div key={block.order} className={block.name.replace("/", "-")}>
                   {innerRenderedBlocks}
                 </div>
               )
@@ -94,7 +94,7 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
               //(formId)
               return (
                 <GravityForm
-                  key={`${block.name}{${block.originalContent}`}
+                  key={block.order}
                   className={block.name.replace("/", "-")}
                   id={formId}
                 />
@@ -110,32 +110,32 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
               <Block
                     className={block.name.replace("/", "-")}
                     block={block}
-                    key={`${block.name}{${block.originalContent}`}
+                    key={block.order}
                   />
             )
           case "core-embed/flickr":
-            return <EmbedBlock data={block.originalContent} key={`${block.name}{${block.originalContent}`} />
+            return <EmbedBlock data={block.originalContent} key={block.order} />
           case "core-embed/vimeo":
             return (
-              <div className="wp-block-embed" key={`${block.name}{${block.originalContent}`}>
+              <div className="wp-block-embed" key={block.order}>
                 <EmbedBlock source={block.originalContent}  type="vimeo" />
               </div>
             )
           case "core-embed/youtube":
             return (
-              <div className="wp-block-embed" key={`${block.name}{${block.originalContent}`}>
+              <div className="wp-block-embed" key={block.order}>
                 <EmbedBlock source={block.originalContent} type="youtube" />
               </div>
             )
           case "core-embed/instagram":
             return (
-              <div className="wp-block-embed" key={`${block.name}{${block.originalContent}`}>
+              <div className="wp-block-embed" key={block.order}>
                 <EmbedBlock source={block.originalContent} type="instagram" />
               </div>
             )
           case "core/embed":
             return (
-              <div className="wp-block-embed" key={`${block.name}{${block.originalContent}`}>
+              <div className="wp-block-embed" key={block.order}>
                 <EmbedBlock source={block.originalContent} type="base" />
               </div>
             )
@@ -153,12 +153,13 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
                 className={block.name.replace("/", "-")}
                 content={content}
                 id={fooId}
+                key={block.order}
                 />
             )
           default:
             if (block.originalContent.length > 0) {
                 return (
-                  <Block key={`${block.name}{${block.originalContent}`}
+                  <Block key={block.order}
                     className={block.name.replace("/", "-")}
                     block={block}
                   />
