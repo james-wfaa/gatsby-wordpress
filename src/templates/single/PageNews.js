@@ -10,10 +10,11 @@ import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 
 function WordPressPage({ data }) {
   const { page, posts } = data
-  const { title, excerpt, blocks, featuredImage, storyCategories, product, gridDetails } = page
-
+  const { title, excerpt, blocks, featuredImage, heroIntroSection, storyCategories, product, gridDetails } = page
+  
   const { storycategoriesinner: categories } = storyCategories
   const { backgroundImage } = gridDetails
+  const { heroImageMobile } = heroIntroSection
 
   const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
   const moreButton = [
@@ -70,7 +71,7 @@ function WordPressPage({ data }) {
   const cardGridPosts = posts.nodes.slice(0,9)
   //console.log('cardGridPosts:',cardGridPosts)
   let postCards = cardGridPosts.map((post) => {
-    console.log('post tiles post: ',post)
+    //console.log('post tiles post: ',post)
     return (
       <StoryCardD {...post} />
     )
@@ -86,6 +87,7 @@ function WordPressPage({ data }) {
           videoURL="https://player.vimeo.com/external/524412999.hd.mp4?s=1fc14eaf00fbfe6d5453b7a3bdda0b11487479cb&profile_id=175"
           redHeading={title}
           excerpt={excerpt}
+          mobileHeroImage={heroIntroSection.heroImageMobile.localFile}
       />)}
       <WordPressContent blocks={blocks} />
       <>{cats}</>
@@ -107,6 +109,14 @@ export const query = graphql`
       content
       featuredImage {
         node {
+          localFile {
+            ...HeroImage
+          }
+        }
+      }
+      heroIntroSection {
+        heroImageMobile {
+          altText
           localFile {
             ...HeroImage
           }

@@ -16,6 +16,7 @@ const HeroIntroSection = ({
   variant,
   heroSize,
   heroImage,
+  mobileHeroImage,
   heroHeading,
   redHeading,
   excerpt,
@@ -34,6 +35,7 @@ const HeroIntroSection = ({
   let imageHeightClass = imageWidth ? ' constrainHeight' : null
 
   const background = typeof heroImage !== "undefined" && heroImage !== null
+  const mobileHeroImageCheck = typeof mobileHeroImage !== "undefined" && mobileHeroImage !== null
 
   let classes = className
 
@@ -94,8 +96,26 @@ const HeroIntroSection = ({
 
   return (
     <div className={classes}>
-      {videoURL ? (
+      {videoURL && width > 656 ? (
         <VimeoVideo videoURL={videoURL} heroSize={heroSize} />
+      ) : mobileHeroImageCheck && mobileHeroImage?.childImageSharp?.fluid ? (
+        <div style={{height: `${size}`}}>
+        <BackgroundImage
+          Tag="div"
+          className={heroClasses}
+          fluid={mobileHeroImage.childImageSharp.fluid}
+          preserveStackingContext
+        >
+          {heroHeading && (
+            <div className="wrapper">
+              <div
+                className={headingClasses}
+                dangerouslySetInnerHTML={{ __html: heroHeading }}
+              />
+            </div>
+          )}
+        </BackgroundImage>
+        </div>
       ) : ( background && heroImage?.childImageSharp?.fluid ) ? (
         <div style={{height: `${size}`}}>
         <BackgroundImage
