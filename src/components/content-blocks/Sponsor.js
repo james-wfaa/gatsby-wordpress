@@ -14,7 +14,6 @@ const Sponsor = ({ className, sponsorName, sponsorText, sponsorLogo }) => {
 
     const alt = sponsorLogo?.altText ? sponsorLogo.altText : ''
     const isGif = (! sponsorLogo?.localFile?.childImageSharp)
-    if (!isGif) { console.log(sponsorLogo.localFile.childImageSharp.fluid)}
 
     return (
         <div className={className}>
