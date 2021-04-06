@@ -11,6 +11,7 @@ import HeroIntroSection from "../page-sections/HeroIntroSection"
 import AllChaptersData from "../collections/AllChapters"
 
 function WordPressGroupPage({  page, options }) {
+
   const { chapters: chaptersText, varsityChapterText, recognizedChapterText, bascomChapterText } = options
   const { chapterLevel, chapterSponsors } = page
   const { chapterLevel: level } = chapterLevel

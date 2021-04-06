@@ -12,19 +12,30 @@ const Sponsor = ({ className, sponsorName, sponsorText, sponsorLogo }) => {
         margin: 100px auto;
     `
 
+    const alt = sponsorLogo?.altText ? sponsorLogo.altText : ''
+    const isGif = (! sponsorLogo?.localFile?.childImageSharp)
+    if (!isGif) { console.log(sponsorLogo.localFile.childImageSharp.fluid)}
+
     return (
         <div className={className}>
             <figure >
-                {sponsorLogo?.localFile?.childImageSharp?.fluid && (
+                
+                {!isGif && (
                     <Img 
                         className={`${className}__img`}
                         fluid={sponsorLogo.localFile.childImageSharp.fluid}
+                        alt={alt}
                     />
+                )}
+                {isGif && (
+                    <img src={sponsorLogo.localFile.publicURL} alt={alt} />
                 )}
                 {!sponsorLogo && sponsorName && (
                     <SponsorHeading>{sponsorName}</SponsorHeading>
                 )}
-                <figcaption dangerouslySetInnerHTML={{__html: sponsorText}} />
+                {sponsorText && (
+                    <figcaption dangerouslySetInnerHTML={{__html: sponsorText}} />
+                )}
             </figure>
         </div>
         
@@ -32,6 +43,7 @@ const Sponsor = ({ className, sponsorName, sponsorText, sponsorLogo }) => {
 }
 
 const StyledSponsor = styled(Sponsor)`
+    min-width: 200px;
     max-width: 312px;
     margin: 0 ${sizes.s32};
     figcaption {
