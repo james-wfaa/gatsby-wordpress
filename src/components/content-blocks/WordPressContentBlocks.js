@@ -162,7 +162,7 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                                 link: `/alumninotes/`,
                                 text: 'See All Alumni Notes'
                             }]
-                        RenderedBlocks.push(<PageSection id="post-listing" heading="Alumni Notes" borderTop={borderTop} stagger={stagger} buttons={buttons}><RecentNotes /></PageSection>)
+                        RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Alumni Notes" borderTop={borderTop} stagger={stagger} buttons={buttons}><RecentNotes /></PageSection>)
                     
                     break
            
