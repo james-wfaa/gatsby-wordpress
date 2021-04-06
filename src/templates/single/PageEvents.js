@@ -16,7 +16,7 @@ function WordPressPage({ data }) {
   const { page } = data
   const allevents = AllEvents()
   const { nodes: eventEdges } = allevents
-  const { title, featuredImage, eventCategories, excerpt, gridDetails  } = page
+  const { title, featuredImage, heroIntroSection, eventCategories, excerpt, gridDetails  } = page
   const { categories } = eventCategories
 
   const { backgroundImage } = gridDetails
@@ -82,6 +82,7 @@ categories.forEach((item) => {
           videoURL="https://player.vimeo.com/external/524440389.hd.mp4?s=ebee9d64e105fc60c3075fe901ed7a6e50aeebf8&profile_id=174"
           redHeading={title}
           excerpt={excerpt}
+          mobileHeroImage={heroIntroSection.heroImageMobile.localFile}
         />)}
         <Accordian opentext="SEARCH" closetext="CLOSE SEARCH">
           <AccordianSearchBox navigationURL="/events/search" />
@@ -116,7 +117,14 @@ export const query = graphql`
           }
         }
       }
-
+      heroIntroSection {
+        heroImageMobile {
+          altText
+          localFile {
+            ...HeroImage
+          }
+        }
+      }
       eventCategories {
         categories {
           categoryEvent: category {

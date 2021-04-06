@@ -63,30 +63,6 @@ function WordPressPage({ data }) {
         </PageSection>
       )
     }
-    /*let catButton
-    if (category?.name || product?.name) {
-      catButton = [
-        {
-          link: `/news/${linkPath}`,
-          text: `See All ${category?.name ? category.name : product?.name ? product.name : null}`,
-        },
-      ]
-    }
-    const cardItems = (category?.name && category?.posts?.nodes) 
-      ? category.posts.nodes
-      : (!category && product?.name && product?.posts?.nodes)
-        ? product.posts.nodes
-        : null
-    const catName = category?.name ? category.name : !category && product?.name ? product.name : null
-    const moreButton = category && category?.posts?.nodes?.length > numberToShow ? catButton : product && product?.posts?.nodes?.length > numberToShow ? catButton : null
-
-    if (cardItems) {
-      return (
-        <PageSection heading={catName} stagger buttons={moreButton}>
-          <CardSet items={cardItems} num={numberToShow} type="news"/>
-        </PageSection>
-      )
-    } */
     return (<div/>)
   })
   //console.log(posts)
