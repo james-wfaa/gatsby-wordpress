@@ -31,6 +31,8 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
           case "core/group":
           case "acf/events-listing-section":
             break
+          case "acf/note-listing":
+            break
           case "acf/image-section":
             const imagesection = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
             return (<ImageSection key={block.order} data={imagesection} defaultPage/>)
