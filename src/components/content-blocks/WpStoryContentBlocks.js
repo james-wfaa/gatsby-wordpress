@@ -8,6 +8,7 @@ import Column from '../parts/WordPressColumns'
 import ImageSection from './ImageSection'
 import AccordionNavigation from './AccordionNavigation'
 import SpecialBlock from '../content-modules/SpecialBlock'
+import Shortcode from '../content-modules/Shortcode'
 import FooGallery from './FooGallery'
 import parse from 'html-react-parser'
 
@@ -17,7 +18,7 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
 
   //console.log(content)
         const RenderedBlocks = (blocks) ? blocks.map((block) => {
-          //console.log(block.name)
+        //console.log(block.name)
 
         switch (block.name) {
 
@@ -27,7 +28,10 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
                 dangerouslySetInnerHTML={{ __html: block.originalContent }}
               />
             )
-            
+          case "core/shortcode":
+            return (
+              <Shortcode block={block} />
+            )
           case "core/group":
           case "acf/events-listing-section":
             break
@@ -136,8 +140,9 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
               </div>
             )
           case "core/embed":
+            const embedWrapperClass = block?.originalContent && block?.originalContent.includes('flickr') || block?.originalContent.includes('tryinteract') ? 'embed-wrapper' : null;
             return (
-              <div className="wp-block-embed" key={block.order}>
+              <div className={`wp-block-embed ${embedWrapperClass}`} key={block.order}>
                 <EmbedBlock source={block.originalContent} type="base" />
               </div>
             )
@@ -208,7 +213,9 @@ hr.wp-block-separator {
 .core-table,
 .core-heading, 
 .core-columns,
-.core-freeform {
+.core-freeform,
+.embed-wrapper,
+.core-shortcode {
   min-width: 300px;
   width: 100%;
   max-width: 300px;
@@ -297,11 +304,19 @@ h2 {
     
   }
 }
-
-.wp-block-embed{
+.wp-block-embed,
+.core-shortcode { 
   margin-bottom: 26px;
+  .quiz-embed{
+    padding-bottom: 150% !important;
+    @media screen and ${breakpoints.tabletS} {
+      padding-bottom: 108% !important;
+    }
+    @media screen and ${breakpoints.laptopS} {
+      padding-bottom: 100% !important;
+    }
+  }
 }
-
 `
 
 export default StyledWpStoryContentBlocks
