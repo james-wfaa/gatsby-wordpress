@@ -12,12 +12,15 @@ const ContactInfo = () => {
   const { setCurrentStep, setContactInfoOnchange, setEntryId } = actions;
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
-  const UpdateContactInfo = data =>{
-    handleFormSubmit(state).then((res) =>{
-      //console.log('returned data', res)
-      setEntryId(res.entry_id)
-    }).then(setCurrentStep(2))
-
+  const UpdateContactInfo = () =>{
+    handleFormSubmit(state).then((returnedData) =>{
+      if(returnedData.is_valid === false){
+        throw new Error('something went wrong with submitting the form');
+      }
+      setEntryId(returnedData.entry_id)
+    }).then(() => {
+      setCurrentStep(2)
+    }).catch(err => {alert(`An error occurred: ${err.message}`)})
   }
 
   const updateOnChangeValues = (e) => {
@@ -31,7 +34,6 @@ const ContactInfo = () => {
           <PageSection
             excerpt="Make sure you stay in the know — and more connected to the UW and WAA! Please take a moment to complete this form with your current contact information to ensure you receive communications about events, programs, and services that matter to you."
             heading="Update My Info"
-            headingAlt
             headingCompact
             backgroundColor={colors.formIntroBg}
           />

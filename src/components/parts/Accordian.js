@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from "styled-components"
 import { useSpring, animated } from "react-spring"
-import { colors, sizes } from "../css-variables"
+import { colors, sizes, breakpoints } from "../css-variables"
 
 const StyledWrapper = styled.div`
   background-color: ${colors.navcardGrey};
@@ -15,12 +15,24 @@ const StyledClickWrapper = styled.div`
   cursor: pointer;
 `
 const StyledInputWrapper = styled.div`
+
   display: grid;
   grid-template-columns: 1fr 30px;
-  width: max-content;
   max-width: 500px;
   margin: 0 auto;
   align-items: center;
+  width: max-content;
+
+  &.navWrap{
+    width: 100%;
+    grid-template-columns: 85% 30px;
+    @media screen and ${breakpoints.tabletS} {
+      grid-template-columns: 1fr 30px;
+    }
+
+  }
+
+  
   h4 {
     justify-self: center;
     font-family: "Verlag A", "Verlag B";
@@ -51,6 +63,32 @@ const StyledInputWrapper = styled.div`
     font-weight: bold;
     color: ${colors.badgerRed};
     font-size: ${sizes.s16};
+  }
+  .navIcon{
+    background: #c5050c;
+    height: 18px;
+    width: 2px;
+    margin: 0.5em auto;
+    position: absolute;
+    right: 12px;
+    top: 7px;
+    @media screen and ${breakpoints.tabletS} {
+      top: 10px;
+      right: 26px;
+
+    }
+    &:after {
+      background: #c5050c;
+      content: "";
+      height: 2px;
+      left: -8px;
+      position: absolute;
+      top: 8px;
+      width: 18px;
+    }
+    &.open{
+      transform: rotate(45deg);
+    }
   }
   .menuIcon{
     display: inline-block;
@@ -117,7 +155,10 @@ const StyledInputWrapper = styled.div`
 const Accordian = ({opentext, closetext, children, useAsMenu, useAsNav}) => {
   const [open, setOpen] = useState(false)
 
-  const searchstyles = useSpring({ opacity: open ? 1 : 0, paddingBottom: `56px` })
+  const searchStylesPadding = useAsNav ? '0px' : '56px'
+  const navClassName = useAsNav ? "navWrap" : ""
+
+  const searchstyles = useSpring({ opacity: open ? 1 : 0, paddingBottom: searchStylesPadding })
 
   
 
@@ -130,7 +171,7 @@ const isOpenClass = open ? 'open' : ''
   return (
     <StyledWrapper className="AccordionWrap">
       <StyledClickWrapper onClick={() => clickHandler()} onKeyPress={() => clickHandler()} aria-label={useAsMenu ? menuToggleAriaLabel : null} tabIndex={useAsMenu ? '0' : null}>
-        <StyledInputWrapper className="AccordionInputWrap">
+        <StyledInputWrapper className={`AccordionInputWrap ${navClassName}`}>
           <div className="menuTitle">
             {useAsNav ? (<h3> {!open ? opentext : closetext}</h3>):(
               <div>{!open ? opentext : closetext}</div>
@@ -138,7 +179,9 @@ const isOpenClass = open ? 'open' : ''
             
           </div>
           <p>
-            { useAsMenu ? (<div className={`menuIcon ${isOpenClass}`}><span></span></div>) : (<span
+            { useAsMenu ? (<div className={`menuIcon ${isOpenClass}`}><span></span></div>) 
+            : useAsNav ? (<div className={`navIcon ${isOpenClass}`}><span></span></div>)
+            :(<span
               style={{
                 transform: !open
                   ? `rotate(-180deg) scale(1.5, 1)`

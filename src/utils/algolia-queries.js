@@ -71,8 +71,10 @@ const postQuery = `{
         title
         postFormats {
           nodes {
-            id
             name
+            link
+            uri
+            slug
           }
         }
         date

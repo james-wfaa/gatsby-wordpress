@@ -47,7 +47,6 @@ const EmploymentInfo = () => {
             <PageSection
               excerpt='Please make updates regarding your current employment status. Click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
-              headingAlt
               headingCompact
               backgroundColor={colors.formIntroBg}
             />

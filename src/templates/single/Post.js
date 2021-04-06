@@ -20,6 +20,7 @@ export const query = graphql`
       title
       content
       blocks {
+        order
         name
         isDynamic
         originalContent
