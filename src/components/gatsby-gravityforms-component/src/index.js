@@ -66,7 +66,6 @@ const GravityFormForm = ({
                     values = {...values, ...checkboxes}
 
                 }
-                //console.log('updated values', values)
 
                 const { data, status } = await passToGravityForms({
                     baseUrl: singleForm.apiURL,
@@ -156,6 +155,7 @@ const GravityFormForm = ({
                         id={`gravityform--id-${id}`}
                         key={`gravityform--id-${id}`}
                         onSubmit={handleSubmit(onSubmitCallback)}
+                        encType="multipart/form-data"
                     >
                         {generalError && (
                             <FormGeneralError errorCode={generalError} errorList={errorList}/>
