@@ -212,11 +212,8 @@ hr.wp-block-separator {
 .core-heading, 
 .core-columns,
 .core-freeform,
-<<<<<<< HEAD
-.embed-wrapper {
-=======
+.embed-wrapper,
 .core-shortcode {
->>>>>>> master
   min-width: 300px;
   width: 100%;
   max-width: 300px;
