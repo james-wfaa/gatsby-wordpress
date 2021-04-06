@@ -14,7 +14,6 @@ function WordPressPage({ data }) {
   
   const { storycategoriesinner: categories } = storyCategories
   const { backgroundImage } = gridDetails
-  const { heroImageMobile } = heroIntroSection
 
   const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
   const moreButton = [
@@ -25,10 +24,13 @@ function WordPressPage({ data }) {
   ]
 
   const cats = categories.map((item) => {
-    const { category, numberToShow } = item
+    const { category, product, numberToShow } = item
+
+    const cat = category ? category : product ? product : null
+
     let linkPath
-    if (category?.slug) {
-      switch(category.slug) {
+    if (cat?.slug) {
+      switch(cat.slug) {
         case 'news':
           linkPath = 'all'
           break
@@ -36,19 +38,37 @@ function WordPressPage({ data }) {
         case 'badger-insider':
         case 'badger-vibes':
         case 'on-wisconsin':
-          linkPath = `all?pub=${category.slug}`
+          linkPath = `all?pub=${cat.slug}`
           break
         default:
-          linkPath = `all?filter=${category.slug}`
+          linkPath = `all?filter=${cat.slug}`
           break
       }
     }
-    
-    if (category?.name) {
-      const catButton = [
+    let catButton
+    if (cat?.name) {
+      catButton = [
         {
           link: `/news/${linkPath}`,
-          text: `See All ${category.name}`,
+          text: `See All ${cat.name}`,
+        },
+      ]
+    }
+    const cardItems = (cat?.name && cat?.posts?.nodes) ? cat.posts.nodes : null
+
+    if (cardItems) {
+      return (
+        <PageSection heading={cat.name} stagger buttons={catButton}>
+          <CardSet items={cardItems} num={numberToShow} type="news"/>
+        </PageSection>
+      )
+    }
+    /*let catButton
+    if (category?.name || product?.name) {
+      catButton = [
+        {
+          link: `/news/${linkPath}`,
+          text: `See All ${category?.name ? category.name : product?.name ? product.name : null}`,
         },
       ]
     }
@@ -57,14 +77,16 @@ function WordPressPage({ data }) {
       : (!category && product?.name && product?.posts?.nodes)
         ? product.posts.nodes
         : null
+    const catName = category?.name ? category.name : !category && product?.name ? product.name : null
+    const moreButton = category && category?.posts?.nodes?.length > numberToShow ? catButton : product && product?.posts?.nodes?.length > numberToShow ? catButton : null
 
     if (cardItems) {
       return (
-        <PageSection heading={category.name} stagger>
+        <PageSection heading={catName} stagger buttons={moreButton}>
           <CardSet items={cardItems} num={numberToShow} type="news"/>
         </PageSection>
       )
-    } 
+    } */
     return (<div/>)
   })
   //console.log(posts)
