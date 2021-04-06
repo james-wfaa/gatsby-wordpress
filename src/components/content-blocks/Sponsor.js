@@ -27,7 +27,7 @@ const Sponsor = ({ className, sponsorName, sponsorText, sponsorLogo }) => {
                         alt={alt}
                     />
                 )}
-                {isGif && (
+                {isGif && sponsorLogo?.localFile && (
                     <img src={sponsorLogo.localFile.publicURL} alt={alt} />
                 )}
                 {!sponsorLogo && sponsorName && (
