@@ -138,8 +138,9 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
               </div>
             )
           case "core/embed":
+            const embedWrapperClass = block?.originalContent && block?.originalContent.includes('flickr') || block?.originalContent.includes('tryinteract') ? 'embed-wrapper' : null;
             return (
-              <div className="wp-block-embed" key={block.order}>
+              <div className={`wp-block-embed ${embedWrapperClass}`} key={block.order}>
                 <EmbedBlock source={block.originalContent} type="base" />
               </div>
             )
@@ -211,6 +212,7 @@ hr.wp-block-separator {
 .core-heading, 
 .core-columns,
 .core-freeform,
+.embed-wrapper,
 .core-shortcode {
   min-width: 300px;
   width: 100%;
@@ -303,6 +305,15 @@ h2 {
 .wp-block-embed,
 .core-shortcode { 
   margin-bottom: 26px;
+  .quiz-embed{
+    padding-bottom: 150% !important;
+    @media screen and ${breakpoints.tabletS} {
+      padding-bottom: 108% !important;
+    }
+    @media screen and ${breakpoints.laptopS} {
+      padding-bottom: 100% !important;
+    }
+  }
 }
 `
 

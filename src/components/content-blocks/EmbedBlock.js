@@ -2,13 +2,13 @@ import React from 'react'
 import parse from 'html-react-parser';
 
 const EmbedBlock = ({source, type}) => {
-
-
   //console.log(type)
   //console.log(source)
   let parsed
   //console.log(source.children)
   //console.log(parse(data.data))
+  let interactQuizClass = source && source?.includes('tryinteract') ? 'quiz-embed' : null;
+  
   switch (type) {
     case "vimeo":
       //console.log(source)
@@ -26,7 +26,7 @@ const EmbedBlock = ({source, type}) => {
               position: "relative",
               paddingBottom: "56%",
               overflow: "auto",
-              webkitOverflowScrolling: "touch",
+              WebkitOverflowScrolling: "touch",
             }}
           >
             <iframe
@@ -39,8 +39,8 @@ const EmbedBlock = ({source, type}) => {
               }}
               src={parsed.props.children.props.children}
               scrolling="no"
-              frameborder="0"
-              allowFullScreen="true"
+              frameBorder="0"
+              allowFullScreen={true}
               webkitallowfullscreen="true"
               mozallowfullscreen="true"
             ></iframe>
@@ -63,7 +63,7 @@ const EmbedBlock = ({source, type}) => {
               position: "relative",
               paddingBottom: "56%",
               overflow: "auto",
-              webkitOverflowScrolling: "touch",
+              WebkitOverflowScrolling: "touch",
             }}
           >
             <iframe
@@ -76,8 +76,8 @@ const EmbedBlock = ({source, type}) => {
               }}
               src={parsed.props.children.props.children}
               scrolling="no"
-              frameborder="0"
-              allowFullScreen="true"
+              frameBorder="0"
+              allowFullScreen={true}
               webkitallowfullscreen="true"
               mozallowfullscreen="true"
             ></iframe>
@@ -102,7 +102,7 @@ const EmbedBlock = ({source, type}) => {
               position: "relative",
               paddingBottom: "56%",
               overflow: "auto",
-              webkitOverflowScrolling: "touch",
+              WebkitOverflowScrolling: "touch",
             }}
           >
             <img
@@ -140,7 +140,7 @@ const EmbedBlock = ({source, type}) => {
             position: "relative",
             paddingBottom: "56%",
             overflow: "auto",
-            webkitOverflowScrolling: "touch",
+            WebkitOverflowScrolling: "touch",
           }}
         >
           <iframe
@@ -153,8 +153,8 @@ const EmbedBlock = ({source, type}) => {
             }}
             src={`https://flickrembed.com/cms_embed.php?source=flickr&layout=responsive&input=www.flickr.com/photos/bucky-badger/albums/${FlickrUrl}&sort=2&by=album&theme=default&scale=fill&skin=default&id=588237896e27d`}
             scrolling="no"
-            frameborder="0"
-            allowFullScreen="true"
+            frameBorder="0"
+            allowFullScreen={true}
             webkitallowfullscreen="true"
             mozallowfullscreen="true"
           ></iframe>
@@ -173,8 +173,9 @@ const EmbedBlock = ({source, type}) => {
               position: "relative",
               paddingBottom: "56%",
               overflow: "auto",
-              webkitOverflowScrolling: "touch",
+              WebkitOverflowScrolling: "touch",
             }}
+            className={interactQuizClass}
           >
             <iframe
               style={{
@@ -186,8 +187,8 @@ const EmbedBlock = ({source, type}) => {
               }}
               src={parsed.props.children.props.children}
               scrolling="no"
-              frameborder="0"
-              allowFullScreen="true"
+              frameBorder="0"
+              allowFullScreen={true}
               webkitallowfullscreen="true"
               mozallowfullscreen="true"
             ></iframe>
