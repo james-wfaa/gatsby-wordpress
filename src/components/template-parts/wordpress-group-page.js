@@ -11,9 +11,8 @@ import HeroIntroSection from "../page-sections/HeroIntroSection"
 import AllChaptersData from "../collections/AllChapters"
 
 function WordPressGroupPage({  page, options }) {
-  console.log(page)
 
-  const { chapters: chaptersText, varsityChapterText, recognizedChapterText, bascomChapterText } = options
+  const { chapters: chaptersText, varsityChapterText, recognizedChapterText, bascomChapterText, affinityGroupText, affinityGroupPositioningStatement } = options
   const { chapterLevel, chapterSponsors } = page
   const { chapterLevel: level } = chapterLevel
   const { sponsors } = chapterSponsors
@@ -36,7 +35,7 @@ const eventbutton = [
 ]
 const featuredbutton = [
   {
-    link: "#",
+    link: "/news",
     text: "See all news and stories",
   },
 ]
@@ -66,12 +65,24 @@ const imageWidth = featuredImage?.node?.mediaDetails?.width
         )
       })
       : null
+ 
+  const chapterTypeText = () => {
+    switch (level ) {
+      case 'Varsity':
+        return varsityChapterText
+      case 'Bascom':
+        return bascomChapterText
+      case 'Affinity': 
+      return affinityGroupText
+      default: 
+      return recognizedChapterText
+    }
+  }
 
-  const chapterTypeText = (level === 'Varsity')
-      ? varsityChapterText
-      : (level === 'Bascom' ) 
-        ? bascomChapterText
-        : recognizedChapterText
+  const resolvedStatement = level === 'Affinity'
+    ? affinityGroupPositioningStatement
+    : chaptersText
+
 
 
   const eventsToShow = (groups?.nodes && groups?.nodes[0]?.events.nodes) ? groups?.nodes[0]?.events.nodes : null
@@ -80,13 +91,13 @@ const imageWidth = featuredImage?.node?.mediaDetails?.width
     <Layout title={title}>
       <PageSection
         heading={title}
-        excerpt={chapterTypeText}
+        excerpt={chapterTypeText()}
         withSocial={social}
         plainText
         pageTitle
         groupPage
       > 
-       <div className="groupPage" dangerouslySetInnerHTML={{__html: chaptersText}} />
+       <div className="groupPage" dangerouslySetInnerHTML={{__html: resolvedStatement}} />
        
       </PageSection>
       <div style={{maxWidth: `1080px`, margin: `auto`, paddingBottom: `58px`}}>

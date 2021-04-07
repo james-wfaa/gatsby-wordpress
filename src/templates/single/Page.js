@@ -346,6 +346,8 @@ export const query = graphql`
             bascomChapterText
             recognizedChapterText
             varsityChapterText
+            affinityGroupText
+            affinityGroupPositioningStatement
           }
         }
       }
