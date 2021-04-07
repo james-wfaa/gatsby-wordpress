@@ -18,13 +18,13 @@ export const handleFormSubmit = (data) => {
       'content-type': 'application/json',
     },
     body: JSON.stringify(entryData),
-  }).then((response) => { 
-    return response.json().then((data) => {
-        return data;
-    }).catch((err) => {
-        console.log(err);
-    }) 
-  });
+    mode: 'cors',
+  })
+  .then(res =>
+    (!res.ok)
+      ? res.json().then(() => {throw new Error('an error occurred')})
+      : res.json()
+  )
 }
 
 export const handleCommFormSubmit = (data) => {
@@ -68,13 +68,6 @@ export const checkForLetters = (value) => {
     response = false
   }
   return response
-}
-
-export const variantObject = {
-    background_color: colors.formIntroBg,
-    color: colors.bgRed,
-    scroll_color: colors.bgRed,
-    text_align: `center`
 }
 
 export const StyledError = styled.p`

@@ -2,9 +2,13 @@ import React from "react"
 import ContentCardD from './ContentCardD'
 
 const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat, acfAlternatePostType })=> {
+
     url = `/news${url}`
 
-    let moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
+    const external = linkFormat?.linkUrl
+
+
+   
 
     /* let's make this a helper available anywhere we need to nicely shorten an excerpt */
     const maxLength = (title.length <= 28) ? 200 : 160
@@ -14,18 +18,21 @@ const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat, acfAltern
     const postTypes = (terms && terms.nodes && terms.nodes.length > 0) ? terms.nodes : null;
     const altPostType = acfAlternatePostType?.alternateposttype ? acfAlternatePostType.alternateposttype : null
 
-    let label = null;
-    if (postTypes && postTypes.length > 0){
-        terms.nodes.map((node)=>{
-            if (node.name){
-                return label = node.name
-            }
-        })
-        //if post but doesnt have category, set as Story
-        if (postTypes && label === null){
-            label = 'Story'
-        }
-    }
+    //let label = null;
+    const label = altPostType != "story"
+        ? altPostType
+        : "Story"
+
+
+    const moreLinkText = linkFormat?.linkAuthor
+    ? <nobr>Via {linkFormat.linkAuthor} <span class="arrow"></span></nobr>
+    : altPostType === "Podcast"
+        ? <nobr>Listen <span class="arrow"></span></nobr>
+        : urlText
+            ? <nobr>{urlText} &gt;</nobr>
+            : <nobr>Read More &gt;</nobr>
+
+    console.log(title, moreLinkText)
     
     //update display based on post type
     if(label && postTypes){
@@ -34,8 +41,6 @@ const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat, acfAltern
                 break
             case 'Link':
                 moreLinkText = <nobr>Via {linkFormat.linkAuthor} <span class="arrow"></span></nobr>
-                label = 'Story'
-                url = linkFormat.linkUrl
                 break
             case 'Podcast': 
                 moreLinkText = <nobr>Listen <span class="arrow"></span></nobr>
@@ -45,10 +50,11 @@ const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat, acfAltern
         }   
     }
 
-    //update display based on alt post types
-    if(altPostType != "story"){
-        label = altPostType
-    }
+    const resolvedUrl = linkFormat?.linkUrl 
+        ? linkFormat.linkUrl
+        : url
+
+    
     
     return (
         <ContentCardD
@@ -57,7 +63,9 @@ const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat, acfAltern
           excerpt={excerpt}
           shortenedExcerpt={shortenedExcerpt}
           moreLinkText={moreLinkText}
-          url={url}
+          url={resolvedUrl}
+          external={external}
+          linkFormat={linkFormat}
         />
     )
 }

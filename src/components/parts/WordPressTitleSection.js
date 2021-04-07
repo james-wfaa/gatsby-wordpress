@@ -115,21 +115,11 @@ const StyledTitleSection = styled(TitleSection)`
         line-height: ${sizes.s18};
         font-weight: bold;
         color: ${colors.copyText};
-
         >div{
-            padding: 0 ${sizes.s10} 0 ${sizes.s10};
-            border-left: 2px solid ${colors.copyText};
             display: inline-block;
         }
         div:first-child{
-            padding-left: 0px;
-            border-left: none;
             margin-top: ${sizes.s24};
-
-        }
-        div:nth-child(2){
-            padding-left:0;
-            border-left:none;
         }
         .headingexcerpt{
             text-align: left;
@@ -137,6 +127,8 @@ const StyledTitleSection = styled(TitleSection)`
             font-weight: normal;
             line-height: ${sizes.s26};
             margin: ${sizes.s24} 0;
+            padding-left: 0px;
+
             display:block;
             p {
                 &:last-child {
@@ -165,9 +157,21 @@ const StyledTitleSection = styled(TitleSection)`
             }
         }
     }
+    
+    &__author,
+    &__date,
+    &__category {
+        padding: 0 ${sizes.s10} 0 ${sizes.s10};
+    }
+    &__author {
+        border-right: 2px solid ${colors.copyText};
+        padding-left: 0;
+    }
+  
 
     &__category{
         color: ${colors.titleColor};
+        border-left: 2px solid ${colors.copyText};
         a{
             color: ${colors.titleColor};
             &:hover{

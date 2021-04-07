@@ -17,8 +17,8 @@ const CardSet = ({className, items, children, num, size="M", type="news" }) => {
 
         const { featuredEvent, featuredImage: img } = item
         const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-        console.log("CardSet")
-        console.log(item)
+        //console.log("CardSet")
+        //console.log(item)
         
         return (type === "news" )
             ? (<StoryContentCard size={size} img={cardImg} {...item} />) 

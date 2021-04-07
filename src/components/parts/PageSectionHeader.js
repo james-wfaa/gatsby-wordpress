@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { mixins } from '../css-variables'
+import { mixins, colors } from '../css-variables'
 
 
 const PageSectionHeader = ({ className, heading, headingAlt, headingCompact, pageTitle, excerpt, groupPage, withSocial, bgimage, fromBlocks, leftAlign }) => {
@@ -32,6 +32,15 @@ const PageSectionHeader = ({ className, heading, headingAlt, headingCompact, pag
 
 const StyledPageSectionHeader = styled(PageSectionHeader)`
     ${mixins.sectionHeader}
+    &.bgimage,
+    &.headingAlt {
+        h2 {
+            color: ${colors.titleWhite};
+        }
+        &:after {
+            background-color: ${colors.bgWhite};
+        }
+    }
 `
 
 export default StyledPageSectionHeader

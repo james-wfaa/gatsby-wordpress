@@ -40,7 +40,6 @@ const UpdateSuccess = () => {
             <PageSection
             excerpt='Thanks for taking the time to do a complete update of your information. Now you’re all set to receive messages, invitations, and more — and you have a better way to stay connected to UW–Madison and WAA. On, Wisconsin!'
             heading='Thank you. Your information has been updated.'
-            headingAlt
             headingCompact
             content={content}
             backgroundColor={colors.formIntroBg}

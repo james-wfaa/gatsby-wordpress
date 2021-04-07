@@ -20,7 +20,7 @@ const AdvocacyEmbed = ({ block }) => {
   }
 
   return (
-  <div className="advocacy-embed">
+  <div className="embed-block advocacy-embed">
     <div className="advocacy-actionwidget" data-domain="p2a.co" data-shorturl={advocacyId}></div>
     {addScript()}
   </div>)
