@@ -1,15 +1,15 @@
 import React from "react"
 import styled from 'styled-components'
-import { sizes } from '../css-variables'
+import { sizes, colors, breakpoints } from '../css-variables'
 import Img from 'gatsby-image'
 
 const Sponsor = ({ className, sponsorName, sponsorText, sponsorLogo }) => {
 
     const SponsorHeading = styled.div`
-        font-size: ${sizes.s32};
+        font-size: ${sizes.s20};
         font-weight: bold;
         display: block;
-        margin: 100px auto;
+        margin: 0 auto ${sizes.s32} auto;
     `
 
     const alt = sponsorLogo?.altText ? sponsorLogo.altText : ''
@@ -18,7 +18,9 @@ const Sponsor = ({ className, sponsorName, sponsorText, sponsorLogo }) => {
     return (
         <div className={className}>
             <figure >
-                
+                {sponsorName && (
+                        <SponsorHeading>{sponsorName}</SponsorHeading>
+                    )}
                 {!isGif && (
                     <Img 
                         className={`${className}__img`}
@@ -29,9 +31,7 @@ const Sponsor = ({ className, sponsorName, sponsorText, sponsorLogo }) => {
                 {isGif && sponsorLogo?.localFile && (
                     <img src={sponsorLogo.localFile.publicURL} alt={alt} />
                 )}
-                {!sponsorLogo && sponsorName && (
-                    <SponsorHeading>{sponsorName}</SponsorHeading>
-                )}
+                
                 {sponsorText && (
                     <figcaption dangerouslySetInnerHTML={{__html: sponsorText}} />
                 )}
@@ -42,11 +42,47 @@ const Sponsor = ({ className, sponsorName, sponsorText, sponsorLogo }) => {
 }
 
 const StyledSponsor = styled(Sponsor)`
-    min-width: 200px;
-    max-width: 312px;
-    margin: 0 ${sizes.s32};
+    width: 255px;
+    min-height: 353px;
+    height:353px !important;
+    margin: 0;
+    padding: ${sizes.s16};
+    border: 1px solid black;
+    position: relative;
     figcaption {
-        margin-top: ${sizes.s32};
+        a{
+            color: ${colors.linkText};
+            :hover{
+                color: ${colors.linkTextHover};
+            }
+        }
+        p{
+            margin-bottom: ${sizes.s32};
+        }
+        p:last-of-type{
+            position: absolute;
+            bottom: 0;
+            left:calc(50% - 46px);
+        }
+    }
+    .gatsby-image-wrapper{
+        max-width: 180px;
+        max-height: 120px;
+        margin: 0 auto ${sizes.s32} auto;
+        img{
+            object-fit: contain !important;
+            margin-bottom: 0;
+        }
+    }
+    @media screen and ${breakpoints.tabletL} {
+        width: 345px;
+        min-height: 445px;
+        height:445px !important;
+        padding: ${sizes.s32};
+        .gatsby-image-wrapper{
+            max-width: 240px;
+            max-height: 160px;
+        }
     }
 `
 
