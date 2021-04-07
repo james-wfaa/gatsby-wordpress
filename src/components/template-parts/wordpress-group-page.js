@@ -11,6 +11,8 @@ import HeroIntroSection from "../page-sections/HeroIntroSection"
 import AllChaptersData from "../collections/AllChapters"
 
 function WordPressGroupPage({  page, options }) {
+  console.log(page)
+
   const { chapters: chaptersText, varsityChapterText, recognizedChapterText, bascomChapterText } = options
   const { chapterLevel, chapterSponsors } = page
   const { chapterLevel: level } = chapterLevel
@@ -23,7 +25,7 @@ function WordPressGroupPage({  page, options }) {
 const thisChapter = thisChapterArr[0] ? thisChapterArr[0] : null
   
 const RenderedSponsors = (sponsors) ? sponsors.map((sponsor) => {
-  return (<Sponsor {...sponsor} />)
+  return (<Sponsor key={sponsor.name} {...sponsor} />)
 }) : null
 
 const eventbutton = [

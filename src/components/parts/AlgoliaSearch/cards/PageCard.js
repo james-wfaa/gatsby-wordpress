@@ -112,12 +112,12 @@ const PageCard = ({excerpt, hit, title, topResult, url}) => {
         : null}
         {topResult ?
         <DetailsDiv>
-          <p><span className="cardType">Page</span></p>
+          <p><span className="cardType">PAGE</span></p>
           <h3>{title}</h3>
         </DetailsDiv>
         :
         <>
-          <p><span className="cardType">Page</span></p>
+          <p><span className="cardType">PAGE</span></p>
           <h3>{title}</h3>
         </>
         }
