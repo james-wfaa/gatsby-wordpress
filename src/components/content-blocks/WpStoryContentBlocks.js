@@ -14,11 +14,7 @@ import parse from 'html-react-parser'
 
 
 const WpStoryContentBlocks = ({className, blocks, content }) => {
-
-
-  //console.log(content)
         const RenderedBlocks = (blocks) ? blocks.map((block) => {
-        //console.log(block.name)
 
         switch (block.name) {
 
@@ -188,7 +184,7 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
                 </div>
             )}
             { !RenderedBlocks && (
-                <Block className={className} block={content} />
+                <Block className={`${className} content core-freeform`} block={content} />
             )}
         </div>
     )
