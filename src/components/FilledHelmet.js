@@ -10,7 +10,9 @@ function FilledHelmet({title, img, desc, url}) {
   const cleanDesc = ( desc ) ? striptags(desc) : null
 
   return (
-    <Helmet titleTemplate="%s | Wisconsin Alumni Association">
+    <Helmet titleTemplate="%s | Wisconsin Alumni Association" htmlAttributes={{
+      lang: 'en',
+    }}>
       <title>{title}</title>
       {cleanDesc &&
         <meta name="description" content={cleanDesc} />
