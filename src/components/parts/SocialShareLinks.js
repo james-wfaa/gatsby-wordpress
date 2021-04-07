@@ -18,7 +18,7 @@ const SocialShareLinks = props => {
     const isEvent = event ? "eventShare" : "";
     const displayTight = tight ? "displayTight" : "";
 
-    const strippedExcerpt = excerpt.replace(/(<([^>]+)>)/gi, "")
+    const strippedExcerpt = excerpt?.replace(/(<([^>]+)>)/gi, "")
 
     const { site } = useStaticQuery(graphql`
         query {
@@ -31,6 +31,7 @@ const SocialShareLinks = props => {
   `)
   
     const currentURL = site?.siteMetadata?.siteURL + url
+    console.log(url)
 
     return (
         <div className = {`${className} ${isEvent} ${displayTight}`}>
