@@ -61,11 +61,12 @@ const HomePage = ({ data }) => {
 
   let featuredPostCards = featuredPosts.nodes.map((post) => {
     const img = post?.featuredImage?.node?.localFile ? post.featuredImage.node?.localFile : null
+    const product = post?.products?.nodes?.[0]?.name ? post.products.nodes[0].name : null
     console.log(img)
     return (<StoryContentCard
       key={post.url}
       title={post.title}
-      category="UW NOW"
+      category={product}
       excerpt={post.excerpt}
       featureImg={img}
       img={img}
@@ -360,6 +361,12 @@ export const pageQuery = graphql`
           }
         }
         url: uri
+        products {
+          nodes {
+            slug
+            name
+          }
+        }
       }
     }
   }
