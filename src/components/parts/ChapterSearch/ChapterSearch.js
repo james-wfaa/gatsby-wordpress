@@ -147,6 +147,11 @@ const ChapterSearch = () => {
       outline: none;
     }
     cursor: pointer;
+    option{
+      background-color: white;
+      color: black;
+    }
+    }
   `
 
   const ResultsBoxWrapper = styled.div`
