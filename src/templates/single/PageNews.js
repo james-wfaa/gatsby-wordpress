@@ -75,6 +75,7 @@ function WordPressPage({ data }) {
     )
   })
 
+  const heroHeading = heroIntroSection?.heroHeading ? `<span>${heroIntroSection.heroHeading}</span> ON` : null
 
 
   return (
@@ -86,6 +87,7 @@ function WordPressPage({ data }) {
           redHeading={title}
           excerpt={excerpt}
           mobileHeroImage={heroIntroSection.heroImageMobile.localFile}
+          heroHeading={heroHeading}
       />)}
       <WordPressContent blocks={blocks} />
       <>{cats}</>
@@ -119,6 +121,7 @@ export const query = graphql`
             ...HeroImage
           }
         }
+        heroHeading
       }
       storyCategories {
         storycategoriesinner {

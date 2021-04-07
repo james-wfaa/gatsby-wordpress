@@ -102,7 +102,7 @@ const HeroIntroSection = ({
         <div style={{height: `${size}`}}>
         <BackgroundImage
           Tag="div"
-          className={heroClasses}
+          className={`${heroClasses} overlay`}
           fluid={mobileHeroImage.childImageSharp.fluid}
           preserveStackingContext
         >
@@ -421,6 +421,9 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
         }
       }
     }
+  }
+  .overlay{
+    background-color: rgba(0,0,0,0.2)
   }
 `
 

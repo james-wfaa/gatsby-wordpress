@@ -74,6 +74,8 @@ categories.forEach((item) => {
     )
   })
 
+  const heroHeading = heroIntroSection?.heroHeading ? `<span>${heroIntroSection.heroHeading}</span> ON` : null
+
   return (
     <Layout title={title} noborder>
       { featuredImage && featuredImage.node && (
@@ -83,6 +85,7 @@ categories.forEach((item) => {
           redHeading={title}
           excerpt={excerpt}
           mobileHeroImage={heroIntroSection.heroImageMobile.localFile}
+          heroHeading={heroHeading}
         />)}
         <Accordian opentext="SEARCH" closetext="CLOSE SEARCH">
           <AccordianSearchBox navigationURL="/events/search" />
@@ -124,6 +127,7 @@ export const query = graphql`
             ...HeroImage
           }
         }
+        heroHeading
       }
       eventCategories {
         categories {
