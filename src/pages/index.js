@@ -47,7 +47,8 @@ const featuredbutton = [
 const heroOverlayHeading = `<span>Badger</span> ON`
 
 const HomePage = ({ data }) => {
-  const { events } = data
+  const { featuredPosts } = data
+  console.log(featuredPosts)
   const allevents = AllEvents()
   const { nodes: eventEdges } = allevents
 
@@ -56,6 +57,22 @@ const HomePage = ({ data }) => {
     return (
       <EventCardD key={event.url} {...event} url={event.link} />
     )
+  })
+
+  let featuredPostCards = featuredPosts.nodes.map((post) => {
+    const img = post?.featuredImage?.node?.localFile ? post.featuredImage.node?.localFile : null
+    console.log(img)
+    return (<StoryContentCard
+      key={post.url}
+      title={post.title}
+      category="UW NOW"
+      excerpt={post.excerpt}
+      featureImg={img}
+      img={img}
+      tags={taglist2}
+      size="L"
+    />)
+    
   })
   return (
     <Layout noborder>
@@ -136,53 +153,9 @@ const HomePage = ({ data }) => {
           centerMode
           variableWidth
           centerPadding="100px"
-        >
-          <StoryContentCard
-            title="All About That Bass"
-            category="UW NOW"
-            excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
-            url="##"
-            img={data.cardImage1}
-            tags={taglist2}
-            size="L"
-          />
-          <StoryContentCard
-            title="Four Conversation Starters Beyond “How about Them Badgers?”"
-            category="UW NOW"
-            excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
-            url="##"
-            img={data.cardImage6}
-            tags={taglist2}
-            size="L"
-          />
-          <StoryContentCard
-            title="More than Madison and Milwaukee"
-            category="UW NOW"
-            excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
-            url="##"
-            img={data.cardImage3}
-            tags={taglist2}
-            size="L"
-          />
-          <StoryContentCard
-            title="Coachella Valley"
-            category="UW NOW"
-            excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
-            url="##"
-            img={data.cardImage7}
-            tags={taglist2}
-            size="L"
-          />
+        >{featuredPostCards}
+        
 
-          <StoryContentCard
-            title="Coachella Valley"
-            category="UW NOW"
-            excerpt="La Quinta Resort and Club Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis vehicula hendrerit. Nullam sollicitudin tincidunt ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere"
-            url="##"
-            img={data.cardImage5}
-            tags={taglist2}
-            size="L"
-          />
         </SimpleSlider>
       </PageSection>
 
@@ -373,6 +346,20 @@ export const pageQuery = graphql`
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
+      }
+    }
+    featuredPosts: allWpPost(filter: {tags: {nodes: {elemMatch: {slug: {eq: "featured-news"}}}}}, limit: 6, sort: {order: DESC, fields: date}) {
+      nodes {
+        title
+        excerpt
+        featuredImage {
+          node {
+            localFile {
+              ...HeroImage
+            }
+          }
+        }
+        url: uri
       }
     }
   }
