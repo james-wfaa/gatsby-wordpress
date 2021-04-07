@@ -10,8 +10,8 @@ import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 
 function WordPressPage({ data }) {
   const { page, posts } = data
-  const { title, excerpt, blocks, featuredImage, storyCategories, product, gridDetails } = page
-
+  const { title, excerpt, blocks, featuredImage, heroIntroSection, storyCategories, product, gridDetails } = page
+  
   const { storycategoriesinner: categories } = storyCategories
   const { backgroundImage } = gridDetails
 
@@ -24,10 +24,13 @@ function WordPressPage({ data }) {
   ]
 
   const cats = categories.map((item) => {
-    const { category, numberToShow } = item
+    const { category, product, numberToShow } = item
+
+    const cat = category ? category : product ? product : null
+
     let linkPath
-    if (category?.slug) {
-      switch(category.slug) {
+    if (cat?.slug) {
+      switch(cat.slug) {
         case 'news':
           linkPath = 'all'
           break
@@ -35,47 +38,44 @@ function WordPressPage({ data }) {
         case 'badger-insider':
         case 'badger-vibes':
         case 'on-wisconsin':
-          linkPath = `all?pub=${category.slug}`
+          linkPath = `all?pub=${cat.slug}`
           break
         default:
-          linkPath = `all?filter=${category.slug}`
+          linkPath = `all?filter=${cat.slug}`
           break
       }
     }
-    
-    if (category?.name) {
-      const catButton = [
+    let catButton
+    if (cat?.name) {
+      catButton = [
         {
           link: `/news/${linkPath}`,
-          text: `See All ${category.name}`,
+          text: `See All ${cat.name}`,
         },
       ]
     }
-    const cardItems = (category?.name && category?.posts?.nodes) 
-      ? category.posts.nodes
-      : (!category && product?.name && product?.posts?.nodes)
-        ? product.posts.nodes
-        : null
+    const cardItems = (cat?.name && cat?.posts?.nodes) ? cat.posts.nodes : null
 
     if (cardItems) {
       return (
-        <PageSection heading={category.name} stagger>
+        <PageSection heading={cat.name} stagger buttons={catButton}>
           <CardSet items={cardItems} num={numberToShow} type="news"/>
         </PageSection>
       )
-    } 
+    }
     return (<div/>)
   })
   //console.log(posts)
   const cardGridPosts = posts.nodes.slice(0,9)
   //console.log('cardGridPosts:',cardGridPosts)
   let postCards = cardGridPosts.map((post) => {
-    console.log('post tiles post: ',post)
+    //console.log('post tiles post: ',post)
     return (
       <StoryCardD {...post} />
     )
   })
 
+  const heroHeading = heroIntroSection?.heroHeading ? `<span>${heroIntroSection.heroHeading}</span> ON` : null
 
 
   return (
@@ -86,6 +86,8 @@ function WordPressPage({ data }) {
           videoURL="https://player.vimeo.com/external/524412999.hd.mp4?s=1fc14eaf00fbfe6d5453b7a3bdda0b11487479cb&profile_id=175"
           redHeading={title}
           excerpt={excerpt}
+          mobileHeroImage={heroIntroSection.heroImageMobile.localFile}
+          heroHeading={heroHeading}
       />)}
       <WordPressContent blocks={blocks} />
       <>{cats}</>
@@ -111,6 +113,15 @@ export const query = graphql`
             ...HeroImage
           }
         }
+      }
+      heroIntroSection {
+        heroImageMobile {
+          altText
+          localFile {
+            ...HeroImage
+          }
+        }
+        heroHeading
       }
       storyCategories {
         storycategoriesinner {

@@ -42,6 +42,9 @@ const featuredbutton = [
   },
 ]
 
+
+const heroOverlayHeading = `<span>Badger</span> ON`
+
 const HomePage = ({ data }) => {
   const { events } = data
 
@@ -60,6 +63,8 @@ const HomePage = ({ data }) => {
           redHeading="Continue Your Wisconsin Experience"
           excerpt="<p>The Wisconsin Alumni Association is here for you to carry on as a proud Badger. It’s a community built on meeting the needs of today’s alumni. Whether you want to keep learning, celebrating traditions, or connecting with the UW, this is the place for you to Badger On.
         </p>"
+          mobileHeroImage={data.mobileHomeBg}
+          heroHeading={heroOverlayHeading}
         />
 
       <PageSection>
@@ -196,6 +201,14 @@ export const pageQuery = graphql`
     homeBg: file(relativePath: { eq: "pier-bg@2x.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 2000, quality: 100) {
+          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluidLimitPresentationSize
+        }
+      }
+    }
+    mobileHomeBg: file(relativePath: { eq: "home_mobileHeroImg@2x.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1312, quality: 100) {
           ...GatsbyImageSharpFluid
           ...GatsbyImageSharpFluidLimitPresentationSize
         }
