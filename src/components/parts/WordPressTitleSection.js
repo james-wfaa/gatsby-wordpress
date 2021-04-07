@@ -41,7 +41,10 @@ const TitleSection = ({ className, heading, author, product, date, excerpt, seri
                 )}
                 { category && (
                     <div className="noteCategory">
-                        Category: <a className="category__link" href={`/${category.slug}`}>{category.description}</a>                    
+                        {category?.slug ? 
+                        (<>Category: <a className="category__link" href={`/${category.slug}`}>{category.description}</a></>  )
+                        :(<>Category: {category.description}</>)
+                        }
                     </div>
                 )}
             </div>

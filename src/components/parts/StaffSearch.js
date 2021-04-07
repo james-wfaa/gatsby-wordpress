@@ -203,15 +203,13 @@ const StaffSearchModal = () => {
 
   return (
     <StyledStaffSearch className="StaffSearch">
-        <div className="searchTitle">CONTACT WAA STAFF</div>
         <form onSubmit={handleSubmit(onSubmit)}>
             <fieldset>
-                <label htmlFor="searchinput">Find a WAA staff member's contact information.</label>
                 <input
                 type="text"
                 name="searchinput"
                 id="searchinput"
-                placeholder="Search by name"
+                placeholder="Search by Name, Title or Department"
                 ref={register({
                     required: { value: true, message: "Enter a search term" },
                     minLength: {
