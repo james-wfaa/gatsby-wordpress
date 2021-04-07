@@ -2,7 +2,8 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import PageSection from "../components/page-sections/PageSection"
-import ContentCardD from "../components/content-blocks/ContentCardD"
+import AllEvents from "../components/collections/AllEvents"
+import EventCardD from "../components/content-blocks/EventCardD"
 import GridCardD from "../components/content-modules/GridCardD"
 import StoryContentCard from "../components/content-blocks/StoryContentCard"
 import CardE from "../components/content-blocks/CardE"
@@ -47,11 +48,13 @@ const heroOverlayHeading = `<span>Badger</span> ON`
 
 const HomePage = ({ data }) => {
   const { events } = data
+  const allevents = AllEvents()
+  const { nodes: eventEdges } = allevents
 
-  const cardGridEvents = events.edges.slice(0,9)
+  const cardGridEvents = eventEdges.slice(0,9)
   let eventCards = cardGridEvents.map((event) => {
     return (
-      <ContentCardD {...event.node} />
+      <EventCardD key={event.url} {...event} url={event.link} />
     )
   })
   return (
@@ -369,51 +372,6 @@ export const pageQuery = graphql`
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    events: allWpEvent(limit: 100, sort: {order: ASC, fields: startDate}) {
-      edges {
-        node {
-          id
-          title
-          url: uri
-          excerpt
-          featuredEvent
-          featuredImage {
-            node {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 712) {
-                    base64
-                    tracedSVG
-                    srcWebp
-                    srcSetWebp
-                    originalImg
-                    originalName
-                    aspectRatio
-                    src
-                    srcSet
-                    sizes
-                  }
-                }
-              }
-            }
-          }
-          date
-          startDate
-          endDate
-          eventsCategories {
-            nodes {
-              name
-              url: uri
-            }
-          }
-          venue {
-            title
-            state
-            city
-          }
         }
       }
     }
