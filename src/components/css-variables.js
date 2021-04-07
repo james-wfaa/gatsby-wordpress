@@ -129,7 +129,7 @@ export const colors = {
     flamingleCardHoverDiagonals: baseColors.darkRed,
     searchFontGrey: baseColors.darkGrey,
     tableRowGrey: baseColors.lightestGrey,
-    formTextBlack: baseColors.black,
+    formTextBlack: baseColors.offBlack,
 }
 
 export const size = {
