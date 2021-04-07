@@ -59,9 +59,20 @@ const HomePage = ({ data }) => {
     )
   })
 
+  
+
   let featuredPostCards = featuredPosts.nodes.map((post) => {
     const img = post?.featuredImage?.node?.localFile ? post.featuredImage.node?.localFile : null
     const product = post?.products?.nodes?.[0]?.name ? post.products.nodes[0].name : null
+    const catTags = post?.categories?.nodes
+    ? post.categories.nodes.map((cat) => {
+      return {
+        link: cat.url,
+        tag: cat.name
+      }
+      
+    })
+    : null
     console.log(img)
     return (<StoryContentCard
       key={post.url}
@@ -70,7 +81,7 @@ const HomePage = ({ data }) => {
       excerpt={post.excerpt}
       featureImg={img}
       img={img}
-      tags={taglist2}
+      tags={catTags}
       size="L"
     />)
     
@@ -365,6 +376,13 @@ export const pageQuery = graphql`
           nodes {
             slug
             name
+          }
+        }
+        categories {
+          nodes {
+            name
+            slug
+            uri
           }
         }
       }
