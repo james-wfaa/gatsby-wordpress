@@ -16,7 +16,7 @@ function WordPressPage({ data }) {
   const { page } = data
   const allevents = AllEvents()
   const { nodes: eventEdges } = allevents
-  const { title, featuredImage, eventCategories, excerpt, gridDetails  } = page
+  const { title, featuredImage, heroIntroSection, eventCategories, excerpt, gridDetails  } = page
   const { categories } = eventCategories
 
   const { backgroundImage } = gridDetails
@@ -26,7 +26,7 @@ function WordPressPage({ data }) {
   const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
   const moreButton = [
     {
-      link: "/events/search",
+      link: "/events/all",
       text: "All Events",
     },
   ]
@@ -74,6 +74,8 @@ categories.forEach((item) => {
     )
   })
 
+  const heroHeading = heroIntroSection?.heroHeading ? `<span>${heroIntroSection.heroHeading}</span> ON` : null
+
   return (
     <Layout title={title} noborder>
       { featuredImage && featuredImage.node && (
@@ -82,6 +84,8 @@ categories.forEach((item) => {
           videoURL="https://player.vimeo.com/external/524440389.hd.mp4?s=ebee9d64e105fc60c3075fe901ed7a6e50aeebf8&profile_id=174"
           redHeading={title}
           excerpt={excerpt}
+          mobileHeroImage={heroIntroSection.heroImageMobile.localFile}
+          heroHeading={heroHeading}
         />)}
         <Accordian opentext="SEARCH" closetext="CLOSE SEARCH">
           <AccordianSearchBox navigationURL="/events/search" />
@@ -116,7 +120,15 @@ export const query = graphql`
           }
         }
       }
-
+      heroIntroSection {
+        heroImageMobile {
+          altText
+          localFile {
+            ...HeroImage
+          }
+        }
+        heroHeading
+      }
       eventCategories {
         categories {
           categoryEvent: category {

@@ -137,6 +137,7 @@ const FooGallery = ({ content, id, className }) => {
 
 const StyledFooGallery = styled(FooGallery)`
 width: 100%;
+margin: 2em auto;
 
 
 `

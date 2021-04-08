@@ -5,7 +5,7 @@ import { colors, sizes, breakpoints } from '../css-variables'
 const TagList = ({ items, className }) => {
     const itemsList = items.map((item) => (
         <div className="tag__item" key={item.tag}>
-            <a className="tag__link" href={item.link}><span>{item.tag}</span>,</a>
+            <a className="tag__link" href={item.link}><span>{item.tag}</span></a> 
         </div>
       ))
       
@@ -18,7 +18,22 @@ const StyledTagList = styled(TagList)`
 
 .tag__item{
     display: inline-block;
-    padding-left: 2px;
+    padding-left: 4px;
+    position: relative;
+    padding-right: 4px;
+    &:after  {
+        position: absolute;
+        top: 0;
+       
+        right: -2px;
+        bottom: 0;
+        content: ', ';
+    }
+    &:last-child {
+        &:after {
+            content: '';
+        }
+    }
 }
 .tag__link {
     font-size: ${sizes.s14};

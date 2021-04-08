@@ -35,19 +35,31 @@ const SearchHits = ({ hits, hitHandler }) => {
           />
         )
       case "Post":
-        console.log(hit)
-        const hitblock = hit?.blocks && typeof hit.blocks !== "undefined"  ? hit.blocks[0] : null
-
-        return (
-          <PostCard
-          key={hit.url}
-          hit={hit}
-          url={hit.url}
-          title={hit.title}
-          initialBlock={hitblock}
-          topResult={topResult}
-        />
-        )
+        if (hit?.categories[0]?.name === 'Classnote') {
+            return (
+                <PostCard
+                    key={hit.url}
+                    hit={hit}
+                    url={hit.url}
+                    title={hit.title}
+                    initialBlock={hit.excerpt}
+                    topResult={topResult}
+                    categories={hit.categories}
+                />
+            )
+        } else {
+            return (
+                <PostCard
+                    key={hit.url}
+                    hit={hit}
+                    url={hit.url}
+                    title={hit.title}
+                    initialBlock={hit.blocks[0]}
+                    categories={hit.categories}
+                    topResult={topResult}
+                />
+            )
+        }
       case "Page":
         return (
           <PageCard

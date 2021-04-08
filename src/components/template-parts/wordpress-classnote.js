@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import Layout from "../layout"
-import WordPressBasicContentBlocks from "../content-blocks/WordPressBasicContentBlocks"
+import WordPressBasicContentBlocks from "../content-blocks/WpStoryContentBlocks"
 import { breakpoints, mixins } from '../css-variables'
 
 
@@ -56,6 +56,9 @@ function BlogPost({ data }) {
   
   let image = (featuredImage?.node) ? featuredImage.node : null
   let classCategory = classnoteNotes.nodes[0] ? classnoteNotes.nodes[0] : ''
+  
+  //Remove slug from Category until Archive links are set up
+  classCategory.slug = ''
 
   
   return (
@@ -73,7 +76,7 @@ function BlogPost({ data }) {
       <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link} tight/>
       
       <StyledButtonWrapper>
-        <Button link="/submit-a-note" text="Submit a Note" external />
+        <Button link="/alumni-notes/submit/" text="Submit a Note" external />
       </StyledButtonWrapper>
 
       <PageSection

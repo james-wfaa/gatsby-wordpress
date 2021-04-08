@@ -64,7 +64,6 @@ const IdentityInfo = () => {
             <PageSection
               excerpt='Please provide information regarding how you identify yourself. Click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
-              headingAlt
               headingCompact
               backgroundColor={colors.formIntroBg}
             />

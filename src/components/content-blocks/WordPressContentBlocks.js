@@ -10,6 +10,8 @@ import AccordionNavigation from './AccordionNavigation'
 import SpecialBlock from '../content-modules/SpecialBlock'
 import FeaturedEvent from '../content-modules/FeaturedEvent'
 import Block from './WordPressBlock'
+import RecentNotes from "../page-sections/RecentNotes"
+
 
 const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
 
@@ -155,6 +157,14 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                     RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={combinedEvents} size="M" type="event"/></PageSection>)
                 }
                 break
+                case "acf/note-listing":
+                        const buttons =  [{
+                                link: `/alumninotes/`,
+                                text: 'See All Alumni Notes'
+                            }]
+                        RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Alumni Notes" borderTop={borderTop} stagger={stagger} buttons={buttons}><RecentNotes /></PageSection>)
+                    
+                    break
            
             case "acf/special-block":
                 RenderedBlocks.push(<SpecialBlock block={block} />)

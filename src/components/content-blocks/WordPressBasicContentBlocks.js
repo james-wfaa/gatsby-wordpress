@@ -29,6 +29,8 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
           case "core/group":
           case "acf/events-listing-section":
             break
+          case "acf/note-listing":
+            break
           case "acf/image-section":
             const imagesection = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
             return (<ImageSection key={`${block.name}{${block.originalContent}`} data={imagesection} defaultPage/>)

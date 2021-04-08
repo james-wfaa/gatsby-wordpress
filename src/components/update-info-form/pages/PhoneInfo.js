@@ -66,7 +66,6 @@ const PhoneInfo = () => {
             <PageSection
               excerpt='Please include any phone numbers you wish to have on file. You’re only required to provide one, but you can include multiple phone numbers if you choose. For Badgers living internationally: remember to include your country code. Click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
-              headingAlt
               headingCompact
               backgroundColor={colors.formIntroBg}
             />

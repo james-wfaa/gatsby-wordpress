@@ -325,12 +325,14 @@ export const query = graphql`
           sponsorName
           sponsorText
           sponsorLogo {
+            altText
             localFile {
               childImageSharp {
                 fluid(maxWidth: 312) {
                   ...GatsbyImageSharpFluid
                 }
               }
+              publicURL
             }
           }
         }
@@ -344,6 +346,8 @@ export const query = graphql`
             bascomChapterText
             recognizedChapterText
             varsityChapterText
+            affinityGroupText
+            affinityGroupPositioningStatement
           }
         }
       }

@@ -57,6 +57,8 @@ const ContentCard = ({ className, startDate, endDate, title, category, postForma
                 }
             ]
             :  img.childImageSharp.fluid
+
+
     return (
 
         <div className={`${className} ${className}--${size} ${className}--${notSmall} ${promoClass}`}>

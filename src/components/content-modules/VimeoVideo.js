@@ -39,7 +39,7 @@ const VimeoVideo = ({ videoURL, heroSize, heroHeading }) => {
         autoPlay
         muted
         loop
-        preload
+        preload="true"
         css={wrapperCss}
       ></video>
       {heroHeading && (
