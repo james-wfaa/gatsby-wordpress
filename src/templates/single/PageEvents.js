@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
 import AllEvents from "../../components/collections/AllEvents"
 import EventCardD from "../../components/content-blocks/EventCardD"
+import PromoCardD from "../../components/content-blocks/PromoCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
 import CardHandler from "../../components/content-modules/CardHandler"
 import CardSet from "../../components/content-modules/CardSet"
@@ -13,7 +14,26 @@ import AccordianSearchBox from "../../components/parts/AccordianSearchBox"
 
 function WordPressPage({ data }) {
 
-  const { page } = data
+  const { page, tileAds } = data
+  const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList
+    ? tileAds.nodes[0].siteOptions.TileAds.adList
+    : null
+  const [ads] = useState(adList)
+  const [currentAd, setCurrentAd] = useState(null)
+
+
+  const randomAdGenerator = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min) - 1
+  }
+
+  useEffect(() => {
+    let filteredAds = ads.filter(ad => {
+      return ad.adActive
+    })
+    let adSpot = randomAdGenerator(1, (filteredAds.length))
+    setCurrentAd(filteredAds[adSpot])
+  }, [ads])
+
   const allevents = AllEvents()
   const { nodes: eventEdges } = allevents
   const { title, featuredImage, heroIntroSection, eventCategories, excerpt, gridDetails  } = page
@@ -73,8 +93,12 @@ categories.forEach((item) => {
       <EventCardD key={event.url} {...event} url={event.link} />
     )
   })
+  const eventCards1 = eventCards.slice(0,5)
+  const eventCards2 = eventCards.slice(5,5+eventCards.length)
 
   const heroHeading = heroIntroSection?.heroHeading ? `<span>${heroIntroSection.heroHeading}</span> ON` : null
+
+  console.log(currentAd)
 
   return (
     <Layout title={title} noborder>
@@ -95,7 +119,12 @@ categories.forEach((item) => {
         </PageSection>
       <>{displayCategories}</>
       <PageSection heading="At a Glance" bgImage={gridBgImage} buttons={moreButton}>
-        <GridCardD>{eventCards}</GridCardD>
+        <GridCardD>
+          {eventCards1}
+          {currentAd && (
+              <PromoCardD title={currentAd.adText} url={currentAd.adLink} />
+            )}
+          {eventCards2}</GridCardD>
       </PageSection>
 
     </Layout>
@@ -169,6 +198,19 @@ export const query = graphql`
                 aspectRatio
                 sizes
               }
+            }
+          }
+        }
+      }
+    }
+    tileAds: allWp {
+      nodes {
+        siteOptions {
+          TileAds {
+            adList {
+              adText
+              adLink
+              adActive
             }
           }
         }
