@@ -12,7 +12,7 @@ import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 function WordPressPage({ data }) {
   const { page, posts, tileAds } = data
   const { title, excerpt, blocks, featuredImage, heroIntroSection, storyCategories, gridDetails } = page
-  const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList
+  const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList?.[0]
     ? tileAds.nodes[0].siteOptions.TileAds.adList
     : null
   const [ads] = useState(adList)
@@ -24,11 +24,17 @@ function WordPressPage({ data }) {
   }
 
   useEffect(() => {
-    let filteredAds = ads.filter(ad => {
-      return ad.adActive
-    })
-    let adSpot = randomAdGenerator(1, (filteredAds.length))
-    setCurrentAd(filteredAds[adSpot])
+    let filteredAds = (ads) 
+      ? ads.filter(ad => {
+          return ad.adActive
+        })
+      : null
+    let adSpot = (filteredAds) 
+      ? randomAdGenerator(1, (filteredAds.length))
+      : null
+    if (filteredAds && adSpot) {
+      setCurrentAd(filteredAds[adSpot])
+    } 
   }, [ads])
 
   
