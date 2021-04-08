@@ -58,37 +58,31 @@ module.exports = {
         enableDuringDevelop: true, // Optional. Disables Zendesk chat widget when running Gatsby dev server. Defaults to true.
         zESettings: {
           webWidget: {
+            contactForm: {
+              title: {
+                '*': 'Ask WAA'
+              },
+              ticketForms: [ { id: 1260806265410 } ],
+              fields: [ { id: 'subject', prefill: { '*': 'WAA Support' } } ]
+            },
             chat: {
               departments: {
                 enabled: ["WAA Customer Service"],
                 select: "WAA Customer Service",
               },
-            },
-            launcher: {
-              chatLabel: {
-              '*': 'Ask WAA'
-              },
-            },
-            fields: [{ id: 1260807977350}],
-            contactOptions: {
-              enabled: true,
-              contactButton: { '*': 'Ask WAA'}
-            },
-            helpCenter: {
-              title: {
-              '*': 'Ask WAA'
-              }
-            },
-            contactForm: {
               title: {
                 '*': 'Ask WAA'
-              }
+              },
+              prechatForm: {
+                greeting: { '*': 'Looking for answers? Check out our FAQ page (uwalumni.com/go/faq) or fill out the form below and we’ll get you connected with a live customer service team member to help you.' },
+              },
             },
-            chat: {
-              title: {
-              '*': 'Ask WAA'
-              }
+            launcher: {
+              chatLabel: { '*': 'Ask WAA' },
+              label: { '*': 'Ask WAA' },
             },
+            helpCenter: { suppress: true },
+            answerBot: { suppress: true },
           },
         },
       },
