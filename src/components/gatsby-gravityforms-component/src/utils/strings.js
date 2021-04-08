@@ -10,6 +10,7 @@ const strings = {
             front: 'Need more than',
             back: 'characters.',
         },
+        formHasErrorWithMsg: 'There was a problem with your submission.',
     },
 }
 
