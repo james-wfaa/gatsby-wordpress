@@ -220,7 +220,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    gridBg: file(relativePath: { eq: "well-read-bucky-bg@2x.jpg" }) {
+    gridBg: file(relativePath: { eq: "home-bucky-faded.jpg" }) {
       childImageSharp {
         fluid(quality: 95, maxWidth: 2000) {
           ...GatsbyImageSharpFluid_withWebp
@@ -284,34 +284,7 @@ export const pageQuery = graphql`
       }
     }
 
-    asset29: file(relativePath: { eq: "asset-29@2x.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    asset30: file(relativePath: { eq: "asset-30@2x.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    square1: file(relativePath: { eq: "square1@2x.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    squareBucky: file(relativePath: { eq: "squareBucky@2x.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
+   
     featuredPosts: allWpPost(filter: {tags: {nodes: {elemMatch: {slug: {eq: "featured-news"}}}}}, limit: 6, sort: {order: DESC, fields: date}) {
       nodes {
         title
