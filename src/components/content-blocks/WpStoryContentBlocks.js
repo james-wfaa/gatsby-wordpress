@@ -257,38 +257,60 @@ h2 {
 .core-freeform {
     margin-bottom: ${sizes.s32};
     text-align: left;
-    h2,
-    h3 {
-      font-family: ${fonts.eaves};
-      font-weight: bold;
-      font-style: italic;
-      color: ${colors.titleColor};
-    }
-    h2 {
-      font-size: ${sizes.s32};
-      line-height: ${sizes.s36};
-      margin-bottom: ${sizes.s32};
-      margin-top: ${sizes.s48}; // ex: email login page
-      padding-bottom: 0;
-      &:after {
-        display: none; // REMOVE H2 UNDERLINE FROM DEFAULT PAGES
-      }
-      
-      @media screen and ${breakpoints.tabletS} {
-        font-size: ${sizes.s36};
-        line-height: ${sizes.s42};
-        margin-top: ${sizes.s58}; // ex: email login page
-      }
-      
-    }
-    h3 {
-      font-size: ${sizes.s26};
-      margin-bottom: ${sizes.s24};
-      line-height: ${sizes.s32};
-    }
+    
     a {
       ${mixins.a}
     }
+    
+}
+
+.content{
+    
+  h2,
+  .core-freeform h2 {
+      font-size: ${sizes.s24};
+      line-height: ${sizes.s30};
+      margin-bottom: ${sizes.s24};
+      font-family: ${fonts.eaves};
+      font-weight: bold;
+      font-style: italic;
+      color: ${colors.captionBlack};
+      @media screen and ${breakpoints.tabletS} {
+          font-size: ${sizes.s28};
+          line-height: ${sizes.s34};
+      }
+  }
+
+  h3,
+  .core-freeform h3 {
+      font-size: ${sizes.s20};
+      margin-bottom: ${sizes.s16};
+      line-height: ${sizes.s28};
+      font-style: normal;
+      margin-left: 0px;
+      margin-right: 0px;
+      color: ${colors.captionBlack};
+      font-weight: bold;
+      font-family: ${fonts.verlag};
+  }
+
+  h4,
+  .core-freeform h4,
+  h5,
+  .core-freeform h5,
+  h6,
+  .core-freeform h6 {
+      font-size: ${sizes.s18};
+      margin-bottom: 0px;
+      line-height: ${sizes.s26};
+      font-style: normal;
+      margin-left: 0px;
+      margin-right: 0px;
+      color: ${colors.captionBlack};
+      font-weight: bold;
+      font-family: ${fonts.verlag};
+  }
+
 }
 .core-buttons {
   .core-button {
