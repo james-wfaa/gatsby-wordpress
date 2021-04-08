@@ -48,14 +48,13 @@ const heroOverlayHeading = `<span>Badger</span> ON`
 
 const HomePage = ({ data }) => {
   const { featuredPosts } = data
-  console.log(featuredPosts)
   const allevents = AllEvents()
   const { nodes: eventEdges } = allevents
 
   const cardGridEvents = eventEdges.slice(0,9)
   let eventCards = cardGridEvents.map((event) => {
     return (
-      <EventCardD key={event.url} {...event} url={event.link} />
+      <EventCardD key={event.link} {...event} url={event.link} />
     )
   })
 
@@ -63,9 +62,16 @@ const HomePage = ({ data }) => {
 
   let featuredPostCards = featuredPosts.nodes.map((post) => {
     const img = post?.featuredImage?.node?.localFile ? post.featuredImage.node?.localFile : null
-    const product = post?.products?.nodes?.[0]?.name ? post.products.nodes[0].name : null
-    const catTags = post?.categories?.nodes
-    ? post.categories.nodes.map((cat) => {
+    const products = post?.products?.nodes
+      ? post.products.nodes.map((prod) => {
+        return {
+          link: prod.url,
+          tag: prod.name
+        }
+      }) 
+      : null
+    const categories = post?.categories?.nodes
+      ? post.categories.nodes.map((cat) => {
       return {
         link: cat.url,
         tag: cat.name
@@ -73,16 +79,12 @@ const HomePage = ({ data }) => {
       
     })
     : null
-    console.log(img)
     return (<StoryContentCard
       key={post.url}
-      title={post.title}
-      category={product}
-      excerpt={post.excerpt}
-      featureImg={img}
       img={img}
-      tags={catTags}
+      tags={products.concat(categories)}
       size="L"
+      {...post}
     />)
     
   })
@@ -384,6 +386,12 @@ export const pageQuery = graphql`
             slug
             uri
           }
+        }
+        acfAlternatePostType{
+          alternateposttype
+        }
+        videoFormat {
+          vimeoId
         }
       }
     }
