@@ -1,16 +1,36 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
 import WordPressContent from "../../components/content-blocks/WordPressContentBlocks"
 import CardSet from "../../components/content-modules/CardSet"
 import StoryCardD from "../../components/content-blocks/StoryCardD"
+import PromoCardD from "../../components/content-blocks/PromoCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
 import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 
 function WordPressPage({ data }) {
-  const { page, posts } = data
+  const { page, posts, tileAds } = data
   const { title, excerpt, blocks, featuredImage, heroIntroSection, storyCategories, gridDetails } = page
+  const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList
+    ? tileAds.nodes[0].siteOptions.TileAds.adList
+    : null
+  const [ads] = useState(adList)
+  const [currentAd, setCurrentAd] = useState(null)
+
+
+  const randomAdGenerator = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min) - 1
+  }
+
+  useEffect(() => {
+    let filteredAds = ads.filter(ad => {
+      return ad.adActive
+    })
+    let adSpot = randomAdGenerator(1, (filteredAds.length))
+    setCurrentAd(filteredAds[adSpot])
+  }, [ads])
+
   
   const { storycategoriesinner: categories } = storyCategories
   const { backgroundImage } = gridDetails
@@ -68,12 +88,14 @@ function WordPressPage({ data }) {
   //console.log(posts)
   const cardGridPosts = posts.nodes.slice(0,9)
   //console.log('cardGridPosts:',cardGridPosts)
-  let postCards = cardGridPosts.map((post) => {
+  let storyCards = cardGridPosts.map((post) => {
     //console.log('post tiles post: ',post)
     return (
       <StoryCardD {...post} />
     )
   })
+  const storyCards1 = storyCards.slice(0,5)
+  const storyCards2 = storyCards.slice(5,5+storyCards.length)
 
   const heroHeading = heroIntroSection?.heroHeading ? `<span>${heroIntroSection.heroHeading}</span> ON` : null
 
@@ -92,7 +114,11 @@ function WordPressPage({ data }) {
       <WordPressContent blocks={blocks} />
       <>{cats}</>
       <PageSection heading="Most Recent" bgImage={gridBgImage} buttons={moreButton}>
-        <GridCardD>{postCards}</GridCardD>
+        <GridCardD> {storyCards1}
+          {currentAd && (
+              <PromoCardD title={currentAd.adText} url={currentAd.adLink} />
+            )}
+          {storyCards2}</GridCardD>
       </PageSection>
     </Layout>
   )
@@ -286,6 +312,19 @@ export const query = graphql`
           vimeoId
         }
   
+      }
+    }
+    tileAds: allWp {
+      nodes {
+        siteOptions {
+          TileAds {
+            adList {
+              adText
+              adLink
+              adActive
+            }
+          }
+        }
       }
     }
 

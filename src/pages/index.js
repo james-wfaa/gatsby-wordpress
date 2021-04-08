@@ -1,33 +1,15 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import PageSection from "../components/page-sections/PageSection"
 import AllEvents from "../components/collections/AllEvents"
 import EventCardD from "../components/content-blocks/EventCardD"
+import PromoCardD from "../components/content-blocks/PromoCardD"
 import GridCardD from "../components/content-modules/GridCardD"
 import StoryContentCard from "../components/content-blocks/StoryContentCard"
 import CardE from "../components/content-blocks/CardE"
 import HeroIntroSection from "../components/page-sections/HeroIntroSection"
 import SimpleSlider from "../components/content-modules/SimpleSlider"
-
-const taglist2 = [
-  {
-    link: "#",
-    tag: "Tag 1",
-  },
-  {
-    link: "#",
-    tag: "Tag 2",
-  },
-  {
-    link: "#",
-    tag: "Tag 3",
-  },
-  {
-    link: "#",
-    tag: "Tag 4",
-  },
-]
 
 const eventbutton = [
   {
@@ -47,7 +29,26 @@ const featuredbutton = [
 const heroOverlayHeading = `<span>Badger</span> ON`
 
 const HomePage = ({ data }) => {
-  const { featuredPosts } = data
+  const { featuredPosts, tileAds } = data
+  const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList
+    ? tileAds.nodes[0].siteOptions.TileAds.adList
+    : null
+  const [ads] = useState(adList)
+  const [currentAd, setCurrentAd] = useState(null)
+
+
+  const randomAdGenerator = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min) - 1
+  }
+
+  useEffect(() => {
+    let filteredAds = ads.filter(ad => {
+      return ad.adActive
+    })
+    let adSpot = randomAdGenerator(1, (filteredAds.length))
+    setCurrentAd(filteredAds[adSpot])
+  }, [ads])
+
   const allevents = AllEvents()
   const { nodes: eventEdges } = allevents
 
@@ -57,6 +58,10 @@ const HomePage = ({ data }) => {
       <EventCardD key={event.link} {...event} url={event.link} />
     )
   })
+  const eventCards1 = eventCards.slice(0,5)
+  const eventCards2 = eventCards.slice(5,5+eventCards.length)
+
+  // split eventCards into 2 groups
 
   
 
@@ -65,7 +70,7 @@ const HomePage = ({ data }) => {
     const products = post?.products?.nodes
       ? post.products.nodes.map((prod) => {
         return {
-          link: prod.url,
+          link: `/news/all?product=${prod.slug}`,
           tag: prod.name
         }
       }) 
@@ -73,7 +78,7 @@ const HomePage = ({ data }) => {
     const categories = post?.categories?.nodes
       ? post.categories.nodes.map((cat) => {
       return {
-        link: cat.url,
+        link: `/news/all?filter=${cat.slug}`,
         tag: cat.name
       }
       
@@ -178,7 +183,12 @@ const HomePage = ({ data }) => {
         buttons={eventbutton}
         bgImage={data.gridBg}
       >
-        <GridCardD>{eventCards}</GridCardD>
+        <GridCardD>
+          {eventCards1}
+          {currentAd && (
+              <PromoCardD title={currentAd.adText} url={currentAd.adLink} />
+            )}
+          {eventCards2}</GridCardD>
       </PageSection>
     </Layout>
   )
@@ -204,72 +214,6 @@ export const pageQuery = graphql`
         }
       }
     }
-    eventsBg: file(relativePath: { eq: "badger-events-hero@2x.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 2000, quality: 100) {
-          ...GatsbyImageSharpFluid
-          ...GatsbyImageSharpFluidLimitPresentationSize
-        }
-      }
-    }
-    cardImage1: file(relativePath: { eq: "Feb_Richard_Davis_Web_01@2x.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 720, quality: 100) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    cardImage2: file(relativePath: { eq: "12_DutchWaterways_header@2x.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 720, quality: 100) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    cardImage3: file(relativePath: { eq: "17LEARN_JakeWood_manis_29.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 720, quality: 100) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    cardImage4: file(relativePath: { eq: "lead_720_405@2x.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 1080, quality: 100) {
-          ...GatsbyImageSharpFluid
-          ...GatsbyImageSharpFluidLimitPresentationSize
-        }
-      }
-    }
-    cardImage5: file(relativePath: { eq: "lead_720_405-2-1-a@2x.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 712, quality: 100) {
-          ...GatsbyImageSharpFluid
-          ...GatsbyImageSharpFluidLimitPresentationSize
-        }
-      }
-    }
-    cardImage6: file(relativePath: { eq: "fball_ILL_band18_0556-3@2x.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 712, quality: 100) {
-          ...GatsbyImageSharpFluid
-          ...GatsbyImageSharpFluidLimitPresentationSize
-        }
-      }
-    }
-    cardImage7: file(
-      relativePath: {
-        eq: "19AP_DowntownMadisonInc_NewFacesNPlaces_Manis_13@2x.png"
-      }
-    ) {
-      childImageSharp {
-        fluid(maxWidth: 712, quality: 100) {
-          ...GatsbyImageSharpFluid
-          ...GatsbyImageSharpFluidLimitPresentationSize
-        }
-      }
-    }
-
     gridBg: file(relativePath: { eq: "well-read-bucky-bg@2x.jpg" }) {
       childImageSharp {
         fluid(quality: 95, maxWidth: 2000) {
@@ -392,6 +336,19 @@ export const pageQuery = graphql`
         }
         videoFormat {
           vimeoId
+        }
+      }
+    }
+    tileAds: allWp {
+      nodes {
+        siteOptions {
+          TileAds {
+            adList {
+              adText
+              adLink
+              adActive
+            }
+          }
         }
       }
     }
