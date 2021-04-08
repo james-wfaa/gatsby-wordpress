@@ -28,6 +28,7 @@ export const sizes = {
     s24: '1.333rem',
     s26: '1.444rem',
     s28: '1.555rem',
+    s30: '1.666rem',
     s32: '1.778rem',
     s34: '1.889rem',
     s36: '2rem',
@@ -460,10 +461,11 @@ export const mixins = {
                 &.enhancedHomepageCaption{
                     font-family:${fonts.eaves};
                     font-style: italic;
-                    font-size: ${sizes.s26};
-                    color: ${colors.captionRed};
+                    font-size: ${sizes.s28};
+                    line-height: ${sizes.s34};
+                    color: ${colors.captionGrey};
                     font-weight: bold;
-                    margin-top: ${sizes.s32};
+                    margin-top: ${sizes.s30};
                 }
             }
         }
