@@ -8,6 +8,10 @@ export default async ({ baseUrl, formData, id, lambdaEndpoint }) => {
     }
 
     let result
+    //let boundary = "---------------------------7da24f2e50046";
+    /*let config = {
+        headers:{"Content-Type" : "multipart/form-data;"}
+    }*/
 
     try {
         result = await axios.post(lambdaEndpoint, lambaData, {

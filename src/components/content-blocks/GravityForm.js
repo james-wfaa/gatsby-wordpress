@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { breakpoints, mixins, sizes, fonts, colors } from '../css-variables'
-import Block from './WordPressBlock'
+//import Block from './WordPressBlock'
 import GravityFormForm from '../gatsby-gravityforms-component/src/'
 import { useStaticQuery, graphql } from 'gatsby'
+import formErrorIcon from "./../../svg/form-error-icon-red.svg"
 
 const AllGravityData = () => {
     const { allGfForm } = useStaticQuery(
@@ -66,12 +67,12 @@ const AllGravityData = () => {
 
 function handleError({values, error, reset}) {
     //handle error
-    //console.log(values, error)
+    //console.log('values', values, 'error', error)
 }
 
 function handleSuccess({values, reset, confirmations}) {
     //handle success
-    //console.log(values, confirmations)
+    //console.log('success', values, confirmations)
 }
 
 const GravityForm = ({className, id}) => {
@@ -120,6 +121,7 @@ const GravityForm = ({className, id}) => {
         return e.node.formId == id
     })
     //console.log(thisForm)
+    //let fullhostname = 'https://devwp.uwalumni.com'
     let fullhostname = 'https://uwalumni.wpengine.com'
     /*if (typeof window !== 'undefined') {
     const { protocol, hostname } = window.location;
@@ -132,6 +134,7 @@ const GravityForm = ({className, id}) => {
                         id={id}
                         formData={gfData}
                         lambda={`${fullhostname}/wp-json/formsubmit/v1/submit/${id}`}
+                        //lambda={`${fullhostname}/wp-json/formsubmit/v1/submit/9`}
                         successCallback={handleSuccess}
                         errorCallback={handleError}
                         onChange={handleFieldChange}
@@ -164,6 +167,13 @@ button.gravityform__button {
     ${mixins.buttons}
     border:none;
     cursor:pointer;
+    :disabled{
+        background-color: #CCCCCC;
+        cursor: auto;
+        :hover{
+            box-shadow:none;
+        }
+    }
 }
 a {
     ${mixins.a}
@@ -222,9 +232,55 @@ input[type='date']{
         }
       }
 }
-.validation_message{
+.validation_message, .validation_error, .gravityform_error_info{
     color:${colors.badgerRed};
     font-size: 16px;
+    p{
+        margin-bottom:12px;
+        position:relative;
+        :first-of-type{
+            margin-left: 24px;
+            :before{
+                content: '';
+                height:24px;
+                width:24px;
+                margin: 0 auto;
+                padding: 0 0 0 24px;
+                position: absolute;
+                color: ${colors.buttonRed};
+                top: 4px;
+                left: -24px;
+                background-image: url(${formErrorIcon});
+                background-repeat: no-repeat;
+              }
+        }
+    }
+    ul{
+        margin-left:48px;
+        li{
+            margin-bottom: 6px;
+        }
+    }
+}
+.gravityform__error_message{
+    margin-left: 24px;
+    position: relative;
+            :before{
+                content: '';
+                height:24px;
+                width:24px;
+                margin: 0 auto;
+                padding: 0 0 0 24px;
+                position: absolute;
+                color: ${colors.buttonRed};
+                top: 4px;
+                left: -24px;
+                background-image: url(${formErrorIcon});
+                background-repeat: no-repeat;
+              }
+        }
+}
+.gform_confirmation_message{
 }
 .gfield_description{
     font-size:16px;
@@ -237,7 +293,7 @@ input[type='date']{
         font-weight:900;
     }
 }
-.gform_hidden{
+.gform_hidden, .gfield_visibility_administrative{
     display: none !important;
 }
 

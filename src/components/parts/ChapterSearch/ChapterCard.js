@@ -24,6 +24,10 @@ const CardWrapper = styled.div`
   .excerpt > * {
     font-size: ${sizes.s18};
     line-height: ${sizes.s26};
+    a:link{
+      color: ${colors.bgRed} !important;
+      text-decoration: underline;
+    }
   }
   a {
     cursor: pointer;
@@ -34,10 +38,8 @@ const CardWrapper = styled.div`
     p:not(:last-child) {
       padding-bottom: 16px;
     }
-    &:hover {
-      h3 {
-        text-decoration: underline;
-      }
+    h3 {
+      text-decoration: underline;
     }
   }
   a:hover,

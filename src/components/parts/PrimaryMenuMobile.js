@@ -92,24 +92,27 @@ const RightMenu = styled.div`
   ul {
     justify-self: left;
     margin-left: 0;
+    width: 100%;
   }
   li {
     list-style: none;
     margin: 0;
-    padding: 16px ${sizes.s24};
     &:hover {
       background-color: ${colors.navcardGrey};
     }
     a {
       text-decoration: none;
       color: ${colors.navMenuBlack};
+      padding: 16px ${sizes.s24};
+      display: block;
     }
   }
 `
 
 const SocialLinks = styled.div`
+  margin-bottom: 110px;
   .socialLinks {
-    width: 160px;
+    width: 200px;
     display: flex;
     list-style-type: none;
 
@@ -132,18 +135,28 @@ const SocialLinks = styled.div`
         }
         &.fb {
           mask: url(${FbIcon});
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
         }
         &.tw {
           mask: url(${TwIcon});
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
         }
         &.ig {
           mask: url(${IgIcon});
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
         }
         &.wc {
           mask: url(${WcIcon});
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
         }
         &.li {
           mask: url(${LiIcon});
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
         }
       }
     }
@@ -157,11 +170,15 @@ const BottomLeft = styled.div`
   font-size: ${sizes.s18};
   border-top: 1px solid ${colors.navMenuBorderGrey};
   li {
-    padding-top: 16px;
-    padding-bottom: 16px;
     a {
       margin: 0;
       padding: 0;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      display: block;
+      :hover, : active{
+        text-decoration:underline;
+      }
     }
   }
 `
