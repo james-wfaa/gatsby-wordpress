@@ -1,5 +1,5 @@
 import { Link } from "gatsby"
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import PrimaryMenu from "./parts/PrimaryMenu"
 import PrimaryMenuMobile from "./parts/PrimaryMenuMobile"
 import StyledHeader from "./parts/StyledHeader"
@@ -17,6 +17,14 @@ const Header = ({ noborder }) => {
   const { width } = useWindowSize()
 
   const menuRef = useRef(null)
+
+  useEffect(() => {
+    if(open === true){
+      document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+    } else{
+      document.getElementsByTagName('body')[0].style.overflow = 'scroll';
+    }
+  }, [open]);
 
   const transition1 = useTransition(open, null, {
     from: { transform: `translate3d(100%, 0, 0)` },
@@ -141,7 +149,7 @@ const Header = ({ noborder }) => {
                 position: `fixed`,
                 left: 0,
                 top: topOffset,
-                zIndex: 5,
+                zIndex: 20,
                 width: `100vw`,
                 height: `100%`,
                 backgroundColor: `white`,
@@ -161,10 +169,11 @@ const Header = ({ noborder }) => {
                 position: `fixed`,
                 left: 0,
                 top: topOffset,
-                zIndex: 5,
+                zIndex: 20,
                 width: `100vw`,
                 height: `100%`,
                 backgroundColor: `white`,
+                overflow: `scroll`
               }}
             >
               <SearchModal

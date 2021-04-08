@@ -1,6 +1,6 @@
 import { Link } from "gatsby"
 import React, { useState, useEffect } from "react"
-import { colors, sizes } from "../css-variables"
+import { colors, sizes, breakpoints } from "../css-variables"
 import styled from "styled-components"
 import HeaderSocialIcons from "./HeaderSocialIcons"
 import LogoImage from "../../assets/svg/main_nav_illustration.svg" 
@@ -53,6 +53,9 @@ const MenuGrid = styled.div`
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  @media screen and ${breakpoints.tabletL} {
+    grid-template-columns: .6fr 1fr;
+  }
 `
 
 const LeftMenu = styled.div`
@@ -94,13 +97,15 @@ const RightMenu = styled.div`
   li {
     list-style: none;
     margin: 0;
-    padding: 16px ${sizes.s24};
     &:hover {
       background-color: ${colors.navcardGrey};
     }
     a {
       text-decoration: none;
       color: ${colors.navMenuBlack};
+      padding: 16px ${sizes.s24};
+      display: block;
+      width: 100%;
     }
   }
 `
@@ -124,6 +129,8 @@ const SocialLinks = styled.div`
         width: ${sizes.s24};
         height: ${sizes.s24};
         background-color: ${colors.iconGrey};
+        font-size:0;
+        padding:0;
         &:hover {
           background-color: ${colors.buttonRed};
         }
@@ -152,11 +159,15 @@ const BottomLeft = styled.div`
   padding-bottom: 16px;
   font-size: ${sizes.s18};
   li {
-    padding-top: 16px;
-    padding-bottom: 16px;
     a {
       margin: 0;
       padding: 0;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      display: block;
+      :hover{
+        text-decoration:underline;
+      }
     }
   }
 `
@@ -188,6 +199,7 @@ const Logo = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  z-index: -1;
 `
 
 const PrimaryMenu2 = () => {

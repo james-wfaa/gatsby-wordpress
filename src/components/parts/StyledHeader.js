@@ -162,6 +162,7 @@ const StyledHeader = styled.header`
     display: block;
     align-items: center;
     padding-top: 20px;
+    cursor:pointer;
 
     span {
       display: block;
