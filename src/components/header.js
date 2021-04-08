@@ -154,6 +154,7 @@ const Header = ({ noborder }) => {
                 height: `100%`,
                 backgroundColor: `white`,
               }}
+              className="overflow"
             >
               {width > 655 ? <PrimaryMenu /> : <PrimaryMenuMobile />}
             </animated.div>
@@ -172,9 +173,9 @@ const Header = ({ noborder }) => {
                 zIndex: 20,
                 width: `100vw`,
                 height: `100%`,
-                backgroundColor: `white`,
-                overflow: `scroll`
+                backgroundColor: `white`
               }}
+              className="overflow"
             >
               <SearchModal
                 topOffset={topOffset}

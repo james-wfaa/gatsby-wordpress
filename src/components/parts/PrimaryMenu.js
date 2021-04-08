@@ -111,8 +111,9 @@ const RightMenu = styled.div`
 `
 
 const SocialLinks = styled.div`
+  margin-bottom: 110px;
   .socialLinks {
-    width: 160px;
+    width: 200px;
     display: flex;
     list-style-type: none;
 
