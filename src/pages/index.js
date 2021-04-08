@@ -30,7 +30,7 @@ const heroOverlayHeading = `<span>Badger</span> ON`
 
 const HomePage = ({ data }) => {
   const { featuredPosts, tileAds } = data
-  const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList
+  const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList?.[0]
     ? tileAds.nodes[0].siteOptions.TileAds.adList
     : null
   const [ads] = useState(adList)
@@ -42,11 +42,17 @@ const HomePage = ({ data }) => {
   }
 
   useEffect(() => {
-    let filteredAds = ads.filter(ad => {
-      return ad.adActive
-    })
-    let adSpot = randomAdGenerator(1, (filteredAds.length))
-    setCurrentAd(filteredAds[adSpot])
+    let filteredAds = (ads) 
+      ? ads.filter(ad => {
+          return ad.adActive
+        })
+      : null
+    let adSpot = (filteredAds) 
+      ? randomAdGenerator(1, (filteredAds.length))
+      : null
+    if (filteredAds && adSpot) {
+      setCurrentAd(filteredAds[adSpot])
+    } 
   }, [ads])
 
   const allevents = AllEvents()
