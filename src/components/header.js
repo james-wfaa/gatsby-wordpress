@@ -22,7 +22,7 @@ const Header = ({ noborder }) => {
     if(open === true){
       document.getElementsByTagName('body')[0].style.overflow = 'hidden';
     } else{
-      document.getElementsByTagName('body')[0].style.overflow = 'scroll';
+      document.getElementsByTagName('body')[0].style.overflow = 'unset';
     }
   }, [open]);
 
