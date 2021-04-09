@@ -102,11 +102,12 @@ margin-right: auto;
     }
     
 }
-.altH2 {
+h2.SectionHeaderH2 {
     font-size: ${sizes.s36};
     line-height: ${sizes.s40};
     padding-top: ${sizes.s88}; 
     border-top: 18px solid ${colors.sectionBorder};
+    text-align: center;
     
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s42};
@@ -115,14 +116,21 @@ margin-right: auto;
     position: relative;
     padding-bottom: ${sizes.s40};
     margin-bottom: ${sizes.s32};
-    :after {
+    :before {
         position: absolute;
         bottom:0;
-        left: 0;
+        left: calc( 50% - 1.889rem );
         height: ${sizes.s8};
         width: calc( 1.889rem * 2 );
         background-color: #c5050c;
         content: '';
+    }
+    @media screen and ${breakpoints.tabletS} {
+        text-align: left;
+        :before{
+            left: 0px;
+        }
+        
     }
 }
 
