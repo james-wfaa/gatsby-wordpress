@@ -16,10 +16,20 @@ const FormGeneralError = props => {
         errorMessage = strings.errors.leastOneField
     }
 
+    if (props.errorCode === 'formHasErrorWithMsg') {
+        errorMessage = strings.errors.formHasErrorWithMsg
+    }
+    
+
     if (errorMessage) {
         return (
             <div className="gravityform__error_inform validation_error">
                 <p>{errorMessage}</p>
+                {props.errorList !== undefined && props?.errorList?.length > 0 ? 
+                    <ul>
+                        {props.errorList.map(message => <li>{message}</li>)}
+                    </ul> : null
+                }
             </div>
         )
     } else {

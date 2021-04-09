@@ -164,7 +164,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                 )}
                     <h2>Invite Others</h2>
                     { typeof window !== "undefined" && (
-                        <SocialShareLinks className="SocailShare" title={title} url={window.location.href} event></SocialShareLinks>
+                        <SocialShareLinks className="SocailShare" title={title} url={link} event></SocialShareLinks>
                     )}
                     
                 </div>
