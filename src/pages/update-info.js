@@ -15,11 +15,22 @@ import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-var
 import formErrorIcon from "./../svg/form-error-icon-red.svg"
 
 const UpdateInfoForm = () =>  {
-  const { state } = useContext(AppContext);
+  const { state, actions } = useContext(AppContext);
+  const { setInitialState } = actions;
 
   useEffect(() => {
     document.body.scrollTop = 0
   }, [state.currentStep]);
+
+  useEffect(() => {
+    setInitialState({
+      contactInfo: state.contactInfo, 
+      mailingAddress: state.mailingAddress, 
+      phoneInfo: state.phoneInfo, 
+      employmentInfo: state.employmentInfo, 
+      identityInfo: state.identityInfo, 
+      spouseInfo: state.spouseInfo})
+  }, []);
 
   const renderCurrentStep = () => {
       switch(state.currentStep){
