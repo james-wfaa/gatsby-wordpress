@@ -1,7 +1,7 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { colors } from "../../css-variables"
-import { StyledError, checkForLetters, handleFormSubmit } from '../form-helpers'
+import { StyledError, checkForLetters, handleFormSubmit, FormGeneralError } from '../form-helpers'
 import PageSection from "../../page-sections/PageSection"
 import Buttons from '../FormButtons'
 import { AppContext } from "../../../context/AppContext"
@@ -9,10 +9,16 @@ import { AppContext } from "../../../context/AppContext"
 
 const ContactInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setContactInfoOnchange, setEntryId } = actions;
+  const { setCurrentStep, setContactInfoOnchange, setEntryId, setCommSignUpInfo } = actions;
+  const [generalError, setGeneralError] = useState('')
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
-  const UpdateContactInfo = () =>{
+  const UpdateContactInfo = () => {
+    setCommSignUpInfo({
+      firstname: state.contactInfo.firstname,
+      lastname: state.contactInfo.lastname,
+      email: state.contactInfo.email
+    })
     handleFormSubmit(state).then((returnedData) =>{
       if(returnedData.is_valid === false){
         throw new Error('something went wrong with submitting the form');
@@ -20,14 +26,13 @@ const ContactInfo = () => {
       setEntryId(returnedData.entry_id)
     }).then(() => {
       setCurrentStep(2)
-    }).catch(err => {alert(`An error occurred: ${err.message}`)})
+    }).catch(err => {setGeneralError(err.message)})
   }
 
   const updateOnChangeValues = (e) => {
       setContactInfoOnchange([e.target.name, e.target.value])
   }
-
-
+  
   const requiredFieldsCheck = state.contactInfo.firstname !== '' && state.contactInfo.lastname !== '' && state.contactInfo.email !== '';
       return (
         <div>
@@ -37,6 +42,9 @@ const ContactInfo = () => {
             headingCompact
             backgroundColor={colors.formIntroBg}
           />
+          {generalError && (
+            <FormGeneralError>We’re sorry, but a network issue prevented us from saving your information. Our team has been notified, but you can <a href="mailto:">contact WAA</a> if you need immediate assistance.</FormGeneralError>
+          ) }
           <form
             id="contact"
             className="contact-info"
