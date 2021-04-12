@@ -178,15 +178,3 @@ exports.createSchemaCustomization = ({ actions }) => {
   `;
   createTypes(typeDefs);
 }
-exports.onCreateWebpackConfig = ({ stage, actions }) => {
-  actions.setWebpackConfig({
-    resolve: {
-      fallback: {
-        http: require.resolve("stream-http"),
-        https: require.resolve("https-browserify"),
-        stream: require.resolve("stream-browserify"),
-        zlib: require.resolve("browserify-zlib"),
-      },
-    },
-  })
-}
