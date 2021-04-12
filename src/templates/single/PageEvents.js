@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
 import AllEvents from "../../components/collections/AllEvents"
 import EventCardD from "../../components/content-blocks/EventCardD"
+import PromoCardD from "../../components/content-blocks/PromoCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
 import CardHandler from "../../components/content-modules/CardHandler"
 import CardSet from "../../components/content-modules/CardSet"
@@ -13,10 +14,35 @@ import AccordianSearchBox from "../../components/parts/AccordianSearchBox"
 
 function WordPressPage({ data }) {
 
-  const { page } = data
+  const { page, tileAds } = data
+  const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList?.[0]
+    ? tileAds.nodes[0].siteOptions.TileAds.adList
+    : null
+  const [ads] = useState(adList)
+  const [currentAd, setCurrentAd] = useState(null)
+
+
+  const randomAdGenerator = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min) - 1
+  }
+
+  useEffect(() => {
+    let filteredAds = (ads) 
+      ? ads.filter(ad => {
+          return ad.adActive
+        })
+      : null
+    let adSpot = (filteredAds) 
+      ? randomAdGenerator(1, (filteredAds.length))
+      : null
+    if (filteredAds && adSpot) {
+      setCurrentAd(filteredAds[adSpot])
+    } 
+  }, [ads])
+
   const allevents = AllEvents()
   const { nodes: eventEdges } = allevents
-  const { title, featuredImage, eventCategories, excerpt, gridDetails  } = page
+  const { title, featuredImage, heroIntroSection, eventCategories, excerpt, gridDetails  } = page
   const { categories } = eventCategories
 
   const { backgroundImage } = gridDetails
@@ -26,7 +52,7 @@ function WordPressPage({ data }) {
   const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
   const moreButton = [
     {
-      link: "/events/search",
+      link: "/events/all",
       text: "All Events",
     },
   ]
@@ -73,6 +99,12 @@ categories.forEach((item) => {
       <EventCardD key={event.url} {...event} url={event.link} />
     )
   })
+  const eventCards1 = eventCards.slice(0,5)
+  const eventCards2 = eventCards.slice(5,5+eventCards.length)
+
+  const heroHeading = heroIntroSection?.heroHeading ? `<span>${heroIntroSection.heroHeading}</span> ON` : null
+
+  console.log(currentAd)
 
   return (
     <Layout title={title} noborder>
@@ -82,6 +114,8 @@ categories.forEach((item) => {
           videoURL="https://player.vimeo.com/external/524440389.hd.mp4?s=ebee9d64e105fc60c3075fe901ed7a6e50aeebf8&profile_id=174"
           redHeading={title}
           excerpt={excerpt}
+          mobileHeroImage={heroIntroSection.heroImageMobile.localFile}
+          heroHeading={heroHeading}
         />)}
         <Accordian opentext="SEARCH" closetext="CLOSE SEARCH">
           <AccordianSearchBox navigationURL="/events/search" />
@@ -91,7 +125,12 @@ categories.forEach((item) => {
         </PageSection>
       <>{displayCategories}</>
       <PageSection heading="At a Glance" bgImage={gridBgImage} buttons={moreButton}>
-        <GridCardD>{eventCards}</GridCardD>
+        <GridCardD>
+          {eventCards1}
+          {currentAd && (
+              <PromoCardD title={currentAd.adText} url={currentAd.adLink} />
+            )}
+          {eventCards2}</GridCardD>
       </PageSection>
 
     </Layout>
@@ -116,7 +155,15 @@ export const query = graphql`
           }
         }
       }
-
+      heroIntroSection {
+        heroImageMobile {
+          altText
+          localFile {
+            ...HeroImage
+          }
+        }
+        heroHeading
+      }
       eventCategories {
         categories {
           categoryEvent: category {
@@ -157,6 +204,19 @@ export const query = graphql`
                 aspectRatio
                 sizes
               }
+            }
+          }
+        }
+      }
+    }
+    tileAds: allWp {
+      nodes {
+        siteOptions {
+          TileAds {
+            adList {
+              adText
+              adLink
+              adActive
             }
           }
         }

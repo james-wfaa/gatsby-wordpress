@@ -24,6 +24,10 @@ const CardWrapper = styled.div`
   .excerpt > * {
     font-size: ${sizes.s18};
     line-height: ${sizes.s26};
+    a:link{
+      color: ${colors.bgRed} !important;
+      text-decoration: underline;
+    }
   }
   a {
     cursor: pointer;
@@ -34,10 +38,8 @@ const CardWrapper = styled.div`
     p:not(:last-child) {
       padding-bottom: 16px;
     }
-    &:hover {
-      h3 {
-        text-decoration: underline;
-      }
+    h3 {
+      text-decoration: underline;
     }
   }
   a:hover,
@@ -85,18 +87,35 @@ const CardWrapper = styled.div`
 `
 
 const ChapterCard = ({ chapter }) => {
+  const url = chapter?.chapterDetails?.csUrl
   return (
     <CardWrapper>
       <div className="cardType">Chapter/Groups</div>
-      <Link to={`/chapter/${chapter.chapterDetails.csUrl}`}>
-      <h3>{chapter.title}</h3>
-        {chapter.content ? (
-          <div
-            className="excerpt"
-            dangerouslySetInnerHTML={{ __html: chapter.content }}
-          ></div>
-        ) : null}
-      </Link>
+      { url ? (
+        <Link to={`/groups/${chapter.chapterDetails.csUrl}`}>
+        <h3>{chapter.title}</h3>
+          {chapter.content ? (
+            <div
+              className="excerpt"
+              dangerouslySetInnerHTML={{ __html: chapter.content }}
+            ></div>
+          ) : null}
+        </Link>
+
+      ) : (
+        <>
+          <h3>{chapter.title}</h3>
+          {chapter?.content ? (
+            <div
+              className="excerpt"
+              dangerouslySetInnerHTML={{ __html: chapter.content }}
+            ></div>
+          ) : null}
+        </>
+      )
+      }
+
+      
     </CardWrapper>
   )
 }

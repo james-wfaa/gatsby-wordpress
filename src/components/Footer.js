@@ -23,12 +23,14 @@ const navPolicy = {
     {
       "title":"Digital Community Guidelines",
       "url":"https://www.advanceuw.org/digital-community-guidelines/?utm_source=uwalumni&utm_medium=referral&utm_content=footer",
-      "target": "_blank"
+      "target": "_blank",
+      "rel": "noreferrer"
     },
     {
       "title": "Event Participation Waivers",
       "url": "https://www.advanceuw.org/event-waiver/?utm_source=uwalumni&utm_medium=referral&utm_content=footer",
-      "target": "_blank"
+      "target": "_blank",
+      "rel": "noreferrer"
     },
     {
       "title":"GDPR",
@@ -37,17 +39,20 @@ const navPolicy = {
     {
       "title":"Privacy Policy",
       "url":"https://www.advanceuw.org/privacy-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=footer",
-      "target": "_blank"
+      "target": "_blank",
+      "rel": "noreferrer"
     },
     {
       "title":"Refund/Event Cancellation",
       "url":"https://www.advanceuw.org/refund-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=footer",
-      "target": "_blank"
+      "target": "_blank",
+      "rel": "noreferrer"
     },
     {
       "title":"Terms & Conditions",
       "url":"https://www.advanceuw.org/terms-and-conditions/?utm_source=uwalumni&utm_medium=referral&utm_content=footer",
-      "target": "_blank"
+      "target": "_blank",
+      "rel": "noreferrer"
     }
 ]};
 const navAbout = {
@@ -64,7 +69,8 @@ const navAbout = {
     {
       "title": "Career Opportunities at WFAA",
       "url": "https://www.advanceuw.org/careers?utm_source=uwalumni&utm_medium=referral&utm_content=footer",
-      "target": "_blank"
+      "target": "_blank",
+      "rel": "noreferrer"
     },
     {
       "title":"Diversity & Inclusion",

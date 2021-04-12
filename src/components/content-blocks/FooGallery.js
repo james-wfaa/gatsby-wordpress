@@ -30,7 +30,7 @@ const FooGallery = ({ content, id, className }) => {
                 //console.log(fooGallery.props.children)
                 fooGallery.props.children.forEach((child) => {
                     if (child?.props?.className === 'fg-item') {
-                        if (child?.props?.children) {
+                        if (child?.props?.children?.[0]) {
                             child.props.children.forEach((innerChild) => {
                                 if (innerChild.props.className === "fg-item-inner" && innerChild.props?.children) {
                                     innerChild.props.children.forEach((item) => {
@@ -38,8 +38,10 @@ const FooGallery = ({ content, id, className }) => {
                                             if (item.props?.children) {
                                                 if (item.props.children?.props?.className === "fg-image-wrap") {
                                                     const {  title: caption, alt, "data-src-fg":dataSrcFg } = item.props.children.props.children.props
+                                                    //console.log(item.props.children.props.children.props)
+                                                    const renderedCaption = (caption && caption !== '') ? caption : alt
                                                     galleryImages.push(
-                                                    <CardE fooImage={dataSrcFg} caption={caption} alt={alt} />
+                                                    <CardE key={dataSrcFg} fooImage={dataSrcFg} caption={renderedCaption} alt={alt} />
                                                     )
                                                     
                                                 }
@@ -57,33 +59,52 @@ const FooGallery = ({ content, id, className }) => {
                 fooGallery.props.children.props.children.forEach((child) => {
                     if (child?.props?.className === 'fiv-inner-container') {
                         //console.log('found the items')
-                        if (child?.props?.children) {
-                            
+                        if (child?.props?.children?.[0]) {c
                             child.props.children.forEach((innerChild) => {
                                // console.log(innerChild)
                                 if (innerChild.props.className === "fg-item" && innerChild.props?.children) {
                                     //console.log('fg-item')
                                     innerChild.props.children.forEach((item) => {
+                                        let src = null
+                                        let resolvedCaption = ''
+                                        let resolvedAlt = ''
                                         if (item.props.className === "fg-item-inner" && item.props?.children) {
-                                            //console.log('fg-item-inner')
+                                            //console.log('.fiv-inner-container .fg-item-inner')
 
                                             item.props.children.forEach((inner) => {
                                                 
                                                 if (inner.type === "a") {
-                                                   // console.log('inner type a', inner)
+                                                    //console.log('inner type a', inner)
+                                                    const { "data-caption-title": dataCaptionTitle } = inner.props
+                                                    //console.log(dataCaptionTitle)
+                                                    if (dataCaptionTitle && dataCaptionTitle !== '') {
+                                                        resolvedCaption = dataCaptionTitle
+                                                    }
                                                     if (inner.props?.children) {
                                                         //console.log(inner.props.children)
                                                         if (inner.props.children?.props?.className === "fg-image-wrap") {
-                                                           // console.log('here it is')
+                                                            //console.log('here it is')
                                                             const {  title: caption, alt, "data-src-fg":dataSrcFg } = inner.props.children.props.children.props
-                                                            galleryImages.push(
-                                                            <CardE fooImage={dataSrcFg} caption={caption} alt={alt} />
-                                                            )
+                                                            src = dataSrcFg
+                                                            resolvedCaption = (resolvedCaption === '') 
+                                                                ? caption
+                                                                    ? caption
+                                                                    : alt
+                                                                : resolvedCaption
+                                                            
+                                                            resolvedAlt = alt
                                                             
                                                         }
                                                     }
                                                 }
+
                                             })
+                                        }
+                                        if (src) {
+                                            galleryImages.push(
+                                                <CardE key={src} fooImage={src} caption={resolvedCaption} alt={resolvedAlt} />
+                                                )
+
                                         }
                                     })
                                 }
@@ -115,6 +136,7 @@ const FooGallery = ({ content, id, className }) => {
 
 const StyledFooGallery = styled(FooGallery)`
 width: 100%;
+margin: 2em auto;
 
 
 `

@@ -15,6 +15,7 @@ module.exports = {
     title: `Gatsby Default Starter`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
+    siteURL: 'https://gatsbyuwalumni.gtsb.io',
   },
   plugins: [
     `gatsby-plugin-sharp`,
@@ -57,37 +58,31 @@ module.exports = {
         enableDuringDevelop: true, // Optional. Disables Zendesk chat widget when running Gatsby dev server. Defaults to true.
         zESettings: {
           webWidget: {
+            contactForm: {
+              title: {
+                '*': 'Ask WAA'
+              },
+              ticketForms: [ { id: 1260806265410 } ],
+              fields: [ { id: 'subject', prefill: { '*': 'WAA Support' } } ]
+            },
             chat: {
               departments: {
                 enabled: ["WAA Customer Service"],
                 select: "WAA Customer Service",
               },
-            },
-            launcher: {
-              chatLabel: {
-              '*': 'Ask WAA'
-              },
-            },
-            fields: [{ id: 1260807977350}],
-            contactOptions: {
-              enabled: true,
-              contactButton: { '*': 'Ask WAA'}
-            },
-            helpCenter: {
-              title: {
-              '*': 'Ask WAA'
-              }
-            },
-            contactForm: {
               title: {
                 '*': 'Ask WAA'
-              }
+              },
+              prechatForm: {
+                greeting: { '*': 'Looking for answers? Check out our FAQ page (uwalumni.com/go/faq) or fill out the form below and we’ll get you connected with a live customer service team member to help you.' },
+              },
             },
-            chat: {
-              title: {
-              '*': 'Ask WAA'
-              }
+            launcher: {
+              chatLabel: { '*': 'Ask WAA' },
+              label: { '*': 'Ask WAA' },
             },
+            helpCenter: { suppress: true },
+            answerBot: { suppress: true },
           },
         },
       },
@@ -107,8 +102,8 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         schema: {
-          requestConcurrency: 5, // currently set to undefined
-          previewRequestConcurrency: 2, // currently set to undefined
+          requestConcurrency: 5, 
+          previewRequestConcurrency: 2, 
           perPage: 50,
           typePrefix: `Wp`,
           timeout: 120 * 1000,
@@ -160,6 +155,11 @@ module.exports = {
                 : // and we don't actually need more than 5000 in production for this particular site
                   5000,
           },
+          MediaItem: {
+            localFile: {
+              requestConcurrency: 50
+            }
+          },
         },
       },
     },
@@ -180,7 +180,6 @@ module.exports = {
     },
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-netlify-cache`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

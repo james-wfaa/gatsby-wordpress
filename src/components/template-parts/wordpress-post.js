@@ -100,7 +100,7 @@ function BlogPost({ data }) {
         )}
         <WpStoryContentBlocks {...page} />
       <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
-      {relatedPostsToShow.length > 0 ? (
+      {uniqueRelatedPosts.length > 0 ? (
         <PageSection id="post-listing" heading="Related News and Stories" topBorder buttons={buttons}><CardHandler items={uniqueRelatedPosts.slice(0,10)} size="M" sliderSize="S" type="news" /></PageSection>
       ):(
         <PageSection

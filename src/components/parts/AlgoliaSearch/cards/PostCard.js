@@ -9,6 +9,7 @@ const CardWrapper = styled.div`
   max-width: 716px;
   .cardType {
     font-size: 13px;
+    text-transform: uppercase;
     color: ${colors.categoryGrey};
     font-weight: 800;
     @media screen and ${breakpoints.tabletS} {
@@ -97,7 +98,7 @@ const DetailsDiv = styled.div`
   margin-bottom: 24px;
 `
 
-const PostCard = ({ initialBlock, title, topResult, url, categories }) => {
+const PostCard = ({ initialBlock, title, topResult, url, categories, linkFormat }) => {
   let truncatedText
 
   if (initialBlock) {
@@ -108,8 +109,10 @@ const PostCard = ({ initialBlock, title, topResult, url, categories }) => {
   } else {
     truncatedText = ""
   }
+  const displayFormat = 'story'
 
-  let type = categories[0].name === "Classnote" ? 'CLASSNOTE' : 'STORY'
+  // modify this to check for linkFormat
+  let type = categories[0].name === "Classnote" ? 'STORY' : 'STORY'
 
   return (
     <CardWrapper className={topResult ? "topResult" : null}>
