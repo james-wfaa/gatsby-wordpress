@@ -7,123 +7,132 @@ import { shortDate } from "../../utils/tools"
 
 
 const ContentCard = ({ className, startDate, endDate, title, category, venue, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo = false, acfAlternatePostType, videoFormat }) => {
-    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
-    const fmtStartDate = shortDate(startDate)
-    let fmtEndDate = null
-    if (endDate && shortDate(endDate) !== fmtStartDate) {
-        fmtEndDate = shortDate(endDate)
-    }
-    const dateLinkText = fmtEndDate ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
+  const moreLinkText = urlText ? urlText + ' >' : <nobr>Read More &gt;</nobr>;
+  const fmtStartDate = shortDate(startDate);
+  let fmtEndDate = null;
+  if (endDate && shortDate(endDate) !== fmtStartDate) {
+    fmtEndDate = shortDate(endDate);
+  }
+  const dateLinkText = fmtEndDate
+    ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>`
+    : fmtStartDate;
 
-    const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];
-    const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
-    const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt
-    const promoClass = promo ? 'promo' : ''
-    const notSmall = (size !== 'S') ? "notsmall" : ""
+  const sizes = ['S', 'M', 'L', 'XL', 'XXL', 'Wide'];
+  const maxLength = img && typeof img !== 'undefined' ? 150 : 250;
+  const shortenedExcerpt =
+    excerpt && excerpt.length > maxLength
+      ? excerpt.substring(0, maxLength) + '...'
+      : excerpt;
+  const promoClass = promo ? 'promo' : '';
+  const notSmall = size !== 'S' ? 'notsmall' : '';
 
-    let altPostType = acfAlternatePostType?.alternateposttype ? acfAlternatePostType.alternateposttype : null
+  let altPostType = acfAlternatePostType?.alternateposttype
+    ? acfAlternatePostType.alternateposttype
+    : null;
 
-    if(videoFormat?.vimeoId){
-        altPostType = "Video"
-    }
+  if (videoFormat?.vimeoId) {
+    altPostType = 'Video';
+  }
 
-    const displayCategory = category ? category : (altPostType ? altPostType : null);
+  const displayCategory = category
+    ? category
+    : altPostType
+    ? altPostType
+    : null;
 
-    if(!sizes.includes(size) || promo ){
-        size = "S";
-    }
+  if (!sizes.includes(size) || promo) {
+    size = 'S';
+  }
 
-    const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
-        ? null
-        : (featureImg && typeof featureImg !== 'undefined' && featureImg.childImageSharp) ?
-            [
-                img.childImageSharp.fluid,
-                {
-                    ...featureImg.childImageSharp.fluid,
-                    media: `(min-width: 1200px)`
-                }
-            ]
-            :  img.childImageSharp.fluid
-    return (
-
-        <div className={`${className} ${className}--${size} ${className}--${notSmall} ${promoClass}`}>
-                <div className={`headersection headersection--${size}`}>
-                    { startDate && (
-                        <div className={`date date--${size}`}>
-                            <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
-                        </div>
-                    )}
-                    { !startDate && (
-                        <>
-                            { displayCategory && (
-                                <div className={`category category--${size} `}>{displayCategory}</div>
-                            )}
-                            <h3 className={`title title--${size}`}>
-                                <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
-                            </h3>
-                        </>
-                    )}
-                    {imgSources && (
-                        <a href={url} className={`imgzoomlink headerImg`} >
-                            <Img
-                                className={`img`}
-                                fluid={imgSources}
-                            />
-                        </a>
-                    )}
-                </div>
-                <div className={`contentwrap contentwrap--${size}`}>
-                    {imgSources && (
-                        <a href={url} className={`imgzoomlink bodyImg`} >
-                            <Img
-                                className={`img`}
-                                fluid={imgSources}
-                            />
-                        </a>
-                    )}
-                    <div className={`contentsection contentsection--${size}`}>
-                        <div className={`columnwrap columnwrap--${size}`}>
-                            { startDate && (
-                                <>
-                                    <h3 className={`title title--${size}`}>
-                                        <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
-                                    </h3>
-                                    { displayCategory && (
-                                        <div className={`category category--${size}`}>{displayCategory}</div>
-                                    )}
-                                </>
-                            )}
-                            { (shortenedExcerpt && !startDate) && (
-                                <div className={`excerpt excerpt--${size}`}>
-                                    <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
-                                </div>
-                            )}
-                        </div>
-                        <div className={`columnwrap columnwrap--${size}`}>
-                        { venue && venue.title && (
-                            <div className={`venuewrap venuewrap--${size}`}>
-                                { venue && venue.title && (
-                                    <div className={`${className}__venue`}>{venue.title}</div>
-                                )}
-                                { venue && venue.city && venue.state && (
-                                    <div className={`venue venue--${size}`}>{venue.city}, {venue.state}</div>
-                                )}
-                            </div>
-                        )}
-                            { (shortenedExcerpt && !startDate) && (
-                                <a href={url} className={`excerpt excerpt--${size} readmore`}>{moreLinkText}</a>
-                            )}
-                            { tags && (
-                                <TagList
-                                    className={`tag  tag--${size}`}
-                                    items={tags}
-                                />
-                            )}
-                        </div>
-                    </div>
-                </div>
+  //   const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
+  //       ? null
+  //       : (featureImg && typeof featureImg !== 'undefined' && featureImg.childImageSharp) ?
+  //           [
+  //               img.childImageSharp.fluid,
+  //               {
+  //                   ...featureImg.childImageSharp.fluid,
+  //                   media: `(min-width: 1200px)`
+  //               }
+  //           ]
+  //           :  img.childImageSharp.fluid
+  return (
+    <div
+      className={`${className} ${className}--${size} ${className}--${notSmall} ${promoClass}`}
+    >
+      <div className={`headersection headersection--${size}`}>
+        {startDate && (
+          <div className={`date date--${size}`}>
+            <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }} />
+          </div>
+        )}
+        {!startDate && (
+          <>
+            {displayCategory && (
+              <div className={`category category--${size} `}>
+                {displayCategory}
+              </div>
+            )}
+            <h3 className={`title title--${size}`}>
+              <a href={url} dangerouslySetInnerHTML={{ __html: title }} />
+            </h3>
+          </>
+        )}
+        {(img || featureImg) && (
+          <a href={url} className={`imgzoomlink headerImg`}>
+            <Img className={`img`} fluid={img?.childImageSharp?.fluid} />
+          </a>
+        )}
+      </div>
+      <div className={`contentwrap contentwrap--${size}`}>
+        {(img || featureImg) && (
+          <a href={url} className={`imgzoomlink bodyImg`}>
+            <Img className={`img`} fluid={img?.childImageSharp?.fluid} />
+          </a>
+        )}
+        <div className={`contentsection contentsection--${size}`}>
+          <div className={`columnwrap columnwrap--${size}`}>
+            {startDate && (
+              <>
+                <h3 className={`title title--${size}`}>
+                  <a href={url} dangerouslySetInnerHTML={{ __html: title }} />
+                </h3>
+                {displayCategory && (
+                  <div className={`category category--${size}`}>
+                    {displayCategory}
+                  </div>
+                )}
+              </>
+            )}
+            {shortenedExcerpt && !startDate && (
+              <div className={`excerpt excerpt--${size}`}>
+                <span dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
+              </div>
+            )}
+          </div>
+          <div className={`columnwrap columnwrap--${size}`}>
+            {venue && venue.title && (
+              <div className={`venuewrap venuewrap--${size}`}>
+                {venue && venue.title && (
+                  <div className={`${className}__venue`}>{venue.title}</div>
+                )}
+                {venue && venue.city && venue.state && (
+                  <div className={`venue venue--${size}`}>
+                    {venue.city}, {venue.state}
+                  </div>
+                )}
+              </div>
+            )}
+            {shortenedExcerpt && !startDate && (
+              <a href={url} className={`excerpt excerpt--${size} readmore`}>
+                {moreLinkText}
+              </a>
+            )}
+            {tags && <TagList className={`tag  tag--${size}`} items={tags} />}
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
 const StyledContentCard = styled(ContentCard)`
