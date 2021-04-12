@@ -237,7 +237,7 @@ const PrimaryMenu = () => {
     leave: { opacity: 0 },
   })
 
-  const transition2 = useTransition(!showLeft, null, {
+  const transition2 = useTransition(!showLeft, {
     from: { transform: `translate3d(100%, 0, 0)` },
     enter: { transform: `translate3d(0,0,0)` },
     leave: { transform: `translate3d(100%,0, 0)` },
@@ -312,8 +312,8 @@ const PrimaryMenu = () => {
   return (
     <div onClick={() => modalClickHandler()}>
       <MenuGrid>
-        {transition1.map(
-          ({ item, key, props }) =>
+        {transition1(
+          ({ props, item, key }) =>
             item && (
               <animated.div
                 key={key}
@@ -355,8 +355,8 @@ const PrimaryMenu = () => {
             )
         )}
 
-        {transition2.map(
-          ({ item, key, props }) =>
+        {transition2(
+          ({ props, item, key }) =>
             item && (
               <animated.div
                 key={key}
