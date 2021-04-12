@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../layout"
+import Layout from "../Layout"
 import WpStoryContentBlocks from "../content-blocks/WpStoryContentBlocks"
 import TitleSection from '../parts/WordPressTitleSection'
 import SocialShareLinks from '../parts/SocialShareLinks'

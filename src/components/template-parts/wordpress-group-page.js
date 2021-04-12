@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../layout"
+import Layout from "../Layout"
 import PageSection from "../page-sections/PageSection"
 import GridCardD from "../content-modules/GridCardD"
 import CardHandler from "../content-modules/CardHandler"

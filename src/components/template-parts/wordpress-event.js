@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../layout"
+import Layout from "../Layout"
 import WordPressEventContentBlocks from "../content-blocks/WordPressEventContentBlocks"
 import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"

@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react"
 import styled from 'styled-components'
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import { AppContext } from "../context/AppContext"
 import ContactInfo from "../components/update-info-form/pages/ContactInfo"
 import SelectSteps from "../components/update-info-form/pages/SelectSteps"

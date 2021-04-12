@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../layout"
+import Layout from "../Layout"
 import styled from "styled-components"
 import { breakpoints, colors } from '../css-variables'
 import WordPressBasicContentBlocks from "../content-blocks/WordPressBasicContentBlocks"

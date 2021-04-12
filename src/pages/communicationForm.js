@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import CommunicationForm from "../components/content-blocks/CommunicationForm"
 import GenericPageSection from '../components/page-sections/GenericPageSection'
 import MobileHr from '../components/parts/MobileHr'

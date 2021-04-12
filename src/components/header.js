@@ -26,13 +26,13 @@ const Header = ({ noborder }) => {
     }
   }, [open]);
 
-  const transition1 = useTransition(open, {
+  const transition1 = useTransition(open, null, {
     from: { transform: `translate3d(100%, 0, 0)` },
     enter: { transform: `translate3d(0,0,0)` },
     leave: { transform: `translate3d(100%,0, 0)` },
   })
 
-  const transition2 = useTransition(opensearch, {
+  const transition2 = useTransition(opensearch, null, {
     from: { transform: `translate3d(100%, 0, 0)` },
     enter: { transform: `translate3d(0,0,0)` },
     leave: { transform: `translate3d(100%,0, 0)` },
@@ -139,7 +139,7 @@ const Header = ({ noborder }) => {
         </div>
       </nav>
 
-      {transition1(
+      {transition1.map(
         ({ props, item, key }) =>
           item && (
             <animated.div
@@ -160,7 +160,7 @@ const Header = ({ noborder }) => {
             </animated.div>
           )
       )}
-      {transition2(
+      {transition2.map(
         ({ props, item, key }) =>
           item && (
             <animated.div

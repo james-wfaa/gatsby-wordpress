@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import styled from 'styled-components'
 import { breakpoints, sizes, colors, mixins } from '../../components/css-variables'
-import Layout from "../../components/layout"
+import Layout from "../../components/Layout"
 import PageSection from "../../components/page-sections/PageSection"
 import RecentPosts from "../../components/page-sections/RecentPosts"
 import WordPressContent from "../../components/content-blocks/WordPressBasicContentBlocks"

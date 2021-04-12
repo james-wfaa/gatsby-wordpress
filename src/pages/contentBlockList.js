@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import { graphql } from 'gatsby'
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import PageSection from "../components/page-sections/PageSection"
 import ContentCard from "../components/content-blocks/ContentCard"
 import ContentBlockList from "../components/content-modules/ContentBlockList"
