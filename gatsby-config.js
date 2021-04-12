@@ -102,11 +102,11 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         schema: {
-          requestConcurrency: 5, 
+          requestConcurrency: 4, 
           previewRequestConcurrency: 2, 
-          perPage: 50,
+          perPage: 40,
           typePrefix: `Wp`,
-          timeout: 120 * 1000,
+          timeout: 960 * 1000,
         },
         url:
           process.env.WPGRAPHQL_URL,
@@ -157,7 +157,7 @@ module.exports = {
           },
           MediaItem: {
             localFile: {
-              requestConcurrency: 50
+              requestConcurrency: 40
             }
           },
         },

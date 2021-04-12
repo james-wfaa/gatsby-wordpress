@@ -43,7 +43,6 @@ const eventQuery = `{
               childImageSharp {
                 fluid {
                   base64
-                  tracedSVG
                   srcWebp
                   srcSetWebp
                   originalImg
@@ -127,7 +126,6 @@ const classNoteQuery = `{
               childImageSharp {
                 fluid {
                   base64
-                  tracedSVG
                   srcWebp
                   srcSetWebp
                   originalName

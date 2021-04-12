@@ -114,7 +114,6 @@ export const query = graphql`
                     childImageSharp {
                       fluid(maxWidth: 712) {
                         base64
-                        tracedSVG
                         srcWebp
                         srcSetWebp
                         originalImg
