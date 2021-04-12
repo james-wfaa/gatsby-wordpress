@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import MembershipForm from "../components/content-modules/MembershipForm"
 import BreadCrumbs from "../components/page-sections/BreadCrumbs"
 

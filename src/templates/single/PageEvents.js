@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
-import Layout from "../../components/layout"
+import Layout from "../../components/Layout"
 import PageSection from "../../components/page-sections/PageSection"
 import AllEvents from "../../components/collections/AllEvents"
 import EventCardD from "../../components/content-blocks/EventCardD"

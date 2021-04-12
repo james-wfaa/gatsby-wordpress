@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import PageSection from "../components/page-sections/GenericPageSection"
 import GenericModal from '../components/content-modules/GenericModal'
 import CommunicationForm from '../components/content-blocks/CommunicationForm'

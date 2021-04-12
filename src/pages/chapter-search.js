@@ -1,6 +1,6 @@
 import React from "react"
 import ChapterSearch from "../components/parts/ChapterSearch/ChapterSearch"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 
 const ChapterSearchPage = () => {
   return (

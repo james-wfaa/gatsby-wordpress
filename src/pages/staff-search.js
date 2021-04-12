@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import PageSection from "../components/page-sections/PageSection"
 import StaffSearch from "../components/parts/StaffSearch"
 
