@@ -144,6 +144,7 @@ const classNoteQuery = `{
             }
             localFile {
               id
+              publicURL
               childImageSharp {
                 fluid {
                   base64
@@ -186,7 +187,7 @@ const classNoteQuery = `{
       }
     }
   }
-}`
+}`;
 
 const pageQuery = `{
   pages: allWpPage {
