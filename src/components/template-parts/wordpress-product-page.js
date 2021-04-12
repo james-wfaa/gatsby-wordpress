@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../Layout"
+import Layout from "../layout"
 import HeroIntroSection from "../page-sections/HeroIntroSection"
 import WordPressContentBlocks from "../content-blocks/WordPressContentBlocks"
 import ProductMenu from "../parts/ProductMenu"

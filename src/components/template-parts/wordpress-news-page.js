@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../Layout"
+import Layout from "../layout"
 import PageSection from "../page-sections/PageSection"
 import WordPressContent from "../content-blocks/WordPressBasicContentBlocks"
 import AccordianSearchAlgolia from "../../components/parts/AlgoliaSearch/AccordianSearchAlgolia-temp"
