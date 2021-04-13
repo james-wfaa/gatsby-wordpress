@@ -61,6 +61,11 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             case "tribe/event-links":
             case "tribe/related-events":
                 break
+            case "tribe/event-website":
+                if(block.dynamicContent){
+                    return (<Block className={block.name.replace('/', '-')} block={block} />)
+                }
+                break
             case "core/freeform":
             case "core/paragraph":
             case "core/list":
@@ -69,7 +74,6 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             case "core/image":
             case "core/html":
                 return (<Block className={block.name.replace('/', '-')} block={block} />)
-                break
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
                     return (<PageSectionFromBlocks blocks={block.innerBlocks} borderTop={borderTop} />)
@@ -297,6 +301,33 @@ margin: ${sizes.s48} auto 0;
     .tribe-block__venue,
     .tribe-events-event-meta {
         display: none;
+    }
+    a {
+        ${mixins.a}
+    }
+    .callout-bold {
+        font-weight: bold;
+        font-family: ${fonts.verlag};
+        background-color: ${colors.calloutGrey};
+        padding: ${sizes.s18};
+        @media screen and ${breakpoints.tabletS} {
+            padding: ${sizes.s24};
+        }
+        @media screen and ${breakpoints.laptopL} {
+    
+            &.has-text-align-right{
+                width: 272px;
+                float: right;
+                margin: 16px -184px 16px 16px;
+            }
+            &.has-text-align-left{
+                width: 272px;
+                float: left;
+                margin: 16px 16px 16px -184px;
+            }
+    
+        }
+    
     }
 }
 
