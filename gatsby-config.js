@@ -18,6 +18,7 @@ module.exports = {
     siteURL: 'https://gatsbyuwalumni.gtsb.io',
   },
   plugins: [
+    `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
     {
