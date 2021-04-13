@@ -130,6 +130,7 @@ export const query = graphql`
           }
           localFile {
             ...HeroImage
+            publicURL
           }
         }
       }
@@ -180,6 +181,7 @@ export const query = graphql`
                           sizes
                         }
                       }
+                      publicURL
                     }
                   }
                 }
@@ -221,6 +223,7 @@ export const query = graphql`
                           sizes
                         }
                       }
+                      publicURL
                     }
                   }
                 }
@@ -274,6 +277,7 @@ export const query = graphql`
                         sizes
                       }
                     }
+                    publicURL
                   }
                 }
               }
