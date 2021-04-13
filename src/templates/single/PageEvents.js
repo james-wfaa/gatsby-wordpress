@@ -94,6 +94,8 @@ categories.forEach((item) => {
   })
 
   const cardGridEvents = eventEdges.slice(0,9)
+  cardGridEvents.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
+
   let eventCards = cardGridEvents.map((event) => {
     return (
       <EventCardD key={event.url} {...event} url={event.link} />
