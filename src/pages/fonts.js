@@ -1,7 +1,7 @@
 import React from "react"
 import styled from 'styled-components'
 
-import Layout from "../components/Layout"
+import Layout from "../components/layout"
 import PageSection from '../components/page-sections/PageSection'
 import { sizes, breakpoints, mixins } from '../components/css-variables'
 

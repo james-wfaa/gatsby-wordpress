@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../components/Layout"
+import Layout from "../components/layout"
 import ContentCardD from "../components/content-blocks/ContentCardD"
 import PromoCardD from "../components/content-blocks/PromoCardD"
 import SponsorAd from "../components/content-blocks/SponsorAd"
