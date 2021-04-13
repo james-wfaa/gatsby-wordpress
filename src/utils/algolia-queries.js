@@ -80,6 +80,28 @@ const postQuery = `{
         blocks {
           saveContent
         }
+        featuredImage {
+          node {
+            id
+            sourceUrl
+            localFile {
+              childImageSharp {
+                fluid {
+                  base64
+                  tracedSVG
+                  srcWebp
+                  srcSetWebp
+                  srcSet
+                  src
+                  sizes
+                  originalImg
+                  originalName
+                  aspectRatio
+                }
+              }
+            }
+          }
+        }
         categories {
           nodes {
             name
@@ -123,6 +145,7 @@ const classNoteQuery = `{
             }
             localFile {
               id
+              publicURL
               childImageSharp {
                 fluid {
                   base64
@@ -164,7 +187,7 @@ const classNoteQuery = `{
       }
     }
   }
-}`
+}`;
 
 const pageQuery = `{
   pages: allWpPage {
