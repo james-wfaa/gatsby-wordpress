@@ -298,6 +298,33 @@ margin: ${sizes.s48} auto 0;
     .tribe-events-event-meta {
         display: none;
     }
+    a {
+        ${mixins.a}
+    }
+    .callout-bold {
+        font-weight: bold;
+        font-family: ${fonts.verlag};
+        background-color: ${colors.calloutGrey};
+        padding: ${sizes.s18};
+        @media screen and ${breakpoints.tabletS} {
+            padding: ${sizes.s24};
+        }
+        @media screen and ${breakpoints.laptopL} {
+    
+            &.has-text-align-right{
+                width: 272px;
+                float: right;
+                margin: 16px -184px 16px 16px;
+            }
+            &.has-text-align-left{
+                width: 272px;
+                float: left;
+                margin: 16px 16px 16px -184px;
+            }
+    
+        }
+    
+    }
 }
 
 
