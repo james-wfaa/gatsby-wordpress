@@ -51,6 +51,16 @@ const GravityFormForm = ({
     // Take ID argument and graphQL Gravity Form data for this form
     const singleForm = getForm(formData, id)
 
+    const isMultipart = singleForm && singleForm?.formFields ? checkForMultipart(singleForm.formFields) : false
+
+    function checkForMultipart( myArray){
+        for (var i=0; i < myArray.length; i++) {
+            if (myArray[i].type === "fileupload") {
+                return true
+            }
+        }
+    }
+
     const onSubmitCallback = async values => {
         // Make sure we are not already waiting for a response
         if (!formLoading) {
@@ -72,6 +82,7 @@ const GravityFormForm = ({
                     formData: values,
                     id,
                     lambdaEndpoint: lambda,
+                    isMultipart: isMultipart
                 })
                 //console.log(data)
                 setLoadingState(false)
@@ -155,7 +166,7 @@ const GravityFormForm = ({
                         id={`gravityform--id-${id}`}
                         key={`gravityform--id-${id}`}
                         onSubmit={handleSubmit(onSubmitCallback)}
-                        encType="multipart/form-data"
+                        encType={isMultipart ? "multipart/form-data" : null}
                     >
                         {generalError && (
                             <FormGeneralError errorCode={generalError} errorList={errorList}/>
