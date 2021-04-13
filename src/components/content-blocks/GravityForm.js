@@ -121,7 +121,6 @@ const GravityForm = ({className, id}) => {
         return e.node.formId == id
     })
     //console.log(thisForm)
-    //let fullhostname = 'https://devwp.uwalumni.com'
     let fullhostname = 'https://uwalumni.wpengine.com'
     /*if (typeof window !== 'undefined') {
     const { protocol, hostname } = window.location;
@@ -134,7 +133,6 @@ const GravityForm = ({className, id}) => {
                         id={id}
                         formData={gfData}
                         lambda={`${fullhostname}/wp-json/formsubmit/v1/submit/${id}`}
-                        //lambda={`${fullhostname}/wp-json/formsubmit/v1/submit/9`}
                         successCallback={handleSuccess}
                         errorCallback={handleError}
                         onChange={handleFieldChange}

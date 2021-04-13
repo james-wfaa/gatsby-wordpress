@@ -18,6 +18,7 @@ module.exports = {
     siteURL: 'https://gatsbyuwalumni.gtsb.io',
   },
   plugins: [
+    `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
     {
@@ -34,7 +35,7 @@ module.exports = {
         web: [
           {
             name: ["Verlag A", "Verlag B"],
-            file: "https://cloud.typography.com/7708974/664088/css/fonts.css",
+            file: "https://cloud.typography.com/7708974/7253032/css/fonts.css",
           },
           {
             name: ["mrs-eaves-xl-serif", "mrs-eaves-xl-serif-narrow"],

@@ -59,11 +59,14 @@ const HomePage = ({ data }) => {
   const { nodes: eventEdges } = allevents
 
   const cardGridEvents = eventEdges.slice(0,9)
+  cardGridEvents.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
+
   let eventCards = cardGridEvents.map((event) => {
     return (
       <EventCardD key={event.link} {...event} url={event.link} />
     )
   })
+
   const eventCards1 = eventCards.slice(0,5)
   const eventCards2 = eventCards.slice(5,5+eventCards.length)
 
