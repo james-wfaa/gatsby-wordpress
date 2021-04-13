@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import ContentCard from '../../content-blocks/ContentCard'
+import StoryContentCard from '../../content-blocks/StoryContentCard'
+import EventContentCard from '../../content-blocks/EventContentCard'
 import { breakpoints } from '../../css-variables'
 
 const SearchHits = ({ hits, hitHandler, card}) => {
+    console.log(hits)
     useEffect(() => {
         if (hits.length > 0) {
             let firstHit = hits[0].__position
@@ -13,6 +16,7 @@ const SearchHits = ({ hits, hitHandler, card}) => {
     }, [hits])
 
     let cards = hits.map(hit => {
+        console.log(hit)
         let topResult = false
         if (hit.__position === 1) {
             topResult = true
@@ -20,7 +24,7 @@ const SearchHits = ({ hits, hitHandler, card}) => {
         switch (hit.type) {
             case 'Event':
                 return (
-                    <ContentCard
+                    <EventContentCard
                         key={hit.url}
                         startDate={hit.startDate * 1000}
                         endDate={hit.endDate ? hit.endDate * 1000 : null}
@@ -60,7 +64,7 @@ const SearchHits = ({ hits, hitHandler, card}) => {
                     )
                 } else {
                     return (
-                        <ContentCard
+                        <StoryContentCard
                             key={hit.url}
                             hit={hit}
                             size="S"
@@ -68,8 +72,9 @@ const SearchHits = ({ hits, hitHandler, card}) => {
                             img={hit?.featuredImage?.node?.localFile}
                             title={hit.title}
                             initialBlock={hit.blocks[0]}
-                            categories={hit.categories}
+                            category={hit?.categories?.[0]?.name}
                             topResult={topResult}
+                            {...hit}
                         />
                     )
                 }

@@ -68,6 +68,7 @@ const postQuery = `{
         id
         url: uri
         title
+        excerpt
         postFormats {
           nodes {
             name
@@ -75,6 +76,12 @@ const postQuery = `{
             uri
             slug
           }
+        }
+        acfAlternatePostType{
+          alternateposttype
+        }
+        videoFormat {
+          vimeoId
         }
         date
         blocks {

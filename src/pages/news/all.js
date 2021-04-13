@@ -8,7 +8,7 @@ const NewsAll = ({ data }) => {
 
     return (
         <Layout>
-            <PageSection heading="All News and Story">
+            <PageSection heading="All News and Stories">
                 <AlgoliaArchivePage
                 indices={[{name: "All"}]}
                 results={false}

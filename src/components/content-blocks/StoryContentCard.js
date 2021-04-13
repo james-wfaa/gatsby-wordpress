@@ -7,7 +7,9 @@ const StoryContentCard = ({ className, title, category, postFormats, linkFormat,
     //console.log(postFormats)
 
     const altPostType = acfAlternatePostType?.alternateposttype ? acfAlternatePostType.alternateposttype : null
-    
+
+    console.log(category)
+    console.log(postFormats)
 
     const moreLinkText = linkFormat?.linkAuthor
     ? <nobr>Via {linkFormat.linkAuthor} <span class="arrow"></span></nobr>
