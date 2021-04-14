@@ -5,8 +5,25 @@ import StoryContentCard from '../../content-blocks/StoryContentCard'
 import EventContentCard from '../../content-blocks/EventContentCard'
 import { breakpoints } from '../../css-variables'
 
+let CardWrapper = styled.div`
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-column-gap: 24px;
+        grid-row-gap: 48px;
+        @media screen and ${breakpoints.tabletS} {
+            grid-template-columns: 1fr 1fr
+        }
+        @media screen and ${breakpoints.tabletL} {
+            grid-template-columns: 1fr 1fr 1fr
+        }
+    `
+let EventCardWrapper = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 48px;
+`
+
 const SearchHits = ({ hits, hitHandler, card}) => {
-    console.log(hits)
     useEffect(() => {
         if (hits.length > 0) {
             let firstHit = hits[0].__position
@@ -16,7 +33,6 @@ const SearchHits = ({ hits, hitHandler, card}) => {
     }, [hits])
 
     let cards = hits.map(hit => {
-        console.log(hit)
         let topResult = false
         if (hit.__position === 1) {
             topResult = true
@@ -84,23 +100,7 @@ const SearchHits = ({ hits, hitHandler, card}) => {
         }
     })
 
-    let CardWrapper = styled.div`
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-column-gap: 24px;
-        grid-row-gap: 48px;
-        @media screen and ${breakpoints.tabletS} {
-            grid-template-columns: 1fr 1fr
-        }
-        @media screen and ${breakpoints.tabletL} {
-            grid-template-columns: 1fr 1fr 1fr
-        }
-    `
-    let EventCardWrapper = styled.div`
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-row-gap: 48px;
-    `
+
     let totalCards = card === "Event" ? <EventCardWrapper key={'EventCardWrapper'}>{cards}</EventCardWrapper> : <CardWrapper key={'CardWrapper'}>{cards}</CardWrapper>
 
     return <div>{totalCards}</div>

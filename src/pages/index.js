@@ -13,14 +13,14 @@ import SimpleSlider from "../components/content-modules/SimpleSlider"
 
 const eventbutton = [
   {
-    link: "/events",
+    link: "/events/all",
     text: "All Events",
   },
 ]
 
 const featuredbutton = [
   {
-    link: "/news",
+    link: "/news/all",
     text: "See all news and stories",
   },
 ]
@@ -77,22 +77,11 @@ const HomePage = ({ data }) => {
   let featuredPostCards = featuredPosts.nodes.map((post) => {
     const img = post?.featuredImage?.node?.localFile ? post.featuredImage.node?.localFile : null
     const products = post?.products?.nodes
-      ? post.products.nodes.map((prod) => {
-        return {
-          link: `/news/all?product=${prod.slug}`,
-          tag: prod.name
-        }
-      }) 
+      ? post.products.nodes
       : null
     const categories = post?.categories?.nodes
-      ? post.categories.nodes.map((cat) => {
-      return {
-        link: `/news/all?filter=${cat.slug}`,
-        tag: cat.name
-      }
-      
-    })
-    : null
+      ? post.categories.nodes
+      : null
     return (<StoryContentCard
       key={post.url}
       img={img}
