@@ -53,7 +53,7 @@ function WordPressPage({ data }) {
   const moreButton = [
     {
       link: "/events/all",
-      text: "All Events",
+      text: "See More Events",
     },
   ]
   let displayCategories = []
@@ -122,7 +122,7 @@ categories.forEach((item) => {
         <Accordian opentext="SEARCH" closetext="CLOSE SEARCH">
           <AccordianSearchBox navigationURL="/events/search" />
         </Accordian>
-        <PageSection>
+        <PageSection  buttons={moreButton}>
           <CardHandler items={featuredEventItems} type="event" size="L" />
         </PageSection>
       <>{displayCategories}</>
