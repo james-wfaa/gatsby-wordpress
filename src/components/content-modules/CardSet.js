@@ -8,6 +8,9 @@ import styled from 'styled-components'
 const CardSet = ({className, items, children, num, size="M", type="news" }) => {
 
     const limitedItems = (items) ? items.slice(0, num) : null
+    const resolvedSize = num === 3
+        ? "S"
+        : size
 
     let cards = (children)
     ? children.map((child) => {
@@ -19,7 +22,7 @@ const CardSet = ({className, items, children, num, size="M", type="news" }) => {
         const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
         
         return (type === "news" )
-            ? (<StoryContentCard size={size} img={cardImg} {...item} />) 
+            ? (<StoryContentCard size={resolvedSize} img={cardImg} {...item} />) 
             : (<EventContentCard size={size} img={cardImg} {...item} url={item.link} />)
         })
     

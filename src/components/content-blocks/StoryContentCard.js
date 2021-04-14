@@ -1,7 +1,7 @@
 import React from 'react'
 import ContentCard from "./ContentCard"
 
-const StoryContentCard = ({ className, title, category, postFormats, linkFormat, excerpt, blocks, url, urlText, img, featureImg, caption, tags, size, promo, acfAlternatePostType, videoFormat }) => {
+const StoryContentCard = ({ className, title, category, postFormats, categories, products, linkFormat, excerpt, blocks, url, urlText, img, featureImg, caption, tags, size, promo, acfAlternatePostType, videoFormat }) => {
 
     url = `/news${url}`
 
@@ -21,6 +21,34 @@ const StoryContentCard = ({ className, title, category, postFormats, linkFormat,
             ? <nobr>{urlText} &gt;</nobr>
             : <nobr>Read More &gt;</nobr>
 
+
+    /* pass products and catgories into the tag list */
+    const productTerms = products?.nodes
+      ?  products.nodes.map((term) =>  ({
+              slug: term.slug,
+              name: term.name,
+              type: 'product'
+        })
+      )
+      : null
+    const categoryTerms = categories?.nodes
+      ? categories.nodes.map((term) => ({
+            slug: term.slug,
+            name: term.name,
+            type: 'category'
+      })
+      )
+      : null
+
+    const resolvedTags = productTerms
+        ? categoryTerms
+            ? productTerms.concat(categoryTerms)
+            : productTerms
+        : categoryTerms
+
+    console.log(resolvedTags)
+
+
     return (
         <ContentCard
           className={className}
@@ -31,7 +59,7 @@ const StoryContentCard = ({ className, title, category, postFormats, linkFormat,
           title={title}
           url={url}
           excerpt={renderedExcerpt}
-          tags={tags}
+          tags={resolvedTags}
           caption={caption}
           featureImg={featureImg}
           urlText={moreLinkText}
