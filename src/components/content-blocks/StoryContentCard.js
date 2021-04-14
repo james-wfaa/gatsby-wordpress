@@ -2,7 +2,7 @@ import React from 'react'
 import ContentCard from "./ContentCard"
 
 const StoryContentCard = ({ className, title, category, postFormats, linkFormat, excerpt, url, urlText, img, featureImg, caption, tags, size, promo, acfAlternatePostType, videoFormat }) => {
-    
+
     url = `/news${url}`
 
     const altPostType = acfAlternatePostType?.alternateposttype ? acfAlternatePostType.alternateposttype : null
@@ -15,8 +15,6 @@ const StoryContentCard = ({ className, title, category, postFormats, linkFormat,
             ? <nobr>{urlText} &gt;</nobr>
             : <nobr>Read More &gt;</nobr>
 
-
-            console.log(tags)
     return (
         <ContentCard
           className={className}

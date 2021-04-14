@@ -1,10 +1,34 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState, useEffect } from 'react'
+import queryString from 'query-string'
 import Layout from '../../components/layout'
 import PageSection from '../../components/page-sections/PageSection'
 import AlgoliaArchivePage from '../../components/parts/AlgoliaSearch/AlgoliaArchivePage'
 
-const NewsAll = ({ data }) => {
+const NewsAll = (props) => {
+    const [filterFilter, setFilterFilter] = useState("")
+    const [pubFilter, setPubFilter] = useState("")
+    const [productFilter, setProductFilter] = useState("")
+    const [allFilters, setAllFilters] = useState('type:Post AND NOT categories.name:Classnote')
+
+    const { filter, pub, product } = queryString.parse(props.location.search)
+
+    useEffect(() => {
+        if (filter?.length > 0) {
+            setFilterFilter(` AND categories.name:${filter}`)
+        }
+        if (pub?.length > 0) {
+            setPubFilter(` AND publication:name:${pub}`)
+        }
+        if (product?.length > 0) {
+            setProductFilter(` AND product.name:${product}`)
+        }
+    }, [])
+
+    useEffect(() => {
+        setAllFilters(`${allFilters}${filterFilter}${pubFilter}${productFilter}`)
+    }, [filterFilter, pubFilter, productFilter])
+
+    console.log(allFilters)
 
     return (
         <Layout>
@@ -12,7 +36,7 @@ const NewsAll = ({ data }) => {
                 <AlgoliaArchivePage
                 indices={[{name: "All"}]}
                 results={false}
-                filters={'type:Post AND NOT categories.name:Classnote'}
+                filters={allFilters}
                 />
             </PageSection>
         </Layout>
