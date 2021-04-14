@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import ContentCard from '../../content-blocks/ContentCard'
-import StoryContentCard from '../../content-blocks/StoryContentCard'
 import EventContentCard from '../../content-blocks/EventContentCard'
 import { breakpoints } from '../../css-variables'
 
@@ -80,7 +79,7 @@ const SearchHits = ({ hits, hitHandler, card}) => {
                     )
                 } else {
                     return (
-                        <StoryContentCard
+                        <ContentCard
                             key={hit.url}
                             hit={hit}
                             size="S"

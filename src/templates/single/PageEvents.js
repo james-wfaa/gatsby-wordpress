@@ -70,9 +70,7 @@ categories.forEach((item) => {
           }
         })
       }
-      
     })
-
 
     if (categoryEvents) {
       displayCategories.push(
