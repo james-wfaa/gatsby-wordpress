@@ -272,21 +272,38 @@ a {
     @media screen and ${breakpoints.laptopS} {
         margin-left: 0;
         max-width: 712px;
-
+        
         .alignright{
+            display: table;
             float: right;
             margin-left:24px;
             margin-top: 8px;
             margin-bottom: 0px;
         }
         .alignleft{
+            display: table;
             float: left;
             margin-right: 24px;
             margin-bottom: 0px;
             margin-top: 8px;
+            
         }
         .aligncenter{
             text-align: center;
+            display: table;
+            
+        }
+
+        figcaption{
+            display: table-caption;
+            caption-side: bottom;
+            font-family: ${fonts.verlag};
+            font-weight: bold;
+            font-size: ${sizes.s16};
+            line-height: ${sizes.s22};
+            color: ${colors.captionGrey};
+            padding-top: 16px;
+            padding-bottom: 32px;
         }
     }
 }
