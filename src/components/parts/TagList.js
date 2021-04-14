@@ -9,9 +9,9 @@ const TagList = ({ items, className }) => {
         </div>
       ))
       
-        return (
-          <section className={className}>{itemsList}</section>
-        )
+    return (
+        <section className={className}>{itemsList}</section>
+    )
 }
 
 const StyledTagList = styled(TagList)`

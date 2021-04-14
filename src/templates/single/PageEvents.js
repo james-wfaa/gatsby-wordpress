@@ -53,7 +53,7 @@ function WordPressPage({ data }) {
   const moreButton = [
     {
       link: "/events/all",
-      text: "All Events",
+      text: "See All Events",
     },
   ]
   let displayCategories = []
