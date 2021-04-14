@@ -15,7 +15,7 @@ module.exports = {
     title: `Gatsby Default Starter`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
-    siteURL: 'https://gatsby.uwalumni.com',
+    siteURL: 'https://gatsbyuwalumni.gtsb.io',
   },
   plugins: [
     `gatsby-plugin-gatsby-cloud`,
@@ -35,7 +35,7 @@ module.exports = {
         web: [
           {
             name: ["Verlag A", "Verlag B"],
-            file: "https://cloud.typography.com/7708974/7253032/css/fonts.css",
+            file: "https://cloud.typography.com/7708974/664088/css/fonts.css",
           },
           {
             name: ["mrs-eaves-xl-serif", "mrs-eaves-xl-serif-narrow"],
