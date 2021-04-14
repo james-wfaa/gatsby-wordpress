@@ -122,6 +122,21 @@ export const fragments = graphql`
         videoFormat {
           vimeoId
         }
+        categories {
+          nodes {
+            name
+            slug
+            id
+          }
+        }
+        products {
+          nodes {
+            name
+            slug
+            id
+          }
+        }
+
       }
     }
   }
