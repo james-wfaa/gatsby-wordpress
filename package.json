@@ -41,6 +41,7 @@
     "lodash": "^4.17.21",
     "postal-codes-js": "^2.5.2",
     "prop-types": "^15.7.2",
+    "query-string": "^7.0.0",
     "react": "^17.0.1",
     "react-country-flag": "^2.3.0",
     "react-custom-share": "^0.4.8",

@@ -12,7 +12,7 @@ import EmbedVideoFormatHandler from "../content-blocks/EmbedVideoFormatHandler"
 
 function BlogPost({ data }) {
   const { page } = data
-  const { id, title, featuredImage, categories, products, author, postExternalAuthors, date, excerpt, heroImage, link, slug, acfAlternatePostType } = page
+  const { id, title, featuredImage, categories, products, author, postExternalAuthors, date, excerpt, heroImage, link, slug } = page
   const product = (products?.nodes && Array.isArray(products.nodes)) ? products.nodes[0] : null
   const displayAuthor = (postExternalAuthors?.nodes && postExternalAuthors.nodes[0]?.name)
     ? postExternalAuthors.nodes[0].name
@@ -22,13 +22,13 @@ function BlogPost({ data }) {
   let featSize = featuredImage?.node?.mediaDetails.width ? featuredImage?.node?.mediaDetails.width : null
   let size = featSize > heroSize ? featSize : heroSize
 
-  const isVideo = page.videoFormat?.vimeoId
+  const isVideo = page?.videoFormat?.vimeoId
 
   const isAlt = (
-    page.acfAlternatePostType?.alternateposttype === 'poll' || 
-    page.acfAlternatePostType?.alternateposttype === 'quiz' || 
-    page.acfAlternatePostType?.alternateposttype === 'scrapbook' || 
-    page.acfAlternatePostType?.alternateposttype === 'podcast' 
+    page?.acfAlternatePostType?.alternateposttype === 'poll' || 
+    page?.acfAlternatePostType?.alternateposttype === 'quiz' || 
+    page?.acfAlternatePostType?.alternateposttype === 'scrapbook' || 
+    page?.acfAlternatePostType?.alternateposttype === 'podcast' 
   ) 
 
   
@@ -39,7 +39,7 @@ function BlogPost({ data }) {
   //let pStories = ProductStories(products)
   //console.log(pStories)
   let relatedPostsToShow = []
-  if(products && products.nodes){
+  if(products?.nodes){
     products.nodes.forEach((product) => {
       product.posts.nodes.forEach((post) => {
         relatedPostsToShow.push(post) 
