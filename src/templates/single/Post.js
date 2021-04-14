@@ -108,6 +108,18 @@ export const query = graphql`
               title
               url: uri
               excerpt
+              categories {
+                nodes {
+                  name
+                  slug
+                }
+              }
+              products {
+                nodes {
+                  name
+                  slug
+                }
+              }
               featuredImage {
                 node {
                   localFile {
