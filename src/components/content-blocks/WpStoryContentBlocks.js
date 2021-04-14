@@ -16,7 +16,7 @@ import parse from 'html-react-parser'
 const WpStoryContentBlocks = ({className, blocks, content }) => {
         const RenderedBlocks = (blocks) ? blocks.map((block) => {
 
-        switch (block.name) {
+          switch (block.name) {
 
           case "core/separator":
             return (
@@ -136,10 +136,11 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
               </div>
             )
           case "core/embed":
-            const embedWrapperClass = block?.originalContent && block?.originalContent.includes('flickr') || block?.originalContent.includes('tryinteract') ? 'embed-wrapper' : null;
+            const checkForInstagram = block?.originalContent && block?.originalContent.includes('instagram') ? true : false;
+            const embedWrapperClass = block?.originalContent && block?.originalContent.includes('flickr') || block?.originalContent.includes('tryinteract') || block?.originalContent && block?.originalContent.includes('instagram')? 'embed-wrapper' : null;
             return (
               <div className={`wp-block-embed ${embedWrapperClass}`} key={block.order}>
-                <EmbedBlock source={block.originalContent} type="base" />
+                <EmbedBlock source={block.originalContent} type={checkForInstagram ? "instagram" : "base"} />
               </div>
             )
           
@@ -311,6 +312,17 @@ h2 {
     }
     @media screen and ${breakpoints.laptopS} {
       padding-bottom: 100% !important;
+    }
+  }
+}
+.wp-block-embed{
+  .instagram-embed{
+    padding-bottom: 170% !important;
+    @media screen and ${breakpoints.tabletS} {
+      padding-bottom: 140% !important;
+    }
+    @media screen and ${breakpoints.laptopS} {
+      padding-bottom: 134% !important;
     }
   }
 }
