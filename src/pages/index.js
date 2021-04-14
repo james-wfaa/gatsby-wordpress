@@ -103,7 +103,7 @@ const HomePage = ({ data }) => {
     
   })
   return (
-    <Layout noborder>
+    <Layout title="Wisconsin Alumni Association" noborder>
       <HeroIntroSection
           heroImage={data.homeBg}
           videoURL="https://player.vimeo.com/external/523946487.hd.mp4?s=65ae00f23e75bb574174a88ea656c8079cade0fa&profile_id=175"

@@ -72,9 +72,10 @@ const SearchHits = ({ hits, hitHandler, card}) => {
                             img={hit?.featuredImage?.node?.localFile}
                             title={hit.title}
                             initialBlock={hit.blocks[0]}
-                            category={hit?.categories?.[0]?.name}
                             topResult={topResult}
-                            {...hit}
+                            excerpt={hit.excerpt}
+                            acfAlternatePostType={hit.acfAlternatePostType}
+                            tags={hit.categories}
                         />
                     )
                 }

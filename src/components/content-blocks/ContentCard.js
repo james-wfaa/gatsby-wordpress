@@ -27,7 +27,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, postForma
             ? "Video"
             : null
     
-    console.log(category)
+    //console.log(category)
 
     const displayCategory = category 
         ? category

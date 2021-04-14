@@ -112,6 +112,7 @@ const postQuery = `{
         categories {
           nodes {
             name
+            slug
             id
           }
         }
