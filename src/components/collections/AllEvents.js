@@ -48,6 +48,15 @@ const AllEvents = () => {
                         title
                         excerpt
                         content
+                        eventDetails {
+                          eventFullSoldOut
+                          eventFullText
+                          eventlocationDetails
+                          registrationUrl
+                          questions
+                          virtualEvent
+                          trip
+                        }
                         link
                         url
                         date(formatString: "dddd, MMM. D")

@@ -38,6 +38,7 @@ const SearchHits = ({ hits, hitHandler, card}) => {
         }
         switch (hit.type) {
             case 'Event':
+                console.log(hit)
                 return (
                     <EventContentCard
                         key={hit.url}

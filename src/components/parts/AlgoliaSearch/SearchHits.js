@@ -5,7 +5,7 @@ import PageCard from './cards/PageCard'
 
 const SearchHits = ({ hits, hitHandler }) => {
 
-  console.log(hits)
+  //console.log(hits)
   useEffect(() => {
     if (hits.length > 0) {
       let firstHit = hits[0].__position
@@ -15,7 +15,7 @@ const SearchHits = ({ hits, hitHandler }) => {
   }, [hits])
 
   let cards = hits.map(hit => {
-    console.log(hit)
+    //console.log(hit)
     let topResult = false;
     if (hit.__position === 1) {
       topResult = true;
