@@ -3,6 +3,7 @@ import CardSet from './CardSet'
 import SimpleSliderItems from './SimpleSliderItems'
 
 const CardHandler = ({ items, sliderSize="S", size="M", type }) => {
+
     if (items.length && items.length > 0) {
         switch(items.length) {
             case 1:

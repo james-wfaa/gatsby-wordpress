@@ -6,8 +6,16 @@ import styled from 'styled-components'
 import { shortDate } from "../../utils/tools"
 
 
-const ContentCard = ({ className, startDate, endDate, title, category, postFormats, linkFormat, venue, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo = false, acfAlternatePostType, videoFormat }) => {
+const ContentCard = ({ className, startDate, endDate, title, category, postFormats, linkFormat, venue, virtualEvent, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo = false, acfAlternatePostType, videoFormat }) => {
     // moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
+
+    console.log(virtualEvent)
+    const resolvedVenue = (virtualEvent)
+    ? "Online Event"
+    : (venue?.title)
+        ? venue.title
+        : null
+
     const fmtStartDate = shortDate(startDate)
     let fmtEndDate = null
     if (endDate && shortDate(endDate) !== fmtStartDate) {
@@ -27,8 +35,6 @@ const ContentCard = ({ className, startDate, endDate, title, category, postForma
             ? "Video"
             : null
     
-    //console.log(category)
-
     const displayCategory = category 
         ? category
         : altPostType 
@@ -58,7 +64,6 @@ const ContentCard = ({ className, startDate, endDate, title, category, postForma
                 }
             ]
             :  img.childImageSharp.fluid
-
 
     return (
 
@@ -116,12 +121,10 @@ const ContentCard = ({ className, startDate, endDate, title, category, postForma
                             )}
                         </div>
                         <div className={`columnwrap columnwrap--${size}`}>
-                        { venue && venue.title && (
+                        { resolvedVenue && (
                             <div className={`venuewrap venuewrap--${size}`}>
-                                { venue && venue.title && (
-                                    <div className={`${className}__venue`}>{venue.title}</div>
-                                )}
-                                { venue && venue.city && venue.state && (
+                                <div className={`${className}__venue`}>{resolvedVenue}</div> 
+                                { venue?.city && venue?.state && (
                                     <div className={`venue venue--${size}`}>{venue.city}, {venue.state}</div>
                                 )}
                             </div>

@@ -67,7 +67,10 @@ function WordPressPage({ data }) {
           linkPath = `all?pub=${cat.slug}`
           break
         default:
-          linkPath = `all?filter=${cat.slug}`
+
+          linkPath = category
+            ? `all?filter=${cat.slug}`
+            : `all?product=${cat.slug}`
           break
       }
     }
@@ -165,6 +168,22 @@ export const query = graphql`
                 title
                 url: uri
                 excerpt
+                blocks {
+                  name
+                  originalContent
+                  dynamicContent
+                  innerBlocks {
+                    name
+                    originalContent
+                    dynamicContent
+                    innerBlocks {
+                      name
+                      originalContent
+                      dynamicContent
+                    }
+                  }
+          
+                }
                 linkFormat {
                   linkUrl
                   linkAuthor
@@ -214,6 +233,22 @@ export const query = graphql`
                 title
                 url: uri
                 excerpt
+                blocks {
+                  name
+                  originalContent
+                  dynamicContent
+                  innerBlocks {
+                    name
+                    originalContent
+                    dynamicContent
+                    innerBlocks {
+                      name
+                      originalContent
+                      dynamicContent
+                    }
+                  }
+          
+                }
                 featuredImage {
                   node {
                     localFile {

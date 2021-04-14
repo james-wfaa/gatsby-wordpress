@@ -17,6 +17,15 @@ const eventQuery = `{
         date
         startDate
         endDate
+        eventDetails {
+          eventFullSoldOut
+          eventFullText
+          eventlocationDetails
+          registrationUrl
+          questions
+          virtualEvent
+          trip
+        }
         eventsCategories {
           nodes {
             name
@@ -110,6 +119,13 @@ const postQuery = `{
           }
         }
         categories {
+          nodes {
+            name
+            slug
+            id
+          }
+        }
+        products {
           nodes {
             name
             slug
@@ -305,7 +321,8 @@ const queries = [
         settings: {
             attributesToSnippet: [`blocks:40`],
             attributesForFaceting: [
-                `categories.name`,
+                `categories.slug`,
+                `products.slug`,
                 `type`,
                 `filterOnly(date)`,
             ],

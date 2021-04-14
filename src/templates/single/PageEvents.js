@@ -9,8 +9,6 @@ import GridCardD from "../../components/content-modules/GridCardD"
 import CardHandler from "../../components/content-modules/CardHandler"
 import CardSet from "../../components/content-modules/CardSet"
 import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
-import Accordian from "../../components/parts/Accordian"
-import AccordianSearchBox from "../../components/parts/AccordianSearchBox"
 
 function WordPressPage({ data }) {
 
@@ -53,6 +51,12 @@ function WordPressPage({ data }) {
   const moreButton = [
     {
       link: "/events/all",
+      text: "See More Events",
+    },
+  ]
+  const allButton = [
+    {
+      link: "/events/all",
       text: "See All Events",
     },
   ]
@@ -70,9 +74,7 @@ categories.forEach((item) => {
           }
         })
       }
-      
     })
-
 
     if (categoryEvents) {
       displayCategories.push(
@@ -106,8 +108,6 @@ categories.forEach((item) => {
 
   const heroHeading = heroIntroSection?.heroHeading ? `<span>${heroIntroSection.heroHeading}</span> ON` : null
 
-  console.log(currentAd)
-
   return (
     <Layout title={title} noborder>
       { featuredImage && featuredImage.node && (
@@ -119,14 +119,11 @@ categories.forEach((item) => {
           mobileHeroImage={heroIntroSection.heroImageMobile.localFile}
           heroHeading={heroHeading}
         />)}
-        <Accordian opentext="SEARCH" closetext="CLOSE SEARCH">
-          <AccordianSearchBox navigationURL="/events/search" />
-        </Accordian>
-        <PageSection>
+        <PageSection  buttons={moreButton}>
           <CardHandler items={featuredEventItems} type="event" size="L" />
         </PageSection>
       <>{displayCategories}</>
-      <PageSection heading="At a Glance" bgImage={gridBgImage} buttons={moreButton}>
+      <PageSection heading="At a Glance" bgImage={gridBgImage} buttons={allButton}>
         <GridCardD>
           {eventCards1}
           {currentAd && (

@@ -159,7 +159,7 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                 break
                 case "acf/note-listing":
                         const buttons =  [{
-                                link: `/alumninotes/`,
+                                link: `/alumninote/all/`,
                                 text: 'See All Alumni Notes'
                             }]
                         RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Alumni Notes" borderTop={borderTop} stagger={stagger} buttons={buttons}><RecentNotes /></PageSection>)
