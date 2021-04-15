@@ -195,7 +195,6 @@ function BlogPost({ data }) {
 const questioner = askFlamingle?.abeQuestioner && askFlamingle.abeQuestioner !== 'An Alum'
     ? askFlamingle.abeQuestioner
     : null
-console.log(askFlamingle.abeQuestioner)
   return (
     <Layout title={title}>
         <BreadCrumbs links={links} />
