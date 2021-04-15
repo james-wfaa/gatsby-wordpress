@@ -38,6 +38,8 @@ function BlogPost({ data }) {
   /* getting unique related posts from product nodes - replace this with the static query to boost build time */
   //let pStories = ProductStories(products)
   //console.log(pStories)
+  
+
   let relatedPostsToShow = []
   if(products?.nodes){
     products.nodes.forEach((product) => {
@@ -57,7 +59,7 @@ function BlogPost({ data }) {
   }
   const buttons = (uniqueRelatedPosts.length > 2) 
       ? [{
-          link: `/posts/search/?category=${slug}`,
+          link: `/news/all/?product=${slug}`,
           text: 'SEE ALL NEWS AND STORIES'
       }]
       : null
