@@ -20,9 +20,14 @@ const CardSet = ({className, items, children, num, size="M", type="news" }) => {
         const { featuredImage: img } = item
         const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
         
+        const resolvedUrl = item?.link
+            ? item.link
+            : item.url
         return (type === "news" )
             ? (<StoryContentCard key={item.id} size={resolvedSize} img={cardImg} {...item} />) 
-            : (<EventContentCard key={item.id} size={size} img={cardImg} {...item} url={item.link} />)
+            : (<EventContentCard key={item.id} size={size} img={cardImg} {...item} url={resolvedUrl} />)
+            
+            
         })
     
     return (
