@@ -12,7 +12,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
 
     const classesList = `${className}`;
     const costDisplay = (cost) => {
-        if (!cost || cost == 0){
+        if (!cost || cost === 0){
             return "Free Entrance"
         }
         else{
@@ -25,7 +25,8 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
             return compDateString;
         }
         else{
-            return date
+            const startDS = new Date(startDate.replace(/\s/, 'T'))
+            return startDS.toLocaleString('default', { month: 'long' }) + ' ' + startDS.getDate() + ', ' + startDS.getFullYear()
         }
     }
 
@@ -88,7 +89,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
             </div>
             <div className="regWrapper">
                 <div className="subHeader">WHEN</div>
-                <div>{calcDate(date)}</div>
+                <div>{calcDate(startDate)}</div>
                 <div className="dateTime" dangerouslySetInnerHTML={{ __html: convertTime(startDate, endDate) }}></div>
                 <a href="#" alt="Add to Calendar" onClick={() => handleModal()}>Add to Calendar</a>
                 { addressString && (
