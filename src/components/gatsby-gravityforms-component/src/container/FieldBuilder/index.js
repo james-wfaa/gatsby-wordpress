@@ -29,6 +29,8 @@ const FieldBuilder = ({
             //console.log(field, field.type)
             if(field.type === 'radio' || field.type === 'checkbox'){
                 populateChoiceValues(field)
+            } else if(field.type === 'select'){
+                populateSelectDefault(field)
             }
         })
     }, []);
@@ -40,10 +42,17 @@ const FieldBuilder = ({
         setfieldValues({ ...fieldValues, [field.id]: selected.length ? selected[0].value : '' } )
     }
 
+    const populateSelectDefault = (field) => {
+        const selected = JSON.parse(field.choices).filter(choice => {
+            return choice.isSelected
+        })
+        setfieldValues({ ...fieldValues, [field.id]: selected.length > 0 ? selected[0].value : JSON.parse(field.choices)[0].value })
+    }
+
     const handleFieldChange = (fieldId, value, inputId) => {
     
         let fieldInfo = formData.formFields.filter(field => field.id === fieldId)
-        
+
         if((fieldInfo[0].type === 'radio' ) && inputId){
             setfieldValues({
                 ...fieldValues,
@@ -72,6 +81,12 @@ const FieldBuilder = ({
                     },
                 })
             }
+        }
+        if((fieldInfo[0].type === 'select' ) && value){
+            setfieldValues({
+                ...fieldValues,
+                [fieldId]: value,
+            })
         }
         //add default or other cases if not radio/replacing value
     }
@@ -244,6 +259,9 @@ const FieldBuilder = ({
                         register={register}
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
+                        handleFieldChange={handleFieldChange}
+                        onChange={onChange}
+                        fieldHidden={fieldHidden(field)}
                     />
                 )
             case 'multiselect':
