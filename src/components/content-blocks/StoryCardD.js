@@ -32,7 +32,7 @@ const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat, acfAltern
             ? <nobr>{urlText} &gt;</nobr>
             : <nobr>Read More &gt;</nobr>
 
-    console.log(title, moreLinkText)
+    //console.log(title, moreLinkText)
     
     //update display based on post type
     if(label && postTypes){

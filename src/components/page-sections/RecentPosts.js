@@ -19,6 +19,18 @@ const RecentPosts = () => {
               }
             }
             url: uri
+            categories {
+              nodes {
+                name
+                slug
+              }
+            }
+            products {
+              nodes {
+                name
+                slug
+              }
+            }
           }
         }
       }

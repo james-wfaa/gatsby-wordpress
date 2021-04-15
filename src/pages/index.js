@@ -13,15 +13,15 @@ import SimpleSlider from "../components/content-modules/SimpleSlider"
 
 const eventbutton = [
   {
-    link: "/events",
-    text: "All Events",
+    link: "/events/all",
+    text: "See All Events",
   },
 ]
 
 const featuredbutton = [
   {
-    link: "/news",
-    text: "See all news and stories",
+    link: "/news/all",
+    text: "See all news & stories",
   },
 ]
 
@@ -59,11 +59,14 @@ const HomePage = ({ data }) => {
   const { nodes: eventEdges } = allevents
 
   const cardGridEvents = eventEdges.slice(0,9)
+  cardGridEvents.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
+
   let eventCards = cardGridEvents.map((event) => {
     return (
       <EventCardD key={event.link} {...event} url={event.link} />
     )
   })
+
   const eventCards1 = eventCards.slice(0,5)
   const eventCards2 = eventCards.slice(5,5+eventCards.length)
 
@@ -74,22 +77,11 @@ const HomePage = ({ data }) => {
   let featuredPostCards = featuredPosts.nodes.map((post) => {
     const img = post?.featuredImage?.node?.localFile ? post.featuredImage.node?.localFile : null
     const products = post?.products?.nodes
-      ? post.products.nodes.map((prod) => {
-        return {
-          link: `/news/all?product=${prod.slug}`,
-          tag: prod.name
-        }
-      }) 
+      ? post.products.nodes
       : null
     const categories = post?.categories?.nodes
-      ? post.categories.nodes.map((cat) => {
-      return {
-        link: `/news/all?filter=${cat.slug}`,
-        tag: cat.name
-      }
-      
-    })
-    : null
+      ? post.categories.nodes
+      : null
     return (<StoryContentCard
       key={post.url}
       img={img}
@@ -100,7 +92,7 @@ const HomePage = ({ data }) => {
     
   })
   return (
-    <Layout noborder>
+    <Layout title="Wisconsin Alumni Association" noborder>
       <HeroIntroSection
           heroImage={data.homeBg}
           videoURL="https://player.vimeo.com/external/523946487.hd.mp4?s=65ae00f23e75bb574174a88ea656c8079cade0fa&profile_id=175"

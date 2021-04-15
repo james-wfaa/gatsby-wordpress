@@ -61,32 +61,34 @@ const AlgoliaArchivePage = props => {
     //
 
     return (
-        <StyledWrapper>
-            <div>
-                <InstantSearch
-                    searchClient={searchClient}
-                    indexName={props.indices[0].name}
-                    onSearchStateChange={({ query }) => setQuery(query)}>
-                    <Configure filters={props.filters} hitsPerPage={9} />
-                    <ScrollTo>
-                        <SelectionsWrapper>
-                            <AccordianSearchBoxAlgolia
-                                defaultRefinement={props.searchString}
-                                onFocus={() => setFocus(true)}
-                                hasFocus={hasFocus}
-                            />
-                        </SelectionsWrapper>
-                    </ScrollTo>
-                    <SearchPageResults
-                        show={query && query.length > 0 && hasFocus}
-                        indices={props.indices}
-                        cardtype='ContentCard'
-                    />
-                    <AlgoliaPagination />
-                </InstantSearch>
-            </div>
-        </StyledWrapper>
-    )
+      <StyledWrapper>
+        <div>
+          <InstantSearch
+            searchClient={searchClient}
+            indexName={props.indices[0].name}
+            onSearchStateChange={({ query }) => setQuery(query)}
+          >
+            <Configure filters={props.filters} hitsPerPage={9} />
+            <ScrollTo>
+              <SelectionsWrapper>
+                <AccordianSearchBoxAlgolia
+                  defaultRefinement={props.searchString}
+                  onFocus={() => setFocus(true)}
+                  hasFocus={hasFocus}
+                />
+              </SelectionsWrapper>
+            </ScrollTo>
+            <SearchPageResults
+              show={query && query.length > 0 && hasFocus}
+              indices={props.indices}
+              cardtype='ContentCard'
+              card={props.card}
+            />
+            <AlgoliaPagination />
+          </InstantSearch>
+        </div>
+      </StyledWrapper>
+    );
 }
 
 export default AlgoliaArchivePage

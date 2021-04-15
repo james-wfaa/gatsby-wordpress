@@ -130,6 +130,7 @@ export const query = graphql`
           }
           localFile {
             ...HeroImage
+            publicURL
           }
         }
       }
@@ -170,7 +171,6 @@ export const query = graphql`
                       childImageSharp {
                         fluid(maxWidth: 712) {
                           base64
-                          tracedSVG
                           srcWebp
                           srcSetWebp
                           originalImg
@@ -181,6 +181,7 @@ export const query = graphql`
                           sizes
                         }
                       }
+                      publicURL
                     }
                   }
                 }
@@ -212,7 +213,6 @@ export const query = graphql`
                       childImageSharp {
                         fluid(maxWidth: 712) {
                           base64
-                          tracedSVG
                           srcWebp
                           srcSetWebp
                           originalImg
@@ -223,6 +223,7 @@ export const query = graphql`
                           sizes
                         }
                       }
+                      publicURL
                     }
                   }
                 }
@@ -266,7 +267,6 @@ export const query = graphql`
                     childImageSharp {
                       fluid(maxWidth: 712) {
                         base64
-                        tracedSVG
                         srcWebp
                         srcSetWebp
                         originalImg
@@ -277,6 +277,7 @@ export const query = graphql`
                         sizes
                       }
                     }
+                    publicURL
                   }
                 }
               }

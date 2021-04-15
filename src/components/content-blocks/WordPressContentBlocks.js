@@ -126,7 +126,7 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                             text: 'See More WAA Stories'
                         }]
                         : null
-                    RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={reducedPosts} type="news" size="M" /></PageSection>)    
+                    RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop stagger={stagger} buttons={buttons}><CardHandler items={reducedPosts} type="news" size="M" /></PageSection>)    
                 } else {
                     //console.log('no product found')
                 }
@@ -154,12 +154,12 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                             text: 'See More Events'
                         }]
                         : null
-                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={combinedEvents} size="M" type="event"/></PageSection>)
+                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop stagger={stagger} buttons={buttons}><CardHandler items={combinedEvents} size="M" type="event"/></PageSection>)
                 }
                 break
                 case "acf/note-listing":
                         const buttons =  [{
-                                link: `/alumninotes/`,
+                                link: `/alumninote/all/`,
                                 text: 'See All Alumni Notes'
                             }]
                         RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Alumni Notes" borderTop={borderTop} stagger={stagger} buttons={buttons}><RecentNotes /></PageSection>)

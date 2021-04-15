@@ -75,8 +75,8 @@ exports.handler = async (event, context, callback) => {
         })
     } catch (error) {
         // Check the function log for this!
-        console.log('new-gf-entry.js Error Data')
-        console.log(error)
+        //console.log('new-gf-entry.js Error Data')
+        //console.log(error)
 
         const errorResponse = error.response?.data
 

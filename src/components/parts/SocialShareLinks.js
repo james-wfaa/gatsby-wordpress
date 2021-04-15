@@ -31,7 +31,7 @@ const SocialShareLinks = props => {
   `)
   
     const currentURL = site?.siteMetadata?.siteURL + url
-    console.log(url)
+    //console.log(url)
 
     return (
         <div className = {`${className} ${isEvent} ${displayTight}`}>

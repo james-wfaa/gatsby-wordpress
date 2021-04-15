@@ -140,7 +140,7 @@ const Header = ({ noborder }) => {
       </nav>
 
       {transition1.map(
-        ({ item, key, props }) =>
+        ({ props, item, key }) =>
           item && (
             <animated.div
               key={key}
@@ -161,7 +161,7 @@ const Header = ({ noborder }) => {
           )
       )}
       {transition2.map(
-        ({ item, key, props }) =>
+        ({ props, item, key }) =>
           item && (
             <animated.div
               key={key}

@@ -3,15 +3,22 @@ import styled from 'styled-components'
 import { colors, sizes, breakpoints } from '../css-variables'
 
 const TagList = ({ items, className }) => {
-    const itemsList = items.map((item) => (
-        <div className="tag__item" key={item.tag}>
-            <a className="tag__link" href={item.link}><span>{item.tag}</span></a> 
-        </div>
-      ))
-      
+    const limitedTags = items.slice(0,3)
+    const tagsList = limitedTags.map((item) => {
+        const filterType = (item?.type && item.type === 'product')
+            ? 'product'
+            : 'filter'
         return (
-          <section className={className}>{itemsList}</section>
+        
+            <div className="tag__item" key={item.slug}>
+                <a className="tag__link" href={`/news/all?${filterType}=${item.slug}`}><span>{item.name}</span></a> 
+            </div>
         )
+    })
+      
+    return (
+        <section className={className}>{tagsList}</section>
+    )
 }
 
 const StyledTagList = styled(TagList)`
