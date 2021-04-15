@@ -10,6 +10,8 @@ import GenericModal from '../content-modules/GenericModal'
 
 const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails, calendarLinks, showMapLink}) => {
 
+
+    const { virtualEvent } = eventDetails
     const classesList = `${className}`;
     const costDisplay = (cost) => {
         if (!cost || cost === 0){
@@ -33,11 +35,13 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
     const organizerList = organizers?.nodes?.map((org) => (
          <div className="organizer">{org.title}</div>
       ))
-    const addressString = (venue && venue.address)
-        ? `${venue.title} <br />${venue.address}<br >${venue.city ? venue.city : ""}${venue.state ? `, ${venue.state}` : ""} `
-        : (venue)
-            ? venue.title
-            : null;
+    const addressString = virtualEvent
+        ? 'Online Event'
+        : (venue?.address)
+            ? `${venue.title} <br />${venue.address}<br >${venue.city ? venue.city : ""}${venue.state ? `, ${venue.state}` : ""} `
+            : (venue?.title)
+                ? venue.title
+                : null;
     const registrationLink = eventDetails.registrationUrl ? eventDetails.registrationUrl : '';
     const registrationText = eventDetails.eventFullSoldOut ? eventDetails.eventFullText 
     : eventDetails.trip ? 'Book Now' : 'Register';

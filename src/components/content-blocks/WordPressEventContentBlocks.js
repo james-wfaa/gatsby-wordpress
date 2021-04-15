@@ -60,10 +60,11 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             case "tribe/event-venue":
             case "tribe/event-links":
             case "tribe/related-events":
+            case "tribe/event-organizer":
                 break
             case "tribe/event-website":
                 if(block.dynamicContent){
-                    return (<Block className={block.name.replace('/', '-')} block={block} />)
+                    return (<Block key={block.order} className={block.name.replace('/', '-')} block={block} />)
                 }
                 break
             case "core/freeform":
@@ -73,20 +74,20 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             case "core/table":
             case "core/image":
             case "core/html":
-                return (<Block className={block.name.replace('/', '-')} block={block} />)
+                return (<Block  key={block.order} className={block.name.replace('/', '-')} block={block} />)
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
-                    return (<PageSectionFromBlocks blocks={block.innerBlocks} borderTop={borderTop} />)
+                    return (<PageSectionFromBlocks key={block.order}  blocks={block.innerBlocks} borderTop={borderTop} />)
                 }
                 if (block.innerBlocks && block.originalContent.indexOf(' gallery') > 0) {
-                    return (<PageSectionFromBlocks blocks={block.innerBlocks} gallery borderTop={borderTop} />)
+                    return (<PageSectionFromBlocks key={block.order}  blocks={block.innerBlocks} gallery borderTop={borderTop} />)
                 }
                 break
             case "core/separator":
-                return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+                return (<div key={block.order} dangerouslySetInnerHTML={{__html: block.originalContent}} />)
                 break
             default:
-                return (<Block className={block.name.replace('/', '-')} block={block} />)
+                return (<Block key={block.order} className={block.name.replace('/', '-')} block={block} />)
                 break
         }
         }

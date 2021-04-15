@@ -1,5 +1,5 @@
 import React from 'react'
-import {  sizes, breakpoints } from '../css-variables'
+import { sizes, breakpoints } from '../css-variables'
 import StoryContentCard from '../content-blocks/StoryContentCard'
 import EventContentCard from '../content-blocks/EventContentCard'
 
@@ -17,13 +17,12 @@ const CardSet = ({className, items, children, num, size="M", type="news" }) => {
         return (<div dangerouslySetInnerHTML={{__html: child}} />)
     })
     : limitedItems.map((item) => {
-
-        const { featuredEvent, featuredImage: img } = item
+        const { featuredImage: img } = item
         const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
         
         return (type === "news" )
-            ? (<StoryContentCard size={resolvedSize} img={cardImg} {...item} />) 
-            : (<EventContentCard size={size} img={cardImg} {...item} url={item.link} />)
+            ? (<StoryContentCard key={item.id} size={resolvedSize} img={cardImg} {...item} />) 
+            : (<EventContentCard key={item.id} size={size} img={cardImg} {...item} url={item.link} />)
         })
     
     return (
