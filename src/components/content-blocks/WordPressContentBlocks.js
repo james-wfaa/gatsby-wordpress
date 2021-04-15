@@ -25,6 +25,13 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
         })
         : blocks
 
+    /**
+     * this is a hack to see if we are not on the aggregate template... which sets 'stagger'...
+     * which means that we are on the product template, which needs borderTop set to true
+     */ 
+     
+    const forceBorderTop= (!stagger)
+
     let RenderedBlocks = []
 
     staggerBlocks.forEach((block) => {
@@ -126,7 +133,7 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                             text: 'See More WAA Stories'
                         }]
                         : null
-                    RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop stagger={stagger} buttons={buttons}><CardHandler items={reducedPosts} type="news" size="M" /></PageSection>)    
+                    RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" topBorder={forceBorderTop} stagger={stagger} buttons={buttons}><CardHandler items={reducedPosts} type="news" size="M" /></PageSection>)    
                 } else {
                     //console.log('no product found')
                 }
@@ -154,7 +161,7 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                             text: 'See More Events'
                         }]
                         : null
-                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop stagger={stagger} buttons={buttons}><CardHandler items={combinedEvents} size="M" type="event"/></PageSection>)
+                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" topBorder={forceBorderTop} stagger={stagger} buttons={buttons}><CardHandler items={combinedEvents} size="M" type="event"/></PageSection>)
                 }
                 break
                 case "acf/note-listing":
@@ -162,7 +169,7 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                                 link: `/alumninote/all/`,
                                 text: 'See All Alumni Notes'
                             }]
-                        RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Alumni Notes" borderTop={borderTop} stagger={stagger} buttons={buttons}><RecentNotes /></PageSection>)
+                        RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Alumni Notes" topBorder={forceBorderTop} stagger={stagger} buttons={buttons}><RecentNotes /></PageSection>)
                     
                     break
            
