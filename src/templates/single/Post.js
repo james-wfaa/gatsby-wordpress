@@ -40,7 +40,8 @@ export const query = graphql`
       }
       uri
       link
-      date(formatString: "MMM. DD, YYYY")
+      dayYear: date(formatString: "DD, YYYY")
+      month: date(formatString: "MM")
       excerpt
       author {
         node {

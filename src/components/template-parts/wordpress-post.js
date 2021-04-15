@@ -12,7 +12,22 @@ import EmbedVideoFormatHandler from "../content-blocks/EmbedVideoFormatHandler"
 
 function BlogPost({ data }) {
   const { page } = data
-  const { id, title, featuredImage, categories, products, author, postExternalAuthors, date, excerpt, heroImage, link, slug } = page
+  const { id, title, featuredImage, categories, products, author, postExternalAuthors, month, dayYear, excerpt, heroImage, link, slug } = page
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ]
+  const date = `${months[parseInt(month)]} ${dayYear}`
   const product = (products?.nodes && Array.isArray(products.nodes)) ? products.nodes[0] : null
   const displayAuthor = (postExternalAuthors?.nodes && postExternalAuthors.nodes[0]?.name)
     ? postExternalAuthors.nodes[0].name
