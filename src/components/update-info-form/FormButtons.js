@@ -37,6 +37,7 @@ const FormButtons = ({ next, back, save, finish, signup, disabled, error, errors
                 name="finish"
                 onClick={() => handleFinishBtn()}
                 id="finish"
+                className="finish"
                 disabled={!disabled}
                 >Finish Update</button>}
             { save && <button 

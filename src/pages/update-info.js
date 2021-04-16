@@ -258,7 +258,7 @@ form{
     &:hover {
       cursor:pointer;
     }
-    &.next, &.save, &.signup{
+    &.next, &.save, &.signup, &.finish{
       background-color: ${colors.buttonRed};
       color: ${colors.titleWhite};
       &:after{
@@ -282,6 +282,14 @@ form{
         background-color: ${colors.disabledButtonGrey};
         box-shadow:none;
         cursor: default;
+      }
+    }
+    &.finish{
+      &:after{
+        display:none;
+      }
+      @media screen and ${breakpoints.tabletS} {
+        margin-right: 40px;
       }
     }
     &.back{
