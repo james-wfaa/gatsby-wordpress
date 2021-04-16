@@ -73,8 +73,14 @@ const initialState = {
     spouseUpdate: '',
     uwGrad: false,
   },
+  commSignUpInfo: {
+    firstname: '',
+    lastname: '',
+    email: '',
+  },
   communicationsSignUp: [],
   entry_id: null,
+  initialState: null,
   //End Update Info Form 
 };
 const types = {
@@ -102,8 +108,10 @@ const types = {
   SET_IDENTITY_INFO_ONCHANGE: "SET_IDENTITY_INFO_ONCHANGE",
   SET_SPOUSE_INFO: "SET_SPOUSE_INFO",
   SET_SPOUSE_INFO_ONCHANGE: "SET_SPOUSE_INFO_ONCHANGE",
+  SET_COMM_SIGNUP_INFO: "SET_COMM_SIGNUP_INFO",
   SET_COMMUNICATIONS_SIGNUP_ONCHANGE: "SET_COMMUNICATIONS_SIGNUP_ONCHANGE",
-  SET_ENTRY_ID: "SET_ENTRY_ID"
+  SET_ENTRY_ID: "SET_ENTRY_ID",
+  SET_INITIAL_STATE: "SET_INITIAL_STATE"
   //End Update Info Form 
 };
 
@@ -245,6 +253,15 @@ const reducer = (state = initialState, action) => {
           update: action.payload.update ? action.payload.update : '',
         },
       };
+    case types.SET_COMM_SIGNUP_INFO:
+      return {
+        ...state,
+        commSignUpInfo: {
+          firstname: action.payload.firstname ? action.payload.firstname : '',
+          lastname: action.payload.lastname ? action.payload.lastname : '',
+          email: action.payload.email ? action.payload.email : '',
+        },
+      };
     case types.SET_SPOUSE_INFO_ONCHANGE:
       return {
         ...state,
@@ -262,6 +279,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         entry_id: action.payload,
+      };
+    case types.SET_INITIAL_STATE:
+      return {
+        ...state,
+        initialState: action.payload,
       };
     
     //End Update Info Form 

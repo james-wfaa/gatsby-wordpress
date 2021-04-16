@@ -33,10 +33,11 @@ const FormButtons = ({ next, back, save, finish, signup, disabled, error, errors
             { error && (<StyledError className="bottomButtonError">Please correct error(s) above</StyledError>)}
             { back && <button className="back" onClick={() => handleBackBtn()} type="button">Go Back</button>}
             { finish && <button
-                type="submit"
+                type="button"
                 name="finish"
                 onClick={() => handleFinishBtn()}
-                id="submitbutton"
+                id="finish"
+                className="finish"
                 disabled={!disabled}
                 >Finish Update</button>}
             { save && <button 

@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import PageSection from "../../page-sections/PageSection"
 import { colors } from '../../css-variables'
@@ -12,27 +12,30 @@ const UpdateSuccess = () => {
     const { setCurrentStep, setCommunicationsSignUpOnchange } = actions;
     const { handleSubmit } = useForm()
 
+    useEffect(() => {
+        //clear all form inputs
+    }, []);
+
     const submitCommunicationsSignup = data =>{
-        handleCommFormSubmit(state).then(() =>{
+        handleCommFormSubmit(state).then((returnedData) =>{
+            if(returnedData.is_valid === false){
+              throw new Error('something went wrong with submitting the form');
+            }
+        }).then(() =>{
             setCurrentStep(9)
-        })
+        }).catch(err => {alert(`An error occurred: ${err.message}`)})
     }
 
     const updateOnChangeValues = (e) => {
         if(e.target.checked){
-            //console.log(state.communicationsSignUp)
             let newList = [...state.communicationsSignUp, e.target.name]
-            //console.log(newList)
             setCommunicationsSignUpOnchange(newList)
           } else {
             let newList = [...state.communicationsSignUp.filter(a => a !== e.target.name)]
-            //console.log(newList)
             setCommunicationsSignUpOnchange(newList)
         }
-
     }
     const content = `<div className="successPageIcon"></div>`
-
     const disableButton = state.communicationsSignUp.length > 0 ? false : true;
 
     return (
