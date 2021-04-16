@@ -13,7 +13,6 @@ export const handleFormSubmit = (data) => {
   }
   
   return fetch("https://uwalumni.wpengine.com/wp-json/formsubmit/v1/submit/79", {
-  //return fetch("https://devwp.uwalumni.com/wp-json/formsubmit/v1/submit/5", {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
@@ -39,7 +38,6 @@ export const handleCommFormSubmit = (data) => {
   }
   
   return fetch("https://uwalumni.wpengine.com/wp-json/formsubmit/v1/submit/80", {
-  //return fetch("https://devwp.uwalumni.com/wp-json/formsubmit/v1/submit/4", {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
