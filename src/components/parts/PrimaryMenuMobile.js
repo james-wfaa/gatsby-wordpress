@@ -312,7 +312,7 @@ const PrimaryMenu = () => {
   return (
     <div onClick={() => modalClickHandler()}>
       <MenuGrid>
-        {transition1(
+        {transition1.map(
           ({ props, item, key }) =>
             item && (
               <animated.div
@@ -355,7 +355,7 @@ const PrimaryMenu = () => {
             )
         )}
 
-        {transition2(
+        {transition2.map(
           ({ props, item, key }) =>
             item && (
               <animated.div
