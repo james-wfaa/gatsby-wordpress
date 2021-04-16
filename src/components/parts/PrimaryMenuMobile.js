@@ -325,6 +325,7 @@ const PrimaryMenu = () => {
                   width: `100vw`,
                   height: `100%`,
                   backgroundColor: `white`,
+                  overflow:`scroll`
                 }}
               >
                 <LeftMenu>
