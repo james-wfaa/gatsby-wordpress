@@ -82,7 +82,7 @@ const navAbout = {
     },
     {
       "title":"For WAA Group Leaders",
-      "url":"/badger-leaders-resources/ups/resources/"
+      "url":"/badger-leaders-resources/"
     },
 ]};
   
