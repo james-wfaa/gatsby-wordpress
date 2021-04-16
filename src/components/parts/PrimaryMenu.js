@@ -280,7 +280,7 @@ const PrimaryMenu2 = () => {
                 <Link to="/about">About WAA</Link>
               </li>
               <li>
-                <Link to="/contact-waa">Contact WAA</Link>
+                <Link to="/about/contact-waa">Contact WAA</Link>
               </li>
               <li>
                 <Link to="/update-info">Update My Info</Link>

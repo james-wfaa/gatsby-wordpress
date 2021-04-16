@@ -101,6 +101,26 @@ export const query = graphql`
             nodes {
               title
               uri
+              template {
+                ... on WpDefaultTemplate {
+                  templateName
+                }
+                ... on WpTemplate_AggregateProductPage {
+                  templateName
+                }
+                ... on WpTemplate_HomePage {
+                  templateName
+                }
+                ... on WpTemplate_TopLevelPage {
+                  templateName
+                }
+                ... on WpProductTemplate {
+                  templateName
+                }
+                ... on WpGeneralTemplate {
+                  templateName
+                }
+              }
             }
           }
           posts{
