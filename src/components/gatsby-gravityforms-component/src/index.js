@@ -40,7 +40,7 @@ const GravityFormForm = ({
         setError,
         setValue,
         formState: { isValid, isDirty, isSubmitted },
-    } = useForm({mode : 'onTouched'})
+    } = useForm({mode : 'onChange'})
     const [generalError, setGeneralError] = useState('')
     const [formLoading, setLoadingState] = useState(false)
     const [errorList, setErrorList] = useState()
