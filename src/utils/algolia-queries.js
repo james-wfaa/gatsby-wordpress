@@ -86,11 +86,21 @@ const postQuery = `{
             slug
           }
         }
+        linkFormat {
+          linkAuthor
+          linkUrl
+        }
         acfAlternatePostType{
           alternateposttype
         }
         videoFormat {
           vimeoId
+        }
+        postExternalAuthors {
+          nodes {
+            name
+            slug
+          }
         }
         date
         blocks {
