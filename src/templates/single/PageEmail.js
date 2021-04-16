@@ -227,10 +227,6 @@ export const query = graphql`
               id
               uri
             }
-            ... on WpPost {
-              id
-              uri
-            }
             ... on WpEvent {
               id
               url

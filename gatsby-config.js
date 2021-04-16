@@ -18,6 +18,7 @@ module.exports = {
     siteURL: 'https://gatsbyuwalumni.gtsb.io',
   },
   plugins: [
+    `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
     {
@@ -34,7 +35,7 @@ module.exports = {
         web: [
           {
             name: ["Verlag A", "Verlag B"],
-            file: "https://cloud.typography.com/7708974/664088/css/fonts.css",
+            file: "https://cloud.typography.com/7708974/7253032/css/fonts.css",
           },
           {
             name: ["mrs-eaves-xl-serif", "mrs-eaves-xl-serif-narrow"],
@@ -104,9 +105,9 @@ module.exports = {
         schema: {
           requestConcurrency: 5, 
           previewRequestConcurrency: 2, 
-          perPage: 50,
+          perPage: 100,
           typePrefix: `Wp`,
-          timeout: 120 * 1000,
+          timeout: 960 * 1000,
         },
         url:
           process.env.WPGRAPHQL_URL,
@@ -151,13 +152,13 @@ module.exports = {
             limit:
               process.env.NODE_ENV === `development`
                 ? // Lets just pull 50 posts in development to make it easy on ourselves.
-                  20
+                  200
                 : // and we don't actually need more than 5000 in production for this particular site
                   5000,
           },
           MediaItem: {
             localFile: {
-              requestConcurrency: 50
+              requestConcurrency: 40
             }
           },
         },

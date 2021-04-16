@@ -30,7 +30,7 @@ const FooGallery = ({ content, id, className }) => {
                 //console.log(fooGallery.props.children)
                 fooGallery.props.children.forEach((child) => {
                     if (child?.props?.className === 'fg-item') {
-                        if (child?.props?.children) {
+                        if (child?.props?.children?.[0]) {
                             child.props.children.forEach((innerChild) => {
                                 if (innerChild.props.className === "fg-item-inner" && innerChild.props?.children) {
                                     innerChild.props.children.forEach((item) => {
@@ -59,8 +59,7 @@ const FooGallery = ({ content, id, className }) => {
                 fooGallery.props.children.props.children.forEach((child) => {
                     if (child?.props?.className === 'fiv-inner-container') {
                         //console.log('found the items')
-                        if (child?.props?.children) {
-                            
+                        if (child?.props?.children?.[0]) {
                             child.props.children.forEach((innerChild) => {
                                // console.log(innerChild)
                                 if (innerChild.props.className === "fg-item" && innerChild.props?.children) {

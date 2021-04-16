@@ -4,15 +4,14 @@ import WordPressEventContentBlocks from "../content-blocks/WordPressEventContent
 import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"
 import UpcomingEvents from "../../components/page-sections/UpcomingEvents"
-
-
-
-
 import FeaturedImage from "../content-blocks/FeaturedImage"
 
 
 function WordPressPage({ page }) {
-  const {  featuredImage, title, products, id, slug} = page
+  const {  featuredImage, title, eventsCategories, products, id, slug} = page
+
+  //console.log(products)
+  //console.log(eventsCategories)
   const noborder = (featuredImage !== null)
   //console.log('page part of event', page)
   //console.log('blocks part of event', blocks)
@@ -22,12 +21,19 @@ function WordPressPage({ page }) {
 
   let relatedPostsToShow = []
 
-  if(products && products.nodes){
+  if(products?.nodes){
       products.nodes.forEach((product) => {
-      product.events.nodes.forEach((event) => {
+        product.events.nodes.forEach((event) => {
+            relatedPostsToShow.push(event) 
+        })
+      })
+  }
+  if (eventsCategories?.nodes) {
+    eventsCategories.nodes.forEach((eventCategory) => {
+      eventCategory.events.nodes.forEach((event) => {
           relatedPostsToShow.push(event) 
       })
-      })
+    })
   }
  
   let uniqueRelatedPosts = []
@@ -38,15 +44,7 @@ function WordPressPage({ page }) {
       }
       })
   }
-
-
-  const buttons = (uniqueRelatedPosts.length > 2) 
-      ? [{
-          link: `/posts/search/?category=${slug}`,
-          text: 'SEE ALL NEWS AND STORIES'
-      }]
-      : null
-
+  const filteredRelated = uniqueRelatedPosts.slice(0,10)
 
   return (
     <Layout title={title} noborder={noborder}>
@@ -55,20 +53,20 @@ function WordPressPage({ page }) {
         )}
         <WordPressEventContentBlocks {...page} />
         {uniqueRelatedPosts.length > 0 ? (
-        <PageSection id="post-listing" heading="Related Events" topBorder buttons={buttons}><CardHandler items={uniqueRelatedPosts.slice(0,10)} size="M" sliderSize="S" type="event" /></PageSection>
+        <PageSection id="post-listing" heading="Related Events" topBorder ><CardHandler items={uniqueRelatedPosts.slice(0,10)} size="M" sliderSize="S" type="event" /></PageSection>
         ):(
         <PageSection
           heading="Upcoming Events"
           buttons={[
             {
-              link: "/event/all",
+              link: "/events/all",
               text: "See All Upcoming Events",
             },
           ]}
           topBorder
           desktopOnly
         >
-            <UpcomingEvents />
+          <UpcomingEvents />
         </PageSection>
         )}
     </Layout>

@@ -1,9 +1,28 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import ContentCard from '../../content-blocks/ContentCard'
+import EventContentCard from '../../content-blocks/EventContentCard'
 import { breakpoints } from '../../css-variables'
 
-const SearchHits = ({ hits, hitHandler }) => {
+let CardWrapper = styled.div`
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-column-gap: 24px;
+        grid-row-gap: 48px;
+        @media screen and ${breakpoints.tabletS} {
+            grid-template-columns: 1fr 1fr
+        }
+        @media screen and ${breakpoints.tabletL} {
+            grid-template-columns: 1fr 1fr 1fr
+        }
+    `
+let EventCardWrapper = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 48px;
+`
+
+const SearchHits = ({ hits, hitHandler, card}) => {
     useEffect(() => {
         if (hits.length > 0) {
             let firstHit = hits[0].__position
@@ -19,21 +38,29 @@ const SearchHits = ({ hits, hitHandler }) => {
         }
         switch (hit.type) {
             case 'Event':
-                console.log(hit)
+                //console.log(hit)
                 return (
-                    <ContentCard
+                    <EventContentCard
                         key={hit.url}
-                        hit={hit}
-                        type={hit.type}
-                        size="S"
-                        url={hit.url}
-                        img={hit?.featuredImage?.node?.localFile}
+                        startDate={hit.startDate * 1000}
+                        endDate={hit.endDate ? hit.endDate * 1000 : null}
                         title={hit.title}
-                        excerpt={hit.excerpt}
-                        date={hit.date}
-                        city={hit.venue?.city}
-                        state={hit.venue?.state}
-                        topResult={topResult}
+                        category={hit.category}
+                        venue={hit.venue}
+                        location={hit.location}
+                        img={
+                            hit.featuredImage
+                                ? hit.featuredImage.node.localFile
+                                : null
+                        }
+                        featureImg={
+                            hit.featuredImage
+                                ? hit.featuredImage.node.localFile
+                                : null
+                        }
+                        alt={hit.alt}
+                        url={hit.url}
+                        size={!hit.featuredEvent ? 'Wide' : 'XXL'}
                     />
                 )
             case 'Post':
@@ -61,8 +88,10 @@ const SearchHits = ({ hits, hitHandler }) => {
                             img={hit?.featuredImage?.node?.localFile}
                             title={hit.title}
                             initialBlock={hit.blocks[0]}
-                            categories={hit.categories}
                             topResult={topResult}
+                            excerpt={hit.excerpt}
+                            acfAlternatePostType={hit.acfAlternatePostType}
+                            tags={hit.categories}
                         />
                     )
                 }
@@ -71,20 +100,10 @@ const SearchHits = ({ hits, hitHandler }) => {
         }
     })
 
-    let CardWrapper = styled.div`
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-column-gap: 24px;
-        grid-row-gap: 48px;
-        @media screen and ${breakpoints.tabletS} {
-            grid-template-columns: 1fr 1fr;
-        }
-        @media screen and ${breakpoints.tabletL} {
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-    `
 
-    return <CardWrapper>{cards}</CardWrapper>
+    let totalCards = card === "Event" ? <EventCardWrapper key={'EventCardWrapper'}>{cards}</EventCardWrapper> : <CardWrapper key={'CardWrapper'}>{cards}</CardWrapper>
+
+    return <div>{totalCards}</div>
 }
 
 export default SearchHits

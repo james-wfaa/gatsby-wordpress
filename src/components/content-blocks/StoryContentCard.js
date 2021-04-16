@@ -1,13 +1,17 @@
 import React from 'react'
 import ContentCard from "./ContentCard"
 
-const StoryContentCard = ({ className, title, category, postFormats, linkFormat, excerpt, url, urlText, img, featureImg, caption, tags, size, promo, acfAlternatePostType, videoFormat }) => {
-    
+const StoryContentCard = ({ className, title, category, postFormats, categories, products, linkFormat, excerpt, blocks, url, urlText, img, featureImg, caption, tags, size, promo, acfAlternatePostType, videoFormat }) => {
+
     url = `/news${url}`
-    //console.log(postFormats)
+
+    const renderedExcerpt = excerpt
+        ? excerpt
+        : blocks?.[0].name === "core/paragraph"
+            ? blocks[0].originalContent
+            : null
 
     const altPostType = acfAlternatePostType?.alternateposttype ? acfAlternatePostType.alternateposttype : null
-    
 
     const moreLinkText = linkFormat?.linkAuthor
     ? <nobr>Via {linkFormat.linkAuthor} <span class="arrow"></span></nobr>
@@ -16,6 +20,34 @@ const StoryContentCard = ({ className, title, category, postFormats, linkFormat,
         : urlText
             ? <nobr>{urlText} &gt;</nobr>
             : <nobr>Read More &gt;</nobr>
+
+
+    /* pass products and catgories into the tag list */
+    const productTerms = products?.nodes
+      ?  products.nodes.map((term) =>  ({
+              slug: term.slug,
+              name: term.name,
+              type: 'product'
+        })
+      )
+      : null
+    const categoryTerms = categories?.nodes
+      ? categories.nodes.map((term) => ({
+            slug: term.slug,
+            name: term.name,
+            type: 'category'
+      })
+      )
+      : null
+
+    const resolvedTags = productTerms
+        ? categoryTerms
+            ? productTerms.concat(categoryTerms)
+            : productTerms
+        : categoryTerms
+
+    //console.log(resolvedTags)
+
 
     return (
         <ContentCard
@@ -26,8 +58,8 @@ const StoryContentCard = ({ className, title, category, postFormats, linkFormat,
           linkFormat={linkFormat}
           title={title}
           url={url}
-          excerpt={excerpt}
-          tags={tags}
+          excerpt={renderedExcerpt}
+          tags={resolvedTags}
           caption={caption}
           featureImg={featureImg}
           urlText={moreLinkText}
