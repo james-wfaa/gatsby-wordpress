@@ -15,7 +15,7 @@ const menuItems = {
   "Alumni Communities": [
     { tag: "Become a WAA Member", url: "/membership" },
     { tag: "WAA Member Community", url: "/membership/for-members" },
-    { tag: "Chapters & Groups", url: "/groups" },
+    { tag: "Chapters & Groups", url: "/waa-groups" },
     { tag: "Badger Bridge Online Network", url: "/alumni-directory" },
     { tag: "Diverse Alumni", url: "/diverse-alumni" },
     { tag: "Recent Grads", url: "/recent-grads" },
@@ -92,24 +92,27 @@ const RightMenu = styled.div`
   ul {
     justify-self: left;
     margin-left: 0;
+    width: 100%;
   }
   li {
     list-style: none;
     margin: 0;
-    padding: 16px ${sizes.s24};
     &:hover {
       background-color: ${colors.navcardGrey};
     }
     a {
       text-decoration: none;
       color: ${colors.navMenuBlack};
+      padding: 16px ${sizes.s24};
+      display: block;
     }
   }
 `
 
 const SocialLinks = styled.div`
+  margin-bottom: 110px;
   .socialLinks {
-    width: 160px;
+    width: 200px;
     display: flex;
     list-style-type: none;
 
@@ -132,18 +135,28 @@ const SocialLinks = styled.div`
         }
         &.fb {
           mask: url(${FbIcon});
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
         }
         &.tw {
           mask: url(${TwIcon});
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
         }
         &.ig {
           mask: url(${IgIcon});
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
         }
         &.wc {
           mask: url(${WcIcon});
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
         }
         &.li {
           mask: url(${LiIcon});
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
         }
       }
     }
@@ -157,11 +170,15 @@ const BottomLeft = styled.div`
   font-size: ${sizes.s18};
   border-top: 1px solid ${colors.navMenuBorderGrey};
   li {
-    padding-top: 16px;
-    padding-bottom: 16px;
     a {
       margin: 0;
       padding: 0;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      display: block;
+      :hover, : active{
+        text-decoration:underline;
+      }
     }
   }
 `
@@ -220,7 +237,7 @@ const PrimaryMenu = () => {
     leave: { opacity: 0 },
   })
 
-  const transition2 = useTransition(!showLeft, null, {
+  const transition2 = useTransition(!showLeft, {
     from: { transform: `translate3d(100%, 0, 0)` },
     enter: { transform: `translate3d(0,0,0)` },
     leave: { transform: `translate3d(100%,0, 0)` },
@@ -295,8 +312,8 @@ const PrimaryMenu = () => {
   return (
     <div onClick={() => modalClickHandler()}>
       <MenuGrid>
-        {transition1.map(
-          ({ item, key, props }) =>
+        {transition1(
+          ({ props, item, key }) =>
             item && (
               <animated.div
                 key={key}
@@ -338,8 +355,8 @@ const PrimaryMenu = () => {
             )
         )}
 
-        {transition2.map(
-          ({ item, key, props }) =>
+        {transition2(
+          ({ props, item, key }) =>
             item && (
               <animated.div
                 key={key}

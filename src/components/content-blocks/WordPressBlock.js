@@ -264,11 +264,30 @@ a {
     }
 }
 
+figure.wp-block-image{
+    @media screen and ${breakpoints.laptopS} {
+        display: table;
+    }
+}
+
 >.wp-block-image {
+    figcaption{
+        font-family: ${fonts.verlag};
+        font-weight: bold;
+        font-size: ${sizes.s16};
+        line-height: ${sizes.s22};
+        color: ${colors.captionGrey};
+        padding-top: 16px;
+        padding-bottom: 32px;
+    }
+   
     @media screen and ${breakpoints.laptopS} {
         margin-left: 0;
         max-width: 712px;
-
+        figure{
+            display: table;
+        }
+        
         .alignright{
             float: right;
             margin-left:24px;
@@ -280,9 +299,16 @@ a {
             margin-right: 24px;
             margin-bottom: 0px;
             margin-top: 8px;
+            
         }
         .aligncenter{
             text-align: center;
+            
+        }
+
+        figcaption{
+            display: table-caption;
+            caption-side: bottom;
         }
     }
 }

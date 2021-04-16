@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import { colors, sizes, breakpoints } from "../../css-variables"
+import { colors, sizes, breakpoints, mixins } from "../../css-variables"
 import PageSection from "../../page-sections/PageSection"
 import AllChaptersData from "../../collections/AllChapters"
 // import countryList from "react-select-country-list"
@@ -147,6 +147,11 @@ const ChapterSearch = () => {
       outline: none;
     }
     cursor: pointer;
+    option{
+      background-color: white;
+      color: black;
+    }
+    }
   `
 
   const ResultsBoxWrapper = styled.div`
@@ -163,6 +168,12 @@ const ChapterSearch = () => {
       list-style-type: none;
       li {
         margin-top: 4px;
+      }
+    }
+    .noGroupResults{
+      a{
+        ${mixins.a}
+        text-decoration: underline;
       }
     }
   `
@@ -237,8 +248,8 @@ const ChapterSearch = () => {
           <div>
             {selectedCountry !== "All Countries" ||
             selectedState !== "All U.S. States" ? (
-              <p style={{ width: `100%`, textAlign: `center` }}>
-                No chapters in this location
+              <p style={{ width: `100%`, textAlign: `center` }} className="noGroupResults">
+                There are no groups found in this area. Find out how you can <a href="/waa-groups/start-a-group/">start a new chapter or group</a>!
               </p>
             ) : null}
           </div>

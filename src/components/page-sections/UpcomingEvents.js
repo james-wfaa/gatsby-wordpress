@@ -1,35 +1,21 @@
 import React from 'react'
 import { useStaticQuery, graphql } from "gatsby"
-import ContentCard from "../content-blocks/ContentCard"
+import EventContentCard from "../content-blocks/EventContentCard"
 import SimpleSlider from "../content-modules/SimpleSlider"
+import AllEvents from "../../components/collections/AllEvents"
+
 
 const UpcomingEvents = () => {
-  const { allWpEvent } = useStaticQuery(
-    graphql`
-      query {
-        allWpEvent(limit: 10, sort: {order: DESC, fields: date}) {
-          nodes {
-            title
-            excerpt
-            featuredImage {
-              node {
-                localFile {
-                  ...HeroImage
-                }
-              }
-            }
-            url: uri
-          }
-        }
-      }
-    `
-  )
+  
+  const allevents = AllEvents()
+  const { nodes: eventEdges } = allevents
 
-  let postCards = allWpEvent.nodes.map((post) => {
-    const { featuredImage: img } = post
+
+  let eventCards = eventEdges.map((event) => {
+    const { featuredImage: img } = event
     const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
     return (
-      <ContentCard key={post.url} img={cardImg} {...post} />
+      <EventContentCard key={event.url} img={cardImg} {...event} url={event.link} />
     )
   })
 
@@ -41,7 +27,7 @@ const UpcomingEvents = () => {
           dots
           centerMode
           variableWidth>
-            {postCards}
+            {eventCards}
           </SimpleSlider>
     </div>
   )

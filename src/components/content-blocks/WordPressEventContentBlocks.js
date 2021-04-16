@@ -60,6 +60,12 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             case "tribe/event-venue":
             case "tribe/event-links":
             case "tribe/related-events":
+            case "tribe/event-organizer":
+                break
+            case "tribe/event-website":
+                if(block.dynamicContent){
+                    return (<Block key={block.order} className={block.name.replace('/', '-')} block={block} />)
+                }
                 break
             case "core/freeform":
             case "core/paragraph":
@@ -68,21 +74,20 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             case "core/table":
             case "core/image":
             case "core/html":
-                return (<Block className={block.name.replace('/', '-')} block={block} />)
-                break
+                return (<Block  key={block.order} className={block.name.replace('/', '-')} block={block} />)
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
-                    return (<PageSectionFromBlocks blocks={block.innerBlocks} borderTop={borderTop} />)
+                    return (<PageSectionFromBlocks key={block.order}  blocks={block.innerBlocks} borderTop={borderTop} />)
                 }
                 if (block.innerBlocks && block.originalContent.indexOf(' gallery') > 0) {
-                    return (<PageSectionFromBlocks blocks={block.innerBlocks} gallery borderTop={borderTop} />)
+                    return (<PageSectionFromBlocks key={block.order}  blocks={block.innerBlocks} gallery borderTop={borderTop} />)
                 }
                 break
             case "core/separator":
-                return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+                return (<div key={block.order} dangerouslySetInnerHTML={{__html: block.originalContent}} />)
                 break
             default:
-                return (<Block className={block.name.replace('/', '-')} block={block} />)
+                return (<Block key={block.order} className={block.name.replace('/', '-')} block={block} />)
                 break
         }
         }
@@ -164,7 +169,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                 )}
                     <h2>Invite Others</h2>
                     { typeof window !== "undefined" && (
-                        <SocialShareLinks className="SocailShare" title={title} url={window.location.href} event></SocialShareLinks>
+                        <SocialShareLinks className="SocailShare" title={title} url={link} event></SocialShareLinks>
                     )}
                     
                 </div>
@@ -334,6 +339,33 @@ margin: ${sizes.s48} auto 0;
     .tribe-block__venue,
     .tribe-events-event-meta {
         display: none;
+    }
+    a {
+        ${mixins.a}
+    }
+    .callout,
+    .callout-bold {
+        font-family: ${fonts.verlag};
+        background-color: ${colors.calloutGrey};
+        padding: ${sizes.s18};
+        @media screen and ${breakpoints.tabletS} {
+            padding: ${sizes.s24};
+        }
+        @media screen and ${breakpoints.laptopL} {
+            &.has-text-align-right{
+                width: 272px;
+                float: right;
+                margin: 16px -184px 16px 16px;
+            }
+            &.has-text-align-left{
+                width: 272px;
+                float: left;
+                margin: 16px 16px 16px -184px;
+            }
+        }
+    }
+    .callout-bold {
+        font-weight: bold;
     }
 }
 

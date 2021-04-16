@@ -1,6 +1,7 @@
 import React from "react"
 import styled from 'styled-components'
 import { colors, breakpoints, sizes } from '../css-variables'
+import { useStaticQuery, graphql } from 'gatsby'
 
 import {
     EmailShareButton,
@@ -11,10 +12,26 @@ import {
     EmailIcon
   } from "react-share";
 
+
 const SocialShareLinks = props => {
     const { className, url, title, excerpt, text, event, tight = false } = props;
     const isEvent = event ? "eventShare" : "";
     const displayTight = tight ? "displayTight" : "";
+
+    const strippedExcerpt = excerpt?.replace(/(<([^>]+)>)/gi, "")
+
+    const { site } = useStaticQuery(graphql`
+        query {
+            site{
+                siteMetadata{
+                    siteURL
+                }
+            }
+        }
+  `)
+  
+    const currentURL = site?.siteMetadata?.siteURL + url
+    //console.log(url)
 
     return (
         <div className = {`${className} ${isEvent} ${displayTight}`}>
@@ -23,19 +40,19 @@ const SocialShareLinks = props => {
             )}
             <ul className="shareButtons">
                 <li>
-                    <FacebookShareButton quote={title} url={url} target="_blank">
+                    <FacebookShareButton quote={title} url={currentURL} target="_blank">
                         <FacebookIcon size={52} iconFillColor={colors.buttonRed} />
                     </FacebookShareButton>
                 </li>
 
                 <li>
-                    <TwitterShareButton title={title} url={url}>
+                    <TwitterShareButton title={title} url={currentURL}>
                         <TwitterIcon size={52} iconFillColor={colors.buttonRed}/>
                     </TwitterShareButton>
                 </li>
 
                 <li>
-                    <EmailShareButton subject={title} body={excerpt} url={url}>
+                    <EmailShareButton subject={title} body={strippedExcerpt} url={currentURL}>
                         <EmailIcon size={52} iconFillColor={colors.buttonRed}/>
                     </EmailShareButton>
                 </li>

@@ -17,6 +17,15 @@ const eventQuery = `{
         date
         startDate
         endDate
+        eventDetails {
+          eventFullSoldOut
+          eventFullText
+          eventlocationDetails
+          registrationUrl
+          questions
+          virtualEvent
+          trip
+        }
         eventsCategories {
           nodes {
             name
@@ -43,7 +52,6 @@ const eventQuery = `{
               childImageSharp {
                 fluid {
                   base64
-                  tracedSVG
                   srcWebp
                   srcSetWebp
                   originalImg
@@ -69,6 +77,7 @@ const postQuery = `{
         id
         url: uri
         title
+        excerpt
         postFormats {
           nodes {
             name
@@ -77,13 +86,49 @@ const postQuery = `{
             slug
           }
         }
+        acfAlternatePostType{
+          alternateposttype
+        }
+        videoFormat {
+          vimeoId
+        }
         date
         blocks {
           saveContent
         }
+        featuredImage {
+          node {
+            id
+            sourceUrl
+            localFile {
+              childImageSharp {
+                fluid {
+                  base64
+                  tracedSVG
+                  srcWebp
+                  srcSetWebp
+                  srcSet
+                  src
+                  sizes
+                  originalImg
+                  originalName
+                  aspectRatio
+                }
+              }
+            }
+          }
+        }
         categories {
           nodes {
             name
+            slug
+            id
+          }
+        }
+        products {
+          nodes {
+            name
+            slug
             id
           }
         }
@@ -124,10 +169,10 @@ const classNoteQuery = `{
             }
             localFile {
               id
+              publicURL
               childImageSharp {
                 fluid {
                   base64
-                  tracedSVG
                   srcWebp
                   srcSetWebp
                   originalName
@@ -166,7 +211,7 @@ const classNoteQuery = `{
       }
     }
   }
-}`
+}`;
 
 const pageQuery = `{
   pages: allWpPage {
@@ -276,7 +321,8 @@ const queries = [
         settings: {
             attributesToSnippet: [`blocks:40`],
             attributesForFaceting: [
-                `categories.name`,
+                `categories.slug`,
+                `products.slug`,
                 `type`,
                 `filterOnly(date)`,
             ],

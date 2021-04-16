@@ -8,6 +8,7 @@ const EventContentCard = ({
   title, 
   eventCategories,
   products,
+  eventDetails,
   venue, 
   excerpt, 
   url, 
@@ -18,8 +19,8 @@ const EventContentCard = ({
   tags, 
   size }) => {
 
-    const label = (products?.nodes && Array.isArray(products.nodes) && products.nodes[0]?.name )? products.nodes[0].name : null
-   
+    const label = (products?.nodes?.[0]?.name )? products.nodes[0].name : null
+    const virtualEvent = eventDetails?.virtualEvent
 
   return (
         <ContentCard
@@ -32,6 +33,7 @@ const EventContentCard = ({
           excerpt={excerpt}
           tags={tags}
           startDate={startDate}
+          virtualEvent={virtualEvent}
           venue={venue}
           img={img}
           endDate={endDate}
