@@ -20,6 +20,7 @@ const UpdateInfoForm = () =>  {
 
   useEffect(() => {
     document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0 //need both for different browsers?
   }, [state.currentStep]);
 
   useEffect(() => {
