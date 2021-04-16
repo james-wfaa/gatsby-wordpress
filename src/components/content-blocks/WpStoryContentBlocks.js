@@ -213,6 +213,7 @@ hr.wp-block-separator {
 .core-freeform,
 .gravityforms-form,
 .embed-wrapper,
+.wp-block-embed,
 .core-shortcode {
   min-width: 300px;
   width: 100%;
