@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { sizes, colors, breakpoints } from '../css-variables'
 import Img from 'gatsby-image'
 
-const Sponsor = ({ className, sponsorName, sponsorText, sponsorLogo }) => {
+const Sponsor = ({ className, sponsorName, sponsorText, sponsorLogo }, sponserSet) => {
 
     const SponsorHeading = styled.div`
         font-size: ${sizes.s20};
@@ -14,9 +14,10 @@ const Sponsor = ({ className, sponsorName, sponsorText, sponsorLogo }) => {
 
     const alt = sponsorLogo?.altText ? sponsorLogo.altText : ''
     const isGif = (! sponsorLogo?.localFile?.childImageSharp)
+    const sponsorSetClass = sponserSet ? 'sponsorSetClass' : ''
 
     return (
-        <div className={className}>
+        <div className={`${className} ${sponsorSetClass}`}>
             <figure >
                 {sponsorName && (
                         <SponsorHeading>{sponsorName}</SponsorHeading>
@@ -82,6 +83,13 @@ const StyledSponsor = styled(Sponsor)`
         .gatsby-image-wrapper{
             max-width: 240px;
             max-height: 160px;
+        }
+    }
+    &.sponsorSetClass{
+        margin: 0 12px;
+        p:last-of-type{
+            position: relative;
+            left:unset;
         }
     }
 `

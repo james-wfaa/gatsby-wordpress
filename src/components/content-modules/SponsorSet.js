@@ -6,7 +6,7 @@ import styled from 'styled-components'
 const SponsorSet = ({className, children }) => {
     
     return (
-        <div className={className}>{children}
+        <div className={className} sponsorSet={true}>{children}
         </div>
     )
 }
