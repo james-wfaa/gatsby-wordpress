@@ -6,7 +6,7 @@ import styled from 'styled-components'
 const SponsorSet = ({className, children }) => {
     
     return (
-        <div className={className} sponsorSet={true}>{children}
+        <div className={className}>{children}
         </div>
     )
 }
@@ -29,6 +29,16 @@ justify-content: center;
         margin: 0 ${sizes.s24} 0 0;
         &:last-child {
             margin-right: 0;
+        }
+    }
+}
+
+div{
+    margin: 0 12px;
+    figure{
+        p:last-of-type{
+            position: relative;
+            left:unset;
         }
     }
 }
