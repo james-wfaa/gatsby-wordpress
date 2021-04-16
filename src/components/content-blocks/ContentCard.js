@@ -9,7 +9,7 @@ import { shortDate } from "../../utils/tools"
 const ContentCard = ({ className, startDate, endDate, title, category, postFormats, linkFormat, venue, virtualEvent, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo = false, acfAlternatePostType, videoFormat }) => {
     // moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
 
-    console.log(virtualEvent)
+    //console.log(virtualEvent)
     const resolvedVenue = (virtualEvent)
     ? "Online Event"
     : (venue?.title)

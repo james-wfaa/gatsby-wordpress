@@ -46,7 +46,7 @@ const StoryContentCard = ({ className, title, category, postFormats, categories,
             : productTerms
         : categoryTerms
 
-    console.log(resolvedTags)
+    //console.log(resolvedTags)
 
 
     return (
