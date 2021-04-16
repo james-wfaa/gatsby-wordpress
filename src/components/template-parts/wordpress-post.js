@@ -27,7 +27,7 @@ function BlogPost({ data }) {
     'November',
     'December'
   ]
-  const date = `${months[parseInt(month)]} ${dayYear}`
+  const date = `${months[parseInt(month)-1]} ${dayYear}`
   const product = (products?.nodes && Array.isArray(products.nodes)) ? products.nodes[0] : null
   const displayAuthor = (postExternalAuthors?.nodes && postExternalAuthors.nodes[0]?.name)
     ? postExternalAuthors.nodes[0].name
