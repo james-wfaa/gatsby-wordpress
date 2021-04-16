@@ -17,6 +17,7 @@ export const query = graphql`
       content
       blocks {
         name
+        order
         isDynamic
         originalContent
         dynamicContent

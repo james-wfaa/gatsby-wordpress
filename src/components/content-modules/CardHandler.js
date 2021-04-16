@@ -9,6 +9,8 @@ const CardHandler = ({ items, sliderSize="S", size="M", type }) => {
             case 1:
             case 2:
                 return (<CardSet items={items} num="2" type={type} size={size} />)
+            case 3:
+                return (<CardSet items={items} num="3" type={type} size="S" />)
             default:
                 return (<SimpleSliderItems items={items} size={sliderSize} type={type} />)
         }

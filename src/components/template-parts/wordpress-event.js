@@ -10,8 +10,8 @@ import FeaturedImage from "../content-blocks/FeaturedImage"
 function WordPressPage({ page }) {
   const {  featuredImage, title, eventsCategories, products, id, slug} = page
 
-  console.log(products)
-  console.log(eventsCategories)
+  //console.log(products)
+  //console.log(eventsCategories)
   const noborder = (featuredImage !== null)
   //console.log('page part of event', page)
   //console.log('blocks part of event', blocks)

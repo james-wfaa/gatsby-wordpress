@@ -15,7 +15,7 @@ const menuItems = {
   "Alumni Communities": [
     { tag: "Become a WAA Member", url: "/membership" },
     { tag: "WAA Member Community", url: "/membership/for-members" },
-    { tag: "Chapters & Groups", url: "/groups" },
+    { tag: "Chapters & Groups", url: "/waa-groups" },
     { tag: "Badger Bridge Online Network", url: "/alumni-directory" },
     { tag: "Diverse Alumni", url: "/diverse-alumni" },
     { tag: "Recent Grads", url: "/recent-grads" },
@@ -337,7 +337,7 @@ const PrimaryMenu = () => {
                         <Link to="/about">About WAA</Link>
                       </li>
                       <li>
-                        <Link to="/contact-waa">Contact WAA</Link>
+                        <Link to="/about/contact-waa">Contact WAA</Link>
                       </li>
                       <li>
                         <Link to="/update-info">Update My Info</Link>

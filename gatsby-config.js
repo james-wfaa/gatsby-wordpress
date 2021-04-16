@@ -18,7 +18,22 @@ module.exports = {
     siteURL: 'https://gatsbyuwalumni.gtsb.io',
   },
   plugins: [
-    `gatsby-plugin-gatsby-cloud`,
+    {
+      resolve: `gatsby-plugin-gatsby-cloud`,
+      options: {
+        headers: {
+          "/*": [
+            "Referrer-Policy: strict-origin-when-cross-origin",
+          ],
+        }, // option to add more headers. `Link` headers are transformed by the below criteria
+        allPageHeaders: [], // option to add headers for all pages. `Link` headers are transformed by the below criteria
+        mergeSecurityHeaders: true, // boolean to turn off the default security headers
+        mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
+        mergeCachingHeaders: true, // boolean to turn off the default caching headers
+        transformHeaders: (headers, path) => headers, // optional transform for manipulating headers under each path (e.g.sorting), etc.
+        generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
+      }
+    },
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
     {
@@ -88,8 +103,6 @@ module.exports = {
         },
       },
     },
-    //Uncomment to index to Algolia on gatsby build command
-    
      {
        resolve: `gatsby-plugin-algolia`,
        options: {
@@ -103,9 +116,9 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         schema: {
-          requestConcurrency: 4, 
+          requestConcurrency: 5, 
           previewRequestConcurrency: 2, 
-          perPage: 40,
+          perPage: 100,
           typePrefix: `Wp`,
           timeout: 960 * 1000,
         },
@@ -152,7 +165,7 @@ module.exports = {
             limit:
               process.env.NODE_ENV === `development`
                 ? // Lets just pull 50 posts in development to make it easy on ourselves.
-                  20
+                  200
                 : // and we don't actually need more than 5000 in production for this particular site
                   5000,
           },

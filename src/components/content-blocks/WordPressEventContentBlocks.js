@@ -60,10 +60,11 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             case "tribe/event-venue":
             case "tribe/event-links":
             case "tribe/related-events":
+            case "tribe/event-organizer":
                 break
             case "tribe/event-website":
                 if(block.dynamicContent){
-                    return (<Block className={block.name.replace('/', '-')} block={block} />)
+                    return (<Block key={block.order} className={block.name.replace('/', '-')} block={block} />)
                 }
                 break
             case "core/freeform":
@@ -73,20 +74,20 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             case "core/table":
             case "core/image":
             case "core/html":
-                return (<Block className={block.name.replace('/', '-')} block={block} />)
+                return (<Block  key={block.order} className={block.name.replace('/', '-')} block={block} />)
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
-                    return (<PageSectionFromBlocks blocks={block.innerBlocks} borderTop={borderTop} />)
+                    return (<PageSectionFromBlocks key={block.order}  blocks={block.innerBlocks} borderTop={borderTop} />)
                 }
                 if (block.innerBlocks && block.originalContent.indexOf(' gallery') > 0) {
-                    return (<PageSectionFromBlocks blocks={block.innerBlocks} gallery borderTop={borderTop} />)
+                    return (<PageSectionFromBlocks key={block.order}  blocks={block.innerBlocks} gallery borderTop={borderTop} />)
                 }
                 break
             case "core/separator":
-                return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+                return (<div key={block.order} dangerouslySetInnerHTML={{__html: block.originalContent}} />)
                 break
             default:
-                return (<Block className={block.name.replace('/', '-')} block={block} />)
+                return (<Block key={block.order} className={block.name.replace('/', '-')} block={block} />)
                 break
         }
         }
@@ -287,15 +288,52 @@ margin: ${sizes.s48} auto 0;
 
 
 .content{
-    h2,h3 {
-        font-size: ${sizes.s18};
+    
+    h2,
+    .core-freeform h2 {
+        font-size: ${sizes.s24};
+        line-height: ${sizes.s30};
+        margin-bottom: ${sizes.s24};
+        font-family: ${fonts.eaves};
+        font-weight: bold;
+        font-style: italic;
+        color: ${colors.titleColor};
+        @media screen and ${breakpoints.tabletS} {
+            font-size: ${sizes.s28};
+            line-height: ${sizes.s34};
+        }
+    }
+
+    h3,
+    .core-freeform h3 {
+        font-size: ${sizes.s20};
+        margin-bottom: ${sizes.s16};
+        line-height: ${sizes.s28};
+        font-style: normal;
+        margin-left: 0px;
+        margin-right: 0px;
+        color: ${colors.captionBlack};
         font-weight: bold;
         font-family: ${fonts.verlag};
-        font-style: normal;
-        color: ${colors.copyText};
-        line-height: ${sizes.s26};
-        margin-bottom: ${sizes.s16};
     }
+
+    h4,
+    .core-freeform h4,
+    h5,
+    .core-freeform h5,
+    h6,
+    .core-freeform h6 {
+        font-size: ${sizes.s18};
+        margin-bottom: 0px;
+        line-height: ${sizes.s26};
+        font-style: normal;
+        margin-left: 0px;
+        margin-right: 0px;
+        color: ${colors.captionBlack};
+        font-weight: bold;
+        font-family: ${fonts.verlag};
+    }
+
     .tribe-block__events-link,
     .tribe-events-event-image,
     .tribe-block__venue,
@@ -305,8 +343,8 @@ margin: ${sizes.s48} auto 0;
     a {
         ${mixins.a}
     }
+    .callout,
     .callout-bold {
-        font-weight: bold;
         font-family: ${fonts.verlag};
         background-color: ${colors.calloutGrey};
         padding: ${sizes.s18};
@@ -314,7 +352,6 @@ margin: ${sizes.s48} auto 0;
             padding: ${sizes.s24};
         }
         @media screen and ${breakpoints.laptopL} {
-    
             &.has-text-align-right{
                 width: 272px;
                 float: right;
@@ -325,9 +362,10 @@ margin: ${sizes.s48} auto 0;
                 float: left;
                 margin: 16px 16px 16px -184px;
             }
-    
         }
-    
+    }
+    .callout-bold {
+        font-weight: bold;
     }
 }
 
