@@ -46,7 +46,6 @@ const PageSection = ({
     defaultPage // one page section with no top padding
  }) => {
 
-
     const background =  typeof bgImage !== "undefined" && bgImage !== null
     const bgClass = (background) ? 'withBg' : ''
     const desktopOnlyClass = (desktopOnly) ? 'desktopOnly' : ''
@@ -107,7 +106,7 @@ const PageSection = ({
             <div className={`content content--bgimage`}>
                 {children}
             </div>
-            { buttons && (<PageSectionButtons buttons={buttons} bgimage buttonsAlt/>
+            { buttons && (<PageSectionButtons buttons={buttons} bgimage buttonsAlt={buttonsAlt}/>
             )}
       </BackgroundImage>
         )
