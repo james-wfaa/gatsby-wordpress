@@ -184,6 +184,7 @@ export const mixins = {
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s32};
         }
+        margin-bottom: ${sizes.s18};
     `,
     cardDate: `
         font-family: ${fonts.eaves};
@@ -466,6 +467,7 @@ export const mixins = {
                     color: ${colors.captionGrey};
                     font-weight: bold;
                     margin-top: ${sizes.s30};
+                    text-align: center;
                 }
             }
         }

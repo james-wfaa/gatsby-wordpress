@@ -15,7 +15,7 @@ const menuItems = {
   "Alumni Communities": [
     { tag: "Become a WAA Member", url: "/membership" },
     { tag: "WAA Member Community", url: "/membership/for-members" },
-    { tag: "Chapters & Groups", url: "/groups" },
+    { tag: "Chapters & Groups", url: "/waa-groups" },
     { tag: "Badger Bridge Online Network", url: "/alumni-directory" },
     { tag: "Diverse Alumni", url: "/diverse-alumni" },
     { tag: "Recent Grads", url: "/recent-grads" },

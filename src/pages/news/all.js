@@ -28,7 +28,7 @@ const NewsAll = (props) => {
         setAllFilters(`${allFilters}${filterFilter}${pubFilter}${productFilter}`)
     }, [filterFilter, pubFilter, productFilter])
 
-    console.log(allFilters)
+    //console.log(allFilters)
 
     return (
         <Layout>

@@ -4,7 +4,6 @@ import WpEvent from "../../components/template-parts/wordpress-event"
 
 const Event = ({ data }) => {
   const { event } = data
-  //console.log( 'event object:',event )
   return (<WpEvent page={event} />)
 }
 export default Event
@@ -18,6 +17,7 @@ export const query = graphql`
       content
       blocks {
         name
+        order
         isDynamic
         originalContent
         dynamicContent
@@ -49,14 +49,55 @@ export const query = graphql`
           url: uri
           events {
             nodes {
+              id
+              slug
               title
+              url: uri
               excerpt
+              eventDetails {
+                eventFullSoldOut
+                eventFullText
+                eventlocationDetails
+                registrationUrl
+                questions
+                virtualEvent
+                trip
+              }
+              featuredImage {
+                node {
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth: 712) {
+                        base64
+                        srcWebp
+                        srcSetWebp
+                        originalImg
+                        originalName
+                        src
+                        srcSet
+                        aspectRatio
+                        sizes
+                      }
+                    }
+                  }
+                }
+              }
               content
               link
-              url
               date(formatString: "dddd, MMM. D")
               endDate
               startDate
+              timezone
+              venue {
+                address
+                city
+                state
+                zip
+                title
+                content
+                latitude
+                longitude
+              }
             }
           }
         }
@@ -78,6 +119,15 @@ export const query = graphql`
               title
               url: uri
               excerpt
+              eventDetails {
+                eventFullSoldOut
+                eventFullText
+                eventlocationDetails
+                registrationUrl
+                questions
+                virtualEvent
+                trip
+              }
               featuredImage {
                 node {
                   localFile {
@@ -96,6 +146,22 @@ export const query = graphql`
                     }
                   }
                 }
+              }
+              content
+              link
+              date(formatString: "dddd, MMM. D")
+              endDate
+              startDate
+              timezone
+              venue {
+                address
+                city
+                state
+                zip
+                title
+                content
+                latitude
+                longitude
               }
             }
           }

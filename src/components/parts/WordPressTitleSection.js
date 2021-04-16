@@ -8,7 +8,13 @@ const TitleSection = ({ className, heading, author, product, date, excerpt, seri
 
     const classesList = !event ? `${className}` : `${className} ${className}--event`
     const defaultAuthor = "Wisconsin Alumni Association";
+    const resolvedAuthor = author && author.toLowerCase() !== defaultAuthor.toLowerCase() && author.toLowerCase() !== 'uwalumni' 
+        ? author
+        : null
     const largeSpacer = largeSpace ? "largeSpace" : "";
+    const dateFirst = !resolvedAuthor
+        ? ' date-first'
+        : ''
 
     return (
         <div className={`${classesList} ${largeSpacer}`}>
@@ -19,11 +25,11 @@ const TitleSection = ({ className, heading, author, product, date, excerpt, seri
             <div className="titlesection">
                 {excerpt && (
                 <div className="headingexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />)}
-                { author && author.toLowerCase() !== defaultAuthor.toLowerCase() &&  (
+                { resolvedAuthor && (
                     <div className={`${className}__author`}>{author}</div>
                 )}
                 { date && (
-                    <div className={`${className}__date`}>{date}</div>
+                    <div className={`${className}__date${dateFirst}`}>{date}</div>
                 )}
                 { product && (
                     <div className={`${className}__category`}>
@@ -124,6 +130,9 @@ const StyledTitleSection = styled(TitleSection)`
         div:first-child{
             margin-top: ${sizes.s24};
         }
+        div:last-child {
+            border-right: none !important;
+        }
         .headingexcerpt{
             text-align: left;
             font-size: ${sizes.s18};
@@ -168,6 +177,9 @@ const StyledTitleSection = styled(TitleSection)`
     }
     &__author {
         border-right: 2px solid ${colors.copyText};
+        padding-left: 0;
+    }
+    .date-first {
         padding-left: 0;
     }
   

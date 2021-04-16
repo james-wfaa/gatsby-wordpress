@@ -14,14 +14,14 @@ import SimpleSlider from "../components/content-modules/SimpleSlider"
 const eventbutton = [
   {
     link: "/events/all",
-    text: "All Events",
+    text: "See All Events",
   },
 ]
 
 const featuredbutton = [
   {
     link: "/news/all",
-    text: "See all news and stories",
+    text: "See all news & stories",
   },
 ]
 

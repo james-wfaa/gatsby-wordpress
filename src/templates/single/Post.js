@@ -40,16 +40,15 @@ export const query = graphql`
       }
       uri
       link
-      date(formatString: "MMM. DD, YYYY")
+      dayYear: date(formatString: "DD, YYYY")
+      month: date(formatString: "MM")
       excerpt
       author {
         node {
           firstName
           lastName
           name
-
         }
-
       }
       featuredImage {
         node {
@@ -88,12 +87,14 @@ export const query = graphql`
       }
       categories {
         nodes {
+          id
           name
           slug
         }
       }
       products {
         nodes {
+          id
           name
           slug
           pages {
@@ -108,6 +109,20 @@ export const query = graphql`
               title
               url: uri
               excerpt
+              categories {
+                nodes {
+                  name
+                  slug
+                  id
+                }
+              }
+              products {
+                nodes {
+                  name
+                  slug
+                  id
+                }
+              }
               featuredImage {
                 node {
                   localFile {
@@ -135,6 +150,12 @@ export const query = graphql`
               }
               videoFormat {
                 vimeoId
+              }
+              postExternalAuthors {
+                nodes {
+                  name
+                  slug
+                }
               }
             }
           }
