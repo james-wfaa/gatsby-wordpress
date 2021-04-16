@@ -1,5 +1,6 @@
 .slick-slider {
   margin-bottom: 2.5rem;
+  overflow-x: hidden;
 }
 .slick-list {
   overflow: visible;
