@@ -16,7 +16,7 @@ import parse from 'html-react-parser'
 const WpStoryContentBlocks = ({className, blocks, content }) => {
         const RenderedBlocks = (blocks) ? blocks.map((block) => {
 
-        switch (block.name) {
+          switch (block.name) {
 
           case "core/separator":
             return (
@@ -136,10 +136,11 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
               </div>
             )
           case "core/embed":
-            const embedWrapperClass = block?.originalContent && block?.originalContent.includes('flickr') || block?.originalContent.includes('tryinteract') ? 'embed-wrapper' : null;
+            const checkForInstagram = block?.originalContent && block?.originalContent.includes('instagram') ? true : false;
+            const embedWrapperClass = block?.originalContent && block?.originalContent.includes('flickr') || block?.originalContent.includes('tryinteract') || block?.originalContent && block?.originalContent.includes('instagram')? 'embed-wrapper' : null;
             return (
               <div className={`wp-block-embed ${embedWrapperClass}`} key={block.order}>
-                <EmbedBlock source={block.originalContent} type="base" />
+                <EmbedBlock source={block.originalContent} type={checkForInstagram ? "instagram" : "base"} />
               </div>
             )
           
@@ -212,6 +213,7 @@ hr.wp-block-separator {
 .core-freeform,
 .gravityforms-form,
 .embed-wrapper,
+.wp-block-embed,
 .core-shortcode {
   min-width: 300px;
   width: 100%;
@@ -258,38 +260,60 @@ h2 {
 .core-freeform {
     margin-bottom: ${sizes.s32};
     text-align: left;
-    h2,
-    h3 {
-      font-family: ${fonts.eaves};
-      font-weight: bold;
-      font-style: italic;
-      color: ${colors.titleColor};
-    }
-    h2 {
-      font-size: ${sizes.s32};
-      line-height: ${sizes.s36};
-      margin-bottom: ${sizes.s32};
-      margin-top: ${sizes.s48}; // ex: email login page
-      padding-bottom: 0;
-      &:after {
-        display: none; // REMOVE H2 UNDERLINE FROM DEFAULT PAGES
-      }
-      
-      @media screen and ${breakpoints.tabletS} {
-        font-size: ${sizes.s36};
-        line-height: ${sizes.s42};
-        margin-top: ${sizes.s58}; // ex: email login page
-      }
-      
-    }
-    h3 {
-      font-size: ${sizes.s26};
-      margin-bottom: ${sizes.s24};
-      line-height: ${sizes.s32};
-    }
+    
     a {
       ${mixins.a}
     }
+    
+}
+
+.content{
+    
+  h2,
+  .core-freeform h2 {
+      font-size: ${sizes.s24};
+      line-height: ${sizes.s30};
+      margin-bottom: ${sizes.s24};
+      font-family: ${fonts.eaves};
+      font-weight: bold;
+      font-style: italic;
+      color: ${colors.captionBlack};
+      @media screen and ${breakpoints.tabletS} {
+          font-size: ${sizes.s28};
+          line-height: ${sizes.s34};
+      }
+  }
+
+  h3,
+  .core-freeform h3 {
+      font-size: ${sizes.s20};
+      margin-bottom: ${sizes.s16};
+      line-height: ${sizes.s28};
+      font-style: normal;
+      margin-left: 0px;
+      margin-right: 0px;
+      color: ${colors.captionBlack};
+      font-weight: bold;
+      font-family: ${fonts.verlag};
+  }
+
+  h4,
+  .core-freeform h4,
+  h5,
+  .core-freeform h5,
+  h6,
+  .core-freeform h6 {
+      font-size: ${sizes.s18};
+      margin-bottom: 0px;
+      line-height: ${sizes.s26};
+      font-style: normal;
+      margin-left: 0px;
+      margin-right: 0px;
+      color: ${colors.captionBlack};
+      font-weight: bold;
+      font-family: ${fonts.verlag};
+  }
+
 }
 .core-buttons {
   .core-button {
@@ -311,6 +335,17 @@ h2 {
     }
     @media screen and ${breakpoints.laptopS} {
       padding-bottom: 100% !important;
+    }
+  }
+}
+.wp-block-embed{
+  .instagram-embed{
+    padding-bottom: 170% !important;
+    @media screen and ${breakpoints.tabletS} {
+      padding-bottom: 140% !important;
+    }
+    @media screen and ${breakpoints.laptopS} {
+      padding-bottom: 134% !important;
     }
   }
 }

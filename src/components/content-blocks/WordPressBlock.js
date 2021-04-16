@@ -83,10 +83,8 @@ margin-right: auto;
 
 >h2,
 >h3,
->h4,
 .core-freeform h2,
-.core-freeform h3,
-.core-freeform h4 {
+.core-freeform h3 {
     font-family: ${fonts.eaves};
     font-weight: bold;
     font-style: italic;
@@ -96,39 +94,64 @@ margin-right: auto;
 .core-freeform h2 {
     font-size: ${sizes.s32};
     line-height: ${sizes.s38};
-    margin-bottom: ${sizes.s24};
-    margin-top: ${sizes.s48}; // ex: email login page
+    margin-bottom: ${sizes.s32};
+    margin-top: ${sizes.s32}; // ex: email login page
     @media screen and ${breakpoints.tabletS} {
         font-size: ${sizes.s36};
-        line-height: ${sizes.s42};
-        margin-top: ${sizes.s58}; // ex: email login page
+        line-height: ${sizes.s40};
     }
-
-    ${mixins.headingShortUnderline}
-    
     
 }
+h2.SectionHeaderH2 {
+    font-size: ${sizes.s36};
+    line-height: ${sizes.s40};
+    padding-top: ${sizes.s88}; 
+    border-top: 18px solid ${colors.sectionBorder};
+    text-align: center;
+    
+    @media screen and ${breakpoints.tabletS} {
+        font-size: ${sizes.s42};
+        line-height: ${sizes.s52};
+    }
+    position: relative;
+    padding-bottom: ${sizes.s40};
+    margin-bottom: ${sizes.s32};
+    :before {
+        position: absolute;
+        bottom:0;
+        left: calc( 50% - 1.889rem );
+        height: ${sizes.s8};
+        width: calc( 1.889rem * 2 );
+        background-color: #c5050c;
+        content: '';
+    }
+    @media screen and ${breakpoints.tabletS} {
+        text-align: left;
+        :before{
+            left: 0px;
+        }
+        
+    }
+}
+
 >h3,
 .core-freeform h3 {
     font-size: ${sizes.s24};
     margin-bottom: ${sizes.s24};
     line-height: ${sizes.s30};
     @media screen and ${breakpoints.tabletS} {
-        font-size: ${sizes.s26};
-        line-height: ${sizes.s32};
+        font-size: ${sizes.s28};
+        line-height: ${sizes.s34};
     }
 }
 
 >h4,
 .core-freeform h4 {
-    font-size: ${sizes.s24};
-    margin-bottom: ${sizes.s24};
-    line-height: ${sizes.s30};
+    font-size: ${sizes.s20};
+    font-weight: bold;
+    line-height: ${sizes.s28};
+    margin-bottom: ${sizes.s16};
     color: ${colors.captionBlack};
-    @media screen and ${breakpoints.tabletS} {
-        font-size: ${sizes.s26};
-        line-height: ${sizes.s32};
-    }
 }
 
 >h5,
@@ -138,26 +161,15 @@ margin-right: auto;
     font-size: ${sizes.s18};
     line-height: ${sizes.s26};
     font-weight: bold;
-    margin-bottom: ${sizes.s16};
-}
-
->h5,
-.core-freeform h5{
-    color: ${colors.titleColor};
-}
-
->h6,
-.core-freeform h6 {
     color: ${colors.captionBlack};
+    margin-bottom: 0px;
 }
 
 &.product{
     >h2,
     >h3,
-    >h4,
     .core-freeform h2,
-    .core-freeform h3,
-    .core-freeform h4 {
+    .core-freeform h3 {
         font-family: ${fonts.eaves};
         font-weight: bold;
         font-style: italic;
@@ -165,39 +177,33 @@ margin-right: auto;
     }
     >h2,
     .core-freeform h2 {
-        font-size: ${sizes.s42};
-        line-height: ${sizes.s38};
-        margin-bottom: ${sizes.s24};
-        margin-top: ${sizes.s48}; // ex: email login page
+        font-size: ${sizes.s36};
+        line-height: ${sizes.s40};
+        position: relative;
         @media screen and ${breakpoints.tabletS} {
-            font-size: ${sizes.s36};
-            line-height: ${sizes.s42};
-            margin-top: ${sizes.s58}; // ex: email login page
+            font-size: ${sizes.s42};
+            line-height: ${sizes.s52};
         }
     }
 
     >h3,
     .core-freeform h3 {
-        font-size: ${sizes.s32};
-        margin-bottom: ${sizes.s32};
-        line-height: ${sizes.s38};
+        font-size: ${sizes.s24};
+        margin-bottom: ${sizes.s24};
+        line-height: ${sizes.s30};
         margin-left: 0px;
         margin-right: 0px;
         @media screen and ${breakpoints.tabletS} {
-            font-size: ${sizes.s36};
-            line-height: ${sizes.s42};
+            font-size: ${sizes.s28};
+            line-height: ${sizes.s34};
         }
     }
 
     >h4,
     .core-freeform h4 {
-        font-size: ${sizes.s24};
-        margin-bottom: ${sizes.s24};
-        line-height: ${sizes.s30};
-        @media screen and ${breakpoints.tabletS} {
-            font-size: ${sizes.s26};
-            line-height: ${sizes.s32};
-        }
+        font-size: ${sizes.s20};
+        margin-bottom: ${sizes.s16};
+        line-height: ${sizes.s28};
     }
 
     >h5,
@@ -206,20 +212,10 @@ margin-right: auto;
     .core-freeform h6 {
         font-size: ${sizes.s18};
         line-height: ${sizes.s26};
-        margin-bottom: ${sizes.s16};
+        margin-bottom: 0px;
         font-weight: bold;
-    }
-
-    >h5,
-    .core-freeform h5{
-        color: ${colors.titleColor};
-    }
-
-    >h6,
-    .core-freeform h6 {
         color: ${colors.captionBlack};
     }
-
     
 }
 
@@ -268,11 +264,30 @@ a {
     }
 }
 
+figure.wp-block-image{
+    @media screen and ${breakpoints.laptopS} {
+        display: table;
+    }
+}
+
 >.wp-block-image {
+    figcaption{
+        font-family: ${fonts.verlag};
+        font-weight: bold;
+        font-size: ${sizes.s16};
+        line-height: ${sizes.s22};
+        color: ${colors.captionGrey};
+        padding-top: 16px;
+        padding-bottom: 32px;
+    }
+   
     @media screen and ${breakpoints.laptopS} {
         margin-left: 0;
         max-width: 712px;
-
+        figure{
+            display: table;
+        }
+        
         .alignright{
             float: right;
             margin-left:24px;
@@ -284,9 +299,16 @@ a {
             margin-right: 24px;
             margin-bottom: 0px;
             margin-top: 8px;
+            
         }
         .aligncenter{
             text-align: center;
+            
+        }
+
+        figcaption{
+            display: table-caption;
+            caption-side: bottom;
         }
     }
 }

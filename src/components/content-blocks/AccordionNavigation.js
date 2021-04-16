@@ -70,6 +70,11 @@ margin-top: 56px;
             line-height: ${sizes.s30};
             text-transform: none;
             text-align: left;
+
+            @media screen and ${breakpoints.tabletS} {
+                font-size: ${sizes.s28};
+                line-height: ${sizes.s34};
+            }
         }
 
         h4{
