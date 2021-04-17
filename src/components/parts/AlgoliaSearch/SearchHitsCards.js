@@ -79,6 +79,7 @@ const SearchHits = ({ hits, hitHandler, card}) => {
                         />
                     )
                 } else {
+                    console.log(hit)
                     return (
                         <ContentCard
                             key={hit.url}
@@ -91,6 +92,7 @@ const SearchHits = ({ hits, hitHandler, card}) => {
                             topResult={topResult}
                             excerpt={hit.excerpt}
                             acfAlternatePostType={hit.acfAlternatePostType}
+                            postFormats={hit.postFormats}
                             tags={hit.categories}
                         />
                     )

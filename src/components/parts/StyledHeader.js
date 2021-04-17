@@ -255,16 +255,16 @@ const StyledHeader = styled.header`
     }
   }
   .overflow{
-    overflow:auto;
-    @media screen and ${breakpoints.tabletS} {
-      overflow:unset;
-    }
+    overflow:scroll;
+    white-space:nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 50px;
   }
-  @media screen and ${breakpoints.tabletS} {
+  /*@media screen and ${breakpoints.tabletS} {
     .overflow > div{
       overflow-y:scroll;
     }
-  }
+  }*/
   
 `
 

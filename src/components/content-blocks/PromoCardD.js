@@ -60,7 +60,7 @@ display: block;
     }
     &:before {
         position: absolute; 
-        bottom: 125px;
+        top: -18px;
         left: -15px;
         width: 150px;
         height: 150px;
@@ -69,7 +69,7 @@ display: block;
         mask: url(${diagLeftSVG}) no-repeat;
         content: '';
         @media screen and ${breakpoints.laptopS} {
-            bottom: 195px;
+            top: 0;
             left: -1px;    
         }
     }
