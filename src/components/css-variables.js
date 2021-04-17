@@ -570,6 +570,7 @@ export const mixins = {
             max-width: 100%;
             overflow: hidden;
             &.cropClass {
+                max-height: 200px;
                 img {
                     max-height: 200px;
                 }
