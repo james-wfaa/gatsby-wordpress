@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import { colors, mixins, sizes } from '../css-variables'
 import Img from 'gatsby-image'
 import TagList from "../parts/TagList"
@@ -6,10 +7,27 @@ import styled from 'styled-components'
 import { shortDate } from "../../utils/tools"
 
 
-const ContentCard = ({ className, startDate, endDate, title, category, postFormats, linkFormat, venue, virtualEvent, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo = false, acfAlternatePostType, videoFormat }) => {
-    // moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
+const ContentCard = ({ 
+    className, 
+    startDate, 
+    endDate, 
+    title, 
+    category, 
+    linkFormat, 
+    venue, 
+    virtualEvent, 
+    excerpt, 
+    url, 
+    urlText, 
+    img, 
+    featureImg, 
+    tags, 
+    size="S", 
+    promo=false, 
+    acfAlternatePostType, 
+    videoFormat 
+}) => {
 
-    //console.log(virtualEvent)
     const resolvedVenue = (virtualEvent)
     ? "Online Event"
     : (venue?.title)
@@ -45,6 +63,10 @@ const ContentCard = ({ className, startDate, endDate, title, category, postForma
         ? linkFormat.linkUrl
         : url
 
+    const linkTitle = linkFormat?.linkUrl
+        ? 'Link will open in a new tab/window'
+        : ''
+
     const target = linkFormat?.linkUrl
         ? '_blank'
         : '_self'
@@ -64,6 +86,11 @@ const ContentCard = ({ className, startDate, endDate, title, category, postForma
                 }
             ]
             :  img.childImageSharp.fluid
+    console.log(imgSources)
+
+    const crop = imgSources?.aspectRatio <= 2
+            ? ' cropClass'
+            : ''
 
     return (
 
@@ -95,7 +122,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, postForma
                 </div>
                 <div className={`contentwrap contentwrap--${size}`}>
                     {imgSources && (
-                        <a href={finalUrl}  target={target} className={`imgzoomlink bodyImg`} >
+                        <a href={finalUrl}  target={target} className={`imgzoomlink bodyImg ${crop}`} >
                             <Img
                                 className={`img`}
                                 fluid={imgSources}
@@ -129,8 +156,11 @@ const ContentCard = ({ className, startDate, endDate, title, category, postForma
                                 )}
                             </div>
                         )}
-                            { (urlText && !startDate) && (
-                                <a href={finalUrl} target={target} className={`excerpt excerpt--${size} readmore`}>{urlText}</a>
+                            { (urlText && !startDate && linkFormat) && (
+                                <a href={finalUrl} title={linkTitle} target="_blank" className={`excerpt excerpt--${size} readmore`}>{urlText}</a>
+                            )}
+                            { (urlText && !startDate && !linkFormat) && (
+                                <Link to={finalUrl}>{urlText}</Link>
                             )}
                             { tags && (
                                 <TagList
@@ -154,28 +184,9 @@ const StyledContentCard = styled(ContentCard)`
         ${mixins.cardTitle}
     }
     .arrow {
-        border: solid #c5050c;
-        border-width: 0 1px 1px 0;
-        display: inline-block;
-        padding: 3px;
-        transform: rotate(-90deg);
-        -webkit-transform: rotate(-90deg);
-        margin-left: 8px;
-        margin-bottom: 4px;
-      }
+        ${mixins.arrow}
+    }
       
-      .arrow:before{
-          content:'';
-        width:13px;
-        height:1px;
-        background: #c5050c;
-        left:-5px;
-        bottom:4px;
-        position:absolute;
-        transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-      }
-
     &.promo{
         background-color: ${colors.bgRed};
         border: 1px solid ${colors.bgRed};

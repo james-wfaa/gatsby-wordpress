@@ -96,12 +96,6 @@ const postQuery = `{
         videoFormat {
           vimeoId
         }
-        postExternalAuthors {
-          nodes {
-            name
-            slug
-          }
-        }
         date
         blocks {
           saveContent
@@ -114,7 +108,6 @@ const postQuery = `{
               childImageSharp {
                 fluid {
                   base64
-                  tracedSVG
                   srcWebp
                   srcSetWebp
                   srcSet

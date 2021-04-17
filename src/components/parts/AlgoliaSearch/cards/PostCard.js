@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import { breakpoints, fonts, colors } from "../../../css-variables"
+import { breakpoints, fonts, colors, sizes, mixins } from "../../../css-variables"
+import TagList from "../../TagList"
+
 
 const CardWrapper = styled.div`
   padding: 0 0 32px 0;
@@ -15,6 +17,7 @@ const CardWrapper = styled.div`
     @media screen and ${breakpoints.tabletS} {
       font-size: 14px;
     }
+    margin-bottom: ${sizes.s16};
   }
   .tags {
     font-size: 14px;
@@ -28,6 +31,9 @@ const CardWrapper = styled.div`
     font-size: 16px;
     @media screen and ${breakpoints.tabletS} {
       font-size: 18px;
+    }
+    p:last-child {
+      margin-bottom: 0;
     }
   }
   a {
@@ -70,7 +76,9 @@ const CardWrapper = styled.div`
     border: 1px solid ${colors.cardBorder};
     margin-bottom: 32px;
     max-width: 760px;
-    & > a > p, div{
+    & > a > p, 
+    > div,
+    > section {
       padding-left: 16px;
       padding-right: 16px;
       @media screen and ${breakpoints.tabletS} {
@@ -83,12 +91,10 @@ const CardWrapper = styled.div`
 
 const CardHeader = styled.div`
   background-color: ${colors.cardBorder};
-  p {
+  span {
     color: ${colors.bgWhite};
     font-size: 14px;
-    .bestBet {
-      color: #00CCFF;
-    }
+    font-weight: 800;
   }
 `
 
@@ -96,9 +102,12 @@ const DetailsDiv = styled.div`
   background: ${colors.cardTitleBg};
   padding: 16px 0 8px 0;
   margin-bottom: 24px;
+  .arrow {
+    ${mixins.arrow}
+  }
 `
 
-const PostCard = ({ initialBlock, title, topResult, url, categories, linkFormat }) => {
+const PostCard = ({ initialBlock, title, topResult, url, categories, category, linkFormat, acfAlternatePostType, videoFormat, tags }) => {
   let truncatedText
 
   if (initialBlock) {
@@ -109,44 +118,79 @@ const PostCard = ({ initialBlock, title, topResult, url, categories, linkFormat 
   } else {
     truncatedText = ""
   }
-  const displayFormat = 'story'
 
   // modify this to check for linkFormat
   let type = categories[0].name === "Classnote" ? 'STORY' : 'STORY'
 
+  let altPostType = acfAlternatePostType?.alternateposttype 
+      ? acfAlternatePostType.alternateposttype 
+      : videoFormat?.vimeoId
+        ? "Video"
+        : null
+    
+    const displayCategory = category 
+      ? category
+      : altPostType 
+        ? altPostType 
+        : null
+
+    const finalUrl = linkFormat?.linkUrl 
+      ? linkFormat.linkUrl
+      : url
+
+    const target = linkFormat?.linkUrl
+      ? '_blank'
+      : '_self'
+    const linkTitle = linkFormat?.linkUrl
+      ? 'Link will open in a new tab/window'
+      : ''
+
   return (
     <CardWrapper className={topResult ? "topResult" : null}>
-      <Link to={url}>
+      
         {topResult ? (
           <CardHeader>
-            <p>BEST BET</p>
+            <span>BEST BET</span>
           </CardHeader>
         ) : null}
         {topResult ? (
           <DetailsDiv>
-            <p>
-              <span className="cardType">{type}</span>
-            </p>
-            <h3>{title}</h3>
+            <div className="cardType">{displayCategory}</div>
+            { linkFormat && (
+                <a href={finalUrl} title={linkTitle} target={target}><h3>{title} <span class="arrow"></span></h3></a>
+              )
+            }
+            { !linkFormat && (
+              <Link to={finalUrl}><h3>{title}</h3></Link>
+            )}
           </DetailsDiv>
         ) : (
           <>
-            <p>
-              <span className="cardType">{type}</span>
-            </p>
-            <h3>{title}</h3>
+            <div className="cardType">{displayCategory}</div>
+            { linkFormat && (
+                <a href={finalUrl} title={linkTitle} target={target}><h3>{title} <span class="arrow"></span></h3></a>
+              )
+            }
+            { !linkFormat && (
+              <Link to={finalUrl}><h3>{title}</h3></Link>
+            )}
+            
           </>
         )}
-        <p>
-          <span className="tags">Tag 1, tag 2, tag 3</span>
-        </p>
+        { tags && (
+          <TagList
+          className={`tag`}
+          items={tags}
+          globalSearch
+      />
+        )}
+        
         {initialBlock ? (
           <div
             className="excerpt"
             dangerouslySetInnerHTML={{ __html: truncatedText }}
           ></div>
         ) : null}
-      </Link>
     </CardWrapper>
   )
 }

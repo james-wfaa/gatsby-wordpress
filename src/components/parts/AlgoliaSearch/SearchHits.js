@@ -50,15 +50,28 @@ const SearchHits = ({ hits, hitHandler }) => {
                 />
             )
         } else {
+          const moreLinkText = hit?.linkFormat?.linkAuthor
+                        ? <span>Via {hit.linkFormat.linkAuthor} <span class="arrow"></span></span>
+                        : hit?.altPostType === "Podcast"
+                            ? <nobr>Listen <span class="arrow"></span></nobr>
+                            : hit?.urlText
+                                ? <nobr>{hit.urlText} &gt;</nobr>
+                                : <nobr>Read More &gt;</nobr>
             return (
                 <PostCard
                     key={hit.url}
                     hit={hit}
                     url={hit.url}
+                    urlText={moreLinkText}
+                    linkFormat={hit.linkFormat}
                     title={hit.title}
                     initialBlock={hit.blocks[0]}
                     categories={hit.categories}
                     topResult={topResult}
+                    excerpt={hit.excerpt}
+                    acfAlternatePostType={hit.acfAlternatePostType}
+                    postFormats={hit.postFormats}
+                    tags={hit.categories}
                 />
             )
         }
