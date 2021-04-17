@@ -906,7 +906,7 @@ export const mixins = {
     }`,
     contentCardSizes:`{
         &--notsmall{
-            @media screen and ${breakpoints.tabletL} {
+            @media screen and ${breakpoints.laptopS} {
                 .columnwrap:nth-child(1) {
                     border-right: 1px solid ${colors.cardBorder};
                 }

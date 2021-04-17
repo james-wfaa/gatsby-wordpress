@@ -79,7 +79,7 @@ const PageSection = ({
             { excerpt && (
                 <div className="sectionexcerpt"  dangerouslySetInnerHTML={{ __html: excerpt }} />
             )}
-            <div className={`content ${plainTextContent}${centeredContentClass}`}>
+            <div className={`content ${plainTextContent} ${centeredContentClass}`}>
                 {children}
             </div>
             { buttons && (<PageSectionButtons buttons={buttons} buttonsAlt={buttonsAlt} compact={buttonsCompact} />
@@ -360,6 +360,14 @@ const StyledPageSection = styled(PageSection)`
         > div {
             margin: 0 auto;
         }
+        @media screen and ${breakpoints.tabletS} {
+            > .cardset {
+                width: 80%;
+                max-width: 1080px;
+            }
+        }
+        
+
     }
 
 
