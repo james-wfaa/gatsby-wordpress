@@ -54,5 +54,9 @@
 	{
 		"fromPath": "/askabe/*",
 		"toPath": "/news/*"
+	},
+	{
+		"fromPath": "/alumninote/*",
+		"toPath": "/alumni-notes/*"
 	}
 ]
