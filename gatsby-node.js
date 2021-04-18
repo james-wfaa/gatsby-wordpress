@@ -3,6 +3,8 @@ const path = require(`path`)
 const glob = require(`glob`)
 const chunk = require(`lodash/chunk`)
 const { dd } = require(`dumper.js`)
+const redirects = require("./redirects.json");
+
 
 const getTemplates = () => {
   const sitePath = path.resolve(`./`)
@@ -168,6 +170,17 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       })
     })
   )
+  const { createRedirect } = actions;
+  console.log(createRedirect)
+
+  console.log(redirects)
+	
+	redirects.forEach(redirect => 
+		createRedirect({
+	    fromPath: redirect.fromPath,
+	    toPath: redirect.toPath,
+	  })
+	)
 }
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
