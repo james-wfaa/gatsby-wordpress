@@ -171,9 +171,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     })
   )
   const { createRedirect } = actions;
-  console.log(createRedirect)
-
-  console.log(redirects)
 	
 	redirects.forEach(redirect => 
 		createRedirect({
