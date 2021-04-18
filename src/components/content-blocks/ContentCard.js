@@ -86,7 +86,7 @@ const ContentCard = ({
                 }
             ]
             :  img.childImageSharp.fluid
-    console.log(imgSources)
+    //console.log(imgSources)
 
     const crop = imgSources?.aspectRatio <= 2
             ? ' cropClass'

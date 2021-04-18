@@ -749,6 +749,7 @@ export const mixins = {
                 
             }
             .date {
+                z-index: 1;
                 font-family: ${fonts.eaves};
                 position: relative;
                 padding-top: ${sizes.s16};

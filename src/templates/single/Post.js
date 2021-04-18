@@ -4,11 +4,19 @@ import BlogPost from "../../components/template-parts/wordpress-post"
 import FlaminglePost from "../../components/template-parts/wordpress-flamingle"
 
 const Post = ({ data }) => {
-//console.log('Post.js data:',data)
+  const { page } = data
+  const { linkFormat } = page
 
-const isFlamingle = data.page.askFlamingle?.abeQuestioner !== null ? true : false
+  /** if this is a "link" post, we should never even get here, but if we do, this renders 
+   * a browser redirect
+   */
+  if (linkFormat?.linkUrl) {
+    window.location.replace(linkFormat.linkUrl)
+  }
 
-return isFlamingle ? <FlaminglePost data={data} /> : <BlogPost data={data} />;
+  const isFlamingle = data.page.askFlamingle?.abeQuestioner !== null ? true : false
+
+  return isFlamingle ? <FlaminglePost data={data} /> : <BlogPost data={data} />;
 }
 
 export default Post
@@ -19,6 +27,10 @@ export const query = graphql`
       id
       title
       content
+      linkFormat {
+        linkAuthor
+        linkUrl
+      }
       blocks {
         order
         name
