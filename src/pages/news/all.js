@@ -14,13 +14,13 @@ const NewsAll = (props) => {
 
     useEffect(() => {
         if (filter?.length > 0) {
-            setFilterFilter(` AND categories.name:${filter}`)
+            setFilterFilter(` AND categories.slug:${filter}`)
         }
         if (pub?.length > 0) {
-            setPubFilter(` AND publication:name:${pub}`)
+            setPubFilter(` AND publication.slug:${pub}`)
         }
         if (product?.length > 0) {
-            setProductFilter(` AND product.name:${product}`)
+            setProductFilter(` AND product.slug:${product}`)
         }
     }, [])
 
