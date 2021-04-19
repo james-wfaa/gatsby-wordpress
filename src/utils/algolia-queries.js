@@ -382,7 +382,7 @@ const queries = [
     },
     {
       query: chapterQuery,
-      transformer: ({ data }) => data.pages.edges.map(chapterToAlgoliaRecord),
+      transformer: ({ data }) => data.chapters.edges.map(chapterToAlgoliaRecord),
       indexName: `All`,
       settings: {
           attributesForFaceting: [`type`, `filterOnly(date)`],
