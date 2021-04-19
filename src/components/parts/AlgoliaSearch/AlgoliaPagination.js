@@ -5,7 +5,7 @@ import { colors } from '../../css-variables'
 
 const PaginationWrapper = styled.div`
   width: 760px;
-  margin: 0 auto;
+  margin: 0 auto 88px;
   text-align: center;
   ul {
     list-style-type: none;

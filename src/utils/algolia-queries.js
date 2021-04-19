@@ -319,12 +319,13 @@ function pageToAlgoliaRecord({node: { id, date, link, ...rest}}) {
 }
 
 function chapterToAlgoliaRecord({node: { id, date, link, chapterDetails, ...rest}}) {
-  const chapterUrl = chapterDetails?.csUrl
+  const { csUrl } = chapterDetails
+
   let dateTimestamp = new Date(date).getTime() / 1000
   return {
     objectID: id,
     type: "Chapter",
-    url: chapterUrl,
+    url: csUrl,
     date: dateTimestamp,
     ...rest,
   }
