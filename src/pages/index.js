@@ -33,7 +33,7 @@ const HomePage = ({ data }) => {
   const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList?.[0]
     ? tileAds.nodes[0].siteOptions.TileAds.adList
     : null
-  const [ads] = useState(adList)
+  const [ads, setAds] = useState(adList)
   const [currentAd, setCurrentAd] = useState(null)
 
 
@@ -50,11 +50,10 @@ const HomePage = ({ data }) => {
     let adSpot = (filteredAds) 
       ? randomAdGenerator(1, (filteredAds.length))
       : null
-    if (filteredAds && adSpot) {
+    if (filteredAds.length > 0 && filteredAds[adSpot]) {
       setCurrentAd(filteredAds[adSpot])
     } 
   }, [ads])
-
   const allevents = AllEvents()
   const { nodes: eventEdges } = allevents
 
