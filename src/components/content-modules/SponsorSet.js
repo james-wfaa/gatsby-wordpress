@@ -33,6 +33,16 @@ justify-content: center;
     }
 }
 
+div{
+    margin: 0 12px;
+    figure{
+        p:last-of-type{
+            position: relative;
+            left:unset;
+        }
+    }
+}
+
 
 `
 

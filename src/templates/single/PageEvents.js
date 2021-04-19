@@ -78,7 +78,7 @@ categories.forEach((item) => {
 
     if (categoryEvents) {
       displayCategories.push(
-        <PageSection key={item.slug} heading={categoryEvent.name} stagger>
+        <PageSection key={item.slug} heading={categoryEvent.name} centered stagger>
           <CardSet items={categoryEvents} num={numberToShow} type="event"/>
         </PageSection>
       )
@@ -119,7 +119,7 @@ categories.forEach((item) => {
           mobileHeroImage={heroIntroSection.heroImageMobile.localFile}
           heroHeading={heroHeading}
         />)}
-        <PageSection  buttons={moreButton}>
+        <PageSection centered    buttons={moreButton}>
           <CardHandler items={featuredEventItems} type="event" size="L" />
         </PageSection>
       <>{displayCategories}</>

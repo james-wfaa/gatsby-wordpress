@@ -1,0 +1,62 @@
+[
+	{
+		 "fromPath": "/groups/",
+		 "toPath": "/waa-groups/"
+	},
+	{
+		"fromPath": "/chapters/*",
+		"toPath": "/groups/*"
+   	},
+	{
+		"fromPath": "/trip/*",
+		"toPath": "/events/*"
+	},
+	{
+		"fromPath": "/services/alumni-directory/*",
+		"toPath": "/alumni-directory/*"
+	},
+	{
+		"fromPath": "/scrapbooks/*",
+		"toPath": "/news/*"
+	},
+	{
+		"fromPath": "/recent-grad/*",
+		"toPath": "/news/*"
+	},
+	{
+		"fromPath": "/news-stories/*",
+		"toPath": "/news/*"
+	},
+	{
+		"fromPath": "/news_release/*",
+		"toPath": "/news/*"
+	},
+	{
+		"fromPath": "/news/advocacy/*",
+		"toPath": "/news/*"
+	},
+	{
+		"fromPath": "/hr-newsletter-stories/*",
+		"toPath": "/news/*"
+	},
+	{
+		"fromPath": "/event/*",
+		"toPath": "/events/*"
+	},
+	{
+		"fromPath": "/awards/*",
+		"toPath": "/news/*"
+	},
+	{
+		"fromPath": "/trip/*",
+		"toPath": "/events/*"
+	},
+	{
+		"fromPath": "/askabe/*",
+		"toPath": "/news/*"
+	},
+	{
+		"fromPath": "/alumninote/*",
+		"toPath": "/alumni-notes/*"
+	}
+]

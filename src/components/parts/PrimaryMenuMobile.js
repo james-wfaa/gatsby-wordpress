@@ -312,7 +312,7 @@ const PrimaryMenu = () => {
   return (
     <div onClick={() => modalClickHandler()}>
       <MenuGrid>
-        {transition1(
+        {transition1.map(
           ({ props, item, key }) =>
             item && (
               <animated.div
@@ -325,6 +325,7 @@ const PrimaryMenu = () => {
                   width: `100vw`,
                   height: `100%`,
                   backgroundColor: `white`,
+                  overflow:`scroll`
                 }}
               >
                 <LeftMenu>
@@ -337,7 +338,7 @@ const PrimaryMenu = () => {
                         <Link to="/about">About WAA</Link>
                       </li>
                       <li>
-                        <Link to="/contact-waa">Contact WAA</Link>
+                        <Link to="/about/contact-waa">Contact WAA</Link>
                       </li>
                       <li>
                         <Link to="/update-info">Update My Info</Link>
@@ -355,7 +356,7 @@ const PrimaryMenu = () => {
             )
         )}
 
-        {transition2(
+        {transition2.map(
           ({ props, item, key }) =>
             item && (
               <animated.div

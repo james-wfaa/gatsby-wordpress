@@ -27,7 +27,7 @@ function BlogPost({ data }) {
     'November',
     'December'
   ]
-  const date = `${months[parseInt(month)]} ${dayYear}`
+  const date = `${months[parseInt(month)-1]} ${dayYear}`
   const product = (products?.nodes && Array.isArray(products.nodes)) ? products.nodes[0] : null
   const displayAuthor = (postExternalAuthors?.nodes && postExternalAuthors.nodes[0]?.name)
     ? postExternalAuthors.nodes[0].name
@@ -93,11 +93,21 @@ function BlogPost({ data }) {
   ? (<TitleSection heading={title} author={displayAuthor} product={product} categories={categories} date={date} size={size} />)
   : (<TitleSection heading={title} author={displayAuthor} product={product} categories={categories} date={date} excerpt={excerpt} smImg={(718 > size) ? image : null} size={size} />)
 
-  let links = (product?.pages?.nodes[0]?.uri) 
+  let productParentPage = null
+  
+  if(product?.pages?.nodes[0]){
+    product.pages.nodes.forEach(child => {
+      if(child.template.templateName === "Product Template"){
+        productParentPage = child
+      }
+    })
+  }
+  
+  let links = (productParentPage?.uri) 
     ? [
     { url: "/", name: "Home" },
     { url: "/news", name: "News & Stories" },
-    { url: product.pages.nodes[0].uri, name: product.name },
+    { url: productParentPage.uri, name: product.name },
     { url: link, name: title },
     ]
     : [

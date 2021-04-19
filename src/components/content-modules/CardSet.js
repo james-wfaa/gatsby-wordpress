@@ -31,7 +31,7 @@ const CardSet = ({className, items, children, num, size="M", type="news" }) => {
         })
     
     return (
-        <div className={className}>{cards}
+        <div className={`cardset ${className}`}>{cards}
         </div>
     )
 }

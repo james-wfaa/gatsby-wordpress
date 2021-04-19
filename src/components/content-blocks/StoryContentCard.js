@@ -14,7 +14,7 @@ const StoryContentCard = ({ className, title, category, postFormats, categories,
     const altPostType = acfAlternatePostType?.alternateposttype ? acfAlternatePostType.alternateposttype : null
 
     const moreLinkText = linkFormat?.linkAuthor
-    ? <nobr>Via {linkFormat.linkAuthor} <span class="arrow"></span></nobr>
+    ? <span>Via {linkFormat.linkAuthor} <span class="arrow"></span></span>
     : altPostType === "Podcast"
         ? <nobr>Listen <span class="arrow"></span></nobr>
         : urlText

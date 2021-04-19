@@ -13,13 +13,17 @@ const PhoneInfo = () => {
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdatePhoneInfo = data =>{
-    handleFormSubmit(state).then(() => {
+    handleFormSubmit(state).then((returnedData) =>{
+      if(returnedData.is_valid === false){
+        throw new Error('something went wrong with submitting the form');
+      }
+    }).then(() => {
       let currentOrder = state.numberOfSteps
       let currentStep = state.currentStep
       let currentPlaceInOrder = currentOrder.indexOf(currentStep)
       let nextStep = currentOrder[currentPlaceInOrder + 1]
       setCurrentStep(nextStep)
-    })
+    }).catch(err => {alert(`An error occurred: ${err.message}`)})
   }
   const updateOnChangeValues = (e) => {
     setPhoneInfoOnchange([e.target.name, e.target.value])

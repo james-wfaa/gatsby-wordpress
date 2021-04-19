@@ -86,6 +86,10 @@ const postQuery = `{
             slug
           }
         }
+        linkFormat {
+          linkAuthor
+          linkUrl
+        }
         acfAlternatePostType{
           alternateposttype
         }
@@ -104,7 +108,6 @@ const postQuery = `{
               childImageSharp {
                 fluid {
                   base64
-                  tracedSVG
                   srcWebp
                   srcSetWebp
                   srcSet
@@ -226,6 +229,21 @@ const pageQuery = `{
     }
   }
 }`
+const chapterQuery = `{
+  chapters: allWpChapter {
+    edges {
+      node {
+        id
+        title
+        content
+        date
+        chapterDetails {
+          csUrl
+        }
+      }
+    }
+  }
+}`
 
 function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, eventsCategories, ...rest } }) {
   let blockOriginalContent = [];
@@ -298,6 +316,18 @@ function pageToAlgoliaRecord({node: { id, date, link, ...rest}}) {
   }
 }
 
+function chapterToAlgoliaRecord({node: { id, date, link, chapterDetails, ...rest}}) {
+  const chapterUrl = chapterDetails?.csUrl
+  let dateTimestamp = new Date(date).getTime() / 1000
+  return {
+    objectID: id,
+    type: "Chapter",
+    url: chapterUrl,
+    date: dateTimestamp,
+    ...rest,
+  }
+}
+
 const queries = [
     {
         query: eventQuery,
@@ -350,6 +380,14 @@ const queries = [
             attributesForFaceting: [`type`, `filterOnly(date)`],
         },
     },
+    {
+      query: chapterQuery,
+      transformer: ({ data }) => data.chapters.edges.map(chapterToAlgoliaRecord),
+      indexName: `All`,
+      settings: {
+          attributesForFaceting: [`type`, `filterOnly(date)`],
+      },
+  },
 ]
 
 module.exports = queries

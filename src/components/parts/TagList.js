@@ -2,22 +2,34 @@ import React from "react"
 import styled from 'styled-components'
 import { colors, sizes, breakpoints } from '../css-variables'
 
-const TagList = ({ items, className }) => {
+const TagList = ({ items, globalSearch, className }) => {
     const limitedTags = items.slice(0,3)
+    const prefix = globalSearch
+        ? 'Included: '
+        : ''
+    const globalClass = globalSearch
+        ? ' global'
+        : ''
     const tagsList = limitedTags.map((item) => {
         const filterType = (item?.type && item.type === 'product')
             ? 'product'
             : 'filter'
-        return (
-        
-            <div className="tag__item" key={item.slug}>
-                <a className="tag__link" href={`/news/all?${filterType}=${item.slug}`}><span>{item.name}</span></a> 
-            </div>
-        )
+
+        return globalSearch
+            ? (
+                <div className="tag__item" key={item.slug}>
+                    <span>{item.name}</span>
+                </div>
+            )
+            :  (
+                <div className="tag__item" key={item.slug}>
+                    <a className="tag__link" href={`/news/all?${filterType}=${item.slug}`}><span>{item.name}</span></a> 
+                </div>
+            )
     })
       
     return (
-        <section className={className}>{tagsList}</section>
+        <section className={`${className}${globalClass}`}>{prefix} {tagsList}</section>
     )
 }
 
@@ -64,6 +76,10 @@ const StyledTagList = styled(TagList)`
         color: ${colors.linkTextActive};
     }
     
+}
+&.global {
+    padding: 0 0 ${sizes.s16};
+    color: ${colors.tagGrey};
 }
 `
 
