@@ -50,6 +50,7 @@ const RefinementChoices = styled.div`
     }
 `
 
+
 const AlgoliaArchivePage = props => {
     // Algolia
     const [query, setQuery] = useState()
@@ -83,6 +84,7 @@ const AlgoliaArchivePage = props => {
               indices={props.indices}
               cardtype='ContentCard'
               card={props.card}
+              filterChange={props.filterChange}
             />
             <AlgoliaPagination />
           </InstantSearch>

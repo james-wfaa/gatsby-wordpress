@@ -25,7 +25,8 @@ const ContentCard = ({
     size="S", 
     promo=false, 
     acfAlternatePostType, 
-    videoFormat 
+    videoFormat,
+    filterChange 
 }) => {
 
     const resolvedVenue = (virtualEvent)
@@ -193,6 +194,7 @@ const ContentCard = ({
                                 <TagList
                                     className={`tag  tag--${size}`}
                                     items={tags}
+                                    filterChange={filterChange}
                                 />
                             )}
                         </div>

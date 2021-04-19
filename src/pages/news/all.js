@@ -25,10 +25,21 @@ const NewsAll = (props) => {
     }, [])
 
     useEffect(() => {
-        setAllFilters(`${allFilters}${filterFilter}${pubFilter}${productFilter}`)
+        setAllFilters(`type:Post AND NOT categories.name:Classnote${filterFilter}${pubFilter}${productFilter}`)
     }, [filterFilter, pubFilter, productFilter])
 
-    //console.log(allFilters)
+    let filterChange = (type, slug) => {
+
+        if (type === "filter") {
+            setFilterFilter(` AND categories.slug:${slug}`)
+        } else if (type === "pub") {
+            setPubFilter(` AND publication.slug:${slug}`)
+        } else if (type === "product") {
+            setProductFilter(` AND product.slug:${slug}`)
+        } else {
+            return
+        }
+      }
 
     return (
         <Layout>
@@ -37,6 +48,7 @@ const NewsAll = (props) => {
                 indices={[{name: "All"}]}
                 results={false}
                 filters={allFilters}
+                filterChange={filterChange}
                 />
             </PageSection>
         </Layout>
