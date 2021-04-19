@@ -12,7 +12,11 @@ import AccordianSearchBoxAlgolia from './AccordianSearchBoxAlgolia'
 import SearchPageResults from './SearchPageResults'
 import AlgoliaPagination from './AlgoliaPagination'
 
-const StyledWrapper = styled.div``
+const StyledWrapper = styled.div`
+  .ais-Pagination--noRefinement {
+    display: none;
+  }
+`
 
 const SelectionsWrapper = styled.div`
     padding-top: 58px;
