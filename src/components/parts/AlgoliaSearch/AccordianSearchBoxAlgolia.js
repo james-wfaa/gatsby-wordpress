@@ -66,7 +66,7 @@ export default connectSearchBox(
         </form>
         <span>
           <button
-            ariaLabel="SearchButton"
+            aria-label="SearchButton"
             style={{ backgroundColor: `${colors.buttonRed}` }}
           ></button>
         </span>
