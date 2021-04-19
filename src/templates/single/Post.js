@@ -10,7 +10,7 @@ const Post = ({ data }) => {
   /** if this is a "link" post, we should never even get here, but if we do, this renders 
    * a browser redirect
    */
-  if (linkFormat?.linkUrl) {
+  if (typeof window !== "undefined" && window.location && linkFormat?.linkUrl) {
     window.location.replace(linkFormat.linkUrl)
   }
 
