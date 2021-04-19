@@ -14,7 +14,9 @@ import SearchPageResults from "./SearchPageResults"
 import AlgoliaPagination from "./AlgoliaPagination"
 
 const StyledWrapper = styled.div`
-
+  .ais-Pagination--noRefinement {
+    display: none;
+  }
 `
 
 const SelectionsWrapper = styled.div`

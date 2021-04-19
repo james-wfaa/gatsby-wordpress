@@ -22,7 +22,7 @@ let EventCardWrapper = styled.div`
     grid-row-gap: 48px;
 `
 
-const SearchHits = ({ hits, hitHandler, card}) => {
+const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
     useEffect(() => {
         if (hits.length > 0) {
             let firstHit = hits[0].__position
@@ -61,6 +61,7 @@ const SearchHits = ({ hits, hitHandler, card}) => {
                         alt={hit.alt}
                         url={hit.url}
                         size={!hit.featuredEvent ? 'Wide' : 'XXL'}
+                        filterChange={filterChange}
                     />
                 )
             case 'Post':
@@ -76,6 +77,7 @@ const SearchHits = ({ hits, hitHandler, card}) => {
                             img={hit?.featuredImage?.node?.localFile}
                             topResult={topResult}
                             categories={hit.categories}
+                            filterChange={filterChange}
                         />
                     )
                 } else {
@@ -102,6 +104,7 @@ const SearchHits = ({ hits, hitHandler, card}) => {
                             acfAlternatePostType={hit.acfAlternatePostType}
                             postFormats={hit.postFormats}
                             tags={hit.categories}
+                            filterChange={filterChange}
                         />
                     )
                 }
