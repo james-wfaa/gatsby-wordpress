@@ -24,20 +24,20 @@ function WordPressPage({ data }) {
   }
 
   useEffect(() => {
-    let filteredAds = (ads) 
+    let filteredAds = (ads)
       ? ads.filter(ad => {
           return ad.adActive
         })
       : null
-    let adSpot = (filteredAds) 
+    let adSpot = (filteredAds)
       ? randomAdGenerator(1, (filteredAds.length))
       : null
-    if (filteredAds && adSpot) {
+    if (filteredAds.length > 0 && filteredAds[adSpot]) {
       setCurrentAd(filteredAds[adSpot])
-    } 
+    }
   }, [ads])
 
-  
+
   const { storycategoriesinner: categories } = storyCategories
   const { backgroundImage } = gridDetails
 
@@ -177,7 +177,7 @@ export const query = graphql`
                       dynamicContent
                     }
                   }
-          
+
                 }
                 linkFormat {
                   linkUrl
@@ -256,7 +256,7 @@ export const query = graphql`
                       dynamicContent
                     }
                   }
-          
+
                 }
                 featuredImage {
                   node {
@@ -386,7 +386,7 @@ export const query = graphql`
         videoFormat {
           vimeoId
         }
-  
+
       }
     }
     tileAds: allWp {
