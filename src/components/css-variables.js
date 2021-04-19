@@ -571,8 +571,10 @@ export const mixins = {
             overflow: hidden;
             &.cropClass {
                 max-height: 200px;
+                background-image: linear-gradient(to bottom, rgba(255,255,255,0) 80%, rgba(255,255,255,1));
                 img {
                     max-height: 200px;
+                    z-index: -1;
                 }
                
             }
