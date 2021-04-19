@@ -56,7 +56,7 @@ const TotalWrapper = (props) => {
     <>
       <HitCount firstHit={firstHit} lastHit={lastHit} />
       {props.cardtype === 'ContentCard' ? (
-        <CustomCardHits hitHandler={(first, last) => hitHandler(first, last)} card={props.card} />
+        <CustomCardHits hitHandler={(first, last) => hitHandler(first, last)} card={props.card} filterChange={props.filterChange} />
       ) : (
         <CustomHits hitHandler={(first, last) => hitHandler(first, last)} />
       )}
@@ -64,7 +64,7 @@ const TotalWrapper = (props) => {
   );
 };
 
-const HitCount = connectStateResults(({ searchResults, firstHit, lastHit, card }) => {
+const HitCount = connectStateResults(({ searchResults, firstHit, lastHit, card, filterChange }) => {
   const hitCount = searchResults && searchResults.nbHits;
   return hitCount > 0 ? (
     <HitCounterWrapper>
@@ -86,27 +86,27 @@ const HitCount = connectStateResults(({ searchResults, firstHit, lastHit, card }
   ) : null;
 });
 
-const HitsInIndex = ({ index, cardtype, card }) => {
+const HitsInIndex = ({ index, cardtype, card, filterChange }) => {
   return (
     <Index indexName={index.name}>
-      <TotalWrapper cardtype={cardtype} card={card} />
+      <TotalWrapper cardtype={cardtype} card={card} filterChange={filterChange} />
     </Index>
   );
 };
 
-const SearchResult = ({ indices, cardtype, card }) => {
+const SearchResult = ({ indices, cardtype, card, filterChange }) => {
   return (
     <>
       {cardtype === 'ContentCard' ? (
         <CardResultsWrapper>
           {indices.map((index) => (
-            <HitsInIndex index={index} key={index.name} cardtype={cardtype} card={card} />
+            <HitsInIndex index={index} key={index.name} cardtype={cardtype} card={card} filterChange={filterChange} />
           ))}
         </CardResultsWrapper>
       ) : (
         <ResultsWrapper>
           {indices.map((index) => (
-            <HitsInIndex index={index} key={index.name} cardtype={cardtype} />
+            <HitsInIndex index={index} key={index.name} cardtype={cardtype} filterChange={filterChange} />
           ))}
         </ResultsWrapper>
       )}

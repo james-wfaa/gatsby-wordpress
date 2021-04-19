@@ -273,9 +273,10 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
   }
 }
 
-function postToAlgoliaRecord({ node: { id, url, blocks, date, categories, ...rest } }) {
+function postToAlgoliaRecord({ node: { id, url, blocks, date, categories, products, ...rest } }) {
   let blockContent = [];
   let convertedcategories = categories.nodes;
+  let convertedproducts = products.nodes;
   let dateTimestamp = new Date(date).getTime() / 1000
   if (blocks) {
     blockContent = blocks.map(block => {
@@ -287,6 +288,7 @@ function postToAlgoliaRecord({ node: { id, url, blocks, date, categories, ...res
     url: `/news${url}`,
     blocks: blockContent,
     categories: convertedcategories,
+    products: convertedproducts,
     date: dateTimestamp,
     type: 'Post',
     ...rest,

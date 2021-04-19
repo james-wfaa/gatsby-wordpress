@@ -12,7 +12,11 @@ import AccordianSearchBoxAlgolia from './AccordianSearchBoxAlgolia'
 import SearchPageResults from './SearchPageResults'
 import AlgoliaPagination from './AlgoliaPagination'
 
-const StyledWrapper = styled.div``
+const StyledWrapper = styled.div`
+  .ais-Pagination--noRefinement {
+    display: none;
+  }
+`
 
 const SelectionsWrapper = styled.div`
     padding-top: 58px;
@@ -50,6 +54,7 @@ const RefinementChoices = styled.div`
     }
 `
 
+
 const AlgoliaArchivePage = props => {
     // Algolia
     const [query, setQuery] = useState()
@@ -83,6 +88,7 @@ const AlgoliaArchivePage = props => {
               indices={props.indices}
               cardtype='ContentCard'
               card={props.card}
+              filterChange={props.filterChange}
             />
             <AlgoliaPagination />
           </InstantSearch>
