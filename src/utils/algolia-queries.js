@@ -261,6 +261,7 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
   let dateTimestamp = new Date(date).getTime() / 1000
   let startDateTimestamp = new Date(startDate).getTime() / 1000
   let endDateTimestamp = new Date(endDate).getTime() / 1000
+  let isTrip = eventDetails.trip
   if (blocks) {
     blockOriginalContent = blocks.map(block => {
       return block.originalContent
@@ -269,7 +270,7 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
       return block.dynamicContent
     })
   }
-  return (eventDetails.trip)
+  return (isTrip)
     ? {
         objectID: id,
         blocksOriginal: blockOriginalContent,
