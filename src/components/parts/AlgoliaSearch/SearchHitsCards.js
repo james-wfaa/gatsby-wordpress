@@ -36,9 +36,10 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
         if (hit.__position === 1) {
             topResult = true
         }
+        console.log(hit)
         switch (hit.type) {
             case 'Event':
-                //console.log(hit)
+                
                 return (
                     <EventContentCard
                         key={hit.url}

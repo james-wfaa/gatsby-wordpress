@@ -17,7 +17,7 @@ const NewsAll = (props) => {
             setFilterFilter(` AND categories.slug:${filter}`)
         }
         if (pub?.length > 0) {
-            setPubFilter(` AND publication.slug:${pub}`)
+            setPubFilter(` AND product.slug:${pub}`)
         }
         if (product?.length > 0) {
             setProductFilter(` AND product.slug:${product}`)
@@ -33,7 +33,7 @@ const NewsAll = (props) => {
         if (type === "filter") {
             setFilterFilter(` AND categories.slug:${slug}`)
         } else if (type === "pub") {
-            setPubFilter(` AND publication.slug:${slug}`)
+            setPubFilter(` AND product.slug:${slug}`)
         } else if (type === "product") {
             setProductFilter(` AND product.slug:${slug}`)
         } else {
