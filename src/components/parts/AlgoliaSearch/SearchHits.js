@@ -33,7 +33,6 @@ const SearchHits = ({ hits, hitHandler }) => {
             date={hit.date}
             city={hit.venue?.city}
             state={hit.venue?.state}
-            topResult={topResult}
           />
         )
       case "Post":
@@ -45,7 +44,6 @@ const SearchHits = ({ hits, hitHandler }) => {
                     url={hit.url}
                     title={hit.title}
                     initialBlock={hit.excerpt}
-                    topResult={topResult}
                     categories={hit.categories}
                 />
             )
@@ -67,7 +65,6 @@ const SearchHits = ({ hits, hitHandler }) => {
                     title={hit.title}
                     initialBlock={hit.blocks[0]}
                     categories={hit.categories}
-                    topResult={topResult}
                     excerpt={hit.excerpt}
                     acfAlternatePostType={hit.acfAlternatePostType}
                     postFormats={hit.postFormats}

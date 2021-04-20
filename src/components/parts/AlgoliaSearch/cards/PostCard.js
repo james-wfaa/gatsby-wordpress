@@ -128,11 +128,13 @@ const PostCard = ({ initialBlock, title, topResult, url, categories, category, l
         ? "Video"
         : null
     
-    const displayCategory = category 
-      ? category
-      : altPostType 
-        ? altPostType 
-        : null
+    const displayCategory = categories[0].name === "Classnote"
+      ? "ALUMNI NOTES"
+      : category 
+        ? category
+        : altPostType 
+          ? altPostType 
+          : null
 
     const finalUrl = linkFormat?.linkUrl 
       ? linkFormat.linkUrl

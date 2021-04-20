@@ -60,7 +60,7 @@ const SearchModal = ({ topOffset, isMobile }) => {
         >
           <StyledInput
             type="text"
-            placeholder="Search.."
+            placeholder="Search"
             autoFocus
             value={searchText}
             onChange={e => searchHandler(e)}
