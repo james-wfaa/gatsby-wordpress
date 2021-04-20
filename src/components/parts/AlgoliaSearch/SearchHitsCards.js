@@ -9,6 +9,9 @@ let CardWrapper = styled.div`
         grid-template-columns: 1fr;
         grid-column-gap: 24px;
         grid-row-gap: 48px;
+        > * {
+            margin: 0 auto;
+        }
         @media screen and ${breakpoints.tabletS} {
             grid-template-columns: 1fr 1fr
         }
