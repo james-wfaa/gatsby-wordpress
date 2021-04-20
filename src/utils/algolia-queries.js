@@ -254,7 +254,7 @@ const chapterQuery = `{
   }
 }`
 
-function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, eventsCategories, ...rest } }) {
+function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, eventDetails, eventsCategories, ...rest } }) {
   let blockOriginalContent = [];
   let blockDynamicContent = [];
   let categories = eventsCategories.nodes;
