@@ -308,6 +308,11 @@ input[type='date']{
 .gform_hidden, .gfield_visibility_administrative{
     display: none !important;
 }
+.half-width{
+    select{
+        margin-top: 0;
+    }
+}
 
 `
 
