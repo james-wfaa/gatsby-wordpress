@@ -57,7 +57,7 @@ export default connectSearchBox(
         <form onSubmit={e => submitHandler(e)}>
           <StyledInput
             type="text"
-            placeholder="Search..."
+            placeholder="Search"
             ariaLabel="SearchInput"
             onChange={e => refine(e.target.value)}
             value={currentRefinement}

@@ -78,6 +78,7 @@ const postQuery = `{
         url: uri
         title
         excerpt
+        modified
         postFormats {
           nodes {
             name
@@ -151,6 +152,7 @@ const classNoteQuery = `{
         link
         date(formatString: "MMM. DD, YYYY")
         excerpt
+        modified
         author {
           node {
             firstName
@@ -225,6 +227,7 @@ const pageQuery = `{
       date
       link
       excerpt
+      modified
       }
     }
   }
@@ -240,6 +243,7 @@ const chapterQuery = `{
         chapterDetails {
           csUrl
         }
+        modified
       }
     }
   }
@@ -331,64 +335,31 @@ function chapterToAlgoliaRecord({node: { id, date, link, chapterDetails, ...rest
 }
 
 const queries = [
-    {
-        query: eventQuery,
-        transformer: ({ data }) => data.events.edges.map(eventToAlgoliaRecord),
-        indexName: `All`,
-        settings: {
-            attributesToSnippet: [`blocksOriginal:20`, `excerpt`],
-            attributesForFaceting: [
-                `categories.name`,
-                `venue.address`,
-                `type`,
-                `filterOnly(startDate)`,
-                `filterOnly(endDate)`,
-            ],
-        },
-    },
-    {
-        query: postQuery,
-        transformer: ({ data }) => data.posts.edges.map(postToAlgoliaRecord),
-        indexName: `All`,
-        settings: {
-            attributesToSnippet: [`blocks:40`],
-            attributesForFaceting: [
-                `categories.slug`,
-                `products.slug`,
-                `type`,
-                `filterOnly(date)`,
-            ],
-        },
-    },
-    {
-        query: classNoteQuery,
-        transformer: ({ data }) =>
-            data.classnotes.edges.map(classNoteToAlgoliaRecord),
-        indexName: `All`,
-        settings: {
-            attributesToSnippet: [`blocks:40`],
-            attributesForFaceting: [
-                `categories.name`,
-                `type`,
-                `filterOnly(date)`,
-            ],
-        },
-    },
-    {
-        query: pageQuery,
-        transformer: ({ data }) => data.pages.edges.map(pageToAlgoliaRecord),
-        indexName: `All`,
-        settings: {
-            attributesForFaceting: [`type`, `filterOnly(date)`],
-        },
-    },
-    {
-      query: chapterQuery,
-      transformer: ({ data }) => data.chapters.edges.map(chapterToAlgoliaRecord),
+  {
+    query: postQuery,
+    transformer: ({ data }) => data.posts.edges.map(postToAlgoliaRecord),
+    indexName: `All`,
+  },
+  {
+      query: eventQuery,
+      transformer: ({ data }) => data.events.edges.map(eventToAlgoliaRecord),
       indexName: `All`,
-      settings: {
-          attributesForFaceting: [`type`, `filterOnly(date)`],
-      },
+  },
+  {
+      query: classNoteQuery,
+      transformer: ({ data }) =>
+          data.classnotes.edges.map(classNoteToAlgoliaRecord),
+      indexName: `All`,
+  },
+  {
+      query: pageQuery,
+      transformer: ({ data }) => data.pages.edges.map(pageToAlgoliaRecord),
+      indexName: `All`,
+  },
+  {
+    query: chapterQuery,
+    transformer: ({ data }) => data.chapters.edges.map(chapterToAlgoliaRecord),
+    indexName: `All`,
   },
 ]
 
