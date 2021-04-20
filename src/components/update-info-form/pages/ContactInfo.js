@@ -23,7 +23,9 @@ const ContactInfo = () => {
       if(returnedData.is_valid === false){
         throw new Error('something went wrong with submitting the form');
       }
-      setEntryId(returnedData.entry_id)
+      if(!state.entry_id){
+        setEntryId(returnedData.entry_id)
+      }
     }).then(() => {
       setCurrentStep(2)
     }).catch(err => {setGeneralError(err.message)})
