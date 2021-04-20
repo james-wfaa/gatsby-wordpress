@@ -7,6 +7,7 @@ const eventQuery = `{
           dynamicContent
           originalContent
         }
+        modified
         slug
         startDate
         status
@@ -79,6 +80,7 @@ const postQuery = `{
         title
         excerpt
         modified
+        slug
         postFormats {
           nodes {
             name
@@ -153,6 +155,7 @@ const classNoteQuery = `{
         date(formatString: "MMM. DD, YYYY")
         excerpt
         modified
+        slug
         author {
           node {
             firstName
@@ -228,6 +231,7 @@ const pageQuery = `{
       link
       excerpt
       modified
+      slug
       }
     }
   }
@@ -244,6 +248,7 @@ const chapterQuery = `{
           csUrl
         }
         modified
+        slug
       }
     }
   }
