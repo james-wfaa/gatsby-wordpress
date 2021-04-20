@@ -47,6 +47,8 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         return hiddenValue !== null ? hiddenValue : value
     }
 
+    const isAddressLineTwo = name && name === 'Address Line 2' ? true : false
+
     return (subfield) ? (<InputSubfieldWrapper
         errors={errors}
         inputData={fieldData}
@@ -55,7 +57,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         {...wrapProps}
     > <input
         aria-invalid={errors}
-        aria-required={isRequired}
+        aria-required={!isAddressLineTwo ? isRequired : false}
         className={classnames(
             'gravityform__field__input',
             `gravityform__field__input__${type}`,
@@ -68,7 +70,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         name={`input_${id.replace(".", "_")}`}
         placeholder={placeholder}
         ref={register({
-            required: isRequired && strings.errors.required,
+            required: isRequired && strings.errors.required && !isAddressLineTwo,
             maxlength: {
                 value: maxLength > 0 && maxLength,
                 message:

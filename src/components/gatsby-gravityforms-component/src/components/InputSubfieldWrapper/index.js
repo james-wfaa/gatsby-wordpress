@@ -22,6 +22,7 @@ const InputSubfieldWrapper = ({
 }) => {
     //console.log(label)
     const fieldHiddenClass = fieldHidden === true ? 'gform_hidden' : ''
+    const isAddressLineTwo = label === 'Address Line 2' ? true: false
 
     return (
         <div
@@ -60,7 +61,7 @@ const InputSubfieldWrapper = ({
                 htmlFor={labelFor}
             >
                 {label}
-                {isRequired && <span className="gfield_required">*</span>}
+                {isRequired && !isAddressLineTwo && <span className="gfield_required">*</span>}
             </label>
         )}
             {outputDescription(
