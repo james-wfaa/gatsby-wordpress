@@ -8,27 +8,38 @@ const NewsAll = (props) => {
     const [filterFilter, setFilterFilter] = useState("")
     const [pubFilter, setPubFilter] = useState("")
     const [productFilter, setProductFilter] = useState("")
-    const [allFilters, setAllFilters] = useState('type:Post AND NOT categories.name:Classnote')
+    const [allFilters, setAllFilters] = useState(`type:'News & Stories' AND NOT categories.name:Classnote`)
 
     const { filter, pub, product } = queryString.parse(props.location.search)
 
     useEffect(() => {
         if (filter?.length > 0) {
-            setFilterFilter(` AND categories.name:${filter}`)
+            setFilterFilter(` AND categories.slug:${filter}`)
         }
         if (pub?.length > 0) {
-            setPubFilter(` AND publication:name:${pub}`)
+            setPubFilter(` AND products.slug:${pub}`)
         }
         if (product?.length > 0) {
-            setProductFilter(` AND product.name:${product}`)
+            setProductFilter(` AND products.slug:${product}`)
         }
     }, [])
 
     useEffect(() => {
-        setAllFilters(`${allFilters}${filterFilter}${pubFilter}${productFilter}`)
+        setAllFilters(`type:'News & Stories' AND NOT categories.name:Classnote${filterFilter}${pubFilter}${productFilter}`)
     }, [filterFilter, pubFilter, productFilter])
 
-    //console.log(allFilters)
+    let filterChange = (type, slug) => {
+
+        if (type === "filter") {
+            setFilterFilter(` AND categories.slug:${slug}`)
+        } else if (type === "pub") {
+            setPubFilter(` AND products.slug:${slug}`)
+        } else if (type === "product") {
+            setProductFilter(` AND products.slug:${slug}`)
+        } else {
+            return
+        }
+      }
 
     return (
         <Layout>
@@ -37,6 +48,7 @@ const NewsAll = (props) => {
                 indices={[{name: "All"}]}
                 results={false}
                 filters={allFilters}
+                filterChange={filterChange}
                 />
             </PageSection>
         </Layout>

@@ -9,6 +9,9 @@ let CardWrapper = styled.div`
         grid-template-columns: 1fr;
         grid-column-gap: 24px;
         grid-row-gap: 48px;
+        > * {
+            margin: 0 auto;
+        }
         @media screen and ${breakpoints.tabletS} {
             grid-template-columns: 1fr 1fr
         }
@@ -22,7 +25,7 @@ let EventCardWrapper = styled.div`
     grid-row-gap: 48px;
 `
 
-const SearchHits = ({ hits, hitHandler, card}) => {
+const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
     useEffect(() => {
         if (hits.length > 0) {
             let firstHit = hits[0].__position
@@ -36,9 +39,10 @@ const SearchHits = ({ hits, hitHandler, card}) => {
         if (hit.__position === 1) {
             topResult = true
         }
+        console.log(hit)
         switch (hit.type) {
-            case 'Event':
-                //console.log(hit)
+            case 'Events':
+                console.log(hit.startDate)
                 return (
                     <EventContentCard
                         key={hit.url}
@@ -61,9 +65,10 @@ const SearchHits = ({ hits, hitHandler, card}) => {
                         alt={hit.alt}
                         url={hit.url}
                         size={!hit.featuredEvent ? 'Wide' : 'XXL'}
+                        filterChange={filterChange}
                     />
                 )
-            case 'Post':
+            case 'News & Stories':
                 if (hit?.categories[0]?.name === 'Classnote') {
                     return (
                         <ContentCard
@@ -74,8 +79,8 @@ const SearchHits = ({ hits, hitHandler, card}) => {
                             title={hit.title}
                             initialBlock={hit.excerpt}
                             img={hit?.featuredImage?.node?.localFile}
-                            topResult={topResult}
                             categories={hit.categories}
+                            filterChange={filterChange}
                         />
                     )
                 } else {
@@ -97,11 +102,11 @@ const SearchHits = ({ hits, hitHandler, card}) => {
                             img={hit?.featuredImage?.node?.localFile}
                             title={hit.title}
                             initialBlock={hit.blocks[0]}
-                            topResult={topResult}
                             excerpt={hit.excerpt}
                             acfAlternatePostType={hit.acfAlternatePostType}
                             postFormats={hit.postFormats}
                             tags={hit.categories}
+                            filterChange={filterChange}
                         />
                     )
                 }

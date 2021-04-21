@@ -11,7 +11,7 @@ const EventsAll = () => {
           <AlgoliaArchivePage
             indices={[{ name: 'All' }]}
             results={false}
-            filters={'type:Event'}
+            filters={'type:Events'}
             card={'Event'}
           />
         </PageSection>

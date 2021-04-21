@@ -16,27 +16,29 @@ function WordPressPage({ data }) {
   const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList?.[0]
     ? tileAds.nodes[0].siteOptions.TileAds.adList
     : null
-  const [ads] = useState(adList)
   const [currentAd, setCurrentAd] = useState(null)
-
 
   const randomAdGenerator = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min) - 1
   }
 
   useEffect(() => {
-    let filteredAds = (ads) 
-      ? ads.filter(ad => {
+    let filteredAds = (adList)
+      ? adList.filter(ad => {
           return ad.adActive
         })
       : null
-    let adSpot = (filteredAds) 
+    let adSpot = (filteredAds)
       ? randomAdGenerator(1, (filteredAds.length))
       : null
-    if (filteredAds && adSpot) {
+    if (filteredAds.length > 0 && filteredAds[adSpot]) {
       setCurrentAd(filteredAds[adSpot])
-    } 
-  }, [ads])
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log(currentAd)
+  }, [currentAd])
 
   const allevents = AllEvents()
   const { nodes: eventEdges } = allevents
@@ -61,7 +63,7 @@ function WordPressPage({ data }) {
     },
   ]
   let displayCategories = []
-  
+
 categories.forEach((item) => {
     const { categoryEvent, numberToShow } = item
     const { slug } = categoryEvent
@@ -84,7 +86,7 @@ categories.forEach((item) => {
       )
     }
 })
-    
+
   let featuredEventItems = []
   eventEdges.forEach((event) => {
     const { featuredEvent } = event
@@ -105,9 +107,7 @@ categories.forEach((item) => {
   })
   const eventCards1 = eventCards.slice(0,5)
   const eventCards2 = eventCards.slice(5,5+eventCards.length)
-
   const heroHeading = heroIntroSection?.heroHeading ? `<span>${heroIntroSection.heroHeading}</span> ON` : null
-
   return (
     <Layout title={title} noborder>
       { featuredImage && featuredImage.node && (

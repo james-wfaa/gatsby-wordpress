@@ -259,6 +259,20 @@ input[type='date']{
             margin-bottom: 6px;
         }
     }
+    .unknownError{
+        color:black;
+        background-color: ${colors.errorBGYellow};
+        :first-of-type{
+            padding: 12px 12px 12px 36px;
+            margin: 0;
+            :before{
+                padding: 0 0 0 24px;
+                top: 16px;
+                left: 12px;
+              }
+        }
+        
+    }
 }
 .gravityform__error_message{
     margin-left: 24px;

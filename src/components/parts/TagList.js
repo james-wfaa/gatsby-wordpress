@@ -2,11 +2,9 @@ import React from "react"
 import styled from 'styled-components'
 import { colors, sizes, breakpoints } from '../css-variables'
 
-const TagList = ({ items, globalSearch, className }) => {
+const TagList = ({ items, globalSearch, className, filterChange }) => {
     const limitedTags = items.slice(0,3)
-    const prefix = globalSearch
-        ? 'Included: '
-        : ''
+    
     const globalClass = globalSearch
         ? ' global'
         : ''
@@ -15,7 +13,8 @@ const TagList = ({ items, globalSearch, className }) => {
             ? 'product'
             : 'filter'
 
-        return globalSearch
+        if (item.name !== 'Uncategorized') {
+            return globalSearch
             ? (
                 <div className="tag__item" key={item.slug}>
                     <span>{item.name}</span>
@@ -23,13 +22,16 @@ const TagList = ({ items, globalSearch, className }) => {
             )
             :  (
                 <div className="tag__item" key={item.slug}>
-                    <a className="tag__link" href={`/news/all?${filterType}=${item.slug}`}><span>{item.name}</span></a> 
+                    <a className="tag__link" href={`/news/all?${filterType}=${item.slug}`} onClick={() => filterChange(filterType, item.slug)}><span>{item.name}</span></a>
                 </div>
             )
+        }
+        return null
+        
     })
-      
+
     return (
-        <section className={`${className}${globalClass}`}>{prefix} {tagsList}</section>
+        <section className={`${className}${globalClass}`}>{tagsList}</section>
     )
 }
 
@@ -37,14 +39,19 @@ const StyledTagList = styled(TagList)`
 
 .tag__item{
     display: inline-block;
-    padding-left: 4px;
+    margin-left: 4px;
+    padding-left: 2px;
     position: relative;
     padding-right: 4px;
+    &:first-child {
+        margin-left: 0;
+        padding-left: 0;
+    }
     &:after  {
         position: absolute;
         top: 0;
-       
-        right: -2px;
+
+        right: -1px;
         bottom: 0;
         content: ', ';
     }
@@ -68,14 +75,14 @@ const StyledTagList = styled(TagList)`
     &:visited {
         color: ${colors.categoryGrey};
     }
-    
+
     &:hover {
         color: ${colors.linkTextHover};
     }
     &:active {
         color: ${colors.linkTextActive};
     }
-    
+
 }
 &.global {
     padding: 0 0 ${sizes.s16};

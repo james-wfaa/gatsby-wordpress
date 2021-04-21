@@ -9,7 +9,7 @@ const PaginationWrapper = styled.div`
   text-align: center;
   ul {
     list-style-type: none;
-    margin: 58px 0;
+    margin: 58px 0 88px;
     font-size: 26px;
     li {
       display: inline-block;

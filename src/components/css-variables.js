@@ -569,13 +569,6 @@ export const mixins = {
         .imgzoomlink{
             max-width: 100%;
             overflow: hidden;
-            &.cropClass {
-                max-height: 200px;
-                img {
-                    max-height: 200px;
-                }
-               
-            }
         }
         .img, gatsby-image-wrapper {
             max-width: 100%;

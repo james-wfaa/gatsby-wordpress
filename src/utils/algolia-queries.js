@@ -7,6 +7,7 @@ const eventQuery = `{
           dynamicContent
           originalContent
         }
+        modified
         slug
         startDate
         status
@@ -78,6 +79,8 @@ const postQuery = `{
         url: uri
         title
         excerpt
+        modified
+        slug
         postFormats {
           nodes {
             name
@@ -151,6 +154,8 @@ const classNoteQuery = `{
         link
         date(formatString: "MMM. DD, YYYY")
         excerpt
+        modified
+        slug
         author {
           node {
             firstName
@@ -225,6 +230,8 @@ const pageQuery = `{
       date
       link
       excerpt
+      modified
+      slug
       }
     }
   }
@@ -240,18 +247,21 @@ const chapterQuery = `{
         chapterDetails {
           csUrl
         }
+        modified
+        slug
       }
     }
   }
 }`
 
-function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, eventsCategories, ...rest } }) {
+function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, eventDetails, eventsCategories, ...rest } }) {
   let blockOriginalContent = [];
   let blockDynamicContent = [];
   let categories = eventsCategories.nodes;
   let dateTimestamp = new Date(date).getTime() / 1000
   let startDateTimestamp = new Date(startDate).getTime() / 1000
   let endDateTimestamp = new Date(endDate).getTime() / 1000
+  let isTrip = eventDetails.trip
   if (blocks) {
     blockOriginalContent = blocks.map(block => {
       return block.originalContent
@@ -260,22 +270,37 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
       return block.dynamicContent
     })
   }
-  return {
-    objectID: id,
-    blocksOriginal: blockOriginalContent,
-    blocksDynamic: blockDynamicContent,
-    categories: categories,
-    date: dateTimestamp,
-    startDate: startDateTimestamp,
-    endDate: endDateTimestamp,
-    type: 'Event',
-    ...rest,
-  }
+  return (isTrip)
+    ? {
+        objectID: id,
+        blocksOriginal: blockOriginalContent,
+        blocksDynamic: blockDynamicContent,
+        categories: categories,
+        date: dateTimestamp,
+        startDate: startDateTimestamp,
+        endDate: endDateTimestamp,
+        type: 'Trips',
+        typeIndex: 2,
+        ...rest,
+      }
+    : {
+      objectID: id,
+      blocksOriginal: blockOriginalContent,
+      blocksDynamic: blockDynamicContent,
+      categories: categories,
+      date: dateTimestamp,
+      startDate: startDateTimestamp,
+      endDate: endDateTimestamp,
+      type: 'Events',
+      typeIndex: 1,
+      ...rest,
+    }
 }
 
-function postToAlgoliaRecord({ node: { id, url, blocks, date, categories, ...rest } }) {
+function postToAlgoliaRecord({ node: { id, url, blocks, date, categories, products, ...rest } }) {
   let blockContent = [];
   let convertedcategories = categories.nodes;
+  let convertedproducts = products.nodes;
   let dateTimestamp = new Date(date).getTime() / 1000
   if (blocks) {
     blockContent = blocks.map(block => {
@@ -287,17 +312,20 @@ function postToAlgoliaRecord({ node: { id, url, blocks, date, categories, ...res
     url: `/news${url}`,
     blocks: blockContent,
     categories: convertedcategories,
+    products: convertedproducts,
     date: dateTimestamp,
-    type: 'Post',
+    type: 'News & Stories',
+    typeIndex: 5,
     ...rest,
   }
 }
 
-function classNoteToAlgoliaRecord({ node: { id, date, link, ...rest } }) {
+function classNoteToAlgoliaRecord({ node: { id, date, link, classnoteNotes, ...rest } }) {
   let dateTimestamp = new Date(date).getTime() / 1000
   return {
     objectID: id,
-    type: "Post",
+    type: "Alumni Notes",
+    typeIndex: 6,
     url: link,
     date: dateTimestamp,
     categories: [{name: "Classnote"}],
@@ -309,7 +337,8 @@ function pageToAlgoliaRecord({node: { id, date, link, ...rest}}) {
   let dateTimestamp = new Date(date).getTime() / 1000
   return {
     objectID: id,
-    type: "Page",
+    type: "Pages",
+    typeIndex: 4,
     url: link,
     date: dateTimestamp,
     ...rest,
@@ -317,76 +346,44 @@ function pageToAlgoliaRecord({node: { id, date, link, ...rest}}) {
 }
 
 function chapterToAlgoliaRecord({node: { id, date, link, chapterDetails, ...rest}}) {
-  const chapterUrl = chapterDetails?.csUrl
+  const { csUrl } = chapterDetails
   let dateTimestamp = new Date(date).getTime() / 1000
   return {
     objectID: id,
-    type: "Chapter",
-    url: chapterUrl,
+    type: "Chapters",
+    typeIndex: 3,
+    url: csUrl,
     date: dateTimestamp,
     ...rest,
   }
 }
 
 const queries = [
-    {
-        query: eventQuery,
-        transformer: ({ data }) => data.events.edges.map(eventToAlgoliaRecord),
-        indexName: `All`,
-        settings: {
-            attributesToSnippet: [`blocksOriginal:20`, `excerpt`],
-            attributesForFaceting: [
-                `categories.name`,
-                `venue.address`,
-                `type`,
-                `filterOnly(startDate)`,
-                `filterOnly(endDate)`,
-            ],
-        },
-    },
-    {
-        query: postQuery,
-        transformer: ({ data }) => data.posts.edges.map(postToAlgoliaRecord),
-        indexName: `All`,
-        settings: {
-            attributesToSnippet: [`blocks:40`],
-            attributesForFaceting: [
-                `categories.slug`,
-                `products.slug`,
-                `type`,
-                `filterOnly(date)`,
-            ],
-        },
-    },
-    {
-        query: classNoteQuery,
-        transformer: ({ data }) =>
-            data.classnotes.edges.map(classNoteToAlgoliaRecord),
-        indexName: `All`,
-        settings: {
-            attributesToSnippet: [`blocks:40`],
-            attributesForFaceting: [
-                `categories.name`,
-                `type`,
-                `filterOnly(date)`,
-            ],
-        },
-    },
-    {
-        query: pageQuery,
-        transformer: ({ data }) => data.pages.edges.map(pageToAlgoliaRecord),
-        indexName: `All`,
-        settings: {
-            attributesForFaceting: [`type`, `filterOnly(date)`],
-        },
-    },
-    {
-      query: chapterQuery,
-      transformer: ({ data }) => data.chapters.edges.map(chapterToAlgoliaRecord),
+  {
+    query: postQuery,
+    transformer: ({ data }) => data.posts.edges.map(postToAlgoliaRecord),
+    indexName: `All`,
+  },
+  {
+      query: eventQuery,
+      transformer: ({ data }) => data.events.edges.map(eventToAlgoliaRecord),
       indexName: `All`,
-      settings: {
-          attributesForFaceting: [`type`, `filterOnly(date)`],
-      },
+  },
+  {
+      query: classNoteQuery,
+      transformer: ({ data }) =>
+          data.classnotes.edges.map(classNoteToAlgoliaRecord),
+      indexName: `All`,
+  },
+  {
+      query: pageQuery,
+      transformer: ({ data }) => data.pages.edges.map(pageToAlgoliaRecord),
+      indexName: `All`,
+  },
+  {
+    query: chapterQuery,
+    transformer: ({ data }) => data.chapters.edges.map(chapterToAlgoliaRecord),
+    indexName: `All`,
   },
 ]
 

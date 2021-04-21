@@ -14,7 +14,9 @@ import SearchPageResults from "./SearchPageResults"
 import AlgoliaPagination from "./AlgoliaPagination"
 
 const StyledWrapper = styled.div`
-
+  .ais-Pagination--noRefinement {
+    display: none;
+  }
 `
 
 const SelectionsWrapper = styled.div`
@@ -82,7 +84,6 @@ const AccordianSearchAlgolia = props => {
           <SelectionsWrapper>
               <AccordianSearchBoxAlgolia defaultRefinement={props.searchString} onFocus={() => setFocus(true)} hasFocus={hasFocus} />
             <RefinementChoices>
-              <p>Included in Results:</p>
               <MenuSelect
                 attribute="type"
               />

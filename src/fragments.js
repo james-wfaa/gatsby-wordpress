@@ -17,6 +17,8 @@ export const fragments = graphql`
           title
           uri
           dateGmt
+          dayYear: date(formatString: "DD, YYYY")
+          month: date(formatString: "MM")
           hideFromMenu {
             hideFromMenu
             fieldGroupName
@@ -29,6 +31,8 @@ export const fragments = graphql`
                 title
                 uri
                 dateGmt
+                dayYear: date(formatString: "DD, YYYY")
+                month: date(formatString: "MM")
                 hideFromMenu {
                   hideFromMenu
                   fieldGroupName
@@ -41,6 +45,8 @@ export const fragments = graphql`
                       title
                       uri
                       dateGmt
+                      dayYear: date(formatString: "DD, YYYY")
+                      month: date(formatString: "MM")
                       hideFromMenu {
                         hideFromMenu
                         fieldGroupName
