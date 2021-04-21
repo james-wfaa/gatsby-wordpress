@@ -59,12 +59,12 @@ const UpdateInfoForm = () =>  {
    }
 
   return (
-    <Layout>
+    <Layout title="Update Your Information">
       <StyledUpdateInfoForm>
         { renderCurrentStep() }
         {//console.log(state)
         }
-        { !(state.currentStep === 8 || state.currentStep === 9) && <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our <a href="https://www.advanceuw.org/privacy-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=updateinfo">Privacy Statement</a>.</p>}
+        { !(state.currentStep === 8 || state.currentStep === 9) && <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our <a href="https://www.advanceuw.org/privacy-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=updateinfo" target="_blank">Privacy Statement</a>.</p>}
       </StyledUpdateInfoForm>
     </Layout>
   )
