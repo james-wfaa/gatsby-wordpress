@@ -53,7 +53,7 @@ const FieldBuilder = ({
     
         let fieldInfo = formData.formFields.filter(field => field.id === fieldId)
 
-        if((fieldInfo[0].type === 'radio' ) && inputId){
+        if(fieldInfo && fieldInfo?.length > 0 && (fieldInfo[0].type === 'radio' ) && inputId){
             setfieldValues({
                 ...fieldValues,
                 [fieldId]: {
@@ -61,7 +61,7 @@ const FieldBuilder = ({
                 },
             })
         }
-        if((fieldInfo[0].type === 'checkbox') && inputId){
+        if(fieldInfo && fieldInfo?.length > 0 && (fieldInfo[0].type === 'checkbox') && inputId){
             let checkIfExists = typeof fieldValues[fieldId] === 'object' ? Object.values(fieldValues[fieldId]).includes(value) : false;
 
             if(checkIfExists){
@@ -82,7 +82,7 @@ const FieldBuilder = ({
                 })
             }
         }
-        if((fieldInfo[0].type === 'select' ) && value){
+        if(fieldInfo && fieldInfo?.length > 0 && (fieldInfo[0].type === 'select' ) && value){
             setfieldValues({
                 ...fieldValues,
                 [fieldId]: value,
@@ -332,6 +332,8 @@ const FieldBuilder = ({
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
                         fieldHidden={fieldHidden(field)}
+                        handleFieldChange={handleFieldChange}
+                        onChange={onChange}
                     />
                 )
             case 'html':
