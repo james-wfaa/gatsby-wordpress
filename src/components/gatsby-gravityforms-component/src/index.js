@@ -55,7 +55,7 @@ const GravityFormForm = ({
 
     function checkForMultipart( myArray){
         for (var i=0; i < myArray.length; i++) {
-            if (myArray[i].type === "fileupload") {
+            if (myArray[i].type === "fileupload" || myArray[i].type === "post_image") {
                 return true
             }
         }
