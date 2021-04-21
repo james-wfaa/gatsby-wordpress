@@ -163,6 +163,7 @@ div{
       }
       .AdContent{
         margin-bottom: ${sizes.s40};
+        line-height: ${sizes.s36};
       }
 
       a{
