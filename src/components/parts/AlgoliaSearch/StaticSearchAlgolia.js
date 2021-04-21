@@ -84,7 +84,6 @@ const AccordianSearchAlgolia = props => {
           <SelectionsWrapper>
               <AccordianSearchBoxAlgolia defaultRefinement={props.searchString} onFocus={() => setFocus(true)} hasFocus={hasFocus} />
             <RefinementChoices>
-              <p>Included in Results:</p>
               <MenuSelect
                 attribute="type"
               />

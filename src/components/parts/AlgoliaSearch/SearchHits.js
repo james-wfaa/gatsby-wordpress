@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import EventCard from './cards/EventCard'
+import TripCard from './cards/TripCard'
 import PostCard from './cards/PostCard'
 import PageCard from './cards/PageCard'
 
@@ -15,13 +16,28 @@ const SearchHits = ({ hits, hitHandler }) => {
   }, [hits])
 
   let cards = hits.map(hit => {
-    //console.log(hit)
     let topResult = false;
     if (hit.__position === 1) {
       topResult = true;
     }
     switch (hit.type) {
-      case "Event":
+      case "Trips":
+        console.log('trips')
+        return (
+          <TripCard
+            key={hit.url}
+            hit={hit}
+            type={hit.type}
+            url={hit.url}
+            title={hit.title}
+            excerpt={hit.excerpt}
+            startDate={hit.startDate * 1000}
+            endDate={hit.endDate ? hit.endDate * 1000 : null}
+            city={hit.venue?.city}
+            state={hit.venue?.state}
+          />
+        )
+      case "Events":
         return (
           <EventCard
             key={hit.url}
@@ -30,24 +46,26 @@ const SearchHits = ({ hits, hitHandler }) => {
             url={hit.url}
             title={hit.title}
             excerpt={hit.excerpt}
-            date={hit.date}
+            startDate={hit.startDate}
+            endDate={hit.endDate ? hit.endDate : null}
             city={hit.venue?.city}
             state={hit.venue?.state}
           />
         )
-      case "Post":
-        if (hit?.categories[0]?.name === 'Classnote') {
-            return (
-                <PostCard
-                    key={hit.url}
-                    hit={hit}
-                    url={hit.url}
-                    title={hit.title}
-                    initialBlock={hit.excerpt}
-                    categories={hit.categories}
-                />
-            )
-        } else {
+      case "Alumni Notes":
+        return (
+          <PostCard
+              key={hit.url}
+              hit={hit}
+              url={hit.url}
+              title={hit.title}
+              excerpt={hit.excerpt}
+              initialBlock={hit.excerpt}
+              categories={hit.categories}
+          />
+      ) 
+      case "News & Stories":
+        
           const moreLinkText = hit?.linkFormat?.linkAuthor
                         ? <span>Via {hit.linkFormat.linkAuthor} <span class="arrow"></span></span>
                         : hit?.altPostType === "Podcast"
@@ -71,8 +89,7 @@ const SearchHits = ({ hits, hitHandler }) => {
                     tags={hit.categories}
                 />
             )
-        }
-      case "Page":
+      case "Pages":
         return (
           <PageCard
           key={hit.url}
@@ -80,10 +97,20 @@ const SearchHits = ({ hits, hitHandler }) => {
           url={hit.url}
           title={hit.title}
           // initialBlock={hit.blocks[0]}
-          topResult={topResult}
           excerpt={hit.excerpt}
         />
         )
+        case "Chapters":
+          return (
+            <PageCard
+            key={hit.url}
+            hit={hit}
+            url={hit.url}
+            title={hit.title}
+            // initialBlock={hit.blocks[0]}
+            excerpt={hit.excerpt}
+          />
+          )
       default:
         return null
     }

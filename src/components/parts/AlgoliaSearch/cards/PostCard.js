@@ -35,6 +35,7 @@ const CardWrapper = styled.div`
     p:last-child {
       margin-bottom: 0;
     }
+    margin-bottom: ${sizes.s16};  
   }
   a {
     cursor: pointer;
@@ -107,17 +108,8 @@ const DetailsDiv = styled.div`
   }
 `
 
-const PostCard = ({ initialBlock, title, topResult, url, categories, category, linkFormat, acfAlternatePostType, videoFormat, tags }) => {
-  let truncatedText
-
-  if (initialBlock) {
-    truncatedText =
-      initialBlock.length < 325
-        ? initialBlock
-        : initialBlock.substr(0, 326) + "..."
-  } else {
-    truncatedText = ""
-  }
+const PostCard = ({ initialBlock, excerpt, title, topResult, url, categories, category, linkFormat, acfAlternatePostType, videoFormat, tags }) => {
+  
 
   // modify this to check for linkFormat
   let type = categories[0].name === "Classnote" ? 'STORY' : 'STORY'
@@ -179,6 +171,14 @@ const PostCard = ({ initialBlock, title, topResult, url, categories, category, l
             
           </>
         )}
+        
+        
+        {initialBlock ? (
+          <div
+            className="excerpt"
+            dangerouslySetInnerHTML={{ __html: excerpt }}
+          ></div>
+        ) : null}
         { tags && (
           <TagList
           className={`tag`}
@@ -186,13 +186,6 @@ const PostCard = ({ initialBlock, title, topResult, url, categories, category, l
           globalSearch
       />
         )}
-        
-        {initialBlock ? (
-          <div
-            className="excerpt"
-            dangerouslySetInnerHTML={{ __html: truncatedText }}
-          ></div>
-        ) : null}
     </CardWrapper>
   )
 }
