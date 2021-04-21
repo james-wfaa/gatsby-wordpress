@@ -8,7 +8,7 @@ const NewsAll = (props) => {
     const [filterFilter, setFilterFilter] = useState("")
     const [pubFilter, setPubFilter] = useState("")
     const [productFilter, setProductFilter] = useState("")
-    const [allFilters, setAllFilters] = useState('type:Post AND NOT categories.name:Classnote')
+    const [allFilters, setAllFilters] = useState(`type:'News & Stories' AND NOT categories.name:Classnote`)
 
     const { filter, pub, product } = queryString.parse(props.location.search)
 
@@ -25,7 +25,7 @@ const NewsAll = (props) => {
     }, [])
 
     useEffect(() => {
-        setAllFilters(`type:Post AND NOT categories.name:Classnote${filterFilter}${pubFilter}${productFilter}`)
+        setAllFilters(`type:'News & Stories' AND NOT categories.name:Classnote${filterFilter}${pubFilter}${productFilter}`)
     }, [filterFilter, pubFilter, productFilter])
 
     let filterChange = (type, slug) => {

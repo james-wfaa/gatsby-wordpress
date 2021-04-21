@@ -104,8 +104,10 @@ const DetailsDiv = styled.div`
 
 const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, topResult, type, tags, url}) => {
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  let parsedDate = new Date(parseInt(startDate) * 1000).toLocaleDateString('en-US', options)
-  let parsedTime = new Date(parseInt(startDate) * 1000).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})
+  console.log(date)
+  console.log(startDate)
+  let parsedDate = new Date(parseInt(startDate)).toLocaleDateString('en-US', options)
+  console.log(parsedDate)
   let locationString = city && state ? `| ${city}, ${state}` : null
 
   return (
@@ -120,13 +122,13 @@ const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, 
         <DetailsDiv>
           <p><span className="cardType">{type.toUpperCase()}</span></p>
           <h3>{title}</h3>
-          <p className="datetime">{parsedDate}, {parsedTime} {locationString}</p>
+          <p className="datetime">{parsedDate} {locationString}</p>
         </DetailsDiv>
         :
         <>
           <p><span className="cardType">{type.toUpperCase()}</span></p>
           <h3>{title}</h3>
-          <p className="datetime">{parsedDate}, {parsedTime} {locationString}</p>
+          <p className="datetime">{parsedDate} {locationString}</p>
         </>
         }
         {excerpt ?

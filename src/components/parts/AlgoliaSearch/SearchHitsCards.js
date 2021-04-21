@@ -41,8 +41,8 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
         }
         console.log(hit)
         switch (hit.type) {
-            case 'Event':
-                
+            case 'Events':
+                console.log(hit.startDate)
                 return (
                     <EventContentCard
                         key={hit.url}
@@ -68,7 +68,7 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                         filterChange={filterChange}
                     />
                 )
-            case 'Post':
+            case 'News & Stories':
                 if (hit?.categories[0]?.name === 'Classnote') {
                     return (
                         <ContentCard
@@ -79,7 +79,6 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                             title={hit.title}
                             initialBlock={hit.excerpt}
                             img={hit?.featuredImage?.node?.localFile}
-                            topResult={topResult}
                             categories={hit.categories}
                             filterChange={filterChange}
                         />
@@ -103,7 +102,6 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                             img={hit?.featuredImage?.node?.localFile}
                             title={hit.title}
                             initialBlock={hit.blocks[0]}
-                            topResult={topResult}
                             excerpt={hit.excerpt}
                             acfAlternatePostType={hit.acfAlternatePostType}
                             postFormats={hit.postFormats}
