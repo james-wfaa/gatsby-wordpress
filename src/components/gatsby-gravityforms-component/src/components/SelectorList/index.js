@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
-import React, {useState} from 'react'
+import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import strings from '../../utils/strings'
 import InputWrapper from '../InputWrapper'
@@ -9,22 +9,12 @@ import InputWrapper from '../InputWrapper'
 const SelectorList = ({ errors, fieldData, name, register, onChange, handleFieldChange, fieldHidden, ...wrapProps }) => {
     const { choices, cssClass, isRequired, size, type } = fieldData
     const options = JSON.parse(choices)
-    //const [checkedInputs, setCheckedInputs] = useState([]);
 
     const fieldHiddenClass = fieldHidden === true ? 'gform_hidden' : ''
 
     const handleBothOnChangeCalls = (fieldData, value, choiceID) => {
         onChange(fieldData, value, choiceID)
         handleFieldChange(fieldData, value, choiceID)
-        /*if(checkedInputs.includes(value)){
-            const updateChecks = checkedInputs
-            updateChecks.pop(value)
-            setCheckedInputs(updateChecks)
-        } else{
-            const updateChecks = checkedInputs
-            updateChecks.push(value)
-            setCheckedInputs(updateChecks)
-        }*/
     }
     return (
         <InputWrapper
@@ -59,9 +49,6 @@ const SelectorList = ({ errors, fieldData, name, register, onChange, handleField
                                 name={name}
                                 ref={register({
                                     required: isRequired && strings.errors.required,
-                                    //validate: {
-                                        //checkChecked:() => checkedInputs.length > 0 === true,
-                                    //},
                                 })}
                                 type={type}
                                 value={value}
