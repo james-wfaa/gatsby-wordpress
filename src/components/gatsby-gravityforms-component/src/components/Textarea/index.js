@@ -36,7 +36,7 @@ const Textarea = ({
         >
             <textarea
                 aria-invalid={errors}
-                aria-required={isRequired}
+                aria-required={!fieldHidden ? isRequired : false}
                 className={classnames(
                     'gravityform__field__input',
                     `gravityform__field__input__${type}`,
@@ -50,7 +50,7 @@ const Textarea = ({
                 name={name}
                 placeholder={placeholder}
                 ref={register({
-                    required: isRequired && strings.errors.required,
+                    required: !fieldHidden ? isRequired && strings.errors.required : false,
                     maxlength: {
                         value: maxLength > 0 && maxLength,
                         message:
