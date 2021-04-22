@@ -42,7 +42,7 @@ const NewsAll = (props) => {
       }
 
     return (
-        <Layout title="News &amp; Stories Archive">
+        <Layout title="All News and Stories">
             <PageSection heading="All News and Stories">
                 <AlgoliaArchivePage
                 indices={[{name: "All"}]}
