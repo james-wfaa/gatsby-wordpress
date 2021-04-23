@@ -209,6 +209,7 @@ const StyledFooter = styled(WfaaFooter)`
   color: ${colors.bgWhite};
   position: relative;
   overflow: hidden;
+  clear: left; 
 
   .footer--social {
     display: flex;
