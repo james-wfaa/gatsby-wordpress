@@ -8,6 +8,7 @@ const EmbedBlock = ({source, type}) => {
   //console.log(source.children)
   //console.log(parse(data.data))
   let interactQuizClass = source && source?.includes('tryinteract') ? 'quiz-embed' : null;
+
   
   switch (type) {
     case "vimeo":
@@ -175,6 +176,7 @@ const EmbedBlock = ({source, type}) => {
             }}
             className={interactQuizClass}
           >
+            
             <iframe
               style={{
                 position: "absolute",
@@ -184,7 +186,7 @@ const EmbedBlock = ({source, type}) => {
                 height: "100%",
               }}
               src={parsed.props.children.props.children}
-              scrolling="no"
+              scrolling="yes"
               frameBorder="0"
               allowFullScreen={true}
               webkitallowfullscreen="true"
