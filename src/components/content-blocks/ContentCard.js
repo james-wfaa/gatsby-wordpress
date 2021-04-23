@@ -183,7 +183,7 @@ const ContentCard = ({
                                 <div className={`venuewrap venuewrap--${size}`}>
                                     <div className={`${className}__venue`}>{resolvedVenue}</div> 
                                     { venue?.city && venue?.state && (
-                                        <div className={`venue venue--${size}`}>{venue.city}, {venue.state}</div>
+                                        <div className={`venue venueCity venue--${size} `}>{venue.city}, {venue.state}</div>
                                     )}
                                 </div>
                             )}
@@ -233,7 +233,7 @@ const ContentCard = ({
                                 <div className={`venuewrap venuewrap--${size}`}>
                                     <div className={`${className}__venue`}>{resolvedVenue}</div> 
                                     { venue?.city && venue?.state && (
-                                        <div className={`venue venue--${size}`}>{venue.city}, {venue.state}</div>
+                                        <div className={`venue venueCity venue--${size}`}>{venue.city}, {venue.state}</div>
                                     )}
                                 </div>
                             )}
@@ -263,6 +263,9 @@ const StyledContentCard = styled(ContentCard)`
     }
     .arrow {
         ${mixins.arrow}
+    }
+    .venueCity{
+        font-weight: bold;
     }    
     &.promo{
         background-color: ${colors.bgRed};
@@ -296,6 +299,7 @@ const StyledContentCard = styled(ContentCard)`
         .category {
             display: none;
         }
+        
         .contentwrap {
             &:before {
                 border-left: 1.5px solid ${colors.bgWhite};

@@ -7,10 +7,12 @@ import CardSet from "../../components/content-modules/CardSet"
 import StoryCardD from "../../components/content-blocks/StoryCardD"
 import PromoCardD from "../../components/content-blocks/PromoCardD"
 import GridCardD from "../../components/content-modules/GridCardD"
+import StoryContentCard from "../../components/content-blocks/StoryContentCard"
 import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
+import SimpleSlider from "../../components/content-modules/SimpleSlider"
 
 function WordPressPage({ data }) {
-  const { page, posts, tileAds } = data
+  const { page, posts, featuredPosts, tileAds } = data
   const { title, excerpt, blocks, featuredImage, heroIntroSection, storyCategories, gridDetails } = page
   const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList?.[0]
     ? tileAds.nodes[0].siteOptions.TileAds.adList
@@ -45,7 +47,7 @@ function WordPressPage({ data }) {
   const moreButton = [
     {
       link: "/news/all",
-      text: "See More",
+      text: "See All News & Stories",
     },
   ]
 
@@ -104,6 +106,24 @@ function WordPressPage({ data }) {
   const storyCards2 = storyCards.slice(5,5+storyCards.length)
   const heroHeading = heroIntroSection?.heroHeading ? `<span>${heroIntroSection.heroHeading}</span> ON` : null
 
+  let featuredPostCards = featuredPosts.nodes.map((post) => {
+    const img = post?.featuredImage?.node?.localFile ? post.featuredImage.node?.localFile : null
+    const products = post?.products?.nodes
+      ? post.products.nodes
+      : null
+    const categories = post?.categories?.nodes
+      ? post.categories.nodes
+      : null
+    return (<StoryContentCard
+      key={post.url}
+      img={img}
+      tags={products.concat(categories)}
+      size="L"
+      {...post}
+    />)
+    
+  })
+
   return (
     <Layout title={title} noborder>
       { featuredImage?.node?.localFile && (
@@ -116,6 +136,15 @@ function WordPressPage({ data }) {
           heroHeading={heroHeading}
       />)}
       <WordPressContent blocks={blocks} />
+      <PageSection buttons={moreButton} >
+        <SimpleSlider
+          className="center"
+          centerMode
+          variableWidth
+          centerPadding="100px"
+        >{featuredPostCards}
+        </SimpleSlider>
+      </PageSection>
       <>{topics}</>
       <PageSection heading="Most Recent" bgImage={gridBgImage} buttons={moreButton}>
         <GridCardD> {storyCards1}
@@ -338,6 +367,39 @@ export const query = graphql`
               }
             }
           }
+        }
+      }
+    },
+    featuredPosts: allWpPost(filter: {tags: {nodes: {elemMatch: {slug: {eq: "featured-news"}}}}}, limit: 6, sort: {order: DESC, fields: date}) {
+      nodes {
+        title
+        excerpt
+        featuredImage {
+          node {
+            localFile {
+              ...HeroImage
+            }
+          }
+        }
+        url: uri
+        products {
+          nodes {
+            slug
+            name
+          }
+        }
+        categories {
+          nodes {
+            name
+            slug
+            uri
+          }
+        }
+        acfAlternatePostType{
+          alternateposttype
+        }
+        videoFormat {
+          vimeoId
         }
       }
     },

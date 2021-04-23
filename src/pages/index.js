@@ -91,7 +91,7 @@ const HomePage = ({ data }) => {
     
   })
   return (
-    <Layout title="Wisconsin Alumni Association" noborder>
+    <Layout title="Wisconsin Alumni Association &ndash; Where Badgers Belong" plaintitle noborder>
       <HeroIntroSection
           heroImage={data.homeBg}
           videoURL="https://player.vimeo.com/external/523946487.hd.mp4?s=65ae00f23e75bb574174a88ea656c8079cade0fa&profile_id=175"
@@ -107,7 +107,6 @@ const HomePage = ({ data }) => {
         <SimpleSlider
           className="center"
           slidesToShow="1"
-          dots
           centerMode
           variableWidth
           centerPadding="100px"
@@ -165,7 +164,6 @@ const HomePage = ({ data }) => {
       <PageSection heading="Featured Stories" buttons={featuredbutton} alt>
         <SimpleSlider
           className="center"
-          dots
           centerMode
           variableWidth
           centerPadding="100px"

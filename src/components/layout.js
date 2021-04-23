@@ -10,7 +10,7 @@ import { useWindowSize } from "./hooks"
 
 import "./layout.css"
 
-const Layout = ({ children, img, url, excerpt, noborder, title }) => {
+const Layout = ({ children, img, url, excerpt, noborder, title, plaintitle }) => {
   const data = useStaticQuery(graphql`
     query alertQuery {
       allWp {
@@ -65,6 +65,7 @@ const Layout = ({ children, img, url, excerpt, noborder, title }) => {
     <>
     <FilledHelmet
       title={title}
+      plaintitle={plaintitle}
       img={img}
       url={url}
       desc={excerpt}

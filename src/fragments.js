@@ -94,6 +94,12 @@ export const fragments = graphql`
             }
           }
         }
+        eventsCategories {
+          nodes {
+            name
+            url: uri
+          }
+        }
       }
     }
   }

@@ -6,7 +6,7 @@ import AlgoliaArchivePage from '../../components/parts/AlgoliaSearch/AlgoliaArch
 
 const EventsAll = () => {
     return (
-      <Layout>
+      <Layout title="All Events">
         <PageSection heading='All Events'>
           <AlgoliaArchivePage
             indices={[{ name: 'All' }]}

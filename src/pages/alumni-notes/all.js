@@ -6,7 +6,7 @@ import AlgoliaArchivePage from '../../components/parts/AlgoliaSearch/AlgoliaArch
 const NoteAll = ({ data }) => {
    
     return (
-        <Layout>
+        <Layout title="All Alumni Notes">
             <PageSection heading="All Alumni Notes">
             <AlgoliaArchivePage
                 indices={[{name: "All"}]}
