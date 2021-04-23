@@ -13,6 +13,9 @@ const SelectorList = ({ errors, fieldData, name, register, onChange, handleField
     const fieldHiddenClass = fieldHidden === true ? 'gform_hidden' : ''
 
     const handleBothOnChangeCalls = (fieldData, value, choiceID) => {
+        if(typeof choiceID === 'string' && choiceID.includes('.')){
+            choiceID = choiceID.replace('.', '')
+        }
         onChange(fieldData, value, choiceID)
         handleFieldChange(fieldData, value, choiceID)
     }
@@ -48,7 +51,7 @@ const SelectorList = ({ errors, fieldData, name, register, onChange, handleField
                                 //name={newInput !== null ? newInput : `input_${fieldData.id}`}
                                 name={name}
                                 ref={register({
-                                    required: isRequired && strings.errors.required,
+                                    required: !fieldHidden ? isRequired && strings.errors.required : false,
                                 })}
                                 type={type}
                                 value={value}
