@@ -98,6 +98,17 @@ export const query = graphql`
                 latitude
                 longitude
               }
+              eventsCategories {
+                nodes {
+                  name
+                  url: uri
+                }
+              }
+              products {
+                nodes {
+                  name
+                }
+              }
             }
           }
         }
@@ -127,6 +138,17 @@ export const query = graphql`
                 questions
                 virtualEvent
                 trip
+              }
+              eventsCategories {
+                nodes {
+                  name
+                  url: uri
+                }
+              }
+              products {
+                nodes {
+                  name
+                }
               }
               featuredImage {
                 node {
@@ -175,6 +197,17 @@ export const query = graphql`
         questions
         virtualEvent
         trip
+      }
+      eventsCategories {
+        nodes {
+          name
+          url: uri
+        }
+      }
+      products {
+        nodes {
+          name
+        }
       }
       date(formatString: "dddd, MMM. D")
       endDate
