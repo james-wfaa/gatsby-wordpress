@@ -41,9 +41,12 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         const pageTitle = firstUpdate.current === false ? document.querySelector("title").textContent.replace(' | Wisconsin Alumni Association', '') : null
         const paramToCheck = fieldValue && fieldValue !== '' ? fieldValue : null
         const queryToCheck = firstUpdate.current === false ? new URLSearchParams(document.location.search.substring(1)): null;
-        const param = hiddenFieldType && paramToCheck && queryToCheck ? queryToCheck.get(paramToCheck) : null;
+        //const param = hiddenFieldType && paramToCheck && queryToCheck ? queryToCheck.get(paramToCheck) : null;
+        //form #12 has a visible admin field
+        const param = paramToCheck && queryToCheck ? queryToCheck.get(paramToCheck) : null;
         
-        const hiddenValue = checkForPageTitle ? pageTitle : hiddenFieldType && param && param.match(/^[0-9a-zA-Z\-]+$/)? param : null; //if defaultValue exists, set to defaultvalue, otherwise, check if param exists in query - returns null if it does not
+        const hiddenValue = checkForPageTitle ? pageTitle : param && param.match(/^[0-9a-zA-Z\-]+$/)? param : null; //if defaultValue exists, set to defaultvalue, otherwise, check if param exists in query - returns null if it does not
+        //const hiddenValue = checkForPageTitle ? pageTitle : hiddenFieldType && param && param.match(/^[0-9a-zA-Z\-]+$/)? param : null; //if defaultValue exists, set to defaultvalue, otherwise, check if param exists in query - returns null if it does not
         return hiddenValue !== null ? hiddenValue : value
     }
 

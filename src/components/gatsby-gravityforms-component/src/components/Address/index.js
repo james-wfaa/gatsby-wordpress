@@ -51,7 +51,7 @@ const Address = ({ errors, fieldData, name,  register, value, fieldHidden, handl
                         cssClass,
                     ),
                     'inputMaskValue': inputMaskValue,
-                    'isRequired': isRequired,
+                    'isRequired': !fieldHidden ? isRequired : false,
                     'maxLength': maxLength,
                     'placeholder': placeholder,
                     'size': size,
