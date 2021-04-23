@@ -107,7 +107,6 @@ const HomePage = ({ data }) => {
         <SimpleSlider
           className="center"
           slidesToShow="1"
-          dots
           centerMode
           variableWidth
           centerPadding="100px"
@@ -165,7 +164,6 @@ const HomePage = ({ data }) => {
       <PageSection heading="Featured Stories" buttons={featuredbutton} alt>
         <SimpleSlider
           className="center"
-          dots
           centerMode
           variableWidth
           centerPadding="100px"

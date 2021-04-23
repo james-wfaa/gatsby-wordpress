@@ -41,7 +41,6 @@ const SimpleSliderItems = ({ items, size, type }) => {
         <SimpleSlider 
             className="center"
             slidesToShow="1"
-            dots
             centerMode
             variableWidth
             centerPadding="100px"
