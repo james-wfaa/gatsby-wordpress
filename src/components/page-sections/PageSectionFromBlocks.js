@@ -44,7 +44,6 @@ const PageSectionFromBlocks = ({ blocks, gallery, cardset, borderTop, stagger, c
         ?
         (<SimpleSlider className="center"
         slidesToShow="1"
-        dots
         centerMode
         variableWidth
         centerPadding="100px"

@@ -139,7 +139,6 @@ function WordPressPage({ data }) {
       <PageSection buttons={moreButton} >
         <SimpleSlider
           className="center"
-          dots
           centerMode
           variableWidth
           centerPadding="100px"
