@@ -124,7 +124,6 @@ const FooGallery = ({ content, id, className }) => {
             <SimpleSlider
                 className="center"
                 slidesToShow="1"
-                dots
                 centerMode
                 variableWidth>
                     {getGalleryImages()}
