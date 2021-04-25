@@ -31,7 +31,7 @@ const WordPressEventContent = ({className, content, date, startDate, endDate, li
                 
                 <div className="social-mobile">
                     <Button link="#" text="Questions" fullwidth alt altborder />
-                    <h2>Invite Others</h2>
+                    <h3>Invite Others</h3>
                     <SocialShareLinks></SocialShareLinks>
                 </div>
 
@@ -53,7 +53,7 @@ const WordPressEventContent = ({className, content, date, startDate, endDate, li
                 />
                 <div className="social-desktop">
                     <Button link="#" text="Questions" fullwidth alt altborder />
-                    <h2>Invite Others</h2>
+                    <h3>Invite Others</h3>
                     <SocialShareLinks></SocialShareLinks>
                 </div>
             </div>
