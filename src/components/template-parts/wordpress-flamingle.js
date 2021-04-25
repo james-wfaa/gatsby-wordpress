@@ -46,7 +46,7 @@ function BlogPost({ data }) {
   let links = [
     { url: "/", name: "Home" },
     { url: "/news", name: "News & Stories" },
-    { url: "/flamingle", name: "Ask Flamingle HQ" },
+    { url: "/flamingle", name: "Flamingle" },
     { url: link, name: title },
   ]
   
