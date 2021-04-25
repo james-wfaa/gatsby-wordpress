@@ -65,23 +65,28 @@ function WordPressPage({ data }) {
   let displayCategories = []
 
 categories.forEach((item) => {
+    console.log(item)
     const { categoryEvent, numberToShow } = item
-    const { slug } = categoryEvent
-    let categoryEvents = []
+
+    const slug = categoryEvent?.slug
+
+      ? categoryEvent.slug
+      :null
+    let categoryEventItems = []
     allevents.nodes.forEach((event) => {
       if (event?.eventsCategories?.nodes) {
         event.eventsCategories.nodes.forEach((cat) => {
-          if (cat.slug === slug) {
-            categoryEvents.push(event)
+          if (cat?.slug && cat.slug === slug) {
+            categoryEventItems.push(event)
           }
         })
       }
     })
 
-    if (categoryEvents) {
+    if (categoryEventItems && categoryEvent?.name) {
       displayCategories.push(
         <PageSection key={item.slug} heading={categoryEvent.name} centered stagger>
-          <CardSet items={categoryEvents} num={numberToShow} type="event"/>
+          <CardSet items={categoryEventItems} num={numberToShow} type="event"/>
         </PageSection>
       )
     }

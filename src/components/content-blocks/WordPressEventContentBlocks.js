@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import parse from 'html-react-parser';
 import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
 import styled from 'styled-components'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
@@ -35,23 +36,37 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
     }
 
 
-
-    const EventLinksContent = (blocks) ? blocks.map((block) => {
-        switch(block.name) {
-            case "tribe/event-links":
-                const blockContent = (block.isDynamic) ? block.dynamicContent : block.originalContent
-                return (<div className={block.name.replace('/', '-')} dangerouslySetInnerHTML={{__html: blockContent}} />)
-                break
-            default:
-                break
+    const parsedContent = parse(content, { trim: true })
+    //console.log(parsedContent)
+    let parsedEventLinks = <div />
+    parsedContent.forEach((tag) => {
+        console.log(tag.props.className)
+        const classes = tag?.props?.className ? tag.props.className : ''
+        const children = tag?.props?.children ? tag.props.children : null
+        if (classes.includes('tribe-block__events-link')) {
+            //console.log(children)
+            parsedEventLinks = tag
         }
-    } )
-    : null
+    })
 
+    const EventLinksContent = (blocks) 
+        ? blocks.map((block) => {
+            switch(block.name) {
+                case "tribe/event-links":
+                    const blockContent = (block.isDynamic) ? block.dynamicContent : block.originalContent
+                    return (<div className={block.name.replace('/', '-')} dangerouslySetInnerHTML={{__html: blockContent}} />)
+                    break
+                default:
+                    break
+            }
+        } )
+        : content 
+            ? parsedEventLinks
+            :null
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-        //console.log(block.name)
+        console.log(block.name)
         switch(block.name) {
             case "tribe/event-datetime":
             case "tribe/featured-image":
@@ -134,7 +149,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                         </div>
                     )}
 
-                    <h2>Invite Others</h2>
+                    <h3>Invite Others</h3>
                     <SocialShareLinks></SocialShareLinks>
                 </div>
                 {showMapDetails() && (
@@ -167,7 +182,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                         <Button link="#Top" text="Questions" fullwidth alt altborder />
                     </div>
                 )}
-                    <h2>Invite Others</h2>
+                    <h3>Invite Others</h3>
                     { typeof window !== "undefined" && (
                         <SocialShareLinks className="SocailShare" title={title} url={link} event></SocialShareLinks>
                     )}
@@ -337,7 +352,13 @@ margin: ${sizes.s48} auto 0;
     .tribe-block__events-link,
     .tribe-events-event-image,
     .tribe-block__venue,
-    .tribe-events-event-meta {
+    .tribe-events-event-meta,
+    .tribe-block__related-events__title,
+    .tribe-related-events,
+    .tribe-block__venue,
+    .tribe-block__event-price,
+    .tribe-block__organizer__details
+     {
         display: none;
     }
     a {

@@ -255,12 +255,19 @@ export const query = graphql`
               title
               startDate
               endDate
+              url
+              link
               venue {
                 title
                 city
                 state
               }
               excerpt
+              products {
+                nodes {
+                  name
+                }
+              }
               featuredImage {
                 node {
                   localFile {

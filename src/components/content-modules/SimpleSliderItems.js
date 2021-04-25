@@ -14,17 +14,17 @@ const SimpleSliderItems = ({ items, size, type }) => {
         switch (type) {
           case 'news': 
             myItems.push(
-              <StoryContentCard size={size} img={cardImg} {...item} />
+              <StoryContentCard key={item.title} size={size} img={cardImg} {...item} />
             )
             break
           case 'event':
             myItems.push(
-              <EventContentCard size={size} img={cardImg} {...item} />
+              <EventContentCard key={item.title} size={size} img={cardImg} {...item} />
             )
             break
           default: 
             myItems.push(
-              <ContentCard size={size} img={cardImg} {...item} />
+              <ContentCard key={item.title} size={size} img={cardImg} {...item} />
             )
             break
         }
