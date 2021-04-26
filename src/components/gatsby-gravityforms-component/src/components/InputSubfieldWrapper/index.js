@@ -75,7 +75,7 @@ const InputSubfieldWrapper = ({
                     aria-live="polite"
                     className="gravityform__error_message gfield_description validation_message"
                 >
-                    {errors.message}
+                    {errors?.type === "required" ? 'This field is required.' : errors.message}
                 </div>
             )}
         </div>

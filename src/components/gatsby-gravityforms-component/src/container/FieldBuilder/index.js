@@ -299,7 +299,7 @@ const FieldBuilder = ({
                 //console.log(fieldData)
                 return (
                     <Name
-                        errors={errors[inputName]}
+                        errors={errors}
                         fieldData={fieldData}
                         key={field.id}
                         name={inputName}

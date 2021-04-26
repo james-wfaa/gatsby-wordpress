@@ -6,7 +6,7 @@ import strings from '../../utils/strings'
 import InputWrapper from '../InputWrapper'
 import Input from '../Input'
 
-const Name = ({ errors, fieldData, name,  register, value, fieldHidden, ...wrapProps }) => {
+const Name = ({ errors, fieldData, name, register, value, fieldHidden, ...wrapProps }) => {
     //console.log(fieldData)
     //console.log(inputs)
     //console.log(value)
@@ -59,19 +59,21 @@ const Name = ({ errors, fieldData, name,  register, value, fieldHidden, ...wrapP
                     
         const {
             cssClass,
-        inputMaskValue,
-        isRequired,
-        maxLength,
-        placeholder,
-        size,
-        type,
+            inputMaskValue,
+            isRequired,
+            maxLength,
+            placeholder,
+            size,
+            type,
         } = subfield.subfieldData
         
+        const inputName = `input_${subfield.id.replace(".", "_")}`
+        
         return (<Input subfield
-            //errors={errors[name]}
+            errors={errors[inputName]}
             fieldData={subfield.subfieldData}
             key={subfield.id}
-            name={subfield.label}
+            name={inputName}
             register={subfield.register}
             //value={value}
             fieldHidden={fieldHidden}
