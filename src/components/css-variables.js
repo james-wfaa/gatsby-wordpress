@@ -524,8 +524,8 @@ export const mixins = {
             font-size: ${sizes.s52};
         }
         @media screen and ${breakpoints.tabletS} {
-            width: 450px;
-            left: calc(50% - 225px);
+            width: 520px;
+            left: calc(50% - 260px);
             font-size: ${sizes.s60};
             span {
                 font-size: ${sizes.s100};
