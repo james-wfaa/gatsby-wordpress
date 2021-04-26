@@ -64,25 +64,28 @@ function WordPressPage({ data }) {
   ]
   let displayCategories = []
 
+  
+
 categories.forEach((item) => {
-  const { categoryEvent, numberToShow } = item
-  //const { slug } = categoryEvent
+  const { categoryEvent, product, numberToShow } = item
+  const topic = categoryEvent ? categoryEvent : product ? product : null
+
+  const slug = topic?.slug
   let categoryEvents = []
     allevents.nodes.forEach((event) => {
       if (event?.eventsCategories?.nodes) {
         
         event.eventsCategories.nodes.forEach((cat) => {
-          console.log(cat)
-          /*if (cat?.slug === slug) {
+          if (cat?.slug === slug) {
             categoryEvents.push(event)
-          }*/
+          }
         })
       }
     })
 
     if (categoryEvents) {
       displayCategories.push(
-        <PageSection key={item?.slug} heading={categoryEvent.name} centered stagger>
+        <PageSection key={item?.slug} heading={topic?.name} centered stagger>
           <CardSet items={categoryEvents} num={numberToShow} type="event"/>
         </PageSection>
       )
