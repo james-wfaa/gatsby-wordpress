@@ -219,6 +219,9 @@ margin: ${sizes.s48} auto 0;
         display: block;
     }
     margin: 0 ${sizes.s32};
+    @media screen and ${breakpoints.tabletS} {
+        margin: 0;
+    }
 }
 
 .header{
