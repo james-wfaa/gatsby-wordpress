@@ -24,6 +24,15 @@
 		"toPath": "/news/*"
 	},
 	{
+		"fromPath": "/news-stories/flamingle/",
+		"toPath": "/flamingle/"
+	},
+	,
+	{
+		"fromPath": "/news-stories/askabe/",
+		"toPath": "/flamingle/"
+	},
+	{
 		"fromPath": "/news-stories/*",
 		"toPath": "/news/*"
 	},
@@ -278,6 +287,26 @@
 	{
 		"fromPath": "/askabe/*",
 		"toPath": "/news/*"
+	},
+	{
+		"fromPath": "/resources-services/career-resources/",
+		"toPath": "/career-resources/"
+	},
+	{
+		"fromPath": "/resources-services/career-resources/job-boards/",
+		"toPath": "/career-resources/job-boards/"
+	},
+	{
+		"fromPath": "/resources-services/career-resources/badger-bridge-overview/",
+		"toPath": "/alumni-directory/"
+	},
+	{
+		"fromPath": "/resources-services/career-resources/business-cards/",
+		"toPath": "/career-resources/business-cards/"
+	},
+	{
+		"fromPath": "/resources-services/career-resources/career-and-networking-events/",
+		"toPath": "/career-resources/"
 	}
-
+	
 ]
