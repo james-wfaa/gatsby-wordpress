@@ -29,13 +29,13 @@ const RenderedSponsors = (sponsors) ? sponsors.map((sponsor) => {
 
 const eventbutton = [
   {
-    link: "/events",
+    link: "/events/all",
     text: "All Events",
   },
 ]
 const featuredbutton = [
   {
-    link: "/news",
+    link: "/news/all",
     text: "See all news and stories",
   },
 ]

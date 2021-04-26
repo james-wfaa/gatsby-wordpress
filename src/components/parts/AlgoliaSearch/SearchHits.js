@@ -3,6 +3,7 @@ import EventCard from './cards/EventCard'
 import TripCard from './cards/TripCard'
 import PostCard from './cards/PostCard'
 import PageCard from './cards/PageCard'
+import ChapterCard from './cards/ChapterCard'
 
 const SearchHits = ({ hits, hitHandler }) => {
 
@@ -20,6 +21,7 @@ const SearchHits = ({ hits, hitHandler }) => {
     if (hit.__position === 1) {
       topResult = true;
     }
+    console.log(hit)
     switch (hit.type) {
       case "Trips":
         console.log('trips')
@@ -102,13 +104,13 @@ const SearchHits = ({ hits, hitHandler }) => {
         )
         case "Chapters":
           return (
-            <PageCard
+            <ChapterCard
             key={hit.url}
             hit={hit}
             url={hit.url}
             title={hit.title}
             // initialBlock={hit.blocks[0]}
-            excerpt={hit.excerpt}
+            excerpt={hit.content}
           />
           )
       default:

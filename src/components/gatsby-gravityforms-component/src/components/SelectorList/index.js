@@ -51,7 +51,7 @@ const SelectorList = ({ errors, fieldData, name, register, onChange, handleField
                                 //name={newInput !== null ? newInput : `input_${fieldData.id}`}
                                 name={name}
                                 ref={register({
-                                    required: !fieldHidden ? isRequired && strings.errors.required : false,
+                                    required:!fieldHidden ? isRequired && strings.errors.required : false,
                                 })}
                                 type={type}
                                 value={value}

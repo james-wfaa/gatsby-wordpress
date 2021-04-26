@@ -50,7 +50,6 @@ const RecentPosts = () => {
        <SimpleSlider
           className="center"
           slidesToShow="1"
-          dots
           centerMode
           variableWidth>
             {postCards}
