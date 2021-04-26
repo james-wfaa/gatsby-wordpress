@@ -3,6 +3,7 @@ import queryString from 'query-string'
 import Layout from '../../components/layout'
 import PageSection from '../../components/page-sections/PageSection'
 import AlgoliaArchivePage from '../../components/parts/AlgoliaSearch/AlgoliaArchivePage'
+import { navigate } from 'gatsby-link'
 
 const NewsAll = (props) => {
     const [filterFilter, setFilterFilter] = useState("")
@@ -28,8 +29,7 @@ const NewsAll = (props) => {
         setAllFilters(`type:'News & Stories' AND NOT categories.name:Classnote${filterFilter}${pubFilter}${productFilter}`)
     }, [filterFilter, pubFilter, productFilter])
 
-    let filterChange = (type, slug) => {
-
+    const filterChange = (type, slug) => {
         if (type === "filter") {
             setFilterFilter(` AND categories.slug:${slug}`)
         } else if (type === "pub") {
@@ -39,8 +39,15 @@ const NewsAll = (props) => {
         } else {
             return
         }
-      }
-
+    }
+    
+    const clearFilters = () => {
+        setFilterFilter("")
+        setPubFilter("")
+        setProductFilter("")
+        navigate('/news/all')
+    }
+    
     return (
         <Layout title="All News and Stories">
             <PageSection heading="All News and Stories">
@@ -49,6 +56,8 @@ const NewsAll = (props) => {
                 results={false}
                 filters={allFilters}
                 filterChange={filterChange}
+                clearFilters={clearFilters}
+                queryString={queryString.parse(props.location.search)}
                 />
             </PageSection>
         </Layout>
