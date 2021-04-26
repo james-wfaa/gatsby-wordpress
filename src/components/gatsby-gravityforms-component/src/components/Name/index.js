@@ -75,6 +75,7 @@ const Name = ({ errors, fieldData, name,  register, value, fieldHidden, ...wrapP
             register={subfield.register}
             //value={value}
             fieldHidden={fieldHidden}
+            fromNameField
         />)
     })
 return (

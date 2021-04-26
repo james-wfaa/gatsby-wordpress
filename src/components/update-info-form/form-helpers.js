@@ -67,6 +67,30 @@ export const checkForLetters = (value) => {
   return response
 }
 
+//validate phone number for just digits and dashes
+export const validatePhone = (value) => {
+  let response
+  const regExp = /[0-9-]*$/;
+  if(regExp.test(value)){
+    response = true
+  } else {
+    response = false
+  }
+  return response
+}
+
+//validate phone number for just digits and dashes
+export const validateName = (value) => {
+  let response
+  const regExp = /^[a-zA-Z'-]+$/;
+  if(regExp.test(value)){
+    response = true
+  } else {
+    response = false
+  }
+  return response
+}
+
 export const StyledError = styled.p`
   font-family: "Verlag A", "Verlag B";
   font-style: normal;

@@ -4,8 +4,10 @@ import React, { useRef, useLayoutEffect, useEffect, useState} from 'react'
 import strings from '../../utils/strings'
 import InputWrapper from '../InputWrapper'
 import InputSubfieldWrapper from '../InputSubfieldWrapper'
+import { StyledError, checkForLetters, validateName } from '../../../../../components/update-info-form/form-helpers'
 
-const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden, ...wrapProps }) => {
+
+const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden, fromNameField, ...wrapProps }) => {
     const {
         cssClass,
         inputMaskValue,
@@ -51,14 +53,15 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
     }
 
     const isAddressLineTwo = name && name === 'Address Line 2' ? true : false
-
+    const inputName = id && typeof id === 'string' ? `input_${id.replace(".", "_")}` : id ? id : name
+    
     return (subfield) ? (<InputSubfieldWrapper
         errors={errors}
         inputData={fieldData}
         labelFor={name}
         fieldHidden={fieldHidden}
         {...wrapProps}
-    > <input
+    ><input
         aria-invalid={errors}
         aria-required={!isAddressLineTwo ? isRequired : false}
         className={classnames(
@@ -70,9 +73,9 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         defaultValue={defaultValue}
         id={`input_${id.replace(".", "_")}`}
         maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
-        name={`input_${id.replace(".", "_")}`}
+        name={inputName}
         placeholder={placeholder}
-        ref={register({
+        ref={register(inputName, {
             required: isRequired && strings.errors.required && !isAddressLineTwo,
             maxlength: {
                 value: maxLength > 0 && maxLength,
@@ -84,6 +87,9 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
                 value: regex,
                 message: regex && strings.errors.pattern,
             },
+            validate: fromNameField ? {
+                validatename: value => validateName(value) === true
+            } : null, 
         })}
         type={type === 'phone' ? 'tel' : type === 'fileupload' ? 'file' : type === 'website' ? 'url' : type}
     /></InputSubfieldWrapper>) : (
