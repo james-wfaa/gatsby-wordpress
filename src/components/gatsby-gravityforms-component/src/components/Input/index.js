@@ -73,7 +73,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         maxLength={fromNameField ? 51 : maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
         name={inputName}
         placeholder={placeholder}
-        ref={register(inputName, {
+        ref={register({
             required: isRequired && strings.errors.required && !isAddressLineTwo,
             maxLength: fromNameField ? {
                 value: 50,
@@ -85,7 +85,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
                     `${strings.errors.maxChar.front}  ${maxLength} ${strings.errors.maxChar.back}`,
             } : null,
             pattern: {
-                value: fromNameField ?  /^[a-zA-Z'-]+$/ : regex,
+                value: fromNameField ?  /^[a-zA-Z' -]+$/ : regex,
                 message: fromNameField ?  'Name can contain letters, hyphen and apostrophes' : regex && strings.errors.pattern,
             },
         })}
