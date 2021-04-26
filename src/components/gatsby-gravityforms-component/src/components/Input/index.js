@@ -4,8 +4,6 @@ import React, { useRef, useLayoutEffect, useEffect, useState} from 'react'
 import strings from '../../utils/strings'
 import InputWrapper from '../InputWrapper'
 import InputSubfieldWrapper from '../InputSubfieldWrapper'
-import { StyledError, checkForLetters, validateName } from '../../../../../components/update-info-form/form-helpers'
-
 
 const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden, fromNameField, ...wrapProps }) => {
     const {
@@ -72,24 +70,24 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         )}
         defaultValue={defaultValue}
         id={`input_${id.replace(".", "_")}`}
-        maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
+        maxLength={fromNameField ? 51 : maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
         name={inputName}
         placeholder={placeholder}
         ref={register(inputName, {
             required: isRequired && strings.errors.required && !isAddressLineTwo,
-            maxlength: {
+            maxLength: fromNameField ? {
+                value: 50,
+                message: "Name must be less than 50 characters",
+            } : maxLength > 0 && maxLength ? {
                 value: maxLength > 0 && maxLength,
                 message:
                     maxLength > 0 &&
                     `${strings.errors.maxChar.front}  ${maxLength} ${strings.errors.maxChar.back}`,
-            },
+            } : null,
             pattern: {
-                value: regex,
-                message: regex && strings.errors.pattern,
+                value: fromNameField ?  /^[a-zA-Z'-]+$/ : regex,
+                message: fromNameField ?  'Name can contain letters, hyphen and apostrophes' : regex && strings.errors.pattern,
             },
-            validate: fromNameField ? {
-                validatename: value => validateName(value) === true
-            } : null, 
         })}
         type={type === 'phone' ? 'tel' : type === 'fileupload' ? 'file' : type === 'website' ? 'url' : type}
     /></InputSubfieldWrapper>) : (
@@ -111,20 +109,31 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
                 )}
                 defaultValue={defaultValue}
                 id={name}
-                maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
+                maxLength={type === 'phone' ? 26 : maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
                 name={name}
                 placeholder={placeholder}
                 ref={register({
                     required: !fieldHidden ? isRequired && strings.errors.required : false,
-                    maxlength: {
+                    maxLength: type === 'phone' ? {
+                        value: 25,
+                        message: 'Phone must be 25 characters or less',
+                    } : maxLength > 0 && maxLength ? {
                         value: maxLength > 0 && maxLength,
                         message:
                             maxLength > 0 &&
                             `${strings.errors.maxChar.front}  ${maxLength} ${strings.errors.maxChar.back}`,
-                    },
+                    } : null,
                     pattern: {
-                        value: regex,
-                        message: regex && strings.errors.pattern,
+                        value: type === 'phone' 
+                            ? /^[- ]*[0-9][- 0-9]*$/ 
+                            : type === 'email' 
+                                ? /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ 
+                                : regex,
+                        message: type === 'phone' 
+                            ? 'this is not a valid phone' 
+                            : type === 'email' 
+                                ? "Must be valid email address" 
+                                : regex && strings.errors.pattern,
                     },
                 })}
                 type={type === 'phone' 
