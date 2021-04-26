@@ -274,6 +274,10 @@
 	{
 		"fromPath": "/westpalmbeach/*",
 		"toPath": "/waa-groups/"
+	},
+	{
+		"fromPath": "/askabe/*",
+		"toPath": "/news/*"
 	}
 
 ]
