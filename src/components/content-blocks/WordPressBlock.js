@@ -267,6 +267,10 @@ a {
 figure.wp-block-image{
     @media screen and ${breakpoints.laptopS} {
         display: table;
+        max-width: 712px;
+        .gatsby-image-wrapper{
+            max-width: 712px !important;
+        }
     }
 }
 
@@ -286,6 +290,12 @@ figure.wp-block-image{
         max-width: 712px;
         figure{
             display: table;
+            max-width: 712px;
+
+            .gatsby-image-wrapper{
+                max-width: 712px !important;
+            }
+           
         }
         
         .alignright{
@@ -312,6 +322,9 @@ figure.wp-block-image{
         }
     }
 }
+
+
+
 
 .callout-bold {
     font-weight: bold;

@@ -24,7 +24,6 @@ const UpcomingEvents = () => {
        <SimpleSlider
           className="center"
           slidesToShow="1"
-          dots
           centerMode
           variableWidth>
             {eventCards}

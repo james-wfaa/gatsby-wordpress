@@ -53,12 +53,12 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                         venue={hit.venue}
                         location={hit.location}
                         img={
-                            hit.featuredImage
+                            hit.featuredImage?.node?.localFile
                                 ? hit.featuredImage.node.localFile
                                 : null
                         }
                         featureImg={
-                            hit.featuredImage
+                            hit.featuredImage?.node?.localFile
                                 ? hit.featuredImage.node.localFile
                                 : null
                         }
