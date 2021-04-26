@@ -65,22 +65,24 @@ function WordPressPage({ data }) {
   let displayCategories = []
 
 categories.forEach((item) => {
-    const { categoryEvent, numberToShow } = item
-    const { slug } = categoryEvent
-    let categoryEvents = []
+  const { categoryEvent, numberToShow } = item
+  //const { slug } = categoryEvent
+  let categoryEvents = []
     allevents.nodes.forEach((event) => {
       if (event?.eventsCategories?.nodes) {
+        
         event.eventsCategories.nodes.forEach((cat) => {
-          if (cat.slug === slug) {
+          console.log(cat)
+          /*if (cat?.slug === slug) {
             categoryEvents.push(event)
-          }
+          }*/
         })
       }
     })
 
     if (categoryEvents) {
       displayCategories.push(
-        <PageSection key={item.slug} heading={categoryEvent.name} centered stagger>
+        <PageSection key={item?.slug} heading={categoryEvent.name} centered stagger>
           <CardSet items={categoryEvents} num={numberToShow} type="event"/>
         </PageSection>
       )
@@ -168,6 +170,73 @@ export const query = graphql`
           categoryEvent: category {
             name
             slug
+          }
+          product {
+            slug
+            name
+            posts {
+              nodes {
+                title
+                url: uri
+                excerpt
+                blocks {
+                  name
+                  originalContent
+                  dynamicContent
+                  innerBlocks {
+                    name
+                    originalContent
+                    dynamicContent
+                    innerBlocks {
+                      name
+                      originalContent
+                      dynamicContent
+                    }
+                  }
+
+                }
+                featuredImage {
+                  node {
+                    localFile {
+                      childImageSharp {
+                        fluid(maxWidth: 712) {
+                          base64
+                          srcWebp
+                          srcSetWebp
+                          originalImg
+                          originalName
+                          aspectRatio
+                          base64
+                          src
+                          srcSet
+                          sizes
+                        }
+                      }
+                    }
+                  }
+                }
+                acfAlternatePostType{
+                  alternateposttype
+                }
+                videoFormat {
+                  vimeoId
+                }
+                categories {
+                  nodes {
+                    name
+                    slug
+                    id
+                  }
+                }
+                products {
+                  nodes {
+                    name
+                    slug
+                    id
+                  }
+                }
+              }
+            }
           }
           numberToShow
         }
