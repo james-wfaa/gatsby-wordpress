@@ -42,8 +42,11 @@ const Page404 = () => {
         <Layout title="404 - Item Not Found">
             <OuterWrapper>
                 <h1>Oops, Something Went Wrong</h1>
-                <p>The page you were looking for was not found. Maybe the page has moved. Or, the address is outdated. Was the URL typed correctly? Perhaps the site is on break and went to get some Babcock ice cream.</p>
-                <p>Whatever the reason for this unfortunate error, please use the menu or <a href="/search">site search</a> to get where you want to go. You can reach out at any time using our chat feature or you can check out our <a href="/customer-service-faq/">frequently asked questions</a>.</p>
+                <p>The page you were looking for was not found. Maybe the page has moved. Or, the address is outdated. Was the URL typed correctly? 
+                    Perhaps the site is on break and went to get some Babcock ice cream.</p>
+                <p>Whatever the reason for this unfortunate error, please use the menu or <a href="/search">site search</a> to get 
+                where you want to go. You can reach out at any time using our chat feature or you can check out 
+                our <a href="/about/customer-service-faq/">frequently asked questions</a>.</p>
             </OuterWrapper>
         </Layout>
     )
