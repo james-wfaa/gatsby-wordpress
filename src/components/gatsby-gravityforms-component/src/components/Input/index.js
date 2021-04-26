@@ -41,11 +41,16 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         const pageTitle = firstUpdate.current === false ? document.querySelector("title").textContent.replace(' | Wisconsin Alumni Association', '') : null
         const paramToCheck = fieldValue && fieldValue !== '' ? fieldValue : null
         const queryToCheck = firstUpdate.current === false ? new URLSearchParams(document.location.search.substring(1)): null;
-        const param = hiddenFieldType && paramToCheck && queryToCheck ? queryToCheck.get(paramToCheck) : null;
+        //const param = hiddenFieldType && paramToCheck && queryToCheck ? queryToCheck.get(paramToCheck) : null;
+        //form #12 has a visible admin field
+        const param = paramToCheck && queryToCheck ? queryToCheck.get(paramToCheck) : null;
         
-        const hiddenValue = checkForPageTitle ? pageTitle : hiddenFieldType && param && param.match(/^[0-9a-zA-Z\-]+$/)? param : null; //if defaultValue exists, set to defaultvalue, otherwise, check if param exists in query - returns null if it does not
+        const hiddenValue = checkForPageTitle ? pageTitle : param && param.match(/^[0-9a-zA-Z\-]+$/)? param : null; //if defaultValue exists, set to defaultvalue, otherwise, check if param exists in query - returns null if it does not
+        //const hiddenValue = checkForPageTitle ? pageTitle : hiddenFieldType && param && param.match(/^[0-9a-zA-Z\-]+$/)? param : null; //if defaultValue exists, set to defaultvalue, otherwise, check if param exists in query - returns null if it does not
         return hiddenValue !== null ? hiddenValue : value
     }
+
+    const isAddressLineTwo = name && name === 'Address Line 2' ? true : false
 
     return (subfield) ? (<InputSubfieldWrapper
         errors={errors}
@@ -55,7 +60,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         {...wrapProps}
     > <input
         aria-invalid={errors}
-        aria-required={isRequired}
+        aria-required={!isAddressLineTwo ? isRequired : false}
         className={classnames(
             'gravityform__field__input',
             `gravityform__field__input__${type}`,
@@ -68,7 +73,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         name={`input_${id.replace(".", "_")}`}
         placeholder={placeholder}
         ref={register({
-            required: isRequired && strings.errors.required,
+            required: isRequired && strings.errors.required && !isAddressLineTwo,
             maxlength: {
                 value: maxLength > 0 && maxLength,
                 message:
@@ -91,7 +96,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         >
             <input
                 aria-invalid={errors}
-                aria-required={isRequired}
+                aria-required={!fieldHidden ? isRequired : false}
                 className={classnames(
                     'gravityform__field__input',
                     `gravityform__field__input__${type}`,
@@ -104,7 +109,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
                 name={name}
                 placeholder={placeholder}
                 ref={register({
-                    required: isRequired && strings.errors.required,
+                    required: !fieldHidden ? isRequired && strings.errors.required : false,
                     maxlength: {
                         value: maxLength > 0 && maxLength,
                         message:

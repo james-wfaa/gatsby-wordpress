@@ -18,7 +18,6 @@ export const handleFormSubmit = (data) => {
       'content-type': 'application/json',
     },
     body: JSON.stringify(entryData),
-    mode: 'cors',
   })
   .then(res =>
     (!res.ok)
@@ -32,9 +31,9 @@ export const handleCommFormSubmit = (data) => {
   let entryData = {
     "payload":{ 
       "communicationsSignUp": data.communicationsSignUp, 
-      "firstname":data.contactInfo.firstname,
-      "lastname":data.contactInfo.lastname,
-      "email": data.contactInfo.email
+      "firstname":data.commSignUpInfo.firstname,
+      "lastname":data.commSignUpInfo.lastname,
+      "email": data.commSignUpInfo.email
     }
   }
   
@@ -44,13 +43,11 @@ export const handleCommFormSubmit = (data) => {
       'content-type': 'application/json',
     },
     body: JSON.stringify(entryData),
-  }).then((response) => { 
-    return response.json().then((data) => {
-        return data;
-    }).catch((err) => {
-        console.log(err);
-    }) 
-  });
+  }).then(res =>
+    (!res.ok)
+      ? res.json().then(() => {throw new Error('an error occurred')})
+      : res.json()
+  ) 
 }
 
 export const validatePostalCode = (value, country) => {
@@ -117,6 +114,33 @@ export const StyledError = styled.p`
     position:absolute;
     @media screen and ${breakpoints.tabletS} {
       top: -35px;
+    }
+  }
+`
+export const FormGeneralError = styled.p`
+  width: 80%;
+  text-align: center;
+  color: black;
+  margin: 32px auto;
+  padding: 16px 16px 16px 42px;
+  position:relative;
+  max-width: 640px;
+  /*background-color: ${colors.progressBarLightRed};*/
+  background-color: ${colors.errorBGYellow};
+  &:before{
+    content: ' ';
+    background-image: url(${formErrorIcon});
+    background-size: contain;
+    width: 24px;
+    height: 24px;
+    position:absolute;
+    left: 10px;
+    top: 26px;
+  }
+  a{
+    color:${colors.linkText};
+    :hover{
+      color:${colors.linkTextHover};
     }
   }
 `

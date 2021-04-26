@@ -17,6 +17,8 @@ export const fragments = graphql`
           title
           uri
           dateGmt
+          dayYear: date(formatString: "DD, YYYY")
+          month: date(formatString: "MM")
           hideFromMenu {
             hideFromMenu
             fieldGroupName
@@ -29,6 +31,8 @@ export const fragments = graphql`
                 title
                 uri
                 dateGmt
+                dayYear: date(formatString: "DD, YYYY")
+                month: date(formatString: "MM")
                 hideFromMenu {
                   hideFromMenu
                   fieldGroupName
@@ -41,6 +45,8 @@ export const fragments = graphql`
                       title
                       uri
                       dateGmt
+                      dayYear: date(formatString: "DD, YYYY")
+                      month: date(formatString: "MM")
                       hideFromMenu {
                         hideFromMenu
                         fieldGroupName
@@ -88,6 +94,12 @@ export const fragments = graphql`
             }
           }
         }
+        eventsCategories {
+          nodes {
+            name
+            url: uri
+          }
+        }
       }
     }
   }
@@ -122,6 +134,25 @@ export const fragments = graphql`
         videoFormat {
           vimeoId
         }
+        linkFormat {
+          linkAuthor
+          linkUrl
+        }
+        categories {
+          nodes {
+            name
+            slug
+            id
+          }
+        }
+        products {
+          nodes {
+            name
+            slug
+            id
+          }
+        }
+
       }
     }
   }

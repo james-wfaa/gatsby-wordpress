@@ -46,7 +46,7 @@ function BlogPost({ data }) {
   let links = [
     { url: "/", name: "Home" },
     { url: "/news", name: "News & Stories" },
-    { url: "/news/flamingle", name: "Ask Flamingle HQ" },
+    { url: "/flamingle", name: "Flamingle" },
     { url: link, name: title },
   ]
   
@@ -192,12 +192,15 @@ function BlogPost({ data }) {
       }
     } 
 `
+const questioner = askFlamingle?.abeQuestioner && askFlamingle.abeQuestioner !== 'An Alum'
+    ? askFlamingle.abeQuestioner
+    : null
   return (
     <Layout title={title}>
         <BreadCrumbs links={links} />
         <StyledFlamingleWrapper>
             <img className="flamingleMasthead" alt='' src={flamingleMasthead}></img>
-            <TitleSection heading={flamingleExcerpt} author={askFlamingle.abeQuestioner} categories={categories} />
+            <TitleSection heading={flamingleExcerpt} author={questioner} categories={categories} />
             <div className="flamingleCapWrapper"><img src={flamingleIcon} alt=''></img></div>
             <WordPressBasicContentBlocks {...page} />
           <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
@@ -209,7 +212,7 @@ function BlogPost({ data }) {
             </div>
             <div className="newsletterContainer">
               <p>View <span className="italicize">The Flamingle</span> Newsletter</p> 
-              <Button link="/news/flamingle" text="See All Posts" external />
+              <Button link="/flamingle" text="See All Posts" external />
             </div> 
           </div>
           <PageSection id="flamingle-post-listing" heading="More From Ask Flamingle HQ" topBorder buttons={buttons}>

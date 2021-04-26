@@ -15,7 +15,7 @@ const menuItems = {
   "Alumni Communities": [
     { tag: "Become a WAA Member", url: "/membership" },
     { tag: "WAA Member Community", url: "/membership/for-members" },
-    { tag: "Chapters & Groups", url: "/groups" },
+    { tag: "Chapters & Groups", url: "/waa-groups" },
     { tag: "Badger Bridge Online Network", url: "/alumni-directory" },
     { tag: "Diverse Alumni", url: "/diverse-alumni" },
     { tag: "Recent Grads", url: "/recent-grads" },
@@ -237,7 +237,7 @@ const PrimaryMenu = () => {
     leave: { opacity: 0 },
   })
 
-  const transition2 = useTransition(!showLeft, null, {
+  const transition2 = useTransition(!showLeft, {
     from: { transform: `translate3d(100%, 0, 0)` },
     enter: { transform: `translate3d(0,0,0)` },
     leave: { transform: `translate3d(100%,0, 0)` },
@@ -313,7 +313,7 @@ const PrimaryMenu = () => {
     <div onClick={() => modalClickHandler()}>
       <MenuGrid>
         {transition1.map(
-          ({ item, key, props }) =>
+          ({ props, item, key }) =>
             item && (
               <animated.div
                 key={key}
@@ -325,6 +325,7 @@ const PrimaryMenu = () => {
                   width: `100vw`,
                   height: `100%`,
                   backgroundColor: `white`,
+                  overflow:`scroll`
                 }}
               >
                 <LeftMenu>
@@ -337,7 +338,7 @@ const PrimaryMenu = () => {
                         <Link to="/about">About WAA</Link>
                       </li>
                       <li>
-                        <Link to="/contact-waa">Contact WAA</Link>
+                        <Link to="/about/contact-waa">Contact WAA</Link>
                       </li>
                       <li>
                         <Link to="/update-info">Update My Info</Link>
@@ -356,7 +357,7 @@ const PrimaryMenu = () => {
         )}
 
         {transition2.map(
-          ({ item, key, props }) =>
+          ({ props, item, key }) =>
             item && (
               <animated.div
                 key={key}

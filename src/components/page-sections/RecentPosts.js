@@ -19,6 +19,18 @@ const RecentPosts = () => {
               }
             }
             url: uri
+            categories {
+              nodes {
+                name
+                slug
+              }
+            }
+            products {
+              nodes {
+                name
+                slug
+              }
+            }
           }
         }
       }
@@ -38,7 +50,6 @@ const RecentPosts = () => {
        <SimpleSlider
           className="center"
           slidesToShow="1"
-          dots
           centerMode
           variableWidth>
             {postCards}

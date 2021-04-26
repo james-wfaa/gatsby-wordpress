@@ -7,26 +7,24 @@ import LeftArrow from "../../components/parts/SliderArrowLeft"
 import RightArrow from "../../components/parts/SliderArrowRight"
 
 const SimpleSliderItems = ({ items, size, type }) => {
-  //console.log(items)
     let myItems = []
     items.forEach((item) => {
-        //console.log(item)
         const { featuredImage: img } = item
         const cardImg = (img?.node?.localFile) ? img.node.localFile : null
         switch (type) {
           case 'news': 
             myItems.push(
-              <StoryContentCard size={size} img={cardImg} {...item} />
+              <StoryContentCard key={item.title} size={size} img={cardImg} {...item} />
             )
             break
           case 'event':
             myItems.push(
-              <EventContentCard size={size} img={cardImg} {...item} />
+              <EventContentCard key={item.title} size={size} img={cardImg} {...item} />
             )
             break
           default: 
             myItems.push(
-              <ContentCard size={size} img={cardImg} {...item} />
+              <ContentCard key={item.title} size={size} img={cardImg} {...item} />
             )
             break
         }
@@ -43,7 +41,6 @@ const SimpleSliderItems = ({ items, size, type }) => {
         <SimpleSlider 
             className="center"
             slidesToShow="1"
-            dots
             centerMode
             variableWidth
             centerPadding="100px"

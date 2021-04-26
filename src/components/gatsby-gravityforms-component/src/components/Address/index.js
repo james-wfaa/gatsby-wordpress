@@ -1,12 +1,14 @@
 import classnames from 'classnames'
 import get from 'lodash/get'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, {useState} from 'react'
 import strings from '../../utils/strings'
 import InputWrapper from '../InputWrapper'
 import Input from '../Input'
+import InputSubfieldWrapper from '../InputSubfieldWrapper'
+import countryList from "react-select-country-list"
 
-const Address = ({ errors, fieldData, name,  register, value, fieldHidden, ...wrapProps }) => {
+const Address = ({ errors, fieldData, name,  register, value, fieldHidden, handleFieldChange, onChange, ...wrapProps }) => {
     //console.log(fieldData)
     //console.log(inputs)
     //console.log(value)
@@ -21,7 +23,12 @@ const Address = ({ errors, fieldData, name,  register, value, fieldHidden, ...wr
         type,
         inputs,
     } = fieldData
- 
+    
+    const [ countries ] = useState(countryList().getData())
+    const countryOptions = countries.map(country => {
+        return <option value={country.value} key={country.value} defaultValue="US">{country.label}</option>
+      })
+    const [ selected, setSelected ] = useState('')
 
     let renderedSubfields = []
 
@@ -44,7 +51,7 @@ const Address = ({ errors, fieldData, name,  register, value, fieldHidden, ...wr
                         cssClass,
                     ),
                     'inputMaskValue': inputMaskValue,
-                    'isRequired': isRequired,
+                    'isRequired': !fieldHidden ? isRequired : false,
                     'maxLength': maxLength,
                     'placeholder': placeholder,
                     'size': size,
@@ -73,16 +80,48 @@ const Address = ({ errors, fieldData, name,  register, value, fieldHidden, ...wr
         size,
         type,
         } = subfield.subfieldData
+
+        const isCountryInput = subfield?.label === 'Country' ? true : false
         
-        return (<Input subfield
-            //errors={errors[name]}
-            fieldData={subfield.subfieldData}
-            key={subfield.id}
-            name={subfield.label}
-            register={subfield.register}
-            //value={value}
-            fieldHidden={fieldHidden}
-        />)
+        const handleBothOnChangeCalls = (e) => {
+            setSelected(e.target.value)
+            const id = Number(e.target.name.slice(6))
+            handleFieldChange(id, e.target.value)
+        }
+
+        if(isCountryInput){
+            return (
+                <InputSubfieldWrapper
+                    errors={errors}
+                    inputData={subfield.subfieldData}
+                    labelFor={subfield.label}
+                    fieldHidden={fieldHidden}
+                > 
+                    <select 
+                        name={`input_${subfield.id.replace(".", "_")}`} 
+                        /*onChange={e => updateOnChangeValues(e)}*/
+                        onChange={(e) => handleBothOnChangeCalls(e)} 
+                        defaultValue="US"
+                        ref={register({
+                        })}
+                        >
+                        {countryOptions}
+                    </select>
+                </InputSubfieldWrapper>
+            )
+        } else{
+            return (<Input subfield
+                //errors={errors[name]}
+                fieldData={subfield.subfieldData}
+                key={subfield.id}
+                name={subfield.label}
+                register={subfield.register}
+                //value={value}
+                fieldHidden={fieldHidden}
+            />)
+        }
+        
+        
     })
 return (
     <InputWrapper

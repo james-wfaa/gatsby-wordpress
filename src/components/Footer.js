@@ -60,11 +60,11 @@ const navAbout = {
   items:[
     {
       "title":"About WAA",
-      "url":"/about"
+      "url":"/about/"
     },
     {
       "title":"Alumni Advisory Council",
-      "url":"/about/alumni-advisory-council"
+      "url":"/about/alumni-advisory-council/"
     },
     {
       "title": "Career Opportunities at WFAA",
@@ -74,7 +74,7 @@ const navAbout = {
     },
     {
       "title":"Diversity & Inclusion",
-      "url":"/about/diversity-strategic-plans"
+      "url":"/about/diversity-strategic-plans/"
     },
     {
       "title":"For News Media",
@@ -82,7 +82,7 @@ const navAbout = {
     },
     {
       "title":"For WAA Group Leaders",
-      "url":"/groups/resources"
+      "url":"/badger-leaders-resources/"
     },
 ]};
   
@@ -151,14 +151,14 @@ const Social = ({className})=>(
     <li><a className="fb" title="Follow WAA on Facebook" href="https://www.facebook.com/wisalumni" target="_blank">&nbsp;</a></li>
     <li><a className="tw" title="Follow WAA on Twitter" href="https://www.twitter.com/wisalumni" target="_blank">&nbsp;</a></li>
     <li><a className="ig" title="Follow WAA on Instagram" href="https://www.instagram.com/wisalumni" target="_blank">&nbsp;</a></li>
-    <li><a className="wc" title="Learn more about following WAA on WeChat" href="/wechat">&nbsp;</a></li>
+    <li><a className="wc" title="Learn more about following WAA on WeChat" href="/about/wechat">&nbsp;</a></li>
     <li><a className="li" title="Follow WAA on LinkedIn" href="https://www.linkedin.com/company/wisconsin-alumni-association" target="_blank">&nbsp;</a></li>
   </ul>
 )
 
 const ContactUs = ({className})=>(
   <nav className={className}>
-    <a href="/contact-waa">
+    <a href="/about/contact-waa">
       <div className="footer-menu__title">CONTACT US</div>
     </a>
     <ul>
@@ -209,6 +209,7 @@ const StyledFooter = styled(WfaaFooter)`
   color: ${colors.bgWhite};
   position: relative;
   overflow: hidden;
+  clear: left; 
 
   .footer--social {
     display: flex;

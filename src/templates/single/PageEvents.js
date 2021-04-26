@@ -9,8 +9,6 @@ import GridCardD from "../../components/content-modules/GridCardD"
 import CardHandler from "../../components/content-modules/CardHandler"
 import CardSet from "../../components/content-modules/CardSet"
 import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
-import Accordian from "../../components/parts/Accordian"
-import AccordianSearchBox from "../../components/parts/AccordianSearchBox"
 
 function WordPressPage({ data }) {
 
@@ -18,29 +16,32 @@ function WordPressPage({ data }) {
   const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList?.[0]
     ? tileAds.nodes[0].siteOptions.TileAds.adList
     : null
-  const [ads] = useState(adList)
   const [currentAd, setCurrentAd] = useState(null)
-
 
   const randomAdGenerator = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min) - 1
   }
 
   useEffect(() => {
-    let filteredAds = (ads) 
-      ? ads.filter(ad => {
+    let filteredAds = (adList)
+      ? adList.filter(ad => {
           return ad.adActive
         })
       : null
-    let adSpot = (filteredAds) 
+    let adSpot = (filteredAds)
       ? randomAdGenerator(1, (filteredAds.length))
       : null
-    if (filteredAds && adSpot) {
+    if (filteredAds.length > 0 && filteredAds[adSpot]) {
       setCurrentAd(filteredAds[adSpot])
-    } 
-  }, [ads])
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log(currentAd)
+  }, [currentAd])
 
   const allevents = AllEvents()
+
   const { nodes: eventEdges } = allevents
   const { title, featuredImage, heroIntroSection, eventCategories, excerpt, gridDetails  } = page
   const { categories } = eventCategories
@@ -53,36 +54,45 @@ function WordPressPage({ data }) {
   const moreButton = [
     {
       link: "/events/all",
-      text: "All Events",
+      text: "See More Events",
+    },
+  ]
+  const allButton = [
+    {
+      link: "/events/all",
+      text: "See All Events",
     },
   ]
   let displayCategories = []
-  
+
 categories.forEach((item) => {
+    console.log(item)
     const { categoryEvent, numberToShow } = item
-    const { slug } = categoryEvent
-    let categoryEvents = []
+
+    const slug = categoryEvent?.slug
+
+      ? categoryEvent.slug
+      :null
+    let categoryEventItems = []
     allevents.nodes.forEach((event) => {
       if (event?.eventsCategories?.nodes) {
         event.eventsCategories.nodes.forEach((cat) => {
-          if (cat.slug === slug) {
-            categoryEvents.push(event)
+          if (cat?.slug && cat.slug === slug) {
+            categoryEventItems.push(event)
           }
         })
       }
-      
     })
 
-
-    if (categoryEvents) {
+    if (categoryEventItems && categoryEvent?.name) {
       displayCategories.push(
-        <PageSection key={item.slug} heading={categoryEvent.name} stagger>
-          <CardSet items={categoryEvents} num={numberToShow} type="event"/>
+        <PageSection key={item.slug} heading={categoryEvent.name} centered stagger>
+          <CardSet items={categoryEventItems} num={numberToShow} type="event"/>
         </PageSection>
       )
     }
 })
-    
+
   let featuredEventItems = []
   eventEdges.forEach((event) => {
     const { featuredEvent } = event
@@ -92,8 +102,11 @@ categories.forEach((item) => {
         )
     }
   })
-
+  eventEdges.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
   const cardGridEvents = eventEdges.slice(0,9)
+  //cardGridEvents.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
+
+
   let eventCards = cardGridEvents.map((event) => {
     return (
       <EventCardD key={event.url} {...event} url={event.link} />
@@ -101,11 +114,7 @@ categories.forEach((item) => {
   })
   const eventCards1 = eventCards.slice(0,5)
   const eventCards2 = eventCards.slice(5,5+eventCards.length)
-
   const heroHeading = heroIntroSection?.heroHeading ? `<span>${heroIntroSection.heroHeading}</span> ON` : null
-
-  console.log(currentAd)
-
   return (
     <Layout title={title} noborder>
       { featuredImage && featuredImage.node && (
@@ -117,14 +126,11 @@ categories.forEach((item) => {
           mobileHeroImage={heroIntroSection.heroImageMobile.localFile}
           heroHeading={heroHeading}
         />)}
-        <Accordian opentext="SEARCH" closetext="CLOSE SEARCH">
-          <AccordianSearchBox navigationURL="/events/search" />
-        </Accordian>
-        <PageSection>
+        <PageSection centered    buttons={moreButton}>
           <CardHandler items={featuredEventItems} type="event" size="L" />
         </PageSection>
       <>{displayCategories}</>
-      <PageSection heading="At a Glance" bgImage={gridBgImage} buttons={moreButton}>
+      <PageSection heading="At a Glance" bgImage={gridBgImage} buttons={allButton}>
         <GridCardD>
           {eventCards1}
           {currentAd && (
@@ -194,7 +200,6 @@ export const query = graphql`
             childImageSharp {
               fluid(maxWidth: 712) {
                 base64
-                tracedSVG
                 srcWebp
                 srcSetWebp
                 originalImg

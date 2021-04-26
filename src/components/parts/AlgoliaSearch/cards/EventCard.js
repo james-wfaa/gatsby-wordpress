@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import TagList from "../../TagList"
+
 import { breakpoints, fonts, colors } from "../../../css-variables"
 
 const CardWrapper = styled.div`
@@ -100,10 +102,10 @@ const DetailsDiv = styled.div`
   margin-bottom: 24px;
 `
 
-const EventCard = ({date, excerpt, hit, city, state, title, topResult, type, url}) => {
+const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, topResult, type, tags, url}) => {
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  let parsedDate = new Date(date * 1000).toLocaleDateString('en-US', options)
-  let parsedTime = new Date(date * 1000).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})
+  let parsedDate = new Date(parseInt(startDate) * 1000).toLocaleDateString('en-US', options)
+  let parsedTime = new Date(parseInt(startDate) * 1000).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})
   let locationString = city && state ? `| ${city}, ${state}` : null
 
   return (
@@ -127,10 +129,16 @@ const EventCard = ({date, excerpt, hit, city, state, title, topResult, type, url
           <p className="datetime">{parsedDate}, {parsedTime} {locationString}</p>
         </>
         }
-        <p><span className="tags">Tag 1, tag 2, tag 3</span></p>
         {excerpt ?
         <div className="excerpt" dangerouslySetInnerHTML={{__html: excerpt}}></div>
         : null}
+        { tags && (
+          <TagList
+          className={`tag`}
+          items={tags}
+          globalSearch
+      />
+        )}
       </Link>
     </CardWrapper>
   )

@@ -163,6 +163,7 @@ div{
       }
       .AdContent{
         margin-bottom: ${sizes.s40};
+        line-height: ${sizes.s36};
       }
 
       a{
@@ -224,10 +225,6 @@ export const query = graphql`
           fieldGroupName
           adButtonLink {
             ... on WpPage {
-              id
-              uri
-            }
-            ... on WpPost {
               id
               uri
             }

@@ -22,7 +22,7 @@ let headingCss = css`
 `
 
   const sliderSettings = {
-    dots:true,
+    dots:false,
     arrows:false,
     infinite:true,
     autoplay:true,
@@ -31,7 +31,7 @@ let headingCss = css`
     slidesToShow:1,
     slidesToScroll:1,
     pauseOnHover: false,
-    pauseOnDotsHover: true,
+    pauseOnDotsHover: false,
     dotsClass: "slick-dots carousel-dots"
   }
 

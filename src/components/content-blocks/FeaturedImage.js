@@ -31,7 +31,9 @@ const FeaturedImage = ({ className, featuredImage, event, size }) => {
       )}
     </div>
   )
-  : null
+  : featuredImage?.localFile?.publicURL
+        ? <img src={featuredImage.localFile.publicURL} />
+        : null
 }
 
 const StyledFeaturedImage = styled(FeaturedImage)`

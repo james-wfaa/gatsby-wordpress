@@ -121,7 +121,6 @@ const GravityForm = ({className, id}) => {
         return e.node.formId == id
     })
     //console.log(thisForm)
-    //let fullhostname = 'https://devwp.uwalumni.com'
     let fullhostname = 'https://uwalumni.wpengine.com'
     /*if (typeof window !== 'undefined') {
     const { protocol, hostname } = window.location;
@@ -134,7 +133,6 @@ const GravityForm = ({className, id}) => {
                         id={id}
                         formData={gfData}
                         lambda={`${fullhostname}/wp-json/formsubmit/v1/submit/${id}`}
-                        //lambda={`${fullhostname}/wp-json/formsubmit/v1/submit/9`}
                         successCallback={handleSuccess}
                         errorCallback={handleError}
                         onChange={handleFieldChange}
@@ -261,6 +259,20 @@ input[type='date']{
             margin-bottom: 6px;
         }
     }
+    .unknownError{
+        color:black;
+        background-color: ${colors.errorBGYellow};
+        :first-of-type{
+            padding: 12px 12px 12px 36px;
+            margin: 0;
+            :before{
+                padding: 0 0 0 24px;
+                top: 16px;
+                left: 12px;
+              }
+        }
+        
+    }
 }
 .gravityform__error_message{
     margin-left: 24px;
@@ -295,6 +307,11 @@ input[type='date']{
 }
 .gform_hidden, .gfield_visibility_administrative{
     display: none !important;
+}
+.half-width{
+    select{
+        margin-top: 0;
+    }
 }
 
 `

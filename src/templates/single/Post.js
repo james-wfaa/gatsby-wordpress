@@ -4,11 +4,19 @@ import BlogPost from "../../components/template-parts/wordpress-post"
 import FlaminglePost from "../../components/template-parts/wordpress-flamingle"
 
 const Post = ({ data }) => {
-//console.log('Post.js data:',data)
+  const { page } = data
+  const { linkFormat } = page
 
-const isFlamingle = data.page.askFlamingle?.abeQuestioner !== null ? true : false
+  /** if this is a "link" post, we should never even get here, but if we do, this renders 
+   * a browser redirect
+   */
+  if (typeof window !== "undefined" && window.location && linkFormat?.linkUrl) {
+    window.location.replace(linkFormat.linkUrl)
+  }
 
-return isFlamingle ? <FlaminglePost data={data} /> : <BlogPost data={data} />;
+  const isFlamingle = data.page.askFlamingle?.abeQuestioner !== null ? true : false
+
+  return isFlamingle ? <FlaminglePost data={data} /> : <BlogPost data={data} />;
 }
 
 export default Post
@@ -19,6 +27,10 @@ export const query = graphql`
       id
       title
       content
+      linkFormat {
+        linkAuthor
+        linkUrl
+      }
       blocks {
         order
         name
@@ -40,16 +52,15 @@ export const query = graphql`
       }
       uri
       link
-      date(formatString: "MMM. DD, YYYY")
+      dayYear: date(formatString: "DD, YYYY")
+      month: date(formatString: "MM")
       excerpt
       author {
         node {
           firstName
           lastName
           name
-
         }
-
       }
       featuredImage {
         node {
@@ -88,18 +99,40 @@ export const query = graphql`
       }
       categories {
         nodes {
+          id
           name
           slug
         }
       }
       products {
         nodes {
+          id
           name
           slug
           pages {
             nodes {
               title
               uri
+              template {
+                ... on WpDefaultTemplate {
+                  templateName
+                }
+                ... on WpTemplate_AggregateProductPage {
+                  templateName
+                }
+                ... on WpTemplate_HomePage {
+                  templateName
+                }
+                ... on WpTemplate_TopLevelPage {
+                  templateName
+                }
+                ... on WpProductTemplate {
+                  templateName
+                }
+                ... on WpGeneralTemplate {
+                  templateName
+                }
+              }
             }
           }
           posts{
@@ -108,13 +141,26 @@ export const query = graphql`
               title
               url: uri
               excerpt
+              categories {
+                nodes {
+                  name
+                  slug
+                  id
+                }
+              }
+              products {
+                nodes {
+                  name
+                  slug
+                  id
+                }
+              }
               featuredImage {
                 node {
                   localFile {
                     childImageSharp {
                       fluid(maxWidth: 712) {
                         base64
-                        tracedSVG
                         srcWebp
                         srcSetWebp
                         originalImg
@@ -136,6 +182,12 @@ export const query = graphql`
               }
               videoFormat {
                 vimeoId
+              }
+              postExternalAuthors {
+                nodes {
+                  name
+                  slug
+                }
               }
             }
           }

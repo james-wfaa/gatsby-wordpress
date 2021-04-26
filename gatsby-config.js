@@ -18,6 +18,22 @@ module.exports = {
     siteURL: 'https://gatsbyuwalumni.gtsb.io',
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-gatsby-cloud`,
+      options: {
+        headers: {
+          "/*": [
+            "Referrer-Policy: strict-origin-when-cross-origin",
+          ],
+        }, // option to add more headers. `Link` headers are transformed by the below criteria
+        allPageHeaders: [], // option to add headers for all pages. `Link` headers are transformed by the below criteria
+        mergeSecurityHeaders: true, // boolean to turn off the default security headers
+        mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
+        mergeCachingHeaders: true, // boolean to turn off the default caching headers
+        transformHeaders: (headers, path) => headers, // optional transform for manipulating headers under each path (e.g.sorting), etc.
+        generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
+      }
+    },
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
     {
@@ -34,7 +50,7 @@ module.exports = {
         web: [
           {
             name: ["Verlag A", "Verlag B"],
-            file: "https://cloud.typography.com/7708974/664088/css/fonts.css",
+            file: "https://cloud.typography.com/7708974/7253032/css/fonts.css",
           },
           {
             name: ["mrs-eaves-xl-serif", "mrs-eaves-xl-serif-narrow"],
@@ -87,26 +103,15 @@ module.exports = {
         },
       },
     },
-    //Uncomment to index to Algolia on gatsby build command
-    
-     {
-       resolve: `gatsby-plugin-algolia`,
-       options: {
-         appId: process.env.GATSBY_ALGOLIA_APP_ID,
-         apiKey: process.env.ALGOLIA_ADMIN_KEY,
-         queries: require("./src/utils/algolia-queries")
-       },
-     },
-     
     {
       resolve: `gatsby-source-wordpress`,
       options: {
         schema: {
           requestConcurrency: 5, 
           previewRequestConcurrency: 2, 
-          perPage: 50,
+          perPage: 100,
           typePrefix: `Wp`,
-          timeout: 120 * 1000,
+          timeout: 960 * 1000,
         },
         url:
           process.env.WPGRAPHQL_URL,
@@ -127,9 +132,17 @@ module.exports = {
             limit:
               process.env.NODE_ENV === `development`
                 ? // Lets just pull 50 posts in development to make it easy on ourselves.
-                  100
+                  50
                 : // and we don't actually need more than 5000 in production for this particular site
                   5000,
+          },
+          Event: {
+            limit:
+              process.env.NODE_ENV === `development`
+                ? // Lets just pull 50 posts in development to make it easy on ourselves.
+                  100
+                : // and we don't actually need more than 5000 in production for this particular site
+                  1000,
           },
           Classnote: {
             limit:
@@ -151,13 +164,13 @@ module.exports = {
             limit:
               process.env.NODE_ENV === `development`
                 ? // Lets just pull 50 posts in development to make it easy on ourselves.
-                  20
+                  200
                 : // and we don't actually need more than 5000 in production for this particular site
                   5000,
           },
           MediaItem: {
             localFile: {
-              requestConcurrency: 50
+              requestConcurrency: 40
             }
           },
         },
@@ -178,8 +191,48 @@ module.exports = {
         },
       },
     },
+    /*
+    {
+      resolve: "gatsby-plugin-google-tagmanager",
+      options: {
+        id: "YOUR_GOOGLE_TAGMANAGER_ID",
+  
+        // Include GTM in development.
+        //
+        // Defaults to false meaning GTM will only be loaded in production.
+        includeInDevelopment: false,
+  
+        // datalayer to be set before GTM is loaded
+        // should be an object or a function that is executed in the browser
+        //
+        // Defaults to null
+        defaultDataLayer: { platform: "gatsby" },
+  
+        // Specify optional GTM environment details.
+        gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING",
+        gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_PREVIEW_NAME",
+        dataLayerName: "YOUR_DATA_LAYER_NAME",
+  
+        // Name of the event that is triggered
+        // on every Gatsby route change.
+        //
+        // Defaults to gatsby-route-change
+        routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
+      },
+    },
+    */
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
+     {
+       resolve: `gatsby-plugin-algolia`,
+       options: {
+         appId: process.env.GATSBY_ALGOLIA_APP_ID,
+         apiKey: process.env.ALGOLIA_ADMIN_KEY,
+         queries: require("./src/utils/algolia-queries"),
+         enablePartialUpdates: true,
+         matchFields: ['slug', 'modified']
+       },
+     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

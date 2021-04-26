@@ -12,7 +12,11 @@ import AccordianSearchBoxAlgolia from './AccordianSearchBoxAlgolia'
 import SearchPageResults from './SearchPageResults'
 import AlgoliaPagination from './AlgoliaPagination'
 
-const StyledWrapper = styled.div``
+const StyledWrapper = styled.div`
+  .ais-Pagination--noRefinement {
+    display: none;
+  }
+`
 
 const SelectionsWrapper = styled.div`
     padding-top: 58px;
@@ -50,6 +54,7 @@ const RefinementChoices = styled.div`
     }
 `
 
+
 const AlgoliaArchivePage = props => {
     // Algolia
     const [query, setQuery] = useState()
@@ -61,32 +66,35 @@ const AlgoliaArchivePage = props => {
     //
 
     return (
-        <StyledWrapper>
-            <div>
-                <InstantSearch
-                    searchClient={searchClient}
-                    indexName={props.indices[0].name}
-                    onSearchStateChange={({ query }) => setQuery(query)}>
-                    <Configure filters={props.filters} hitsPerPage={9} />
-                    <ScrollTo>
-                        <SelectionsWrapper>
-                            <AccordianSearchBoxAlgolia
-                                defaultRefinement={props.searchString}
-                                onFocus={() => setFocus(true)}
-                                hasFocus={hasFocus}
-                            />
-                        </SelectionsWrapper>
-                    </ScrollTo>
-                    <SearchPageResults
-                        show={query && query.length > 0 && hasFocus}
-                        indices={props.indices}
-                        cardtype='ContentCard'
-                    />
-                    <AlgoliaPagination />
-                </InstantSearch>
-            </div>
-        </StyledWrapper>
-    )
+      <StyledWrapper>
+        <div>
+          <InstantSearch
+            searchClient={searchClient}
+            indexName={props.indices[0].name}
+            onSearchStateChange={({ query }) => setQuery(query)}
+          >
+            <Configure filters={props.filters} hitsPerPage={9} />
+            <ScrollTo>
+              <SelectionsWrapper>
+                <AccordianSearchBoxAlgolia
+                  defaultRefinement={props.searchString}
+                  onFocus={() => setFocus(true)}
+                  hasFocus={hasFocus}
+                />
+              </SelectionsWrapper>
+            </ScrollTo>
+            <SearchPageResults
+              show={query && query.length > 0 && hasFocus}
+              indices={props.indices}
+              cardtype='ContentCard'
+              card={props.card}
+              filterChange={props.filterChange}
+            />
+            <AlgoliaPagination />
+          </InstantSearch>
+        </div>
+      </StyledWrapper>
+    );
 }
 
 export default AlgoliaArchivePage

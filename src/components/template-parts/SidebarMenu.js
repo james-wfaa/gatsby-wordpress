@@ -188,7 +188,7 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width, hideNews}) 
         wrap={children => <ModalHandler onClick={() => setOpen(!open)}>{children}</ModalHandler>}
       >
         <StyledHeader className={open ? `open` : null}>
-          { link && (<a href={link}>{name}</a>)
+          { link && width <= 1200 ? (<a role="button" tabIndex="0">{name}</a>) : link ? (<a href={link}>{name}</a>) : null
           }
           { !link && ({name} )}
           <div className="menuIcon"><span></span></div>

@@ -39,7 +39,7 @@ const Page404 = () => {
     
     `
     return(
-        <Layout>
+        <Layout title="404 - Item Not Found">
             <OuterWrapper>
                 <h1>Oops, Something Went Wrong</h1>
                 <p>The page you were looking for was not found. Maybe the page has moved. Or, the address is outdated. Was the URL typed correctly? Perhaps the site is on break and went to get some Babcock ice cream.</p>

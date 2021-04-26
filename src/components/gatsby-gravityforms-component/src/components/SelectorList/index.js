@@ -45,10 +45,10 @@ const SelectorList = ({ errors, fieldData, name, register, onChange, handleField
                                 )}
                                 defaultChecked={isSelected}
                                 id={`${name}_${choiceID}`}
-                                name={newInput !== null ? newInput : `input_${fieldData.id}`}
+                                //name={newInput !== null ? newInput : `input_${fieldData.id}`}
+                                name={name}
                                 ref={register({
-                                    required:
-                                        isRequired && strings.errors.required,
+                                    required:!fieldHidden ? isRequired && strings.errors.required : false,
                                 })}
                                 type={type}
                                 value={value}
