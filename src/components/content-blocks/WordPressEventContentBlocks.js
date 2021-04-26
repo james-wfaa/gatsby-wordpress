@@ -40,29 +40,17 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
     //console.log(parsedContent)
     let parsedEventLinks = <div />
     parsedContent.forEach((tag) => {
-        console.log(tag.props.className)
+        //console.log(tag.props.className)
         const classes = tag?.props?.className ? tag.props.className : ''
         const children = tag?.props?.children ? tag.props.children : null
         if (classes.includes('tribe-block__events-link')) {
-            //console.log(children)
             parsedEventLinks = tag
+
         }
     })
+    //console.log(parsedEventLinks)
 
-    const EventLinksContent = (blocks) 
-        ? blocks.map((block) => {
-            switch(block.name) {
-                case "tribe/event-links":
-                    const blockContent = (block.isDynamic) ? block.dynamicContent : block.originalContent
-                    return (<div className={block.name.replace('/', '-')} dangerouslySetInnerHTML={{__html: blockContent}} />)
-                    break
-                default:
-                    break
-            }
-        } )
-        : content 
-            ? parsedEventLinks
-            :null
+   
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
@@ -138,7 +126,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                         cost={cost}
                         organizers={organizers}
                         eventDetails={eventDetails}
-                        calendarLinks={EventLinksContent}
+                        calendarLinks={parsedEventLinks}
                         showMapLink={showMapDetails()}
                     />
                 </div>
@@ -149,7 +137,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                         </div>
                     )}
 
-                    <h3>Invite Others</h3>
+                    <h3>Invite Others:</h3>
                     <SocialShareLinks></SocialShareLinks>
                 </div>
                 {showMapDetails() && (
@@ -173,16 +161,16 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     venue={venue} cost={cost}
                     organizers={organizers}
                     eventDetails={eventDetails}
-                    calendarLinks={EventLinksContent}
+                    calendarLinks={parsedEventLinks}
                     showMapLink={showMapDetails()}
                 />
                 <div className="social-desktop">
                 { eventDetails && eventDetails.questions && (
                     <div className="buttonWrap" onClick={() => handleModal()}>
-                        <Button link="#Top" text="Questions" fullwidth alt altborder />
+                        <Button link="#Top" text="Questions?" fullwidth alt altborder />
                     </div>
                 )}
-                    <h3>Invite Others</h3>
+                    <h3>Invite Others:</h3>
                     { typeof window !== "undefined" && (
                         <SocialShareLinks className="SocailShare" title={title} url={link} event></SocialShareLinks>
                     )}

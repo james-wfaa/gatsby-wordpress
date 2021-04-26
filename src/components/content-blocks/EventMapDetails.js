@@ -44,7 +44,7 @@ const EventMapDetails = ({ className, venue, eventDetails }) => {
                 )}
                 { eventDetails && eventDetails.eventlocationDetails && (
                     <div className="detailsWrap">
-                        <div className="subHeader">Event Details</div>
+                        <div className="subHeader">Additional Details</div>
                         <div className="details" dangerouslySetInnerHTML={{ __html: eventDetails.eventlocationDetails }} />
                     </div>
                 )}

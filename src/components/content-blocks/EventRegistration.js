@@ -3,6 +3,7 @@ import { colors, mixins, sizes, breakpoints } from '../css-variables'
 import styled from 'styled-components'
 import EventLinksBlock from "./EventLinks"
 
+
 import Button from '../parts/Button'
 import { convertTime, compareDate } from "../../utils/tools"
 import GenericModal from '../content-modules/GenericModal'
@@ -19,7 +20,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
             return "Free Entrance"
         }
         else{
-            return "$" + cost
+            return "$" + cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
         }
     }
     const calcDate = (date) => {
@@ -45,7 +46,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
                 : null;
     const registrationLink = eventDetails.registrationUrl ? eventDetails.registrationUrl : '';
     const registrationText = eventDetails.eventFullSoldOut ? eventDetails.eventFullText 
-    : eventDetails.trip ? 'Book Now' : 'Register';
+    : eventDetails.trip ? 'Book Now' : 'Register Now';
 
     const regIsFull = eventDetails.eventFullSoldOut;
     const [show, setShow] = useState(false);
@@ -62,9 +63,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
             {show ?
             <GenericModal
             data={
-            <EventLinksBlock>
-               { calendarLinks }
-            </EventLinksBlock>
+            <EventLinksBlock>{ calendarLinks }</EventLinksBlock>
             }
             opacity={0.9}
             closeCallback={() => handleModal()}/>
@@ -95,7 +94,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
                 <div className="amount ">{costDisplay(cost)}</div>
                 {organizerList.length < 5 ?
                     <>
-                    <div className="subHeader">ORGANIZER</div>
+                    <div className="subHeader">HOST(S)</div>
                     <div className="orgName ">{organizerList}</div>
                     </>
                 :
