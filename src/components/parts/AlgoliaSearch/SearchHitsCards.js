@@ -23,6 +23,9 @@ let EventCardWrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     grid-row-gap: 48px;
+    > * {
+        margin: 0 auto;
+    }
 `
 
 const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
@@ -44,7 +47,7 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                 console.log(hit.startDate)
                 return (
                     <EventContentCard
-                        key={hit.url}
+                        key={hit.objectID}
                         startDate={hit.startDate * 1000}
                         endDate={hit.endDate ? hit.endDate * 1000 : null}
                         title={hit.title}
@@ -52,19 +55,19 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                         venue={hit.venue}
                         location={hit.location}
                         img={
-                            hit.featuredImage
+                            hit.featuredImage?.node?.localFile
                                 ? hit.featuredImage.node.localFile
                                 : null
                         }
                         featureImg={
-                            hit.featuredImage
+                            hit.featuredImage?.node?.localFile
                                 ? hit.featuredImage.node.localFile
                                 : null
                         }
                         alt={hit.alt}
                         url={hit.url}
                         size={!hit.featuredEvent ? 'Wide' : 'XXL'}
-                        filterChange={filterChange}
+                        filterChange={filterChange}     
                     />
                 )
             case 'News & Stories':
