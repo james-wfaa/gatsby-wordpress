@@ -15,7 +15,8 @@ const StyledEventLinks = styled.div`
     a {
         ${mixins.a}
     }
-    .gatsby-image-wrapper {
+    .gatsby-image-wrapper,
+    .inline-gatsby-image-wrapper {
         max-height: 50px !important;
         left: -0;
         top: 32px;

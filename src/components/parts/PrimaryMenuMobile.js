@@ -30,6 +30,7 @@ const menuItems = {
   "News & Stories": [
     { tag: "News & Stories", url: "/news" },
     { tag: "Alumni Achievements", url: "/alumni-achievements" },
+    { tag: "Alumni Notes", url:"/alumni-notes" },
     { tag: "WAA Publications", url: "/publications" },
   ],
   "Ways to Support": [

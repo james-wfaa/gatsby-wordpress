@@ -41,6 +41,7 @@ function WordPressPage({ data }) {
   }, [currentAd])
 
   const allevents = AllEvents()
+
   const { nodes: eventEdges } = allevents
   const { title, featuredImage, heroIntroSection, eventCategories, excerpt, gridDetails  } = page
   const { categories } = eventCategories
@@ -101,9 +102,10 @@ categories.forEach((item) => {
         )
     }
   })
-
+  eventEdges.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
   const cardGridEvents = eventEdges.slice(0,9)
-  cardGridEvents.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
+  //cardGridEvents.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
+
 
   let eventCards = cardGridEvents.map((event) => {
     return (

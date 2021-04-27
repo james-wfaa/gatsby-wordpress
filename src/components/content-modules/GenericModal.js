@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import CloseButton from '../parts/CloseButton'
 import { useLockBodyScroll } from "../hooks"
+import { mixins } from "../css-variables"
 
 const GenericModal = ({data, button, closeCallback}) => {
 
@@ -27,6 +28,7 @@ const GenericModal = ({data, button, closeCallback}) => {
     background-color: white;
     z-index: 1002;
     
+    
   `
 
   const PropData = styled.div`
@@ -34,7 +36,11 @@ const GenericModal = ({data, button, closeCallback}) => {
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
+    a {
+      ${mixins.a}
+    }
   `
+  
 
 
   useLockBodyScroll();
