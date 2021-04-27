@@ -245,6 +245,73 @@ export const query = graphql`
             }
             name
           }
+          product {
+            slug
+            name
+            posts {
+              nodes {
+                title
+                url: uri
+                excerpt
+                blocks {
+                  name
+                  originalContent
+                  dynamicContent
+                  innerBlocks {
+                    name
+                    originalContent
+                    dynamicContent
+                    innerBlocks {
+                      name
+                      originalContent
+                      dynamicContent
+                    }
+                  }
+
+                }
+                featuredImage {
+                  node {
+                    localFile {
+                      childImageSharp {
+                        fluid(maxWidth: 712) {
+                          base64
+                          srcWebp
+                          srcSetWebp
+                          originalImg
+                          originalName
+                          aspectRatio
+                          base64
+                          src
+                          srcSet
+                          sizes
+                        }
+                      }
+                    }
+                  }
+                }
+                acfAlternatePostType{
+                  alternateposttype
+                }
+                videoFormat {
+                  vimeoId
+                }
+                categories {
+                  nodes {
+                    name
+                    slug
+                    id
+                  }
+                }
+                products {
+                  nodes {
+                    name
+                    slug
+                    id
+                  }
+                }
+              }
+            }
+          }
         }
       }
       groups {
