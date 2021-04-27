@@ -131,12 +131,16 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
                             ? /^[- ]*[0-9][- 0-9]*$/ 
                             : type === 'email' 
                                 ? /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ 
-                                : regex,
+                                : type === 'website'
+                                    ? /^(http|https):/
+                                    : regex,
                         message: type === 'phone' 
                             ? 'this is not a valid phone' 
                             : type === 'email' 
                                 ? "Must be valid email address" 
-                                : regex && strings.errors.pattern,
+                                : type === 'website'
+                                    ? 'Must be a valid url starting with http:// or https://'
+                                    : regex && strings.errors.pattern,
                     },
                 })}
                 type={type === 'phone' 
