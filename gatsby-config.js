@@ -191,6 +191,7 @@ module.exports = {
         },
       },
     },
+    /*
     {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
@@ -219,6 +220,7 @@ module.exports = {
         //routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
       },
     },
+    */
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
      {
