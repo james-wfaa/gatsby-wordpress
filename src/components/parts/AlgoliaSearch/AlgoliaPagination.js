@@ -5,11 +5,11 @@ import { colors } from '../../css-variables'
 
 const PaginationWrapper = styled.div`
   width: 760px;
-  margin: 0 auto;
+  margin: 0 auto  88px;
   text-align: center;
   ul {
     list-style-type: none;
-    margin: 58px 0 88px;
+    margin: 58px 0 0;
     font-size: 26px;
     li {
       display: inline-block;

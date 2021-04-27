@@ -1,9 +1,18 @@
 import React, { useEffect } from "react"
+import styled from 'styled-components'
 import EventCard from './cards/EventCard'
 import TripCard from './cards/TripCard'
 import PostCard from './cards/PostCard'
 import PageCard from './cards/PageCard'
 import ChapterCard from './cards/ChapterCard'
+
+const NoResultsDiv = styled.div`
+  p {
+    width: 50%;
+    margin: 48px auto 88px;
+    text-align: center;
+  }
+`
 
 const SearchHits = ({ hits, hitHandler }) => {
 
@@ -21,7 +30,7 @@ const SearchHits = ({ hits, hitHandler }) => {
     if (hit.__position === 1) {
       topResult = true;
     }
-    console.log(hit)
+
     switch (hit.type) {
       case "Trips":
         console.log('trips')
@@ -65,9 +74,9 @@ const SearchHits = ({ hits, hitHandler }) => {
               initialBlock={hit.excerpt}
               categories={hit.categories}
           />
-      ) 
+      )
       case "News & Stories":
-        
+
           const moreLinkText = hit?.linkFormat?.linkAuthor
                         ? <span>Via {hit.linkFormat.linkAuthor} <span class="arrow"></span></span>
                         : hit?.altPostType === "Podcast"
@@ -120,7 +129,10 @@ const SearchHits = ({ hits, hitHandler }) => {
 
   return (
     <>
-      {cards}
+      {cards.length > 0 ? cards :
+      <NoResultsDiv>
+        <p>We didn’t find anything for that search - please try your search again or use our navigation to browse the site.</p>
+      </NoResultsDiv>}
     </>
   )
 }
