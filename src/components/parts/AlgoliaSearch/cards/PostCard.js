@@ -46,6 +46,9 @@ const CardWrapper = styled.div`
     p:not(:last-child) {
       padding-bottom: 16px;
     }
+    .arrow {
+      ${mixins.arrow}
+    }
   }
   a:hover, a:visited, a:active, a:link { color: #3c3c3c !important}
   h3 {
@@ -103,9 +106,6 @@ const DetailsDiv = styled.div`
   background: ${colors.cardTitleBg};
   padding: 16px 0 8px 0;
   margin-bottom: 24px;
-  .arrow {
-    ${mixins.arrow}
-  }
 `
 
 const PostCard = ({ initialBlock, excerpt, title, topResult, url, categories, category, linkFormat, acfAlternatePostType, videoFormat, tags }) => {
