@@ -68,28 +68,28 @@ export const checkForLetters = (value) => {
 }
 
 //validate phone number for just digits and dashes
-export const validatePhone = (value) => {
+/*export const validatePhone = (value) => {
   let response
-  const regExp = /[0-9-]*$/;
+  const regExp = /^[- ]*[0-9][- 0-9]*$/;
   if(regExp.test(value)){
     response = true
   } else {
     response = false
   }
   return response
-}
+}*/
 
-//validate phone number for just digits and dashes
-export const validateName = (value) => {
+//validate name for just letters, hyphen and apostrophes
+/*export const validateName = (value) => {
   let response
-  const regExp = /^[a-zA-Z'-]+$/;
+  const regExp = /^[a-zA-Z' -]+$/;
   if(regExp.test(value)){
     response = true
   } else {
     response = false
   }
   return response
-}
+}*/
 
 export const StyledError = styled.p`
   font-family: "Verlag A", "Verlag B";

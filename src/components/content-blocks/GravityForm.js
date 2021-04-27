@@ -313,6 +313,9 @@ input[type='date']{
         margin-top: 0;
     }
 }
+input[type=file]::-webkit-file-upload-button { /* chromes and blink button */
+    cursor: pointer; 
+}
 
 `
 
