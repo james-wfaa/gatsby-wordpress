@@ -191,11 +191,10 @@ module.exports = {
         },
       },
     },
-    /*
     {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
-        id: "YOUR_GOOGLE_TAGMANAGER_ID",
+        id: "GTM-N733JCS",
   
         // Include GTM in development.
         //
@@ -209,18 +208,17 @@ module.exports = {
         defaultDataLayer: { platform: "gatsby" },
   
         // Specify optional GTM environment details.
-        gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING",
-        gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_PREVIEW_NAME",
-        dataLayerName: "YOUR_DATA_LAYER_NAME",
+        gtmAuth: "23M1DvbFZez0FRrm1LV4wQ",
+        gtmPreview: "env-1",
+        //dataLayerName: "YOUR_DATA_LAYER_NAME",
   
         // Name of the event that is triggered
         // on every Gatsby route change.
         //
         // Defaults to gatsby-route-change
-        routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
+        //routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
       },
     },
-    */
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
      {
