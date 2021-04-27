@@ -11,6 +11,7 @@ const UpdateSuccess = () => {
             heading='Thanks for your interest in learning more.'
             headingCompact
             backgroundColor={colors.formIntroBg}
+            pageTitle
             />
         </div>
     )

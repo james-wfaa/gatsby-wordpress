@@ -41,6 +41,7 @@ const SpouseInfo = () => {
               heading='Update My Info'
               headingCompact
               backgroundColor={colors.formIntroBg}
+              pageTitle
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="spouseInfo" onSubmit={handleSubmit(submitForm)} className="spouse-info">

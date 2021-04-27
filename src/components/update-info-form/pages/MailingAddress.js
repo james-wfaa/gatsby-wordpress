@@ -58,6 +58,7 @@ const MailingAddress = () => {
               heading='Update My Info'
               headingCompact
               backgroundColor={colors.formIntroBg}
+              pageTitle
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form className="mailing-address" onSubmit={handleSubmit(UpdateMailingAddressInfo)}>

@@ -52,6 +52,7 @@ const EmploymentInfo = () => {
               heading='Update My Info'
               headingCompact
               backgroundColor={colors.formIntroBg}
+              pageTitle
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form id="contact" onSubmit={handleSubmit(UpdateEmploymentInfo)}>
