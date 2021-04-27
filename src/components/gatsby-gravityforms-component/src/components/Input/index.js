@@ -109,7 +109,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
                 )}
                 defaultValue={defaultValue}
                 id={name}
-                maxLength={type === 'phone' ? 26 : maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
+                maxLength={type === 'phone' ? 26 : type === 'text' ? 256 : maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
                 name={name}
                 placeholder={placeholder}
                 ref={register({
@@ -117,6 +117,9 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
                     maxLength: type === 'phone' ? {
                         value: 25,
                         message: 'Phone must be 25 characters or less',
+                    } : type === 'text' ? {
+                        value: 255,
+                        message: "Must be less than 255 characters",
                     } : maxLength > 0 && maxLength ? {
                         value: maxLength > 0 && maxLength,
                         message:
