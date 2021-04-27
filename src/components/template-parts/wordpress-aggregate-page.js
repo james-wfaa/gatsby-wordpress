@@ -21,7 +21,7 @@ function WordPressPage({ page }) {
   ) : null
 
   return (
-    <Layout title={title}>
+    <Layout title={title} img={featuredImage?.node}>
       { featuredImage && (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}
