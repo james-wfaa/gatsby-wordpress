@@ -70,7 +70,7 @@ const InputSubfieldWrapper = ({
                 'below',
                 errors
             )}
-            {errors && (
+            {errors && (errors.message || errors?.type === "required") && (
                 <div
                     aria-live="polite"
                     className="gravityform__error_message gfield_description validation_message"
