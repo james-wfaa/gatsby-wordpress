@@ -193,7 +193,7 @@ const ChapterSearch = () => {
 
   useEffect(() => {
     if (selectedState !== "All U.S. States") {
-      setSelectedCountry("United States")
+      setSelectedCountry("All Countries")
       let filteredChapters = chapterData.filter(chapter => {
         return chapter.chapterDetails.csState === selectedState
       })
@@ -207,7 +207,7 @@ const ChapterSearch = () => {
         id="chapter-search"
         topBorder
         heading="Find Badgers Near You"
-        excerpt="Use the filters below to find a chapter in your country or U.S. State"
+        excerpt="Use the filters below to find a chapter in a U.S. state or another country."
       >
          <StyledButtonWrapper>
         <FilterBox>
@@ -222,7 +222,9 @@ const ChapterSearch = () => {
                 Search by Country
               </option>
               {getCountryOptions(chapterData).map(country => {
-                return <option value={country}>{country}</option>
+                if(country !== "United States"){
+                  return <option value={country}>{country}</option>
+                }
               })}
             </FilteredSelect>
           </FilteredDiv>

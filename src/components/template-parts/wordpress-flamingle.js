@@ -37,7 +37,6 @@ function BlogPost({ data }) {
 
   const buttons = (uniqueRelatedPosts.length > 2) 
       ? [{
-          //link: `/posts/search/?category=${slug}`,
           link:'/news/flamingle',
           text: 'See All Questions'
       }]
@@ -203,7 +202,7 @@ const questioner = askFlamingle?.abeQuestioner && askFlamingle.abeQuestioner !==
             <TitleSection heading={flamingleExcerpt} author={questioner} categories={categories} />
             <div className="flamingleCapWrapper"><img src={flamingleIcon} alt=''></img></div>
             <WordPressBasicContentBlocks {...page} />
-          <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
+          <SocialShareLinks text="Share This Story" title={title} excerpt={excerpt} url={`/news${link}`}/>
           <div className="flamingleLinks">
             <hr></hr>
             <div>

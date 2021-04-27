@@ -226,6 +226,8 @@ const StyledHeader = styled.header`
       margin-top: 10px;
       border: 2px solid ${colors.buttonRed};
       border-radius: 50%;
+      overflow: hidden;
+      z-index: 25;
 
       span {
         top: -5px;

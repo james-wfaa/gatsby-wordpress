@@ -78,7 +78,7 @@ const ContentCard = ({
 
     const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
         ? null
-        : (featureImg && typeof featureImg !== 'undefined' && featureImg.childImageSharp) ?
+        : (featureImg && typeof featureImg !== 'undefined' && featureImg.childImageSharp && featureImg.childImageSharp !== img.childImageSharp) ?
             [
                 img.childImageSharp.fluid,
                 {
@@ -87,11 +87,6 @@ const ContentCard = ({
                 }
             ]
             :  img.childImageSharp.fluid
-    //console.log(imgSources)
-
-    const crop = imgSources?.aspectRatio <= 2
-            ? ' cropClass'
-            : ''
 
     return (
 
@@ -153,7 +148,7 @@ const ContentCard = ({
             { linkFormat && (
                 <div className={`contentwrap contentwrap--${size}`}>
                     {imgSources && (
-                        <a href={finalUrl}  target={target} className={`imgzoomlink bodyImg ${crop}`} >
+                        <a href={finalUrl}  target={target} className={`imgzoomlink bodyImg `} >
                             <Img
                                 className={`img`}
                                 fluid={imgSources}
@@ -204,7 +199,7 @@ const ContentCard = ({
             { !linkFormat && (
                 <div className={`contentwrap contentwrap--${size}`}>
                     {imgSources && (
-                        <Link to={finalUrl} className={`imgzoomlink bodyImg ${crop}`}>
+                        <Link to={finalUrl} className={`imgzoomlink bodyImg`}>
                         <Img
                             className={`img`}
                             fluid={imgSources}
