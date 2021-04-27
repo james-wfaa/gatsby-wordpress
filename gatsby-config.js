@@ -12,10 +12,10 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteURL: 'https://gatsbyuwalumni.gtsb.io',
+    title: `Wisconsin Alumni Association`,
+    description: `Wisconsin Alumni Association`,
+    author: `WFAA`,
+    siteURL: 'https://gatsby.uwalumni.com',
   },
   plugins: [
     {
@@ -191,6 +191,7 @@ module.exports = {
         },
       },
     },
+    /*
     {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
@@ -219,6 +220,7 @@ module.exports = {
         //routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
       },
     },
+    */
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
      {

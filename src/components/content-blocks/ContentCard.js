@@ -87,9 +87,6 @@ const ContentCard = ({
                 }
             ]
             :  img.childImageSharp.fluid
-    console.log(imgSources)
-
-    
 
     return (
 
