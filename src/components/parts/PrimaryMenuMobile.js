@@ -35,6 +35,7 @@ const menuItems = {
   ],
   "Ways to Support": [
     { tag: "Advocate for the UW", url: "/advocate" },
+    { tag: "Show your Pride", url: "/show-your-pride" },
     { tag: "Get Involved", url: "/get-involved" },
     { tag: "Make a Gift", url: "/give" },
   ],
