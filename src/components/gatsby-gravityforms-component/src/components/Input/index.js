@@ -77,7 +77,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
             required: isRequired && strings.errors.required && !isAddressLineTwo,
             maxLength: fromNameField ? {
                 value: 50,
-                message: "Name must be less than 50 characters",
+                message: "Name must be less than 50 characters.",
             } : maxLength > 0 && maxLength ? {
                 value: maxLength > 0 && maxLength,
                 message:
@@ -86,7 +86,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
             } : null,
             pattern: {
                 value: fromNameField ?  /^[a-zA-Z' -]+$/ : regex,
-                message: fromNameField ?  'Name can contain letters, hyphen and apostrophes' : regex && strings.errors.pattern,
+                message: fromNameField ?  'Name can only contain letters, hyphens and apostrophes.' : regex && strings.errors.pattern,
             },
         })}
         type={type === 'phone' ? 'tel' : type === 'fileupload' ? 'file' : type === 'website' ? 'url' : type}
@@ -116,10 +116,10 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
                     required: !fieldHidden ? isRequired && strings.errors.required : false,
                     maxLength: type === 'phone' ? {
                         value: 25,
-                        message: 'Phone must be 25 characters or less',
+                        message: 'Phone number must be 25 characters or less.',
                     } : type === 'text' ? {
                         value: 255,
-                        message: "Must be less than 255 characters",
+                        message: "Must be 255 characters or less.",
                     } : maxLength > 0 && maxLength ? {
                         value: maxLength > 0 && maxLength,
                         message:
@@ -135,9 +135,9 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
                                     ? /^(http|https):/
                                     : regex,
                         message: type === 'phone' 
-                            ? 'this is not a valid phone' 
+                            ? 'Phone number can only contain numbers and dashes.' 
                             : type === 'email' 
-                                ? "Must be valid email address" 
+                                ? "Must be valid email address." 
                                 : type === 'website'
                                     ? 'Must be a valid url starting with http:// or https://'
                                     : regex && strings.errors.pattern,
