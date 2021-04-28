@@ -6,10 +6,11 @@ import {
     Configure,
     ScrollTo,
 } from 'react-instantsearch-dom'
-import { colors } from '../../css-variables'
+import { colors, sizes } from '../../css-variables'
 import AccordianSearchBoxAlgolia from './AccordianSearchBoxAlgolia'
 import SearchPageResults from './SearchPageResults'
 import AlgoliaPagination from './AlgoliaPagination'
+import Button from '../../parts/Button'
 
 const StyledWrapper = styled.div`
   .ais-Pagination--noRefinement {
@@ -35,7 +36,7 @@ const AlgoliaArchivePage = props => {
         process.env.GATSBY_ALGOLIA_SEARCH_KEY,
     )
     //
-
+    
     return (
       <StyledWrapper>
         <div>
@@ -52,6 +53,21 @@ const AlgoliaArchivePage = props => {
                   onFocus={() => setFocus(true)}
                   hasFocus={hasFocus}
                 />
+                {(props?.queryString?.filter || props?.queryString?.pub || props?.queryString?.product) && 
+                <QueryDiv>
+                  {props?.queryString?.filter &&
+                    <FilterText><span>Results filtered by:</span> filter={props.queryString.filter}</FilterText>
+                  }
+                  {props?.queryString?.pub &&
+                    <FilterText><span>Results filtered by:</span> publication={props.queryString.pub}</FilterText>
+                  }
+                  {props?.queryString?.product &&
+                    <FilterText><span>Results filtered by:</span> product={props.queryString.product}</FilterText>
+                  }
+                  <FilterButton onClick={props.clearFilters}>Clear Filters</FilterButton>
+                </QueryDiv>
+                }
+                
               </SelectionsWrapper>
             </ScrollTo>
             <SearchPageResults
