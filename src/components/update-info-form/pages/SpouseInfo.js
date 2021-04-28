@@ -1,6 +1,6 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, currentYear, handleFormSubmit } from '../form-helpers'
+import { StyledError, currentYear, handleFormSubmit, FormGeneralError } from '../form-helpers'
 import PageSection from '../../page-sections/PageSection'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -10,6 +10,7 @@ import { AppContext } from "../../../context/AppContext"
 const SpouseInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setSpouseInfoOnchange } = actions;
+  const [generalError, setGeneralError] = useState('')
 
   const { register, handleSubmit, errors, formState: { submitCount }} = useForm()
   const submitForm = data =>{
@@ -23,7 +24,7 @@ const SpouseInfo = () => {
       let currentPlaceInOrder = currentOrder.indexOf(currentStep)
       let nextStep = currentOrder[currentPlaceInOrder + 1]
       setCurrentStep(nextStep)
-    }).catch(err => {alert(`An error occurred: ${err.message}`)})
+    }).catch(err => {setGeneralError(err.message)})
   }
   const updateOnChangeValues = (e) => {
     if(e.target.type === 'checkbox'){
@@ -43,6 +44,9 @@ const SpouseInfo = () => {
               backgroundColor={colors.formIntroBg}
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
+            {generalError && (
+              <FormGeneralError>We’re sorry, but a network issue prevented us from saving your information. Our team has been notified, but you can <a href="mailto:web@supportuw.org">contact WAA</a> if you need immediate assistance.</FormGeneralError>
+            )}
             <form id="spouseInfo" onSubmit={handleSubmit(submitForm)} className="spouse-info">
             { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Spouse/Partner<span className="requiredInfo">*Required Information</span></legend>

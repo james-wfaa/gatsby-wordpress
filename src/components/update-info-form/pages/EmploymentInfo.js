@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, handleFormSubmit } from '../form-helpers'
+import { StyledError, handleFormSubmit, FormGeneralError } from '../form-helpers'
 import PageSection from '../../page-sections/PageSection'
 import Buttons from './../FormButtons'
 import { colors } from '../../css-variables'
@@ -12,6 +12,7 @@ const EmploymentInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setEmploymentInfoOnchange } = actions;
   const [countries, ] = useState(countryList().getData())
+  const [generalError, setGeneralError] = useState('')
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
   const UpdateEmploymentInfo = data =>{
@@ -25,7 +26,7 @@ const EmploymentInfo = () => {
       let currentPlaceInOrder = currentOrder.indexOf(currentStep)
       let nextStep = currentOrder[currentPlaceInOrder + 1]
       setCurrentStep(nextStep)
-    }).catch(err => {alert(`An error occurred: ${err.message}`)})
+    }).catch(err => {setGeneralError(err.message)})
   }
 
   const updateOnChangeValues = (e) => {
@@ -54,6 +55,9 @@ const EmploymentInfo = () => {
               backgroundColor={colors.formIntroBg}
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
+            {generalError && (
+              <FormGeneralError>We’re sorry, but a network issue prevented us from saving your information. Our team has been notified, but you can <a href="mailto:web@supportuw.org">contact WAA</a> if you need immediate assistance.</FormGeneralError>
+            )}
             <form id="contact" onSubmit={handleSubmit(UpdateEmploymentInfo)}>
               { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Employment Info<span className="requiredInfo">*Required Information</span></legend>

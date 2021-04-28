@@ -46,7 +46,7 @@ const ContactInfo = () => {
           />
           {generalError && (
             <FormGeneralError>We’re sorry, but a network issue prevented us from saving your information. Our team has been notified, but you can <a href="mailto:web@supportuw.org">contact WAA</a> if you need immediate assistance.</FormGeneralError>
-          ) }
+          )}
           <form
             id="contact"
             className="contact-info"
