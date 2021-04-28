@@ -251,6 +251,11 @@ const PrimaryMenu = () => {
   const modalClickHandler = () => {
     setShowLeft(true)
   }
+  const modalKeyPressHandler = (e) => {
+    if(e.key === 'Enter'){
+      setShowLeft(true)
+    }
+  }
 
   const parentClickHandler = (str, e) => {
     e.preventDefault()
@@ -388,6 +393,7 @@ const PrimaryMenu = () => {
                     </p>
                     <p
                       onClick={() => modalClickHandler()}
+                      onKeyPress={(e) => modalKeyPressHandler(e)}
                       style={{ marginBottom: 0 }}
                       tabIndex="0"
                     >
