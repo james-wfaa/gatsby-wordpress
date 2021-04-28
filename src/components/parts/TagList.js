@@ -68,6 +68,9 @@ const StyledTagList = styled(TagList)`
     display: inline-block;
     color: ${colors.categoryGrey};
     text-decoration: underline;
+    span {
+        color: ${colors.categoryGrey};
+    }
     @media screen and ${breakpoints.tabletL} {
         font-size: ${sizes.s15};
         line-height: ${sizes.s22};

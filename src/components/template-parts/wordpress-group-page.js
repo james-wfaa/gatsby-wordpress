@@ -30,7 +30,7 @@ const RenderedSponsors = (sponsors) ? sponsors.map((sponsor) => {
 const eventbutton = [
   {
     link: "/events/all",
-    text: "All Events",
+    text: "See All WAA Events",
   },
 ]
 const featuredbutton = [
