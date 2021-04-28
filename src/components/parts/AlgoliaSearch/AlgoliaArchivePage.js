@@ -23,20 +23,23 @@ const QueryDiv = styled.div`
 
 `
 
-const FilterText = styled.p`
+const FilterText = styled.span`
 
 `
 
 const FilterButton = styled.button`
   position: relative;
+  display: inline-block;
   text-align: left;
-  padding-left: ${sizes.s36};
-  color: ${colors.titleWhite};
-  width: 150px;
-  background-color: ${colors.buttonRed};
-  height: 48px;
+  background-color: transparent;
+  text-decoration: underline;
+  //padding-left: ${sizes.s36};
+  //color: ${colors.titleWhite};
+  //width: 150px;
+  //background-color: ${colors.buttonRed};
+  //height: 48px;
   border: none;
-  font-weight:bold;
+  //font-weight:bold;
   &:focus {
     outline: none;
   }
@@ -79,15 +82,15 @@ const AlgoliaArchivePage = props => {
                 {(props?.queryString?.filter || props?.queryString?.pub || props?.queryString?.product) && 
                 <QueryDiv>
                   {props?.queryString?.filter &&
-                    <FilterText><span>Results filtered by:</span> filter={props.queryString.filter}</FilterText>
+                    <FilterText><span>Results filtered by:</span> "{props.queryString.filter}"</FilterText>
                   }
                   {props?.queryString?.pub &&
-                    <FilterText><span>Results filtered by:</span> publication={props.queryString.pub}</FilterText>
+                    <FilterText><span>Results filtered by:</span> "{props.queryString.pub}"</FilterText>
                   }
                   {props?.queryString?.product &&
-                    <FilterText><span>Results filtered by:</span> product={props.queryString.product}</FilterText>
+                    <FilterText><span>Results filtered by:</span> "{props.queryString.product}"</FilterText>
                   }
-                  <FilterButton onClick={props.clearFilters}>Clear Filters</FilterButton>
+                  <FilterButton onClick={props.clearFilters}>Clear Filter</FilterButton>
                 </QueryDiv>
                 }
                 
