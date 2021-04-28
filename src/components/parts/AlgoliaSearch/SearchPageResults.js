@@ -12,7 +12,7 @@ import CardHits from './SearchHitsCards';
 const CustomHits = connectHits(Hits);
 const CustomCardHits = connectHits(CardHits);
 
-console.log(CardHits)
+//console.log(CardHits)
 
 const ResultsWrapper = styled.div`
   width: 80%;
@@ -54,7 +54,7 @@ const TotalWrapper = (props) => {
     setFirstHit(first);
     setLastHit(last);
   };
-  console.log(props.cardtype)
+  //console.log(props.cardtype)
   return (
     <>
       <HitCount firstHit={firstHit} lastHit={lastHit} />

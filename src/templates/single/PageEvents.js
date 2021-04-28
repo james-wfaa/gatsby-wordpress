@@ -37,7 +37,6 @@ function WordPressPage({ data }) {
   }, [])
 
   useEffect(() => {
-    console.log(currentAd)
   }, [currentAd])
 
   const allevents = AllEvents()

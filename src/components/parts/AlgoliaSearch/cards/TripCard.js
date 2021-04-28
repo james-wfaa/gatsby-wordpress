@@ -104,10 +104,10 @@ const DetailsDiv = styled.div`
 
 const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, topResult, type, tags, url}) => {
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  console.log(date)
-  console.log(startDate)
+  //console.log(date)
+  //console.log(startDate)
   let parsedDate = new Date(parseInt(startDate)).toLocaleDateString('en-US', options)
-  console.log(parsedDate)
+  //console.log(parsedDate)
   let locationString = city && state ? `| ${city}, ${state}` : null
 
   return (
