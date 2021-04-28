@@ -8,8 +8,7 @@ function FilledHelmet({title, plaintitle, img, desc, url}) {
   let fullhostname = 'https://gatsby.uwalumni.com'
   const imgpath = ( img?.localFile?.childImageSharp?.fluid?.src)
   ?   `${fullhostname}${img.localFile.childImageSharp.fluid.src}`
-  : DefaultImg
-
+  : fullhostname + DefaultImg
   const cleanDesc = ( desc ) ? striptags(desc) : null
   const resolvedTitle = plaintitle
     ? "%s"
