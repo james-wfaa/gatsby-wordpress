@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import algoliasearch from 'algoliasearch/lite'
 import {
     InstantSearch,
-    RefinementList,
     Configure,
     ScrollTo,
 } from 'react-instantsearch-dom'
@@ -16,6 +15,9 @@ const StyledWrapper = styled.div`
   .ais-Pagination--noRefinement {
     display: none;
   }
+  .ais-Pagination-item--disabled {
+    display: none;
+  }
 `
 
 const SelectionsWrapper = styled.div`
@@ -23,37 +25,6 @@ const SelectionsWrapper = styled.div`
     padding-bottom: 58px;
     background-color: ${colors.navcardGrey};
 `
-const RefinementChoices = styled.div`
-    width: 80%;
-    max-width: 760px;
-    margin: 0 auto;
-    display: grid;
-    p {
-        text-align: center;
-    }
-    ul {
-        list-style-type: none;
-        margin-left: 0;
-        margin-bottom: 0;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        li {
-            margin-left: 24px;
-            margin-bottom: 0;
-            text-decoration: none;
-            display: inline-block;
-            .ais-RefinementList-labelText {
-                margin-left: 12px;
-            }
-            .ais-RefinementList-count {
-                display: none;
-            }
-        }
-    }
-`
-
 
 const AlgoliaArchivePage = props => {
     // Algolia

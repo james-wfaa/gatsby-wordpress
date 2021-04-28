@@ -44,7 +44,7 @@ const PaginationWrapper = styled.div`
 const AlgoliaPagination = () => {
   return (
     <PaginationWrapper>
-      <Pagination />
+      <Pagination showLast />
     </PaginationWrapper>
   )
 }
