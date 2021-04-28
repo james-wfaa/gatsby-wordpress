@@ -53,7 +53,7 @@ function WordPressPage({ page, posts }) {
 
 
   return (
-    <Layout title={title} noborder>
+    <Layout title={title} noborder img={featuredImage?.node}>
       { featuredImage && featuredImage.node && (
       <HeroIntroSection
           heroImage={featuredImage.node.localFile}

@@ -9,7 +9,7 @@ import ChapterCard from './cards/ChapterCard'
 const NoResultsDiv = styled.div`
   p {
     width: 50%;
-    margin: 48px auto;
+    margin: 48px auto 88px;
     text-align: center;
   }
 `
@@ -33,7 +33,7 @@ const SearchHits = ({ hits, hitHandler }) => {
 
     switch (hit.type) {
       case "Trips":
-        console.log('trips')
+        //console.log('trips')
         return (
           <TripCard
             key={hit.url}

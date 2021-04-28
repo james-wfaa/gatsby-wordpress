@@ -42,10 +42,9 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
         if (hit.__position === 1) {
             topResult = true
         }
-        console.log(hit)
         switch (hit.type) {
             case 'Events':
-                console.log(hit.startDate)
+            case 'Trips':
                 return (
                     <EventContentCard
                         key={hit.objectID}
@@ -67,7 +66,8 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                         }
                         alt={hit.alt}
                         url={hit.url}
-                        size={!hit.featuredEvent ? 'Wide' : 'XXL'}
+                        //size={!hit.featuredEvent ? 'Wide' : 'XXL'}
+                        size='Wide'
                         filterChange={filterChange}     
                     />
                 )

@@ -46,6 +46,7 @@ const CardWrapper = styled.div`
     p:not(:last-child) {
       padding-bottom: 16px;
     }
+    
   }
   a:hover, a:visited, a:active, a:link { color: #3c3c3c !important}
   h3 {
@@ -88,6 +89,9 @@ const CardWrapper = styled.div`
       }
     }
   }
+  .arrow {
+    ${mixins.arrow}
+  }
 `
 
 const CardHeader = styled.div`
@@ -103,10 +107,11 @@ const DetailsDiv = styled.div`
   background: ${colors.cardTitleBg};
   padding: 16px 0 8px 0;
   margin-bottom: 24px;
-  .arrow {
-    ${mixins.arrow}
-  }
 `
+const ExternalUrlDiv = styled.div`
+  font-weight: bold;
+  margin: 0 0 ${sizes.s16};
+  `
 
 const PostCard = ({ initialBlock, excerpt, title, topResult, url, categories, category, linkFormat, acfAlternatePostType, videoFormat, tags }) => {
   
@@ -128,16 +133,24 @@ const PostCard = ({ initialBlock, excerpt, title, topResult, url, categories, ca
           ? altPostType 
           : null
 
-    const finalUrl = linkFormat?.linkUrl 
+    
+    const external = linkFormat?.linkUrl
+    const finalUrl = external
       ? linkFormat.linkUrl
       : url
-
-    const target = linkFormat?.linkUrl
+    const target = external
       ? '_blank'
       : '_self'
-    const linkTitle = linkFormat?.linkUrl
+    const linkTitle = external
       ? 'Link will open in a new tab/window'
       : ''
+    let externalUrl = external
+      ? external.substring(external.indexOf('//')+2)
+      : null
+
+    if (externalUrl) {
+      externalUrl = externalUrl.substring(0, externalUrl.indexOf('/'))
+    }
 
   return (
     <CardWrapper className={topResult ? "topResult" : null}>
@@ -150,22 +163,25 @@ const PostCard = ({ initialBlock, excerpt, title, topResult, url, categories, ca
         {topResult ? (
           <DetailsDiv>
             <div className="cardType">{displayCategory}</div>
-            { linkFormat && (
+            { external && (
                 <a href={finalUrl} title={linkTitle} target={target}><h3>{title} <span class="arrow"></span></h3></a>
               )
             }
-            { !linkFormat && (
+            { !external && (
               <Link to={finalUrl}><h3>{title}</h3></Link>
             )}
           </DetailsDiv>
         ) : (
           <>
             <div className="cardType">{displayCategory}</div>
-            { linkFormat && (
+            { external && (
+              <>
                 <a href={finalUrl} title={linkTitle} target={target}><h3>{title} <span class="arrow"></span></h3></a>
+                <ExternalUrlDiv>{externalUrl}</ExternalUrlDiv>
+              </>
               )
             }
-            { !linkFormat && (
+            { !external && (
               <Link to={finalUrl}><h3>{title}</h3></Link>
             )}
             
