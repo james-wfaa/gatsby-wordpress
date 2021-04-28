@@ -77,7 +77,7 @@ const LeftMenu = styled.div`
         border: none;
         width: 100%;
         background: none;
-        outline: none;
+        //outline: none;
         p {
           position: relative;
           padding-bottom: ${sizes.s32};
@@ -127,38 +127,41 @@ const SocialLinks = styled.div`
       margin: 0 ${sizes.s16} 0 0;
 
       a {
-        display: block;
-        width: ${sizes.s24};
-        height: ${sizes.s24};
-        background-color: ${colors.iconGrey};
-        font-size: 0;
-        &:hover {
-          background-color: ${colors.buttonRed};
+        span{
+          display: block;
+          width: ${sizes.s24};
+          height: ${sizes.s24};
+          background-color: ${colors.iconGrey};
+          font-size:0;
+          padding:0;
+          &:hover {
+            background-color: ${colors.buttonRed};
+          }
         }
         &.fb {
-          mask: url(${FbIcon});
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
+          span{
+            mask: url(${FbIcon}) no-repeat;
+          }
         }
         &.tw {
-          mask: url(${TwIcon});
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
+          span{
+            mask: url(${TwIcon}) no-repeat;
+          }
         }
         &.ig {
-          mask: url(${IgIcon});
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
+          span{
+            mask: url(${IgIcon}) no-repeat;
+          }
         }
         &.wc {
-          mask: url(${WcIcon});
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
+          span{
+            mask: url(${WcIcon}) no-repeat;
+          }
         }
         &.li {
-          mask: url(${LiIcon});
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
+          span{
+            mask: url(${LiIcon}) no-repeat;
+          }
         }
       }
     }
@@ -386,6 +389,7 @@ const PrimaryMenu = () => {
                     <p
                       onClick={() => modalClickHandler()}
                       style={{ marginBottom: 0 }}
+                      tabIndex="0"
                     >
                       {select}
                     </p>
