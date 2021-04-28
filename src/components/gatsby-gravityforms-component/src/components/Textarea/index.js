@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import InputWrapper from '../../components/InputWrapper'
 import strings from '../../utils/strings'
 
@@ -23,8 +23,26 @@ const Textarea = ({
         size,
         type,
     } = fieldData
+    const [textareaCharLeft, setCharLeft ] = useState(1000)
+    
     const regex = inputMaskValue ? new RegExp(inputMaskValue) : false
-
+    let charactersLeft = maxLength ? maxLength : 1000
+    let maxChar = maxLength ? maxLength : 1000
+    useEffect(() => {
+        setCharLeft(charactersLeft)
+    }, []);
+    const updateOnChangeValues = (e) => {
+        if(e.target.type === 'textarea'){
+          let currentLength = e.target.value.length
+          if(currentLength > maxChar){
+            charactersLeft = 0
+            setCharLeft(charactersLeft)
+          } else{
+            charactersLeft = maxChar - currentLength
+            setCharLeft(charactersLeft)
+          }
+        }
+    }
     return (
         <InputWrapper
             errors={errors}
@@ -46,9 +64,10 @@ const Textarea = ({
                 )}
                 defaultValue={value}
                 id={name}
-                maxLength={maxLength > 0 ? maxLength : undefined}
+                maxLength={maxLength > 0 ? maxLength : 1000}
                 name={name}
                 placeholder={placeholder}
+                onChange={e => updateOnChangeValues(e)}
                 ref={register({
                     required: !fieldHidden ? isRequired && strings.errors.required : false,
                     maxlength: {
@@ -64,6 +83,7 @@ const Textarea = ({
                 })}
                 type={type}
             />
+            {textareaCharLeft < maxChar && <p style={{fontSize : `14px`}}>{textareaCharLeft} characters left</p>}
         </InputWrapper>
     )
 }
