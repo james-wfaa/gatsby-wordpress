@@ -113,7 +113,7 @@ const RightMenu = styled.div`
 `
 
 const SocialLinks = styled.div`
-  margin-bottom: 110px;
+  margin-bottom: 130px;
   .socialLinks {
     width: 200px;
     display: flex;
@@ -128,29 +128,41 @@ const SocialLinks = styled.div`
       margin: 0 ${sizes.s16} 0 0;
 
       a {
-        display: block;
-        width: ${sizes.s24};
-        height: ${sizes.s24};
-        background-color: ${colors.iconGrey};
-        font-size:0;
-        padding:0;
-        &:hover {
-          background-color: ${colors.buttonRed};
+        span{
+          display: block;
+          width: ${sizes.s24};
+          height: ${sizes.s24};
+          background-color: ${colors.iconGrey};
+          font-size:0;
+          padding:0;
+          &:hover {
+            background-color: ${colors.buttonRed};
+          }
         }
         &.fb {
-          mask: url(${FbIcon});
+          span{
+            mask: url(${FbIcon}) no-repeat;
+          }
         }
         &.tw {
-          mask: url(${TwIcon});
+          span{
+            mask: url(${TwIcon}) no-repeat;
+          }
         }
         &.ig {
-          mask: url(${IgIcon});
+          span{
+            mask: url(${IgIcon}) no-repeat;
+          }
         }
         &.wc {
-          mask: url(${WcIcon});
+          span{
+            mask: url(${WcIcon}) no-repeat;
+          }
         }
         &.li {
-          mask: url(${LiIcon});
+          span{
+            mask: url(${LiIcon}) no-repeat;
+          }
         }
       }
     }
