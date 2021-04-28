@@ -11,7 +11,7 @@ const NoteAll = ({ data }) => {
             <AlgoliaArchivePage
                 indices={[{name: "All"}]}
                 results={false}
-                filters={'type:Alumni Notes'}
+                filters={'type:"Alumni Notes"'}
             />
                 {/* <CardContainer>{cards}</CardContainer> */}
             </PageSection>
