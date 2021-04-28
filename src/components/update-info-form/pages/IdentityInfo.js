@@ -14,7 +14,7 @@ const IdentityInfo = () => {
   const { setCurrentStep, setIdentityInfoOnchange } = actions;
   const [countries, ] = useState(countryList().getData())
 
-  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdateIdentityInfo = data =>{
     //setIdentityInfo(data)
     handleFormSubmit(state).then((returnedData) =>{

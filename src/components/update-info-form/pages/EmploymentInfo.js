@@ -13,7 +13,7 @@ const EmploymentInfo = () => {
   const { setCurrentStep, setEmploymentInfoOnchange } = actions;
   const [countries, ] = useState(countryList().getData())
 
-  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdateEmploymentInfo = data =>{
     handleFormSubmit(state).then((returnedData) =>{
       if(returnedData.is_valid === false){

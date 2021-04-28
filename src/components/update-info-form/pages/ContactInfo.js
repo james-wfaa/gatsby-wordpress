@@ -12,7 +12,7 @@ const ContactInfo = () => {
   const { setCurrentStep, setContactInfoOnchange, setEntryId, setCommSignUpInfo } = actions;
   const [generalError, setGeneralError] = useState('')
 
-  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdateContactInfo = () => {
     setCommSignUpInfo({
       firstname: state.contactInfo.firstname,

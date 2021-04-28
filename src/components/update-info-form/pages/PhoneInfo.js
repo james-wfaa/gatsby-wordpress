@@ -11,7 +11,7 @@ const PhoneInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setPhoneInfoOnchange } = actions;
 
-  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdatePhoneInfo = data =>{
     handleFormSubmit(state).then((returnedData) =>{
       if(returnedData.is_valid === false){
@@ -37,9 +37,14 @@ const PhoneInfo = () => {
                     type="text"
                     name="seasonalPhoneStartDate"
                     id="seasonalPhoneStartDate"
+                    maxLength="31"
                     defaultValue={state.phoneInfo.seasonalPhoneStartDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
+                      maxLength: {
+                        value: 30,
+                        message: "Cannot be more than 30 characters",
+                      },
                     })}
                 />
                 {errors.seasonalPhoneStartDate && (
@@ -51,9 +56,14 @@ const PhoneInfo = () => {
                     type="text"
                     name="seasonalPhoneEndDate"
                     id="seasonalPhoneEndDate"
+                    maxLength="31"
                     defaultValue={state.phoneInfo.seasonalPhoneEndDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
+                      maxLength: {
+                        value: 30,
+                        message: "Cannot be more than 30 characters",
+                      },
                     })}
                 />
                 {errors.seasonalPhoneEndDate && (
@@ -106,7 +116,7 @@ const PhoneInfo = () => {
                   id="phoneType1" 
                   name="phoneType1" 
                   defaultValue={state.phoneInfo.phoneType1}
-                  onBlur={e => updateOnChangeValues(e)}
+                  onChange={e => updateOnChangeValues(e)}
                   ref={register({})}
                   >
                   <option value="Home">Home</option>
@@ -140,7 +150,7 @@ const PhoneInfo = () => {
               <label htmlFor="phoneType2" className="half leftMargin">Phone Type 2
                 <select 
                   defaultValue={state.phoneInfo.phoneType2} 
-                  onBlur={e => updateOnChangeValues(e)}
+                  onChange={e => updateOnChangeValues(e)}
                   name="phoneType2"
                   ref={register({})}>
                   <option value="Home">Home</option>
@@ -177,7 +187,7 @@ const PhoneInfo = () => {
               <label htmlFor="phoneType3" className="half leftMargin">Phone Type 3
                 <select 
                   defaultValue={state.phoneInfo.phoneType3} 
-                  onBlur={e => updateOnChangeValues(e)}
+                  onChange={e => updateOnChangeValues(e)}
                   name="phoneType3"
                   ref={register({})}>
                   <option value="Home">Home</option>

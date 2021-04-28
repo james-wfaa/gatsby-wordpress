@@ -13,7 +13,7 @@ const MailingAddress = () => {
   const { setCurrentStep, setMailingAddressOnchange } = actions;
   const [ countries ] = useState(countryList().getData())
 
-  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdateMailingAddressInfo = data =>{
     handleFormSubmit(state).then((returnedData) =>{
       if(returnedData.is_valid === false){
@@ -165,15 +165,20 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalStartDate"
                     id="seasonalStartDate"
+                    maxLength="31"
                     defaultValue={state.mailingAddress.seasonalStartDate}
                     onChange={e => updateOnChangeValues(e)}
                     placeholder="MM/DD"
                     ref={register({
                       required: { value: true, message: "Start date of seasonal address is required" },
+                      maxLength: {
+                        value: 30,
+                        message: "Cannot be more than 30 characters",
+                      },
                     })}
                 />
-                {errors.jobtitle && (
-                  <StyledError>{errors.jobtitle.message}</StyledError>
+                {errors.seasonalStartDate && (
+                  <StyledError>{errors.seasonalStartDate.message}</StyledError>
                 )}
               </label>
               <label htmlFor="seasonalEndDate" className="smallThird block">End Date
@@ -182,15 +187,20 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalEndDate"
                     id="seasonalEndDate"
+                    maxLength="31"
                     placeholder="MM/DD"
                     defaultValue={state.mailingAddress.seasonalEndDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       required: { value: true, message: "End date of seasonal address is required" },
+                      maxLength: {
+                        value: 30,
+                        message: "Cannot be more than 30 characters",
+                      },
                     })}
                 />
-                {errors.jobtitle && (
-                  <StyledError>{errors.jobtitle.message}</StyledError>
+                {errors.seasonalEndDate && (
+                  <StyledError>{errors.seasonalEndDate.message}</StyledError>
                 )}
               </label>
               <label htmlFor="seasonalStreetAddress">Street Address

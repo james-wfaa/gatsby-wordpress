@@ -11,7 +11,7 @@ const SpouseInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setSpouseInfoOnchange } = actions;
 
-  const { register, handleSubmit, errors, formState: { submitCount }} = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount }} = useForm({mode : 'onChange'})
   const submitForm = data =>{
     handleFormSubmit(state).then((returnedData) =>{
       if(returnedData.is_valid === false){
@@ -118,6 +118,9 @@ const SpouseInfo = () => {
                 />
                 {errors.spouseUndergrad && (
                   <StyledError>{errors.spouseUndergrad.message}</StyledError>
+                )}
+                {errors && errors.spouseUndergrad?.type === 'validYear' && (
+                  <StyledError>Must be a valid year.</StyledError>
                 )}
               </label>
               <label htmlFor="spousePostgrad" className="smallThird leftMargin">UW Postgraduate Year(s)
