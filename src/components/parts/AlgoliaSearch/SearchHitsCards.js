@@ -51,6 +51,7 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                         title={hit.title}
                         category={hit.category}
                         venue={hit.venue}
+                        eventDetails={hit.eventDetails}
                         location={hit.location}
                         img={
                             hit.featuredImage
