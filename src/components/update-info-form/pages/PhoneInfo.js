@@ -38,6 +38,7 @@ const PhoneInfo = () => {
                     name="seasonalPhoneStartDate"
                     id="seasonalPhoneStartDate"
                     maxLength="31"
+                    placeholder="MM/DD"
                     defaultValue={state.phoneInfo.seasonalPhoneStartDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -57,6 +58,7 @@ const PhoneInfo = () => {
                     name="seasonalPhoneEndDate"
                     id="seasonalPhoneEndDate"
                     maxLength="31"
+                    placeholder="MM/DD"
                     defaultValue={state.phoneInfo.seasonalPhoneEndDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -95,13 +97,18 @@ const PhoneInfo = () => {
                     type="phone"
                     name="phoneNumber1"
                     id="phoneNumber1"
+                    maxLength="30"
                     defaultValue={state.phoneInfo.phoneNumber1}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       required: { value: true, message: "At least one valid phone number is required" },
-                      validate: {
+                      /*validate: {
                         numbersOnly: value => checkForLetters(value) === false,
-                      },
+                      },*/
+                      pattern: {
+                        value: /^[- ]*[0-9][- 0-9]*$/,
+                        message: 'Phone number can only contain numbers and dashes.',
+                      }
                     })}
                 />
                 {errors.phoneNumber1 && (
@@ -135,12 +142,17 @@ const PhoneInfo = () => {
                     type="phone"
                     name="phoneNumber2"
                     id="phoneNumber2"
+                    maxLength="30"
                     defaultValue={state.phoneInfo.phoneNumber2}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      validate: {
+                      /*validate: {
                         numbersOnly: value => checkForLetters(value) === false,
-                      },
+                      },*/
+                      pattern: {
+                        value: /^[- ]*[0-9][- 0-9]*$/,
+                        message: 'Phone number can only contain numbers and dashes.',
+                      }
                     })}
                 />
                 {errors.phoneNumber2?.type === "numbersOnly" && (
@@ -169,12 +181,17 @@ const PhoneInfo = () => {
                     type="phone"
                     name="phoneNumber3"
                     id="phoneNumber3"
+                    maxLength="30"
                     defaultValue={state.phoneInfo.phoneNumber3}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      validate: {
+                      /*validate: {
                         numbersOnly: value => checkForLetters(value) === false,
-                      },
+                      },*/
+                      pattern: {
+                        value: /^[- ]*[0-9][- 0-9]*$/,
+                        message: 'Phone number can only contain numbers and dashes.',
+                      }
                     })}
                 />
                 {errors.phoneNumber3 && (

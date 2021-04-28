@@ -79,6 +79,10 @@ const ContactInfo = () => {
                     value: 50,
                     message: "First name cannot be more than 50 characters",
                   },
+                  pattern: {
+                    value: /^[a-zA-Z' -]+$/,
+                    message: 'Name can only contain letters, hyphens and apostrophes.',
+                  },
                 })}
               />
               {errors.firstname && (
@@ -101,6 +105,10 @@ const ContactInfo = () => {
                     value: 50,
                     message: "Last name cannot be more than 50 characters",
                   },
+                  pattern: {
+                    value: /^[a-zA-Z' -]+$/,
+                    message: 'Name can only contain letters, hyphens and apostrophes.',
+                  },
                 })}
               />
               {errors.lastname && (
@@ -114,9 +122,19 @@ const ContactInfo = () => {
                 type="text"
                 name="othernames"
                 id="othernames"
+                maxLength="151"
                 defaultValue={state.contactInfo.othernames}
                 onChange={e => updateOnChangeValues(e)}
-                ref={register({})}
+                ref={register({
+                  maxLength: {
+                    value: 150,
+                    message: "Cannot be more than 150 characters",
+                  },
+                  pattern: {
+                    value: /^[a-zA-Z' -]+$/,
+                    message: 'Can only contain letters, hyphens and apostrophes.',
+                  },
+                })}
               />
               {errors.othernames && (
                 <StyledError>{errors.othernames.message}</StyledError>
@@ -129,6 +147,7 @@ const ContactInfo = () => {
                 type="email"
                 name="email"
                 id="email"
+                maxLength="255"
                 defaultValue={state.contactInfo.email}
                 onChange={e => updateOnChangeValues(e)}
                 ref={register({
@@ -152,13 +171,17 @@ const ContactInfo = () => {
                 type="phone"
                 name="phone"
                 id="phone"
-                maxLength="51"
+                maxLength="30"
                 defaultValue={state.contactInfo.phone}
                 onChange={e => updateOnChangeValues(e)}
                 ref={register({
-                  validate: {
+                  /*validate: {
                     numbersOnly: value => checkForLetters(value) === false,
-                  },
+                  },*/
+                  pattern: {
+                    value: /^[- ]*[0-9][- 0-9]*$/,
+                    message: 'Phone number can only contain numbers and dashes.',
+                  }
                 })}
               />
               {errors.phone && (
@@ -206,9 +229,15 @@ const ContactInfo = () => {
                 type="text"
                 name="postgrad"
                 id="postgrad"
+                maxLength="151"
                 defaultValue={state.contactInfo.postgrad}
                 onChange={e => updateOnChangeValues(e)}
-                ref={register({})}
+                ref={register({
+                  maxLength: {
+                    value: 150,
+                    message: "Cannot be more than 150 characters",
+                  },
+                })}
               />
               {errors.postgrad && (
                 <StyledError>{errors.postgrad.message}</StyledError>

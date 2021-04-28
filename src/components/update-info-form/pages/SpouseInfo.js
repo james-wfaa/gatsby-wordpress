@@ -103,9 +103,9 @@ const SpouseInfo = () => {
                     onChange={e => updateOnChangeValues(e)}
                     placeholder="YYYY"
                     ref={register({
-                      validate: {
+                      /*validate: {
                         validYear: value => value > 1847 && value <= currentYear,
-                      },
+                      },*/
                       maxLength: {
                         value: 4,
                         message: "Must be 4 characters or less",
@@ -131,9 +131,14 @@ const SpouseInfo = () => {
                     type="text"
                     name="spousePostgrad"
                     id="spousePostgrad"
+                    maxLength="51"
                     defaultValue={state.spouseInfo.spousePostgrad}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
+                      maxLength: {
+                        value: 50,
+                        message: "Cannot be more than 50 characters",
+                      },
                     })}
                 />
               </label></div>) : null }
