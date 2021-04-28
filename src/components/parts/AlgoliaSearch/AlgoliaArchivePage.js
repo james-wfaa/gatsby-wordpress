@@ -10,7 +10,6 @@ import { colors, sizes } from '../../css-variables'
 import AccordianSearchBoxAlgolia from './AccordianSearchBoxAlgolia'
 import SearchPageResults from './SearchPageResults'
 import AlgoliaPagination from './AlgoliaPagination'
-import Button from '../../parts/Button'
 
 const StyledWrapper = styled.div`
   .ais-Pagination--noRefinement {
@@ -20,6 +19,30 @@ const StyledWrapper = styled.div`
     display: none;
   }
 `
+const QueryDiv = styled.div`
+
+`
+
+const FilterText = styled.p`
+
+`
+
+const FilterButton = styled.button`
+  position: relative;
+  text-align: left;
+  padding-left: ${sizes.s36};
+  color: ${colors.titleWhite};
+  width: 150px;
+  background-color: ${colors.buttonRed};
+  height: 48px;
+  border: none;
+  font-weight:bold;
+  &:focus {
+    outline: none;
+  }
+  cursor: pointer;
+`
+
 
 const SelectionsWrapper = styled.div`
     padding-top: 58px;
