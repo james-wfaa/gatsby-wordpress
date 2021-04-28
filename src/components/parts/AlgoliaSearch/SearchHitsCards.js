@@ -102,9 +102,9 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
             
                 
                     const moreLinkText = hit?.linkFormat?.linkAuthor
-                        ? <span>Via {hit.linkFormat.linkAuthor} <span class="arrow"></span></span>
+                        ? <span>Via {hit.linkFormat.linkAuthor} <span className="arrow"></span></span>
                         : hit?.altPostType === "Podcast"
-                            ? <nobr>Listen <span class="arrow"></span></nobr>
+                            ? <nobr>Listen <span className="arrow"></span></nobr>
                             : hit?.urlText
                                 ? <nobr>{hit.urlText} &gt;</nobr>
                                 : <nobr>Read More &gt;</nobr>

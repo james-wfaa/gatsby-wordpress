@@ -34,15 +34,20 @@ const CardWrapper = styled.div`
   }
   a {
     cursor: pointer;
-    p {
-      margin: 0;
-      color: ${colors.offBlack};
-    }
-    p:not(:last-child) {
-      padding-bottom: 16px;
-    }
+    text-decoration: underline;
+    color: ${colors.bgRed};
+    
   }
-  a:hover, a:visited, a:active, a:link { color: #3c3c3c !important}
+  a:hover, a:visited, a:active { 
+    color: ${colors.linkTextHover};
+  }
+  p {
+    margin: 0;
+    color: ${colors.offBlack};
+  }
+  p:not(:last-child) {
+    padding-bottom: 16px;
+  }
   h3 {
     margin: 0;
     padding-bottom: 16px;
@@ -115,12 +120,12 @@ const PageCard = ({excerpt, hit, title, topResult, tags, url}) => {
         {topResult ?
         <DetailsDiv>
           <p><span className="cardType">PAGE</span></p>
-          <Link to={url}><h3>{title}</h3></Link>
+          <h3><Link to={url}>{title}</Link></h3>
         </DetailsDiv>
         :
         <>
           <p><span className="cardType">PAGE</span></p>
-          <Link to={url}><h3>{title}</h3></Link>
+          <h3><Link to={url}>{title}</Link></h3>
         </>
         }
         {excerpt ?
