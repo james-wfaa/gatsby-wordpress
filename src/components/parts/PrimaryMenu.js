@@ -77,7 +77,7 @@ const LeftMenu = styled.div`
         border: none;
         width: 100%;
         background: none;
-        outline: none;
+        //outline: none;
         p {
           position: relative;
           padding-top: ${sizes.s24};
