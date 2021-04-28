@@ -106,15 +106,15 @@ const AlgoliaArchivePage = props => {
                   onFocus={() => setFocus(true)}
                   hasFocus={hasFocus}
                 />
-                {(props.queryString.filter || props.queryString.pub || props.queryString.product) && 
+                {(props?.queryString?.filter || props?.queryString?.pub || props?.queryString?.product) && 
                 <QueryDiv>
-                  {props.queryString.filter &&
+                  {props?.queryString?.filter &&
                     <FilterText><span>Results filtered by:</span> filter={props.queryString.filter}</FilterText>
                   }
-                  {props.queryString.pub &&
+                  {props?.queryString?.pub &&
                     <FilterText><span>Results filtered by:</span> publication={props.queryString.pub}</FilterText>
                   }
-                  {props.queryString.product &&
+                  {props?.queryString?.product &&
                     <FilterText><span>Results filtered by:</span> product={props.queryString.product}</FilterText>
                   }
                   <FilterButton onClick={props.clearFilters}>Clear Filters</FilterButton>
