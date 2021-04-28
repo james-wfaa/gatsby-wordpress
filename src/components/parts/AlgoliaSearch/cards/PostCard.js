@@ -108,6 +108,10 @@ const DetailsDiv = styled.div`
   padding: 16px 0 8px 0;
   margin-bottom: 24px;
 `
+const ExternalUrlDiv = styled.div`
+  font-weight: bold;
+  margin: 0 0 ${sizes.s16};
+  `
 
 const PostCard = ({ initialBlock, excerpt, title, topResult, url, categories, category, linkFormat, acfAlternatePostType, videoFormat, tags }) => {
   
@@ -140,6 +144,13 @@ const PostCard = ({ initialBlock, excerpt, title, topResult, url, categories, ca
     const linkTitle = external
       ? 'Link will open in a new tab/window'
       : ''
+    let externalUrl = external
+      ? external.substring(external.indexOf('//')+2)
+      : null
+
+    if (externalUrl) {
+      externalUrl = externalUrl.substring(0, externalUrl.indexOf('/'))
+    }
 
   return (
     <CardWrapper className={topResult ? "topResult" : null}>
@@ -164,7 +175,10 @@ const PostCard = ({ initialBlock, excerpt, title, topResult, url, categories, ca
           <>
             <div className="cardType">{displayCategory}</div>
             { external && (
+              <>
                 <a href={finalUrl} title={linkTitle} target={target}><h3>{title} <span class="arrow"></span></h3></a>
+                <ExternalUrlDiv>{externalUrl}</ExternalUrlDiv>
+              </>
               )
             }
             { !external && (
