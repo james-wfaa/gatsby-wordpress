@@ -47,7 +47,7 @@ function WordPressPage({ page }) {
   const filteredRelated = uniqueRelatedPosts.slice(0,10)
 
   return (
-    <Layout title={title} noborder={noborder}>
+    <Layout title={title} noborder={noborder} img={featuredImage?.node}>
         {!!featuredImage?.node?.localFile?.childImageSharp && (
             <FeaturedImage featuredImage={featuredImage.node} event/>
         )}
