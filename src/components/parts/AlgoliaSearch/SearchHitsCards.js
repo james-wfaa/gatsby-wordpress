@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import parse from 'html-react-parser';
 import ContentCard from '../../content-blocks/ContentCard'
 import EventContentCard from '../../content-blocks/EventContentCard'
 import { breakpoints } from '../../css-variables'
@@ -71,8 +72,15 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                         filterChange={filterChange}     
                     />
                 )
-            case 'News & Stories':
-                if (hit?.categories[0]?.name === 'Classnote') {
+            case 'Alumni Notes':
+                let parsedNote = parse(hit.content, { trim: true })
+                const renderedExcerpt = hit?.excerpt && hit.excerpt !== ''
+                        ? hit.excerpt
+                        : parsedNote?.props?.children
+                            ? parsedNote.props.children
+                            : null
+
+               
                     return (
                         <ContentCard
                             key={hit.url}
@@ -83,10 +91,15 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                             initialBlock={hit.excerpt}
                             img={hit?.featuredImage?.node?.localFile}
                             categories={hit.categories}
+                            category="Alumni Notes"
+                            excerpt={renderedExcerpt}
                             filterChange={filterChange}
                         />
                     )
-                } else {
+                
+            case 'News & Stories':
+            
+                
                     const moreLinkText = hit?.linkFormat?.linkAuthor
                         ? <span>Via {hit.linkFormat.linkAuthor} <span class="arrow"></span></span>
                         : hit?.altPostType === "Podcast"
@@ -112,7 +125,7 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                             filterChange={filterChange}
                         />
                     )
-                }
+                
             default:
                 return null
         }
