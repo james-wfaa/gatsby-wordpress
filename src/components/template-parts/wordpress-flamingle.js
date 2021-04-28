@@ -195,7 +195,7 @@ const questioner = askFlamingle?.abeQuestioner && askFlamingle.abeQuestioner !==
     ? askFlamingle.abeQuestioner
     : null
   return (
-    <Layout title={title}>
+    <Layout title={title} img={flamingleMasthead}>
         <BreadCrumbs links={links} />
         <StyledFlamingleWrapper>
             <img className="flamingleMasthead" alt='' src={flamingleMasthead}></img>

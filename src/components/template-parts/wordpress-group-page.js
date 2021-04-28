@@ -88,7 +88,7 @@ const imageWidth = featuredImage?.node?.mediaDetails?.width
   const eventsToShow = (groups?.nodes && groups?.nodes[0]?.events.nodes) ? groups?.nodes[0]?.events.nodes : null
   const social = thisChapter?.chapterDetails ? thisChapter : null
   return (
-    <Layout title={title}>
+    <Layout title={title} img={featuredImage?.node}>
       <PageSection
         heading={title}
         excerpt={chapterTypeText()}
