@@ -15,7 +15,7 @@ module.exports = {
     title: `Wisconsin Alumni Association`,
     description: `Wisconsin Alumni Association`,
     author: `WFAA`,
-    siteURL: 'https://gatsby.uwalumni.com',
+    siteUrl: 'https://gatsby.uwalumni.com',
   },
   plugins: [
     {
