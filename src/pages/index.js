@@ -57,8 +57,8 @@ const HomePage = ({ data }) => {
   const allevents = AllEvents()
   const { nodes: eventEdges } = allevents
 
+  eventEdges.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
   const cardGridEvents = eventEdges.slice(0,9)
-  cardGridEvents.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
 
   let eventCards = cardGridEvents.map((event) => {
     return (

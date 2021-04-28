@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import parse from 'html-react-parser';
 import ContentCard from '../../content-blocks/ContentCard'
 import EventContentCard from '../../content-blocks/EventContentCard'
 import { breakpoints } from '../../css-variables'
@@ -23,6 +24,9 @@ let EventCardWrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     grid-row-gap: 48px;
+    > * {
+        margin: 0 auto;
+    }
 `
 
 const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
@@ -39,13 +43,12 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
         if (hit.__position === 1) {
             topResult = true
         }
-        console.log(hit)
         switch (hit.type) {
             case 'Events':
-                console.log(hit.startDate)
+            case 'Trips':
                 return (
                     <EventContentCard
-                        key={hit.url}
+                        key={hit.objectID}
                         startDate={hit.startDate * 1000}
                         endDate={hit.endDate ? hit.endDate * 1000 : null}
                         title={hit.title}
@@ -54,23 +57,31 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                         eventDetails={hit.eventDetails}
                         location={hit.location}
                         img={
-                            hit.featuredImage
+                            hit.featuredImage?.node?.localFile
                                 ? hit.featuredImage.node.localFile
                                 : null
                         }
                         featureImg={
-                            hit.featuredImage
+                            hit.featuredImage?.node?.localFile
                                 ? hit.featuredImage.node.localFile
                                 : null
                         }
                         alt={hit.alt}
                         url={hit.url}
-                        size={!hit.featuredEvent ? 'Wide' : 'XXL'}
-                        filterChange={filterChange}
+                        //size={!hit.featuredEvent ? 'Wide' : 'XXL'}
+                        size='Wide'
+                        filterChange={filterChange}     
                     />
                 )
-            case 'News & Stories':
-                if (hit?.categories[0]?.name === 'Classnote') {
+            case 'Alumni Notes':
+                let parsedNote = parse(hit.content, { trim: true })
+                const renderedExcerpt = hit?.excerpt && hit.excerpt !== ''
+                        ? hit.excerpt
+                        : parsedNote?.props?.children
+                            ? parsedNote.props.children
+                            : null
+
+               
                     return (
                         <ContentCard
                             key={hit.url}
@@ -81,10 +92,15 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                             initialBlock={hit.excerpt}
                             img={hit?.featuredImage?.node?.localFile}
                             categories={hit.categories}
+                            category="Alumni Notes"
+                            excerpt={renderedExcerpt}
                             filterChange={filterChange}
                         />
                     )
-                } else {
+                
+            case 'News & Stories':
+            
+                
                     const moreLinkText = hit?.linkFormat?.linkAuthor
                         ? <span>Via {hit.linkFormat.linkAuthor} <span class="arrow"></span></span>
                         : hit?.altPostType === "Podcast"
@@ -110,7 +126,7 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                             filterChange={filterChange}
                         />
                     )
-                }
+                
             default:
                 return null
         }

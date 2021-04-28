@@ -29,10 +29,12 @@ const menuItems = {
   "News & Stories": [
     { tag: "News & Stories", url: "/news" },
     { tag: "Alumni Achievements", url: "/alumni-achievements" },
+    { tag: "Alumni Notes", url:"/alumni-notes" },
     { tag: "WAA Publications", url: "/publications" },
   ],
   "Ways to Support": [
     { tag: "Advocate for the UW", url: "/advocate" },
+    { tag: "Show your Pride", url: "/show-your-pride" },
     { tag: "Get Involved", url: "/get-involved" },
     { tag: "Make a Gift", url: "/give" },
   ],

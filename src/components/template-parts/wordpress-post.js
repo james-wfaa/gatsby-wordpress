@@ -116,7 +116,7 @@ function BlogPost({ data }) {
       { url: link, name: title },
     ]
   return (
-    <Layout title={title}>
+    <Layout title={title} img={image}>
         <BreadCrumbs links={links} />
         {postHeader}
         {image && size >= 718 && !isVideo && !isAlt && (
@@ -126,7 +126,7 @@ function BlogPost({ data }) {
           <EmbedVideoFormatHandler source={isVideo} />
         )}
         <WpStoryContentBlocks {...page} />
-      <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
+      <SocialShareLinks text="Share This Story" title={title} excerpt={excerpt} url={`/news${link}`}/>
       {uniqueRelatedPosts.length > 0 ? (
         <PageSection id="post-listing" heading="Related News and Stories" topBorder buttons={buttons}><CardHandler items={uniqueRelatedPosts.slice(0,10)} size="M" sliderSize="S" type="news" /></PageSection>
       ):(

@@ -39,22 +39,31 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
     const parsedContent = parse(content, { trim: true })
     //console.log(parsedContent)
     let parsedEventLinks = <div />
+    let parsedEventPriceDetails = null
     parsedContent.forEach((tag) => {
         //console.log(tag.props.className)
         const classes = tag?.props?.className ? tag.props.className : ''
         const children = tag?.props?.children ? tag.props.children : null
         if (classes.includes('tribe-block__events-link')) {
             parsedEventLinks = tag
+        }
+        if (classes.includes('tribe-block__event-price')) {
+            children.forEach((priceDiv) => {
+                //console.log(priceDiv)
+                if (priceDiv?.props?.className && priceDiv.props.className.includes('tribe-block__event-price__description')) {
+                    //console.log(priceDiv.props.children)
+                    parsedEventPriceDetails = (<span dangerouslySetInnerHTML={{__html: priceDiv.props.children }} />)
+                }
+            })
 
         }
     })
-    //console.log(parsedEventLinks)
 
    
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-        console.log(block.name)
+        //console.log(block.name)
         switch(block.name) {
             case "tribe/event-datetime":
             case "tribe/featured-image":
@@ -126,6 +135,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                         cost={cost}
                         organizers={organizers}
                         eventDetails={eventDetails}
+                        priceDetails={parsedEventPriceDetails}
                         calendarLinks={parsedEventLinks}
                         showMapLink={showMapDetails()}
                     />
@@ -133,7 +143,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                 <div className="social-mobile">
                     { eventDetails && eventDetails.questions && (
                         <div className="buttonWrap" onClick={() => handleModal()}>
-                            <Button link="#Top" text="Questions" fullwidth alt altborder />
+                            <Button link="#Top" text="Questions?" fullwidth alt altborder />
                         </div>
                     )}
 
@@ -161,6 +171,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     venue={venue} cost={cost}
                     organizers={organizers}
                     eventDetails={eventDetails}
+                    priceDetails={parsedEventPriceDetails}
                     calendarLinks={parsedEventLinks}
                     showMapLink={showMapDetails()}
                 />
@@ -206,6 +217,10 @@ margin: ${sizes.s48} auto 0;
     flex-direction: column-reverse;
     @media screen and ${breakpoints.tabletL} {
         display: block;
+    }
+    margin: 0 ${sizes.s32};
+    @media screen and ${breakpoints.tabletS} {
+        margin: 0;
     }
 }
 
@@ -263,7 +278,7 @@ margin: ${sizes.s48} auto 0;
     max-width: 303px;
     margin: 0 auto;
     text-align: center;
-    h2{
+    h3{
         padding-top: ${sizes.s40};
     }
     @media screen and ${breakpoints.tabletS} {

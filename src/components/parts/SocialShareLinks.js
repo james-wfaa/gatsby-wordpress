@@ -24,14 +24,13 @@ const SocialShareLinks = props => {
         query {
             site{
                 siteMetadata{
-                    siteURL
+                    siteUrl
                 }
             }
         }
   `)
   
-    const currentURL = site?.siteMetadata?.siteURL + url
-    //console.log(url)
+    const currentURL = site?.siteMetadata?.siteUrl + url
 
     return (
         <div className = {`${className} ${isEvent} ${displayTight}`}>

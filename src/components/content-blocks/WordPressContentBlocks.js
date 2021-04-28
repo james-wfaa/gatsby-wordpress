@@ -145,11 +145,14 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                     let combinedEvents = []
                     if (products?.nodes) {
                         products.nodes.forEach((product) => {
-                            const { slug, events } = product 
+                            const { events } = product 
                             const eventsToShow = (events?.nodes) ? events.nodes : null
                             if (eventsToShow) {
                                 eventsToShow.forEach((eventToShow)  => {
-                                    combinedEvents.push(eventToShow)
+                                    if(!combinedEvents.find(element => element.url === eventToShow.url)){
+                                        combinedEvents.push(eventToShow)
+                                    } 
+  
                                 })
                             }
                         })

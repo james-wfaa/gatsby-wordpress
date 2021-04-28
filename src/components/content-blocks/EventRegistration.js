@@ -9,9 +9,9 @@ import { convertTime, compareDate } from "../../utils/tools"
 import GenericModal from '../content-modules/GenericModal'
 
 
-const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails, calendarLinks, showMapLink}) => {
+const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails, priceDetails, calendarLinks, showMapLink}) => {
 
-    console.log(calendarLinks)
+    //console.log(calendarLinks)
 
     const { virtualEvent } = eventDetails
     const classesList = `${className}`;
@@ -23,6 +23,10 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
             return "$" + cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
         }
     }
+    let priceDetailsDisplay = (priceDetails)
+        ? <span>({priceDetails})</span>
+        : null
+
     const calcDate = (date) => {
         var compDateString = compareDate(startDate, endDate);
         if (compDateString){
@@ -91,7 +95,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
                     <a href="#EventMap" alt="View Map">{mapLinkText}</a>
                 )}
                 <div className="subHeader">COST</div>
-                <div className="amount ">{costDisplay(cost)}</div>
+                <div className="amount ">{costDisplay(cost)} {priceDetailsDisplay}</div>
                 {organizerList.length < 5 ?
                     <>
                     <div className="subHeader">HOST(S)</div>
