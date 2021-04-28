@@ -25,9 +25,9 @@ const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat, acfAltern
 
 
     const moreLinkText = linkFormat?.linkAuthor
-    ? <nobr>Via {linkFormat.linkAuthor} <span class="arrow"></span></nobr>
+    ? <nobr>Via {linkFormat.linkAuthor} <span className="arrow"></span></nobr>
     : altPostType === "Podcast"
-        ? <nobr>Listen <span class="arrow"></span></nobr>
+        ? <nobr>Listen <span className="arrow"></span></nobr>
         : urlText
             ? <nobr>{urlText} &gt;</nobr>
             : <nobr>Read More &gt;</nobr>
@@ -40,10 +40,10 @@ const StoryCardD = ({ title, excerpt, url, urlText, terms, linkFormat, acfAltern
             case 'Video':
                 break
             case 'Link':
-                moreLinkText = <nobr>Via {linkFormat.linkAuthor} <span class="arrow"></span></nobr>
+                moreLinkText = <nobr>Via {linkFormat.linkAuthor} <span className="arrow"></span></nobr>
                 break
             case 'Podcast': 
-                moreLinkText = <nobr>Listen <span class="arrow"></span></nobr>
+                moreLinkText = <nobr>Listen <span className="arrow"></span></nobr>
                 break
             default: 
                 break

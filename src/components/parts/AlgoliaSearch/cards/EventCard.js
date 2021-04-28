@@ -34,15 +34,20 @@ const CardWrapper = styled.div`
   }
   a {
     cursor: pointer;
-    p {
-      margin: 0;
-      color: ${colors.offBlack};
-    }
-    p:not(:last-child) {
-      padding-bottom: 16px;
-    }
+    text-decoration: underline;
+    color: ${colors.bgRed};
+    
   }
-  a:hover, a:visited, a:active, a:link { color: #3c3c3c !important}
+  a:hover, a:visited, a:active { 
+    color: ${colors.linkTextHover};
+  }
+  p {
+    margin: 0;
+    color: ${colors.offBlack};
+  }
+  p:not(:last-child) {
+    padding-bottom: 16px;
+  }
   h3 {
     margin: 0;
     padding-bottom: 16px;
@@ -110,7 +115,6 @@ const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, 
 
   return (
     <CardWrapper className={topResult ? "topResult" : null}>
-      <Link to={url}>
         {topResult ?
         <CardHeader>
           <p>BEST BET</p>
@@ -119,13 +123,13 @@ const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, 
         {topResult ?
         <DetailsDiv>
           <p><span className="cardType">{type.toUpperCase()}</span></p>
-          <h3>{title}</h3>
+          <h3><Link to={url}>{title}</Link></h3>
           <p className="datetime">{parsedDate}, {parsedTime} {locationString}</p>
         </DetailsDiv>
         :
         <>
           <p><span className="cardType">{type.toUpperCase()}</span></p>
-          <h3>{title}</h3>
+          <h3><Link to={url}>{title}</Link></h3>
           <p className="datetime">{parsedDate}, {parsedTime} {locationString}</p>
         </>
         }
@@ -139,7 +143,6 @@ const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, 
           globalSearch
       />
         )}
-      </Link>
     </CardWrapper>
   )
 }

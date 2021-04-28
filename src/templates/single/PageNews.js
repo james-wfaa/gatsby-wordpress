@@ -99,7 +99,7 @@ function WordPressPage({ data }) {
   const cardGridPosts = posts.nodes.slice(0,9)
   let storyCards = cardGridPosts.map((post) => {
     return (
-      <StoryCardD {...post} />
+      <StoryCardD key={post.id} {...post} />
     )
   })
   const storyCards1 = storyCards.slice(0,5)
@@ -115,7 +115,7 @@ function WordPressPage({ data }) {
       ? post.categories.nodes
       : null
     return (<StoryContentCard
-      key={post.url}
+      key={post.id}
       img={img}
       tags={products.concat(categories)}
       size="L"

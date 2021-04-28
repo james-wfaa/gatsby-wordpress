@@ -39,16 +39,20 @@ const CardWrapper = styled.div`
   }
   a {
     cursor: pointer;
-    p {
-      margin: 0;
-      color: ${colors.offBlack};
-    }
-    p:not(:last-child) {
-      padding-bottom: 16px;
-    }
+    text-decoration: underline;
+    color: ${colors.bgRed};
     
   }
-  a:hover, a:visited, a:active, a:link { color: #3c3c3c !important}
+  a:hover, a:visited, a:active { 
+    color: ${colors.linkTextHover};
+  }
+  p {
+    margin: 0;
+    color: ${colors.offBlack};
+  }
+  p:not(:last-child) {
+    padding-bottom: 16px;
+  }
   h3 {
     margin: 0;
     padding-bottom: 16px;
@@ -164,11 +168,11 @@ const PostCard = ({ initialBlock, excerpt, title, topResult, url, categories, ca
           <DetailsDiv>
             <div className="cardType">{displayCategory}</div>
             { external && (
-                <a href={finalUrl} title={linkTitle} target={target}><h3>{title} <span class="arrow"></span></h3></a>
+                <h3><a href={finalUrl} title={linkTitle} target={target}>{title} <span className="arrow"></span></a></h3>
               )
             }
             { !external && (
-              <Link to={finalUrl}><h3>{title}</h3></Link>
+              <h3><Link to={url}>{title}</Link></h3>
             )}
           </DetailsDiv>
         ) : (
@@ -176,13 +180,13 @@ const PostCard = ({ initialBlock, excerpt, title, topResult, url, categories, ca
             <div className="cardType">{displayCategory}</div>
             { external && (
               <>
-                <a href={finalUrl} title={linkTitle} target={target}><h3>{title} <span class="arrow"></span></h3></a>
+                <h3><a href={finalUrl} title={linkTitle} target={target}>{title} <span className="arrow"></span></a></h3>
                 <ExternalUrlDiv>{externalUrl}</ExternalUrlDiv>
               </>
               )
             }
             { !external && (
-              <Link to={finalUrl}><h3>{title}</h3></Link>
+              <h3><Link to={url}>{title}</Link></h3>
             )}
             
           </>
