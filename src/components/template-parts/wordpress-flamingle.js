@@ -37,7 +37,7 @@ function BlogPost({ data }) {
 
   const buttons = (uniqueRelatedPosts.length > 2) 
       ? [{
-          link:'/news/flamingle',
+          link:'/news/all/?pub=flamingle',
           text: 'See All'
       }]
       : null;
