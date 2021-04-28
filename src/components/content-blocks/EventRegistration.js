@@ -11,7 +11,7 @@ import GenericModal from '../content-modules/GenericModal'
 
 const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails, priceDetails, calendarLinks, showMapLink}) => {
 
-    console.log(calendarLinks)
+    //console.log(calendarLinks)
 
     const { virtualEvent } = eventDetails
     const classesList = `${className}`;

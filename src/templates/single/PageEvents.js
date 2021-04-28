@@ -37,7 +37,6 @@ function WordPressPage({ data }) {
   }, [])
 
   useEffect(() => {
-    console.log(currentAd)
   }, [currentAd])
 
   const allevents = AllEvents()
@@ -65,17 +64,19 @@ function WordPressPage({ data }) {
   ]
   let displayCategories = []
 
+  
+
 categories.forEach((item) => {
-    console.log(item)
-    const { categoryEvent, numberToShow } = item
+  const { categoryEvent, product, numberToShow } = item
+  const topic = categoryEvent ? categoryEvent : product ? product : null
 
-    const slug = categoryEvent?.slug
+  const slug = topic?.slug ? topic.slug : null
+  let categoryEventItems = []
 
-      ? categoryEvent.slug
-      :null
-    let categoryEventItems = []
+  
     allevents.nodes.forEach((event) => {
       if (event?.eventsCategories?.nodes) {
+        
         event.eventsCategories.nodes.forEach((cat) => {
           if (cat?.slug && cat.slug === slug) {
             categoryEventItems.push(event)
@@ -84,9 +85,9 @@ categories.forEach((item) => {
       }
     })
 
-    if (categoryEventItems && categoryEvent?.name) {
+    if (categoryEventItems && topic?.name) {
       displayCategories.push(
-        <PageSection key={item.slug} heading={categoryEvent.name} centered stagger>
+        <PageSection key={item?.slug} heading={topic?.name} centered stagger>
           <CardSet items={categoryEventItems} num={numberToShow} type="event"/>
         </PageSection>
       )
@@ -175,6 +176,73 @@ export const query = graphql`
           categoryEvent: category {
             name
             slug
+          }
+          product {
+            slug
+            name
+            posts {
+              nodes {
+                title
+                url: uri
+                excerpt
+                blocks {
+                  name
+                  originalContent
+                  dynamicContent
+                  innerBlocks {
+                    name
+                    originalContent
+                    dynamicContent
+                    innerBlocks {
+                      name
+                      originalContent
+                      dynamicContent
+                    }
+                  }
+
+                }
+                featuredImage {
+                  node {
+                    localFile {
+                      childImageSharp {
+                        fluid(maxWidth: 712) {
+                          base64
+                          srcWebp
+                          srcSetWebp
+                          originalImg
+                          originalName
+                          aspectRatio
+                          base64
+                          src
+                          srcSet
+                          sizes
+                        }
+                      }
+                    }
+                  }
+                }
+                acfAlternatePostType{
+                  alternateposttype
+                }
+                videoFormat {
+                  vimeoId
+                }
+                categories {
+                  nodes {
+                    name
+                    slug
+                    id
+                  }
+                }
+                products {
+                  nodes {
+                    name
+                    slug
+                    id
+                  }
+                }
+              }
+            }
           }
           numberToShow
         }

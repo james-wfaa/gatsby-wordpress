@@ -49,9 +49,9 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
         }
         if (classes.includes('tribe-block__event-price')) {
             children.forEach((priceDiv) => {
-                console.log(priceDiv)
+                //console.log(priceDiv)
                 if (priceDiv?.props?.className && priceDiv.props.className.includes('tribe-block__event-price__description')) {
-                    console.log(priceDiv.props.children)
+                    //console.log(priceDiv.props.children)
                     parsedEventPriceDetails = (<span dangerouslySetInnerHTML={{__html: priceDiv.props.children }} />)
                 }
             })
@@ -63,7 +63,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-        console.log(block.name)
+        //console.log(block.name)
         switch(block.name) {
             case "tribe/event-datetime":
             case "tribe/featured-image":
