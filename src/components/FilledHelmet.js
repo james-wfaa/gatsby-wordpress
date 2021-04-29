@@ -1,7 +1,7 @@
 import React from 'react'
 import striptags from 'striptags'
 import { Helmet } from 'react-helmet'
-import DefaultImg from "../images/open_graph_illus_1200x630.png"
+import DefaultImg from "../../static/open_graph_illus_1200x630.png"
 
 
 function FilledHelmet({title, plaintitle, img, desc, url}) {
