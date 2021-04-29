@@ -12,7 +12,7 @@ const PhoneInfo = () => {
   const { setCurrentStep, setPhoneInfoOnchange } = actions;
   const [generalError, setGeneralError] = useState('')
 
-  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdatePhoneInfo = data =>{
     handleFormSubmit(state).then((returnedData) =>{
       if(returnedData.is_valid === false){
@@ -38,9 +38,15 @@ const PhoneInfo = () => {
                     type="text"
                     name="seasonalPhoneStartDate"
                     id="seasonalPhoneStartDate"
+                    maxLength="31"
+                    placeholder="MM/DD"
                     defaultValue={state.phoneInfo.seasonalPhoneStartDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
+                      maxLength: {
+                        value: 30,
+                        message: "Cannot be more than 30 characters",
+                      },
                     })}
                 />
                 {errors.seasonalPhoneStartDate && (
@@ -52,9 +58,15 @@ const PhoneInfo = () => {
                     type="text"
                     name="seasonalPhoneEndDate"
                     id="seasonalPhoneEndDate"
+                    maxLength="31"
+                    placeholder="MM/DD"
                     defaultValue={state.phoneInfo.seasonalPhoneEndDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
+                      maxLength: {
+                        value: 30,
+                        message: "Cannot be more than 30 characters",
+                      },
                     })}
                 />
                 {errors.seasonalPhoneEndDate && (
@@ -73,6 +85,7 @@ const PhoneInfo = () => {
               heading='Update My Info'
               headingCompact
               backgroundColor={colors.formIntroBg}
+              pageTitle
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             {generalError && (
@@ -88,13 +101,18 @@ const PhoneInfo = () => {
                     type="phone"
                     name="phoneNumber1"
                     id="phoneNumber1"
+                    maxLength="30"
                     defaultValue={state.phoneInfo.phoneNumber1}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       required: { value: true, message: "At least one valid phone number is required" },
-                      validate: {
+                      /*validate: {
                         numbersOnly: value => checkForLetters(value) === false,
-                      },
+                      },*/
+                      pattern: {
+                        value: /^[- ]*[0-9][- 0-9]*$/,
+                        message: 'Phone number can only contain numbers and dashes.',
+                      }
                     })}
                 />
                 {errors.phoneNumber1 && (
@@ -109,7 +127,7 @@ const PhoneInfo = () => {
                   id="phoneType1" 
                   name="phoneType1" 
                   defaultValue={state.phoneInfo.phoneType1}
-                  onBlur={e => updateOnChangeValues(e)}
+                  onChange={e => updateOnChangeValues(e)}
                   ref={register({})}
                   >
                   <option value="Home">Home</option>
@@ -128,12 +146,17 @@ const PhoneInfo = () => {
                     type="phone"
                     name="phoneNumber2"
                     id="phoneNumber2"
+                    maxLength="30"
                     defaultValue={state.phoneInfo.phoneNumber2}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      validate: {
+                      /*validate: {
                         numbersOnly: value => checkForLetters(value) === false,
-                      },
+                      },*/
+                      pattern: {
+                        value: /^[- ]*[0-9][- 0-9]*$/,
+                        message: 'Phone number can only contain numbers and dashes.',
+                      }
                     })}
                 />
                 {errors.phoneNumber2?.type === "numbersOnly" && (
@@ -143,7 +166,7 @@ const PhoneInfo = () => {
               <label htmlFor="phoneType2" className="half leftMargin">Phone Type 2
                 <select 
                   defaultValue={state.phoneInfo.phoneType2} 
-                  onBlur={e => updateOnChangeValues(e)}
+                  onChange={e => updateOnChangeValues(e)}
                   name="phoneType2"
                   ref={register({})}>
                   <option value="Home">Home</option>
@@ -162,12 +185,17 @@ const PhoneInfo = () => {
                     type="phone"
                     name="phoneNumber3"
                     id="phoneNumber3"
+                    maxLength="30"
                     defaultValue={state.phoneInfo.phoneNumber3}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      validate: {
+                      /*validate: {
                         numbersOnly: value => checkForLetters(value) === false,
-                      },
+                      },*/
+                      pattern: {
+                        value: /^[- ]*[0-9][- 0-9]*$/,
+                        message: 'Phone number can only contain numbers and dashes.',
+                      }
                     })}
                 />
                 {errors.phoneNumber3 && (
@@ -180,7 +208,7 @@ const PhoneInfo = () => {
               <label htmlFor="phoneType3" className="half leftMargin">Phone Type 3
                 <select 
                   defaultValue={state.phoneInfo.phoneType3} 
-                  onBlur={e => updateOnChangeValues(e)}
+                  onChange={e => updateOnChangeValues(e)}
                   name="phoneType3"
                   ref={register({})}>
                   <option value="Home">Home</option>

@@ -12,7 +12,7 @@ const SpouseInfo = () => {
   const { setCurrentStep, setSpouseInfoOnchange } = actions;
   const [generalError, setGeneralError] = useState('')
 
-  const { register, handleSubmit, errors, formState: { submitCount }} = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount }} = useForm({mode : 'onChange'})
   const submitForm = data =>{
     handleFormSubmit(state).then((returnedData) =>{
       if(returnedData.is_valid === false){
@@ -42,6 +42,7 @@ const SpouseInfo = () => {
               heading='Update My Info'
               headingCompact
               backgroundColor={colors.formIntroBg}
+              pageTitle
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             {generalError && (
@@ -106,9 +107,9 @@ const SpouseInfo = () => {
                     onChange={e => updateOnChangeValues(e)}
                     placeholder="YYYY"
                     ref={register({
-                      validate: {
+                      /*validate: {
                         validYear: value => value > 1847 && value <= currentYear,
-                      },
+                      },*/
                       maxLength: {
                         value: 4,
                         message: "Must be 4 characters or less",
@@ -122,6 +123,9 @@ const SpouseInfo = () => {
                 {errors.spouseUndergrad && (
                   <StyledError>{errors.spouseUndergrad.message}</StyledError>
                 )}
+                {errors && errors.spouseUndergrad?.type === 'validYear' && (
+                  <StyledError>Must be a valid year.</StyledError>
+                )}
               </label>
               <label htmlFor="spousePostgrad" className="smallThird leftMargin">UW Postgraduate Year(s)
                 {errors.spousePostgrad && (
@@ -131,9 +135,14 @@ const SpouseInfo = () => {
                     type="text"
                     name="spousePostgrad"
                     id="spousePostgrad"
+                    maxLength="51"
                     defaultValue={state.spouseInfo.spousePostgrad}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
+                      maxLength: {
+                        value: 50,
+                        message: "Cannot be more than 50 characters",
+                      },
                     })}
                 />
               </label></div>) : null }

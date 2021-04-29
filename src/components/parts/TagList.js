@@ -60,6 +60,7 @@ const StyledTagList = styled(TagList)`
             content: '';
         }
     }
+    
 }
 .tag__link {
     font-size: ${sizes.s14};
@@ -90,6 +91,7 @@ const StyledTagList = styled(TagList)`
 &.global {
     padding: 0 0 ${sizes.s16};
     color: ${colors.tagGrey};
+    font-size: ${sizes.s15};
 }
 `
 

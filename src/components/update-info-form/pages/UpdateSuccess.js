@@ -47,6 +47,7 @@ const UpdateSuccess = () => {
             headingCompact
             content={content}
             backgroundColor={colors.formIntroBg}
+            pageTitle
             >
                 <div className="successPageIcon"></div>
             </PageSection>

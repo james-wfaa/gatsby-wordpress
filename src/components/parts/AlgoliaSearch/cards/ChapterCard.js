@@ -35,15 +35,20 @@ const CardWrapper = styled.div`
   }
   a {
     cursor: pointer;
-    p {
-      margin: 0;
-      color: ${colors.offBlack};
-    }
-    p:not(:last-child) {
-      padding-bottom: 16px;
-    }
+    text-decoration: underline;
+    color: ${colors.bgRed};
+    
   }
-  a:hover, a:visited, a:active, a:link { color: #3c3c3c !important}
+  a:hover, a:visited, a:active { 
+    color: ${colors.linkTextHover};
+  }
+  p {
+    margin: 0;
+    color: ${colors.offBlack};
+  }
+  p:not(:last-child) {
+    padding-bottom: 16px;
+  }
   h3 {
     margin: 0;
     padding-bottom: 16px;
@@ -104,25 +109,32 @@ const DetailsDiv = styled.div`
 `
 
 const ChapterCard = ({excerpt, hit, title, topResult, tags, url}) => {
+  console.log(title,url)
+  console.log(hit)
 
   return (
     <CardWrapper className={topResult ? "topResult" : null}>
       
-        {topResult ?
-        <CardHeader>
-          <p>BEST BET</p>
-        </CardHeader>
-        : null}
-        {topResult ?
-        <DetailsDiv>
-          <p><span className="cardType">Chapters/Groups</span></p>
-          <Link to={url}><h3>{title}</h3></Link>
-        </DetailsDiv>
-        :
-        <>
-          <p><span className="cardType">Chapters/Groups</span></p>
-          <Link to={url}><h3>{title}</h3></Link>
-        </>
+        {topResult 
+          ? <CardHeader>
+              <p>BEST BET</p>
+            </CardHeader>
+          : null
+        }
+        {topResult 
+          ? <DetailsDiv>
+              <p><span className="cardType">Chapters/Groups</span></p>
+              <h3><Link to={`/groups/${url}`}>{title}</Link></h3>
+            </DetailsDiv>
+          : url
+            ? <>
+                <p><span className="cardType">Chapters/Groups</span></p>
+                <h3><Link to={`/groups/${url}`}>{title}</Link></h3>
+              </>
+            : <>
+                <p><span className="cardType">Chapters/Groups</span></p>
+                <h3>{title}</h3>
+              </>
         }
         {excerpt ?
         <div className="excerpt" dangerouslySetInnerHTML={{__html: excerpt}}></div>

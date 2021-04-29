@@ -199,6 +199,7 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
   scroll-behavior: smooth;
   margin-bottom: -80px;
   z-index: 4;
+  overflow: hidden;
   .downscroll_after {
     @media screen and ${breakpoints.tabletS} {
       position: absolute;

@@ -14,7 +14,7 @@ const EmploymentInfo = () => {
   const [countries, ] = useState(countryList().getData())
   const [generalError, setGeneralError] = useState('')
 
-  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdateEmploymentInfo = data =>{
     handleFormSubmit(state).then((returnedData) =>{
       if(returnedData.is_valid === false){
@@ -53,6 +53,7 @@ const EmploymentInfo = () => {
               heading='Update My Info'
               headingCompact
               backgroundColor={colors.formIntroBg}
+              pageTitle
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             {generalError && (
@@ -83,6 +84,7 @@ const EmploymentInfo = () => {
                     type="text"
                     name="jobTitle"
                     id="jobTitle"
+                    maxLength="150"
                     defaultValue={state.employmentInfo.jobTitle}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -98,6 +100,7 @@ const EmploymentInfo = () => {
                     type="text"
                     name="businessName"
                     id="businessName"
+                    maxLength="150"
                     defaultValue={state.employmentInfo.businessName}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -113,6 +116,7 @@ const EmploymentInfo = () => {
                     type="text"
                     name="businessStreetAddress"
                     id="businessStreetAddress"
+                    maxLength="150"
                     defaultValue={state.employmentInfo.businessStreetAddress}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -127,6 +131,7 @@ const EmploymentInfo = () => {
                     type="text"
                     name="businessStreetAddressLineTwo"
                     id="businessStreetAddressLineTwo"
+                    maxLength="150"
                     defaultValue={state.employmentInfo.businessStreetAddressLineTwo}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -142,6 +147,7 @@ const EmploymentInfo = () => {
                     type="text"
                     name="businessCity"
                     id="businessCity"
+                    maxLength="90"
                     defaultValue={state.employmentInfo.businessCity}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -157,6 +163,7 @@ const EmploymentInfo = () => {
                     type="text"
                     name="businessState"
                     id="businessState"
+                    maxLength="150"
                     defaultValue={state.employmentInfo.businessState}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -172,6 +179,7 @@ const EmploymentInfo = () => {
                     type="text"
                     name="businessZipcode"
                     id="businessZipcode"
+                    maxLength="20"
                     defaultValue={state.employmentInfo.businessZipcode}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({

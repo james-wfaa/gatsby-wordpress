@@ -15,7 +15,7 @@ const IdentityInfo = () => {
   const [countries, ] = useState(countryList().getData())
   const [generalError, setGeneralError] = useState('')
 
-  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdateIdentityInfo = data =>{
     //setIdentityInfo(data)
     handleFormSubmit(state).then((returnedData) =>{
@@ -71,6 +71,7 @@ const IdentityInfo = () => {
               heading='Update My Info'
               headingCompact
               backgroundColor={colors.formIntroBg}
+              pageTitle
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep} />
             {generalError && (
