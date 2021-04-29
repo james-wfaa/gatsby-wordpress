@@ -2,6 +2,8 @@ import React from 'react'
 import Layout from '../../components/layout'
 import PageSection from '../../components/page-sections/PageSection'
 import AlgoliaArchivePage from '../../components/parts/AlgoliaSearch/AlgoliaArchivePage'
+import SponsorAd from "../../components/content-blocks/SponsorAd"
+
 
 
 const EventsAll = () => {
@@ -15,6 +17,7 @@ const EventsAll = () => {
             card={'Event'}
           />
         </PageSection>
+        <SponsorAd />
       </Layout>
     );
 }

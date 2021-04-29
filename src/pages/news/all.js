@@ -3,6 +3,7 @@ import queryString from 'query-string'
 import Layout from '../../components/layout'
 import PageSection from '../../components/page-sections/PageSection'
 import AlgoliaArchivePage from '../../components/parts/AlgoliaSearch/AlgoliaArchivePage'
+import SponsorAd from "../../components/content-blocks/SponsorAd"
 import { navigate } from 'gatsby-link'
 
 const NewsAll = (props) => {
@@ -60,6 +61,7 @@ const NewsAll = (props) => {
                 queryString={queryString.parse(props.location.search)}
                 />
             </PageSection>
+            <SponsorAd />
         </Layout>
     )
 }
