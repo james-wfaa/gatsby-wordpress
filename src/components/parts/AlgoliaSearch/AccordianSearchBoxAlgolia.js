@@ -26,6 +26,8 @@ const StyledDiv = styled.div`
       margin-bottom: 4px;
       background-color: ${colors.navMenuBlack};
       mask: url(${Search});
+      mask-repeat: no-repeat;
+      border:none;
       &:hover {
         background-color: ${colors.buttonRed};
       }

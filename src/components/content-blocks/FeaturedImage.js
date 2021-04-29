@@ -74,7 +74,7 @@ margin: ${sizes.s58} 0;
     max-width: 536px;
     margin: 0 auto;
   }
-
+}
 
 @media screen and ${breakpoints.tabletL} {
   &--event {
@@ -165,8 +165,11 @@ margin: ${sizes.s58} 0;
   color: ${colors.captionGrey};
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  width: 80%;
   text-align: left;
+  @media screen and ${breakpoints.tablet} {
+    width: 100%;
+  }
 
   @media screen and ${breakpoints.laptopL} {
     float: right;
