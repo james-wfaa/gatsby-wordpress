@@ -1,6 +1,6 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, checkForLetters, handleFormSubmit } from '../form-helpers'
+import { StyledError, checkForLetters, handleFormSubmit, FormGeneralError } from '../form-helpers'
 import PageSection from '../../page-sections/PageSection'
 import { colors } from '../../css-variables'
 import Buttons from './../FormButtons'
@@ -10,6 +10,7 @@ import { AppContext } from "../../../context/AppContext"
 const PhoneInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setPhoneInfoOnchange } = actions;
+  const [generalError, setGeneralError] = useState('')
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdatePhoneInfo = data =>{
@@ -23,7 +24,7 @@ const PhoneInfo = () => {
       let currentPlaceInOrder = currentOrder.indexOf(currentStep)
       let nextStep = currentOrder[currentPlaceInOrder + 1]
       setCurrentStep(nextStep)
-    }).catch(err => {alert(`An error occurred: ${err.message}`)})
+    }).catch(err => {setGeneralError(err.message)})
   }
   const updateOnChangeValues = (e) => {
     setPhoneInfoOnchange([e.target.name, e.target.value])
@@ -87,6 +88,9 @@ const PhoneInfo = () => {
               pageTitle
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
+            {generalError && (
+              <FormGeneralError>We’re sorry, but a network issue prevented us from saving your information. Our team has been notified, but you can <a href="mailto:web@supportuw.org">contact WAA</a> if you need immediate assistance.</FormGeneralError>
+            )}
             <form id="phoneInfo" onSubmit={handleSubmit(UpdatePhoneInfo)}>
             { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
             <legend>Phone Numbers<span className="requiredInfo">*Required Information</span></legend>
