@@ -318,7 +318,6 @@ export const mixins = {
         &:hover {
             color: ${colors.buttonActiveGrey};
             background-color: ${colors.bgActiveGrey};
-            border: 1px solid ${colors.bgWhite};
         }
         &:active {
             color: ${colors.buttonActiveGrey};
