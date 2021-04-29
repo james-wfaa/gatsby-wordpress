@@ -62,10 +62,14 @@ const SpouseInfo = () => {
                     defaultValue={state.spouseInfo.spouseFirstname}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      required: { value: true, message: "Phone is required" },
+                      required: { value: true, message: "First name is required" },
                       maxLength: {
                         value: 50,
                         message: "First name must be less than 50 characters",
+                      },
+                      pattern: {
+                        value: /^[a-zA-Z' -]+$/,
+                        message: 'Name can only contain letters, hyphens and apostrophes.',
                       },
                     })}
                 />
@@ -84,10 +88,14 @@ const SpouseInfo = () => {
                     defaultValue={state.spouseInfo.spouseLastname}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      required: { value: true, message: "Phone is required" },
+                      required: { value: true, message: "Last name is required" },
                       maxLength: {
                         value: 50,
                         message: "Last name must be less than 50 characters",
+                      },
+                      pattern: {
+                        value: /^[a-zA-Z' -]+$/,
+                        message: 'Name can only contain letters, hyphens and apostrophes.',
                       },
                     })}
                 />
