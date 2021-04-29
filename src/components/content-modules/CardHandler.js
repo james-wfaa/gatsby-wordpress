@@ -1,6 +1,8 @@
 import React from 'react'
 import CardSet from './CardSet'
+import StyledTextLink from '../parts/StyledTextLink'
 import SimpleSliderItems from './SimpleSliderItems'
+
 
 const CardHandler = ({ items, sliderSize="S", size="M", type }) => {
 
@@ -15,7 +17,9 @@ const CardHandler = ({ items, sliderSize="S", size="M", type }) => {
                 return (<SimpleSliderItems items={items} size={sliderSize} type={type} />)
         }
     } else {
-        return (<div>No items found</div>)
+        return type === "event"
+            ? (<div>Check out <StyledTextLink to="/events/all">all upcoming WAA events.</StyledTextLink></div>)
+            : (<div><StyledTextLink to="/news/all">Read all</StyledTextLink> stories from WAA.</div>)
     }
 }
 
