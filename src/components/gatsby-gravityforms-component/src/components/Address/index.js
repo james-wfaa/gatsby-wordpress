@@ -88,6 +88,8 @@ const Address = ({ errors, fieldData, name,  register, value, fieldHidden, handl
             const id = Number(e.target.name.slice(6))
             handleFieldChange(id, e.target.value)
         }
+        const inputName = `input_${subfield.id.replace(".", "_")}`
+
 
         if(isCountryInput){
             return (
@@ -111,7 +113,7 @@ const Address = ({ errors, fieldData, name,  register, value, fieldHidden, handl
             )
         } else{
             return (<Input subfield
-                //errors={errors[name]}
+                errors={errors[inputName]}
                 fieldData={subfield.subfieldData}
                 key={subfield.id}
                 name={subfield.label}

@@ -14,7 +14,7 @@ const IdentityInfo = () => {
   const { setCurrentStep, setIdentityInfoOnchange } = actions;
   const [countries, ] = useState(countryList().getData())
 
-  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdateIdentityInfo = data =>{
     //setIdentityInfo(data)
     handleFormSubmit(state).then((returnedData) =>{
@@ -70,6 +70,7 @@ const IdentityInfo = () => {
               heading='Update My Info'
               headingCompact
               backgroundColor={colors.formIntroBg}
+              pageTitle
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep} />
             <form className="identity-info" id="contact" onSubmit={handleSubmit(UpdateIdentityInfo)}>
