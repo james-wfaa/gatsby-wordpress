@@ -1,7 +1,6 @@
 import React from "react"
 import { breakpoints } from "../css-variables"
 import styled from "styled-components"
-import { Link } from "gatsby"
 import { useWindowSize } from "../hooks"
 import Layout from "../layout"
 import PageSection from "../page-sections/PageSection"

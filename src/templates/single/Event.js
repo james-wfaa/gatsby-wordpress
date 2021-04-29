@@ -138,6 +138,7 @@ export const query = graphql`
                 questions
                 virtualEvent
                 trip
+                timeZoneInfoFreeText
               }
               eventsCategories {
                 nodes {
@@ -197,6 +198,7 @@ export const query = graphql`
         questions
         virtualEvent
         trip
+        timeZoneInfoFreeText
       }
       eventsCategories {
         nodes {

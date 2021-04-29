@@ -34,6 +34,9 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
         }
         return showMap;
     }
+    const timezone = eventDetails?.timeZoneInfoFreeText
+        ? eventDetails.timeZoneInfoFreeText
+        : null
 
 
     const parsedContent = parse(content, { trim: true })
@@ -131,6 +134,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                         date={date}
                         startDate={startDate}
                         endDate={endDate}
+                        timezone={timezone}
                         venue={venue}
                         cost={cost}
                         organizers={organizers}
@@ -168,6 +172,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     registrationLink={link}
                     startDate={startDate}
                     endDate={endDate}
+                    timezone={timezone}
                     venue={venue} cost={cost}
                     organizers={organizers}
                     eventDetails={eventDetails}
