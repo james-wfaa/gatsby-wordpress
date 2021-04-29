@@ -68,7 +68,7 @@ const InputWrapper = ({
                 'below',
                 errors
             )}
-            {errors && (
+            {errors && errors.message && (
                 <div
                     aria-live="polite"
                     className="gravityform__error_message gfield_description validation_message"

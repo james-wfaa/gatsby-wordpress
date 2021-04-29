@@ -13,7 +13,7 @@ const MailingAddress = () => {
   const { setCurrentStep, setMailingAddressOnchange } = actions;
   const [ countries ] = useState(countryList().getData())
 
-  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdateMailingAddressInfo = data =>{
     handleFormSubmit(state).then((returnedData) =>{
       if(returnedData.is_valid === false){
@@ -58,6 +58,7 @@ const MailingAddress = () => {
               heading='Update My Info'
               headingCompact
               backgroundColor={colors.formIntroBg}
+              pageTitle
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
             <form className="mailing-address" onSubmit={handleSubmit(UpdateMailingAddressInfo)}>
@@ -70,6 +71,7 @@ const MailingAddress = () => {
                     type="text"
                     name="streetAddress"
                     id="streetAddress"
+                    maxLength="150"
                     defaultValue={state.mailingAddress.streetAddress}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -85,6 +87,7 @@ const MailingAddress = () => {
                     type="text"
                     name="streetAddressLineTwo"
                     id="streetAddressLineTwo"
+                    maxLength="150"
                     defaultValue={state.mailingAddress.streetAddressLineTwo}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -100,6 +103,7 @@ const MailingAddress = () => {
                     type="text"
                     name="city"
                     id="city"
+                    maxLength="90"
                     defaultValue={state.mailingAddress.city}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -115,6 +119,7 @@ const MailingAddress = () => {
                     type="text"
                     name="state"
                     id="state"
+                    maxLength="150"
                     defaultValue={state.mailingAddress.state}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -131,6 +136,7 @@ const MailingAddress = () => {
                     type="text"
                     name="zipcode"
                     id="zipcode"
+                    maxLength="20"
                     defaultValue={state.mailingAddress.zipcode}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -164,15 +170,20 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalStartDate"
                     id="seasonalStartDate"
+                    maxLength="31"
                     defaultValue={state.mailingAddress.seasonalStartDate}
                     onChange={e => updateOnChangeValues(e)}
                     placeholder="MM/DD"
                     ref={register({
                       required: { value: true, message: "Start date of seasonal address is required" },
+                      maxLength: {
+                        value: 30,
+                        message: "Cannot be more than 30 characters",
+                      },
                     })}
                 />
-                {errors.jobtitle && (
-                  <StyledError>{errors.jobtitle.message}</StyledError>
+                {errors.seasonalStartDate && (
+                  <StyledError>{errors.seasonalStartDate.message}</StyledError>
                 )}
               </label>
               <label htmlFor="seasonalEndDate" className="smallThird block">End Date
@@ -181,15 +192,20 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalEndDate"
                     id="seasonalEndDate"
+                    maxLength="31"
                     placeholder="MM/DD"
                     defaultValue={state.mailingAddress.seasonalEndDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       required: { value: true, message: "End date of seasonal address is required" },
+                      maxLength: {
+                        value: 30,
+                        message: "Cannot be more than 30 characters",
+                      },
                     })}
                 />
-                {errors.jobtitle && (
-                  <StyledError>{errors.jobtitle.message}</StyledError>
+                {errors.seasonalEndDate && (
+                  <StyledError>{errors.seasonalEndDate.message}</StyledError>
                 )}
               </label>
               <label htmlFor="seasonalStreetAddress">Street Address
@@ -198,6 +214,7 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalStreetAddress"
                     id="seasonalStreetAddress"
+                    maxLength="150"
                     defaultValue={state.mailingAddress.seasonalStreetAddress}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -213,6 +230,7 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalStreetAddressLineTwo"
                     id="seasonalStreetAddressLineTwo"
+                    maxLength="150"
                     defaultValue={state.mailingAddress.seasonalStreetAddressLineTwo}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -229,6 +247,7 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalCity"
                     id="seasonalCity"
+                    maxLength="90"
                     defaultValue={state.mailingAddress.seasonalCity}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -245,6 +264,7 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalState"
                     id="seasonalState"
+                    maxLength="150"
                     defaultValue={state.mailingAddress.seasonalState}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -261,6 +281,7 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalZipcode"
                     id="seasonalZipcode"
+                    maxLength="20"
                     defaultValue={state.mailingAddress.seasonalZipcode}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
