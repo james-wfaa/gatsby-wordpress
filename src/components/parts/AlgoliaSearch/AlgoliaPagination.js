@@ -1,12 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Pagination } from 'react-instantsearch-dom'
-import { colors } from '../../css-variables'
+import { colors, breakpoints } from '../../css-variables'
 
 const PaginationWrapper = styled.div`
-  width: 760px;
+  min-width: 300px;
+  width: 100%;
+  max-width: 303px;
   margin: 0 auto  88px;
   text-align: center;
+
+  @media screen and ${breakpoints.tabletS} {
+    max-width: 536px;
+  }
+  @media screen and ${breakpoints.laptopS} {
+      max-width: 712px;
+  }
   ul {
     list-style-type: none;
     margin: 58px 0 0;
