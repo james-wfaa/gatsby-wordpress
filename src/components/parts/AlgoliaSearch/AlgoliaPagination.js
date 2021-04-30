@@ -4,9 +4,8 @@ import { Pagination } from 'react-instantsearch-dom'
 import { colors, breakpoints } from '../../css-variables'
 
 const PaginationWrapper = styled.div`
-  min-width: 300px;
   width: 100%;
-  max-width: 303px;
+  max-width: 300px;
   margin: 0 auto  88px;
   text-align: center;
 
