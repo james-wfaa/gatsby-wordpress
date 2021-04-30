@@ -1026,6 +1026,9 @@ export const mixins = {
                 .columnwrap {
                     flex:1;
                 }
+                .venuewrap {
+                    margin-bottom: ${sizes.s24};
+                }
     
             }
         }

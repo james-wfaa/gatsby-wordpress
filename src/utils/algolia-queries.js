@@ -34,6 +34,13 @@ const eventQuery = `{
             url: uri
           }
         }
+        products {
+          nodes {
+            name
+            slug
+            id
+          }
+        }
         venue {
           id
           address

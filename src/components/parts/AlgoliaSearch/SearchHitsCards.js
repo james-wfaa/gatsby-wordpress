@@ -46,6 +46,7 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
         switch (hit.type) {
             case 'Events':
             case 'Trips':
+                console.log(hit)
                 return (
                     <EventContentCard
                         key={hit.objectID}
@@ -68,6 +69,7 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                         }
                         alt={hit.alt}
                         url={hit.url}
+                        excerpt={hit.excerpt}
                         //size={!hit.featuredEvent ? 'Wide' : 'XXL'}
                         size='Wide'
                         filterChange={filterChange}     

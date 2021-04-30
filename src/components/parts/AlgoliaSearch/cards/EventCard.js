@@ -111,6 +111,8 @@ const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, 
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   let parsedDate = new Date(parseInt(startDate) * 1000).toLocaleDateString('en-US', options)
   let parsedTime = new Date(parseInt(startDate) * 1000).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})
+
+  console.log(excerpt)
   let locationString = city && state ? `| ${city}, ${state}` : null
 
   return (
