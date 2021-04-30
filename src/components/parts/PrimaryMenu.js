@@ -23,7 +23,7 @@ const menuItems = {
     { tag: "Upcoming Activities", url: "/events" },
     { tag: "Signature Events & Activities", url: "/signature-events" },
     { tag: "Learning & Enrichment Programs", url: "/learning" },
-    { tag: "Badger Athletic Events", url: "/athletics" },
+    { tag: "Badger Athletics Activities", url: "/athletics" },
     { tag: "Travel Tours", url: "/travel" },
   ],
   "News & Stories": [
@@ -34,7 +34,7 @@ const menuItems = {
   ],
   "Ways to Support": [
     { tag: "Advocate for the UW", url: "/advocate" },
-    { tag: "Show your Pride", url: "/show-your-pride" },
+    { tag: "Show Your Pride", url: "/show-your-pride" },
     { tag: "Get Involved", url: "/get-involved" },
     { tag: "Make a Gift", url: "/give" },
   ],
@@ -300,7 +300,7 @@ const PrimaryMenu2 = () => {
                 <Link to="/update-info">Update My Info</Link>
               </li>
               <li>
-                <Link to="/email">Log Into Email</Link>
+                <Link to="/email">Alumni Email Login</Link>
               </li>
             </ul>
             <SocialLinks>
