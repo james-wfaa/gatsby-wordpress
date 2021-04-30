@@ -64,8 +64,6 @@ function WordPressPage({ data }) {
   ]
   let displayCategories = []
 
-  
-
 categories.forEach((item) => {
   const { categoryEvent, product, numberToShow } = item
   const topic = categoryEvent ? categoryEvent : product ? product : null
@@ -75,11 +73,20 @@ categories.forEach((item) => {
 
   
     allevents.nodes.forEach((event) => {
-      if (event?.eventsCategories?.nodes) {
-        
+      let pushed = false
+      if (event?.eventsCategories?.nodes) {        
         event.eventsCategories.nodes.forEach((cat) => {
           if (cat?.slug && cat.slug === slug) {
             categoryEventItems.push(event)
+            pushed = true
+          }
+        })
+      }
+      if (!pushed && event?.products?.nodes) {
+        event.products.nodes.forEach((prod) => {
+          if (prod?.slug && prod.slug === slug) {
+            categoryEventItems.push(event)
+            pushed = true
           }
         })
       }
@@ -127,8 +134,8 @@ categories.forEach((item) => {
           mobileHeroImage={heroIntroSection.heroImageMobile.localFile}
           heroHeading={heroHeading}
         />)}
-        <PageSection centered    buttons={moreButton}>
-          <CardHandler items={featuredEventItems} type="event" size="L" />
+        <PageSection centered alt buttons={moreButton}>
+          <CardHandler items={featuredEventItems} type="event" size="L"  />
         </PageSection>
       <>{displayCategories}</>
       <PageSection heading="At a Glance" bgImage={gridBgImage} buttons={allButton}>

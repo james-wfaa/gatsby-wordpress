@@ -134,42 +134,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     })
   )
 
-  // create the events archive
+  
 
-  const {
-    data: { allWpEvent },
-  } = await graphql(/* GraphQL */ `
-    {
-      allWpEvent(sort: {order: ASC, fields: startDate}) {
-        nodes {
-          uri
-          id
-        }
-      }
-    }
-  `)
-
-  const eventsPerPage = 4
-  const chunkedEventNodes = chunk(allWpEvent.nodes, eventsPerPage)
-
-  await Promise.all(
-    chunkedEventNodes.map(async (nodesChunk, index) => {
-      const page = index + 1
-      const offset = eventsPerPage * index
-
-      await actions.createPage({
-        component: resolve(`./src/templates/single/PageEventsSearch.js`),
-        path: page === 1 ? `/events/search/` : `/events/search/${page}/`,
-        context: {
-
-          page: page,
-          offset: offset,
-          totalPages: chunkedEventNodes.length,
-          eventsPerPage,
-        },
-      })
-    })
-  )
+  
   const { createRedirect } = actions;
 	
 	redirects.forEach(redirect => 
