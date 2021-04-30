@@ -106,6 +106,7 @@ h2.SectionHeaderH2 {
     font-size: ${sizes.s36};
     line-height: ${sizes.s40};
     padding-top: ${sizes.s88}; 
+    margin-top: 58px;
     border-top: 18px solid ${colors.sectionBorder};
     text-align: center;
     
