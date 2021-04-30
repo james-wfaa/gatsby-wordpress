@@ -122,13 +122,13 @@ const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, 
         : null}
         {topResult ?
         <DetailsDiv>
-          <p><span className="cardType">{type.toUpperCase()}</span></p>
+          <p><span className="cardType">EVENT</span></p>
           <h3><Link to={url}>{title}</Link></h3>
           <p className="datetime">{parsedDate}, {parsedTime} {locationString}</p>
         </DetailsDiv>
         :
         <>
-          <p><span className="cardType">{type.toUpperCase()}</span></p>
+          <p><span className="cardType">EVENT</span></p>
           <h3><Link to={url}>{title}</Link></h3>
           <p className="datetime">{parsedDate}, {parsedTime} {locationString}</p>
         </>
