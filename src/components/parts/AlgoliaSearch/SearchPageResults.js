@@ -19,7 +19,6 @@ const ResultsWrapper = styled.div`
   max-width: 760px;
   margin: 0 auto;
   a {
-    text-decoration: none;
     span {
       font-family: 'Verlag A', 'Verlag B';
       color: ${colors.bgRed};
@@ -31,7 +30,6 @@ const CardResultsWrapper = styled.div`
   max-width: 1074px;
   margin: 0 auto;
   a {
-    text-decoration: none;
     span {
       font-family: 'Verlag A', 'Verlag B';
       color: ${colors.bgRed};

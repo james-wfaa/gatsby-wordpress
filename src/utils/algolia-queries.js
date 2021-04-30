@@ -14,6 +14,7 @@ const eventQuery = `{
         title
         url: uri
         excerpt
+        content
         featuredEvent
         date
         startDate
@@ -26,6 +27,7 @@ const eventQuery = `{
           questions
           virtualEvent
           trip
+          timeZoneInfoFreeText
         }
         eventsCategories {
           nodes {
@@ -79,6 +81,7 @@ const postQuery = `{
         url: uri
         title
         excerpt
+        content
         modified
         slug
         postFormats {
@@ -227,6 +230,7 @@ const pageQuery = `{
       node {
       id
       title
+      content
       date
       link
       excerpt
@@ -340,7 +344,7 @@ function pageToAlgoliaRecord({node: { id, date, link, ...rest}}) {
   return {
     objectID: id,
     type: "Pages",
-    typeIndex: 4,
+    typeIndex: 3,
     url: link,
     date: dateTimestamp,
     ...rest,
@@ -353,7 +357,7 @@ function chapterToAlgoliaRecord({node: { id, date, link, chapterDetails, ...rest
   return {
     objectID: id,
     type: "Chapters",
-    typeIndex: 3,
+    typeIndex: 4,
     url: csUrl,
     date: dateTimestamp,
     ...rest,
