@@ -42,7 +42,6 @@ const ContentCard = ({
     }
     const dateLinkText = fmtEndDate ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
 
-    console.log(excerpt)
 
     const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];
     const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
