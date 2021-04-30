@@ -112,6 +112,9 @@ const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, 
   let parsedDate = new Date(parseInt(startDate) * 1000).toLocaleDateString('en-US', options)
   let parsedTime = new Date(parseInt(startDate) * 1000).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})
 
+  const timezone = (hit?.eventDetails?.timeZoneInfoFreeText)
+    ? hit.eventDetails.timeZoneInfoFreeText
+    : ''
   //console.log(excerpt)
   let locationString = city && state ? `| ${city}, ${state}` : null
 
@@ -126,13 +129,13 @@ const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, 
         <DetailsDiv>
           <p><span className="cardType">EVENT</span></p>
           <h3><Link to={url}>{title}</Link></h3>
-          <p className="datetime">{parsedDate}, {parsedTime} {locationString}</p>
+          <p className="datetime">{parsedDate}, {parsedTime} {timezone} {locationString}</p>
         </DetailsDiv>
         :
         <>
           <p><span className="cardType">EVENT</span></p>
           <h3><Link to={url}>{title}</Link></h3>
-          <p className="datetime">{parsedDate}, {parsedTime} {locationString}</p>
+          <p className="datetime">{parsedDate}, {parsedTime} {timezone} {locationString}</p>
         </>
         }
         {excerpt ?

@@ -130,7 +130,7 @@ const PostCard = ({ initialBlock, excerpt, title, topResult, url, categories, ca
         : null
     
     const displayCategory = categories[0].name === "Classnote"
-      ? "ALUMNI NOTES"
+      ? "ALUMNI NOTE"
       : category 
         ? category
         : altPostType 

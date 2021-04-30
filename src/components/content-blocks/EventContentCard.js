@@ -6,7 +6,6 @@ const EventContentCard = ({
   startDate,
   endDate, 
   title, 
-  eventCategories,
   products,
   eventDetails,
   venue, 

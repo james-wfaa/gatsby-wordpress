@@ -69,8 +69,8 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                         }
                         alt={hit.alt}
                         url={hit.url}
+                        products={hit.products}
                         excerpt={hit.excerpt}
-                        //size={!hit.featuredEvent ? 'Wide' : 'XXL'}
                         size='Wide'
                         filterChange={filterChange}     
                     />
@@ -94,7 +94,7 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                             initialBlock={hit.excerpt}
                             img={hit?.featuredImage?.node?.localFile}
                             categories={hit.categories}
-                            category="Alumni Notes"
+                            category="Alumni Note"
                             excerpt={renderedExcerpt}
                             filterChange={filterChange}
                         />
