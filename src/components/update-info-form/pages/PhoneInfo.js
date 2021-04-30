@@ -159,6 +159,9 @@ const PhoneInfo = () => {
                       }
                     })}
                 />
+                {errors.phoneNumber2 && (
+                  <StyledError>{errors.phoneNumber2.message}</StyledError>
+                )}
                 {errors.phoneNumber2?.type === "numbersOnly" && (
                   <StyledError>Letters are not accepted as a valid phone number</StyledError>
                 )}
