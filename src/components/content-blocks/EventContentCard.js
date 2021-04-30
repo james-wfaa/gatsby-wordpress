@@ -20,7 +20,7 @@ const EventContentCard = ({
   tags, 
   size }) => {
 
-    console.log(excerpt)
+    //console.log(excerpt)
 
     const label = (products?.nodes?.[0]?.name )? products.nodes[0].name : null
     const virtualEvent = eventDetails?.virtualEvent

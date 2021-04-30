@@ -25,7 +25,7 @@ const CardSet = ({className, items, children, num, size="M", type="news" }) => {
                 : item.url
             return (type === "news" )
                 ? (<StoryContentCard key={item.id || item.title} size={resolvedSize} img={cardImg} {...item} />) 
-                : (<EventContentCard key={item.id || item.title} size={size} img={cardImg} {...item} url={resolvedUrl} />)
+                : (<EventContentCard key={item.id || item.databaseId || item.title} size={size} img={cardImg} {...item} url={resolvedUrl} />)
                 
                 
             })
