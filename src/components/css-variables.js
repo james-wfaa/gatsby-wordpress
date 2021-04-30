@@ -316,17 +316,20 @@ export const mixins = {
         color: ${colors.buttonRed};
         background-color: ${colors.titleWhite};
         &:hover {
-            color: ${colors.buttonActiveGrey};
-            background-color: ${colors.bgActiveGrey};
+            color: ${colors.titleWhite};
+            background-color: ${colors.buttonRed};
         }
         &:active {
             color: ${colors.buttonActiveGrey};
-            background-color: ${colors.bgWhite};
+            background-color: ${colors.bgActiveGrey};
         }
 
      }
      &--altborder {
         border: 1px solid ${colors.buttonRed};
+        &:active {
+            border: 1px solid ${colors.buttonActiveGrey};
+        }
      }
      &--disabled {
         pointer-events: none;
