@@ -6,6 +6,8 @@ import linksvg from '../../svg/linksvg.svg'
 const StyledEventLinks = styled.div`
 .tribe-block {
     width: 200px;
+    display: flex;
+    flex-direction: column;
    
     &__btn--link {
         display: flex;
@@ -18,9 +20,9 @@ const StyledEventLinks = styled.div`
     .gatsby-image-wrapper,
     .inline-gatsby-image-wrapper {
         max-height: 50px !important;
-        left: -0;
-        top: 32px;
-        width: 40px !important;
+        left: 10px;
+        top: 2px;
+        //width: 40px !important;
         &:before {
             position: absolute;
             left: 0;
@@ -36,7 +38,8 @@ const StyledEventLinks = styled.div`
         }
     }
     img {
-        display: none;
+        //display: none;
+        margin-bottom: 10px;
         width: 60px !important;
         float: left;
         position: relative;
