@@ -9,7 +9,6 @@ const TagList = ({ items, globalSearch, className, filterChange }) => {
         ? ' global'
         : ''
     const tagsList = limitedTags.map((item, i, arr) => {
-        console.log(item)
         const filterType = (item?.type && item.type === 'product')
             ? 'product'
             : 'filter'

@@ -62,7 +62,6 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
               <Column className={block.name.replace("/", "-")} block={block} key={`${block.name}{${block.originalContent}`} />
             )
           case "core/buttons":
-            console.log(block)
             if (block?.innerBlocks?.[0]?.originalContent) {
               let innerRenderedBlocks = []
               block.innerBlocks.forEach(innerBlock => {
