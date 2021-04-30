@@ -109,8 +109,6 @@ const DetailsDiv = styled.div`
 `
 
 const ChapterCard = ({excerpt, hit, title, topResult, tags, url}) => {
-  console.log(title,url)
-  console.log(hit)
 
   return (
     <CardWrapper className={topResult ? "topResult" : null}>

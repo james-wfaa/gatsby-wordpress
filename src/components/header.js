@@ -71,7 +71,7 @@ const Header = ({ noborder }) => {
                 <Link
                   to="/email"
                 >
-                  Log Into Email
+                  Alumni Email Login
                 </Link>
               </li>
               
