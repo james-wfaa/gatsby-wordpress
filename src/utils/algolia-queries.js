@@ -14,7 +14,6 @@ const eventQuery = `{
         title
         url: uri
         excerpt
-        content
         featuredEvent
         date
         startDate
@@ -81,7 +80,6 @@ const postQuery = `{
         url: uri
         title
         excerpt
-        content
         modified
         slug
         postFormats {
@@ -152,7 +150,9 @@ const classNoteQuery = `{
       node {
         id
         title
-        content
+        blocks {
+          saveContent
+        }
         uri
         link
         date(formatString: "MMM. DD, YYYY")
@@ -230,7 +230,9 @@ const pageQuery = `{
       node {
       id
       title
-      content
+      blocks {
+        saveContent
+      }
       date
       link
       excerpt
