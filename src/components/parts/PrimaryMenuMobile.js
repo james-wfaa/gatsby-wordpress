@@ -286,7 +286,7 @@ const PrimaryMenu = () => {
 
   const parentLinks = Object.keys(menuItems).map(link => {
     return (
-      <li>
+      <li key={link}>
         <button onClick={e => parentClickHandler(link, e)}>
           <p>
             <SpanArrowRight>{link}</SpanArrowRight>
@@ -301,14 +301,14 @@ const PrimaryMenu = () => {
       let links = menuItems[select].map(link => {
         if(link.url === "https://www.uwalumnistore.com" ){
           return (
-            <li>
+            <li key={link.tag}>
               <a href={link.url} target="_blank">{link.tag}</a>
             </li>
           )
         }
         else{
           return (
-            <li>
+            <li key={link.tag}>
               <Link to={link.url}>{link.tag}</Link>
             </li>
           )
