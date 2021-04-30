@@ -33,7 +33,7 @@ const HomePage = ({ data }) => {
   const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList?.[0]
     ? tileAds.nodes[0].siteOptions.TileAds.adList
     : null
-  const [ads, setAds] = useState(adList)
+  const [ads] = useState(adList)
   const [currentAd, setCurrentAd] = useState(null)
 
 

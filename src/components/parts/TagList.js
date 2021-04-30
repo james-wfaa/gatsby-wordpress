@@ -19,12 +19,12 @@ const TagList = ({ items, globalSearch, className, filterChange }) => {
         if (item.name !== 'Uncategorized') {
             return globalSearch
             ? (
-                <div key={item.id} className="tag__item" key={item.slug}>
+                <div key={item.id} className="tag__item">
                     <span>{item.name}</span>{comma}
                 </div>
             )
             :  (
-                <div key={item.id} className="tag__item" key={item.slug}>
+                <div key={item.id} className="tag__item">
                     <a className="tag__link" href={`/news/all?${filterType}=${item.slug}`} onClick={() => filterChange(filterType, item.slug)}><span>{item.name}</span></a>{comma}
                 </div>
             )

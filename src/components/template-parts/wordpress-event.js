@@ -8,7 +8,7 @@ import FeaturedImage from "../content-blocks/FeaturedImage"
 
 
 function WordPressPage({ page }) {
-  const {  featuredImage, title, eventsCategories, products, id, slug} = page
+  const { featuredImage, title, eventsCategories, products, id } = page
 
   //console.log(products)
   //console.log(eventsCategories)

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, currentYear, handleFormSubmit, FormGeneralError } from '../form-helpers'
+import { StyledError, handleFormSubmit, FormGeneralError } from '../form-helpers'
 import PageSection from '../../page-sections/PageSection'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
