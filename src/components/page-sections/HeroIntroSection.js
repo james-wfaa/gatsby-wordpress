@@ -375,7 +375,7 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
     }
   }
   &.noHero{
-    margin-top: 80px;
+    padding-top: 80px;
     div.standardProductLabel:before{
       top: -81px;
       height:81px;
