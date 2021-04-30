@@ -6,8 +6,14 @@ import { colors, breakpoints } from '../../css-variables'
 const PaginationWrapper = styled.div`
   width: 100%;
   max-width: 300px;
-  margin: 0 auto  88px;
+  margin: 0 auto;
   text-align: center;
+  &.globalsearch {
+    margin-bottom: 88px;
+    @media screen and ${breakpoints.tabletS} {
+      margin-bottom: 128px;
+    }
+  }
 
   @media screen and ${breakpoints.tabletS} {
     max-width: 536px;
@@ -49,9 +55,12 @@ const PaginationWrapper = styled.div`
 `
 
 
-const AlgoliaPagination = () => {
+const AlgoliaPagination = ({ globalsearch }) => {
+  const globalClass = globalsearch
+    ? 'globalsearch'
+    : ''
   return (
-    <PaginationWrapper>
+    <PaginationWrapper className={globalClass}>
       <Pagination showLast />
     </PaginationWrapper>
   )

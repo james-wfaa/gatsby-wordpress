@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { colors, mixins, sizes, breakpoints } from '../css-variables'
 import styled from 'styled-components'
 import EventLinksBlock from "./EventLinks"
-
-
 import Button from '../parts/Button'
 import { convertTime, compareDate } from "../../utils/tools"
 import GenericModal from '../content-modules/GenericModal'
@@ -11,8 +9,7 @@ import GenericModal from '../content-modules/GenericModal'
 
 const EventRegistration = ({className, date, startDate, endDate, timezone, venue, cost, organizers, eventDetails, priceDetails, calendarLinks, showMapLink}) => {
 
-    console.log(timezone)
-    //console.log(calendarLinks)
+    console.log(calendarLinks)
 
     const { virtualEvent } = eventDetails
     const classesList = `${className}`;

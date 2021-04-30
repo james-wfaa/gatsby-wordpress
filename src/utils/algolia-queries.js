@@ -150,9 +150,7 @@ const classNoteQuery = `{
       node {
         id
         title
-        blocks {
-          saveContent
-        }
+        content
         uri
         link
         date(formatString: "MMM. DD, YYYY")

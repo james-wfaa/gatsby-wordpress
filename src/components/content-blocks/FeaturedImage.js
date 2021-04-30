@@ -181,6 +181,9 @@ margin: ${sizes.s58} 0;
 &__caption{
   p{
     margin-bottom: ${sizes.s12};
+    @media screen and ${breakpoints.laptopL} {
+      margin-bottom: ${sizes.s58};
+    }
   }
 }
 &__author{

@@ -6,10 +6,11 @@ import {
     Configure,
     ScrollTo,
 } from 'react-instantsearch-dom'
-import { colors, sizes } from '../../css-variables'
+import { colors, sizes, mixins } from '../../css-variables'
 import AccordianSearchBoxAlgolia from './AccordianSearchBoxAlgolia'
 import SearchPageResults from './SearchPageResults'
 import AlgoliaPagination from './AlgoliaPagination'
+
 
 const StyledWrapper = styled.div`
   .ais-Pagination--noRefinement {
@@ -23,25 +24,22 @@ const QueryDiv = styled.div`
 
 `
 
-const FilterText = styled.span`
-
+const FilterText = styled.div`
+margin-bottom: ${sizes.s32};
 `
 
 const FilterButton = styled.button`
-  position: relative;
-  display: inline-block;
-  text-align: left;
-  background-color: transparent;
-  text-decoration: underline;
+  ${mixins.buttons}
+  
+  background-color: transparent !important;
   //padding-left: ${sizes.s36};
-  //color: ${colors.titleWhite};
-  //width: 150px;
-  //background-color: ${colors.buttonRed};
-  //height: 48px;
   border: none;
-  //font-weight:bold;
   &:focus {
     outline: none;
+  }
+  &:hover {
+    box-shadow: none;
+    background-color: inherit !important;
   }
   cursor: pointer;
 `
@@ -82,15 +80,15 @@ const AlgoliaArchivePage = props => {
                 {(props?.queryString?.filter || props?.queryString?.pub || props?.queryString?.product) && 
                 <QueryDiv>
                   {props?.queryString?.filter &&
-                    <FilterText><span>Results filtered by:</span> "{props.queryString.filter}"</FilterText>
+                    <FilterText><span>Results filtered by:</span> "{props.queryString.filter.replace('-',' ')}"</FilterText>
                   }
                   {props?.queryString?.pub &&
-                    <FilterText><span>Results filtered by:</span> "{props.queryString.pub}"</FilterText>
+                    <FilterText><span>Results filtered by:</span> "{props.queryString.pub.replace('-',' ')}"</FilterText>
                   }
                   {props?.queryString?.product &&
-                    <FilterText><span>Results filtered by:</span> "{props.queryString.product}"</FilterText>
+                    <FilterText><span>Results filtered by:</span> "{props.queryString.product.replace('-',' ')}"</FilterText>
                   }
-                  <FilterButton onClick={props.clearFilters}>Clear Filter</FilterButton>
+                  <FilterButton className="alt altborder" onClick={props.clearFilters}>Clear Filter</FilterButton>
                 </QueryDiv>
                 }
                 

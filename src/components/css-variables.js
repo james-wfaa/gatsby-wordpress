@@ -312,7 +312,8 @@ export const mixins = {
              background-color: ${colors.bgWhite};
          }
      }
-     &--alt {
+     &--alt,
+     &.alt {
         color: ${colors.buttonRed};
         background-color: ${colors.titleWhite};
         &:hover {
@@ -325,7 +326,8 @@ export const mixins = {
         }
 
      }
-     &--altborder {
+     &--altborder,
+     &.altborder {
         border: 1px solid ${colors.buttonRed};
         &:active {
             border: 1px solid ${colors.buttonActiveGrey};

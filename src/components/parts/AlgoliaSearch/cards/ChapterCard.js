@@ -123,16 +123,16 @@ const ChapterCard = ({excerpt, hit, title, topResult, tags, url}) => {
         }
         {topResult 
           ? <DetailsDiv>
-              <p><span className="cardType">Chapters/Groups</span></p>
+              <p><span className="cardType">Alumni Group</span></p>
               <h3><Link to={`/groups/${url}`}>{title}</Link></h3>
             </DetailsDiv>
           : url
             ? <>
-                <p><span className="cardType">Chapters/Groups</span></p>
+                <p><span className="cardType">Alumni Group</span></p>
                 <h3><Link to={`/groups/${url}`}>{title}</Link></h3>
               </>
             : <>
-                <p><span className="cardType">Chapters/Groups</span></p>
+                <p><span className="cardType">Alumni Group</span></p>
                 <h3>{title}</h3>
               </>
         }

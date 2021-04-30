@@ -18,6 +18,7 @@ const NoteAll = ({ data }) => {
                 {/* <CardContainer>{cards}</CardContainer> */}
             </PageSection>
             <SponsorAd />
+            
         </Layout>
     )
 }

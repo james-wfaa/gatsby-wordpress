@@ -121,7 +121,7 @@ const AccordianSearchAlgolia = props => {
         show={query && query.length > 0 && hasFocus}
         indices={props.indices}
         />
-        <AlgoliaPagination />
+        <AlgoliaPagination globalsearch />
       </InstantSearch>
       </div>
     </StyledWrapper>

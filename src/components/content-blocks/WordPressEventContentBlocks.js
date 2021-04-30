@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import parse from 'html-react-parser';
+import parse, { domToReact } from 'html-react-parser';
 import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
 import styled from 'styled-components'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
@@ -44,11 +44,40 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
     let parsedEventLinks = <div />
     let parsedEventPriceDetails = null
     parsedContent.forEach((tag) => {
-        //console.log(tag.props.className)
         const classes = tag?.props?.className ? tag.props.className : ''
         const children = tag?.props?.children ? tag.props.children : null
         if (classes.includes('tribe-block__events-link')) {
-            parsedEventLinks = tag
+            //console.log(tag)
+            let modifiedChildren = []
+            /**
+             * we need to modify the incoming HTML to 
+             * 1) add a target="_blank" to the gcal link
+             * 2) point the ical link at the WordPress URL so the download works correctly
+             * */ 
+
+            tag.props.children.forEach((child) => {
+                console.log(child)
+                if (child.props.className.includes('tribe-block__events-gcal')) {
+                    var clonedElementWithMoreProps = React.cloneElement(
+                        child.props.children, 
+                        { target: "_blank" }
+                    )
+                    modifiedChildren.push(clonedElementWithMoreProps)
+                }
+                if (child.props.className.includes('tribe-block__-events-ical')) {
+                    var clonedElementWithMoreProps = React.cloneElement(
+                        child.props.children, 
+                        { href: `https://uwalumni.wpengine.com${child.props.children.props.href}` }
+                    )
+                    modifiedChildren.push(clonedElementWithMoreProps)
+                }
+
+            })
+            parsedEventLinks = React.cloneElement(
+                tag,
+                { children: modifiedChildren }
+            )
+            
         }
         if (classes.includes('tribe-block__event-price')) {
             children.forEach((priceDiv) => {
