@@ -1,7 +1,5 @@
 import React from "react"
-import styled from 'styled-components'
 import { useStaticQuery, graphql } from "gatsby"
-import { sizes, breakpoints } from '../css-variables'
 import Img from 'gatsby-image'
 import SponsorAdStyled from "./SponsorAdStyled"
 

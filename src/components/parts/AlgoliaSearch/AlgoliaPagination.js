@@ -6,7 +6,7 @@ import { colors, breakpoints } from '../../css-variables'
 const PaginationWrapper = styled.div`
   width: 100%;
   max-width: 300px;
-  margin: 0 auto  88px;
+  margin: 0 auto;
   text-align: center;
 
   @media screen and ${breakpoints.tabletS} {
