@@ -117,7 +117,7 @@ categories.forEach((item) => {
 
   let eventCards = cardGridEvents.map((event) => {
     return (
-      <EventCardD key={event.url} {...event} url={event.link} />
+      <EventCardD key={event.link} {...event} url={event.link} />
     )
   })
   const eventCards1 = eventCards.slice(0,5)
