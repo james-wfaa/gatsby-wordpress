@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useState, useRef, useEffect } from 'react'
-import Recaptcha from 'recaptcha'
-
+//import Recaptcha from 'recaptcha'
+import ReCAPTCHA from "react-google-recaptcha"
 import InputWrapper from '../InputWrapper'
 
 const Captcha = ({
@@ -58,8 +58,8 @@ const Captcha = ({
             labelFor={name}
             {...wrapProps}
         >
-            <Recaptcha
-                onExpire={changeCaptchaToken}
+            <ReCAPTCHA
+                onExpired={changeCaptchaToken}
                 onLoad={() => setLoaded(true)}
                 onVerify={changeCaptchaToken}
                 ref={captchaRef}

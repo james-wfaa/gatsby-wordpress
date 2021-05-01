@@ -66,6 +66,7 @@ module.exports = {
       options: {
         mode: "async",
         enableListener: true,
+        preconnect: ["https://use.typekit.net", "https://cloud.typography.com"],
         web: [
           {
             name: ["Verlag A", "Verlag B"],
