@@ -33,7 +33,6 @@ const SearchHits = ({ hits, hitHandler }) => {
 
     switch (hit.type) {
       case "Trips":
-        //console.log('trips')
         return (
           <TripCard
             key={hit.objectID}

@@ -12,12 +12,10 @@ import Shortcode from '../content-modules/Shortcode'
 import FooGallery from './FooGallery'
 import parse from 'html-react-parser'
 
-
 const WpStoryContentBlocks = ({className, blocks, content }) => {
-        const RenderedBlocks = (blocks) ? blocks.map((block) => {
-
-          switch (block.name) {
-
+  const RenderedBlocks = (blocks) 
+    ? blocks.map((block) => {
+        switch (block.name) {
           case "core/separator":
             return (
               <div key={block.order}
@@ -136,8 +134,12 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
               </div>
             )
           case "core/embed":
-            const checkForInstagram = block?.originalContent && block?.originalContent.includes('instagram') ? true : false;
-            const embedWrapperClass = block?.originalContent && block?.originalContent.includes('flickr') || block?.originalContent.includes('tryinteract') || block?.originalContent && block?.originalContent.includes('instagram')? 'embed-wrapper' : null;
+            const checkForInstagram = (block?.originalContent && block?.originalContent.includes('instagram'))
+            const embedWrapperClass = (block?.originalContent && block?.originalContent.includes('flickr')) || 
+            block?.originalContent.includes('tryinteract') || 
+            (block?.originalContent && block?.originalContent.includes('instagram'))
+              ? 'embed-wrapper' 
+              : null
             return (
               <div className={`wp-block-embed ${embedWrapperClass}`} key={block.order}>
                 <EmbedBlock source={block.originalContent} type={checkForInstagram ? "instagram" : "base"} />
@@ -168,14 +170,14 @@ const WpStoryContentBlocks = ({className, blocks, content }) => {
                     block={block}
                   />
                 )
-              } else {
-                return null
-              }
-            break
+            } 
+            else {
+              return null
+            } 
         }
-    }
-    ) : null
-
+        return null
+    }) 
+    : null
 
     return(
         <div className={className} id="Top">

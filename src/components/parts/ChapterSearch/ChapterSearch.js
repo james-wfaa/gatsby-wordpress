@@ -9,7 +9,7 @@ import ChapterCard from "./ChapterCard"
 const ChapterSearch = () => {
   const [selectedCountry, setSelectedCountry] = useState("All Countries")
   const [selectedState, setSelectedState] = useState("All U.S. States")
-  const [chapterData, setChapterData] = useState(AllChaptersData().nodes)
+  const [chapterData] = useState(AllChaptersData().nodes)
   const [filteredChapters, setFilteredChapters] = useState([])
 
   const getCountryOptions = chapterData => {
@@ -19,26 +19,6 @@ const ChapterSearch = () => {
     })
     return [...new Set(valueArr)].sort()
   }
-
-/*
-  const getStateOptions = chapterData => {
-    let valueArr = []
-    chapterData.forEach(chapter => {
-      if (chapter?.chapterDetails?.csState) {
-        console.log(chapter.chapterDetails.csState)
-        let stateObj = stateoptions.filter(obj => {
-          return obj.VALUE === chapter.chapterDetails.csState
-        })
-        valueArr.push(stateObj[0])
-      }
-      
-    })
-    return [...new Set(valueArr)].sort((a, b) => (a.LABEL > b.LABEL) ? 1 : -1)
-
-  }
-
-  console.log(getStateOptions(chapterData))
-  */
 
   const stateoptions = [
     { LABEL: "Alabama", VALUE: "AL" },
@@ -225,6 +205,7 @@ const ChapterSearch = () => {
                 if(country !== "United States"){
                   return <option value={country}>{country}</option>
                 }
+                return
               })}
             </FilteredSelect>
           </FilteredDiv>
@@ -246,7 +227,7 @@ const ChapterSearch = () => {
         </FilterBox>
       </StyledButtonWrapper>
       <ResultsBoxWrapper>
-        {filteredChapters.length == 0 ? (
+        {filteredChapters.length === 0 ? (
           <div>
             {selectedCountry !== "All Countries" ||
             selectedState !== "All U.S. States" ? (

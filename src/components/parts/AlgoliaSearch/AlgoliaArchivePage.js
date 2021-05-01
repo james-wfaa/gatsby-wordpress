@@ -34,12 +34,9 @@ const FilterButton = styled.button`
   background-color: transparent !important;
   //padding-left: ${sizes.s36};
   border: none;
-  &:focus {
-    outline: none;
-  }
+  
   &:hover {
-    box-shadow: none;
-    background-color: inherit !important;
+    background-color: ${colors.buttonRed} !important;
   }
   cursor: pointer;
 `

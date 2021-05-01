@@ -20,12 +20,12 @@ const TagList = ({ items, globalSearch, className, filterChange }) => {
             return globalSearch
             ? (
                 <div key={item.id} className="tag__item">
-                    <span>{item.name}</span>{comma}
+                    <span>{item.name}{comma}</span>
                 </div>
             )
             :  (
                 <div key={item.id} className="tag__item">
-                    <a className="tag__link" href={`/news/all?${filterType}=${item.slug}`} onClick={() => filterChange(filterType, item.slug)}><span>{item.name}</span></a>{comma}
+                    <nobr></nobr><a className="tag__link" href={`/news/all?${filterType}=${item.slug}`} onClick={() => filterChange(filterType, item.slug)}><span>{item.name}{comma}</span></a>
                 </div>
             )
         }
