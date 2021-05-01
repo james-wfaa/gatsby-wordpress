@@ -9,10 +9,6 @@ import WordPressContent from "../../components/content-blocks/WordPressBasicCont
 import BackgroundImage from 'gatsby-background-image'
 import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
-
-
-
-
 const WordPressEmailPage = ({ className, data }) => {
   const [ads] = useState(data.page.HalfPageAd.adList)
   const [currentAd, setCurrentAd] = useState(null)
@@ -60,7 +56,6 @@ const WordPressEmailPage = ({ className, data }) => {
           </BackgroundImage>
         </div> )
       }
-
       </div>
       <PageSection
         heading="Featured News and Stories"
@@ -75,7 +70,6 @@ const WordPressEmailPage = ({ className, data }) => {
       >
           <RecentPosts />
         </PageSection>
-
     </Layout>
   )
 }
@@ -93,8 +87,6 @@ margin: 0 auto;
     text-align: left !important;
   }
 }
-
-
 .button{
   a{
     width: 100%;
@@ -128,7 +120,6 @@ margin: 0 auto;
     }
   }
 }
-
 div{
   .section-header{
     text-align: center;
@@ -178,7 +169,6 @@ div{
       }
     }
   }
-
 }
 .col--copy {
   padding-bottom: ${sizes.s58};
@@ -190,7 +180,6 @@ div{
 }
 `
 export default StyledWordPressEmailPage
-
 
 export const query = graphql`
   query email($id: String!) {
@@ -245,7 +234,6 @@ export const query = graphql`
             }
           }
         }
-
       }
     }
   }

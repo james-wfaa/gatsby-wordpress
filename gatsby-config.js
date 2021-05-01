@@ -237,6 +237,7 @@ module.exports = {
         //routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
       },
     },
+    `gatsby-plugin-webpack-bundle-analyser-v2`,
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-redirect-to`,
