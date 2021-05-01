@@ -64,7 +64,8 @@ module.exports = {
     {
       resolve: "gatsby-omni-font-loader",
       options: {
-        mode: "render-blocking",
+        mode: "async",
+        enableListener: true,
         web: [
           {
             name: ["Verlag A", "Verlag B"],
