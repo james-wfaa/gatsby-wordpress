@@ -61,10 +61,11 @@ const Captcha = ({
             <ReCAPTCHA
                 onExpired={changeCaptchaToken}
                 onLoad={() => setLoaded(true)}
-                onVerify={changeCaptchaToken}
+                onChange={changeCaptchaToken}
                 ref={captchaRef}
                 sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
                 theme={captchaTheme || 'light'}
+                size="invisible"
             />
             <input
                 name="g-recaptcha-response"
