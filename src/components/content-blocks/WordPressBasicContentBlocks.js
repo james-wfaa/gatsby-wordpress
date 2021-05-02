@@ -289,6 +289,11 @@ h2 {
 .wp-block-embed{
   margin-bottom: 26px;
 }
+.advocacy-embed {
+  iframe:nth-of-type(2) {
+      display: none;
+  }
+}
 
 `
 

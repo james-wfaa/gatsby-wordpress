@@ -37,9 +37,8 @@ const WordPressBlock = ({className, block, product = false}) => {
 const StyledWordPressBlock = styled(WordPressBlock)`
 
 text-align: left;
-min-width: 300px;
 width: 100%;
-max-width: 303px;
+max-width: 300px;
 margin-left: auto;
 margin-right: auto;
 
@@ -460,6 +459,8 @@ figure.wp-block-image{
         background-color: ${colors.tableRowGrey};
     }
 }
+
+
 `
 
 
