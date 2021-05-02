@@ -1,7 +1,5 @@
 import React from "react"
-import styled from 'styled-components'
 import { useStaticQuery, graphql } from "gatsby"
-import { sizes, breakpoints } from '../css-variables'
 import Img from 'gatsby-image'
 import SponsorAdStyled from "./SponsorAdStyled"
 
@@ -56,7 +54,12 @@ import SponsorAdStyled from "./SponsorAdStyled"
   
     return (
         <SponsorAdStyled>
-            {siteOptions && (
+            {siteOptions && 
+            logoImage1?.localFile?.childImageSharp && 
+            logoImage3?.localFile?.childImageSharp && 
+            logoImage4?.localFile?.childImageSharp && 
+            logoImage2?.localFile?.childImageSharp &&
+            (
                 <a className="SponsorAd_Link" href={adLink.uri}>
                     <div className="contentWrap">
                         <div className="AdTitle" dangerouslySetInnerHTML={{ __html: adHeading }}/>

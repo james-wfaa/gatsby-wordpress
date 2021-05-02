@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, handleFormSubmit } from '../form-helpers'
+import { StyledError, handleFormSubmit, FormGeneralError } from '../form-helpers'
 import { colors } from '../../css-variables'
 import PageSection from '../../page-sections/PageSection'
 import Buttons from '../FormButtons'
@@ -12,17 +12,21 @@ const MailingAddress = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setMailingAddressOnchange } = actions;
   const [ countries ] = useState(countryList().getData())
+  const [generalError, setGeneralError] = useState('')
 
-  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdateMailingAddressInfo = data =>{
-    console.log(data)
-    handleFormSubmit(state).then(() => {
+    handleFormSubmit(state).then((returnedData) =>{
+      if(returnedData.is_valid === false){
+        throw new Error('something went wrong with submitting the form');
+      }
+    }).then(() => {
       let currentOrder = state.numberOfSteps
       let currentStep = state.currentStep
       let currentPlaceInOrder = currentOrder.indexOf(currentStep)
       let nextStep = currentOrder[currentPlaceInOrder + 1]
       setCurrentStep(nextStep)
-    })
+    }).catch(err => {setGeneralError(err.message)})
     
   }
   const updateOnChangeValues = (e) => {
@@ -53,11 +57,14 @@ const MailingAddress = () => {
             <PageSection
               excerpt='Please update your primary or seasonal mailing address below. By doing so, you’ll receive communications on happenings in your area to help you stay connected to fellow Badgers nearby. Note that if you checked “Employment Information” on a previous form, you also have the option to update your business address coming up. Click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
-              headingAlt
               headingCompact
               backgroundColor={colors.formIntroBg}
+              pageTitle
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
+            {generalError && (
+              <FormGeneralError>We’re sorry, but a network issue prevented us from saving your information. Our team has been notified, but you can <a href="mailto:web@supportuw.org">contact WAA</a> if you need immediate assistance.</FormGeneralError>
+            )}
             <form className="mailing-address" onSubmit={handleSubmit(UpdateMailingAddressInfo)}>
             { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Mailing Address<span className="requiredInfo">*Required Information</span></legend>
@@ -68,6 +75,7 @@ const MailingAddress = () => {
                     type="text"
                     name="streetAddress"
                     id="streetAddress"
+                    maxLength="150"
                     defaultValue={state.mailingAddress.streetAddress}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -83,6 +91,7 @@ const MailingAddress = () => {
                     type="text"
                     name="streetAddressLineTwo"
                     id="streetAddressLineTwo"
+                    maxLength="150"
                     defaultValue={state.mailingAddress.streetAddressLineTwo}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -98,6 +107,7 @@ const MailingAddress = () => {
                     type="text"
                     name="city"
                     id="city"
+                    maxLength="90"
                     defaultValue={state.mailingAddress.city}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -113,6 +123,7 @@ const MailingAddress = () => {
                     type="text"
                     name="state"
                     id="state"
+                    maxLength="150"
                     defaultValue={state.mailingAddress.state}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -129,6 +140,7 @@ const MailingAddress = () => {
                     type="text"
                     name="zipcode"
                     id="zipcode"
+                    maxLength="20"
                     defaultValue={state.mailingAddress.zipcode}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -162,15 +174,20 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalStartDate"
                     id="seasonalStartDate"
+                    maxLength="31"
                     defaultValue={state.mailingAddress.seasonalStartDate}
                     onChange={e => updateOnChangeValues(e)}
                     placeholder="MM/DD"
                     ref={register({
                       required: { value: true, message: "Start date of seasonal address is required" },
+                      maxLength: {
+                        value: 30,
+                        message: "Cannot be more than 30 characters",
+                      },
                     })}
                 />
-                {errors.jobtitle && (
-                  <StyledError>{errors.jobtitle.message}</StyledError>
+                {errors.seasonalStartDate && (
+                  <StyledError>{errors.seasonalStartDate.message}</StyledError>
                 )}
               </label>
               <label htmlFor="seasonalEndDate" className="smallThird block">End Date
@@ -179,15 +196,20 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalEndDate"
                     id="seasonalEndDate"
+                    maxLength="31"
                     placeholder="MM/DD"
                     defaultValue={state.mailingAddress.seasonalEndDate}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       required: { value: true, message: "End date of seasonal address is required" },
+                      maxLength: {
+                        value: 30,
+                        message: "Cannot be more than 30 characters",
+                      },
                     })}
                 />
-                {errors.jobtitle && (
-                  <StyledError>{errors.jobtitle.message}</StyledError>
+                {errors.seasonalEndDate && (
+                  <StyledError>{errors.seasonalEndDate.message}</StyledError>
                 )}
               </label>
               <label htmlFor="seasonalStreetAddress">Street Address
@@ -196,6 +218,7 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalStreetAddress"
                     id="seasonalStreetAddress"
+                    maxLength="150"
                     defaultValue={state.mailingAddress.seasonalStreetAddress}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -211,6 +234,7 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalStreetAddressLineTwo"
                     id="seasonalStreetAddressLineTwo"
+                    maxLength="150"
                     defaultValue={state.mailingAddress.seasonalStreetAddressLineTwo}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -227,6 +251,7 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalCity"
                     id="seasonalCity"
+                    maxLength="90"
                     defaultValue={state.mailingAddress.seasonalCity}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -243,6 +268,7 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalState"
                     id="seasonalState"
+                    maxLength="150"
                     defaultValue={state.mailingAddress.seasonalState}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -259,6 +285,7 @@ const MailingAddress = () => {
                     type="text"
                     name="seasonalZipcode"
                     id="seasonalZipcode"
+                    maxLength="20"
                     defaultValue={state.mailingAddress.seasonalZipcode}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({

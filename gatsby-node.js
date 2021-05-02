@@ -3,6 +3,8 @@ const path = require(`path`)
 const glob = require(`glob`)
 const chunk = require(`lodash/chunk`)
 const { dd } = require(`dumper.js`)
+const redirects = require("./redirects.json");
+
 
 const getTemplates = () => {
   const sitePath = path.resolve(`./`)
@@ -132,42 +134,18 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     })
   )
 
-  // create the events archive
+  
 
-  const {
-    data: { allWpEvent },
-  } = await graphql(/* GraphQL */ `
-    {
-      allWpEvent(sort: {order: ASC, fields: startDate}) {
-        nodes {
-          uri
-          id
-        }
-      }
-    }
-  `)
-
-  const eventsPerPage = 4
-  const chunkedEventNodes = chunk(allWpEvent.nodes, eventsPerPage)
-
-  await Promise.all(
-    chunkedEventNodes.map(async (nodesChunk, index) => {
-      const page = index + 1
-      const offset = eventsPerPage * index
-
-      await actions.createPage({
-        component: resolve(`./src/templates/single/PageEventsSearch.js`),
-        path: page === 1 ? `/events/search/` : `/events/search/${page}/`,
-        context: {
-
-          page: page,
-          offset: offset,
-          totalPages: chunkedEventNodes.length,
-          eventsPerPage,
-        },
-      })
-    })
-  )
+  
+  const { createRedirect } = actions;
+	
+	redirects.forEach(redirect => 
+		createRedirect({
+	    fromPath: redirect.fromPath,
+	    toPath: redirect.toPath,
+      isPermanent: true,
+	  })
+	)
 }
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;

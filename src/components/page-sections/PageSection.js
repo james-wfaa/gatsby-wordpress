@@ -46,7 +46,6 @@ const PageSection = ({
     defaultPage // one page section with no top padding
  }) => {
 
-
     const background =  typeof bgImage !== "undefined" && bgImage !== null
     const bgClass = (background) ? 'withBg' : ''
     const desktopOnlyClass = (desktopOnly) ? 'desktopOnly' : ''
@@ -80,7 +79,7 @@ const PageSection = ({
             { excerpt && (
                 <div className="sectionexcerpt"  dangerouslySetInnerHTML={{ __html: excerpt }} />
             )}
-            <div className={`content ${plainTextContent}${centeredContentClass}`}>
+            <div className={`content ${plainTextContent} ${centeredContentClass}`}>
                 {children}
             </div>
             { buttons && (<PageSectionButtons buttons={buttons} buttonsAlt={buttonsAlt} compact={buttonsCompact} />
@@ -107,7 +106,7 @@ const PageSection = ({
             <div className={`content content--bgimage`}>
                 {children}
             </div>
-            { buttons && (<PageSectionButtons buttons={buttons} bgimage buttonsAlt/>
+            { buttons && (<PageSectionButtons buttons={buttons} bgimage buttonsAlt={buttonsAlt}/>
             )}
       </BackgroundImage>
         )
@@ -334,6 +333,7 @@ const StyledPageSection = styled(PageSection)`
         > .core-buttons,
         > .core-columns,
         > .core-separator,
+        > .embed-block,
         > .StaffSearch,
         > .gravityforms-form,
         > .acf-accordion-navigation,
@@ -360,6 +360,14 @@ const StyledPageSection = styled(PageSection)`
         > div {
             margin: 0 auto;
         }
+        @media screen and ${breakpoints.tabletS} {
+            > .cardset {
+                width: 80%;
+                max-width: 1080px;
+            }
+        }
+        
+
     }
 
 

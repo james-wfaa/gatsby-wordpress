@@ -26,6 +26,8 @@ const StyledDiv = styled.div`
       margin-bottom: 4px;
       background-color: ${colors.navMenuBlack};
       mask: url(${Search});
+      mask-repeat: no-repeat;
+      border:none;
       &:hover {
         background-color: ${colors.buttonRed};
       }
@@ -57,7 +59,7 @@ export default connectSearchBox(
         <form onSubmit={e => submitHandler(e)}>
           <StyledInput
             type="text"
-            placeholder="Search..."
+            placeholder="Search"
             ariaLabel="SearchInput"
             onChange={e => refine(e.target.value)}
             value={currentRefinement}
@@ -66,7 +68,7 @@ export default connectSearchBox(
         </form>
         <span>
           <button
-            ariaLabel="SearchButton"
+            aria-label="SearchButton"
             style={{ backgroundColor: `${colors.buttonRed}` }}
           ></button>
         </span>

@@ -1,15 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Pagination } from 'react-instantsearch-dom'
-import { colors } from '../../css-variables'
+import { colors, breakpoints } from '../../css-variables'
 
 const PaginationWrapper = styled.div`
-  width: 760px;
+  width: 100%;
+  max-width: 300px;
   margin: 0 auto;
   text-align: center;
+  &.globalsearch {
+    margin-bottom: 88px;
+    @media screen and ${breakpoints.tabletS} {
+      margin-bottom: 128px;
+    }
+  }
+
+  @media screen and ${breakpoints.tabletS} {
+    max-width: 536px;
+  }
+  @media screen and ${breakpoints.laptopS} {
+      max-width: 712px;
+  }
   ul {
     list-style-type: none;
-    margin: 58px 0;
+    margin: 58px 0 0;
     font-size: 26px;
     li {
       display: inline-block;
@@ -41,10 +55,13 @@ const PaginationWrapper = styled.div`
 `
 
 
-const AlgoliaPagination = () => {
+const AlgoliaPagination = ({ globalsearch }) => {
+  const globalClass = globalsearch
+    ? 'globalsearch'
+    : ''
   return (
-    <PaginationWrapper>
-      <Pagination />
+    <PaginationWrapper className={globalClass}>
+      <Pagination showLast />
     </PaginationWrapper>
   )
 }

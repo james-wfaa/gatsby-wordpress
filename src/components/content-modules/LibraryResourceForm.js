@@ -143,8 +143,8 @@ const LbraryResourceForm = () => {
             <div>
               <h3>Thanks for being a member</h3>
               <LinkBlock>
-                <a href="https://www.uwalumni.com/membership/benefits/librarian/">
-                  Ask a Reference Librarion
+                <a href="/about/librarian">
+                  Ask a Reference Librarian
                 </a>
                 <p>
                   If you’ve ever spent a considerable amount of time researching

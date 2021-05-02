@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, handleFormSubmit } from '../form-helpers'
+import { StyledError, handleFormSubmit, FormGeneralError } from '../form-helpers'
 import PageSection from '../../page-sections/PageSection'
 import Buttons from './../FormButtons'
 import { colors } from '../../css-variables'
@@ -12,17 +12,21 @@ const EmploymentInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setEmploymentInfoOnchange } = actions;
   const [countries, ] = useState(countryList().getData())
+  const [generalError, setGeneralError] = useState('')
 
-  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdateEmploymentInfo = data =>{
-    //console.log(data)
-    handleFormSubmit(state).then(() => {
+    handleFormSubmit(state).then((returnedData) =>{
+      if(returnedData.is_valid === false){
+        throw new Error('something went wrong with submitting the form');
+      }
+    }).then(() => {
       let currentOrder = state.numberOfSteps
       let currentStep = state.currentStep
       let currentPlaceInOrder = currentOrder.indexOf(currentStep)
       let nextStep = currentOrder[currentPlaceInOrder + 1]
       setCurrentStep(nextStep)
-    })
+    }).catch(err => {setGeneralError(err.message)})
   }
 
   const updateOnChangeValues = (e) => {
@@ -47,11 +51,14 @@ const EmploymentInfo = () => {
             <PageSection
               excerpt='Please make updates regarding your current employment status. Click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
-              headingAlt
               headingCompact
               backgroundColor={colors.formIntroBg}
+              pageTitle
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
+            {generalError && (
+              <FormGeneralError>We’re sorry, but a network issue prevented us from saving your information. Our team has been notified, but you can <a href="mailto:web@supportuw.org">contact WAA</a> if you need immediate assistance.</FormGeneralError>
+            )}
             <form id="contact" onSubmit={handleSubmit(UpdateEmploymentInfo)}>
               { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Employment Info<span className="requiredInfo">*Required Information</span></legend>
@@ -77,6 +84,7 @@ const EmploymentInfo = () => {
                     type="text"
                     name="jobTitle"
                     id="jobTitle"
+                    maxLength="150"
                     defaultValue={state.employmentInfo.jobTitle}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -92,6 +100,7 @@ const EmploymentInfo = () => {
                     type="text"
                     name="businessName"
                     id="businessName"
+                    maxLength="150"
                     defaultValue={state.employmentInfo.businessName}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -107,6 +116,7 @@ const EmploymentInfo = () => {
                     type="text"
                     name="businessStreetAddress"
                     id="businessStreetAddress"
+                    maxLength="150"
                     defaultValue={state.employmentInfo.businessStreetAddress}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -121,6 +131,7 @@ const EmploymentInfo = () => {
                     type="text"
                     name="businessStreetAddressLineTwo"
                     id="businessStreetAddressLineTwo"
+                    maxLength="150"
                     defaultValue={state.employmentInfo.businessStreetAddressLineTwo}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -136,6 +147,7 @@ const EmploymentInfo = () => {
                     type="text"
                     name="businessCity"
                     id="businessCity"
+                    maxLength="90"
                     defaultValue={state.employmentInfo.businessCity}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -151,6 +163,7 @@ const EmploymentInfo = () => {
                     type="text"
                     name="businessState"
                     id="businessState"
+                    maxLength="150"
                     defaultValue={state.employmentInfo.businessState}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
@@ -166,6 +179,7 @@ const EmploymentInfo = () => {
                     type="text"
                     name="businessZipcode"
                     id="businessZipcode"
+                    maxLength="20"
                     defaultValue={state.employmentInfo.businessZipcode}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({

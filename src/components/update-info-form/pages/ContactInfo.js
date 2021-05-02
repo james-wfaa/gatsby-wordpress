@@ -1,7 +1,7 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { colors } from "../../css-variables"
-import { StyledError, checkForLetters, handleFormSubmit } from '../form-helpers'
+import { StyledError, checkForLetters, handleFormSubmit, FormGeneralError } from '../form-helpers'
 import PageSection from "../../page-sections/PageSection"
 import Buttons from '../FormButtons'
 import { AppContext } from "../../../context/AppContext"
@@ -9,32 +9,45 @@ import { AppContext } from "../../../context/AppContext"
 
 const ContactInfo = () => {
   const { state, actions } = useContext(AppContext);
-  const { setCurrentStep, setContactInfoOnchange, setEntryId } = actions;
+  const { setCurrentStep, setContactInfoOnchange, setEntryId, setCommSignUpInfo } = actions;
+  const [generalError, setGeneralError] = useState('')
 
-  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
-  const UpdateContactInfo = data =>{
-    handleFormSubmit(state).then((res) =>{
-      //console.log('returned data', res)
-      setEntryId(res.entry_id)
-    }).then(setCurrentStep(2))
-
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
+  const UpdateContactInfo = () => {
+    setCommSignUpInfo({
+      firstname: state.contactInfo.firstname,
+      lastname: state.contactInfo.lastname,
+      email: state.contactInfo.email
+    })
+    handleFormSubmit(state).then((returnedData) =>{
+      if(returnedData.is_valid === false){
+        throw new Error('something went wrong with submitting the form');
+      }
+      if(!state.entry_id){
+        setEntryId(returnedData.entry_id)
+      }
+    }).then(() => {
+      setCurrentStep(2)
+    }).catch(err => {setGeneralError(err.message)})
   }
 
   const updateOnChangeValues = (e) => {
       setContactInfoOnchange([e.target.name, e.target.value])
   }
-
-
+  
   const requiredFieldsCheck = state.contactInfo.firstname !== '' && state.contactInfo.lastname !== '' && state.contactInfo.email !== '';
       return (
         <div>
           <PageSection
             excerpt="Make sure you stay in the know — and more connected to the UW and WAA! Please take a moment to complete this form with your current contact information to ensure you receive communications about events, programs, and services that matter to you."
             heading="Update My Info"
-            headingAlt
             headingCompact
             backgroundColor={colors.formIntroBg}
+            pageTitle
           />
+          {generalError && (
+            <FormGeneralError>We’re sorry, but a network issue prevented us from saving your information. Our team has been notified, but you can <a href="mailto:web@supportuw.org">contact WAA</a> if you need immediate assistance.</FormGeneralError>
+          )}
           <form
             id="contact"
             className="contact-info"
@@ -66,6 +79,10 @@ const ContactInfo = () => {
                     value: 50,
                     message: "First name cannot be more than 50 characters",
                   },
+                  pattern: {
+                    value: /^[a-zA-Z' -]+$/,
+                    message: 'Name can only contain letters, hyphens and apostrophes.',
+                  },
                 })}
               />
               {errors.firstname && (
@@ -88,6 +105,10 @@ const ContactInfo = () => {
                     value: 50,
                     message: "Last name cannot be more than 50 characters",
                   },
+                  pattern: {
+                    value: /^[a-zA-Z' -]+$/,
+                    message: 'Name can only contain letters, hyphens and apostrophes.',
+                  },
                 })}
               />
               {errors.lastname && (
@@ -101,9 +122,19 @@ const ContactInfo = () => {
                 type="text"
                 name="othernames"
                 id="othernames"
+                maxLength="151"
                 defaultValue={state.contactInfo.othernames}
                 onChange={e => updateOnChangeValues(e)}
-                ref={register({})}
+                ref={register({
+                  maxLength: {
+                    value: 150,
+                    message: "Cannot be more than 150 characters",
+                  },
+                  pattern: {
+                    value: /^[a-zA-Z' -]+$/,
+                    message: 'Can only contain letters, hyphens and apostrophes.',
+                  },
+                })}
               />
               {errors.othernames && (
                 <StyledError>{errors.othernames.message}</StyledError>
@@ -116,6 +147,7 @@ const ContactInfo = () => {
                 type="email"
                 name="email"
                 id="email"
+                maxLength="255"
                 defaultValue={state.contactInfo.email}
                 onChange={e => updateOnChangeValues(e)}
                 ref={register({
@@ -139,13 +171,17 @@ const ContactInfo = () => {
                 type="phone"
                 name="phone"
                 id="phone"
-                maxLength="51"
+                maxLength="30"
                 defaultValue={state.contactInfo.phone}
                 onChange={e => updateOnChangeValues(e)}
                 ref={register({
-                  validate: {
+                  /*validate: {
                     numbersOnly: value => checkForLetters(value) === false,
-                  },
+                  },*/
+                  pattern: {
+                    value: /^[- ]*[0-9][- 0-9]*$/,
+                    message: 'Phone number can only contain numbers and dashes.',
+                  }
                 })}
               />
               {errors.phone && (
@@ -193,9 +229,15 @@ const ContactInfo = () => {
                 type="text"
                 name="postgrad"
                 id="postgrad"
+                maxLength="151"
                 defaultValue={state.contactInfo.postgrad}
                 onChange={e => updateOnChangeValues(e)}
-                ref={register({})}
+                ref={register({
+                  maxLength: {
+                    value: 150,
+                    message: "Cannot be more than 150 characters",
+                  },
+                })}
               />
               {errors.postgrad && (
                 <StyledError>{errors.postgrad.message}</StyledError>

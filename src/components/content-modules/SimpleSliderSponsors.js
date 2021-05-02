@@ -15,7 +15,6 @@ const SimpleSliderSponsors = ({ items, size, type }) => {
             className="center"
             slidesToShow="1"
             infinite="false"
-            dots
             variableWidth
             centerPadding="100px"
             {...settings}

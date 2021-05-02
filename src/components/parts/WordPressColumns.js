@@ -85,6 +85,8 @@ const WordPressColumns = ({ block, className }) => {
                       ? block.dynamicContent
                       : block.originalContent
                     //console.log(shortcode)
+                    
+                    // TODO - change this to parse & grab ID prop
                     let idStart = shortcode.indexOf('id="')
                     if (idStart > -1) {
                       idStart += 4

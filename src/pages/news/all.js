@@ -1,93 +1,71 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import styled from 'styled-components'
-import { sizes, breakpoints } from '../../components/css-variables'
+import React, { useState, useEffect } from 'react'
+import queryString from 'query-string'
 import Layout from '../../components/layout'
 import PageSection from '../../components/page-sections/PageSection'
-import StoryContentCard from '../../components/content-blocks/StoryContentCard'
+import AlgoliaArchivePage from '../../components/parts/AlgoliaSearch/AlgoliaArchivePage'
+import SponsorAd from "../../components/content-blocks/SponsorAd"
+import { navigate } from 'gatsby-link'
 
-const NewsAll = ({ data }) => {
-    const CardContainer = styled.div`
-        width: 256px;
-        margin: 0 auto;
-        display: grid;
-        grid-row-gap: ${sizes.s24};
+const NewsAll = (props) => {
+    const [filterFilter, setFilterFilter] = useState("")
+    const [pubFilter, setPubFilter] = useState("")
+    const [productFilter, setProductFilter] = useState("")
+    const [allFilters, setAllFilters] = useState(`type:'News & Stories' AND NOT categories.name:Classnote`)
 
-        @media screen and ${breakpoints.tabletS} {
-            width: 536px;
-            grid-template-columns: 1fr 1fr;
-            grid-column-gap: ${sizes.s24};
+    const { filter, pub, product } = queryString.parse(props.location.search)
+
+    useEffect(() => {
+        if (filter?.length > 0) {
+            setFilterFilter(` AND categories.slug:${filter}`)
         }
-
-        @media screen and ${breakpoints.tabletL} {
-            width: 816px;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-column-gap: ${sizes.s24};
+        if (pub?.length > 0) {
+            setPubFilter(` AND products.slug:${pub}`)
         }
-
-        @media screen and ${breakpoints.laptopS} {
-            width: 1080px;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-column-gap: ${sizes.s24};
+        if (product?.length > 0) {
+            setProductFilter(` AND products.slug:${product}`)
         }
-    `
-    let cards = data.posts.nodes.map(card => {
-        return (
-            <StoryContentCard
-                category={card.category}
-                title={card.title}
-                url={card.url}
-                excerpt={card.excerpt}
-                img={card?.featuredImage?.node?.localFile}
-            />
-        )
-    })
+    }, [])
+
+    useEffect(() => {
+        setAllFilters(`type:'News & Stories' AND NOT categories.name:Classnote${filterFilter}${pubFilter}${productFilter}`)
+    }, [filterFilter, pubFilter, productFilter])
+
+    const filterChange = (type, slug) => {
+        if (type === "filter") {
+            setFilterFilter(` AND categories.slug:${slug}`)
+        } else if (type === "pub") {
+            setPubFilter(` AND products.slug:${slug}`)
+        } else if (type === "product") {
+            setProductFilter(` AND products.slug:${slug}`)
+        } else {
+            return
+        }
+    }
+    
+    const clearFilters = () => {
+        setFilterFilter("")
+        setPubFilter("")
+        setProductFilter("")
+        navigate('/news/all')
+    }
+    
     return (
-        <Layout>
-            <PageSection heading="All News and Story">
-                <CardContainer>{cards}</CardContainer>
+        <Layout title="All News &amp; Stories">
+            <PageSection heading="All News &amp; Stories">
+                <AlgoliaArchivePage
+                indices={[{name: "All"}]}
+                results={false}
+                filters={allFilters}
+                filterChange={filterChange}
+                clearFilters={clearFilters}
+                queryString={queryString.parse(props.location.search)}
+                />
             </PageSection>
+            <SponsorAd />
         </Layout>
     )
 }
 
 export default NewsAll
 
-export const query = graphql`
-    query AllNews {
-        posts: allWpPost(limit: 100, sort: { order: DESC, fields: date }) {
-            nodes {
-                title
-                excerpt
-                featuredImage {
-                    node {
-                        localFile {
-                            ...HeroImage
-                        }
-                    }
-                }
-                url: uri
-                terms {
-                    nodes {
-                        ... on WpPostFormat {
-                            id
-                            name
-                            slug
-                        }
-                    }
-                }
-                linkFormat {
-                    linkAuthor
-                    linkUrl
-                }
-                acfAlternatePostType{
-                    alternateposttype
-                }
-                videoFormat {
-                    vimeoId
-                }
-            
-            }
-        }
-    }
-`
+

@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import Layout from "../layout"
-import WordPressBasicContentBlocks from "../content-blocks/WordPressBasicContentBlocks"
+import WordPressBasicContentBlocks from "../content-blocks/WpStoryContentBlocks"
 import { breakpoints, mixins } from '../css-variables'
 
 
@@ -12,6 +12,8 @@ import FeaturedImage from "../content-blocks/FeaturedImage"
 import RecentNotes from "../../components/page-sections/RecentNotes"
 import PageSection from "../page-sections/PageSection"
 import Button from '../parts/Button'
+import BreadCrumbs from "../page-sections/BreadCrumbs"
+
 
 
 function BlogPost({ data }) {
@@ -56,10 +58,21 @@ function BlogPost({ data }) {
   
   let image = (featuredImage?.node) ? featuredImage.node : null
   let classCategory = classnoteNotes.nodes[0] ? classnoteNotes.nodes[0] : ''
+  
+  //Remove slug from Category until Archive links are set up
+  classCategory.slug = ''
+
+  let links = [
+    { url: "/", name: "Home" },
+    { url: "/news", name: "News & Stories" },
+    { url: "/alumni-notes", name: "Alumni Notes" },
+    { url: link, name: title },
+  ]
 
   
   return (
-    <Layout title={title}>
+    <Layout title={title} img={image}>
+        <BreadCrumbs links={links} />
         <TitleSection heading={title} category={classCategory} date={date} smImg={(718 > size) ? image : null} size={size} largeSpace/>
         {image && size >= 718 && (
             <FeaturedImage featuredImage={image} size={size}/>
@@ -67,20 +80,20 @@ function BlogPost({ data }) {
         <WordPressBasicContentBlocks {...page} />
       {alumniNotesFields?.classnotesUrl && (
         <StyledExternalLink>
-          <div>For more information, visit <a href={alumniNotesFields.classnotesUrl}>{alumniNotesFields.classnotesUrlname}</a>.</div>
+          <div>For more information, visit <a href={alumniNotesFields.classnotesUrl} target="_blank">{alumniNotesFields.classnotesUrlname}</a>.</div>
         </StyledExternalLink>
       )}
       <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link} tight/>
       
       <StyledButtonWrapper>
-        <Button link="/submit-a-note" text="Submit a Note" external />
+        <Button link="/alumni-notes/submit/" text="Submit a Note" external />
       </StyledButtonWrapper>
 
       <PageSection
           heading="More Alumni Notes"
           buttons={[
             {
-              link: "/alumninote/all",
+              link: "/alumni-notes/all",
               text: "SEE ALL ALUMNI NOTES",
             },
           ]}

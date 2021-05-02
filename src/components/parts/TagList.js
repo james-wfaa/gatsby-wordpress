@@ -2,23 +2,52 @@ import React from "react"
 import styled from 'styled-components'
 import { colors, sizes, breakpoints } from '../css-variables'
 
-const TagList = ({ items, className }) => {
-    const itemsList = items.map((item) => (
-        <div className="tag__item" key={item.tag}>
-            <a className="tag__link" href={item.link}><span>{item.tag}</span>,</a>
-        </div>
-      ))
-      
-        return (
-          <section className={className}>{itemsList}</section>
-        )
+const TagList = ({ items, globalSearch, className, filterChange }) => {
+    const limitedTags = items.slice(0,3)
+    
+    const globalClass = globalSearch
+        ? ' global'
+        : ''
+    const tagsList = limitedTags.map((item, i, arr) => {
+        const filterType = (item?.type && item.type === 'product')
+            ? 'product'
+            : 'filter'
+        const comma = (arr.length - 1 === i) 
+            ? ''
+            : ','
+
+        if (item.name !== 'Uncategorized') {
+            return globalSearch
+            ? (
+                <div key={item.id} className="tag__item">
+                    <span>{item.name}{comma}</span>
+                </div>
+            )
+            :  (
+                <div key={item.id} className="tag__item">
+                    <nobr></nobr><a className="tag__link" href={`/news/all?${filterType}=${item.slug}`} onClick={() => filterChange(filterType, item.slug)}><span>{item.name}{comma}</span></a>
+                </div>
+            )
+        }
+        return null
+        
+    })
+
+    return (
+        <section className={`${className}${globalClass}`}>{tagsList}</section>
+    )
 }
 
 const StyledTagList = styled(TagList)`
 
 .tag__item{
     display: inline-block;
-    padding-left: 2px;
+    margin-right: 4px;
+    position: relative;
+    &:first-child {
+        margin-left: 0;
+        padding-left: 0;
+    }
 }
 .tag__link {
     font-size: ${sizes.s14};
@@ -27,6 +56,9 @@ const StyledTagList = styled(TagList)`
     display: inline-block;
     color: ${colors.categoryGrey};
     text-decoration: underline;
+    span {
+        color: ${colors.categoryGrey};
+    }
     @media screen and ${breakpoints.tabletL} {
         font-size: ${sizes.s15};
         line-height: ${sizes.s22};
@@ -34,14 +66,19 @@ const StyledTagList = styled(TagList)`
     &:visited {
         color: ${colors.categoryGrey};
     }
-    
+
     &:hover {
         color: ${colors.linkTextHover};
     }
     &:active {
         color: ${colors.linkTextActive};
     }
-    
+
+}
+&.global {
+    padding: 0 0 ${sizes.s16};
+    color: ${colors.tagGrey};
+    font-size: ${sizes.s15};
 }
 `
 

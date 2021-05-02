@@ -66,12 +66,19 @@ export const useActions = (state, dispatch) => {
   function setSpouseInfoOnchange(obj) {
     dispatch({ type: types.SET_SPOUSE_INFO_ONCHANGE, payload: obj})
   }
+  function setCommSignUpInfo(obj) {
+    dispatch({ type: types.SET_COMM_SIGNUP_INFO, payload: obj})
+  }
   function setCommunicationsSignUpOnchange(array) {
     dispatch({ type: types.SET_COMMUNICATIONS_SIGNUP_ONCHANGE, payload: array})
   }
   function setEntryId(str) {
     dispatch({ type: types.SET_ENTRY_ID, payload: str });
   }
+  function setInitialState(obj) {
+    dispatch({ type: types.SET_INITIAL_STATE, payload: obj });
+  }
+  
   
   
 
@@ -94,10 +101,12 @@ export const useActions = (state, dispatch) => {
     setIdentityInfoOnchange,
     setSpouseInfo,
     setSpouseInfoOnchange,
+    setCommSignUpInfo,
     setCommunicationsSignUpOnchange,
     setMembershipGraduate,
     setMembershipAge,
     setMembershipType,
-    setEntryId
+    setEntryId,
+    setInitialState
   };
 };

@@ -130,6 +130,7 @@ export const query = graphql`
           }
           localFile {
             ...HeroImage
+            publicURL
           }
         }
       }
@@ -170,7 +171,6 @@ export const query = graphql`
                       childImageSharp {
                         fluid(maxWidth: 712) {
                           base64
-                          tracedSVG
                           srcWebp
                           srcSetWebp
                           originalImg
@@ -181,6 +181,7 @@ export const query = graphql`
                           sizes
                         }
                       }
+                      publicURL
                     }
                   }
                 }
@@ -212,7 +213,6 @@ export const query = graphql`
                       childImageSharp {
                         fluid(maxWidth: 712) {
                           base64
-                          tracedSVG
                           srcWebp
                           srcSetWebp
                           originalImg
@@ -223,6 +223,7 @@ export const query = graphql`
                           sizes
                         }
                       }
+                      publicURL
                     }
                   }
                 }
@@ -244,6 +245,73 @@ export const query = graphql`
             }
             name
           }
+          product {
+            slug
+            name
+            posts {
+              nodes {
+                title
+                url: uri
+                excerpt
+                blocks {
+                  name
+                  originalContent
+                  dynamicContent
+                  innerBlocks {
+                    name
+                    originalContent
+                    dynamicContent
+                    innerBlocks {
+                      name
+                      originalContent
+                      dynamicContent
+                    }
+                  }
+
+                }
+                featuredImage {
+                  node {
+                    localFile {
+                      childImageSharp {
+                        fluid(maxWidth: 712) {
+                          base64
+                          srcWebp
+                          srcSetWebp
+                          originalImg
+                          originalName
+                          aspectRatio
+                          base64
+                          src
+                          srcSet
+                          sizes
+                        }
+                      }
+                    }
+                  }
+                }
+                acfAlternatePostType{
+                  alternateposttype
+                }
+                videoFormat {
+                  vimeoId
+                }
+                categories {
+                  nodes {
+                    name
+                    slug
+                    id
+                  }
+                }
+                products {
+                  nodes {
+                    name
+                    slug
+                    id
+                  }
+                }
+              }
+            }
+          }
         }
       }
       groups {
@@ -254,19 +322,25 @@ export const query = graphql`
               title
               startDate
               endDate
+              url
+              link
               venue {
                 title
                 city
                 state
               }
               excerpt
+              products {
+                nodes {
+                  name
+                }
+              }
               featuredImage {
                 node {
                   localFile {
                     childImageSharp {
                       fluid(maxWidth: 712) {
                         base64
-                        tracedSVG
                         srcWebp
                         srcSetWebp
                         originalImg
@@ -277,6 +351,7 @@ export const query = graphql`
                         sizes
                       }
                     }
+                    publicURL
                   }
                 }
               }
@@ -325,12 +400,14 @@ export const query = graphql`
           sponsorName
           sponsorText
           sponsorLogo {
+            altText
             localFile {
               childImageSharp {
                 fluid(maxWidth: 312) {
                   ...GatsbyImageSharpFluid
                 }
               }
+              publicURL
             }
           }
         }
@@ -344,6 +421,8 @@ export const query = graphql`
             bascomChapterText
             recognizedChapterText
             varsityChapterText
+            affinityGroupText
+            affinityGroupPositioningStatement
           }
         }
       }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import { colors, sizes, breakpoints } from "../../css-variables"
+import { colors, sizes, breakpoints, mixins } from "../../css-variables"
 import PageSection from "../../page-sections/PageSection"
 import AllChaptersData from "../../collections/AllChapters"
 // import countryList from "react-select-country-list"
@@ -9,7 +9,7 @@ import ChapterCard from "./ChapterCard"
 const ChapterSearch = () => {
   const [selectedCountry, setSelectedCountry] = useState("All Countries")
   const [selectedState, setSelectedState] = useState("All U.S. States")
-  const [chapterData, setChapterData] = useState(AllChaptersData().nodes)
+  const [chapterData] = useState(AllChaptersData().nodes)
   const [filteredChapters, setFilteredChapters] = useState([])
 
   const getCountryOptions = chapterData => {
@@ -23,14 +23,8 @@ const ChapterSearch = () => {
   const stateoptions = [
     { LABEL: "Alabama", VALUE: "AL" },
     { LABEL: "Alaska", VALUE: "AK" },
-    { LABEL: "Alberta", VALUE: "AB" },
-    { LABEL: "American Samoa", VALUE: "AS" },
     { LABEL: "Arizona", VALUE: "AZ" },
     { LABEL: "Arkansas", VALUE: "AR" },
-    { LABEL: "Armed Forces (AE)", VALUE: "AE" },
-    { LABEL: "Armed Forces Americas", VALUE: "AA" },
-    { LABEL: "Armed Forces Pacific", VALUE: "AP" },
-    { LABEL: "British Columbia", VALUE: "BC" },
     { LABEL: "California", VALUE: "CA" },
     { LABEL: "Colorado", VALUE: "CO" },
     { LABEL: "Connecticut", VALUE: "CT" },
@@ -38,7 +32,6 @@ const ChapterSearch = () => {
     { LABEL: "District Of Columbia", VALUE: "DC" },
     { LABEL: "Florida", VALUE: "FL" },
     { LABEL: "Georgia", VALUE: "GA" },
-    { LABEL: "Guam", VALUE: "GU" },
     { LABEL: "Hawaii", VALUE: "HI" },
     { LABEL: "Idaho", VALUE: "ID" },
     { LABEL: "Illinois", VALUE: "IL" },
@@ -48,7 +41,6 @@ const ChapterSearch = () => {
     { LABEL: "Kentucky", VALUE: "KY" },
     { LABEL: "Louisiana", VALUE: "LA" },
     { LABEL: "Maine", VALUE: "ME" },
-    { LABEL: "Manitoba", VALUE: "MB" },
     { LABEL: "Maryland", VALUE: "MD" },
     { LABEL: "Massachusetts", VALUE: "MA" },
     { LABEL: "Michigan", VALUE: "MI" },
@@ -58,40 +50,28 @@ const ChapterSearch = () => {
     { LABEL: "Montana", VALUE: "MT" },
     { LABEL: "Nebraska", VALUE: "NE" },
     { LABEL: "Nevada", VALUE: "NV" },
-    { LABEL: "New Brunswick", VALUE: "NB" },
     { LABEL: "New Hampshire", VALUE: "NH" },
     { LABEL: "New Jersey", VALUE: "NJ" },
     { LABEL: "New Mexico", VALUE: "NM" },
     { LABEL: "New York", VALUE: "NY" },
-    { LABEL: "Newfoundland", VALUE: "NF" },
     { LABEL: "North Carolina", VALUE: "NC" },
     { LABEL: "North Dakota", VALUE: "ND" },
-    { LABEL: "Northwest Territories", VALUE: "NT" },
-    { LABEL: "Nova Scotia", VALUE: "NS" },
-    { LABEL: "Nunavut", VALUE: "NU" },
     { LABEL: "Ohio", VALUE: "OH" },
     { LABEL: "Oklahoma", VALUE: "OK" },
-    { LABEL: "Ontario", VALUE: "ON" },
     { LABEL: "Oregon", VALUE: "OR" },
     { LABEL: "Pennsylvania", VALUE: "PA" },
-    { LABEL: "Prince Edward Island", VALUE: "PE" },
-    { LABEL: "Puerto Rico", VALUE: "PR" },
-    { LABEL: "Quebec", VALUE: "PQ" },
     { LABEL: "Rhode Island", VALUE: "RI" },
-    { LABEL: "Saskatchewan", VALUE: "SK" },
     { LABEL: "South Carolina", VALUE: "SC" },
     { LABEL: "South Dakota", VALUE: "SD" },
     { LABEL: "Tennessee", VALUE: "TN" },
     { LABEL: "Texas", VALUE: "TX" },
     { LABEL: "Utah", VALUE: "UT" },
     { LABEL: "Vermont", VALUE: "VT" },
-    { LABEL: "Virgin Islands", VALUE: "VI" },
     { LABEL: "Virginia", VALUE: "VA" },
     { LABEL: "Washington", VALUE: "WA" },
     { LABEL: "West Virginia", VALUE: "WV" },
     { LABEL: "Wisconsin", VALUE: "WI" },
     { LABEL: "Wyoming", VALUE: "WY" },
-    { LABEL: "Yukon Territory", VALUE: "YT" },
   ]
 
   const StyledWrapper = styled.div`
@@ -147,6 +127,11 @@ const ChapterSearch = () => {
       outline: none;
     }
     cursor: pointer;
+    option{
+      background-color: white;
+      color: black;
+    }
+    }
   `
 
   const ResultsBoxWrapper = styled.div`
@@ -163,6 +148,12 @@ const ChapterSearch = () => {
       list-style-type: none;
       li {
         margin-top: 4px;
+      }
+    }
+    .noGroupResults{
+      a{
+        ${mixins.a}
+        text-decoration: underline;
       }
     }
   `
@@ -182,7 +173,7 @@ const ChapterSearch = () => {
 
   useEffect(() => {
     if (selectedState !== "All U.S. States") {
-      setSelectedCountry("United States")
+      setSelectedCountry("All Countries")
       let filteredChapters = chapterData.filter(chapter => {
         return chapter.chapterDetails.csState === selectedState
       })
@@ -196,7 +187,7 @@ const ChapterSearch = () => {
         id="chapter-search"
         topBorder
         heading="Find Badgers Near You"
-        excerpt="Use the filters below to find a chapter in your country or U.S. State"
+        excerpt="Use the filters below to find a chapter in a U.S. state or another country."
       >
          <StyledButtonWrapper>
         <FilterBox>
@@ -208,10 +199,13 @@ const ChapterSearch = () => {
               value={selectedCountry}
             >
               <option value="All Countries" disabled>
-                All Countries
+                Search by Country
               </option>
               {getCountryOptions(chapterData).map(country => {
-                return <option value={country}>{country}</option>
+                if(country !== "United States"){
+                  return <option value={country}>{country}</option>
+                }
+                return
               })}
             </FilteredSelect>
           </FilteredDiv>
@@ -223,7 +217,7 @@ const ChapterSearch = () => {
               value={selectedState}
             >
               <option className="titleOption" value="All U.S. States" disabled>
-                All U.S. States
+                Search by U.S. State
               </option>
               {stateoptions.map(state => {
                 return <option value={state.VALUE}>{state.LABEL}</option>
@@ -233,12 +227,12 @@ const ChapterSearch = () => {
         </FilterBox>
       </StyledButtonWrapper>
       <ResultsBoxWrapper>
-        {filteredChapters.length == 0 ? (
+        {filteredChapters.length === 0 ? (
           <div>
             {selectedCountry !== "All Countries" ||
             selectedState !== "All U.S. States" ? (
-              <p style={{ width: `100%`, textAlign: `center` }}>
-                No chapters in this location
+              <p style={{ width: `100%`, textAlign: `center` }} className="noGroupResults">
+                There are no groups found in this area. Find out how you can <a href="/waa-groups/start-a-group/">start a new chapter or group</a>!
               </p>
             ) : null}
           </div>

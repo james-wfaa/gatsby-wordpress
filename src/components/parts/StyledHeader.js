@@ -68,9 +68,6 @@ const StyledHeader = styled.header`
     padding: 0;
     font-size: ${sizes.s14};
     transition: all ease 0.35s;
-    @media screen and ${breakpoints.laptopS} {
-      padding: 0 180px;
-    }
 
     ul {
       position: relative;
@@ -162,6 +159,7 @@ const StyledHeader = styled.header`
     display: block;
     align-items: center;
     padding-top: 20px;
+    cursor:pointer;
 
     span {
       display: block;
@@ -228,6 +226,8 @@ const StyledHeader = styled.header`
       margin-top: 10px;
       border: 2px solid ${colors.buttonRed};
       border-radius: 50%;
+      overflow: hidden;
+      z-index: 25;
 
       span {
         top: -5px;
@@ -256,6 +256,18 @@ const StyledHeader = styled.header`
       }
     }
   }
+  .overflow{
+    overflow:scroll;
+    white-space:nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 50px;
+  }
+  /*@media screen and ${breakpoints.tabletS} {
+    .overflow > div{
+      overflow-y:scroll;
+    }
+  }*/
+  
 `
 
 export default StyledHeader

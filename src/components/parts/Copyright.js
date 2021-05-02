@@ -8,7 +8,7 @@ const Copyright = ({ className }) => {
   let d = new Date().getFullYear();
   return (
     <div className={className}>
-      <div> &copy; {`${d}`} Wisconsin Foundation & Alumni Association. All rights reserved.</div>
+      <div> &copy; {`${d}`} Wisconsin Foundation and Alumni Association. All rights reserved.</div>
     </div>
   )
 } 

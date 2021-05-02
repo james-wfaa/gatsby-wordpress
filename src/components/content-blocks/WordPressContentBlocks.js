@@ -10,6 +10,8 @@ import AccordionNavigation from './AccordionNavigation'
 import SpecialBlock from '../content-modules/SpecialBlock'
 import FeaturedEvent from '../content-modules/FeaturedEvent'
 import Block from './WordPressBlock'
+import RecentNotes from "../page-sections/RecentNotes"
+
 
 const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
 
@@ -22,6 +24,13 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
             return block
         })
         : blocks
+
+    /**
+     * this is a hack to see if we are not on the aggregate template... which sets 'stagger'...
+     * which means that we are on the product template, which needs borderTop set to true
+     */ 
+     
+    const forceBorderTop= (!stagger)
 
     let RenderedBlocks = []
 
@@ -104,7 +113,8 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                     let combinedPosts = []
                     if (products?.nodes) {
                         products.nodes.forEach((product) => {
-                            const { slug, posts } = product 
+                            
+                            const { posts, slug } = product 
                             const postsToShow = (posts?.nodes && posts.nodes.length > 0) ? posts.nodes : null
 
                             if (postsToShow) {
@@ -115,19 +125,21 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                             }
                         })
                     }
-                    
+                    const postFilter = products?.nodes.length === 1
+                        ? `?pub=${products.nodes[0].slug}`
+                        : ''
+                
+                
                     let reducedPosts = combinedPosts.slice(0,8)
                     
                     const buttons = (reducedPosts.length > 2) 
                         ? [{
-                            link: `/posts/`,
+                            link: `/news/all/${postFilter}`,
                             text: 'See More WAA Stories'
                         }]
                         : null
-                    RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={reducedPosts} type="news" size="M" /></PageSection>)    
-                } else {
-                    //console.log('no product found')
-                }
+                    RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" topBorder={forceBorderTop} stagger={stagger} buttons={buttons}><CardHandler items={reducedPosts} type="news" size="M" /></PageSection>)    
+                } 
                 
                 break
             case "acf/events-listing-section":
@@ -136,11 +148,14 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                     let combinedEvents = []
                     if (products?.nodes) {
                         products.nodes.forEach((product) => {
-                            const { slug, events } = product 
+                            const { events } = product 
                             const eventsToShow = (events?.nodes) ? events.nodes : null
                             if (eventsToShow) {
                                 eventsToShow.forEach((eventToShow)  => {
-                                    combinedEvents.push(eventToShow)
+                                    if(!combinedEvents.find(element => element.url === eventToShow.url)){
+                                        combinedEvents.push(eventToShow)
+                                    } 
+  
                                 })
                             }
                         })
@@ -152,9 +167,17 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                             text: 'See More Events'
                         }]
                         : null
-                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" borderTop={borderTop} stagger={stagger} buttons={buttons}><CardHandler items={combinedEvents} size="M" type="event"/></PageSection>)
+                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" topBorder={forceBorderTop} stagger={stagger} buttons={buttons}><CardHandler items={combinedEvents} size="M" type="event"/></PageSection>)
                 }
                 break
+                case "acf/note-listing":
+                        const buttons =  [{
+                                link: `/alumninote/all/`,
+                                text: 'See All Alumni Notes'
+                            }]
+                        RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Alumni Notes" topBorder={forceBorderTop} stagger={stagger} buttons={buttons}><RecentNotes /></PageSection>)
+                    
+                    break
            
             case "acf/special-block":
                 RenderedBlocks.push(<SpecialBlock block={block} />)

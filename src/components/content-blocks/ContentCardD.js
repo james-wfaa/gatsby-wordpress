@@ -3,16 +3,19 @@ import styled from 'styled-components'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
 import CardD from './CardD'
 
-const ContentCardD = ({ className, startDate, title, venue, virtualEvent, excerpt, url, label, moreLinkText, shortenedExcerpt, dateLinkText })=> {
+const ContentCardD = ({ className, startDate, title, venue, virtualEvent, excerpt, url, label, moreLinkText, linkFormat, shortenedExcerpt, dateLinkText })=> {
    const resolvedVenue = (virtualEvent)
     ? "Online Event"
     : (venue?.title)
         ? venue.title
         : null
-
+        
+    const target = linkFormat?.linkUrl
+        ? '_blank'
+        : '_self'
     return (
         <CardD>
-            <a href={url}className={className}>
+            <a href={url} target={target} className={className}>
 
                 <div className={`${className}__wrapper`}>
                     { startDate && (
@@ -36,10 +39,14 @@ const ContentCardD = ({ className, startDate, title, venue, virtualEvent, excerp
                     { venue?.city && venue.state && (
                         <div className={`${className}__location`}>{venue.city}, {venue.state}</div>
                     )}
-                    { excerpt && (!startDate) && (
+                    { !startDate && (
                         <div className={`${className}__excerpt excerpt`}>
-                            <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
-                            <span> </span>
+                            { excerpt && (
+                            <>
+                                <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
+                                <span> </span>
+                            </>
+                            )}
                             { url && (
                                 <span className={`${className}__excerpt excerpt readmore`}>{moreLinkText}</span>
                             )}

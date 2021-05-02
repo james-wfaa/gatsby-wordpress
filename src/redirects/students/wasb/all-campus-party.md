@@ -1,0 +1,3 @@
+---
+redirect: http://allcampusparty.com
+---

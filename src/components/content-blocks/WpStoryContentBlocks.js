@@ -8,49 +8,49 @@ import Column from '../parts/WordPressColumns'
 import ImageSection from './ImageSection'
 import AccordionNavigation from './AccordionNavigation'
 import SpecialBlock from '../content-modules/SpecialBlock'
+import Shortcode from '../content-modules/Shortcode'
 import FooGallery from './FooGallery'
 import parse from 'html-react-parser'
 
-
-const WpStoryContentBlocks = ({className, blocks, content, eventCategory, stagger}) => {
-
-
-  //console.log(content)
-        const RenderedBlocks = (blocks) ? blocks.map((block) => {
-          //console.log(block.name)
-
+const WpStoryContentBlocks = ({className, blocks, content }) => {
+  const RenderedBlocks = (blocks) 
+    ? blocks.map((block) => {
         switch (block.name) {
-
           case "core/separator":
             return (
-              <div key={`${block.name}{${block.originalContent}`}
+              <div key={block.order}
                 dangerouslySetInnerHTML={{ __html: block.originalContent }}
               />
             )
-            break
+          case "core/shortcode":
+            return (
+              <Shortcode block={block} />
+            )
           case "core/group":
           case "acf/events-listing-section":
             break
+          case "acf/note-listing":
+            break
           case "acf/image-section":
             const imagesection = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
-            return (<ImageSection key={`${block.name}{${block.originalContent}`} data={imagesection} defaultPage/>)
+            return (<ImageSection key={block.order} data={imagesection} defaultPage/>)
           case "acf/special-block":
-            return (<SpecialBlock key={`${block.name}{${block.originalContent}`} block={block} />)
+            return (<SpecialBlock key={block.order} block={block} />)
 
           case "acf/accordion-navigation":
             return (
               <AccordionNavigation
-                key={`${block.name}{${block.originalContent}`}
+                key={block.order}
                 className={block.name.replace("/", "-")}
                 block={block}
               />
             )
-            break
+            
           case "acf/staff-search":
             //console.log(block.dynamicContent)
             return(
               <Block
-                key={`${block.name}{${block.originalContent}`}
+                key={block.order}
                   className={block.name.replace("/", "-")}
                   block={block}
                   product
@@ -58,7 +58,7 @@ const WpStoryContentBlocks = ({className, blocks, content, eventCategory, stagge
             )
           case "core/columns":
             return (
-              <Column className={block.name.replace("/", "-")} block={block} key={`${block.name}{${block.originalContent}`} />
+              <Column className={block.name.replace("/", "-")} block={block} key={block.order} />
             )
           case "core/buttons":
             if (block.innerBlocks && block.innerBlocks[0]?.originalContent) {
@@ -68,17 +68,18 @@ const WpStoryContentBlocks = ({className, blocks, content, eventCategory, stagge
                   <Block
                     className={innerBlock.name.replace("/", "-")}
                     block={innerBlock}
-                    key={`${block.name}{${block.originalContent}`}
+                    key={block.order}
                   />
                 )
               })
               return (
-                <div key={`${block.name}{${block.originalContent}`} className={block.name.replace("/", "-")}>
+                <div key={block.order} className={block.name.replace("/", "-")}>
                   {innerRenderedBlocks}
                 </div>
               )
             }
-            break
+            return null
+            
           case "gravityforms/form":
             const shortcode = block.isDynamic
               ? block.dynamicContent
@@ -93,7 +94,7 @@ const WpStoryContentBlocks = ({className, blocks, content, eventCategory, stagge
               //(formId)
               return (
                 <GravityForm
-                  key={`${block.name}{${block.originalContent}`}
+                  key={block.order}
                   className={block.name.replace("/", "-")}
                   id={formId}
                 />
@@ -109,33 +110,39 @@ const WpStoryContentBlocks = ({className, blocks, content, eventCategory, stagge
               <Block
                     className={block.name.replace("/", "-")}
                     block={block}
-                    key={`${block.name}{${block.originalContent}`}
+                    key={block.order}
                   />
             )
           case "core-embed/flickr":
-            return <EmbedBlock data={block.originalContent} key={`${block.name}{${block.originalContent}`} />
+            return <EmbedBlock data={block.originalContent} key={block.order} />
           case "core-embed/vimeo":
             return (
-              <div className="wp-block-embed" key={`${block.name}{${block.originalContent}`}>
+              <div className="wp-block-embed" key={block.order}>
                 <EmbedBlock source={block.originalContent}  type="vimeo" />
               </div>
             )
           case "core-embed/youtube":
             return (
-              <div className="wp-block-embed" key={`${block.name}{${block.originalContent}`}>
+              <div className="wp-block-embed" key={block.order}>
                 <EmbedBlock source={block.originalContent} type="youtube" />
               </div>
             )
           case "core-embed/instagram":
             return (
-              <div className="wp-block-embed" key={`${block.name}{${block.originalContent}`}>
+              <div className="wp-block-embed" key={block.order}>
                 <EmbedBlock source={block.originalContent} type="instagram" />
               </div>
             )
           case "core/embed":
+            const checkForInstagram = (block?.originalContent && block?.originalContent.includes('instagram'))
+            const embedWrapperClass = (block?.originalContent && block?.originalContent.includes('flickr')) || 
+            block?.originalContent.includes('tryinteract') || 
+            (block?.originalContent && block?.originalContent.includes('instagram'))
+              ? 'embed-wrapper' 
+              : null
             return (
-              <div className="wp-block-embed" key={`${block.name}{${block.originalContent}`}>
-                <EmbedBlock source={block.originalContent} type="base" />
+              <div className={`wp-block-embed ${embedWrapperClass}`} key={block.order}>
+                <EmbedBlock source={block.originalContent} type={checkForInstagram ? "instagram" : "base"} />
               </div>
             )
           
@@ -152,24 +159,25 @@ const WpStoryContentBlocks = ({className, blocks, content, eventCategory, stagge
                 className={block.name.replace("/", "-")}
                 content={content}
                 id={fooId}
+                key={block.order}
                 />
             )
           default:
             if (block.originalContent.length > 0) {
                 return (
-                  <Block key={`${block.name}{${block.originalContent}`}
+                  <Block key={block.order}
                     className={block.name.replace("/", "-")}
                     block={block}
                   />
                 )
-              } else {
-                return null
-              }
-            break
+            } 
+            else {
+              return null
+            } 
         }
-    }
-    ) : null
-
+        return null
+    }) 
+    : null
 
     return(
         <div className={className} id="Top">
@@ -179,7 +187,7 @@ const WpStoryContentBlocks = ({className, blocks, content, eventCategory, stagge
                 </div>
             )}
             { !RenderedBlocks && (
-                <Block className={className} block={content} />
+                <Block className={`${className} content core-freeform`} block={content} />
             )}
         </div>
     )
@@ -199,11 +207,16 @@ hr.wp-block-separator {
     ${mixins.separator}
 }
 .core-paragraph, 
+.core-list,
 .core-image,
 .core-table,
 .core-heading, 
 .core-columns,
-.core-freeform {
+.core-freeform,
+.gravityforms-form,
+.embed-wrapper,
+.wp-block-embed,
+.core-shortcode {
   min-width: 300px;
   width: 100%;
   max-width: 300px;
@@ -249,38 +262,60 @@ h2 {
 .core-freeform {
     margin-bottom: ${sizes.s32};
     text-align: left;
-    h2,
-    h3 {
-      font-family: ${fonts.eaves};
-      font-weight: bold;
-      font-style: italic;
-      color: ${colors.titleColor};
-    }
-    h2 {
-      font-size: ${sizes.s32};
-      line-height: ${sizes.s36};
-      margin-bottom: ${sizes.s32};
-      margin-top: ${sizes.s48}; // ex: email login page
-      padding-bottom: 0;
-      &:after {
-        display: none; // REMOVE H2 UNDERLINE FROM DEFAULT PAGES
-      }
-      
-      @media screen and ${breakpoints.tabletS} {
-        font-size: ${sizes.s36};
-        line-height: ${sizes.s42};
-        margin-top: ${sizes.s58}; // ex: email login page
-      }
-      
-    }
-    h3 {
-      font-size: ${sizes.s26};
-      margin-bottom: ${sizes.s24};
-      line-height: ${sizes.s32};
-    }
+    
     a {
       ${mixins.a}
     }
+    
+}
+
+.content{
+    
+  h2,
+  .core-freeform h2 {
+      font-size: ${sizes.s24};
+      line-height: ${sizes.s30};
+      margin-bottom: ${sizes.s24};
+      font-family: ${fonts.eaves};
+      font-weight: bold;
+      font-style: italic;
+      color: ${colors.captionBlack};
+      @media screen and ${breakpoints.tabletS} {
+          font-size: ${sizes.s28};
+          line-height: ${sizes.s34};
+      }
+  }
+
+  h3,
+  .core-freeform h3 {
+      font-size: ${sizes.s20};
+      margin-bottom: ${sizes.s16};
+      line-height: ${sizes.s28};
+      font-style: normal;
+      margin-left: 0px;
+      margin-right: 0px;
+      color: ${colors.captionBlack};
+      font-weight: bold;
+      font-family: ${fonts.verlag};
+  }
+
+  h4,
+  .core-freeform h4,
+  h5,
+  .core-freeform h5,
+  h6,
+  .core-freeform h6 {
+      font-size: ${sizes.s18};
+      margin-bottom: 0px;
+      line-height: ${sizes.s26};
+      font-style: normal;
+      margin-left: 0px;
+      margin-right: 0px;
+      color: ${colors.captionBlack};
+      font-weight: bold;
+      font-family: ${fonts.verlag};
+  }
+
 }
 .core-buttons {
   .core-button {
@@ -292,11 +327,30 @@ h2 {
     
   }
 }
-
-.wp-block-embed{
+.wp-block-embed,
+.core-shortcode { 
   margin-bottom: 26px;
+  .quiz-embed{
+    padding-bottom: 150% !important;
+    @media screen and ${breakpoints.tabletS} {
+      padding-bottom: 108% !important;
+    }
+    @media screen and ${breakpoints.laptopS} {
+      padding-bottom: 100% !important;
+    }
+  }
 }
-
+.wp-block-embed{
+  .instagram-embed{
+    padding-bottom: 170% !important;
+    @media screen and ${breakpoints.tabletS} {
+      padding-bottom: 140% !important;
+    }
+    @media screen and ${breakpoints.laptopS} {
+      padding-bottom: 134% !important;
+    }
+  }
+}
 `
 
 export default StyledWpStoryContentBlocks

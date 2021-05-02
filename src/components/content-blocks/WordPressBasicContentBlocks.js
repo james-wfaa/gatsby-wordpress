@@ -29,6 +29,8 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
           case "core/group":
           case "acf/events-listing-section":
             break
+          case "acf/note-listing":
+            break
           case "acf/image-section":
             const imagesection = ((block.isDynamic) ? block.dynamicContent : block.originalContent)
             return (<ImageSection key={`${block.name}{${block.originalContent}`} data={imagesection} defaultPage/>)
@@ -60,7 +62,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
               <Column className={block.name.replace("/", "-")} block={block} key={`${block.name}{${block.originalContent}`} />
             )
           case "core/buttons":
-            if (block.innerBlocks && block.innerBlocks[0]?.originalContent) {
+            if (block?.innerBlocks?.[0]?.originalContent) {
               let innerRenderedBlocks = []
               block.innerBlocks.forEach(innerBlock => {
                 innerRenderedBlocks.push(
@@ -170,8 +172,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
                 </div>
             )}
             { !RenderedBlocks && (
-              <div className="content core-freeform">
-              {[content]}
+              <div className="content core-freeform" dangerouslySetInnerHTML={{__html: content}}>
               </div>
                
             )}

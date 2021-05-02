@@ -48,6 +48,22 @@ const AllEvents = () => {
                         title
                         excerpt
                         content
+                        eventsCategories {
+                          nodes {
+                            name
+                            url: uri
+                          }
+                        }
+                        eventDetails {
+                          eventFullSoldOut
+                          eventFullText
+                          eventlocationDetails
+                          registrationUrl
+                          questions
+                          virtualEvent
+                          trip
+                          timeZoneInfoFreeText
+                        }
                         link
                         url
                         date(formatString: "dddd, MMM. D")
@@ -70,6 +86,7 @@ const AllEvents = () => {
                     registrationUrl
                     questions
                     virtualEvent
+                    timeZoneInfoFreeText
                 }
                 date(formatString: "dddd, MMM. D")
                 endDate

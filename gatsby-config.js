@@ -12,13 +12,41 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Wisconsin Alumni Association`,
+    description: `Wisconsin Alumni Association`,
+    author: `WFAA`,
+    siteUrl: 'https://gatsby.uwalumni.com',
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-gatsby-cloud`,
+      options: {
+        headers: {
+          "/*": [
+            "Referrer-Policy: strict-origin-when-cross-origin",
+          ],
+        }, // option to add more headers. `Link` headers are transformed by the below criteria
+        allPageHeaders: [], // option to add headers for all pages. `Link` headers are transformed by the below criteria
+        mergeSecurityHeaders: true, // boolean to turn off the default security headers
+        mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
+        mergeCachingHeaders: true, // boolean to turn off the default caching headers
+        transformHeaders: (headers, path) => headers, // optional transform for manipulating headers under each path (e.g.sorting), etc.
+        generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
+      }
+    },
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        // Footnotes mode (default: true)
+        footnotes: true,
+        // GitHub Flavored Markdown mode (default: true)
+        gfm: true,
+        // Plugins configs
+        plugins: [],
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -27,13 +55,22 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `redirects`,
+        path: `${__dirname}/src/redirects`,
+      },
+    },
+    {
       resolve: "gatsby-omni-font-loader",
       options: {
-        mode: "render-blocking",
+        mode: "async",
+        enableListener: true,
+        preconnect: ["https://use.typekit.net", "https://cloud.typography.com"],
         web: [
           {
             name: ["Verlag A", "Verlag B"],
-            file: "https://cloud.typography.com/7708974/664088/css/fonts.css",
+            file: "https://cloud.typography.com/7708974/7253032/css/fonts.css",
           },
           {
             name: ["mrs-eaves-xl-serif", "mrs-eaves-xl-serif-narrow"],
@@ -57,61 +94,44 @@ module.exports = {
         enableDuringDevelop: true, // Optional. Disables Zendesk chat widget when running Gatsby dev server. Defaults to true.
         zESettings: {
           webWidget: {
+            contactForm: {
+              title: {
+                '*': 'Ask WAA'
+              },
+              ticketForms: [ { id: 1260806265410 } ],
+              fields: [ { id: 'subject', prefill: { '*': 'WAA Support' } } ]
+            },
             chat: {
               departments: {
                 enabled: ["WAA Customer Service"],
                 select: "WAA Customer Service",
               },
-            },
-            launcher: {
-              chatLabel: {
-              '*': 'Ask WAA'
-              },
-            },
-            fields: [{ id: 1260807977350}],
-            contactOptions: {
-              enabled: true,
-              contactButton: { '*': 'Ask WAA'}
-            },
-            helpCenter: {
-              title: {
-              '*': 'Ask WAA'
-              }
-            },
-            contactForm: {
               title: {
                 '*': 'Ask WAA'
-              }
+              },
+              prechatForm: {
+                greeting: { '*': 'Looking for answers? Check out our FAQ page (uwalumni.com/go/faq) or fill out the form below and we’ll get you connected with a live customer service team member to help you.' },
+              },
             },
-            chat: {
-              title: {
-              '*': 'Ask WAA'
-              }
+            launcher: {
+              chatLabel: { '*': 'Ask WAA' },
+              label: { '*': 'Ask WAA' },
             },
+            helpCenter: { suppress: true },
+            answerBot: { suppress: true },
           },
         },
       },
     },
-    //Uncomment to index to Algolia on gatsby build command
-    
-     {
-       resolve: `gatsby-plugin-algolia`,
-       options: {
-         appId: process.env.GATSBY_ALGOLIA_APP_ID,
-         apiKey: process.env.ALGOLIA_ADMIN_KEY,
-         queries: require("./src/utils/algolia-queries")
-       },
-     },
-     
     {
       resolve: `gatsby-source-wordpress`,
       options: {
         schema: {
-          requestConcurrency: 5, // currently set to undefined
-          previewRequestConcurrency: 2, // currently set to undefined
-          perPage: 50,
+          requestConcurrency: 5, 
+          previewRequestConcurrency: 2, 
+          perPage: 100,
           typePrefix: `Wp`,
-          timeout: 120 * 1000,
+          timeout: 960 * 1000,
         },
         url:
           process.env.WPGRAPHQL_URL,
@@ -132,9 +152,17 @@ module.exports = {
             limit:
               process.env.NODE_ENV === `development`
                 ? // Lets just pull 50 posts in development to make it easy on ourselves.
-                  100
+                  50
                 : // and we don't actually need more than 5000 in production for this particular site
                   5000,
+          },
+          Event: {
+            limit:
+              process.env.NODE_ENV === `development`
+                ? // Lets just pull 50 posts in development to make it easy on ourselves.
+                  100
+                : // and we don't actually need more than 5000 in production for this particular site
+                  1000,
           },
           Classnote: {
             limit:
@@ -156,9 +184,14 @@ module.exports = {
             limit:
               process.env.NODE_ENV === `development`
                 ? // Lets just pull 50 posts in development to make it easy on ourselves.
-                  20
+                  200
                 : // and we don't actually need more than 5000 in production for this particular site
                   5000,
+          },
+          MediaItem: {
+            localFile: {
+              requestConcurrency: 40
+            }
           },
         },
       },
@@ -178,9 +211,49 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: "gatsby-plugin-google-tagmanager",
+      options: {
+        id: "GTM-N733JCS",
+  
+        // Include GTM in development.
+        //
+        // Defaults to false meaning GTM will only be loaded in production.
+        includeInDevelopment: false,
+  
+        // datalayer to be set before GTM is loaded
+        // should be an object or a function that is executed in the browser
+        //
+        // Defaults to null
+        defaultDataLayer: { platform: "gatsby" },
+  
+        // Specify optional GTM environment details.
+        gtmAuth: "23M1DvbFZez0FRrm1LV4wQ",
+        gtmPreview: "env-1",
+        //dataLayerName: "YOUR_DATA_LAYER_NAME",
+  
+        // Name of the event that is triggered
+        // on every Gatsby route change.
+        //
+        // Defaults to gatsby-route-change
+        //routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
+      },
+    },
+    `gatsby-plugin-webpack-bundle-analyser-v2`,
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-netlify-cache`,
+    `gatsby-plugin-redirect-to`,
+    `gatsby-plugin-sitemap`,
+     {
+       resolve: `gatsby-plugin-algolia`,
+       options: {
+          appId: process.env.GATSBY_ALGOLIA_APP_ID,
+          apiKey: process.env.ALGOLIA_ADMIN_KEY,
+          queries: require("./src/utils/algolia-queries"),
+          enablePartialUpdates: true,
+          matchFields: ['slug', 'modified']
+       },
+     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

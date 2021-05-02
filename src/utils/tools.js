@@ -170,7 +170,7 @@ export const membershipFeeCalc = (graduate, age, type) => {
           full: "?term=life",
           installments: "?term=life&installments=yes",
           oneYear: "",
-          twoYear: "&term=2year",
+          twoYear: "?term=2year",
         }
         // gradNo & ageNo & individual
       }

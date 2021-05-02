@@ -57,9 +57,9 @@ const SelectSteps = () => {
             <PageSection
             excerpt='Great! Thanks for making those updates. Now, please review the following areas and check the ones you’d like to modify. It’ll only take a few minutes and will provide you with many more ways to feel connected. This information helps tailor messages to your location, interests, and more. Otherwise, simply choose "Finish Update" below.'
             heading='Update My Info'
-            headingAlt
             headingCompact
             backgroundColor={colors.formIntroBg}
+            pageTitle
             />
             <form className="select-steps" onSubmit={handleSubmit(handleSubmit)}>
                 <fieldset>

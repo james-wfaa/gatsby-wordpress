@@ -1,13 +1,13 @@
 import React from "react"
 import { breakpoints } from "../css-variables"
 import styled from "styled-components"
-import { Link } from "gatsby"
 import { useWindowSize } from "../hooks"
 import Layout from "../layout"
 import PageSection from "../page-sections/PageSection"
 import WordPressContent from "../content-blocks/WordPressBasicContentBlocks"
 import Menu from "../template-parts/SidebarMenu"
 import PageSectionHeader from '../parts/PageSectionHeader'
+import ChildNewsPages from "../parts/ChildNewsPages"
 
 
 function WordPressPage({ page }) {
@@ -43,16 +43,7 @@ function WordPressPage({ page }) {
    })
  }
 /* see if this is a chapter news page */
-const getChildPages = page.wpChildren.nodes.sort((a,b) => (a.dateGmt < b.dateGmt) ? 1 : -1).map((subpage) => {
-  return (<li><Link to={subpage.uri}>{subpage.title}</Link></li>)
-})
-const archive = (page.slug === "news" && menuRoot.link.replace(menuRoot.slug, '').replace(/\//g,'') === 'groups')
-? (page?.wpChildren?.nodes && page.wpChildren.nodes.length > 0) 
-    ? (<ul>{getChildPages}</ul>)
-    : (<>There are currently no published news items or stories.</>)
-: null
-const resolvedContent = (archive) ? archive : content
-const resolvedBlocks = (archive) ? null : blocks
+const isNewsArchive = (page.slug === "news" && menuRoot.link.replace(menuRoot.slug, '').replace(/\//g,'') === 'groups')
 
   return (
     <Layout title={title}>
@@ -64,9 +55,17 @@ const resolvedBlocks = (archive) ? null : blocks
           <Menu name={wpMenu.name} link={wpMenu.link} menuItems={wpMenu.menuItems.nodes} width={width} hideNews />
         )}
 
+        {isNewsArchive && (
           <PageSection heading={title} pageTitle leftAlign defaultPage divider>
-            <WordPressContent blocks={resolvedBlocks}  content={resolvedContent} />
+            <ChildNewsPages items={page.wpChildren.nodes} />
           </PageSection>
+
+        )}
+        {!isNewsArchive && (
+          <PageSection heading={title} pageTitle leftAlign defaultPage divider>
+            <WordPressContent blocks={blocks}  content={content} />
+          </PageSection>
+        )}
         </>
         :
         <>
@@ -74,9 +73,16 @@ const resolvedBlocks = (archive) ? null : blocks
           { wpMenu && (
           <Menu name={wpMenu.name} link={wpMenu.link} menuItems={wpMenu.menuItems.nodes} width={width} />
         )}
+        {isNewsArchive && (
           <PageSection >
-            <WordPressContent blocks={resolvedBlocks} content={resolvedContent} />
+            <ChildNewsPages items={page.wpChildren.nodes} />
           </PageSection>
+        )}
+        {!isNewsArchive && (
+          <PageSection >
+            <WordPressContent blocks={blocks} content={content} />
+          </PageSection>
+        )}
         </>
       }
       </PageWrapper>

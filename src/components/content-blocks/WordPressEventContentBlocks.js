@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import parse, { domToReact } from 'html-react-parser';
 import PageSectionFromBlocks from "../page-sections/PageSectionFromBlocks"
 import styled from 'styled-components'
 import { colors, mixins, sizes, breakpoints, fonts } from '../css-variables'
@@ -33,21 +34,63 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
         }
         return showMap;
     }
+    const timezone = eventDetails?.timeZoneInfoFreeText
+        ? eventDetails.timeZoneInfoFreeText
+        : null
 
 
+    const parsedContent = parse(content, { trim: true })
+    //console.log(parsedContent)
+    let parsedEventLinks = <div />
+    let parsedEventPriceDetails = null
+    parsedContent.forEach((tag) => {
+        const classes = tag?.props?.className ? tag.props.className : ''
+        const children = tag?.props?.children ? tag.props.children : null
+        if (classes.includes('tribe-block__events-link')) {
+            //console.log(tag)
+            let modifiedChildren = []
+            /**
+             * we need to modify the incoming HTML to 
+             * 1) add a target="_blank" to the gcal link
+             * 2) point the ical link at the WordPress URL so the download works correctly
+             * */ 
 
-    const EventLinksContent = (blocks) ? blocks.map((block) => {
-        switch(block.name) {
-            case "tribe/event-links":
-                const blockContent = (block.isDynamic) ? block.dynamicContent : block.originalContent
-                return (<div className={block.name.replace('/', '-')} dangerouslySetInnerHTML={{__html: blockContent}} />)
-                break
-            default:
-                break
+            tag.props.children.forEach((child) => {
+                if (child.props.className.includes('tribe-block__events-gcal')) {
+                    var clonedElementWithMoreProps = React.cloneElement(
+                        child.props.children, 
+                        { target: "_blank" }
+                    )
+                    modifiedChildren.push(clonedElementWithMoreProps)
+                }
+                if (child.props.className.includes('tribe-block__-events-ical')) {
+                    var clonedElementWithMoreProps = React.cloneElement(
+                        child.props.children, 
+                        { href: `https://uwalumni.wpengine.com${child.props.children.props.href}` }
+                    )
+                    modifiedChildren.push(clonedElementWithMoreProps)
+                }
+
+            })
+            parsedEventLinks = React.cloneElement(
+                tag,
+                { children: modifiedChildren }
+            )
+            
         }
-    } )
-    : null
+        if (classes.includes('tribe-block__event-price')) {
+            children.forEach((priceDiv) => {
+                //console.log(priceDiv)
+                if (priceDiv?.props?.className && priceDiv.props.className.includes('tribe-block__event-price__description')) {
+                    //console.log(priceDiv.props.children)
+                    parsedEventPriceDetails = (<span dangerouslySetInnerHTML={{__html: priceDiv.props.children }} />)
+                }
+            })
 
+        }
+    })
+
+   
 
     const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
@@ -60,6 +103,12 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             case "tribe/event-venue":
             case "tribe/event-links":
             case "tribe/related-events":
+            case "tribe/event-organizer":
+                break
+            case "tribe/event-website":
+                if(block.dynamicContent){
+                    return (<Block key={block.order} className={block.name.replace('/', '-')} block={block} />)
+                }
                 break
             case "core/freeform":
             case "core/paragraph":
@@ -68,21 +117,20 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             case "core/table":
             case "core/image":
             case "core/html":
-                return (<Block className={block.name.replace('/', '-')} block={block} />)
-                break
+                return (<Block  key={block.order} className={block.name.replace('/', '-')} block={block} />)
             case "core/group":
                 if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
-                    return (<PageSectionFromBlocks blocks={block.innerBlocks} borderTop={borderTop} />)
+                    return (<PageSectionFromBlocks key={block.order}  blocks={block.innerBlocks} borderTop={borderTop} />)
                 }
                 if (block.innerBlocks && block.originalContent.indexOf(' gallery') > 0) {
-                    return (<PageSectionFromBlocks blocks={block.innerBlocks} gallery borderTop={borderTop} />)
+                    return (<PageSectionFromBlocks key={block.order}  blocks={block.innerBlocks} gallery borderTop={borderTop} />)
                 }
                 break
             case "core/separator":
-                return (<div dangerouslySetInnerHTML={{__html: block.originalContent}} />)
+                return (<div key={block.order} dangerouslySetInnerHTML={{__html: block.originalContent}} />)
                 break
             default:
-                return (<Block className={block.name.replace('/', '-')} block={block} />)
+                return (<Block key={block.order} className={block.name.replace('/', '-')} block={block} />)
                 break
         }
         }
@@ -114,22 +162,24 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                         date={date}
                         startDate={startDate}
                         endDate={endDate}
+                        timezone={timezone}
                         venue={venue}
                         cost={cost}
                         organizers={organizers}
                         eventDetails={eventDetails}
-                        calendarLinks={EventLinksContent}
+                        priceDetails={parsedEventPriceDetails}
+                        calendarLinks={parsedEventLinks}
                         showMapLink={showMapDetails()}
                     />
                 </div>
                 <div className="social-mobile">
                     { eventDetails && eventDetails.questions && (
                         <div className="buttonWrap" onClick={() => handleModal()}>
-                            <Button link="#Top" text="Questions" fullwidth alt altborder />
+                            <Button link="#Top" text="Questions?" fullwidth alt altborder />
                         </div>
                     )}
 
-                    <h2>Invite Others</h2>
+                    <h3>Invite Others:</h3>
                     <SocialShareLinks></SocialShareLinks>
                 </div>
                 {showMapDetails() && (
@@ -150,21 +200,23 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                     registrationLink={link}
                     startDate={startDate}
                     endDate={endDate}
+                    timezone={timezone}
                     venue={venue} cost={cost}
                     organizers={organizers}
                     eventDetails={eventDetails}
-                    calendarLinks={EventLinksContent}
+                    priceDetails={parsedEventPriceDetails}
+                    calendarLinks={parsedEventLinks}
                     showMapLink={showMapDetails()}
                 />
                 <div className="social-desktop">
                 { eventDetails && eventDetails.questions && (
                     <div className="buttonWrap" onClick={() => handleModal()}>
-                        <Button link="#Top" text="Questions" fullwidth alt altborder />
+                        <Button link="#Top" text="Questions?" fullwidth alt altborder />
                     </div>
                 )}
-                    <h2>Invite Others</h2>
+                    <h3>Invite Others:</h3>
                     { typeof window !== "undefined" && (
-                        <SocialShareLinks className="SocailShare" title={title} url={window.location.href} event></SocialShareLinks>
+                        <SocialShareLinks className="SocailShare" title={title} url={link} event></SocialShareLinks>
                     )}
                     
                 </div>
@@ -198,6 +250,10 @@ margin: ${sizes.s48} auto 0;
     flex-direction: column-reverse;
     @media screen and ${breakpoints.tabletL} {
         display: block;
+    }
+    margin: 0 ${sizes.s32};
+    @media screen and ${breakpoints.tabletS} {
+        margin: 0;
     }
 }
 
@@ -255,7 +311,7 @@ margin: ${sizes.s48} auto 0;
     max-width: 303px;
     margin: 0 auto;
     text-align: center;
-    h2{
+    h3{
         padding-top: ${sizes.s40};
     }
     @media screen and ${breakpoints.tabletS} {
@@ -283,20 +339,90 @@ margin: ${sizes.s48} auto 0;
 
 
 .content{
-    h2,h3 {
-        font-size: ${sizes.s18};
+    
+    h2,
+    .core-freeform h2 {
+        font-size: ${sizes.s24};
+        line-height: ${sizes.s30};
+        margin-bottom: ${sizes.s24};
+        font-family: ${fonts.eaves};
+        font-weight: bold;
+        font-style: italic;
+        color: ${colors.titleColor};
+        @media screen and ${breakpoints.tabletS} {
+            font-size: ${sizes.s28};
+            line-height: ${sizes.s34};
+        }
+    }
+
+    h3,
+    .core-freeform h3 {
+        font-size: ${sizes.s20};
+        margin-bottom: ${sizes.s16};
+        line-height: ${sizes.s28};
+        font-style: normal;
+        margin-left: 0px;
+        margin-right: 0px;
+        color: ${colors.captionBlack};
         font-weight: bold;
         font-family: ${fonts.verlag};
-        font-style: normal;
-        color: ${colors.copyText};
-        line-height: ${sizes.s26};
-        margin-bottom: ${sizes.s16};
     }
+
+    h4,
+    .core-freeform h4,
+    h5,
+    .core-freeform h5,
+    h6,
+    .core-freeform h6 {
+        font-size: ${sizes.s18};
+        margin-bottom: 0px;
+        line-height: ${sizes.s26};
+        font-style: normal;
+        margin-left: 0px;
+        margin-right: 0px;
+        color: ${colors.captionBlack};
+        font-weight: bold;
+        font-family: ${fonts.verlag};
+    }
+
     .tribe-block__events-link,
     .tribe-events-event-image,
     .tribe-block__venue,
-    .tribe-events-event-meta {
+    .tribe-events-event-meta,
+    .tribe-block__related-events__title,
+    .tribe-related-events,
+    .tribe-block__venue,
+    .tribe-block__event-price,
+    .tribe-block__organizer__details
+     {
         display: none;
+    }
+    a {
+        ${mixins.a}
+    }
+    .callout,
+    .callout-bold {
+        font-family: ${fonts.verlag};
+        background-color: ${colors.calloutGrey};
+        padding: ${sizes.s18};
+        @media screen and ${breakpoints.tabletS} {
+            padding: ${sizes.s24};
+        }
+        @media screen and ${breakpoints.laptopL} {
+            &.has-text-align-right{
+                width: 272px;
+                float: right;
+                margin: 16px -184px 16px 16px;
+            }
+            &.has-text-align-left{
+                width: 272px;
+                float: left;
+                margin: 16px 16px 16px -184px;
+            }
+        }
+    }
+    .callout-bold {
+        font-weight: bold;
     }
 }
 

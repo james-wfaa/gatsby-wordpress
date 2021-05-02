@@ -39,16 +39,27 @@ const GravityFormForm = ({
         reset,
         setError,
         setValue,
-    } = useForm()
-
+        formState: { isValid, isDirty, isSubmitted },
+    } = useForm({mode : 'onChange'})
     const [generalError, setGeneralError] = useState('')
     const [formLoading, setLoadingState] = useState(false)
+    const [errorList, setErrorList] = useState()
 
     // State for confirmation message
     const [confirmationMessage, setConfirmationMessage] = useState('')
 
     // Take ID argument and graphQL Gravity Form data for this form
     const singleForm = getForm(formData, id)
+
+    const isMultipart = singleForm && singleForm?.formFields ? checkForMultipart(singleForm.formFields) : false
+
+    function checkForMultipart( myArray){
+        for (var i=0; i < myArray.length; i++) {
+            if (myArray[i].type === "fileupload" || myArray[i].type === "post_image") {
+                return true
+            }
+        }
+    }
 
     const onSubmitCallback = async values => {
         // Make sure we are not already waiting for a response
@@ -65,18 +76,21 @@ const GravityFormForm = ({
                     values = {...values, ...checkboxes}
 
                 }
-                //console.log('updated values', values)
 
                 const { data, status } = await passToGravityForms({
                     baseUrl: singleForm.apiURL,
                     formData: values,
                     id,
                     lambdaEndpoint: lambda,
+                    isMultipart: isMultipart
                 })
                 //console.log(data)
                 setLoadingState(false)
 
-                if (status === 'error') {
+                const returnData = data?.data
+                //console.log(returnData)
+
+                if (status === 'error' || returnData?.is_valid === false) {
                     // Handle the errors
                     // First check to make sure we have the correct data
 
@@ -84,8 +98,27 @@ const GravityFormForm = ({
                         // Pass messages to handle that sets react-hook-form errors
                         handleGravityFormsValidationErrors(
                             data.validation_messages,
-                            setError
+                            setError,
+                            singleForm
                         )
+                    } else if(returnData?.is_valid === false){
+                        if(returnData?.validation_messages && Object.keys(returnData?.validation_messages).length > 0){
+                            /*let newList = []
+                            Object.keys(returnData?.validation_messages).forEach(function(key) {
+                                const id = key.replace('.', '_')
+                                const fieldId = `input_${id}`
+                                newList.push(`${fieldId} : ${returnData?.validation_messages[key]}`)
+                            })
+                            setErrorList(newList)
+                            setGeneralError('formHasErrorWithMsg')*/
+                            handleGravityFormsValidationErrors(
+                                returnData.validation_messages,
+                                setError,
+                                singleForm
+                            )
+                        } else{
+                            setGeneralError('formHasError')
+                        }
                     } else {
                         // Seemed to be an unknown issue
                         setGeneralError('unknownError')
@@ -133,9 +166,10 @@ const GravityFormForm = ({
                         id={`gravityform--id-${id}`}
                         key={`gravityform--id-${id}`}
                         onSubmit={handleSubmit(onSubmitCallback)}
+                        encType={isMultipart ? "multipart/form-data" : null}
                     >
                         {generalError && (
-                            <FormGeneralError errorCode={generalError} />
+                            <FormGeneralError errorCode={generalError} errorList={errorList}/>
                         )}
                         <div className="gform_body">
                             <ul
@@ -168,6 +202,7 @@ const GravityFormForm = ({
                                 className="gravityform__button gform_button button"
                                 id={`gform_submit_button_${id}`}
                                 type="submit"
+                                disabled={isSubmitted ? !isDirty : !isDirty || !isValid }
                             >
                                 {formLoading ? (
                                     <span className="gravityform__button__loading_span">
@@ -194,9 +229,11 @@ GravityFormForm.defaultProps = {
 GravityFormForm.propTypes = {
     errorCallback: PropTypes.func,
     formData: PropTypes.object.isRequired,
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     lambda: PropTypes.string,
     successCallback: PropTypes.func,
+    onChange: PropTypes.func,
+    checkboxes: PropTypes.object,
 }
 
 export default GravityFormForm

@@ -37,31 +37,37 @@ function BlogPost({ data }) {
 
   const buttons = (uniqueRelatedPosts.length > 2) 
       ? [{
-          //link: `/posts/search/?category=${slug}`,
-          link:'/news/flamingle',
-          text: 'See All Questions'
+          link:'/news/all/?pub=flamingle',
+          text: 'See All'
       }]
       : null;
   
   let links = [
     { url: "/", name: "Home" },
     { url: "/news", name: "News & Stories" },
-    { url: "/news/flamingle", name: "Ask Flamingle HQ" },
+    { url: "/flamingle", name: "Flamingle" },
     { url: link, name: title },
   ]
-
-  //remove pesky paragraph tags on excerpt
+  
+  const decodeHtml = (html) =>{
+    if(typeof document !== "undefined"){
+      var txt = document.createElement("textarea");
+      txt.innerHTML = html;
+      return txt.value;
+    }
+  }
+  
+  //remove pesky paragraph tags on excerpt and decode html entities
   const excerptLength = excerpt.length
-  const flamingleExcerpt = excerpt.slice(3, excerptLength - 5);
-
+  const flamingleExcerpt = decodeHtml(excerpt.slice(3, excerptLength - 5));
   const createRelatedCards = () => {
      if(uniqueRelatedPosts.length > 9){
        uniqueRelatedPosts.slice(0,8)
       }
-      
+
     const thePosts = uniqueRelatedPosts.map(post => {
       const excerptLength = post.excerpt.length
-      const newExcerpt = post.excerpt.slice(3, excerptLength - 5);
+      const newExcerpt = decodeHtml(post.excerpt.slice(3, excerptLength - 5));
       const url = `/news${post.url}`
       return <PromoCardD title={newExcerpt} url={url} flamingle/>
     })
@@ -185,15 +191,18 @@ function BlogPost({ data }) {
       }
     } 
 `
+const questioner = askFlamingle?.abeQuestioner && askFlamingle.abeQuestioner !== 'An Alum'
+    ? askFlamingle.abeQuestioner
+    : null
   return (
-    <Layout title={title}>
+    <Layout title={title} img={flamingleMasthead}>
         <BreadCrumbs links={links} />
         <StyledFlamingleWrapper>
             <img className="flamingleMasthead" alt='' src={flamingleMasthead}></img>
-            <TitleSection heading={flamingleExcerpt} author={askFlamingle.abeQuestioner} categories={categories} />
+            <TitleSection heading={flamingleExcerpt} author={questioner} categories={categories} />
             <div className="flamingleCapWrapper"><img src={flamingleIcon} alt=''></img></div>
             <WordPressBasicContentBlocks {...page} />
-          <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link}/>
+          <SocialShareLinks text="Share This Story" title={title} excerpt={excerpt} url={`/news${link}`}/>
           <div className="flamingleLinks">
             <hr></hr>
             <div>
@@ -201,8 +210,8 @@ function BlogPost({ data }) {
               <Button link="mailto:flamingle@uwalumni.com" text="Ask A Question" external />
             </div>
             <div className="newsletterContainer">
-              <p>View <span className="italicize">The Flamingle</span> Newsletter</p> 
-              <Button link="/news/flamingle" text="See All Posts" external />
+              <p>More About Flamingle</p> 
+              <Button link="/flamingle" text="Learn More" external />
             </div> 
           </div>
           <PageSection id="flamingle-post-listing" heading="More From Ask Flamingle HQ" topBorder buttons={buttons}>

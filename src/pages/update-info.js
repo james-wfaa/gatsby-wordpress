@@ -15,11 +15,23 @@ import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-var
 import formErrorIcon from "./../svg/form-error-icon-red.svg"
 
 const UpdateInfoForm = () =>  {
-  const { state } = useContext(AppContext);
+  const { state, actions } = useContext(AppContext);
+  const { setInitialState } = actions;
 
   useEffect(() => {
     document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0 //need both for different browsers?
   }, [state.currentStep]);
+
+  useEffect(() => {
+    setInitialState({
+      contactInfo: state.contactInfo, 
+      mailingAddress: state.mailingAddress, 
+      phoneInfo: state.phoneInfo, 
+      employmentInfo: state.employmentInfo, 
+      identityInfo: state.identityInfo, 
+      spouseInfo: state.spouseInfo})
+  }, []);
 
   const renderCurrentStep = () => {
       switch(state.currentStep){
@@ -47,12 +59,12 @@ const UpdateInfoForm = () =>  {
    }
 
   return (
-    <Layout>
+    <Layout title="Update My Info">
       <StyledUpdateInfoForm>
         { renderCurrentStep() }
         {//console.log(state)
         }
-        { !(state.currentStep === 8 || state.currentStep === 9) && <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our <a href="/">Privacy Statement</a>.</p>}
+        { !(state.currentStep === 8 || state.currentStep === 9) && <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our <a href="https://www.advanceuw.org/privacy-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=updateinfo" target="_blank">Privacy Statement</a>.</p>}
       </StyledUpdateInfoForm>
     </Layout>
   )
@@ -67,6 +79,9 @@ div.excerpt{
     text-decoration: none;
   }
   margin-bottom:0;
+}
+div.sectionexcerpt{
+  margin-top: 32px;
 }
 .communications-success-page{
   .content{
@@ -244,7 +259,7 @@ form{
     &:hover {
       cursor:pointer;
     }
-    &.next, &.save, &.signup{
+    &.next, &.save, &.signup, &.finish{
       background-color: ${colors.buttonRed};
       color: ${colors.titleWhite};
       &:after{
@@ -268,6 +283,14 @@ form{
         background-color: ${colors.disabledButtonGrey};
         box-shadow:none;
         cursor: default;
+      }
+    }
+    &.finish{
+      &:after{
+        display:none;
+      }
+      @media screen and ${breakpoints.tabletS} {
+        margin-right: 40px;
       }
     }
     &.back{

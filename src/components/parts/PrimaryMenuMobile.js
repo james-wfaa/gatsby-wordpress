@@ -15,7 +15,7 @@ const menuItems = {
   "Alumni Communities": [
     { tag: "Become a WAA Member", url: "/membership" },
     { tag: "WAA Member Community", url: "/membership/for-members" },
-    { tag: "Chapters & Groups", url: "/groups" },
+    { tag: "Chapters & Groups", url: "/waa-groups" },
     { tag: "Badger Bridge Online Network", url: "/alumni-directory" },
     { tag: "Diverse Alumni", url: "/diverse-alumni" },
     { tag: "Recent Grads", url: "/recent-grads" },
@@ -24,16 +24,18 @@ const menuItems = {
     { tag: "Upcoming Activities", url: "/events" },
     { tag: "Signature Events & Activities", url: "/signature-events" },
     { tag: "Learning & Enrichment Programs", url: "/learning" },
-    { tag: "Badger Athletic Events", url: "/athletics" },
+    { tag: "Badger Athletics Activities", url: "/athletics" },
     { tag: "Travel Tours", url: "/travel" },
   ],
   "News & Stories": [
     { tag: "News & Stories", url: "/news" },
     { tag: "Alumni Achievements", url: "/alumni-achievements" },
+    { tag: "Alumni Notes", url:"/alumni-notes" },
     { tag: "WAA Publications", url: "/publications" },
   ],
   "Ways to Support": [
     { tag: "Advocate for the UW", url: "/advocate" },
+    { tag: "Show Your Pride", url: "/show-your-pride" },
     { tag: "Get Involved", url: "/get-involved" },
     { tag: "Make a Gift", url: "/give" },
   ],
@@ -75,7 +77,7 @@ const LeftMenu = styled.div`
         border: none;
         width: 100%;
         background: none;
-        outline: none;
+        //outline: none;
         p {
           position: relative;
           padding-bottom: ${sizes.s32};
@@ -92,24 +94,27 @@ const RightMenu = styled.div`
   ul {
     justify-self: left;
     margin-left: 0;
+    width: 100%;
   }
   li {
     list-style: none;
     margin: 0;
-    padding: 16px ${sizes.s24};
     &:hover {
       background-color: ${colors.navcardGrey};
     }
     a {
       text-decoration: none;
       color: ${colors.navMenuBlack};
+      padding: 16px ${sizes.s24};
+      display: block;
     }
   }
 `
 
 const SocialLinks = styled.div`
+  margin-bottom: 110px;
   .socialLinks {
-    width: 160px;
+    width: 200px;
     display: flex;
     list-style-type: none;
 
@@ -122,28 +127,41 @@ const SocialLinks = styled.div`
       margin: 0 ${sizes.s16} 0 0;
 
       a {
-        display: block;
-        width: ${sizes.s24};
-        height: ${sizes.s24};
-        background-color: ${colors.iconGrey};
-        font-size: 0;
-        &:hover {
-          background-color: ${colors.buttonRed};
+        span{
+          display: block;
+          width: ${sizes.s24};
+          height: ${sizes.s24};
+          background-color: ${colors.iconGrey};
+          font-size:0;
+          padding:0;
+          &:hover {
+            background-color: ${colors.buttonRed};
+          }
         }
         &.fb {
-          mask: url(${FbIcon});
+          span{
+            mask: url(${FbIcon}) no-repeat;
+          }
         }
         &.tw {
-          mask: url(${TwIcon});
+          span{
+            mask: url(${TwIcon}) no-repeat;
+          }
         }
         &.ig {
-          mask: url(${IgIcon});
+          span{
+            mask: url(${IgIcon}) no-repeat;
+          }
         }
         &.wc {
-          mask: url(${WcIcon});
+          span{
+            mask: url(${WcIcon}) no-repeat;
+          }
         }
         &.li {
-          mask: url(${LiIcon});
+          span{
+            mask: url(${LiIcon}) no-repeat;
+          }
         }
       }
     }
@@ -157,11 +175,15 @@ const BottomLeft = styled.div`
   font-size: ${sizes.s18};
   border-top: 1px solid ${colors.navMenuBorderGrey};
   li {
-    padding-top: 16px;
-    padding-bottom: 16px;
     a {
       margin: 0;
       padding: 0;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      display: block;
+      :hover, : active{
+        text-decoration:underline;
+      }
     }
   }
 `
@@ -220,7 +242,7 @@ const PrimaryMenu = () => {
     leave: { opacity: 0 },
   })
 
-  const transition2 = useTransition(!showLeft, null, {
+  const transition2 = useTransition(!showLeft, {
     from: { transform: `translate3d(100%, 0, 0)` },
     enter: { transform: `translate3d(0,0,0)` },
     leave: { transform: `translate3d(100%,0, 0)` },
@@ -228,6 +250,11 @@ const PrimaryMenu = () => {
 
   const modalClickHandler = () => {
     setShowLeft(true)
+  }
+  const modalKeyPressHandler = (e) => {
+    if(e.key === 'Enter'){
+      setShowLeft(true)
+    }
   }
 
   const parentClickHandler = (str, e) => {
@@ -259,7 +286,7 @@ const PrimaryMenu = () => {
 
   const parentLinks = Object.keys(menuItems).map(link => {
     return (
-      <li>
+      <li key={link}>
         <button onClick={e => parentClickHandler(link, e)}>
           <p>
             <SpanArrowRight>{link}</SpanArrowRight>
@@ -274,14 +301,14 @@ const PrimaryMenu = () => {
       let links = menuItems[select].map(link => {
         if(link.url === "https://www.uwalumnistore.com" ){
           return (
-            <li>
+            <li key={link.tag}>
               <a href={link.url} target="_blank">{link.tag}</a>
             </li>
           )
         }
         else{
           return (
-            <li>
+            <li key={link.tag}>
               <Link to={link.url}>{link.tag}</Link>
             </li>
           )
@@ -296,7 +323,7 @@ const PrimaryMenu = () => {
     <div onClick={() => modalClickHandler()}>
       <MenuGrid>
         {transition1.map(
-          ({ item, key, props }) =>
+          ({ props, item, key }) =>
             item && (
               <animated.div
                 key={key}
@@ -308,6 +335,7 @@ const PrimaryMenu = () => {
                   width: `100vw`,
                   height: `100%`,
                   backgroundColor: `white`,
+                  overflow:`scroll`
                 }}
               >
                 <LeftMenu>
@@ -320,13 +348,13 @@ const PrimaryMenu = () => {
                         <Link to="/about">About WAA</Link>
                       </li>
                       <li>
-                        <Link to="/contact-waa">Contact WAA</Link>
+                        <Link to="/about/contact-waa">Contact WAA</Link>
                       </li>
                       <li>
                         <Link to="/update-info">Update My Info</Link>
                       </li>
                       <li>
-                        <Link to="/email">Log Into Email</Link>
+                        <Link to="/email">Alumni Email Login</Link>
                       </li>
                     </ul>
                     <SocialLinks>
@@ -339,7 +367,7 @@ const PrimaryMenu = () => {
         )}
 
         {transition2.map(
-          ({ item, key, props }) =>
+          ({ props, item, key }) =>
             item && (
               <animated.div
                 key={key}
@@ -365,7 +393,9 @@ const PrimaryMenu = () => {
                     </p>
                     <p
                       onClick={() => modalClickHandler()}
+                      onKeyPress={(e) => modalKeyPressHandler(e)}
                       style={{ marginBottom: 0 }}
+                      tabIndex="0"
                     >
                       {select}
                     </p>

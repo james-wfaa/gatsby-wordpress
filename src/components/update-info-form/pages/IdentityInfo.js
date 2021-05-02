@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, handleFormSubmit } from '../form-helpers'
+import { StyledError, handleFormSubmit, FormGeneralError } from '../form-helpers'
 import PageSection from '../../page-sections/PageSection'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -13,17 +13,22 @@ const IdentityInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setIdentityInfoOnchange } = actions;
   const [countries, ] = useState(countryList().getData())
+  const [generalError, setGeneralError] = useState('')
 
-  const { register, handleSubmit, errors, formState: { submitCount } } = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdateIdentityInfo = data =>{
     //setIdentityInfo(data)
-    handleFormSubmit(state).then(() => {
+    handleFormSubmit(state).then((returnedData) =>{
+      if(returnedData.is_valid === false){
+        throw new Error('something went wrong with submitting the form');
+      }
+    }).then(() => {
       let currentOrder = state.numberOfSteps
       let currentStep = state.currentStep
       let currentPlaceInOrder = currentOrder.indexOf(currentStep)
       let nextStep = currentOrder[currentPlaceInOrder + 1]
       setCurrentStep(nextStep)
-    })
+    }).catch(err => {setGeneralError(err.message)})
   }
   
   const updateOnChangeValues = (e) => {
@@ -64,11 +69,14 @@ const IdentityInfo = () => {
             <PageSection
               excerpt='Please provide information regarding how you identify yourself. Click “Save and Continue” after completing the page to ensure your changes are recorded.'
               heading='Update My Info'
-              headingAlt
               headingCompact
               backgroundColor={colors.formIntroBg}
+              pageTitle
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep} />
+            {generalError && (
+              <FormGeneralError>We’re sorry, but a network issue prevented us from saving your information. Our team has been notified, but you can <a href="mailto:web@supportuw.org">contact WAA</a> if you need immediate assistance.</FormGeneralError>
+            )}
             <form className="identity-info" id="contact" onSubmit={handleSubmit(UpdateIdentityInfo)}>
               { (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Race/Ethnicity/Identity<span className="requiredInfo">*Required Information</span></legend>
@@ -100,7 +108,7 @@ const IdentityInfo = () => {
                     id="identitydescrip"
                     maxLength="500"
                     defaultValue={state.identityInfo.identitydescrip}
-                    onBlur={e => updateOnChangeValues(e)}
+                    onChange={e => updateOnChangeValues(e)}
                     ref={register({
                       maxLength: {
                         value: 500,

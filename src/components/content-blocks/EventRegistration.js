@@ -2,44 +2,51 @@ import React, { useState } from 'react'
 import { colors, mixins, sizes, breakpoints } from '../css-variables'
 import styled from 'styled-components'
 import EventLinksBlock from "./EventLinks"
-
 import Button from '../parts/Button'
 import { convertTime, compareDate } from "../../utils/tools"
 import GenericModal from '../content-modules/GenericModal'
 
 
-const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails, calendarLinks, showMapLink}) => {
+const EventRegistration = ({className, date, startDate, endDate, timezone, venue, cost, organizers, eventDetails, priceDetails, calendarLinks, showMapLink}) => {
 
+    const { virtualEvent } = eventDetails
     const classesList = `${className}`;
     const costDisplay = (cost) => {
-        if (!cost || cost == 0){
+        if (!cost || cost === 0){
             return "Free Entrance"
         }
         else{
-            return "$" + cost
+            return "$" + cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
         }
     }
+    let priceDetailsDisplay = (priceDetails)
+        ? <span>({priceDetails})</span>
+        : null
+
     const calcDate = (date) => {
         var compDateString = compareDate(startDate, endDate);
         if (compDateString){
             return compDateString;
         }
         else{
-            return date
+            const startDS = new Date(startDate.replace(/\s/, 'T'))
+            return startDS.toLocaleString('default', { month: 'long' }) + ' ' + startDS.getDate() + ', ' + startDS.getFullYear()
         }
     }
 
     const organizerList = organizers?.nodes?.map((org) => (
-         <div className="organizer">{org.title}</div>
+         <div key={org.title} className="organizer">{org.title}</div>
       ))
-    const addressString = (venue && venue.address)
-        ? `${venue.title} <br />${venue.address}<br >${venue.city ? venue.city : ""}${venue.state ? `, ${venue.state}` : ""} `
-        : (venue)
-            ? venue.title
-            : null;
+    const addressString = virtualEvent
+        ? 'Online Event'
+        : (venue?.address)
+            ? `${venue.title} <br />${venue.address}<br >${venue.city ? venue.city : ""}${venue.state ? `, ${venue.state}` : ""} `
+            : (venue?.title)
+                ? venue.title
+                : null;
     const registrationLink = eventDetails.registrationUrl ? eventDetails.registrationUrl : '';
     const registrationText = eventDetails.eventFullSoldOut ? eventDetails.eventFullText 
-    : eventDetails.trip ? 'Book Now' : 'Register';
+    : eventDetails.trip ? 'Book Now' : 'Register Now';
 
     const regIsFull = eventDetails.eventFullSoldOut;
     const [show, setShow] = useState(false);
@@ -50,28 +57,17 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
       setShow(!currentshow)
       //console.log("Is Shown" + show);
     }
+    let datetime = convertTime(startDate, endDate)
+    if (timezone) {
+        datetime = `${datetime} ${timezone}`
+    }
 
     return(
         <div className={classesList}>
             {show ?
             <GenericModal
             data={
-            <EventLinksBlock>
-                <div class="tribe-block tribe-block__events-link">
-					<div class="tribe-block__btn--link tribe-block__events-gcal">
-				        <a href="https://www.google.com/calendar/event?action=TEMPLATE&amp;text=Virtual+Wine+Tasting&amp;dates=20210228T080000/20210228T170000&amp;details=+%0A+%0AJoin+UW+alumnus+David+Eckert+%E2%80%9988%2C+owner+and+winemaker+of+the+Zo+Wines+boutique+winery+in+Sonoma+for+a+live%2C+virtual+wine+tasting+event+on+Friday%2C+Nov.+13+at+6%3A30+p.m.+CST.+%0AThe+event+includes+six+wine+samples+%2850+ml+size%29+sent+to+your+home+and+a+60-minute+Zoom+session+with+winemaker+David+Eckert+as+he+walks+you+through+a+remote+wine+tasting+experience+that+includes+assisting+you+in+your+evaluation+and+assessment+of+the+wines+and+helping+you+determine+things+you+like+about+wine.+%0AAttendees+must+purchase+a+wine+kit+directly+through+Zo+Wines+for+%2450.+Each+kit+serves+one+person.+%0AZoom+details+and+calendar+invites+will+be+provided+by+Zo+Wines+closer+to+the+event+date..+%0A+%0A+%0A+%0A&amp;location=In+Your+Home%2C+Anywhere&amp;trp=false&amp;sprop=website:https://uwalumni.wpengine.com&amp;ctz=Atlantic%2FAzores" title="Add to Google Calendar">
-					        <img style={{'maxWidth':'100%','width':'1024px'}} class=" inline-gatsby-image-wrapper" loading="eager" src="/static/e7fa23801e893ae661613678529fc411/null.svg" data-reactroot="" />
-					        Google Calendar
-                        </a>
-			        </div>
-                    <div class="tribe-block__btn--link tribe-block__events-ical">
-				        <a href="/event/virtual-wine-tasting/?ical=1" title="Download .ics file">
-					        <img style={{'max-width':'100%','width':'1024px'}} class=" inline-gatsby-image-wrapper" loading="eager" src="/static/e7fa23801e893ae661613678529fc411/null.svg" data-reactroot="" />
-					        iCal Export				
-                        </a>
-			        </div>
-			    </div>
-            </EventLinksBlock>
+            <EventLinksBlock>{ calendarLinks }</EventLinksBlock>
             }
             opacity={0.9}
             closeCallback={() => handleModal()}/>
@@ -88,8 +84,8 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
             </div>
             <div className="regWrapper">
                 <div className="subHeader">WHEN</div>
-                <div>{calcDate(date)}</div>
-                <div className="dateTime" dangerouslySetInnerHTML={{ __html: convertTime(startDate, endDate) }}></div>
+                <div>{calcDate(startDate)}</div>
+                <div className="dateTime" dangerouslySetInnerHTML={{ __html: datetime }}></div>
                 <a href="#" alt="Add to Calendar" onClick={() => handleModal()}>Add to Calendar</a>
                 { addressString && (
                     <div className="subHeader">WHERE</div>
@@ -99,10 +95,10 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
                     <a href="#EventMap" alt="View Map">{mapLinkText}</a>
                 )}
                 <div className="subHeader">COST</div>
-                <div className="amount ">{costDisplay(cost)}</div>
+                <div className="amount ">{costDisplay(cost)} {priceDetailsDisplay}</div>
                 {organizerList.length < 5 ?
                     <>
-                    <div className="subHeader">ORGANIZER</div>
+                    <div className="subHeader">HOST(S)</div>
                     <div className="orgName ">{organizerList}</div>
                     </>
                 :

@@ -49,7 +49,7 @@ function WordPressPage({ page }) {
     })
   : ''
   return (
-    <Layout title={title}>
+    <Layout title={title} img={featuredImage?.node}>
       { featuredImage?.node ? (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}

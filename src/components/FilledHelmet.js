@@ -1,16 +1,22 @@
 import React from 'react'
 import striptags from 'striptags'
 import { Helmet } from 'react-helmet'
+import DefaultImg from "../../static/open_graph_illus_1200x630.png"
 
-function FilledHelmet({title, img, desc, url}) {
+
+function FilledHelmet({title, plaintitle, img, desc, url}) {
   let fullhostname = 'https://gatsby.uwalumni.com'
-  const imgpath = ( img && typeof img !== 'undefined' && img.localFile )
+  const imgpath = ( img?.localFile?.childImageSharp?.fluid?.src)
   ?   `${fullhostname}${img.localFile.childImageSharp.fluid.src}`
-  : null
+  : fullhostname + DefaultImg
   const cleanDesc = ( desc ) ? striptags(desc) : null
-
+  const resolvedTitle = plaintitle
+    ? "%s"
+    : "%s | Wisconsin Alumni Association"
   return (
-    <Helmet titleTemplate="%s | Wisconsin Alumni Association">
+    <Helmet titleTemplate={resolvedTitle} htmlAttributes={{
+      lang: 'en',
+    }}>
       <title>{title}</title>
       {cleanDesc &&
         <meta name="description" content={cleanDesc} />

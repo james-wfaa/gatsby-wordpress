@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import { colors, mixins, sizes } from '../css-variables'
 import Img from 'gatsby-image'
 import TagList from "../parts/TagList"
@@ -6,8 +7,34 @@ import styled from 'styled-components'
 import { shortDate } from "../../utils/tools"
 
 
-const ContentCard = ({ className, startDate, endDate, title, category, venue, excerpt, url, urlText, img, featureImg, featuredImage, caption, tags, size="S", promo = false, acfAlternatePostType, videoFormat }) => {
-    const moreLinkText = urlText ? urlText+" >" : <nobr>Read More &gt;</nobr>
+const ContentCard = ({ 
+    className, 
+    startDate, 
+    endDate, 
+    title, 
+    category, 
+    linkFormat, 
+    venue, 
+    virtualEvent, 
+    excerpt, 
+    url, 
+    urlText, 
+    img, 
+    featureImg, 
+    tags, 
+    size="S", 
+    promo=false, 
+    acfAlternatePostType, 
+    videoFormat,
+    filterChange 
+}) => {
+
+    const resolvedVenue = (virtualEvent)
+    ? "Online Event"
+    : (venue?.title)
+        ? venue.title
+        : null
+
     const fmtStartDate = shortDate(startDate)
     let fmtEndDate = null
     if (endDate && shortDate(endDate) !== fmtStartDate) {
@@ -15,27 +42,44 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
     }
     const dateLinkText = fmtEndDate ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
 
+
     const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];
     const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt
     const promoClass = promo ? 'promo' : ''
     const notSmall = (size !== 'S') ? "notsmall" : ""
 
-    let altPostType = acfAlternatePostType?.alternateposttype ? acfAlternatePostType.alternateposttype : null
+    let altPostType = acfAlternatePostType?.alternateposttype 
+        ? acfAlternatePostType.alternateposttype 
+        : videoFormat?.vimeoId
+            ? "Video"
+            : null
+    
+    const displayCategory = category 
+        ? category
+        : altPostType 
+            ? altPostType 
+            : null
 
-    if(videoFormat?.vimeoId){
-        altPostType = "Video"
-    }
+    const finalUrl = linkFormat?.linkUrl 
+        ? linkFormat.linkUrl
+        : url
 
-    const displayCategory = category ? category : (altPostType ? altPostType : null);
+    const linkTitle = linkFormat?.linkUrl
+        ? 'Link will open in a new tab/window'
+        : ''
 
+    const target = linkFormat?.linkUrl
+        ? '_blank'
+        : '_self'
+    
     if(!sizes.includes(size) || promo ){
         size = "S";
     }
 
     const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
         ? null
-        : (featureImg && typeof featureImg !== 'undefined' && featureImg.childImageSharp) ?
+        : (featureImg && typeof featureImg !== 'undefined' && featureImg.childImageSharp && featureImg.childImageSharp !== img.childImageSharp) ?
             [
                 img.childImageSharp.fluid,
                 {
@@ -44,13 +88,15 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                 }
             ]
             :  img.childImageSharp.fluid
+
     return (
 
         <div className={`${className} ${className}--${size} ${className}--${notSmall} ${promoClass}`}>
+            { linkFormat && (
                 <div className={`headersection headersection--${size}`}>
                     { startDate && (
                         <div className={`date date--${size}`}>
-                            <a href={url} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
+                            <a href={finalUrl} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
                         </div>
                     )}
                     { !startDate && (
@@ -59,12 +105,12 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                                 <div className={`category category--${size} `}>{displayCategory}</div>
                             )}
                             <h3 className={`title title--${size}`}>
-                                <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
+                                <a href={finalUrl} target={target} dangerouslySetInnerHTML={{ __html: title }}/>
                             </h3>
                         </>
                     )}
                     {imgSources && (
-                        <a href={url} className={`imgzoomlink headerImg`} >
+                        <a href={finalUrl}  target={target} className={`imgzoomlink headerImg`} >
                             <Img
                                 className={`img`}
                                 fluid={imgSources}
@@ -72,9 +118,38 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                         </a>
                     )}
                 </div>
+             )}
+            { !linkFormat && (
+                <div className={`headersection headersection--${size}`}>
+                    { startDate && (
+                        <div className={`date date--${size}`}>
+                            <Link to={finalUrl} dangerouslySetInnerHTML={{ __html: dateLinkText }} />
+                        </div>
+                    )}
+                    { !startDate && (
+                        <>
+                            { displayCategory && (
+                                <div className={`category category--${size} `}>{displayCategory}</div>
+                            )}
+                            <h3 className={`title title--${size}`}>
+                                <Link to={finalUrl} dangerouslySetInnerHTML={{ __html: title }} />
+                            </h3>
+                        </>
+                    )}
+                    {imgSources && (
+                        <Link to={finalUrl} className={`imgzoomlink headerImg`} >
+                            <Img
+                                className={`img`}
+                                fluid={imgSources}
+                            />
+                        </Link>
+                    )}
+                </div>  
+            )}
+            { linkFormat && (
                 <div className={`contentwrap contentwrap--${size}`}>
                     {imgSources && (
-                        <a href={url} className={`imgzoomlink bodyImg`} >
+                        <a href={finalUrl}  target={target} className={`imgzoomlink bodyImg `} >
                             <Img
                                 className={`img`}
                                 fluid={imgSources}
@@ -86,7 +161,7 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                             { startDate && (
                                 <>
                                     <h3 className={`title title--${size}`}>
-                                        <a href={url} dangerouslySetInnerHTML={{ __html: title }}/>
+                                        <a href={finalUrl} target={target} dangerouslySetInnerHTML={{ __html: title }}/>
                                     </h3>
                                     { displayCategory && (
                                         <div className={`category category--${size}`}>{displayCategory}</div>
@@ -100,18 +175,73 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                             )}
                         </div>
                         <div className={`columnwrap columnwrap--${size}`}>
-                        { venue && venue.title && (
-                            <div className={`venuewrap venuewrap--${size}`}>
-                                { venue && venue.title && (
-                                    <div className={`${className}__venue`}>{venue.title}</div>
-                                )}
-                                { venue && venue.city && venue.state && (
-                                    <div className={`venue venue--${size}`}>{venue.city}, {venue.state}</div>
-                                )}
-                            </div>
-                        )}
+                            { resolvedVenue && (
+                                <div className={`venuewrap venuewrap--${size}`}>
+                                    <div className={`${className}__venue`}>{resolvedVenue}</div> 
+                                    { venue?.city && venue?.state && (
+                                        <div className={`venue venueCity venue--${size} `}>{venue.city}, {venue.state}</div>
+                                    )}
+                                </div>
+                            )}
+                            { (urlText && !startDate && linkFormat) && (
+                                <a href={finalUrl} title={linkTitle} target="_blank" className={`excerpt excerpt--${size} readmore`}>{urlText}</a>
+                            )}
+                            { tags && (
+                                <TagList
+                                    className={`tag  tag--${size}`}
+                                    items={tags}
+                                    filterChange={filterChange}
+                                />
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
+            { !linkFormat && (
+                <div className={`contentwrap contentwrap--${size}`}>
+                    {imgSources && (
+                        <Link to={finalUrl} className={`imgzoomlink bodyImg`}>
+                        <Img
+                            className={`img`}
+                            fluid={imgSources}
+                        /></Link>
+                    )}
+                    <div className={`contentsection contentsection--${size}`}>
+                        <div className={`columnwrap columnwrap--${size}`}>
+                            { startDate && (
+                                <>
+                                    <h3 className={`title title--${size}`}>
+                                        <Link to={finalUrl} dangerouslySetInnerHTML={{ __html: title }} />
+                                    </h3>
+                                    { displayCategory && (
+                                        <div className={`category category--${size}`}>{displayCategory}</div>
+                                    )}
+                                </>
+                            )}
                             { (shortenedExcerpt && !startDate) && (
-                                <a href={url} className={`excerpt excerpt--${size} readmore`}>{moreLinkText}</a>
+                                <div className={`excerpt excerpt--${size}`}>
+                                    <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
+                                </div>
+                            )}
+                        </div>
+                        <div className={`columnwrap columnwrap--${size}`}>
+                            { resolvedVenue && (
+                                <div className={`venuewrap venuewrap--${size}`}>
+                                    <div className={`${className}__venue`}>{resolvedVenue}</div> 
+                                    { venue?.city && venue?.state && (
+                                        <div className={`venue venueCity venue--${size}`}>{venue.city}, {venue.state}</div>
+                                    )}
+                                </div>
+                                
+                            )}
+                            { shortenedExcerpt && size === "Wide" && (
+                                <div className={`excerpt excerpt--${size}`}>
+                                    <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
+                                </div>
+
+                            )}
+                            { urlText && !startDate && (
+                                <Link to={finalUrl} className={`excerpt excerpt--${size} readmore`}>{urlText}</Link>
                             )}
                             { tags && (
                                 <TagList
@@ -121,7 +251,8 @@ const ContentCard = ({ className, startDate, endDate, title, category, venue, ex
                             )}
                         </div>
                     </div>
-                </div>
+                </div>      
+            )}
         </div>
     )
 }
@@ -130,11 +261,15 @@ const StyledContentCard = styled(ContentCard)`
 
     ${mixins.contentCardBase}
     ${mixins.contentCardSizes}
-
     .title {
         ${mixins.cardTitle}
     }
-
+    .arrow {
+        ${mixins.arrow}
+    }
+    .venueCity{
+        font-weight: bold;
+    }    
     &.promo{
         background-color: ${colors.bgRed};
         border: 1px solid ${colors.bgRed};
@@ -167,6 +302,7 @@ const StyledContentCard = styled(ContentCard)`
         .category {
             display: none;
         }
+        
         .contentwrap {
             &:before {
                 border-left: 1.5px solid ${colors.bgWhite};

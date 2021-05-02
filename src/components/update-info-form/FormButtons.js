@@ -31,12 +31,13 @@ const FormButtons = ({ next, back, save, finish, signup, disabled, error, errors
         <div className="form-btns">
             { disabled && (<p className="validFormMessage">Please complete all required (<span className="red">*</span>) fields. </p>) }
             { error && (<StyledError className="bottomButtonError">Please correct error(s) above</StyledError>)}
-            { back && <button className="back" onClick={() => handleBackBtn()}>Go Back</button>}
+            { back && <button className="back" onClick={() => handleBackBtn()} type="button">Go Back</button>}
             { finish && <button
-                type="submit"
+                type="button"
                 name="finish"
                 onClick={() => handleFinishBtn()}
-                id="submitbutton"
+                id="finish"
+                className="finish"
                 disabled={!disabled}
                 >Finish Update</button>}
             { save && <button 
@@ -45,7 +46,7 @@ const FormButtons = ({ next, back, save, finish, signup, disabled, error, errors
                 id="savebutton"
                 disabled={disabled}
                 className="save">Save and Continue</button>}
-            { next && <button className="next" onClick={() => handleNextBtn()} disabled={disabled}>Save and Continue</button>}
+            { next && <button className="next" onClick={() => handleNextBtn()} disabled={disabled} type="button">Save and Continue</button>}
             { signup && <button 
                 type="submit"
                 name="signupbutton"

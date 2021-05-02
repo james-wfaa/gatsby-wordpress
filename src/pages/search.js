@@ -7,7 +7,7 @@ const Search = ({location}) => {
   const [searchString] = useState(location?.state?.string ? location.state.string : null)
 
   return (
-    <Layout>
+    <Layout title="Search">
       <StaticSearchAlgolia
       indices={[{name: "All"}]}
       results={false}

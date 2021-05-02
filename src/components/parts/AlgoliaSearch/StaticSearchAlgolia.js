@@ -4,6 +4,7 @@ import algoliasearch from "algoliasearch/lite"
 import {
   InstantSearch,
   RefinementList,
+  MenuSelect,
   Configure,
   ScrollTo,
 } from "react-instantsearch-dom"
@@ -13,7 +14,9 @@ import SearchPageResults from "./SearchPageResults"
 import AlgoliaPagination from "./AlgoliaPagination"
 
 const StyledWrapper = styled.div`
-
+  .ais-Pagination--noRefinement {
+    display: none;
+  }
 `
 
 const SelectionsWrapper = styled.div`
@@ -81,8 +84,10 @@ const AccordianSearchAlgolia = props => {
           <SelectionsWrapper>
               <AccordianSearchBoxAlgolia defaultRefinement={props.searchString} onFocus={() => setFocus(true)} hasFocus={hasFocus} />
             <RefinementChoices>
-              <p>Included in Results:</p>
-              <RefinementList
+              <MenuSelect
+                attribute="type"
+              />
+              {/* <RefinementList
               attribute="type"
               defaultRefinement={['Event', 'Post', 'Page']}
               transformItems={items =>
@@ -108,7 +113,7 @@ const AccordianSearchAlgolia = props => {
                       })
                       })
                     }
-                    />
+                    /> */}
             </RefinementChoices>
           </SelectionsWrapper>
         </ScrollTo>
@@ -116,7 +121,7 @@ const AccordianSearchAlgolia = props => {
         show={query && query.length > 0 && hasFocus}
         indices={props.indices}
         />
-        <AlgoliaPagination />
+        <AlgoliaPagination globalsearch />
       </InstantSearch>
       </div>
     </StyledWrapper>

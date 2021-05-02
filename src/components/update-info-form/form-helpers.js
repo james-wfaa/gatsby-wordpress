@@ -18,13 +18,12 @@ export const handleFormSubmit = (data) => {
       'content-type': 'application/json',
     },
     body: JSON.stringify(entryData),
-  }).then((response) => { 
-    return response.json().then((data) => {
-        return data;
-    }).catch((err) => {
-        console.log(err);
-    }) 
-  });
+  })
+  .then(res =>
+    (!res.ok)
+      ? res.json().then(() => {throw new Error('an error occurred')})
+      : res.json()
+  )
 }
 
 export const handleCommFormSubmit = (data) => {
@@ -32,9 +31,9 @@ export const handleCommFormSubmit = (data) => {
   let entryData = {
     "payload":{ 
       "communicationsSignUp": data.communicationsSignUp, 
-      "firstname":data.contactInfo.firstname,
-      "lastname":data.contactInfo.lastname,
-      "email": data.contactInfo.email
+      "firstname":data.commSignUpInfo.firstname,
+      "lastname":data.commSignUpInfo.lastname,
+      "email": data.commSignUpInfo.email
     }
   }
   
@@ -44,13 +43,11 @@ export const handleCommFormSubmit = (data) => {
       'content-type': 'application/json',
     },
     body: JSON.stringify(entryData),
-  }).then((response) => { 
-    return response.json().then((data) => {
-        return data;
-    }).catch((err) => {
-        console.log(err);
-    }) 
-  });
+  }).then(res =>
+    (!res.ok)
+      ? res.json().then(() => {throw new Error('an error occurred')})
+      : res.json()
+  ) 
 }
 
 export const validatePostalCode = (value, country) => {
@@ -70,12 +67,29 @@ export const checkForLetters = (value) => {
   return response
 }
 
-export const variantObject = {
-    background_color: colors.formIntroBg,
-    color: colors.bgRed,
-    scroll_color: colors.bgRed,
-    text_align: `center`
-}
+//validate phone number for just digits and dashes
+/*export const validatePhone = (value) => {
+  let response
+  const regExp = /^[- ]*[0-9][- 0-9]*$/;
+  if(regExp.test(value)){
+    response = true
+  } else {
+    response = false
+  }
+  return response
+}*/
+
+//validate name for just letters, hyphen and apostrophes
+/*export const validateName = (value) => {
+  let response
+  const regExp = /^[a-zA-Z' -]+$/;
+  if(regExp.test(value)){
+    response = true
+  } else {
+    response = false
+  }
+  return response
+}*/
 
 export const StyledError = styled.p`
   font-family: "Verlag A", "Verlag B";
@@ -124,6 +138,33 @@ export const StyledError = styled.p`
     position:absolute;
     @media screen and ${breakpoints.tabletS} {
       top: -35px;
+    }
+  }
+`
+export const FormGeneralError = styled.p`
+  width: 80%;
+  text-align: center;
+  color: black;
+  margin: 32px auto;
+  padding: 16px 16px 16px 42px;
+  position:relative;
+  max-width: 640px;
+  /*background-color: ${colors.progressBarLightRed};*/
+  background-color: ${colors.errorBGYellow};
+  &:before{
+    content: ' ';
+    background-image: url(${formErrorIcon});
+    background-size: contain;
+    width: 24px;
+    height: 24px;
+    position:absolute;
+    left: 10px;
+    top: 26px;
+  }
+  a{
+    color:${colors.linkText};
+    :hover{
+      color:${colors.linkTextHover};
     }
   }
 `

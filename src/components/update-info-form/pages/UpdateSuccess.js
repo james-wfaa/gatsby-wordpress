@@ -1,38 +1,42 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import PageSection from "../../page-sections/PageSection"
 import { colors } from '../../css-variables'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
-import { handleCommFormSubmit } from '../form-helpers'
+import { handleCommFormSubmit, FormGeneralError } from '../form-helpers'
 
 const UpdateSuccess = () => {
     const { state, actions } = useContext(AppContext);
     const { setCurrentStep, setCommunicationsSignUpOnchange } = actions;
     const { handleSubmit } = useForm()
+    const [generalError, setGeneralError] = useState('')
+
+    useEffect(() => {
+        //clear all form inputs
+    }, []);
 
     const submitCommunicationsSignup = data =>{
-        handleCommFormSubmit(state).then(() =>{
+        handleCommFormSubmit(state).then((returnedData) =>{
+            if(returnedData.is_valid === false){
+              throw new Error('something went wrong with submitting the form');
+            }
+        }).then(() =>{
             setCurrentStep(9)
-        })
+        }).catch(err => {setGeneralError(err.message)})
     }
 
     const updateOnChangeValues = (e) => {
         if(e.target.checked){
-            //console.log(state.communicationsSignUp)
             let newList = [...state.communicationsSignUp, e.target.name]
-            //console.log(newList)
             setCommunicationsSignUpOnchange(newList)
           } else {
             let newList = [...state.communicationsSignUp.filter(a => a !== e.target.name)]
-            //console.log(newList)
             setCommunicationsSignUpOnchange(newList)
         }
-
     }
     const content = `<div className="successPageIcon"></div>`
-
     const disableButton = state.communicationsSignUp.length > 0 ? false : true;
 
     return (
@@ -40,14 +44,17 @@ const UpdateSuccess = () => {
             <PageSection
             excerpt='Thanks for taking the time to do a complete update of your information. Now you’re all set to receive messages, invitations, and more — and you have a better way to stay connected to UW–Madison and WAA. On, Wisconsin!'
             heading='Thank you. Your information has been updated.'
-            headingAlt
             headingCompact
             content={content}
             backgroundColor={colors.formIntroBg}
+            pageTitle
             >
                 <div className="successPageIcon"></div>
             </PageSection>
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
+            {generalError && (
+              <FormGeneralError>We’re sorry, but a network issue prevented us from saving your information. Our team has been notified, but you can <a href="mailto:web@supportuw.org">contact WAA</a> if you need immediate assistance.</FormGeneralError>
+            )}
             <form className="success-page" onSubmit={handleSubmit(submitCommunicationsSignup)}>
                 <legend>Are you interested in receiving communications about any of the following?</legend>
                 <fieldset>

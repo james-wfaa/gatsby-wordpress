@@ -3,7 +3,6 @@ import Layout from "../layout"
 import PageSection from "../page-sections/PageSection"
 import WordPressContent from "../content-blocks/WordPressBasicContentBlocks"
 import AccordianSearchAlgolia from "../../components/parts/AlgoliaSearch/AccordianSearchAlgolia-temp"
-import FeaturedImage from "../content-blocks/FeaturedImage"
 import CardSet from "../content-modules/CardSet"
 import StoryCardD from "../content-blocks/StoryCardD"
 import GridCardD from "../content-modules/GridCardD"
@@ -54,7 +53,7 @@ function WordPressPage({ page, posts }) {
 
 
   return (
-    <Layout title={title} noborder>
+    <Layout title={title} noborder img={featuredImage?.node}>
       { featuredImage && featuredImage.node && (
       <HeroIntroSection
           heroImage={featuredImage.node.localFile}

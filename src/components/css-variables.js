@@ -28,6 +28,7 @@ export const sizes = {
     s24: '1.333rem',
     s26: '1.444rem',
     s28: '1.555rem',
+    s30: '1.666rem',
     s32: '1.778rem',
     s34: '1.889rem',
     s36: '2rem',
@@ -129,6 +130,7 @@ export const colors = {
     flamingleCardHoverDiagonals: baseColors.darkRed,
     searchFontGrey: baseColors.darkGrey,
     tableRowGrey: baseColors.lightestGrey,
+    formTextBlack: baseColors.offBlack,
 }
 
 export const size = {
@@ -173,6 +175,28 @@ export const mixins = {
             color: ${colors.linkTextActive};
         }
     }`,
+    arrow: `
+    {
+        border: solid #c5050c;
+        border-width: 0 1px 1px 0;
+        display: inline-block;
+        padding: 3px;
+        transform: rotate(-90deg);
+        -webkit-transform: rotate(-90deg);
+        margin-left: 8px;
+        margin-bottom: 4px;
+        :before{
+            content:'';
+            width:13px;
+            height:1px;
+            background: #c5050c;
+            left:-5px;
+            bottom:4px;
+            position:absolute;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+    }`,
     cardTitle: `
         font-family: ${fonts.eavesNarrow};
         font-size: ${sizes.s24};
@@ -182,6 +206,7 @@ export const mixins = {
         @media screen and ${breakpoints.laptopS} {
             font-size: ${sizes.s32};
         }
+        margin-bottom: ${sizes.s18};
     `,
     cardDate: `
         font-family: ${fonts.eaves};
@@ -287,22 +312,26 @@ export const mixins = {
              background-color: ${colors.bgWhite};
          }
      }
-     &--alt {
+     &--alt,
+     &.alt {
         color: ${colors.buttonRed};
         background-color: ${colors.titleWhite};
         &:hover {
-            color: ${colors.buttonActiveGrey};
-            background-color: ${colors.bgActiveGrey};
-            border: 1px solid ${colors.bgWhite};
+            color: ${colors.titleWhite};
+            background-color: ${colors.buttonRed};
         }
         &:active {
             color: ${colors.buttonActiveGrey};
-            background-color: ${colors.bgWhite};
+            background-color: ${colors.bgActiveGrey};
         }
 
      }
-     &--altborder {
+     &--altborder,
+     &.altborder {
         border: 1px solid ${colors.buttonRed};
+        &:active {
+            border: 1px solid ${colors.buttonActiveGrey};
+        }
      }
      &--disabled {
         pointer-events: none;
@@ -414,7 +443,7 @@ export const mixins = {
         &.bgimage,
         &.headingAlt {
             h2 {
-                color: ${colors.titleWhite}
+                color: ${colors.titleWhite};
             }
             &:after {
                 background-color: ${colors.bgWhite};
@@ -459,10 +488,12 @@ export const mixins = {
                 &.enhancedHomepageCaption{
                     font-family:${fonts.eaves};
                     font-style: italic;
-                    font-size: ${sizes.s26};
-                    color: ${colors.captionRed};
+                    font-size: ${sizes.s28};
+                    line-height: ${sizes.s34};
+                    color: ${colors.captionGrey};
                     font-weight: bold;
-                    margin-top: ${sizes.s32};
+                    margin-top: ${sizes.s30};
+                    text-align: center;
                 }
             }
         }
@@ -497,8 +528,8 @@ export const mixins = {
             font-size: ${sizes.s52};
         }
         @media screen and ${breakpoints.tabletS} {
-            width: 450px;
-            left: calc(50% - 225px);
+            width: 520px;
+            left: calc(50% - 260px);
             font-size: ${sizes.s60};
             span {
                 font-size: ${sizes.s100};
@@ -630,6 +661,7 @@ export const mixins = {
             }
             &.readmore {
                 color: ${colors.titleColor};
+                line-height: ${sizes.s24};
                 text-transform: uppercase;
                 &:link {
                     text-decoration: none;
@@ -714,6 +746,7 @@ export const mixins = {
                 
             }
             .date {
+                z-index: 1;
                 font-family: ${fonts.eaves};
                 position: relative;
                 padding-top: ${sizes.s16};
@@ -871,7 +904,7 @@ export const mixins = {
     }`,
     contentCardSizes:`{
         &--notsmall{
-            @media screen and ${breakpoints.tabletL} {
+            @media screen and ${breakpoints.laptopS} {
                 .columnwrap:nth-child(1) {
                     border-right: 1px solid ${colors.cardBorder};
                 }
@@ -992,6 +1025,9 @@ export const mixins = {
                 }
                 .columnwrap {
                     flex:1;
+                }
+                .venuewrap {
+                    margin-bottom: ${sizes.s24};
                 }
     
             }

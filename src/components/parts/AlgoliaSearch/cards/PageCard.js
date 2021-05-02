@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import TagList from "../../TagList"
+
 import { breakpoints, fonts, colors } from "../../../css-variables"
 
 const CardWrapper = styled.div`
@@ -32,15 +34,20 @@ const CardWrapper = styled.div`
   }
   a {
     cursor: pointer;
-    p {
-      margin: 0;
-      color: ${colors.offBlack};
-    }
-    p:not(:last-child) {
-      padding-bottom: 16px;
-    }
+    text-decoration: underline;
+    color: ${colors.bgRed};
+    
   }
-  a:hover, a:visited, a:active, a:link { color: #3c3c3c !important}
+  a:hover, a:visited, a:active { 
+    color: ${colors.linkTextHover};
+  }
+  p {
+    margin: 0;
+    color: ${colors.offBlack};
+  }
+  p:not(:last-child) {
+    padding-bottom: 16px;
+  }
   h3 {
     margin: 0;
     padding-bottom: 16px;
@@ -100,11 +107,11 @@ const DetailsDiv = styled.div`
   margin-bottom: 24px;
 `
 
-const PageCard = ({excerpt, hit, title, topResult, url}) => {
+const PageCard = ({excerpt, hit, title, topResult, tags, url}) => {
 
   return (
     <CardWrapper className={topResult ? "topResult" : null}>
-      <Link to={url}>
+      
         {topResult ?
         <CardHeader>
           <p>BEST BET</p>
@@ -112,20 +119,25 @@ const PageCard = ({excerpt, hit, title, topResult, url}) => {
         : null}
         {topResult ?
         <DetailsDiv>
-          <p><span className="cardType">Page</span></p>
-          <h3>{title}</h3>
+          <p><span className="cardType">PAGE</span></p>
+          <h3><Link to={url}>{title}</Link></h3>
         </DetailsDiv>
         :
         <>
-          <p><span className="cardType">Page</span></p>
-          <h3>{title}</h3>
+          <p><span className="cardType">PAGE</span></p>
+          <h3><Link to={url}>{title}</Link></h3>
         </>
         }
-        <p><span className="tags">Tag 1, tag 2, tag 3</span></p>
         {excerpt ?
         <div className="excerpt" dangerouslySetInnerHTML={{__html: excerpt}}></div>
         : null}
-      </Link>
+        { tags && (
+          <TagList
+          className={`tag`}
+          items={tags}
+          globalSearch
+      />
+        )}
     </CardWrapper>
   )
 }
