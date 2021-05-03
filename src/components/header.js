@@ -82,7 +82,7 @@ const Header = ({ noborder }) => {
           <div className="inner">
             <span className="logo">
               <Link to="/">
-                <img src={Logo} alt="Logo" />
+                <img src={Logo} alt="Logo" width="112" height="54" />
               </Link>
             </span>
             <div>
