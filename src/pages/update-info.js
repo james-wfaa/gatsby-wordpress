@@ -16,7 +16,8 @@ import formErrorIcon from "./../svg/form-error-icon-red.svg"
 
 const UpdateInfoForm = () =>  {
   if (typeof window !== "undefined" && window.location.includes('chapters.uwalumni.com')) {
-    const fixedUrl = window.location.replace('chapters.uwalumni.com','www.uwalumni.com');
+    const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+    window.location.replace(fixedUrl)
   }
   const { state, actions } = useContext(AppContext);
   const { setInitialState } = actions;

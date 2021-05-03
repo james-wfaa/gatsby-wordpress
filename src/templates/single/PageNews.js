@@ -13,7 +13,8 @@ import SimpleSlider from "../../components/content-modules/SimpleSlider"
 
 function WordPressPage({ data }) {
   if (typeof window !== "undefined" && window.location.includes('chapters.uwalumni.com')) {
-    const fixedUrl = window.location.replace('chapters.uwalumni.com','www.uwalumni.com');
+    const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+    window.location.replace(fixedUrl)
   }
   const { page, posts, featuredPosts, tileAds } = data
   const { title, excerpt, blocks, featuredImage, heroIntroSection, storyCategories, gridDetails } = page

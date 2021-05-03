@@ -11,7 +11,8 @@ import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
 const WordPressEmailPage = ({ className, data }) => {
   if (typeof window !== "undefined" && window.location.includes('chapters.uwalumni.com')) {
-    const fixedUrl = window.location.replace('chapters.uwalumni.com','www.uwalumni.com');
+    const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+    window.location.replace(fixedUrl)
   }
   const [ads] = useState(data.page.HalfPageAd.adList)
   const [currentAd, setCurrentAd] = useState(null)

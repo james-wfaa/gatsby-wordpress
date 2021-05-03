@@ -30,7 +30,8 @@ const heroOverlayHeading = `<span>Badger</span> ON`
 
 const HomePage = ({ data }) => {
   if (typeof window !== "undefined" && window.location.includes('chapters.uwalumni.com')) {
-    const fixedUrl = window.location.replace('chapters.uwalumni.com','www.uwalumni.com');
+    const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+    window.location.replace(fixedUrl)
   }
   const { featuredPosts, tileAds } = data
   const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList?.[0]

@@ -242,7 +242,14 @@ module.exports = {
     `gatsby-plugin-webpack-bundle-analyser-v2`,
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-redirect-to`,
+    {
+      resolve: `gatsby-plugin-redirect-to`,
+      options: {
+        force: true,
+        isPermanent: true,
+        redirectInBrowser: true,
+      },
+    },
     `gatsby-plugin-sitemap`,
      {
        resolve: `gatsby-plugin-algolia`,
