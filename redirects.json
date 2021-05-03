@@ -2648,5 +2648,9 @@
         "fromPath": "/winthewall/",
         "toPath": "/update-info/",
         "isPermanent": true
+    },
+    {
+        "fromPath": "/annualreport/",
+        "toPath": "https://www.advanceuw.org/annual-report/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
     }
 ]
