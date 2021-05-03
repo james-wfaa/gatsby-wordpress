@@ -13,7 +13,7 @@ const Post = ({ data }) => {
   if (typeof window !== "undefined" && window.location && linkFormat?.linkUrl) {
     window.location.replace(linkFormat.linkUrl)
   }
-  if (typeof window !== "undefined" && window.location.includes('chapters.uwalumni.com')) {
+  if (typeof window !== "undefined" && window.location.href.includes('chapters.uwalumni.com')) {
     const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
     window.location.replace(fixedUrl)
   }
