@@ -13,6 +13,9 @@ const Post = ({ data }) => {
   if (typeof window !== "undefined" && window.location && linkFormat?.linkUrl) {
     window.location.replace(linkFormat.linkUrl)
   }
+  if (typeof window !== "undefined" && window.location.includes('chapters.uwalumni.com')) {
+    const fixedUrl = window.location.replace('chapters.uwalumni.com','www.uwalumni.com');
+  }
 
   const isFlamingle = data.page.askFlamingle?.abeQuestioner !== null ? true : false
 

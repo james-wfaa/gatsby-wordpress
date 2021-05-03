@@ -4,6 +4,9 @@ import styled from 'styled-components'
 import {sizes, colors, fonts, breakpoints} from '../components/css-variables'
 
 const Page404 = () => {
+    if (typeof window !== "undefined" && window.location.includes('chapters.uwalumni.com')) {
+        const fixedUrl = window.location.replace('chapters.uwalumni.com','www.uwalumni.com');
+      }
 
     const OuterWrapper = styled.div`
         margin:100px auto 50px;

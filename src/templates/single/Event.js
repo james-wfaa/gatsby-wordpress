@@ -3,6 +3,9 @@ import { graphql } from "gatsby"
 import WpEvent from "../../components/template-parts/wordpress-event"
 
 const Event = ({ data }) => {
+  if (typeof window !== "undefined" && window.location.includes('chapters.uwalumni.com')) {
+    const fixedUrl = window.location.replace('chapters.uwalumni.com','www.uwalumni.com');
+  }
   const { event } = data
   return (<WpEvent page={event} />)
 }

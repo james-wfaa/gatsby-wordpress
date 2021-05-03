@@ -7,6 +7,9 @@ import SponsorAd from "../../components/content-blocks/SponsorAd"
 import { navigate } from 'gatsby-link'
 
 const NewsAll = (props) => {
+    if (typeof window !== "undefined" && window.location.includes('chapters.uwalumni.com')) {
+        const fixedUrl = window.location.replace('chapters.uwalumni.com','www.uwalumni.com');
+      }
     const [filterFilter, setFilterFilter] = useState("")
     const [pubFilter, setPubFilter] = useState("")
     const [productFilter, setProductFilter] = useState("")
