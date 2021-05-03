@@ -635,10 +635,15 @@
         "isPermanent": true
    	},
     {
+        "fromPath": "/benefits-services/email",
+        "toPath": "/email/",
+        "isPermanent": true
+    },
+    {
         "fromPath": "/benefits-services/",
         "toPath": "/learning/",
         "isPermanent": true
-   	},
+    },
     {
         "fromPath": "/bigapplebadgers/",
         "toPath": "/groups/bigapple/",
