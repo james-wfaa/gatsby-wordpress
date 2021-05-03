@@ -2070,6 +2070,11 @@
         "isPermanent": true
    	},
     {
+        "fromPath": "/membership/join/",
+        "toPath": "/membership/#membership-join/",
+        "isPermanent": true
+    },
+    {
         "fromPath": "/milehigh/",
         "toPath": "/groups/milehigh/",
         "isPermanent": true
