@@ -2470,6 +2470,16 @@
         "isPermanent": true
    	},
     {
+        "fromPath": "/shop/financial-services/",
+        "toPath": "/about/partners-perks/",
+        "isPermanent": true
+    },
+    {
+        "fromPath": "/shop/personal-services/",
+        "toPath": "/about/partners-perks/",
+        "isPermanent": true
+    },
+    {
         "fromPath": "/shop/theredshirt/",
         "toPath": "/the-red-shirt/",
         "isPermanent": true
