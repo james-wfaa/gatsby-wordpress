@@ -5,7 +5,7 @@ import DefaultImg from "../../static/open_graph_illus_1200x630.png"
 
 
 function FilledHelmet({title, plaintitle, img, desc, url}) {
-  let fullhostname = 'https://gatsby.uwalumni.com'
+  let fullhostname = 'https://www.uwalumni.com'
   const imgpath = ( img?.localFile?.childImageSharp?.fluid?.src)
   ?   `${fullhostname}${img.localFile.childImageSharp.fluid.src}`
   : fullhostname + DefaultImg
