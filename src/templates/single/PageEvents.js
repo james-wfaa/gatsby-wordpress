@@ -124,7 +124,7 @@ categories.forEach((item) => {
   const eventCards2 = eventCards.slice(5,5+eventCards.length)
   const heroHeading = heroIntroSection?.heroHeading ? `<span>${heroIntroSection.heroHeading}</span> ON` : null
   return (
-    <Layout title={title} noborder img={featuredImage?.node}>
+    <Layout title={title} url="/events" noborder img={featuredImage?.node}>
       { featuredImage && featuredImage.node && (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}

@@ -28,7 +28,7 @@ const WordPressEmailPage = ({ className, data }) => {
   }, [ads])
 
   return (
-    <Layout title={title}>
+    <Layout title={title} url="/email">
       <div className={`${className}`}>
         <div className="col col--copy">
         <PageSection heading={title} leftAlign headingCompact onlyChild>

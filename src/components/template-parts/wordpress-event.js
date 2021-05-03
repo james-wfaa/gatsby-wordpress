@@ -8,7 +8,7 @@ import FeaturedImage from "../content-blocks/FeaturedImage"
 
 
 function WordPressPage({ page }) {
-  const { featuredImage, title, eventsCategories, products, id } = page
+  const { featuredImage, title, eventsCategories, products, id, link } = page
 
   //console.log(products)
   //console.log(eventsCategories)
@@ -47,7 +47,7 @@ function WordPressPage({ page }) {
   const filteredRelated = uniqueRelatedPosts.slice(0,10)
 
   return (
-    <Layout title={title} noborder={noborder} img={featuredImage?.node}>
+    <Layout title={title} url={link} noborder={noborder} img={featuredImage?.node}>
         {!!featuredImage?.node?.localFile?.childImageSharp && (
             <FeaturedImage featuredImage={featuredImage.node} event/>
         )}

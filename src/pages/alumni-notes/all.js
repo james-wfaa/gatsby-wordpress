@@ -8,7 +8,7 @@ import SponsorAd from "../../components/content-blocks/SponsorAd"
 const NoteAll = ({ data }) => {
    
     return (
-        <Layout title="All Alumni Notes">
+        <Layout title="All Alumni Notes" url="/alumni-notes/all">
             <PageSection heading="All Alumni Notes">
             <AlgoliaArchivePage
                 indices={[{name: "All"}]}

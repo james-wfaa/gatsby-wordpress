@@ -125,7 +125,7 @@ function WordPressPage({ data }) {
   })
 
   return (
-    <Layout title={title} noborder img={featuredImage?.node}>
+    <Layout title={title} url="/news" noborder img={featuredImage?.node}>
       { featuredImage?.node?.localFile && (
       <HeroIntroSection
           heroImage={featuredImage.node.localFile}

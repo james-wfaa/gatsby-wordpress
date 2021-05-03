@@ -59,7 +59,7 @@ const UpdateInfoForm = () =>  {
    }
 
   return (
-    <Layout title="Update My Info">
+    <Layout title="Update My Info" url="update-info">
       <StyledUpdateInfoForm>
         { renderCurrentStep() }
         {//console.log(state)

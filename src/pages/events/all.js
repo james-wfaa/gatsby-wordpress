@@ -8,7 +8,7 @@ import SponsorAd from "../../components/content-blocks/SponsorAd"
 
 const EventsAll = () => {
     return (
-      <Layout title="All Events">
+      <Layout title="All Events" url="/events/all">
         <PageSection heading='All Events'>
           <AlgoliaArchivePage
             indices={[{ name: 'All' }]}

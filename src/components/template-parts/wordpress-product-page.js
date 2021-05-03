@@ -5,7 +5,8 @@ import WordPressContentBlocks from "../content-blocks/WordPressContentBlocks"
 import ProductMenu from "../parts/ProductMenu"
 
 function WordPressPage({ page }) {
-  const {  excerpt, featuredImage, introButtons, heroIntroSection, products, blocks, title, wpChildren } = page
+  const {  excerpt, link, featuredImage, introButtons, heroIntroSection, products, blocks, title, wpChildren } = page
+  console.log(page)
   const { introButtons: buttons } = introButtons
   const { heroHeading, introExcerpt } = heroIntroSection
 
@@ -49,7 +50,7 @@ function WordPressPage({ page }) {
     })
   : ''
   return (
-    <Layout title={title} img={featuredImage?.node}>
+    <Layout title={title} url={link} img={featuredImage?.node}>
       { featuredImage?.node ? (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}

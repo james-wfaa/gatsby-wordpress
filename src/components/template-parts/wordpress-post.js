@@ -116,7 +116,7 @@ function BlogPost({ data }) {
       { url: link, name: title },
     ]
   return (
-    <Layout title={title} img={image}>
+    <Layout title={title} url={`/news${link}`} img={image}>
         <BreadCrumbs links={links} />
         {postHeader}
         {image && size >= 718 && !isVideo && !isAlt && (
