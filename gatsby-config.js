@@ -37,6 +37,14 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
     {
+      resolve: `gatsby-plugin-redirect-to`,
+      options: {
+        force: true,
+        isPermanent: true,
+        redirectInBrowser: true,
+      },
+    },
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         // Footnotes mode (default: true)
@@ -242,14 +250,6 @@ module.exports = {
     `gatsby-plugin-webpack-bundle-analyser-v2`,
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
-    {
-      resolve: `gatsby-plugin-redirect-to`,
-      options: {
-        force: true,
-        isPermanent: true,
-        redirectInBrowser: true,
-      },
-    },
     `gatsby-plugin-sitemap`,
      {
        resolve: `gatsby-plugin-algolia`,
