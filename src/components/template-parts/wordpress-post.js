@@ -139,7 +139,6 @@ function BlogPost({ data }) {
             },
           ]}
           topBorder
-          desktopOnly
         >
             <RecentPosts />
         </PageSection>
