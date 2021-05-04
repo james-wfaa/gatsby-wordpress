@@ -12,7 +12,7 @@ const ImageSection = ({ className, data, defaultPage }) => {
 
 const StyledImageSection = styled(ImageSection)`
 &.image-section-wrapper {
-    max-width: 1080px;
+    max-width: 300px;
     margin: 0 auto;
     width: 100%;
    
@@ -106,13 +106,14 @@ const StyledImageSection = styled(ImageSection)`
     }
     
     &__text {
-        padding-top: ${sizes.s32};
-        min-width: 250px;
+        padding-top: ${sizes.s16};
+        
         width: calc(100% - 72px);
         margin: 0 auto;
         @media screen and ${breakpoints.tabletS} {
             padding-top: 0;
             width: 100%;
+            min-width: 250px;
             margin-left: ${sizes.s32};
         }
         p {
