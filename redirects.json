@@ -1,2652 +1,2142 @@
 [
 	{
 		"fromPath": "/groups/",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/chapters/*",
-		"toPath": "/groups/*",
-        "isPermanent": true
+		"toPath": "/groups/*"
    	},
 	{
 		"fromPath": "/trip/*",
-		"toPath": "/events/*",
-        "isPermanent": true
+		"toPath": "/events/*"
    	},
     {
         "fromPath": "/about/staff/*",
-        "toPath": "/about/contact-waa/#staff-directory",
-        "isPermanent": true
+        "toPath": "/about/contact-waa/#staff-directory"
    	},
 	{
 		"fromPath": "/services/alumni-directory/*",
-		"toPath": "/alumni-directory/*",
-        "isPermanent": true
+		"toPath": "/alumni-directory/*"
    	},
 	{
 		"fromPath": "/scrapbooks/*",
-		"toPath": "/news/*",
-        "isPermanent": true
+		"toPath": "/news/*"
    	},
 	{
 		"fromPath": "/recent-grad/*",
-		"toPath": "/news/",
-        "isPermanent": true
+		"toPath": "/news/"
    	},
 	{
 		"fromPath": "/news-stories/flamingle/",
-		"toPath": "/flamingle/",
-        "isPermanent": true
+		"toPath": "/flamingle/"
    	},
 	{
 		"fromPath": "/news-stories/askabe/",
-		"toPath": "/flamingle/",
-        "isPermanent": true
+		"toPath": "/flamingle/"
    	},
 	{
 		"fromPath": "/askabe/*",
-		"toPath": "/news/*",
-        "isPermanent": true
+		"toPath": "/news/*"
    	},
 	{
 		"fromPath": "/news-stories/*",
-		"toPath": "/news/*",
-        "isPermanent": true
+		"toPath": "/news/*"
    	},
 	{
 		"fromPath": "/news_release/*",
-		"toPath": "/news/*",
-        "isPermanent": true
+		"toPath": "/news/*"
    	},
 	{
 		"fromPath": "/news/advocacy/*",
-		"toPath": "/news/all/?product=advocacy",
-        "isPermanent": true
+		"toPath": "/news/all/?product=advocacy"
    	},
 	{
 		"fromPath": "/hr-newsletter-stories/*",
-		"toPath": "/news/*",
-        "isPermanent": true
+		"toPath": "/news/*"
    	},
 	{
 		"fromPath": "/event/*",
-		"toPath": "/events/*",
-        "isPermanent": true
+		"toPath": "/events/*"
    	},
 	{
 		"fromPath": "/awards/*",
-		"toPath": "/about/alumni-awards/*",
-        "isPermanent": true
+		"toPath": "/about/alumni-awards/*"
    	},
 	{
 		"fromPath": "/trip/*",
-		"toPath": "/events/*",
-        "isPermanent": true
+		"toPath": "/events/*"
    	},
 	{
 		"fromPath": "/alumninote/*",
-		"toPath": "/alumni-notes/*",
-        "isPermanent": true
+		"toPath": "/alumni-notes/*"
    	},
 	{
 		"fromPath": "/resources-services/career-resources/",
-		"toPath": "/career-resources/",
-        "isPermanent": true
+		"toPath": "/career-resources/"
    	},
 	{
 		"fromPath": "/resources-services/career-resources/career-and-networking-events/",
-		"toPath": "/career-resources/",
-        "isPermanent": true
+		"toPath": "/career-resources/"
    	},
 	{
 		"fromPath": "/resources-services/career-resources/mentoring/",
-		"toPath": "/career-resources/",
-        "isPermanent": true
+		"toPath": "/career-resources/"
    	},
 	{
 		"fromPath": "/resources-services/career-resources/business-cards/",
-		"toPath": "/career-resources/business-cards/",
-        "isPermanent": true
+		"toPath": "/career-resources/business-cards/"
    	},
 	{
 		"fromPath": "/resources-services/career-resources/job-boards/employer-services/",
-		"toPath": "/career-resources/job-boards/for-employers/",
-        "isPermanent": true
+		"toPath": "/career-resources/job-boards/for-employers/"
    	},
 	{
 		"fromPath": "/resources-services/career-resources/job-boards/",
-		"toPath": "/career-resources/job-boards/",
-        "isPermanent": true
+		"toPath": "/career-resources/job-boards/"
    	},
 	{
 		"fromPath": "/resources-services/career-resources/badger-bridge-overview/",
-		"toPath": "/alumni-directory/",
-        "isPermanent": true
+		"toPath": "/alumni-directory/"
    	},
 	{
 		"fromPath": "/chapters-groups/chapters/",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/akron/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/albuquerque/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/baltimore/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/centralflorida/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/charlotte/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/chequamegonbay/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/cincinnati/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/cleveland/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/columbus/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/connecticut/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/delawarevalley/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/denver/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/detroit/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/doorcounty/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/duluthsuperior/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/france/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/hawaii/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/houston/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/iowa/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/kenosha/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/louisville/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/madison/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/manitowoc/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/midindiana/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/milwaukeeyoungalumni/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/mthoreb/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/naples/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/newjersey/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/neworleans/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/northtexas/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/philadelphia/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/polkcounty/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/pricecounty/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/racine/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/rochester/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/rockcounty/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/sacramento/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/saintlouis/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/saltlakecity/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/sanfrancisco/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/sedona/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/southwesternwisconsin/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/southwestflorida/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/stlouis/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/suncoast/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/triangle/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/twinports/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/vacationland/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/vermont/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/washingtoncounty/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/waukeshayoungalumni/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/wausau/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/westernny/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
 	{
 		"fromPath": "/westpalmbeach/*",
-		"toPath": "/waa-groups/",
-        "isPermanent": true
+		"toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/?s=justforfun",
-        "toPath": "/news/all/?pub=flamingle",
-        "isPermanent": true
+        "toPath": "/news/all/?pub=flamingle"
    	},
     {
         "fromPath": "/about/alumni-awards/forward-under-40/past-recipients/",
-        "toPath": "/about/alumni-awards/forward-under-40/",
-        "isPermanent": true
+        "toPath": "/about/alumni-awards/forward-under-40/"
    	},
     {
         "fromPath": "/about/contact-us/",
-        "toPath": "/about/contact-waa/",
-        "isPermanent": true
+        "toPath": "/about/contact-waa/"
    	},
     {
         "fromPath": "/about/diversity-and-inclusion/",
-        "toPath": "/diverse-alumni/",
-        "isPermanent": true
+        "toPath": "/diverse-alumni/"
    	},
     {
         "fromPath": "/about/diversity-and-inclusion/affinity-groups/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/about/diversity-and-inclusion/contact-us/",
-        "toPath": "/diverse-alumni/",
-        "isPermanent": true
+        "toPath": "/diverse-alumni/"
    	},
     {
         "fromPath": "/about/diversity-and-inclusion/diverse-alumni-engagement-program/",
-        "toPath": "/diverse-alumni/",
-        "isPermanent": true
+        "toPath": "/diverse-alumni/"
    	},
     {
         "fromPath": "/about/diversity-and-inclusion/pride-backgrounds/",
-        "toPath": "/about/virtual-backgrounds/",
-        "isPermanent": true
+        "toPath": "/about/virtual-backgrounds/"
    	},
     {
         "fromPath": "/about/diversity-and-inclusion/sponsorship-request-form/",
-        "toPath": "/diverse-alumni/sponsorship/",
-        "isPermanent": true
+        "toPath": "/diverse-alumni/sponsorship/"
    	},
     {
         "fromPath": "/about/diversity-and-inclusion/strategic-plan-for-alumni-of-color-engagement/",
-        "toPath": "/about/diversity-strategic-plans",
-        "isPermanent": true
+        "toPath": "/about/diversity-strategic-plans"
    	},
     {
         "fromPath": "/about/diversity-and-inclusion/strategic-plans/",
-        "toPath": "/about/diversity-strategic-plans/",
-        "isPermanent": true
+        "toPath": "/about/diversity-strategic-plans/"
    	},
     {
         "fromPath": "/about/diversity-and-inclusion/strategic-plans/lgbtq-alumni-engagement-plan/",
-        "toPath": "/about/diversity-strategic-plans/lgbtq-alumni-engagement/",
-        "isPermanent": true
+        "toPath": "/about/diversity-strategic-plans/lgbtq-alumni-engagement/"
    	},
     {
         "fromPath": "/about/diversity-and-inclusion/strategic-plans/strategic-plan-for-alumni-of-color-engagement/",
-        "toPath": "/about/diversity-strategic-plans/alumni-of-color-engagement/",
-        "isPermanent": true
+        "toPath": "/about/diversity-strategic-plans/alumni-of-color-engagement/"
    	},
     {
         "fromPath": "/about/facts/",
-        "toPath": "/about/",
-        "isPermanent": true
+        "toPath": "/about/"
    	},
     {
         "fromPath": "/about/for-news-media/contact-us/",
-        "toPath": "/about/for-news-media/",
-        "isPermanent": true
+        "toPath": "/about/for-news-media/"
    	},
     {
         "fromPath": "/about/for-news-media/resources/",
-        "toPath": "/about/for-news-media/",
-        "isPermanent": true
+        "toPath": "/about/for-news-media/"
    	},
     {
         "fromPath": "/about/notable-alumni/",
-        "toPath": "/alumni-achievements",
-        "isPermanent": true
+        "toPath": "/alumni-achievements"
    	},
     {
         "fromPath": "/about/staff/",
-        "toPath": "/about/contact-waa/",
-        "isPermanent": true
+        "toPath": "/about/contact-waa/"
    	},
     {
         "fromPath": "/about/waa-history/",
-        "toPath": "/about/history/",
-        "isPermanent": true
+        "toPath": "/about/history/"
    	},
     {
         "fromPath": "/admin/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/advertise/",
-        "toPath": "/about/advertising-opportunities/",
-        "isPermanent": true
+        "toPath": "/about/advertising-opportunities/"
    	},
     {
         "fromPath": "/advocacy/",
-        "toPath": "/advocate",
-        "isPermanent": true
+        "toPath": "/advocate"
    	},
     {
         "fromPath": "/alumniandfriends/onwisconsin/",
-        "toPath": "/on-wisconsin/",
-        "isPermanent": true
+        "toPath": "/on-wisconsin/"
    	},
     {
         "fromPath": "/alumniforwisconsin/",
-        "toPath": "/advocate",
-        "isPermanent": true
+        "toPath": "/advocate"
+   	},
+    {
+        "fromPath": "/alumnipark/",
+        "toPath": "https://www.alumnipark.com/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
+   	},
+    {
+        "fromPath": "/alumni-park/",
+        "toPath": "https://www.alumnipark.com/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
+   	},
+    {
+        "fromPath": "/alumni_park/",
+        "toPath": "https://www.alumnipark.com/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
    	},
     {
         "fromPath": "/alumnivolunteers/",
-        "toPath": "/get-involved",
-        "isPermanent": true
+        "toPath": "/get-involved"
    	},
     {
         "fromPath": "/alwaysabadger/",
-        "toPath": "/recent-grads",
-        "isPermanent": true
+        "toPath": "/recent-grads"
    	},
     {
+        "fromPath": "/annualreport/",
+        "toPath": "https://www.advanceuw.org/annual-report/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
+    },
+    {
         "fromPath": "/antigo/",
-        "toPath": "/groups/antigo/",
-        "isPermanent": true
+        "toPath": "/groups/antigo/"
    	},
     {
         "fromPath": "/askabe/",
-        "toPath": "/flamingle/",
-        "isPermanent": true
+        "toPath": "/flamingle/"
    	},
     {
         "fromPath": "/askabe/1361/",
-        "toPath": "/news/secret-societies",
-        "isPermanent": true
+        "toPath": "/news/secret-societies"
    	},
     {
         "fromPath": "/askabe/18790/",
-        "toPath": "/news/commerce-building",
-        "isPermanent": true
+        "toPath": "/news/commerce-building"
    	},
     {
         "fromPath": "/askabe/3156/",
-        "toPath": "/news/student-movies",
-        "isPermanent": true
+        "toPath": "/news/student-movies"
    	},
     {
         "fromPath": "/askabe/3211/",
-        "toPath": "/news/once-a-badger-always-a-badger",
-        "isPermanent": true
+        "toPath": "/news/once-a-badger-always-a-badger"
    	},
     {
         "fromPath": "/askabe/6192/",
-        "toPath": "/news/sellery-sun-deck",
-        "isPermanent": true
+        "toPath": "/news/sellery-sun-deck"
    	},
     {
         "fromPath": "/askabe/6235/",
-        "toPath": "/news/science-hall-signatures",
-        "isPermanent": true
+        "toPath": "/news/science-hall-signatures"
    	},
     {
         "fromPath": "/askabe/6241/",
-        "toPath": "/news/camp-randall-rifle-range/",
-        "isPermanent": true
+        "toPath": "/news/camp-randall-rifle-range/"
    	},
     {
         "fromPath": "/askabe/6795/",
-        "toPath": "/news/bascom-quote",
-        "isPermanent": true
+        "toPath": "/news/bascom-quote"
    	},
     {
         "fromPath": "/askabe/7021/",
-        "toPath": "/news/madison-sun-decks",
-        "isPermanent": true
+        "toPath": "/news/madison-sun-decks"
    	},
     {
         "fromPath": "/askabe/7041/",
-        "toPath": "/news/sellery-hall-celebrities/",
-        "isPermanent": true
+        "toPath": "/news/sellery-hall-celebrities/"
    	},
     {
         "fromPath": "/askabe/7133/",
-        "toPath": "/news/kohl-center-sound",
-        "isPermanent": true
+        "toPath": "/news/kohl-center-sound"
    	},
     {
         "fromPath": "/atlanta/",
-        "toPath": "/groups/atlanta/",
-        "isPermanent": true
+        "toPath": "/groups/atlanta/"
    	},
     {
         "fromPath": "/austin/",
-        "toPath": "/groups/austin/",
-        "isPermanent": true
+        "toPath": "/groups/austin/"
    	},
     {
         "fromPath": "/awards/",
-        "toPath": "/about/alumni-awards/",
-        "isPermanent": true
+        "toPath": "/about/alumni-awards/"
    	},
     {
         "fromPath": "/badgercafe/",
-        "toPath": "/learning",
-        "isPermanent": true
+        "toPath": "/learning"
    	},
     {
         "fromPath": "/badgerfamilies/",
-        "toPath": "/news",
-        "isPermanent": true
+        "toPath": "/news"
    	},
     {
         "fromPath": "/badgerinsider/",
-        "toPath": "/badger-insider/",
-        "isPermanent": true
+        "toPath": "/badger-insider/"
    	},
     {
         "fromPath": "/badgeroftheyear/",
-        "toPath": "/about/alumni-awards/badger-of-the-year-awards/",
-        "isPermanent": true
+        "toPath": "/about/alumni-awards/badger-of-the-year-awards/"
    	},
     {
         "fromPath": "/badgervoice/",
-        "toPath": "/flamingle/",
-        "isPermanent": true
+        "toPath": "/flamingle/"
    	},
     {
         "fromPath": "/benefits-services/email",
-        "toPath": "/email/",
-        "isPermanent": true
+        "toPath": "/email/"
     },
     {
         "fromPath": "/benefits-services/",
-        "toPath": "/learning/",
-        "isPermanent": true
+        "toPath": "/learning/"
     },
     {
         "fromPath": "/bigapplebadgers/",
-        "toPath": "/groups/bigapple/",
-        "isPermanent": true
+        "toPath": "/groups/bigapple/"
    	},
     {
         "fromPath": "/boston/",
-        "toPath": "/groups/boston/",
-        "isPermanent": true
+        "toPath": "/groups/boston/"
    	},
     {
         "fromPath": "/bowl/",
-        "toPath": "/athletics/",
-        "isPermanent": true
+        "toPath": "/athletics/"
    	},
     {
         "fromPath": "/browncounty/",
-        "toPath": "/groups/browncounty/",
-        "isPermanent": true
+        "toPath": "/groups/browncounty/"
    	},
     {
         "fromPath": "/calendar/",
-        "toPath": "/events/",
-        "isPermanent": true
+        "toPath": "/events/"
    	},
     {
         "fromPath": "/career/",
-        "toPath": "/career-resources/",
-        "isPermanent": true
+        "toPath": "/career-resources/"
    	},
     {
         "fromPath": "/careers/",
-        "toPath": "/career-resources/",
-        "isPermanent": true
+        "toPath": "/career-resources/"
    	},
     {
         "fromPath": "/category/askabe/",
-        "toPath": "/flamingle/",
-        "isPermanent": true
+        "toPath": "/flamingle/"
    	},
     {
         "fromPath": "/category/awards/",
-        "toPath": "/about/alumni-awards/",
-        "isPermanent": true
+        "toPath": "/about/alumni-awards/"
    	},
     {
         "fromPath": "/category/news/",
-        "toPath": "/news/",
-        "isPermanent": true
+        "toPath": "/news/"
    	},
     {
         "fromPath": "/category/recent-grad/",
-        "toPath": "/news/",
-        "isPermanent": true
+        "toPath": "/news/"
    	},
     {
         "fromPath": "/category/scrapbooks/",
-        "toPath": "/wish-you-were-here/",
-        "isPermanent": true
+        "toPath": "/wish-you-were-here/"
    	},
     {
         "fromPath": "/chapterleader/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/affiliate/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/affiliate/affiliate-groups-supply-order-form/",
-        "toPath": "/badger-leaders-resources/event-supply-form/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/event-supply-form/"
    	},
     {
         "fromPath": "/chapters-groups/affiliate/affinity-group-leader-resources/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/affiliate/african-american-alumni-association-aaaa/",
-        "toPath": "/groups/african-american-affinity-group/",
-        "isPermanent": true
+        "toPath": "/groups/african-american-affinity-group/"
    	},
     {
         "fromPath": "/chapters-groups/affiliate/american-indian-alumni-council/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/affiliate/gay-lesbian-bisexual-transgender-alumni-council/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/affiliate/hispanic-latino-alumni-association/",
-        "toPath": "/groups/latinx-affinity-group/",
-        "isPermanent": true
+        "toPath": "/groups/latinx-affinity-group/"
    	},
     {
         "fromPath": "/chapters-groups/affiliate/house-fellow-alumni-association/",
-        "toPath": "/groups/house-fellow-alumni-association/",
-        "isPermanent": true
+        "toPath": "/groups/house-fellow-alumni-association/"
    	},
     {
         "fromPath": "/chapters-groups/affiliate/uw-band-alumni-association/",
-        "toPath": "/waa-groups/uw-band-alumni-association/",
-        "isPermanent": true
+        "toPath": "/waa-groups/uw-band-alumni-association/"
    	},
     {
         "fromPath": "/chapters-groups/affiliate/uwdtaa/",
-        "toPath": "/waa-groups/uwdtaa/",
-        "isPermanent": true
+        "toPath": "/waa-groups/uwdtaa/"
    	},
     {
         "fromPath": "/chapters-groups/affiliate/uwdtaa/contact-uwdtaa/",
-        "toPath": "/waa-groups/uwdtaa/",
-        "isPermanent": true
+        "toPath": "/waa-groups/uwdtaa/"
    	},
     {
         "fromPath": "/chapters-groups/bascom-chapters/",
-        "toPath": "/waa-groups/bascom-and-varsity-chapters/",
-        "isPermanent": true
+        "toPath": "/waa-groups/bascom-and-varsity-chapters/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/albuquerque/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/antigo-chapter/",
-        "toPath": "/groups/antigo/",
-        "isPermanent": true
+        "toPath": "/groups/antigo/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/atlanta/",
-        "toPath": "/groups/atlanta/",
-        "isPermanent": true
+        "toPath": "/groups/atlanta/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/austin/",
-        "toPath": "/groups/austin/",
-        "isPermanent": true
+        "toPath": "/groups/austin/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/baltimore-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/bay-area-chapter/",
-        "toPath": "/groups/bayarea",
-        "isPermanent": true
+        "toPath": "/groups/bayarea"
    	},
     {
         "fromPath": "/chapters-groups/chapters/beijing-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/bigapple/",
-        "toPath": "/groups/bigapple/",
-        "isPermanent": true
+        "toPath": "/groups/bigapple/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/boston/",
-        "toPath": "/groups/boston/",
-        "isPermanent": true
+        "toPath": "/groups/boston/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/british-columbia/",
-        "toPath": "/groups/bcbadgers",
-        "isPermanent": true
+        "toPath": "/groups/bcbadgers"
    	},
     {
         "fromPath": "/chapters-groups/chapters/browncounty/",
-        "toPath": "/groups/browncounty/",
-        "isPermanent": true
+        "toPath": "/groups/browncounty/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/centralflorida/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/centralohio/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/central-pennsylvania-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/charleston-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/charlotte/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/chequamegon-bay-area-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/chicago/",
-        "toPath": "/groups/chicago/",
-        "isPermanent": true
+        "toPath": "/groups/chicago/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/chippewa-valley-chapter/",
-        "toPath": "/groups/chippewavalley/",
-        "isPermanent": true
+        "toPath": "/groups/chippewavalley/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/cincinnati/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/cleveland/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/connecticut/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/delawarevalley/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/denmark/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/doorcounty/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/fonddulac/",
-        "toPath": "/groups/fonddulac/",
-        "isPermanent": true
+        "toPath": "/groups/fonddulac/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/fortatkinson/",
-        "toPath": "/groups/fortatkinson/",
-        "isPermanent": true
+        "toPath": "/groups/fortatkinson/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/foxvalley/",
-        "toPath": "/groups/foxvalley/",
-        "isPermanent": true
+        "toPath": "/groups/foxvalley/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/france-chapter/",
-        "toPath": "/groups/france",
-        "isPermanent": true
+        "toPath": "/groups/france"
    	},
     {
         "fromPath": "/chapters-groups/chapters/germany-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/greencounty/",
-        "toPath": "/groups/greencounty/",
-        "isPermanent": true
+        "toPath": "/groups/greencounty/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/hawaii-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/heartofillinois/",
-        "toPath": "/groups/heartofillinois/",
-        "isPermanent": true
+        "toPath": "/groups/heartofillinois/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/houston/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/indianapolis/",
-        "toPath": "/groups/indianapolis/",
-        "isPermanent": true
+        "toPath": "/groups/indianapolis/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/indonesia/",
-        "toPath": "/groups/indonesia",
-        "isPermanent": true
+        "toPath": "/groups/indonesia"
    	},
     {
         "fromPath": "/chapters-groups/chapters/iowa/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/kansascity/",
-        "toPath": "/groups/kansascity/",
-        "isPermanent": true
+        "toPath": "/groups/kansascity/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/kenosha/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/lakeland/",
-        "toPath": "/groups/lakeland/",
-        "isPermanent": true
+        "toPath": "/groups/lakeland/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/lasvegas/",
-        "toPath": "/groups/lasvegas/",
-        "isPermanent": true
+        "toPath": "/groups/lasvegas/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/london-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/losangeles/",
-        "toPath": "/groups/losangeles/",
-        "isPermanent": true
+        "toPath": "/groups/losangeles/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/louisville/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/manitowoc/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/mankato-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/marshfield/",
-        "toPath": "/groups/marshfield/",
-        "isPermanent": true
+        "toPath": "/groups/marshfield/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/midindiana/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/milehigh/",
-        "toPath": "/groups/milehigh/",
-        "isPermanent": true
+        "toPath": "/groups/milehigh/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/milwaukee/",
-        "toPath": "/groups/milwaukee/",
-        "isPermanent": true
+        "toPath": "/groups/milwaukee/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/milwaukee-young-alumni-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/motor-city-badgers-chapter/",
-        "toPath": "/groups/motorcity",
-        "isPermanent": true
+        "toPath": "/groups/motorcity"
    	},
     {
         "fromPath": "/chapters-groups/chapters/mt-horeb/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/mumbai/",
-        "toPath": "/groups/mumbai",
-        "isPermanent": true
+        "toPath": "/groups/mumbai"
    	},
     {
         "fromPath": "/chapters-groups/chapters/new-jersey-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/neworleans/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/new-york-capital-district-badgers/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/northtexas/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/northwest-arkansas-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/omaha-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/ontario/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/orangecounty/",
-        "toPath": "/groups/orangecounty/",
-        "isPermanent": true
+        "toPath": "/groups/orangecounty/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/pakistan-chapter/",
-        "toPath": "/groups/pakistan",
-        "isPermanent": true
+        "toPath": "/groups/pakistan"
    	},
     {
         "fromPath": "/chapters-groups/chapters/palmbeach/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/palm-springs-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/pierce-and-st-croix-counties-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/pikes-peak-chapter/",
-        "toPath": "/groups/pikespeak/",
-        "isPermanent": true
+        "toPath": "/groups/pikespeak/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/pittsburgh-chapter/",
-        "toPath": "/groups/pittsburgh/",
-        "isPermanent": true
+        "toPath": "/groups/pittsburgh/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/polk-county-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/portland-chapter/",
-        "toPath": "/groups/portland/",
-        "isPermanent": true
+        "toPath": "/groups/portland/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/price-county-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/racine-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/redrockbadgers/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/rochester-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/rock-county-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/sacramento/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/salem-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/saltlakecity/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/san-antonio-chapter/",
-        "toPath": "/groups/sanantonio",
-        "isPermanent": true
+        "toPath": "/groups/sanantonio"
    	},
     {
         "fromPath": "/chapters-groups/chapters/sandiego/",
-        "toPath": "/groups/sandiego/",
-        "isPermanent": true
+        "toPath": "/groups/sandiego/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/sarasota/",
-        "toPath": "/groups/sarasota",
-        "isPermanent": true
+        "toPath": "/groups/sarasota"
    	},
     {
         "fromPath": "/chapters-groups/chapters/sauk-county-chapter/",
-        "toPath": "/groups/saukcounty/",
-        "isPermanent": true
+        "toPath": "/groups/saukcounty/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/seattle/",
-        "toPath": "/groups/seattle/",
-        "isPermanent": true
+        "toPath": "/groups/seattle/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/sheboygan/",
-        "toPath": "/groups/sheboygan/",
-        "isPermanent": true
+        "toPath": "/groups/sheboygan/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/singapore-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/southflorida/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/southwesternwi/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/southwestflorida/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/stlouis/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/tampabay/",
-        "toPath": "/groups/tampabay/",
-        "isPermanent": true
+        "toPath": "/groups/tampabay/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/triangle-area-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/tucson-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/twincities/",
-        "toPath": "/groups/twincities/",
-        "isPermanent": true
+        "toPath": "/groups/twincities/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/twinports/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/valleyofthesun/",
-        "toPath": "/groups/valleyofthesun/",
-        "isPermanent": true
+        "toPath": "/groups/valleyofthesun/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/washingtoncounty/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/washingtondc/",
-        "toPath": "/groups/washingtondc/",
-        "isPermanent": true
+        "toPath": "/groups/washingtondc/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/waukesha/",
-        "toPath": "/groups/waukesha/",
-        "isPermanent": true
+        "toPath": "/groups/waukesha/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/wausau-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/west-suburban-chicago-chapter/",
-        "toPath": "/groups/westsuburbanchicago/",
-        "isPermanent": true
+        "toPath": "/groups/westsuburbanchicago/"
    	},
     {
         "fromPath": "/chapters-groups/chapters/young-waukesha-chapter/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/chapter-roster-form/",
-        "toPath": "/badger-leaders-resources/group-roster-form/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/group-roster-form/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/chapter-scholarship-toolkit/",
-        "toPath": "/badger-leaders-resources/chapter-scholarship-fundraising-toolkit/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/chapter-scholarship-fundraising-toolkit/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/day-of-the-badger-toolkit/",
-        "toPath": "/badger-leaders-resources/day-of-the-badger-toolkit/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/day-of-the-badger-toolkit/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/founders-day-toolkit/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/bascom-chapters/",
-        "toPath": "/badger-leaders-resources/bascom-chapters/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/bascom-chapters/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/connect/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/mission/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/recognized-chapters/",
-        "toPath": "/badger-leaders-resources/waa-recognized-chapters/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/waa-recognized-chapters/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/badger-of-the-year-award/",
-        "toPath": "/badger-leaders-resources/badger-of-the-year-award/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/badger-of-the-year-award/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/badger-student-send-off-celebration-quick-guide/",
-        "toPath": "/badger-leaders-resources/badger-student-send-off-celebration-quick-guide/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/badger-student-send-off-celebration-quick-guide/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/bascom-chapter-travel-grant-application-information/",
-        "toPath": "/badger-leaders-resources/group-travel-grant/travel-grant-application/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/group-travel-grant/travel-grant-application/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/calendar/",
-        "toPath": "/badger-leaders-resources/calendar-events-deadlines-reminders/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/calendar-events-deadlines-reminders/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/chapter-alcohol-policy/",
-        "toPath": "/badger-leaders-resources/chapter-alcohol-policy/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/chapter-alcohol-policy/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/chapter-brand/",
-        "toPath": "/badger-leaders-resources/chapter-brand-details/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/chapter-brand-details/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/chapter-member-recognition-certificate/",
-        "toPath": "/badger-leaders-resources/chapter-member-recognition-certificate/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/chapter-member-recognition-certificate/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/chapter-programming-grant-application/",
-        "toPath": "/badger-leaders-resources/group-programming-grant/programming-grant-application/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/group-programming-grant/programming-grant-application/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/guidelines-bucky-badger-imagery/",
-        "toPath": "/badger-leaders-resources/guidelines-for-using-bucky-badger-imagery/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/guidelines-for-using-bucky-badger-imagery/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/liability-factors-for-chapters/",
-        "toPath": "/badger-leaders-resources/liability-factors-for-chapters/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/liability-factors-for-chapters/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/memorabilia-information-and-disclaimer/",
-        "toPath": "/badger-leaders-resources/memorabilia-information-and-disclaimer/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/memorabilia-information-and-disclaimer/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/presidents-circle-of-excellence-award/",
-        "toPath": "/badger-leaders-resources/presidents-circle-of-excellence-award/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/presidents-circle-of-excellence-award/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/registration-guide/",
-        "toPath": "/badger-leaders-resources/registration-quick-guide/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/registration-quick-guide/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/sample-chapter-bylaws/",
-        "toPath": "/badger-leaders-resources/sample-chapter-bylaws/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/sample-chapter-bylaws/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/social-media-visuals/",
-        "toPath": "/badger-leaders-resources/social-media-visuals/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/social-media-visuals/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/tips-for-photo-and-video-at-events/",
-        "toPath": "/badger-leaders-resources/tips-for-photo-and-video-at-events/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/tips-for-photo-and-video-at-events/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/resources/volunteer-dispute-resolution-policy/",
-        "toPath": "/badger-leaders-resources/volunteer-dispute-resolution-policy/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/volunteer-dispute-resolution-policy/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/support/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/varsity-chapters/",
-        "toPath": "/badger-leaders-resources/varsity-chapters/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/varsity-chapters/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/handbook/welcome/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/lifetime-achievement-award/",
-        "toPath": "/badger-leaders-resources/lifetime-achievement-award/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/lifetime-achievement-award/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/print-collateral-form/",
-        "toPath": "/badger-leaders-resources/print-collateral-request-form/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/print-collateral-request-form/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/programming-grant-application/",
-        "toPath": "/badger-leaders-resources/group-programming-grant/programming-grant-application/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/group-programming-grant/programming-grant-application/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/request-form/",
-        "toPath": "/badger-leaders-resources/email-event-request-form/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/email-event-request-form/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/request-form/form-faq/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/scholarship-gift-form/",
-        "toPath": "/badger-leaders-resources/chapter-scholarship-program/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/chapter-scholarship-program/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/social-media-101/",
-        "toPath": "/badger-leaders-resources/chapter-leader-social-media-101/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/chapter-leader-social-media-101/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/supply-order-form/",
-        "toPath": "/badger-leaders-resources/event-supply-form/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/event-supply-form/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/travel-grant-application/",
-        "toPath": "/badger-leaders-resources/group-travel-grant/travel-grant-application/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/group-travel-grant/travel-grant-application/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/website-quick-guide/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/leaders/website-training/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/scholarships/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/scholarships/changes/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/scholarships/chapter-scholarship-submission-form/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/scholarships/faq-changes/",
-        "toPath": "/badger-leaders-resources/",
-        "isPermanent": true
+        "toPath": "/badger-leaders-resources/"
    	},
     {
         "fromPath": "/chapters-groups/sendoffs/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/chapters-groups/start/",
-        "toPath": "/waa-groups/start-a-group/",
-        "isPermanent": true
+        "toPath": "/waa-groups/start-a-group/"
    	},
     {
         "fromPath": "/chicago/",
-        "toPath": "/groups/chicago/",
-        "isPermanent": true
+        "toPath": "/groups/chicago/"
    	},
     {
         "fromPath": "/chippewavalley/",
-        "toPath": "/groups/chippewavalley/",
-        "isPermanent": true
+        "toPath": "/groups/chippewavalley/"
    	},
     {
         "fromPath": "/daa/",
-        "toPath": "/about/alumni-awards/distinguished-alumni-awards/",
-        "isPermanent": true
+        "toPath": "/about/alumni-awards/distinguished-alumni-awards/"
    	},
     {
         "fromPath": "/directory/",
-        "toPath": "/alumni-directory/",
-        "isPermanent": true
+        "toPath": "/alumni-directory/"
    	},
     {
         "fromPath": "/employers/",
-        "toPath": "/career-resources/job-boards/for-employers/",
-        "isPermanent": true
+        "toPath": "/career-resources/job-boards/for-employers/"
    	},
     {
         "fromPath": "/events/calendar/",
-        "toPath": "/events/",
-        "isPermanent": true
+        "toPath": "/events/"
    	},
     {
         "fromPath": "/events/homecoming/celebrate/",
-        "toPath": "/homecoming/",
-        "isPermanent": true
+        "toPath": "/homecoming/"
    	},
     {
         "fromPath": "/events/homecoming/sponsors/",
-        "toPath": "/homecoming/",
-        "isPermanent": true
+        "toPath": "/homecoming/"
    	},
     {
         "fromPath": "/events/homecoming/traditions/",
-        "toPath": "/homecoming/",
-        "isPermanent": true
+        "toPath": "/homecoming/"
    	},
     {
         "fromPath": "/events/pregame-athletic-events/travel-mailing-list/",
-        "toPath": "/athletics/",
-        "isPermanent": true
+        "toPath": "/athletics/"
    	},
     {
         "fromPath": "/fonddulac/",
-        "toPath": "/groups/fonddulac/",
-        "isPermanent": true
+        "toPath": "/groups/fonddulac/"
    	},
     {
         "fromPath": "/fortatkinson/",
-        "toPath": "/groups/fortatkinson/",
-        "isPermanent": true
+        "toPath": "/groups/fortatkinson/"
    	},
     {
         "fromPath": "/forwardunder40/",
-        "toPath": "/about/alumni-awards/forward-under-40/",
-        "isPermanent": true
+        "toPath": "/about/alumni-awards/forward-under-40/"
    	},
     {
         "fromPath": "/foundersday/",
-        "toPath": "/founders-day/",
-        "isPermanent": true
+        "toPath": "/founders-day/"
    	},
     {
         "fromPath": "/foxvalley/",
-        "toPath": "/groups/foxvalley/",
-        "isPermanent": true
+        "toPath": "/groups/foxvalley/"
    	},
     {
         "fromPath": "/gdpr/",
-        "toPath": "/about/gdpr/",
-        "isPermanent": true
+        "toPath": "/about/gdpr/"
    	},
     {
         "fromPath": "/go/1970/",
-        "toPath": "/reunions/?utm_source=1970_mailer&utm_medium=mail&utm_campaign=cr21",
-        "isPermanent": true
+        "toPath": "/reunions/?utm_source=1970_mailer&utm_medium=mail&utm_campaign=cr21"
    	},
     {
         "fromPath": "/go/1971/",
-        "toPath": "/event/class-of-1971-50-year-reunion/?utm_source=1971_mailer&utm_medium=mail&utm_campaign=cr21",
-        "isPermanent": true
+        "toPath": "/event/class-of-1971-50-year-reunion/?utm_source=1971_mailer&utm_medium=mail&utm_campaign=cr21"
    	},
     {
         "fromPath": "/go/alumninotes/",
-        "toPath": "/alumni-notes/",
-        "isPermanent": true
+        "toPath": "/alumni-notes/"
    	},
     {
         "fromPath": "/go/alumni-notes/",
-        "toPath": "/alumni-notes/?utm_source=notes_promo&utm_medium=print&utm_campaign=wfaa18",
-        "isPermanent": true
+        "toPath": "/alumni-notes/?utm_source=notes_promo&utm_medium=print&utm_campaign=wfaa18"
    	},
     {
         "fromPath": "/go/atl-scholarship/",
-        "toPath": "/groups/atlanta/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/atlanta/scholarships/"
    	},
     {
         "fromPath": "/go/badgercafe/",
-        "toPath": "/learning/",
-        "isPermanent": true
+        "toPath": "/learning/"
    	},
     {
         "fromPath": "/go/badgeron/",
-        "toPath": "/?utm_source=insider_ad&utm_medium=print&utm_content=badgeron&utm_campaign=bo21",
-        "isPermanent": true
+        "toPath": "/?utm_source=insider_ad&utm_medium=print&utm_content=badgeron&utm_campaign=bo21"
    	},
     {
         "fromPath": "/go/badgeronwi/",
-        "toPath": "/?utm_source=onwi_ad&utm_medium=print&utm_content=badgeron&utm_campaign=bo21",
-        "isPermanent": true
+        "toPath": "/?utm_source=onwi_ad&utm_medium=print&utm_content=badgeron&utm_campaign=bo21"
    	},
     {
         "fromPath": "/go/bayarea-scholarship/",
-        "toPath": "/groups/bayarea/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/bayarea/scholarships/"
    	},
     {
         "fromPath": "/go/bc-scholarship/",
-        "toPath": "/groups/browncounty/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/browncounty/scholarships/"
    	},
     {
         "fromPath": "/go/benefits/",
-        "toPath": "/membership/for-members/?utm_source=badgerinsider_spring&utm_medium=print&utm_campaign=mem21",
-        "isPermanent": true
+        "toPath": "/membership/for-members/?utm_source=badgerinsider_spring&utm_medium=print&utm_campaign=mem21"
    	},
     {
         "fromPath": "/go/bookshelf/",
-        "toPath": "/on-wisconsin/bookshelf/",
-        "isPermanent": true
+        "toPath": "/on-wisconsin/bookshelf/"
    	},
     {
         "fromPath": "/go/bos-scholarship/",
-        "toPath": "/groups/boston/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/boston/scholarships/"
    	},
     {
         "fromPath": "/go/boston-scholarship/",
-        "toPath": "/groups/boston/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/boston/scholarships/"
    	},
     {
         "fromPath": "/go/chi-scholarship/",
-        "toPath": "/groups/chicago/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/chicago/scholarships/"
    	},
     {
         "fromPath": "/go/connecton/",
-        "toPath": "/membership/for-members/?utm_source=badgerinsider_spring&utm_medium=print&utm_campaign=mem21",
-        "isPermanent": true
+        "toPath": "/membership/for-members/?utm_source=badgerinsider_spring&utm_medium=print&utm_campaign=mem21"
    	},
     {
         "fromPath": "/go/curb/",
-        "toPath": "/?utm_source=curb_ad&utm_medium=print&utm_content=badgeron&utm_campaign=bo20",
-        "isPermanent": true
+        "toPath": "/?utm_source=curb_ad&utm_medium=print&utm_content=badgeron&utm_campaign=bo20"
    	},
     {
         "fromPath": "/go/dc-scholarship/",
-        "toPath": "/groups/washingtondc/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/washingtondc/scholarships/"
    	},
     {
         "fromPath": "/go/derby/",
-        "toPath": "/athletics/?utm_source=travel-catalog&utm_medium=print&utm_campaign=trav21",
-        "isPermanent": true
+        "toPath": "/athletics/?utm_source=travel-catalog&utm_medium=print&utm_campaign=trav21"
    	},
     {
         "fromPath": "/go/discovery/",
-        "toPath": "/learning/",
-        "isPermanent": true
+        "toPath": "/learning/"
    	},
     {
         "fromPath": "/go/employers/",
-        "toPath": "/career-resources/job-boards/for-employers/",
-        "isPermanent": true
+        "toPath": "/career-resources/job-boards/for-employers/"
    	},
     {
         "fromPath": "/go/faq/",
-        "toPath": "/about/customer-service-faq/",
-        "isPermanent": true
+        "toPath": "/about/customer-service-faq/"
    	},
     {
         "fromPath": "/go/fv-scholarship/",
-        "toPath": "/groups/foxvalley/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/foxvalley/scholarships/"
    	},
     {
         "fromPath": "/go/hoi-scholarships/",
-        "toPath": "/groups/heartofillinois/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/heartofillinois/scholarships/"
    	},
     {
         "fromPath": "/go/huddle/",
-        "toPath": "/athletics/?utm_source=onwi_spring&utm_medium=print&utm_campaign=ath20",
-        "isPermanent": true
+        "toPath": "/athletics/?utm_source=onwi_spring&utm_medium=print&utm_campaign=ath20"
    	},
     {
         "fromPath": "/go/indy-scholarship/",
-        "toPath": "/groups/indianapolis/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/indianapolis/scholarships/"
    	},
     {
         "fromPath": "/go/iwbd/",
-        "toPath": "/news/to-everyone-doing-their-part/?utm_source=onwisconsin&utm_medium=print&utm_campaign=corp20",
-        "isPermanent": true
+        "toPath": "/news/to-everyone-doing-their-part/?utm_source=onwisconsin&utm_medium=print&utm_campaign=corp20"
    	},
     {
         "fromPath": "/go/jobs/",
-        "toPath": "/career-resources/job-boards/for-employers/",
-        "isPermanent": true
+        "toPath": "/career-resources/job-boards/for-employers/"
    	},
     {
         "fromPath": "/go/kc-scholarship/",
-        "toPath": "/groups/kansascity/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/kansascity/scholarships/"
    	},
     {
         "fromPath": "/go/lakeland-scholarship/",
-        "toPath": "/groups/lakeland/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/lakeland/scholarships/"
    	},
     {
         "fromPath": "/go/la-scholarship/",
-        "toPath": "/groups/losangeles/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/losangeles/scholarships/"
    	},
     {
         "fromPath": "/go/learning/",
-        "toPath": "/learning/?utm_source=springmailer&utm_medium=print&utm_content=link&utm_campaign=lrn20",
-        "isPermanent": true
+        "toPath": "/learning/?utm_source=springmailer&utm_medium=print&utm_content=link&utm_campaign=lrn20"
    	},
     {
         "fromPath": "/go/learnon/",
-        "toPath": "/news/?utm_source=onwi_ad&utm_medium=print&utm_content=learnon&utm_campaign=bo20",
-        "isPermanent": true
+        "toPath": "/news/?utm_source=onwi_ad&utm_medium=print&utm_content=learnon&utm_campaign=bo20"
    	},
     {
         "fromPath": "/go/libraries/",
-        "toPath": "/about/library/",
-        "isPermanent": true
+        "toPath": "/about/library/"
    	},
     {
         "fromPath": "/go/madeinwi/",
-        "toPath": "/learning/",
-        "isPermanent": true
+        "toPath": "/learning/"
    	},
     {
         "fromPath": "/go/marshfield-scholarship/",
-        "toPath": "/groups/marshfield/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/marshfield/scholarships/"
    	},
     {
         "fromPath": "/go/members/",
-        "toPath": "/membership/for-members/?utm_source=badgerinsider_spring&utm_medium=print&utm_campaign=mem21",
-        "isPermanent": true
+        "toPath": "/membership/for-members/?utm_source=badgerinsider_spring&utm_medium=print&utm_campaign=mem21"
    	},
     {
         "fromPath": "/go/membership/",
-        "toPath": "/membership/?utm_source=badgerinsider_spring&utm_medium=print&utm_campaign=mem21",
-        "isPermanent": true
+        "toPath": "/membership/?utm_source=badgerinsider_spring&utm_medium=print&utm_campaign=mem21"
    	},
     {
         "fromPath": "/go/milehigh-scholarship/",
-        "toPath": "/groups/milehigh/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/milehigh/scholarships/"
    	},
     {
         "fromPath": "/go/milwaukeeyoungalumni/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/go/mke-scholarship/",
-        "toPath": "/groups/milwaukee/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/milwaukee/scholarships/"
    	},
     {
         "fromPath": "/go/news/",
-        "toPath": "/news/?utm_source=badgerinsider_spring&utm_medium=print&utm_campaign=mem21",
-        "isPermanent": true
+        "toPath": "/news/?utm_source=badgerinsider_spring&utm_medium=print&utm_campaign=mem21"
    	},
     {
         "fromPath": "/go/nominatedaa/",
-        "toPath": "/about/alumni-awards/distinguished-alumni-awards/daa-nomination-form/",
-        "isPermanent": true
+        "toPath": "/about/alumni-awards/distinguished-alumni-awards/daa-nomination-form/"
    	},
     {
         "fromPath": "/go/oc-scholarship/",
-        "toPath": "/groups/orangecounty/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/orangecounty/scholarships/"
    	},
     {
         "fromPath": "/go/phx-scholarship/",
-        "toPath": "/groups/valleyofthesun/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/valleyofthesun/scholarships/"
    	},
     {
         "fromPath": "/go/poetry/",
-        "toPath": "/learning/?utm_source=poetry-go_redirect&utm_medium=referral&utm_content=link&utm_campaign=lrn20",
-        "isPermanent": true
+        "toPath": "/learning/?utm_source=poetry-go_redirect&utm_medium=referral&utm_content=link&utm_campaign=lrn20"
    	},
     {
         "fromPath": "/go/proudparent/",
-        "toPath": "/membership/proud-parents/?utm_source=pong_0504&utm_medium=print&utm_campaign=mem21",
-        "isPermanent": true
+        "toPath": "/membership/proud-parents/?utm_source=pong_0504&utm_medium=print&utm_campaign=mem21"
    	},
     {
         "fromPath": "/go/reunions/",
-        "toPath": "/reunions/?utm_source=reunion_0926&utm_medium=mail&utm_content=directmail&utm_campaign=lrn19",
-        "isPermanent": true
+        "toPath": "/reunions/?utm_source=reunion_0926&utm_medium=mail&utm_content=directmail&utm_campaign=lrn19"
    	},
     {
         "fromPath": "/go/saukcounty-scholarship/",
-        "toPath": "/groups/saukcounty/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/saukcounty/scholarships/"
    	},
     {
         "fromPath": "/go/scholarship/",
-        "toPath": "/give/",
-        "isPermanent": true
+        "toPath": "/give/"
    	},
     {
         "fromPath": "/go/scrapbooks/",
-        "toPath": "/wish-you-were-here/?utm_source=badgerinsider_spring&utm_medium=print&utm_campaign=mem21",
-        "isPermanent": true
+        "toPath": "/wish-you-were-here/?utm_source=badgerinsider_spring&utm_medium=print&utm_campaign=mem21"
    	},
     {
         "fromPath": "/go/sd-scholarship/",
-        "toPath": "/groups/sandiego/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/sandiego/scholarships/"
    	},
     {
         "fromPath": "/go/sendoffs/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/go/sms/",
-        "toPath": "/about/sms-terms/",
-        "isPermanent": true
+        "toPath": "/about/sms-terms/"
    	},
     {
         "fromPath": "/go/startchapter/",
-        "toPath": "/waa-groups/start-a-group/",
-        "isPermanent": true
+        "toPath": "/waa-groups/start-a-group/"
    	},
     {
         "fromPath": "/go/staterelations/",
-        "toPath": "/advocate/",
-        "isPermanent": true
+        "toPath": "/advocate/"
    	},
     {
         "fromPath": "/go/suncoast/",
-        "toPath": "/groups/sarasota",
-        "isPermanent": true
+        "toPath": "/groups/sarasota"
    	},
     {
         "fromPath": "/go/suncoast-scholarship/",
-        "toPath": "/groups/sarasota/scholarships/",
-        "isPermanent": true
+        "toPath": "/groups/sarasota/scholarships/"
    	},
     {
         "fromPath": "/go/travel/",
-        "toPath": "/travel/?utm_source=quarterpage_ad&utm_medium=print&utm_campaign=trav19",
-        "isPermanent": true
+        "toPath": "/travel/?utm_source=quarterpage_ad&utm_medium=print&utm_campaign=trav19"
    	},
     {
         "fromPath": "/go/travelinsurance/",
-        "toPath": "/travel/insurance/",
-        "isPermanent": true
+        "toPath": "/travel/insurance/"
    	},
     {
         "fromPath": "/go/travelon/",
-        "toPath": "/travel/?utm_source=onwi_ad&utm_medium=print&utm_campaign=trav19",
-        "isPermanent": true
+        "toPath": "/travel/?utm_source=onwi_ad&utm_medium=print&utm_campaign=trav19"
    	},
     {
         "fromPath": "/go/tripinfo/",
-        "toPath": "/travel/request-trip-information/",
-        "isPermanent": true
+        "toPath": "/travel/request-trip-information/"
    	},
     {
         "fromPath": "/go/uwmadisonday/",
-        "toPath": "/advocate/?utm_source=youtube&utm_medium=referral&utm_content=uwmadisonday&utm_campaign=advo21",
-        "isPermanent": true
+        "toPath": "/advocate/?utm_source=youtube&utm_medium=referral&utm_content=uwmadisonday&utm_campaign=advo21"
    	},
     {
         "fromPath": "/go/uwnow/",
-        "toPath": "/uw-now/?utm_source=onwi_spring&utm_medium=print&utm_campaign=cc20",
-        "isPermanent": true
+        "toPath": "/uw-now/?utm_source=onwi_spring&utm_medium=print&utm_campaign=cc20"
    	},
     {
         "fromPath": "/go/virtual-homecoming/",
-        "toPath": "/homecoming/",
-        "isPermanent": true
+        "toPath": "/homecoming/"
    	},
     {
         "fromPath": "/go/waukeshayoungalumni/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/go/wednitelab/",
-        "toPath": "/learning/",
-        "isPermanent": true
+        "toPath": "/learning/"
    	},
     {
         "fromPath": "/gpu/",
-        "toPath": "/grandparents-university/",
-        "isPermanent": true
+        "toPath": "/grandparents-university/"
    	},
     {
         "fromPath": "/greencounty/",
-        "toPath": "/groups/greencounty/",
-        "isPermanent": true
+        "toPath": "/groups/greencounty/"
    	},
     {
         "fromPath": "/heartofillinois/",
-        "toPath": "/groups/heartofillinois/",
-        "isPermanent": true
+        "toPath": "/groups/heartofillinois/"
    	},
     {
         "fromPath": "/hfa/",
-        "toPath": "/home-field-advantage/",
-        "isPermanent": true
+        "toPath": "/home-field-advantage/"
    	},
     {
         "fromPath": "/hire/",
-        "toPath": "/career-resources/job-boards/",
-        "isPermanent": true
+        "toPath": "/career-resources/job-boards/"
    	},
     {
         "fromPath": "/huddles/",
-        "toPath": "/athletics/",
-        "isPermanent": true
+        "toPath": "/athletics/"
    	},
     {
         "fromPath": "/indianapolis/",
-        "toPath": "/groups/indianapolis/",
-        "isPermanent": true
+        "toPath": "/groups/indianapolis/"
    	},
     {
         "fromPath": "/insider/",
-        "toPath": "/badger-insider/",
-        "isPermanent": true
+        "toPath": "/badger-insider/"
    	},
     {
         "fromPath": "/kansascity/",
-        "toPath": "/groups/kansascity/",
-        "isPermanent": true
+        "toPath": "/groups/kansascity/"
    	},
     {
         "fromPath": "/lakeland/",
-        "toPath": "/groups/lakeland/",
-        "isPermanent": true
+        "toPath": "/groups/lakeland/"
    	},
     {
         "fromPath": "/lasvegas/",
-        "toPath": "/groups/lasvegas/",
-        "isPermanent": true
+        "toPath": "/groups/lasvegas/"
    	},
     {
         "fromPath": "/losangeles/",
-        "toPath": "/groups/losangeles/",
-        "isPermanent": true
+        "toPath": "/groups/losangeles/"
    	},
     {
         "fromPath": "/marshfield/",
-        "toPath": "/groups/marshfield/",
-        "isPermanent": true
+        "toPath": "/groups/marshfield/"
    	},
     {
         "fromPath": "/mchc/",
-        "toPath": "/homecoming/",
-        "isPermanent": true
+        "toPath": "/homecoming/"
    	},
     {
         "fromPath": "/membership/2020grad/",
-        "toPath": "/membership/new-grad/",
-        "isPermanent": true
+        "toPath": "/membership/new-grad/"
    	},
     {
         "fromPath": "/membership/admission-sports/",
-        "toPath": "/membership/for-members",
-        "isPermanent": true
+        "toPath": "/membership/for-members"
    	},
     {
         "fromPath": "/membership/benefits/",
-        "toPath": "/membership/for-members",
-        "isPermanent": true
+        "toPath": "/membership/for-members"
    	},
     {
         "fromPath": "/membership/benefits/accommodations-travel/",
-        "toPath": "/membership/for-members",
-        "isPermanent": true
+        "toPath": "/membership/for-members"
    	},
     {
         "fromPath": "/membership/benefits/auto-rental-discount/",
-        "toPath": "/membership/for-members",
-        "isPermanent": true
+        "toPath": "/membership/for-members"
    	},
     {
         "fromPath": "/membership/benefits/brooks-brothers/",
-        "toPath": "/membership/for-members",
-        "isPermanent": true
+        "toPath": "/membership/for-members"
    	},
     {
         "fromPath": "/membership/benefits/campus/",
-        "toPath": "/membership/for-members",
-        "isPermanent": true
+        "toPath": "/membership/for-members"
    	},
     {
         "fromPath": "/membership/benefits/library/",
-        "toPath": "/about/library/",
-        "isPermanent": true
+        "toPath": "/about/library/"
    	},
     {
         "fromPath": "/membership/benefits/restaurant/",
-        "toPath": "/membership/for-members",
-        "isPermanent": true
+        "toPath": "/membership/for-members"
    	},
     {
         "fromPath": "/membership/benefits/retail/",
-        "toPath": "/membership/for-members",
-        "isPermanent": true
+        "toPath": "/membership/for-members"
    	},
     {
         "fromPath": "/membership/benefits/services/",
-        "toPath": "/membership/for-members",
-        "isPermanent": true
+        "toPath": "/membership/for-members"
    	},
     {
         "fromPath": "/membership/benefits/sponsors/",
-        "toPath": "/membership/for-members",
-        "isPermanent": true
+        "toPath": "/membership/for-members"
    	},
     {
         "fromPath": "/membership/faqs/",
-        "toPath": "/membership/membership-faqs/",
-        "isPermanent": true
+        "toPath": "/membership/membership-faqs/"
    	},
     {
         "fromPath": "/membership/join/",
-        "toPath": "/membership/#membership-join/",
-        "isPermanent": true
+        "toPath": "/membership/#membership-join/"
     },
     {
         "fromPath": "/milehigh/",
-        "toPath": "/groups/milehigh/",
-        "isPermanent": true
+        "toPath": "/groups/milehigh/"
    	},
     {
         "fromPath": "/milwaukee/",
-        "toPath": "/groups/milwaukee/",
-        "isPermanent": true
+        "toPath": "/groups/milwaukee/"
    	},
     {
         "fromPath": "/mobileuw/",
-        "toPath": "/show-your-pride/",
-        "isPermanent": true
+        "toPath": "/show-your-pride/"
    	},
     {
         "fromPath": "/news/12313/",
-        "toPath": "/news/top-five-franks/",
-        "isPermanent": true
+        "toPath": "/news/top-five-franks/"
    	},
     {
         "fromPath": "/news_release/",
-        "toPath": "/news/all/?product=news-releases",
-        "isPermanent": true
+        "toPath": "/news/all/?product=news-releases"
    	},
     {
         "fromPath": "/news-stories/",
-        "toPath": "/news/",
-        "isPermanent": true
+        "toPath": "/news/"
    	},
     {
         "fromPath": "/news-stories/alumni-notes/",
-        "toPath": "/alumni-notes/",
-        "isPermanent": true
+        "toPath": "/alumni-notes/"
    	},
     {
         "fromPath": "/news-stories/alumni-notes/alumni-notes-cards-order-form/",
-        "toPath": "/alumni-notes/cards-order-form/",
-        "isPermanent": true
+        "toPath": "/alumni-notes/cards-order-form/"
    	},
     {
         "fromPath": "/news-stories/alumni-notes/guidelines-for-submitting-news/",
-        "toPath": "/alumni-notes/guidelines/",
-        "isPermanent": true
+        "toPath": "/alumni-notes/guidelines/"
    	},
     {
         "fromPath": "/news-stories/alumni-notes/obituaries/",
-        "toPath": "/alumni-notes/obituaries/",
-        "isPermanent": true
+        "toPath": "/alumni-notes/obituaries/"
    	},
     {
         "fromPath": "/news-stories/alumni-notes/submit-an-alumni-note/",
-        "toPath": "/alumni-notes/submit/",
-        "isPermanent": true
+        "toPath": "/alumni-notes/submit/"
    	},
     {
         "fromPath": "/news-stories/alumni-notes/submit-book-news/",
-        "toPath": "/on-wisconsin/bookshelf/",
-        "isPermanent": true
+        "toPath": "/on-wisconsin/bookshelf/"
    	},
     {
         "fromPath": "/news-stories/badger-scrapbooks/",
-        "toPath": "/wish-you-were-here/",
-        "isPermanent": true
+        "toPath": "/wish-you-were-here/"
    	},
     {
         "fromPath": "/news-stories/badger-scrapbooks/scrapbook-archive/",
-        "toPath": "/wish-you-were-here/",
-        "isPermanent": true
+        "toPath": "/wish-you-were-here/"
    	},
     {
         "fromPath": "/news-stories/badger-scrapbooks/scrapbook-memory/",
-        "toPath": "/wish-you-were-here/",
-        "isPermanent": true
+        "toPath": "/wish-you-were-here/"
    	},
     {
         "fromPath": "/news-stories/badger-vibes/",
-        "toPath": "/badger-vibes/",
-        "isPermanent": true
+        "toPath": "/badger-vibes/"
    	},
     {
         "fromPath": "/news-stories/flamingle/feedback/",
-        "toPath": "/flamingle/",
-        "isPermanent": true
+        "toPath": "/flamingle/"
    	},
     {
         "fromPath": "/news-stories/insider/",
-        "toPath": "/badger-insider/",
-        "isPermanent": true
+        "toPath": "/badger-insider/"
    	},
     {
         "fromPath": "/news-stories/on-wisconsin/",
-        "toPath": "/on-wisconsin/",
-        "isPermanent": true
+        "toPath": "/on-wisconsin/"
    	},
     {
         "fromPath": "/news-stories/on-wisconsin/bookshelf/",
-        "toPath": "/on-wisconsin/bookshelf/",
-        "isPermanent": true
+        "toPath": "/on-wisconsin/bookshelf/"
    	},
     {
         "fromPath": "/news-stories/publications/",
-        "toPath": "/publications",
-        "isPermanent": true
+        "toPath": "/publications"
    	},
     {
         "fromPath": "/news-stories/share-your-images/",
-        "toPath": "/alumni-notes/submit/",
-        "isPermanent": true
+        "toPath": "/alumni-notes/submit/"
    	},
     {
         "fromPath": "/news-stories/share-your-story/",
-        "toPath": "/alumni-notes/submit/",
-        "isPermanent": true
+        "toPath": "/alumni-notes/submit/"
    	},
     {
         "fromPath": "/news-stories/voice/",
-        "toPath": "/flamingle/",
-        "isPermanent": true
+        "toPath": "/flamingle/"
    	},
     {
         "fromPath": "/onwisconsin/",
-        "toPath": "/on-wisconsin/",
-        "isPermanent": true
+        "toPath": "/on-wisconsin/"
    	},
     {
         "fromPath": "/optin/",
-        "toPath": "/update-info/",
-        "isPermanent": true
+        "toPath": "/update-info/"
    	},
     {
         "fromPath": "/orangecounty/",
-        "toPath": "/groups/orangecounty/",
-        "isPermanent": true
+        "toPath": "/groups/orangecounty/"
    	},
+    {
+        "fromPath": "/pier/",
+        "toPath": "https://secure.supportuw.org/give/?id=9a9ac203-834b-40e9-a106-0976e6a345a4&utm_source=pier&utm_medium=outdoor&utm_campaign=pierpayments&custom=waa02"
+    },
     {
         "fromPath": "/pikespeak/",
-        "toPath": "/groups/pikespeak/",
-        "isPermanent": true
-   	},
+        "toPath": "/groups/pikespeak/"
+    },
     {
         "fromPath": "/pittsburgh/",
-        "toPath": "/groups/pittsburgh/",
-        "isPermanent": true
+        "toPath": "/groups/pittsburgh/"
    	},
     {
         "fromPath": "/portland/",
-        "toPath": "/groups/portland/",
-        "isPermanent": true
+        "toPath": "/groups/portland/"
    	},
     {
         "fromPath": "/renew/",
-        "toPath": "/membership/renew/?utm_source=renew_2020&utm_medium=mail&utm_content=&utm_campaign=mem20",
-        "isPermanent": true
+        "toPath": "/membership/renew/?utm_source=renew_2020&utm_medium=mail&utm_content=&utm_campaign=mem20"
    	},
     {
         "fromPath": "/resources-services/",
-        "toPath": "/learning",
-        "isPermanent": true
+        "toPath": "/learning"
    	},
     {
         "fromPath": "/resources-services/affinity-partners/",
-        "toPath": "/about/partners-perks/",
-        "isPermanent": true
+        "toPath": "/about/partners-perks/"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/",
-        "toPath": "/learning",
-        "isPermanent": true
+        "toPath": "/learning"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/alumni-college/",
-        "toPath": "/events/alumni-college/",
-        "isPermanent": true
+        "toPath": "/events/alumni-college/"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/anthony-shadid-award/",
-        "toPath": "/learning",
-        "isPermanent": true
+        "toPath": "/learning"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/around-campus/",
-        "toPath": "/learning",
-        "isPermanent": true
+        "toPath": "/learning"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/badger-cafe/",
-        "toPath": "/learning",
-        "isPermanent": true
+        "toPath": "/learning"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/global-hot-spots/",
-        "toPath": "/learning",
-        "isPermanent": true
+        "toPath": "/learning"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/grandparents-university/",
-        "toPath": "/grandparents-university",
-        "isPermanent": true
+        "toPath": "/grandparents-university"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/grandparents-university/program-information/",
-        "toPath": "/grandparents-university/program-information/",
-        "isPermanent": true
+        "toPath": "/grandparents-university/program-information/"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/grandparents-university/scrapbooks/",
-        "toPath": "/grandparents-university/scrapbooks/",
-        "isPermanent": true
+        "toPath": "/grandparents-university/scrapbooks/"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/healthy-aging-series/",
-        "toPath": "/learning",
-        "isPermanent": true
+        "toPath": "/learning"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/made-in-wisconsin/",
-        "toPath": "/made-in-wisconsin/",
-        "isPermanent": true
+        "toPath": "/made-in-wisconsin/"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/made-in-wisconsin/companies-visited/",
-        "toPath": "/made-in-wisconsin/",
-        "isPermanent": true
+        "toPath": "/made-in-wisconsin/"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/mailing-list/",
-        "toPath": "/update-info/",
-        "isPermanent": true
+        "toPath": "/update-info/"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/online-lectures/",
-        "toPath": "/learning/",
-        "isPermanent": true
+        "toPath": "/learning/"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/uw-now/",
-        "toPath": "/uw-now/",
-        "isPermanent": true
+        "toPath": "/uw-now/"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/uw-now/attachment/uw-now-livestream/",
-        "toPath": "/uw-now/",
-        "isPermanent": true
+        "toPath": "/uw-now/"
    	},
     {
         "fromPath": "/resources-services/alumni-learning/wednesday-nite-the-lab/",
-        "toPath": "/learning/",
-        "isPermanent": true
+        "toPath": "/learning/"
    	},
     {
         "fromPath": "/resources-services/commencement/",
-        "toPath": "/recent-grads/",
-        "isPermanent": true
+        "toPath": "/recent-grads/"
    	},
     {
         "fromPath": "/resources-services/email/",
-        "toPath": "/email/",
-        "isPermanent": true
+        "toPath": "/email/"
    	},
     {
         "fromPath": "/resources-services/email/sign-up/",
-        "toPath": "/email/sign-up/",
-        "isPermanent": true
+        "toPath": "/email/sign-up/"
    	},
     {
         "fromPath": "/resources-services/library/",
-        "toPath": "/about/library/",
-        "isPermanent": true
+        "toPath": "/about/library/"
    	},
     {
         "fromPath": "/resources-services/pregame-athletic-events/",
-        "toPath": "/athletics/",
-        "isPermanent": true
+        "toPath": "/athletics/"
    	},
     {
         "fromPath": "/resources-services/travel/",
-        "toPath": "/travel/",
-        "isPermanent": true
+        "toPath": "/travel/"
    	},
     {
         "fromPath": "/resources-services/travel/2021-travel-catalog/",
-        "toPath": "/travel/travel-catalog/",
-        "isPermanent": true
+        "toPath": "/travel/travel-catalog/"
    	},
     {
         "fromPath": "/resources-services/travel/covid-travel-update/",
-        "toPath": "/travel/covid-update/",
-        "isPermanent": true
+        "toPath": "/travel/covid-update/"
    	},
     {
         "fromPath": "/resources-services/travel/faqs/",
-        "toPath": "/travel/faq/",
-        "isPermanent": true
+        "toPath": "/travel/faq/"
    	},
     {
         "fromPath": "/resources-services/travel/mailing-list/",
-        "toPath": "/update-info",
-        "isPermanent": true
+        "toPath": "/update-info"
    	},
     {
         "fromPath": "/resources-services/travel/our-travel-suppliers/",
-        "toPath": "/travel/partners/",
-        "isPermanent": true
+        "toPath": "/travel/partners/"
    	},
     {
         "fromPath": "/resources-services/travel/request-trip-information/",
-        "toPath": "/travel/request-trip-information/",
-        "isPermanent": true
+        "toPath": "/travel/request-trip-information/"
    	},
     {
         "fromPath": "/resources-services/travel/travel-disclaimer/",
-        "toPath": "/travel/disclaimer/",
-        "isPermanent": true
+        "toPath": "/travel/disclaimer/"
    	},
     {
         "fromPath": "/resources-services/travel/travel-insurance/",
-        "toPath": "/travel/insurance/",
-        "isPermanent": true
+        "toPath": "/travel/insurance/"
    	},
     {
         "fromPath": "/resources-services/travel/travel-tips/",
-        "toPath": "/travel/tips/",
-        "isPermanent": true
+        "toPath": "/travel/tips/"
    	},
     {
         "fromPath": "/sanantonio/",
-        "toPath": "/groups/sanantonio",
-        "isPermanent": true
+        "toPath": "/groups/sanantonio"
    	},
     {
         "fromPath": "/sandiego/",
-        "toPath": "/groups/sandiego/",
-        "isPermanent": true
+        "toPath": "/groups/sandiego/"
    	},
     {
         "fromPath": "/sarasota/",
-        "toPath": "/groups/sarasota",
-        "isPermanent": true
+        "toPath": "/groups/sarasota"
    	},
     {
         "fromPath": "/saukcounty/",
-        "toPath": "/groups/saukcounty/",
-        "isPermanent": true
+        "toPath": "/groups/saukcounty/"
    	},
     {
         "fromPath": "/scholarships/",
-        "toPath": "/give/",
-        "isPermanent": true
+        "toPath": "/give/"
    	},
     {
         "fromPath": "/seattle/",
-        "toPath": "/groups/seattle/",
-        "isPermanent": true
+        "toPath": "/groups/seattle/"
    	},
     {
         "fromPath": "/services/alumni-directory/badger-bridge-faq/",
-        "toPath": "/alumni-directory/faq/",
-        "isPermanent": true
+        "toPath": "/alumni-directory/faq/"
    	},
     {
         "fromPath": "/services/alumni-directory/opting-out/",
-        "toPath": "/alumni-directory/opt-out/",
-        "isPermanent": true
+        "toPath": "/alumni-directory/opt-out/"
    	},
     {
         "fromPath": "/services/opt-in/",
-        "toPath": "/update-info/",
-        "isPermanent": true
+        "toPath": "/update-info/"
    	},
     {
         "fromPath": "/services/peace-corps-update-information/",
-        "toPath": "/about/peace-corps-update-information/",
-        "isPermanent": true
+        "toPath": "/about/peace-corps-update-information/"
    	},
     {
         "fromPath": "/services/update/",
-        "toPath": "/update-info/",
-        "isPermanent": true
+        "toPath": "/update-info/"
    	},
     {
         "fromPath": "/services/update-info/",
-        "toPath": "/update-info",
-        "isPermanent": true
+        "toPath": "/update-info"
    	},
     {
         "fromPath": "/sheboygan/",
-        "toPath": "/groups/sheboygan/",
-        "isPermanent": true
+        "toPath": "/groups/sheboygan/"
    	},
     {
         "fromPath": "/shop/credit-and-debit-cards/",
-        "toPath": "/about/partners-perks/",
-        "isPermanent": true
+        "toPath": "/about/partners-perks/"
    	},
     {
         "fromPath": "/shop/financial-services/",
-        "toPath": "/about/partners-perks/",
-        "isPermanent": true
+        "toPath": "/about/partners-perks/"
     },
     {
         "fromPath": "/shop/personal-services/",
-        "toPath": "/about/partners-perks/",
-        "isPermanent": true
+        "toPath": "/about/partners-perks/"
     },
     {
         "fromPath": "/shop/theredshirt/",
-        "toPath": "/the-red-shirt/",
-        "isPermanent": true
+        "toPath": "/the-red-shirt/"
    	},
     {
         "fromPath": "/shop/theredshirt/about/",
-        "toPath": "/the-red-shirt/",
-        "isPermanent": true
+        "toPath": "/the-red-shirt/"
    	},
     {
         "fromPath": "/shop/theredshirt/impact/",
-        "toPath": "/the-red-shirt/",
-        "isPermanent": true
+        "toPath": "/the-red-shirt/"
    	},
     {
         "fromPath": "/shop/theredshirt/vote/",
-        "toPath": "/the-red-shirt/",
-        "isPermanent": true
+        "toPath": "/the-red-shirt/"
    	},
     {
         "fromPath": "/southcarolina/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/students/",
-        "toPath": "/recent-grads",
-        "isPermanent": true
+        "toPath": "/recent-grads"
    	},
     {
         "fromPath": "/students/wasb/",
-        "toPath": "/wasb",
-        "isPermanent": true
+        "toPath": "/wasb"
    	},
     {
         "fromPath": "/support/",
-        "toPath": "/show-your-pride/",
-        "isPermanent": true
+        "toPath": "/show-your-pride/"
    	},
     {
         "fromPath": "/support/advocate/",
-        "toPath": "/advocate/",
-        "isPermanent": true
+        "toPath": "/advocate/"
    	},
     {
         "fromPath": "/support/advocate/federal/",
-        "toPath": "/advocate/",
-        "isPermanent": true
+        "toPath": "/advocate/"
    	},
     {
         "fromPath": "/support/advocate/resources/",
-        "toPath": "/advocate",
-        "isPermanent": true
+        "toPath": "/advocate"
    	},
     {
         "fromPath": "/support/advocate/stay-informed/",
-        "toPath": "/advocate/",
-        "isPermanent": true
+        "toPath": "/advocate/"
    	},
     {
         "fromPath": "/support/endowments/",
-        "toPath": "/give",
-        "isPermanent": true
+        "toPath": "/give"
    	},
     {
         "fromPath": "/support/make-a-gift/",
-        "toPath": "/give",
-        "isPermanent": true
+        "toPath": "/give"
    	},
     {
         "fromPath": "/support/pride/",
-        "toPath": "/show-your-pride/",
-        "isPermanent": true
+        "toPath": "/show-your-pride/"
    	},
     {
         "fromPath": "/support/virtual-backgrounds/",
-        "toPath": "/about/virtual-backgrounds/",
-        "isPermanent": true
+        "toPath": "/about/virtual-backgrounds/"
    	},
     {
         "fromPath": "/support/volunteer/",
-        "toPath": "/get-involved",
-        "isPermanent": true
+        "toPath": "/get-involved"
    	},
     {
         "fromPath": "/support/volunteer/badgers-leaders-at-work/",
-        "toPath": "/get-involved",
-        "isPermanent": true
+        "toPath": "/get-involved"
    	},
     {
         "fromPath": "/support/volunteer/opportunities/",
-        "toPath": "/get-involved",
-        "isPermanent": true
+        "toPath": "/get-involved"
    	},
     {
         "fromPath": "/support/volunteer/volunteer-resources/",
-        "toPath": "/get-involved",
-        "isPermanent": true
+        "toPath": "/get-involved"
    	},
     {
         "fromPath": "/tampabay/",
-        "toPath": "/groups/tampabay/",
-        "isPermanent": true
+        "toPath": "/groups/tampabay/"
    	},
     {
         "fromPath": "/theredshirt/",
-        "toPath": "/the-red-shirt/",
-        "isPermanent": true
+        "toPath": "/the-red-shirt/"
    	},
     {
         "fromPath": "/topfive/",
-        "toPath": "/news",
-        "isPermanent": true
+        "toPath": "/news"
    	},
     {
         "fromPath": "/tucson/",
-        "toPath": "/waa-groups/",
-        "isPermanent": true
+        "toPath": "/waa-groups/"
    	},
     {
         "fromPath": "/twincities/",
-        "toPath": "/groups/twincities/",
-        "isPermanent": true
+        "toPath": "/groups/twincities/"
    	},
     {
         "fromPath": "/update/",
-        "toPath": "/update-info/",
-        "isPermanent": true
+        "toPath": "/update-info/"
    	},
     {
         "fromPath": "/uwfall/",
-        "toPath": "/homecoming/",
-        "isPermanent": true
+        "toPath": "/homecoming/"
    	},
     {
         "fromPath": "/valleyofthesun/",
-        "toPath": "/groups/valleyofthesun/",
-        "isPermanent": true
+        "toPath": "/groups/valleyofthesun/"
    	},
     {
         "fromPath": "/volunteer/",
-        "toPath": "/get-involved/",
-        "isPermanent": true
+        "toPath": "/get-involved/"
    	},
     {
         "fromPath": "/washingtondc/",
-        "toPath": "/groups/washingtondc/",
-        "isPermanent": true
+        "toPath": "/groups/washingtondc/"
    	},
     {
         "fromPath": "/waukesha/",
-        "toPath": "/groups/waukesha/",
-        "isPermanent": true
+        "toPath": "/groups/waukesha/"
    	},
     {
         "fromPath": "/wednitelab/",
-        "toPath": "/learning/",
-        "isPermanent": true
+        "toPath": "/learning/"
    	},
     {
         "fromPath": "/westsuburbanchicago/",
-        "toPath": "/groups/westsuburbanchicago/",
-        "isPermanent": true
+        "toPath": "/groups/westsuburbanchicago/"
    	},
     {
         "fromPath": "/winthewall/",
-        "toPath": "/update-info/",
-        "isPermanent": true
+        "toPath": "/update-info/"
     }
 ]
