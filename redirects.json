@@ -1323,6 +1323,10 @@
         "fromPath": "/go/1971/",
         "toPath": "/event/class-of-1971-50-year-reunion/?utm_source=1971_mailer&utm_medium=mail&utm_campaign=cr21"
    	},
+       {
+           "fromPath": "/go/2020grad/",
+           "toPath": "/membership/new-grad/?utm_source=2020grad&utm_medium=mail&utm_campaign=grad20"
+          },
     {
         "fromPath": "/go/alumninotes/",
         "toPath": "/alumni-notes/"
@@ -1549,7 +1553,7 @@
    	},
     {
         "fromPath": "/go/sleep-health/",
-        "toPath": "https://www.youtube.com/watch?v=vfwGi8vxN79"
+        "toPath": "https://www.youtube.com/watch?v=vfwGi8vxN78"
    	},
     {
         "fromPath": "/go/sms/",
