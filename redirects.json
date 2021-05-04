@@ -2085,7 +2085,7 @@
    	},
     {
         "fromPath": "/shop/financial-services/",
-        "toPath": "/about/partners-perks/"
+        "toPath": "https://www.uwalumnistore.com/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
     },
     {
         "fromPath": "/shop/gifts/",
@@ -2093,7 +2093,7 @@
    	},
     {
         "fromPath": "/shop/personal-services/",
-        "toPath": "/about/partners-perks/"
+        "toPath": "https://www.uwalumnistore.com/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
     },
     {
         "fromPath": "/shop/theredshirt/",
