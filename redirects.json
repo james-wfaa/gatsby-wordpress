@@ -388,10 +388,6 @@
         "toPath": "/about/for-news-media/"
    	},
     {
-        "fromPath": "/about/for-news-media/resources/",
-        "toPath": "/about/for-news-media/"
-   	},
-    {
         "fromPath": "/about/notable-alumni/",
         "toPath": "/alumni-achievements"
    	},

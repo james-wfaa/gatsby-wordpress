@@ -109,9 +109,9 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         schema: {
-          requestConcurrency: 6, 
+          requestConcurrency: 5, 
           previewRequestConcurrency: 3, 
-          perPage: 80,
+          perPage: 50,
           typePrefix: `Wp`,
           timeout: 960 * 1000,
         },
@@ -225,6 +225,22 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sitemap`,
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.uwalumni.com',
+        sitemap: 'https://www.uwalumni.com/sitemap.xml',
+        resolveEnv: () => process.env.GATSBY_ENV,
+        env: {
+          development: {
+            policy: [{ userAgent: '*', disallow: ['/'] }]
+          },
+          production: {
+            policy: [{ userAgent: '*', allow: '/' }]
+          }
+        }
+      }
+    },
      {
        resolve: `gatsby-plugin-algolia`,
        options: {
