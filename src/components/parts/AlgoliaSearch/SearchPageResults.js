@@ -54,9 +54,11 @@ const TotalWrapper = (props) => {
   };
   
   useEffect(() => {
-    document.activeElement.blur();
-    if(firstHit !== 1){
-      document.getElementsByTagName('h3')[0].getElementsByTagName('A')[0].focus()
+    if(typeof document !== "undefined"){
+      document.activeElement.blur();
+      if(firstHit !== 1){
+        document.getElementsByTagName('h3')[0].getElementsByTagName('A')[0].focus()
+      }
     }
   }, [firstHit]);
   //console.log(props.cardtype)
