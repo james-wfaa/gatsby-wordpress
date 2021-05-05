@@ -249,8 +249,8 @@ module.exports = {
           queries: require("./src/utils/algolia-queries"),
           enablePartialUpdates: true,
           matchFields: ['slug', 'modified'],
-          skipIndexing: (process.env.ALGOLIA_SKIP_INDEX === "true"), // default: false, useful for e.g. preview deploys or local development
-          continueOnFailure: (process.env.ALGOLIA_CONTINUE_ON_FAILURE === "true") // default: false, don't fail the build if algolia indexing fails
+          skipIndexing: (process.env.GATSBY_ALGOLIA_SKIP_INDEX === "true"), // default: false, useful for e.g. preview deploys or local development
+          continueOnFailure: (process.env.GATSBY_ALGOLIA_CONTINUE_ON_FAILURE === "true") // default: false, don't fail the build if algolia indexing fails
        },
      },
     // this (optional) plugin enables Progressive Web App + Offline functionality
