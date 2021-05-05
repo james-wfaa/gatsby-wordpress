@@ -37,36 +37,10 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-plugin-redirect-to`,
-      options: {
-        force: true,
-        isPermanent: true,
-        redirectInBrowser: true,
-      },
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        // Footnotes mode (default: true)
-        footnotes: true,
-        // GitHub Flavored Markdown mode (default: true)
-        gfm: true,
-        // Plugins configs
-        plugins: [],
-      },
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `redirects`,
-        path: `${__dirname}/src/redirects`,
       },
     },
     {
@@ -135,9 +109,9 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         schema: {
-          requestConcurrency: 8, 
-          previewRequestConcurrency: 4, 
-          perPage: 100,
+          requestConcurrency: 5, 
+          previewRequestConcurrency: 3, 
+          perPage: 50,
           typePrefix: `Wp`,
           timeout: 960 * 1000,
         },
@@ -251,6 +225,22 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sitemap`,
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.uwalumni.com',
+        sitemap: 'https://www.uwalumni.com/sitemap.xml',
+        resolveEnv: () => process.env.GATSBY_ENV,
+        env: {
+          development: {
+            policy: [{ userAgent: '*', disallow: ['/'] }]
+          },
+          production: {
+            policy: [{ userAgent: '*', allow: '/' }]
+          }
+        }
+      }
+    },
      {
        resolve: `gatsby-plugin-algolia`,
        options: {

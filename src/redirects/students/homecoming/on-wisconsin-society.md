@@ -1,3 +1,0 @@
----
-redirect: https://wiscohoco.com
----
