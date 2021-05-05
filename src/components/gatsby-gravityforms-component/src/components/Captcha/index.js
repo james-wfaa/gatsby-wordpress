@@ -11,20 +11,9 @@ const Captcha = ({
     name,
     register,
     setValue,
+    recaptchaRef,
     ...wrapProps
 }) => {
-    const captchaRef = useRef(null)
-    const [isLoaded, setLoaded] = useState(false)
-
-    const changeCaptchaToken = (token = '') => {
-        setValue('g-recaptcha-response', token, true)
-    }
-
-    useEffect(() => {
-        if (isLoaded && errors && errors.message) {
-            captchaRef.current.reset()
-        }
-    }, [errors, isLoaded])
 
     if (!process.env.GATSBY_RECAPTCHA_SITE_KEY) {
         return (
@@ -59,10 +48,7 @@ const Captcha = ({
             {...wrapProps}
         >
             <ReCAPTCHA
-                onExpired={changeCaptchaToken}
-                onLoad={() => setLoaded(true)}
-                onChange={changeCaptchaToken}
-                ref={captchaRef}
+                ref={recaptchaRef}
                 sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
                 theme={captchaTheme || 'light'}
                 size="invisible"
@@ -72,6 +58,7 @@ const Captcha = ({
                 ref={register({})}
                 type="hidden"
             />
+            <p className="recaptchaBranding">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
         </InputWrapper>
     )
 }
