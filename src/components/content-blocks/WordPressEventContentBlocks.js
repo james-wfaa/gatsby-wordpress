@@ -52,14 +52,19 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             /**
              * we need to modify the incoming HTML to 
              * 1) add a target="_blank" to the gcal link
-             * 2) point the ical link at the WordPress URL so the download works correctly
+             * 2) correct the URL of the gcal link to switch the WP URL for the Gatsby URL
+             * 3) point the ical link at the WordPress URL so the download works correctly
              * */ 
 
             tag.props.children.forEach((child) => {
                 if (child.props.className.includes('tribe-block__events-gcal')) {
+                    console.log(child.props.children.props.href)
                     var clonedElementWithMoreProps = React.cloneElement(
                         child.props.children, 
-                        { target: "_blank" }
+                        { 
+                            target: "_blank",
+                            href: child.props.children.props.href.replace(/(uwalumni|uwalumstaging|uwalumdev).wpengine.com/g, 'uwalumni.com')
+                        }
                     )
                     modifiedChildren.push(clonedElementWithMoreProps)
                 }
