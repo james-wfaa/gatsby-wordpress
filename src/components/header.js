@@ -43,6 +43,16 @@ const Header = ({ noborder }) => {
     setOpen(!open)
   }
 
+  useEffect(() => {
+      const close = (e) => {
+        if(e.key === 'Escape'){
+          setOpen(false)
+        }
+      }
+      window.addEventListener('keydown', close)
+    return () => window.removeEventListener('keydown', close)
+  },[])
+
   const toggleSearch = e => {
     e.preventDefault()
     getMenuHeight()
