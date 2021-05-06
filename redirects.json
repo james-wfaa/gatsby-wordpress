@@ -1300,6 +1300,10 @@
         "toPath": "/founders-day/"
    	},
     {
+        "fromPath": "/events/founders-day/",
+        "toPath": "/founders-day/"
+   	},
+    {
         "fromPath": "/foxvalley/",
         "toPath": "/groups/foxvalley/"
    	},
