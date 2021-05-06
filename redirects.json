@@ -324,8 +324,16 @@
         "toPath": "/news/all/?pub=flamingle"
    	},
     {
-        "fromPath": "/about/alumni-awards/forward-under-40/past-recipients/",
-        "toPath": "/about/alumni-awards/forward-under-40/"
+        "fromPath": "/about/annual-report/",
+        "toPath": "https://www.advanceuw.org/annual-report/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
+   	},
+    {
+        "fromPath": "/about/privacy-policy/",
+        "toPath": "https://www.advanceuw.org/privacy-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
+   	},
+    {
+        "fromPath": "/about/refund-policy/",
+        "toPath": "https://www.advanceuw.org/refund-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
    	},
     {
         "fromPath": "/about/contact-us/",
@@ -377,10 +385,6 @@
    	},
     {
         "fromPath": "/about/for-news-media/contact-us/",
-        "toPath": "/about/for-news-media/"
-   	},
-    {
-        "fromPath": "/about/for-news-media/resources/",
         "toPath": "/about/for-news-media/"
    	},
     {
@@ -534,6 +538,10 @@
     {
         "fromPath": "/bigapplebadgers/",
         "toPath": "/groups/bigapple/"
+   	},
+    {
+        "fromPath": "/board/",
+        "toPath": "https://www.advanceuw.org/board/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
    	},
     {
         "fromPath": "/boston/",
@@ -1239,6 +1247,10 @@
         "fromPath": "/chippewavalley/",
         "toPath": "/groups/chippewavalley/"
    	},
+       {
+        "fromPath": "/contribute/",
+        "toPath": "https://secure.uwalumni.com/contribute/"
+   	},
     {
         "fromPath": "/daa/",
         "toPath": "/about/alumni-awards/distinguished-alumni-awards/"
@@ -1288,12 +1300,20 @@
         "toPath": "/founders-day/"
    	},
     {
+        "fromPath": "/events/founders-day/",
+        "toPath": "/founders-day/"
+   	},
+    {
         "fromPath": "/foxvalley/",
         "toPath": "/groups/foxvalley/"
    	},
     {
         "fromPath": "/gdpr/",
         "toPath": "/about/gdpr/"
+   	},
+    {
+        "fromPath": "/go/1941/",
+        "toPath": "https://www.youtube.com/watch?v=2bbQmCgPNok"
    	},
     {
         "fromPath": "/go/1970/",
@@ -1303,6 +1323,10 @@
         "fromPath": "/go/1971/",
         "toPath": "/event/class-of-1971-50-year-reunion/?utm_source=1971_mailer&utm_medium=mail&utm_campaign=cr21"
    	},
+       {
+           "fromPath": "/go/2020grad/",
+           "toPath": "/membership/new-grad/?utm_source=2020grad&utm_medium=mail&utm_campaign=grad20"
+          },
     {
         "fromPath": "/go/alumninotes/",
         "toPath": "/alumni-notes/"
@@ -1354,10 +1378,18 @@
     {
         "fromPath": "/go/chi-scholarship/",
         "toPath": "/groups/chicago/scholarships/"
+   	},    
+    {
+        "fromPath": "/go/clt-scholarship/",
+        "toPath": "https://secure.supportuw.org/give/?id=4ffcda1d-b68a-47b4-b567-da0a69d4bd0d"
    	},
     {
         "fromPath": "/go/connecton/",
         "toPath": "/membership/for-members/?utm_source=badgerinsider_spring&utm_medium=print&utm_campaign=mem21"
+   	},
+    {
+        "fromPath": "/go/contribute/",
+        "toPath": "https://secure.uwalumni.com/contribute/?utm_source=badgerinsider_spring&utm_medium=print&utm_campaign=mem22"
    	},
     {
         "fromPath": "/go/curb/",
@@ -1376,6 +1408,10 @@
         "toPath": "/learning/"
    	},
     {
+        "fromPath": "/go/election/",
+        "toPath": "https://www.youtube.com/watch?v=9BmzId7qFMY"
+   	},
+    {
         "fromPath": "/go/employers/",
         "toPath": "/career-resources/job-boards/for-employers/"
    	},
@@ -1388,6 +1424,10 @@
         "toPath": "/groups/foxvalley/scholarships/"
    	},
     {
+        "fromPath": "/go/happy-hour/",
+        "toPath": "https://www.youtube.com/watch?v=wF-IjN0A5Xs"
+   	},
+    {
         "fromPath": "/go/hoi-scholarships/",
         "toPath": "/groups/heartofillinois/scholarships/"
    	},
@@ -1398,6 +1438,10 @@
     {
         "fromPath": "/go/indy-scholarship/",
         "toPath": "/groups/indianapolis/scholarships/"
+   	},
+    {
+        "fromPath": "/go/iowa-scholarship/",
+        "toPath": "https://secure.supportuw.org/give/?id=829dcc9f-9fb7-42ea-923e-ebef508f2ae3"
    	},
     {
         "fromPath": "/go/iwbd/",
@@ -1508,6 +1552,10 @@
         "toPath": "/waa-groups/"
    	},
     {
+        "fromPath": "/go/sleep-health/",
+        "toPath": "https://www.youtube.com/watch?v=vfwGi8vxN78"
+   	},
+    {
         "fromPath": "/go/sms/",
         "toPath": "/about/sms-terms/"
    	},
@@ -1564,6 +1612,14 @@
         "toPath": "/learning/"
    	},
     {
+        "fromPath": "/go/youtube/",
+        "toPath": "https://www.youtube.com/channel/UCU7Dnf69fU9qirG0035-wSg"
+   	},
+    {
+        "fromPath": "/goodspeed-family-pier/",
+        "toPath": "https://www.alumnipark.com/visit/goodspeed-family-pier/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
+   	},
+    {
         "fromPath": "/gpu/",
         "toPath": "/grandparents-university/"
    	},
@@ -1595,9 +1651,21 @@
         "fromPath": "/insider/",
         "toPath": "/badger-insider/"
    	},
+       {
+        "fromPath": "/join/",
+        "toPath": "https://secure.uwalumni.com/join/"
+   	},
     {
         "fromPath": "/kansascity/",
         "toPath": "/groups/kansascity/"
+   	},
+    {
+        "fromPath": "/lakefront-getaway/",
+        "toPath": "https://www.alumnipark.com/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
+   	},
+    {
+        "fromPath": "/lakefront-getaway/update",
+        "toPath": "https://www.alumnipark.com/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
    	},
     {
         "fromPath": "/lakeland/",
@@ -1772,6 +1840,14 @@
         "toPath": "/flamingle/"
    	},
     {
+        "fromPath": "/onealumniplace/",
+        "toPath": "https://www.alumnipark.com/visit/one-alumni-place/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
+   	},
+    {
+        "fromPath": "/one-alumni-place/",
+        "toPath": "https://www.alumnipark.com/visit/one-alumni-place/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
+   	},
+    {
         "fromPath": "/onwisconsin/",
         "toPath": "/on-wisconsin/"
    	},
@@ -1798,6 +1874,10 @@
     {
         "fromPath": "/portland/",
         "toPath": "/groups/portland/"
+   	},
+    {
+        "fromPath": "/privacy/",
+        "toPath": "https://www.advanceuw.org/privacy-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
    	},
     {
         "fromPath": "/renew/",
@@ -1992,13 +2072,29 @@
         "toPath": "/groups/sheboygan/"
    	},
     {
+        "fromPath": "/shop/",
+        "toPath": "https://www.uwalumnistore.com/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
+   	},
+    {
+        "fromPath": "/shop/apparel/",
+        "toPath": "https://www.uwalumnistore.com/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
+   	},
+    {
         "fromPath": "/shop/credit-and-debit-cards/",
         "toPath": "/about/partners-perks/"
+   	},
+    {
+        "fromPath": "/shop/entertainment-recreation/",
+        "toPath": "https://www.uwalumnistore.com/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
    	},
     {
         "fromPath": "/shop/financial-services/",
         "toPath": "/about/partners-perks/"
     },
+    {
+        "fromPath": "/shop/gifts/",
+        "toPath": "https://www.uwalumnistore.com/?utm_source=uwalumni&utm_medium=referral&utm_content=redirect"
+   	},
     {
         "fromPath": "/shop/personal-services/",
         "toPath": "/about/partners-perks/"
@@ -2028,8 +2124,28 @@
         "toPath": "/recent-grads"
    	},
     {
+        "fromPath": "/students/homecoming/",
+        "toPath": "https://wiscohoco.com"
+   	},
+       {
+        "fromPath": "/students/homecoming/committee/",
+        "toPath": "https://wiscohoco.com"
+   	},
+       {
+        "fromPath": "/students/homecoming/events/",
+        "toPath": "https://wiscohoco.com"
+   	},
+       {
+        "fromPath": "/students/homecoming/on-wisconsin-society/",
+        "toPath": "https://wiscohoco.com"
+   	},
+    {
         "fromPath": "/students/wasb/",
         "toPath": "/wasb"
+   	},
+    {
+        "fromPath": "/students/wasb/all-campus-party/",
+        "toPath": "http://allcampusparty.com"
    	},
     {
         "fromPath": "/support/",
