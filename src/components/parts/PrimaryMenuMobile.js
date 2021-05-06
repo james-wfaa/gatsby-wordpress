@@ -24,7 +24,7 @@ const menuItems = {
     { tag: "Upcoming Activities", url: "/events" },
     { tag: "Signature Events & Activities", url: "/signature-events" },
     { tag: "Learning & Enrichment Programs", url: "/learning" },
-    { tag: "Badger Athletic Events", url: "/athletics" },
+    { tag: "Badger Athletics Activities", url: "/athletics" },
     { tag: "Travel Tours", url: "/travel" },
   ],
   "News & Stories": [
@@ -35,7 +35,7 @@ const menuItems = {
   ],
   "Ways to Support": [
     { tag: "Advocate for the UW", url: "/advocate" },
-    { tag: "Show your Pride", url: "/show-your-pride" },
+    { tag: "Show Your Pride", url: "/show-your-pride" },
     { tag: "Get Involved", url: "/get-involved" },
     { tag: "Make a Gift", url: "/give" },
   ],
@@ -77,7 +77,7 @@ const LeftMenu = styled.div`
         border: none;
         width: 100%;
         background: none;
-        outline: none;
+        //outline: none;
         p {
           position: relative;
           padding-bottom: ${sizes.s32};
@@ -127,38 +127,41 @@ const SocialLinks = styled.div`
       margin: 0 ${sizes.s16} 0 0;
 
       a {
-        display: block;
-        width: ${sizes.s24};
-        height: ${sizes.s24};
-        background-color: ${colors.iconGrey};
-        font-size: 0;
-        &:hover {
-          background-color: ${colors.buttonRed};
+        span{
+          display: block;
+          width: ${sizes.s24};
+          height: ${sizes.s24};
+          background-color: ${colors.iconGrey};
+          font-size:0;
+          padding:0;
+          &:hover {
+            background-color: ${colors.buttonRed};
+          }
         }
         &.fb {
-          mask: url(${FbIcon});
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
+          span{
+            mask: url(${FbIcon}) no-repeat;
+          }
         }
         &.tw {
-          mask: url(${TwIcon});
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
+          span{
+            mask: url(${TwIcon}) no-repeat;
+          }
         }
         &.ig {
-          mask: url(${IgIcon});
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
+          span{
+            mask: url(${IgIcon}) no-repeat;
+          }
         }
         &.wc {
-          mask: url(${WcIcon});
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
+          span{
+            mask: url(${WcIcon}) no-repeat;
+          }
         }
         &.li {
-          mask: url(${LiIcon});
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
+          span{
+            mask: url(${LiIcon}) no-repeat;
+          }
         }
       }
     }
@@ -248,6 +251,11 @@ const PrimaryMenu = () => {
   const modalClickHandler = () => {
     setShowLeft(true)
   }
+  const modalKeyPressHandler = (e) => {
+    if(e.key === 'Enter'){
+      setShowLeft(true)
+    }
+  }
 
   const parentClickHandler = (str, e) => {
     e.preventDefault()
@@ -278,7 +286,7 @@ const PrimaryMenu = () => {
 
   const parentLinks = Object.keys(menuItems).map(link => {
     return (
-      <li>
+      <li key={link}>
         <button onClick={e => parentClickHandler(link, e)}>
           <p>
             <SpanArrowRight>{link}</SpanArrowRight>
@@ -293,14 +301,14 @@ const PrimaryMenu = () => {
       let links = menuItems[select].map(link => {
         if(link.url === "https://www.uwalumnistore.com" ){
           return (
-            <li>
+            <li key={link.tag}>
               <a href={link.url} target="_blank">{link.tag}</a>
             </li>
           )
         }
         else{
           return (
-            <li>
+            <li key={link.tag}>
               <Link to={link.url}>{link.tag}</Link>
             </li>
           )
@@ -346,7 +354,7 @@ const PrimaryMenu = () => {
                         <Link to="/update-info">Update My Info</Link>
                       </li>
                       <li>
-                        <Link to="/email">Log Into Email</Link>
+                        <Link to="/email">Alumni Email Login</Link>
                       </li>
                     </ul>
                     <SocialLinks>
@@ -385,7 +393,9 @@ const PrimaryMenu = () => {
                     </p>
                     <p
                       onClick={() => modalClickHandler()}
+                      onKeyPress={(e) => modalKeyPressHandler(e)}
                       style={{ marginBottom: 0 }}
+                      tabIndex="0"
                     >
                       {select}
                     </p>

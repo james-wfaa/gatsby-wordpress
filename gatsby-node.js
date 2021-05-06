@@ -109,73 +109,14 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         }
       }
     }
-  `)
-
-  const perPage = 10
-  const chunkedContentNodes = chunk(allWpPost.nodes, perPage)
-
-  await Promise.all(
-    chunkedContentNodes.map(async (nodesChunk, index) => {
-      const firstNode = nodesChunk[0]
-      const page = index + 1
-      const offset = perPage * index
-
-      await actions.createPage({
-        component: resolve(`./src/templates/index.js`),
-        path: page === 1 ? `/blog/` : `/blog/${page}/`,
-        context: {
-          firstId: firstNode.id,
-          page: page,
-          offset: offset,
-          totalPages: chunkedContentNodes.length,
-          perPage,
-        },
-      })
-    })
-  )
-
-  // create the events archive
-
-  const {
-    data: { allWpEvent },
-  } = await graphql(/* GraphQL */ `
-    {
-      allWpEvent(sort: {order: ASC, fields: startDate}) {
-        nodes {
-          uri
-          id
-        }
-      }
-    }
-  `)
-
-  const eventsPerPage = 4
-  const chunkedEventNodes = chunk(allWpEvent.nodes, eventsPerPage)
-
-  await Promise.all(
-    chunkedEventNodes.map(async (nodesChunk, index) => {
-      const page = index + 1
-      const offset = eventsPerPage * index
-
-      await actions.createPage({
-        component: resolve(`./src/templates/single/PageEventsSearch.js`),
-        path: page === 1 ? `/events/search/` : `/events/search/${page}/`,
-        context: {
-
-          page: page,
-          offset: offset,
-          totalPages: chunkedEventNodes.length,
-          eventsPerPage,
-        },
-      })
-    })
-  )
+  `)  
   const { createRedirect } = actions;
 	
 	redirects.forEach(redirect => 
 		createRedirect({
 	    fromPath: redirect.fromPath,
 	    toPath: redirect.toPath,
+      isPermanent: true,
 	  })
 	)
 }

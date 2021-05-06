@@ -15,6 +15,10 @@ import { mixins, colors, fonts, sizes, breakpoints } from '../components/css-var
 import formErrorIcon from "./../svg/form-error-icon-red.svg"
 
 const UpdateInfoForm = () =>  {
+  if (typeof window !== "undefined" && window.location.href.includes('chapters.uwalumni.com')) {
+    const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+    window.location.replace(fixedUrl)
+  }
   const { state, actions } = useContext(AppContext);
   const { setInitialState } = actions;
 
@@ -59,7 +63,7 @@ const UpdateInfoForm = () =>  {
    }
 
   return (
-    <Layout title="Update My Info">
+    <Layout title="Update My Info" url="update-info">
       <StyledUpdateInfoForm>
         { renderCurrentStep() }
         {//console.log(state)

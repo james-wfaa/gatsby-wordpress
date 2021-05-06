@@ -1,7 +1,6 @@
 import React from "react"
 import { breakpoints } from "../css-variables"
 import styled from "styled-components"
-import { Link } from "gatsby"
 import { useWindowSize } from "../hooks"
 import Layout from "../layout"
 import PageSection from "../page-sections/PageSection"
@@ -12,7 +11,7 @@ import ChildNewsPages from "../parts/ChildNewsPages"
 
 
 function WordPressPage({ page }) {
-  const { title, content, blocks,  ancestors } = page
+  const { title, link, content, blocks,  ancestors } = page
   const { width } = useWindowSize()
 
   let wpMenu = null
@@ -47,7 +46,7 @@ function WordPressPage({ page }) {
 const isNewsArchive = (page.slug === "news" && menuRoot.link.replace(menuRoot.slug, '').replace(/\//g,'') === 'groups')
 
   return (
-    <Layout title={title}>
+    <Layout url={link} title={title}>
       <PageWrapper>
         {width >= 1200
         ?

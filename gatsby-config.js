@@ -15,7 +15,7 @@ module.exports = {
     title: `Wisconsin Alumni Association`,
     description: `Wisconsin Alumni Association`,
     author: `WFAA`,
-    siteURL: 'https://gatsby.uwalumni.com',
+    siteUrl: 'https://www.uwalumni.com',
   },
   plugins: [
     {
@@ -46,7 +46,9 @@ module.exports = {
     {
       resolve: "gatsby-omni-font-loader",
       options: {
-        mode: "render-blocking",
+        mode: "async",
+        enableListener: true,
+        preconnect: ["https://use.typekit.net", "https://cloud.typography.com"],
         web: [
           {
             name: ["Verlag A", "Verlag B"],
@@ -108,8 +110,8 @@ module.exports = {
       options: {
         schema: {
           requestConcurrency: 5, 
-          previewRequestConcurrency: 2, 
-          perPage: 100,
+          previewRequestConcurrency: 3, 
+          perPage: 50,
           typePrefix: `Wp`,
           timeout: 960 * 1000,
         },
@@ -170,7 +172,7 @@ module.exports = {
           },
           MediaItem: {
             localFile: {
-              requestConcurrency: 40
+              requestConcurrency: 50
             }
           },
         },
@@ -191,7 +193,6 @@ module.exports = {
         },
       },
     },
-    /*
     {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
@@ -220,17 +221,36 @@ module.exports = {
         //routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
       },
     },
-    */
+    `gatsby-plugin-webpack-bundle-analyser-v2`,
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-sitemap`,
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.uwalumni.com',
+        sitemap: 'https://www.uwalumni.com/sitemap.xml',
+        resolveEnv: () => process.env.GATSBY_ENV,
+        env: {
+          development: {
+            policy: [{ userAgent: '*', disallow: ['/'] }]
+          },
+          production: {
+            policy: [{ userAgent: '*', allow: '/' }]
+          }
+        }
+      }
+    },
      {
        resolve: `gatsby-plugin-algolia`,
        options: {
-         appId: process.env.GATSBY_ALGOLIA_APP_ID,
-         apiKey: process.env.ALGOLIA_ADMIN_KEY,
-         queries: require("./src/utils/algolia-queries"),
-         enablePartialUpdates: true,
-         matchFields: ['slug', 'modified']
+          appId: process.env.GATSBY_ALGOLIA_APP_ID,
+          apiKey: process.env.ALGOLIA_ADMIN_KEY,
+          queries: require("./src/utils/algolia-queries"),
+          enablePartialUpdates: true,
+          matchFields: ['slug', 'modified'],
+          skipIndexing: (process.env.GATSBY_ALGOLIA_SKIP_INDEX === "true"), // default: false, useful for e.g. preview deploys or local development
+          continueOnFailure: (process.env.GATSBY_ALGOLIA_CONTINUE_ON_FAILURE === "true") // default: false, don't fail the build if algolia indexing fails
        },
      },
     // this (optional) plugin enables Progressive Web App + Offline functionality

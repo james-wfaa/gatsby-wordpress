@@ -42,6 +42,7 @@ const ContentCard = ({
     }
     const dateLinkText = fmtEndDate ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
 
+
     const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];
     const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;
     const shortenedExcerpt = (excerpt && excerpt.length > maxLength) ? excerpt.substring(0,maxLength) + '...' : excerpt
@@ -231,6 +232,13 @@ const ContentCard = ({
                                         <div className={`venue venueCity venue--${size}`}>{venue.city}, {venue.state}</div>
                                     )}
                                 </div>
+                                
+                            )}
+                            { shortenedExcerpt && size === "Wide" && (
+                                <div className={`excerpt excerpt--${size}`}>
+                                    <span  dangerouslySetInnerHTML={{ __html: shortenedExcerpt }} />
+                                </div>
+
                             )}
                             { urlText && !startDate && (
                                 <Link to={finalUrl} className={`excerpt excerpt--${size} readmore`}>{urlText}</Link>

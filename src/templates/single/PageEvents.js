@@ -12,6 +12,10 @@ import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 
 function WordPressPage({ data }) {
 
+  if (typeof window !== "undefined" && window.location.href.includes('chapters.uwalumni.com')) {
+    const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+    window.location.replace(fixedUrl)
+  }
   const { page, tileAds } = data
   const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList?.[0]
     ? tileAds.nodes[0].siteOptions.TileAds.adList
@@ -37,7 +41,6 @@ function WordPressPage({ data }) {
   }, [])
 
   useEffect(() => {
-    console.log(currentAd)
   }, [currentAd])
 
   const allevents = AllEvents()
@@ -65,8 +68,6 @@ function WordPressPage({ data }) {
   ]
   let displayCategories = []
 
-  
-
 categories.forEach((item) => {
   const { categoryEvent, product, numberToShow } = item
   const topic = categoryEvent ? categoryEvent : product ? product : null
@@ -76,11 +77,20 @@ categories.forEach((item) => {
 
   
     allevents.nodes.forEach((event) => {
-      if (event?.eventsCategories?.nodes) {
-        
+      let pushed = false
+      if (event?.eventsCategories?.nodes) {        
         event.eventsCategories.nodes.forEach((cat) => {
           if (cat?.slug && cat.slug === slug) {
             categoryEventItems.push(event)
+            pushed = true
+          }
+        })
+      }
+      if (!pushed && event?.products?.nodes) {
+        event.products.nodes.forEach((prod) => {
+          if (prod?.slug && prod.slug === slug) {
+            categoryEventItems.push(event)
+            pushed = true
           }
         })
       }
@@ -111,14 +121,14 @@ categories.forEach((item) => {
 
   let eventCards = cardGridEvents.map((event) => {
     return (
-      <EventCardD key={event.url} {...event} url={event.link} />
+      <EventCardD key={event.link} {...event} url={event.link} />
     )
   })
   const eventCards1 = eventCards.slice(0,5)
   const eventCards2 = eventCards.slice(5,5+eventCards.length)
   const heroHeading = heroIntroSection?.heroHeading ? `<span>${heroIntroSection.heroHeading}</span> ON` : null
   return (
-    <Layout title={title} noborder img={featuredImage?.node}>
+    <Layout title={title} url="/events" noborder img={featuredImage?.node}>
       { featuredImage && featuredImage.node && (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}
@@ -128,8 +138,8 @@ categories.forEach((item) => {
           mobileHeroImage={heroIntroSection.heroImageMobile.localFile}
           heroHeading={heroHeading}
         />)}
-        <PageSection centered    buttons={moreButton}>
-          <CardHandler items={featuredEventItems} type="event" size="L" />
+        <PageSection centered alt buttons={moreButton}>
+          <CardHandler items={featuredEventItems} type="event" size="L"  />
         </PageSection>
       <>{displayCategories}</>
       <PageSection heading="At a Glance" bgImage={gridBgImage} buttons={allButton}>

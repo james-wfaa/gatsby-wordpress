@@ -34,15 +34,20 @@ const CardWrapper = styled.div`
   }
   a {
     cursor: pointer;
-    p {
-      margin: 0;
-      color: ${colors.offBlack};
-    }
-    p:not(:last-child) {
-      padding-bottom: 16px;
-    }
+    text-decoration: underline;
+    color: ${colors.bgRed};
+    
   }
-  a:hover, a:visited, a:active, a:link { color: #3c3c3c !important}
+  a:hover, a:visited, a:active { 
+    color: ${colors.linkTextHover};
+  }
+  p {
+    margin: 0;
+    color: ${colors.offBlack};
+  }
+  p:not(:last-child) {
+    padding-bottom: 16px;
+  }
   h3 {
     margin: 0;
     padding-bottom: 16px;
@@ -106,11 +111,15 @@ const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, 
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   let parsedDate = new Date(parseInt(startDate) * 1000).toLocaleDateString('en-US', options)
   let parsedTime = new Date(parseInt(startDate) * 1000).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})
+
+  const timezone = (hit?.eventDetails?.timeZoneInfoFreeText)
+    ? hit.eventDetails.timeZoneInfoFreeText
+    : ''
+  //console.log(excerpt)
   let locationString = city && state ? `| ${city}, ${state}` : null
 
   return (
     <CardWrapper className={topResult ? "topResult" : null}>
-      <Link to={url}>
         {topResult ?
         <CardHeader>
           <p>BEST BET</p>
@@ -118,15 +127,15 @@ const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, 
         : null}
         {topResult ?
         <DetailsDiv>
-          <p><span className="cardType">{type.toUpperCase()}</span></p>
-          <h3>{title}</h3>
-          <p className="datetime">{parsedDate}, {parsedTime} {locationString}</p>
+          <p><span className="cardType">EVENT</span></p>
+          <h3><Link to={url}>{title}</Link></h3>
+          <p className="datetime">{parsedDate}, {parsedTime} {timezone} {locationString}</p>
         </DetailsDiv>
         :
         <>
-          <p><span className="cardType">{type.toUpperCase()}</span></p>
-          <h3>{title}</h3>
-          <p className="datetime">{parsedDate}, {parsedTime} {locationString}</p>
+          <p><span className="cardType">EVENT</span></p>
+          <h3><Link to={url}>{title}</Link></h3>
+          <p className="datetime">{parsedDate}, {parsedTime} {timezone} {locationString}</p>
         </>
         }
         {excerpt ?
@@ -139,7 +148,6 @@ const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, 
           globalSearch
       />
         )}
-      </Link>
     </CardWrapper>
   )
 }

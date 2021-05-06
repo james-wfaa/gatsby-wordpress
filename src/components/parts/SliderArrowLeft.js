@@ -9,7 +9,7 @@ const LeftArrow = styled.div`
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 100;
+  z-index: 10;
   cursor: pointer;
   span {
     color: #fff;
@@ -20,7 +20,7 @@ const LeftArrow = styled.div`
     transform: translate(-50%, -50%) scale(1, 1.75);
   }
   display: none;
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 936px) {
     display: block !important;
   }
 `

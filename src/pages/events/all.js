@@ -2,11 +2,17 @@ import React from 'react'
 import Layout from '../../components/layout'
 import PageSection from '../../components/page-sections/PageSection'
 import AlgoliaArchivePage from '../../components/parts/AlgoliaSearch/AlgoliaArchivePage'
+import SponsorAd from "../../components/content-blocks/SponsorAd"
+
 
 
 const EventsAll = () => {
+  if (typeof window !== "undefined" && window.location.href.includes('chapters.uwalumni.com')) {
+    const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+    window.location.replace(fixedUrl)
+  }
     return (
-      <Layout title="All Events">
+      <Layout title="All Events" url="/events/all">
         <PageSection heading='All Events'>
           <AlgoliaArchivePage
             indices={[{ name: 'All' }]}
@@ -15,6 +21,7 @@ const EventsAll = () => {
             card={'Event'}
           />
         </PageSection>
+        <SponsorAd />
       </Layout>
     );
 }

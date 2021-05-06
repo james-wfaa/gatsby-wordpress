@@ -62,6 +62,7 @@ const AllEvents = () => {
                           questions
                           virtualEvent
                           trip
+                          timeZoneInfoFreeText
                         }
                         link
                         url
@@ -85,6 +86,7 @@ const AllEvents = () => {
                     registrationUrl
                     questions
                     virtualEvent
+                    timeZoneInfoFreeText
                 }
                 date(formatString: "dddd, MMM. D")
                 endDate

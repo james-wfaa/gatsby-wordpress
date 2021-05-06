@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../css-variables';
 import {
@@ -17,7 +17,6 @@ const ResultsWrapper = styled.div`
   max-width: 760px;
   margin: 0 auto;
   a {
-    text-decoration: none;
     span {
       font-family: 'Verlag A', 'Verlag B';
       color: ${colors.bgRed};
@@ -29,7 +28,6 @@ const CardResultsWrapper = styled.div`
   max-width: 1074px;
   margin: 0 auto;
   a {
-    text-decoration: none;
     span {
       font-family: 'Verlag A', 'Verlag B';
       color: ${colors.bgRed};
@@ -60,7 +58,16 @@ const TotalWrapper = (props) => {
     setFirstHit(first);
     setLastHit(last);
   };
-
+  
+  useEffect(() => {
+    if(typeof document !== "undefined"){
+      document.activeElement.blur();
+      if(firstHit !== 1){
+        document.getElementsByTagName('h3')[0].getElementsByTagName('A')[0].focus()
+      }
+    }
+  }, [firstHit]);
+  //console.log(props.cardtype)
   return (
     <>
       {/* <Searching /> */}

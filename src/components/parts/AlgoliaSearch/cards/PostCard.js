@@ -39,18 +39,20 @@ const CardWrapper = styled.div`
   }
   a {
     cursor: pointer;
-    p {
-      margin: 0;
-      color: ${colors.offBlack};
-    }
-    p:not(:last-child) {
-      padding-bottom: 16px;
-    }
-    .arrow {
-      ${mixins.arrow}
-    }
+    text-decoration: underline;
+    color: ${colors.bgRed};
+    
   }
-  a:hover, a:visited, a:active, a:link { color: #3c3c3c !important}
+  a:hover, a:visited, a:active { 
+    color: ${colors.linkTextHover};
+  }
+  p {
+    margin: 0;
+    color: ${colors.offBlack};
+  }
+  p:not(:last-child) {
+    padding-bottom: 16px;
+  }
   h3 {
     margin: 0;
     padding-bottom: 16px;
@@ -91,6 +93,9 @@ const CardWrapper = styled.div`
       }
     }
   }
+  .arrow {
+    ${mixins.arrow}
+  }
 `
 
 const CardHeader = styled.div`
@@ -107,6 +112,10 @@ const DetailsDiv = styled.div`
   padding: 16px 0 8px 0;
   margin-bottom: 24px;
 `
+const ExternalUrlDiv = styled.div`
+  font-weight: bold;
+  margin: 0 0 ${sizes.s16};
+  `
 
 const PostCard = ({ initialBlock, excerpt, title, topResult, url, categories, category, linkFormat, acfAlternatePostType, videoFormat, tags }) => {
   
@@ -121,23 +130,31 @@ const PostCard = ({ initialBlock, excerpt, title, topResult, url, categories, ca
         : null
     
     const displayCategory = categories[0].name === "Classnote"
-      ? "ALUMNI NOTES"
+      ? "ALUMNI NOTE"
       : category 
         ? category
         : altPostType 
           ? altPostType 
           : null
 
-    const finalUrl = linkFormat?.linkUrl 
+    
+    const external = linkFormat?.linkUrl
+    const finalUrl = external
       ? linkFormat.linkUrl
       : url
-
-    const target = linkFormat?.linkUrl
+    const target = external
       ? '_blank'
       : '_self'
-    const linkTitle = linkFormat?.linkUrl
+    const linkTitle = external
       ? 'Link will open in a new tab/window'
       : ''
+    let externalUrl = external
+      ? external.substring(external.indexOf('//')+2)
+      : null
+
+    if (externalUrl) {
+      externalUrl = externalUrl.substring(0, externalUrl.indexOf('/'))
+    }
 
   return (
     <CardWrapper className={topResult ? "topResult" : null}>
@@ -150,23 +167,26 @@ const PostCard = ({ initialBlock, excerpt, title, topResult, url, categories, ca
         {topResult ? (
           <DetailsDiv>
             <div className="cardType">{displayCategory}</div>
-            { linkFormat && (
-                <a href={finalUrl} title={linkTitle} target={target}><h3>{title} <span class="arrow"></span></h3></a>
+            { external && (
+                <h3><a href={finalUrl} title={linkTitle} target={target}>{title} <span className="arrow"></span></a></h3>
               )
             }
-            { !linkFormat && (
-              <Link to={finalUrl}><h3>{title}</h3></Link>
+            { !external && (
+              <h3><Link to={url}>{title}</Link></h3>
             )}
           </DetailsDiv>
         ) : (
           <>
             <div className="cardType">{displayCategory}</div>
-            { linkFormat && (
-                <a href={finalUrl} title={linkTitle} target={target}><h3>{title} <span class="arrow"></span></h3></a>
+            { external && (
+              <>
+                <h3><a href={finalUrl} title={linkTitle} target={target}>{title} <span className="arrow"></span></a></h3>
+                <ExternalUrlDiv>{externalUrl}</ExternalUrlDiv>
+              </>
               )
             }
-            { !linkFormat && (
-              <Link to={finalUrl}><h3>{title}</h3></Link>
+            { !external && (
+              <h3><Link to={url}>{title}</Link></h3>
             )}
             
           </>

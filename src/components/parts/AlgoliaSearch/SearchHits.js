@@ -25,10 +25,9 @@ const SearchHits = ({ hits, hitHandler }) => {
 
     switch (hit.type) {
       case "Trips":
-        console.log('trips')
         return (
           <TripCard
-            key={hit.url}
+            key={hit.objectID}
             hit={hit}
             type={hit.type}
             url={hit.url}
@@ -43,7 +42,7 @@ const SearchHits = ({ hits, hitHandler }) => {
       case "Events":
         return (
           <EventCard
-            key={hit.url}
+            key={hit.objectID}
             hit={hit}
             type={hit.type}
             url={hit.url}
@@ -58,7 +57,7 @@ const SearchHits = ({ hits, hitHandler }) => {
       case "Alumni Notes":
         return (
           <PostCard
-              key={hit.url}
+            key={hit.objectID}
               hit={hit}
               url={hit.url}
               title={hit.title}
@@ -70,15 +69,15 @@ const SearchHits = ({ hits, hitHandler }) => {
       case "News & Stories":
 
           const moreLinkText = hit?.linkFormat?.linkAuthor
-                        ? <span>Via {hit.linkFormat.linkAuthor} <span class="arrow"></span></span>
+                        ? <span>Via {hit.linkFormat.linkAuthor} <span className="arrow"></span></span>
                         : hit?.altPostType === "Podcast"
-                            ? <nobr>Listen <span class="arrow"></span></nobr>
+                            ? <nobr>Listen <span className="arrow"></span></nobr>
                             : hit?.urlText
                                 ? <nobr>{hit.urlText} &gt;</nobr>
                                 : <nobr>Read More &gt;</nobr>
             return (
                 <PostCard
-                    key={hit.url}
+                    key={hit.objectID}
                     hit={hit}
                     url={hit.url}
                     urlText={moreLinkText}
@@ -95,7 +94,7 @@ const SearchHits = ({ hits, hitHandler }) => {
       case "Pages":
         return (
           <PageCard
-          key={hit.url}
+          key={hit.objectID}
           hit={hit}
           url={hit.url}
           title={hit.title}
@@ -106,7 +105,7 @@ const SearchHits = ({ hits, hitHandler }) => {
         case "Chapters":
           return (
             <ChapterCard
-            key={hit.url}
+            key={hit.objectID}
             hit={hit}
             url={hit.url}
             title={hit.title}

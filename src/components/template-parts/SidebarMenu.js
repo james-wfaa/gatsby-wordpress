@@ -168,7 +168,7 @@ const SidebarMenu = ({name="Menu Title", link='/', menuItems, width, hideNews}) 
       return null
     }
     return (
-      <li>
+      <li key={item.id}>
         <a 
           href={item.path} 
           className={item.path === (typeof window !== "undefined" && window.location.pathname) || (hideNews && item.title === "Chapter News" && window.location.pathname.indexOf('news/') > -1) ? 'active': ''}

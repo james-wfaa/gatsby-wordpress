@@ -23,7 +23,7 @@ const menuItems = {
     { tag: "Upcoming Activities", url: "/events" },
     { tag: "Signature Events & Activities", url: "/signature-events" },
     { tag: "Learning & Enrichment Programs", url: "/learning" },
-    { tag: "Badger Athletic Events", url: "/athletics" },
+    { tag: "Badger Athletics Activities", url: "/athletics" },
     { tag: "Travel Tours", url: "/travel" },
   ],
   "News & Stories": [
@@ -34,7 +34,7 @@ const menuItems = {
   ],
   "Ways to Support": [
     { tag: "Advocate for the UW", url: "/advocate" },
-    { tag: "Show your Pride", url: "/show-your-pride" },
+    { tag: "Show Your Pride", url: "/show-your-pride" },
     { tag: "Get Involved", url: "/get-involved" },
     { tag: "Make a Gift", url: "/give" },
   ],
@@ -77,7 +77,7 @@ const LeftMenu = styled.div`
         border: none;
         width: 100%;
         background: none;
-        outline: none;
+        //outline: none;
         p {
           position: relative;
           padding-top: ${sizes.s24};
@@ -113,7 +113,7 @@ const RightMenu = styled.div`
 `
 
 const SocialLinks = styled.div`
-  margin-bottom: 110px;
+  margin-bottom: 130px;
   .socialLinks {
     width: 200px;
     display: flex;
@@ -128,29 +128,41 @@ const SocialLinks = styled.div`
       margin: 0 ${sizes.s16} 0 0;
 
       a {
-        display: block;
-        width: ${sizes.s24};
-        height: ${sizes.s24};
-        background-color: ${colors.iconGrey};
-        font-size:0;
-        padding:0;
-        &:hover {
-          background-color: ${colors.buttonRed};
+        span{
+          display: block;
+          width: ${sizes.s24};
+          height: ${sizes.s24};
+          background-color: ${colors.iconGrey};
+          font-size:0;
+          padding:0;
+          &:hover {
+            background-color: ${colors.buttonRed};
+          }
         }
         &.fb {
-          mask: url(${FbIcon});
+          span{
+            mask: url(${FbIcon}) no-repeat;
+          }
         }
         &.tw {
-          mask: url(${TwIcon});
+          span{
+            mask: url(${TwIcon}) no-repeat;
+          }
         }
         &.ig {
-          mask: url(${IgIcon});
+          span{
+            mask: url(${IgIcon}) no-repeat;
+          }
         }
         &.wc {
-          mask: url(${WcIcon});
+          span{
+            mask: url(${WcIcon}) no-repeat;
+          }
         }
         &.li {
-          mask: url(${LiIcon});
+          span{
+            mask: url(${LiIcon}) no-repeat;
+          }
         }
       }
     }
@@ -225,7 +237,7 @@ const PrimaryMenu2 = () => {
 
   const parentLinks = Object.keys(menuItems).map(link => {
     return (
-      <li>
+      <li key={link}>
         <button
           onMouseEnter={() => parentEnterHandler(link)}
           onClick={e => parentClickHandler(link, e)}
@@ -248,14 +260,14 @@ const PrimaryMenu2 = () => {
       let links = menuItems[select].map(link => {
         if(link.url === "https://www.uwalumnistore.com" ){
           return (
-            <li>
+            <li key={link.tag}>
               <a href={link.url} target="_blank">{link.tag}</a>
             </li>
           )
         }
         else{
           return (
-            <li>
+            <li key={link.tag}>
               <Link to={link.url}>{link.tag}</Link>
             </li>
           )
@@ -288,7 +300,7 @@ const PrimaryMenu2 = () => {
                 <Link to="/update-info">Update My Info</Link>
               </li>
               <li>
-                <Link to="/email">Log Into Email</Link>
+                <Link to="/email">Alumni Email Login</Link>
               </li>
             </ul>
             <SocialLinks>

@@ -26,11 +26,19 @@ const eventQuery = `{
           questions
           virtualEvent
           trip
+          timeZoneInfoFreeText
         }
         eventsCategories {
           nodes {
             name
             url: uri
+          }
+        }
+        products {
+          nodes {
+            name
+            slug
+            id
           }
         }
         venue {
@@ -227,6 +235,9 @@ const pageQuery = `{
       node {
       id
       title
+      blocks {
+        saveContent
+      }
       date
       link
       excerpt
@@ -279,6 +290,7 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
         date: dateTimestamp,
         startDate: startDateTimestamp,
         endDate: endDateTimestamp,
+        eventDetails: eventDetails,
         type: 'Trips',
         typeIndex: 2,
         ...rest,
@@ -291,6 +303,7 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
       date: dateTimestamp,
       startDate: startDateTimestamp,
       endDate: endDateTimestamp,
+      eventDetails: eventDetails,
       type: 'Events',
       typeIndex: 1,
       ...rest,
@@ -338,7 +351,7 @@ function pageToAlgoliaRecord({node: { id, date, link, ...rest}}) {
   return {
     objectID: id,
     type: "Pages",
-    typeIndex: 4,
+    typeIndex: 3,
     url: link,
     date: dateTimestamp,
     ...rest,
@@ -351,7 +364,7 @@ function chapterToAlgoliaRecord({node: { id, date, link, chapterDetails, ...rest
   return {
     objectID: id,
     type: "Chapters",
-    typeIndex: 3,
+    typeIndex: 4,
     url: csUrl,
     date: dateTimestamp,
     ...rest,

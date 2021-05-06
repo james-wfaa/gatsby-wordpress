@@ -71,7 +71,7 @@ function BlogPost({ data }) {
 
   
   return (
-    <Layout title={title} img={image}>
+    <Layout title={title} img={image} url={link} >
         <BreadCrumbs links={links} />
         <TitleSection heading={title} category={classCategory} date={date} smImg={(718 > size) ? image : null} size={size} largeSpace/>
         {image && size >= 718 && (

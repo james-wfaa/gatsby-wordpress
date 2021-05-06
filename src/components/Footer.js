@@ -175,7 +175,7 @@ const WfaaFooter = ({ className }) =>  (
     <div className="footer--inner"><div className="footer--border">
       <div className="footer__column footer__column--first">
         <StyledCrest>
-          <img className="wfaa-uw-crest" src={Crest} alt="" />
+          <img className="wfaa-uw-crest" src={Crest} alt="" width="73" height="73" />
         </StyledCrest>
 
         <Social className="footer--social"></Social>

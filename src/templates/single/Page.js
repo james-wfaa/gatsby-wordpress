@@ -6,6 +6,10 @@ import WpProductPage from "../../components/template-parts/wordpress-product-pag
 import WpAggregatePage from "../../components/template-parts/wordpress-aggregate-page"
 
 const Page = ({ data }) => {
+  if (typeof window !== "undefined" && window.location.href.includes('chapters.uwalumni.com')) {
+    const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+    window.location.replace(fixedUrl)
+  }
   const { page, allWp } = data
   const { template, ancestors } = page
 
@@ -53,6 +57,7 @@ export const query = graphql`
     page: wpPage(id: { eq: $id }) {
       title
       excerpt
+      link
       heroIntroSection {
         introHeading
         introExcerpt

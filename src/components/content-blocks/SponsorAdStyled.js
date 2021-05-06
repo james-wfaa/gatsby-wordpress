@@ -14,6 +14,7 @@ const StyledSponsorAd = styled.div`
       width: 536px;
       padding: 32px;
       padding-bottom: 48px;
+      margin-bottom: 128px;
     }
     @media screen and ${breakpoints.laptopS} {
         width: 1080px;

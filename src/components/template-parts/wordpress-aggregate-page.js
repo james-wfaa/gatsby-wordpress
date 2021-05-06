@@ -4,7 +4,7 @@ import HeroIntroSection from "../page-sections/HeroIntroSection"
 import WordPressContentBlocks from "../content-blocks/WordPressContentBlocks"
 
 function WordPressPage({ page }) {
-  const {  title, excerpt, featuredImage,  heroIntroSection, introButtons, products, blocks } = page
+  const {  title, excerpt, link, featuredImage,  heroIntroSection, introButtons, products, blocks } = page
   const { introButtons: buttons } = introButtons
   const { heroHeading, introExcerpt } = heroIntroSection
   const heroIntroExcerpt = (introExcerpt) ? introExcerpt : excerpt
@@ -21,7 +21,7 @@ function WordPressPage({ page }) {
   ) : null
 
   return (
-    <Layout title={title} img={featuredImage?.node}>
+    <Layout title={title} url={link} img={featuredImage?.node}>
       { featuredImage && (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}

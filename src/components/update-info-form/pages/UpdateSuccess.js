@@ -1,16 +1,17 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import PageSection from "../../page-sections/PageSection"
 import { colors } from '../../css-variables'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
-import { handleCommFormSubmit } from '../form-helpers'
+import { handleCommFormSubmit, FormGeneralError } from '../form-helpers'
 
 const UpdateSuccess = () => {
     const { state, actions } = useContext(AppContext);
     const { setCurrentStep, setCommunicationsSignUpOnchange } = actions;
     const { handleSubmit } = useForm()
+    const [generalError, setGeneralError] = useState('')
 
     useEffect(() => {
         //clear all form inputs
@@ -23,7 +24,7 @@ const UpdateSuccess = () => {
             }
         }).then(() =>{
             setCurrentStep(9)
-        }).catch(err => {alert(`An error occurred: ${err.message}`)})
+        }).catch(err => {setGeneralError(err.message)})
     }
 
     const updateOnChangeValues = (e) => {
@@ -46,10 +47,14 @@ const UpdateSuccess = () => {
             headingCompact
             content={content}
             backgroundColor={colors.formIntroBg}
+            pageTitle
             >
                 <div className="successPageIcon"></div>
             </PageSection>
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
+            {generalError && (
+              <FormGeneralError>We’re sorry, but a network issue prevented us from saving your information. Our team has been notified, but you can <a href="mailto:web@supportuw.org">contact WAA</a> if you need immediate assistance.</FormGeneralError>
+            )}
             <form className="success-page" onSubmit={handleSubmit(submitCommunicationsSignup)}>
                 <legend>Are you interested in receiving communications about any of the following?</legend>
                 <fieldset>

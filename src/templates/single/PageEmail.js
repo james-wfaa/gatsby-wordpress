@@ -9,11 +9,11 @@ import WordPressContent from "../../components/content-blocks/WordPressBasicCont
 import BackgroundImage from 'gatsby-background-image'
 import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
-
-
-
-
 const WordPressEmailPage = ({ className, data }) => {
+  if (typeof window !== "undefined" && window.location.href.includes('chapters.uwalumni.com')) {
+    const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+    window.location.replace(fixedUrl)
+  }
   const [ads] = useState(data.page.HalfPageAd.adList)
   const [currentAd, setCurrentAd] = useState(null)
   const { page } = data
@@ -32,7 +32,7 @@ const WordPressEmailPage = ({ className, data }) => {
   }, [ads])
 
   return (
-    <Layout title={title}>
+    <Layout title={title} url="/email">
       <div className={`${className}`}>
         <div className="col col--copy">
         <PageSection heading={title} leftAlign headingCompact onlyChild>
@@ -60,7 +60,6 @@ const WordPressEmailPage = ({ className, data }) => {
           </BackgroundImage>
         </div> )
       }
-
       </div>
       <PageSection
         heading="Featured News and Stories"
@@ -75,7 +74,6 @@ const WordPressEmailPage = ({ className, data }) => {
       >
           <RecentPosts />
         </PageSection>
-
     </Layout>
   )
 }
@@ -93,8 +91,6 @@ margin: 0 auto;
     text-align: left !important;
   }
 }
-
-
 .button{
   a{
     width: 100%;
@@ -128,7 +124,6 @@ margin: 0 auto;
     }
   }
 }
-
 div{
   .section-header{
     text-align: center;
@@ -178,7 +173,6 @@ div{
       }
     }
   }
-
 }
 .col--copy {
   padding-bottom: ${sizes.s58};
@@ -190,7 +184,6 @@ div{
 }
 `
 export default StyledWordPressEmailPage
-
 
 export const query = graphql`
   query email($id: String!) {
@@ -245,7 +238,6 @@ export const query = graphql`
             }
           }
         }
-
       }
     }
   }

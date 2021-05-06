@@ -37,8 +37,8 @@ function BlogPost({ data }) {
 
   const buttons = (uniqueRelatedPosts.length > 2) 
       ? [{
-          link:'/news/flamingle',
-          text: 'See All Questions'
+          link:'/news/all/?pub=flamingle',
+          text: 'See All'
       }]
       : null;
   
@@ -195,7 +195,7 @@ const questioner = askFlamingle?.abeQuestioner && askFlamingle.abeQuestioner !==
     ? askFlamingle.abeQuestioner
     : null
   return (
-    <Layout title={title} img={flamingleMasthead}>
+    <Layout title={title} url={link} img={flamingleMasthead}>
         <BreadCrumbs links={links} />
         <StyledFlamingleWrapper>
             <img className="flamingleMasthead" alt='' src={flamingleMasthead}></img>
@@ -210,8 +210,8 @@ const questioner = askFlamingle?.abeQuestioner && askFlamingle.abeQuestioner !==
               <Button link="mailto:flamingle@uwalumni.com" text="Ask A Question" external />
             </div>
             <div className="newsletterContainer">
-              <p>View <span className="italicize">The Flamingle</span> Newsletter</p> 
-              <Button link="/flamingle" text="See All Posts" external />
+              <p>More About Flamingle</p> 
+              <Button link="/flamingle" text="Learn More" external />
             </div> 
           </div>
           <PageSection id="flamingle-post-listing" heading="More From Ask Flamingle HQ" topBorder buttons={buttons}>

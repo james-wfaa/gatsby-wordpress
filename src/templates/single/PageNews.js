@@ -12,6 +12,10 @@ import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
 import SimpleSlider from "../../components/content-modules/SimpleSlider"
 
 function WordPressPage({ data }) {
+  if (typeof window !== "undefined" && window.location.href.includes('chapters.uwalumni.com')) {
+    const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+    window.location.replace(fixedUrl)
+  }
   const { page, posts, featuredPosts, tileAds } = data
   const { title, excerpt, blocks, featuredImage, heroIntroSection, storyCategories, gridDetails } = page
   const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList?.[0]
@@ -99,7 +103,7 @@ function WordPressPage({ data }) {
   const cardGridPosts = posts.nodes.slice(0,9)
   let storyCards = cardGridPosts.map((post) => {
     return (
-      <StoryCardD {...post} />
+      <StoryCardD key={post.id} {...post} />
     )
   })
   const storyCards1 = storyCards.slice(0,5)
@@ -115,7 +119,7 @@ function WordPressPage({ data }) {
       ? post.categories.nodes
       : null
     return (<StoryContentCard
-      key={post.url}
+      key={post.id}
       img={img}
       tags={products.concat(categories)}
       size="L"
@@ -125,7 +129,7 @@ function WordPressPage({ data }) {
   })
 
   return (
-    <Layout title={title} noborder img={featuredImage?.node}>
+    <Layout title={title} url="/news" noborder img={featuredImage?.node}>
       { featuredImage?.node?.localFile && (
       <HeroIntroSection
           heroImage={featuredImage.node.localFile}

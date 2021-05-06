@@ -3,8 +3,14 @@ import queryString from 'query-string'
 import Layout from '../../components/layout'
 import PageSection from '../../components/page-sections/PageSection'
 import AlgoliaArchivePage from '../../components/parts/AlgoliaSearch/AlgoliaArchivePage'
+import SponsorAd from "../../components/content-blocks/SponsorAd"
+import { navigate } from 'gatsby-link'
 
 const NewsAll = (props) => {
+    if (typeof window !== "undefined" && window.location.href.includes('chapters.uwalumni.com')) {
+        const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+        window.location.replace(fixedUrl)
+      }
     const [filterFilter, setFilterFilter] = useState("")
     const [pubFilter, setPubFilter] = useState("")
     const [productFilter, setProductFilter] = useState("")
@@ -28,8 +34,7 @@ const NewsAll = (props) => {
         setAllFilters(`type:'News & Stories' AND NOT categories.name:Classnote${filterFilter}${pubFilter}${productFilter}`)
     }, [filterFilter, pubFilter, productFilter])
 
-    let filterChange = (type, slug) => {
-
+    const filterChange = (type, slug) => {
         if (type === "filter") {
             setFilterFilter(` AND categories.slug:${slug}`)
         } else if (type === "pub") {
@@ -39,18 +44,28 @@ const NewsAll = (props) => {
         } else {
             return
         }
-      }
-
+    }
+    
+    const clearFilters = () => {
+        setFilterFilter("")
+        setPubFilter("")
+        setProductFilter("")
+        navigate('/news/all')
+    }
+    
     return (
-        <Layout title="All News and Stories">
-            <PageSection heading="All News and Stories">
+        <Layout title="All News &amp; Stories" url="/news/all">
+            <PageSection heading="All News &amp; Stories">
                 <AlgoliaArchivePage
                 indices={[{name: "All"}]}
                 results={false}
                 filters={allFilters}
                 filterChange={filterChange}
+                clearFilters={clearFilters}
+                queryString={queryString.parse(props.location.search)}
                 />
             </PageSection>
+            <SponsorAd />
         </Layout>
     )
 }

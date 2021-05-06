@@ -113,7 +113,8 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                     let combinedPosts = []
                     if (products?.nodes) {
                         products.nodes.forEach((product) => {
-                            const { slug, posts } = product 
+                            
+                            const { posts, slug } = product 
                             const postsToShow = (posts?.nodes && posts.nodes.length > 0) ? posts.nodes : null
 
                             if (postsToShow) {
@@ -124,19 +125,21 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                             }
                         })
                     }
-                    
+                    const postFilter = products?.nodes.length === 1
+                        ? `?pub=${products.nodes[0].slug}`
+                        : ''
+                
+                
                     let reducedPosts = combinedPosts.slice(0,8)
                     
                     const buttons = (reducedPosts.length > 2) 
                         ? [{
-                            link: `/posts/`,
+                            link: `/news/all/${postFilter}`,
                             text: 'See More WAA Stories'
                         }]
                         : null
                     RenderedBlocks.push(<PageSection id="post-listing" heading="WAA Stories" topBorder={forceBorderTop} stagger={stagger} buttons={buttons}><CardHandler items={reducedPosts} type="news" size="M" /></PageSection>)    
-                } else {
-                    //console.log('no product found')
-                }
+                } 
                 
                 break
             case "acf/events-listing-section":
@@ -152,19 +155,20 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                                     if(!combinedEvents.find(element => element.url === eventToShow.url)){
                                         combinedEvents.push(eventToShow)
                                     } 
-  
                                 })
                             }
                         })
                     }
+                    combinedEvents.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
+                    const reducedEvents = combinedEvents.slice(0,9)
                     
                     const buttons = (combinedEvents.length > 2) 
                         ? [{
-                            link: `/events/`,
+                            link: `/events/all`,
                             text: 'See More Events'
                         }]
                         : null
-                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" topBorder={forceBorderTop} stagger={stagger} buttons={buttons}><CardHandler items={combinedEvents} size="M" type="event"/></PageSection>)
+                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" topBorder={forceBorderTop} stagger={stagger} buttons={buttons}><CardHandler items={reducedEvents} size="M" type="event"/></PageSection>)
                 }
                 break
                 case "acf/note-listing":

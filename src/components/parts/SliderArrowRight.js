@@ -19,7 +19,7 @@ const RightArrow = styled.div`
     transform: translate(-50%, -50%) scale(1, 1.75);
   }
   display: none;
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 936px) {
     display: block !important;
   }
 `

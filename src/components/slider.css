@@ -73,7 +73,7 @@
   transform: translateX(-50%);
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 936px) {
     .slick-arrow {
         display: block !important;
     }

@@ -2,16 +2,12 @@ import React, { useState } from 'react'
 import { colors, mixins, sizes, breakpoints } from '../css-variables'
 import styled from 'styled-components'
 import EventLinksBlock from "./EventLinks"
-
-
 import Button from '../parts/Button'
 import { convertTime, compareDate } from "../../utils/tools"
 import GenericModal from '../content-modules/GenericModal'
 
 
-const EventRegistration = ({className, date, startDate, endDate, venue, cost, organizers, eventDetails, priceDetails, calendarLinks, showMapLink}) => {
-
-    console.log(calendarLinks)
+const EventRegistration = ({className, date, startDate, endDate, timezone, venue, cost, organizers, eventDetails, priceDetails, calendarLinks, showMapLink}) => {
 
     const { virtualEvent } = eventDetails
     const classesList = `${className}`;
@@ -61,6 +57,10 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
       setShow(!currentshow)
       //console.log("Is Shown" + show);
     }
+    let datetime = convertTime(startDate, endDate)
+    if (timezone) {
+        datetime = `${datetime} ${timezone}`
+    }
 
     return(
         <div className={classesList}>
@@ -85,7 +85,7 @@ const EventRegistration = ({className, date, startDate, endDate, venue, cost, or
             <div className="regWrapper">
                 <div className="subHeader">WHEN</div>
                 <div>{calcDate(startDate)}</div>
-                <div className="dateTime" dangerouslySetInnerHTML={{ __html: convertTime(startDate, endDate) }}></div>
+                <div className="dateTime" dangerouslySetInnerHTML={{ __html: datetime }}></div>
                 <a href="#" alt="Add to Calendar" onClick={() => handleModal()}>Add to Calendar</a>
                 { addressString && (
                     <div className="subHeader">WHERE</div>

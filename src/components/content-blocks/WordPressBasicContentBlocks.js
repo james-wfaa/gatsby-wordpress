@@ -62,7 +62,7 @@ const WordPressContentBlocks = ({className, blocks, content, eventCategory, stag
               <Column className={block.name.replace("/", "-")} block={block} key={`${block.name}{${block.originalContent}`} />
             )
           case "core/buttons":
-            if (block.innerBlocks && block.innerBlocks[0]?.originalContent) {
+            if (block?.innerBlocks?.[0]?.originalContent) {
               let innerRenderedBlocks = []
               block.innerBlocks.forEach(innerBlock => {
                 innerRenderedBlocks.push(
@@ -288,6 +288,11 @@ h2 {
 
 .wp-block-embed{
   margin-bottom: 26px;
+}
+.advocacy-embed {
+  iframe:nth-of-type(2) {
+      display: none;
+  }
 }
 
 `

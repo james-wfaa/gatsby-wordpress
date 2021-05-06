@@ -30,7 +30,7 @@ const RenderedSponsors = (sponsors) ? sponsors.map((sponsor) => {
 const eventbutton = [
   {
     link: "/events/all",
-    text: "All Events",
+    text: "See All WAA Events",
   },
 ]
 const featuredbutton = [
@@ -39,7 +39,7 @@ const featuredbutton = [
     text: "See all news and stories",
   },
 ]
-const { title,  excerpt, wpChildren, featuredImage, groups } = page
+const { title, link, excerpt, wpChildren, featuredImage, groups } = page
 
 const imageWidth = featuredImage?.node?.mediaDetails?.width
   ? featuredImage.node.mediaDetails.width
@@ -88,7 +88,7 @@ const imageWidth = featuredImage?.node?.mediaDetails?.width
   const eventsToShow = (groups?.nodes && groups?.nodes[0]?.events.nodes) ? groups?.nodes[0]?.events.nodes : null
   const social = thisChapter?.chapterDetails ? thisChapter : null
   return (
-    <Layout title={title} img={featuredImage?.node}>
+    <Layout title={title} url={link} img={featuredImage?.node}>
       <PageSection
         heading={title}
         excerpt={chapterTypeText()}

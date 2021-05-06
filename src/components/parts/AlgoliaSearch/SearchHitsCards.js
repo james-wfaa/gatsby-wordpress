@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import parse from 'html-react-parser';
 import ContentCard from '../../content-blocks/ContentCard'
 import EventContentCard from '../../content-blocks/EventContentCard'
 import { breakpoints } from '../../css-variables'
@@ -45,6 +46,7 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
         switch (hit.type) {
             case 'Events':
             case 'Trips':
+                console.log(hit)
                 return (
                     <EventContentCard
                         key={hit.objectID}
@@ -53,6 +55,7 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                         title={hit.title}
                         category={hit.category}
                         venue={hit.venue}
+                        eventDetails={hit.eventDetails}
                         location={hit.location}
                         img={
                             hit.featuredImage?.node?.localFile
@@ -66,13 +69,21 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                         }
                         alt={hit.alt}
                         url={hit.url}
-                        //size={!hit.featuredEvent ? 'Wide' : 'XXL'}
+                        products={hit.products}
+                        excerpt={hit.excerpt}
                         size='Wide'
                         filterChange={filterChange}     
                     />
                 )
-            case 'News & Stories':
-                if (hit?.categories[0]?.name === 'Classnote') {
+            case 'Alumni Notes':
+                let parsedNote = parse(hit.content, { trim: true })
+                const renderedExcerpt = hit?.excerpt && hit.excerpt !== ''
+                        ? hit.excerpt
+                        : parsedNote?.props?.children
+                            ? parsedNote.props.children
+                            : null
+
+               
                     return (
                         <ContentCard
                             key={hit.url}
@@ -83,14 +94,19 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                             initialBlock={hit.excerpt}
                             img={hit?.featuredImage?.node?.localFile}
                             categories={hit.categories}
+                            category="Alumni Note"
+                            excerpt={renderedExcerpt}
                             filterChange={filterChange}
                         />
                     )
-                } else {
+                
+            case 'News & Stories':
+            
+                
                     const moreLinkText = hit?.linkFormat?.linkAuthor
-                        ? <span>Via {hit.linkFormat.linkAuthor} <span class="arrow"></span></span>
+                        ? <span>Via {hit.linkFormat.linkAuthor} <span className="arrow"></span></span>
                         : hit?.altPostType === "Podcast"
-                            ? <nobr>Listen <span class="arrow"></span></nobr>
+                            ? <nobr>Listen <span className="arrow"></span></nobr>
                             : hit?.urlText
                                 ? <nobr>{hit.urlText} &gt;</nobr>
                                 : <nobr>Read More &gt;</nobr>
@@ -112,7 +128,7 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                             filterChange={filterChange}
                         />
                     )
-                }
+                
             default:
                 return null
         }

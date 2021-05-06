@@ -334,6 +334,7 @@ const StyledPageSection = styled(PageSection)`
         > .core-columns,
         > .core-separator,
         > .embed-block,
+        > * > .embed-block,
         > .StaffSearch,
         > .gravityforms-form,
         > .acf-accordion-navigation,

@@ -6,10 +6,11 @@ import {
     Configure,
     ScrollTo,
 } from 'react-instantsearch-dom'
-import { colors } from '../../css-variables'
+import { colors, sizes, mixins } from '../../css-variables'
 import AccordianSearchBoxAlgolia from './AccordianSearchBoxAlgolia'
 import SearchPageResults from './SearchPageResults'
 import AlgoliaPagination from './AlgoliaPagination'
+
 
 const StyledWrapper = styled.div`
   .ais-Pagination--noRefinement {
@@ -19,6 +20,27 @@ const StyledWrapper = styled.div`
     display: none;
   }
 `
+const QueryDiv = styled.div`
+
+`
+
+const FilterText = styled.div`
+margin-bottom: ${sizes.s32};
+`
+
+const FilterButton = styled.button`
+  ${mixins.buttons}
+  
+  background-color: transparent !important;
+  //padding-left: ${sizes.s36};
+  border: none;
+  
+  &:hover {
+    background-color: ${colors.buttonRed} !important;
+  }
+  cursor: pointer;
+`
+
 
 const SelectionsWrapper = styled.div`
     padding-top: 58px;
@@ -35,7 +57,7 @@ const AlgoliaArchivePage = props => {
         process.env.GATSBY_ALGOLIA_SEARCH_KEY,
     )
     //
-
+    
     return (
       <StyledWrapper>
         <div>
@@ -52,6 +74,21 @@ const AlgoliaArchivePage = props => {
                   onFocus={() => setFocus(true)}
                   hasFocus={hasFocus}
                 />
+                {(props?.queryString?.filter || props?.queryString?.pub || props?.queryString?.product) && 
+                <QueryDiv>
+                  {props?.queryString?.filter &&
+                    <FilterText><span>Results filtered by:</span> "{props.queryString.filter.replace('-',' ')}"</FilterText>
+                  }
+                  {props?.queryString?.pub &&
+                    <FilterText><span>Results filtered by:</span> "{props.queryString.pub.replace('-',' ')}"</FilterText>
+                  }
+                  {props?.queryString?.product &&
+                    <FilterText><span>Results filtered by:</span> "{props.queryString.product.replace('-',' ')}"</FilterText>
+                  }
+                  <FilterButton className="alt altborder" onClick={props.clearFilters}>Clear Filter</FilterButton>
+                </QueryDiv>
+                }
+                
               </SelectionsWrapper>
             </ScrollTo>
             <SearchPageResults

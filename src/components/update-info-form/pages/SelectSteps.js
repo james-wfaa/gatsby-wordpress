@@ -59,6 +59,7 @@ const SelectSteps = () => {
             heading='Update My Info'
             headingCompact
             backgroundColor={colors.formIntroBg}
+            pageTitle
             />
             <form className="select-steps" onSubmit={handleSubmit(handleSubmit)}>
                 <fieldset>

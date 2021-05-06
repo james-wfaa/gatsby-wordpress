@@ -312,22 +312,26 @@ export const mixins = {
              background-color: ${colors.bgWhite};
          }
      }
-     &--alt {
+     &--alt,
+     &.alt {
         color: ${colors.buttonRed};
         background-color: ${colors.titleWhite};
         &:hover {
-            color: ${colors.buttonActiveGrey};
-            background-color: ${colors.bgActiveGrey};
-            border: 1px solid ${colors.bgWhite};
+            color: ${colors.titleWhite};
+            background-color: ${colors.buttonRed};
         }
         &:active {
             color: ${colors.buttonActiveGrey};
-            background-color: ${colors.bgWhite};
+            background-color: ${colors.bgActiveGrey};
         }
 
      }
-     &--altborder {
+     &--altborder,
+     &.altborder {
         border: 1px solid ${colors.buttonRed};
+        &:active {
+            border: 1px solid ${colors.buttonActiveGrey};
+        }
      }
      &--disabled {
         pointer-events: none;
@@ -1021,6 +1025,9 @@ export const mixins = {
                 }
                 .columnwrap {
                     flex:1;
+                }
+                .venuewrap {
+                    margin-bottom: ${sizes.s24};
                 }
     
             }

@@ -20,7 +20,8 @@ const FieldBuilder = ({
     register,
     errors,
     setValue,
-    onChange
+    onChange,
+    recaptchaRef
 }) => {
     //console.log(formData)
     const [fieldValues, setfieldValues] = useState({});
@@ -204,6 +205,7 @@ const FieldBuilder = ({
                         register={register}
                         setValue={setValue}
                         wrapClassName={inputWrapperClass}
+                        recaptchaRef={recaptchaRef}
                     />
                 )
             // Start with the standard fields
@@ -299,7 +301,7 @@ const FieldBuilder = ({
                 //console.log(fieldData)
                 return (
                     <Name
-                        errors={errors[inputName]}
+                        errors={errors}
                         fieldData={fieldData}
                         key={field.id}
                         name={inputName}
@@ -319,7 +321,7 @@ const FieldBuilder = ({
                 
                 return (
                     <Address
-                        errors={errors[inputName]}
+                        errors={errors}
                         fieldData={fieldData}
                         key={field.id}
                         name={inputName}

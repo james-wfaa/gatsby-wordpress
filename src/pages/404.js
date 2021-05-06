@@ -4,6 +4,10 @@ import styled from 'styled-components'
 import {sizes, colors, fonts, breakpoints} from '../components/css-variables'
 
 const Page404 = () => {
+    if (typeof window !== "undefined" && window.location.href.includes('chapters.uwalumni.com')) {
+        const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+        window.location.replace(fixedUrl)
+      }
 
     const OuterWrapper = styled.div`
         margin:100px auto 50px;
@@ -39,7 +43,7 @@ const Page404 = () => {
     
     `
     return(
-        <Layout title="404 - Item Not Found">
+        <Layout title="404 - Item Not Found" url="/404">
             <OuterWrapper>
                 <h1>Oops, Something Went Wrong</h1>
                 <p>The page you were looking for was not found. Maybe the page has moved. Or, the address is outdated. Was the URL typed correctly? 

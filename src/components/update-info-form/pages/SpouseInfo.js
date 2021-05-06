@@ -1,6 +1,6 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { useForm } from "react-hook-form"
-import { StyledError, currentYear, handleFormSubmit } from '../form-helpers'
+import { StyledError, handleFormSubmit, FormGeneralError } from '../form-helpers'
 import PageSection from '../../page-sections/PageSection'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
@@ -10,8 +10,9 @@ import { AppContext } from "../../../context/AppContext"
 const SpouseInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setSpouseInfoOnchange } = actions;
+  const [generalError, setGeneralError] = useState('')
 
-  const { register, handleSubmit, errors, formState: { submitCount }} = useForm()
+  const { register, handleSubmit, errors, formState: { submitCount }} = useForm({mode : 'onChange'})
   const submitForm = data =>{
     handleFormSubmit(state).then((returnedData) =>{
       if(returnedData.is_valid === false){
@@ -23,7 +24,7 @@ const SpouseInfo = () => {
       let currentPlaceInOrder = currentOrder.indexOf(currentStep)
       let nextStep = currentOrder[currentPlaceInOrder + 1]
       setCurrentStep(nextStep)
-    }).catch(err => {alert(`An error occurred: ${err.message}`)})
+    }).catch(err => {setGeneralError(err.message)})
   }
   const updateOnChangeValues = (e) => {
     if(e.target.type === 'checkbox'){
@@ -41,8 +42,12 @@ const SpouseInfo = () => {
               heading='Update My Info'
               headingCompact
               backgroundColor={colors.formIntroBg}
+              pageTitle
             />
             <ProgressBar progress={state.numberOfSteps} currentStep={state.currentStep}/>
+            {generalError && (
+              <FormGeneralError>We’re sorry, but a network issue prevented us from saving your information. Our team has been notified, but you can <a href="mailto:web@supportuw.org">contact WAA</a> if you need immediate assistance.</FormGeneralError>
+            )}
             <form id="spouseInfo" onSubmit={handleSubmit(submitForm)} className="spouse-info">
             { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
               <legend>Spouse/Partner<span className="requiredInfo">*Required Information</span></legend>
@@ -57,10 +62,14 @@ const SpouseInfo = () => {
                     defaultValue={state.spouseInfo.spouseFirstname}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      required: { value: true, message: "Phone is required" },
+                      required: { value: true, message: "First name is required" },
                       maxLength: {
                         value: 50,
                         message: "First name must be less than 50 characters",
+                      },
+                      pattern: {
+                        value: /^[a-zA-Z' -]+$/,
+                        message: 'Name can only contain letters, hyphens and apostrophes.',
                       },
                     })}
                 />
@@ -79,10 +88,14 @@ const SpouseInfo = () => {
                     defaultValue={state.spouseInfo.spouseLastname}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
-                      required: { value: true, message: "Phone is required" },
+                      required: { value: true, message: "Last name is required" },
                       maxLength: {
                         value: 50,
                         message: "Last name must be less than 50 characters",
+                      },
+                      pattern: {
+                        value: /^[a-zA-Z' -]+$/,
+                        message: 'Name can only contain letters, hyphens and apostrophes.',
                       },
                     })}
                 />
@@ -102,9 +115,9 @@ const SpouseInfo = () => {
                     onChange={e => updateOnChangeValues(e)}
                     placeholder="YYYY"
                     ref={register({
-                      validate: {
+                      /*validate: {
                         validYear: value => value > 1847 && value <= currentYear,
-                      },
+                      },*/
                       maxLength: {
                         value: 4,
                         message: "Must be 4 characters or less",
@@ -118,6 +131,9 @@ const SpouseInfo = () => {
                 {errors.spouseUndergrad && (
                   <StyledError>{errors.spouseUndergrad.message}</StyledError>
                 )}
+                {errors && errors.spouseUndergrad?.type === 'validYear' && (
+                  <StyledError>Must be a valid year.</StyledError>
+                )}
               </label>
               <label htmlFor="spousePostgrad" className="smallThird leftMargin">UW Postgraduate Year(s)
                 {errors.spousePostgrad && (
@@ -127,9 +143,14 @@ const SpouseInfo = () => {
                     type="text"
                     name="spousePostgrad"
                     id="spousePostgrad"
+                    maxLength="51"
                     defaultValue={state.spouseInfo.spousePostgrad}
                     onChange={e => updateOnChangeValues(e)}
                     ref={register({
+                      maxLength: {
+                        value: 50,
+                        message: "Cannot be more than 50 characters",
+                      },
                     })}
                 />
               </label></div>) : null }

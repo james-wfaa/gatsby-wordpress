@@ -6,7 +6,6 @@ const EventContentCard = ({
   startDate,
   endDate, 
   title, 
-  eventCategories,
   products,
   eventDetails,
   venue, 
@@ -19,6 +18,8 @@ const EventContentCard = ({
   caption, 
   tags, 
   size }) => {
+
+    //console.log(excerpt)
 
     const label = (products?.nodes?.[0]?.name )? products.nodes[0].name : null
     const virtualEvent = eventDetails?.virtualEvent

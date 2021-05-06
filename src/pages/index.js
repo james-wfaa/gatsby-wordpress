@@ -29,11 +29,15 @@ const featuredbutton = [
 const heroOverlayHeading = `<span>Badger</span> ON`
 
 const HomePage = ({ data }) => {
+  if (typeof window !== "undefined" && window.location.href.includes('chapters.uwalumni.com')) {
+    const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+    window.location.replace(fixedUrl)
+  }
   const { featuredPosts, tileAds } = data
   const adList = tileAds?.nodes?.[0]?.siteOptions?.TileAds?.adList?.[0]
     ? tileAds.nodes[0].siteOptions.TileAds.adList
     : null
-  const [ads, setAds] = useState(adList)
+  const [ads] = useState(adList)
   const [currentAd, setCurrentAd] = useState(null)
 
 
@@ -91,7 +95,7 @@ const HomePage = ({ data }) => {
     
   })
   return (
-    <Layout title="Wisconsin Alumni Association &ndash; Where Badgers Belong" plaintitle noborder>
+    <Layout title="Wisconsin Alumni Association &ndash; Where Badgers Belong" url="/" plaintitle noborder>
       <HeroIntroSection
           heroImage={data.homeBg}
           videoURL="https://player.vimeo.com/external/523946487.hd.mp4?s=65ae00f23e75bb574174a88ea656c8079cade0fa&profile_id=175"

@@ -4,6 +4,11 @@ import Layout from "../../components/layout"
 
 
 function WpChapter({ data }) {
+  if (typeof window !== "undefined" && window.location.href.includes('chapters.uwalumni.com')) {
+
+    const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+    window.location.replace(fixedUrl)
+  }
   return (
     <Layout>
       chapter

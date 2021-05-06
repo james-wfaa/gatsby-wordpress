@@ -13,26 +13,25 @@ const CardSet = ({className, items, children, num, size="M", type="news" }) => {
         : size
 
     let cards = (children)
-    ? children.map((child) => {
-        return (<div dangerouslySetInnerHTML={{__html: child}} />)
-    })
-    : limitedItems.map((item) => {
-        const { featuredImage: img } = item
-        const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
-        
-        const resolvedUrl = item?.link
-            ? item.link
-            : item.url
-        return (type === "news" )
-            ? (<StoryContentCard key={item.id} size={resolvedSize} img={cardImg} {...item} />) 
-            : (<EventContentCard key={item.id} size={size} img={cardImg} {...item} url={resolvedUrl} />)
-            
-            
+        ? children.map((child) => {
+            return (<div key={child.id} dangerouslySetInnerHTML={{__html: child}} />)
         })
+        : limitedItems.map((item) => {
+            const { featuredImage: img } = item
+            const cardImg = (img && img.node && img.node.localFile) ? img.node.localFile : null
+            
+            const resolvedUrl = item?.link
+                ? item.link
+                : item.url
+            return (type === "news" )
+                ? (<StoryContentCard key={item.id || item.title} size={resolvedSize} img={cardImg} {...item} />) 
+                : (<EventContentCard key={item.id || item.databaseId || item.title} size={size} img={cardImg} {...item} url={resolvedUrl} />)
+                
+                
+            })
     
     return (
-        <div className={`cardset ${className}`}>{cards}
-        </div>
+        <div className={`cardset ${className}`}>{cards}</div>
     )
 }
 
