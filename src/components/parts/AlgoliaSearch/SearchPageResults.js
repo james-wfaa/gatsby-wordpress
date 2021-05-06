@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../css-variables';
 import {
@@ -52,6 +52,15 @@ const TotalWrapper = (props) => {
     setFirstHit(first);
     setLastHit(last);
   };
+  
+  useEffect(() => {
+    if(typeof document !== "undefined"){
+      document.activeElement.blur();
+      if(firstHit !== 1){
+        document.getElementsByTagName('h3')[0].getElementsByTagName('A')[0].focus()
+      }
+    }
+  }, [firstHit]);
   //console.log(props.cardtype)
   return (
     <>
