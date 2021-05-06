@@ -1300,6 +1300,10 @@
         "toPath": "/founders-day/"
    	},
     {
+        "fromPath": "/events/founders-day/",
+        "toPath": "/founders-day/"
+   	},
+    {
         "fromPath": "/foxvalley/",
         "toPath": "/groups/foxvalley/"
    	},
@@ -1684,9 +1688,13 @@
         "toPath": "/homecoming/"
    	},
     {
+        "fromPath": "/memberbenefits",
+        "toPath": "/membership/for-members/"
+   	},
+    {  
         "fromPath": "/membership/2020grad/",
         "toPath": "/membership/new-grad/"
-   	},
+    },
     {
         "fromPath": "/membership/admission-sports/",
         "toPath": "/membership/for-members"
