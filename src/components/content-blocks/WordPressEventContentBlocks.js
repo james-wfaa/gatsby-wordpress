@@ -10,6 +10,7 @@ import SocialShareLinks from "../parts/SocialShareLinks"
 import Button from "../parts/Button"
 import GenericModal from '../content-modules/GenericModal'
 import Block from './WordPressBlock'
+import { Tag } from '@chakra-ui/core';
 
 
 
@@ -56,27 +57,31 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
              * 3) point the ical link at the WordPress URL so the download works correctly
              * */ 
 
-            tag.props.children.forEach((child) => {
-                if (child.props.className.includes('tribe-block__events-gcal')) {
-                    console.log(child.props.children.props.href)
-                    var clonedElementWithMoreProps = React.cloneElement(
-                        child.props.children, 
-                        { 
-                            target: "_blank",
-                            href: child.props.children.props.href.replace(/(uwalumni|uwalumstaging|uwalumdev).wpengine.com/g, 'uwalumni.com')
-                        }
-                    )
-                    modifiedChildren.push(clonedElementWithMoreProps)
-                }
-                if (child.props.className.includes('tribe-block__-events-ical')) {
-                    var clonedElementWithMoreProps = React.cloneElement(
-                        child.props.children, 
-                        { href: `https://uwalumni.wpengine.com${child.props.children.props.href}` }
-                    )
-                    modifiedChildren.push(clonedElementWithMoreProps)
-                }
-
-            })
+            const arrayChildren = (Array.isArray(tag.props.children))
+                ? tag.props.children
+                : [tag.props.children]
+                
+                arrayChildren.forEach((child) => {
+                    if (child.props.className.includes('tribe-block__events-gcal')) {
+                        console.log(child.props.children.props.href)
+                        var clonedElementWithMoreProps = React.cloneElement(
+                            child.props.children, 
+                            { 
+                                target: "_blank",
+                                href: child.props.children.props.href.replace(/(uwalumni|uwalumstaging|uwalumdev).wpengine.com/g, 'uwalumni.com')
+                            }
+                        )
+                        modifiedChildren.push(clonedElementWithMoreProps)
+                    }
+                    if (child.props.className.includes('tribe-block__-events-ical')) {
+                        var clonedElementWithMoreProps = React.cloneElement(
+                            child.props.children, 
+                            { href: `https://uwalumni.wpengine.com${child.props.children.props.href}` }
+                        )
+                        modifiedChildren.push(clonedElementWithMoreProps)
+                    }
+                })
+            
             parsedEventLinks = React.cloneElement(
                 tag,
                 { children: modifiedChildren }

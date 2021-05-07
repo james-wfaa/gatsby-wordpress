@@ -31,7 +31,7 @@ function FilledHelmet({title, plaintitle, img, desc, url}) {
       {cleanDesc &&
         <meta name="twitter:description" content={cleanDesc} />
       }
-      <meta property="og:title" content={`${title} | Wisconsin Foundation & Alumni Association`} />
+      <meta property="og:title" content={`${title} | Wisconsin Alumni Association`} />
       {url &&
       <meta property="og:url" content={`${fullhostname}${url}`} />
       }
