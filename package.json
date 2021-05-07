@@ -8,7 +8,6 @@
     "email": "tyler@gatsbyjs.com"
   },
   "dependencies": {
-    "@chakra-ui/core": "^0.8.0",
     "add": "^2.0.6",
     "algoliasearch": "^4.8.5",
     "axios": "^0.21.1",
