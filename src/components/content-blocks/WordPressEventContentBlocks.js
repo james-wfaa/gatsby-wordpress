@@ -10,9 +10,6 @@ import SocialShareLinks from "../parts/SocialShareLinks"
 import Button from "../parts/Button"
 import GenericModal from '../content-modules/GenericModal'
 import Block from './WordPressBlock'
-import { Tag } from '@chakra-ui/core';
-
-
 
 const WordPressEventContentBlocks = ({className, date, startDate, endDate, link, venue, cost, organizers, title, eventDetails, blocks, content}) => {
     //console.log('WordPressEventContentBlocks - blocks:',blocks)
