@@ -256,7 +256,7 @@ module.exports = {
           }
         }
       `,
-        resolveSiteUrl: () => this.siteMetadata.siteUrl,
+        resolveSiteUrl: () => 'https://www.uwalumni.com',
         resolvePages: ({
           allSitePage: { nodes: allPages },
           allWpContentNode: { nodes: allWpNodes },
