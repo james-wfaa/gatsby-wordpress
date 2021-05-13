@@ -229,55 +229,89 @@ module.exports = {
       options: {
         query: `
         {
+          site {
+            siteMetadata {
+              siteUrl
+            }
+          }
           allSitePage {
             nodes {
               path
             }
           }
-          allWpContentNode(filter: {nodeType: {in: ["Post", "Page", "Event", "Classnote"]}}) {
+          allWpPage {
             nodes {
-              ... on WpPost {
-                uri
-                modifiedGmt
-              }
-              ... on WpPage {
-                uri
-                modifiedGmt
-              }
-              ... on WpEvent {
-                uri
-                modifiedGmt
-              }
-              ... on WpClassnote {
-                uri
-                modifiedGmt
-              }
+              slug
+              modified
+            }
+          }
+          allWpPost {
+            nodes {
+              slug
+              modified
+            }
+          }
+          allWpEvent {
+            nodes {
+              slug
+              modified
+            }
+          }
+          allWpClassnote {
+            nodes {
+              slug
+              modified
             }
           }
         }
-      `,
-        resolveSiteUrl: () => 'https://www.uwalumni.com',
-        resolvePages: ({
-          allSitePage: { nodes: allPages },
-          allWpContentNode: { nodes: allWpNodes },
+        `,
+        resolveSiteUrl: ({ site }) => {
+          //Alternatively, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
+          return site.siteMetadata.siteUrl
+        },
+        serialize: ({
+          site,
+          allSitePage,
+          allWpEvent,
+          allWpClassnote,
+          allWpPost,
+          allWpPage,
         }) => {
-          const wpNodeMap = allWpNodes.reduce((acc, node) => {
-            const { uri } = node
-            acc[uri] = node
-
-            return acc
-          }, {})
-
-          return allPages.map(page => {
-            return { ...page, ...wpNodeMap[page.path] }
+          // https://www.gatsbyjs.com/blog/fs-route-api/ FAQs about pageContext
+          // turn fetch feature post and pages data to arrays of their slugs
+          const events = allWpEvent.nodes.map((f) => f.slug)
+          const classnotes = allWpClassnote.nodes.map((f) => f.slug)
+          const posts = allWpPost.nodes.map((p) => p.slug)
+          const pages = allWpPage.nodes.map((p) => p.slug)
+          return allSitePage.nodes.map((node) => {
+            let change = new Date()
+            // grab just the slug part of any feature or blog prefixed page
+            const slug = node.path.split(`/`)[2]
+            // this grab un-prefixed page slugs
+            const pageSlug = node.path.split(`/`)[1]
+            const eventIndex = events.indexOf(slug)
+            const classnoteIndex = classnotes.indexOf(slug)
+            const postIndex = posts.indexOf(slug)
+            const pageIndex = pages.indexOf(pageSlug)
+            // check if the current nodes slug appears in any of the array
+            // if so set the change variable to that page's modified data
+            if (eventIndex >= 0) {
+              change = allWpEvent.nodes[eventIndex].modified
+            } else if (postIndex >= 0) {
+              change = allWpPost.nodes[postIndex].modified
+            } else if (classnoteIndex >= 0) {
+              change = allWpClassnote.nodes[classnoteIndex].modified
+            } else if (pageIndex >= 0) {
+              change = allWpPage.nodes[pageIndex].modified
+            }
+            // if nothing found then the default of build time date is used.
+            return {
+              url: `${site.siteMetadata.siteUrl}${node.path}`,
+              lastmod: `${change}`,
+            }
           })
-        },
-        serialize: ({ path, modifiedGmt }) => {
-          return {
-            url: path,
-            lastmod: modifiedGmt,
-          }
-        },
+        }
+        
       },
     },
     {
