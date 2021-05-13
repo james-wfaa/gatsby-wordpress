@@ -285,7 +285,7 @@ module.exports = {
           const allNodes = {
             nodes: allWpEvent.nodes.concat(allWpClassnote.nodes, allWpPost.nodes, allWpPage.nodes)
           }
-          return allNodes.map((node) => {
+          return allNodes.nodes.map((node) => {
             //let change = new Date()
             //let matched = false
             // grab just the slug part of any feature or blog prefixed page
