@@ -242,24 +242,28 @@ module.exports = {
           allWpPage {
             nodes {
               slug
+              uri
               modified
             }
           }
           allWpPost {
             nodes {
               slug
+              uri
               modified
             }
           }
           allWpEvent {
             nodes {
               slug
+              uri
               modified
             }
           }
           allWpClassnote {
             nodes {
               slug
+              uri
               modified
             }
           }
@@ -279,36 +283,44 @@ module.exports = {
         }) => {
           // https://www.gatsbyjs.com/blog/fs-route-api/ FAQs about pageContext
           // turn fetch feature post and pages data to arrays of their slugs
-          const events = allWpEvent.nodes.map((f) => f.slug)
-          const classnotes = allWpClassnote.nodes.map((f) => f.slug)
-          const posts = allWpPost.nodes.map((p) => p.slug)
-          const pages = allWpPage.nodes.map((p) => p.slug)
+          const events = allWpEvent.nodes.map((f) => f.uri)
+          const classnotes = allWpClassnote.nodes.map((f) => f.uri)
+          const posts = allWpPost.nodes.map((p) => p.uri)
+          const pages = allWpPage.nodes.map((p) => p.uri)
           return allSitePage.nodes.map((node) => {
             let change = new Date()
+            let matched = false
             // grab just the slug part of any feature or blog prefixed page
             const slug = node.path.split(`/`)[2]
+            const path = node.path
             // this grab un-prefixed page slugs
             const pageSlug = node.path.split(`/`)[1]
-            const eventIndex = events.indexOf(slug)
-            const classnoteIndex = classnotes.indexOf(slug)
-            const postIndex = posts.indexOf(slug)
-            const pageIndex = pages.indexOf(pageSlug)
+            const eventIndex = events.indexOf(path)
+            const classnoteIndex = classnotes.indexOf(path)
+            const postIndex = posts.indexOf(path)
+            const pageIndex = pages.indexOf(path)
             // check if the current nodes slug appears in any of the array
             // if so set the change variable to that page's modified data
             if (eventIndex >= 0) {
               change = allWpEvent.nodes[eventIndex].modified
+              matched = true
             } else if (postIndex >= 0) {
               change = allWpPost.nodes[postIndex].modified
+              matched = true
             } else if (classnoteIndex >= 0) {
               change = allWpClassnote.nodes[classnoteIndex].modified
+              matched = true
             } else if (pageIndex >= 0) {
               change = allWpPage.nodes[pageIndex].modified
+              matched = true
             }
             // if nothing found then the default of build time date is used.
-            return {
+            return (matched) 
+              ? ({
               url: `${site.siteMetadata.siteUrl}${node.path}`,
               lastmod: `${change}`,
-            }
+            })
+            : null
           })
         }
         
