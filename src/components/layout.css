@@ -621,3 +621,30 @@ pre tt:before,
 pre tt:after {
   content: "";
 }
+.rbc-toolbar{
+  margin-bottom: 28px !important;
+  margin-top: 36px !important;
+}
+.rbc-toolbar-label{
+  font-size:46px;
+  color:#C5050C;
+}
+.rbc-event{
+  border-radius: 0 !important;
+  border-left: 2px solid #C5050C !important;
+  background-color: #F2F2F2 !important;
+  color: #C5050C !important;
+  margin:5% !important;
+  width: 90% !important;
+}
+.rbc-event-content{
+  white-space: pre-wrap !important;
+  height: 75px;
+}
+.rbc-row-content{
+  overflow:auto;
+}
+.rbc-today{
+  border: 1px solid #C5050C !important;
+  background-color: unset !important;
+}

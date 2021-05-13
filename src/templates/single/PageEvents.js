@@ -9,8 +9,13 @@ import GridCardD from "../../components/content-modules/GridCardD"
 import CardHandler from "../../components/content-modules/CardHandler"
 import CardSet from "../../components/content-modules/CardSet"
 import HeroIntroSection from "../../components/page-sections/HeroIntroSection"
+import { Calendar, momentLocalizer } from 'react-big-calendar'
+import moment from 'moment'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
+import GenericModal from '../../components/content-modules/GenericModal'
 
 function WordPressPage({ data }) {
+  const localizer = momentLocalizer(moment)
 
   if (typeof window !== "undefined" && window.location.href.includes('chapters.uwalumni.com')) {
     const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
@@ -117,6 +122,92 @@ categories.forEach((item) => {
   eventEdges.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
   const cardGridEvents = eventEdges.slice(0,9)
   //cardGridEvents.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
+  const [show, setShow] = useState(false);
+  const [currentEvent, setCurrentEvent] = useState();
+  
+  const handleModal = (event) => {
+    if (event !== undefined){
+      const fixEvent = (
+        <div>
+          <h1 style={{fontSize: '26px', color: '#C5050C', fontWeight: 'normal'}}>{event.title}</h1>
+          {event.excerpt && <p dangerouslySetInnerHTML={{ __html: event.excerpt }}></p>}
+        </div>
+      )
+      setCurrentEvent(fixEvent)
+    }
+    let currentshow = show;
+    setShow(!currentshow)
+  }
+  const calendarEvents = []
+  console.log(cardGridEvents)
+  if(cardGridEvents.length > 0){
+    cardGridEvents.map(event => {
+      const addEvent = {
+        title: event.title,
+        start: event.startDate,
+        end: event.endDate,
+        excerpt: event.excerpt,
+      }
+      return calendarEvents.push(addEvent)
+    })
+  }
+  console.log(calendarEvents)
+  /*const calendarEvents = [
+    {
+      title: 'The first event',
+      start: '5/21/21',
+      end: '5/21/21',
+      allDay: false,
+    },
+  ]*/
+  /*const handleModal = () => {
+    const modal = document.getElementById('modal')
+    modal.style.display = "block"
+  }
+  const closeModal = () => {
+    const modal = document.getElementById('modal')
+    modal.style.display = "none"
+  }
+  const popoverEvent = ({ event }) => {
+    let modal = (
+      <div id="modal" style={{ zIndex: 10000, width: '100%', height: '100%', background: 'grey', display: 'none', position: 'fixed', top: '0', left: '0', opacity: '.5' }}>
+          <h1>{event.title}</h1>
+          {event.excerpt && <p>{event.excerpt}</p>}
+      </div>
+    );
+    return (
+      <div onClick={() => handleModal()}>
+        <div>{event.title}</div>
+        {modal}
+      </div>
+    );
+  }*/
+  
+  const MyCalendar = () => (
+    <div>
+      <Calendar
+        localizer={localizer}
+        events={calendarEvents}
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 1400 }}
+        views={['month']}
+        //popup={true}
+        //onSelectEvent={event => alert(event.title)}
+        onSelectEvent={event => handleModal(event)}
+        /*components={{
+          event: popoverEvent
+        }}*/
+        //onShowMore={(events, date) => this.setState({ showModal: true, events })}
+      />
+      {show ?
+            <GenericModal
+            data={currentEvent}
+            opacity={0.9}
+            closeCallback={() => handleModal()}/>
+            : null}
+    </div>
+  )
 
 
   let eventCards = cardGridEvents.map((event) => {
@@ -127,8 +218,10 @@ categories.forEach((item) => {
   const eventCards1 = eventCards.slice(0,5)
   const eventCards2 = eventCards.slice(5,5+eventCards.length)
   const heroHeading = heroIntroSection?.heroHeading ? `<span>${heroIntroSection.heroHeading}</span> ON` : null
+  
   return (
     <Layout title={title} url="/events" noborder img={featuredImage?.node}>
+      <div style={{width: '80%', margin: '20px auto', maxWidth: '1000px'}}>{MyCalendar()}</div>
       { featuredImage && featuredImage.node && (
         <HeroIntroSection
           heroImage={featuredImage.node.localFile}
