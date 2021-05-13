@@ -234,6 +234,33 @@ const PrimaryMenu2 = () => {
     e.stopPropagation()
     setSelect(str)
   }
+  
+  useEffect(() => {
+    const modalLinks = document.getElementById('modal') ? Array.from(document.getElementById('modal').querySelectorAll('a, button')) : null
+        const closeBtnLink = document.getElementsByClassName('open') ? Array.from(document.getElementsByClassName('menu')) : null
+        const homeBtn = document.getElementsByClassName('link-home') ? Array.from(document.getElementsByClassName('link-home')) : null
+        if (modalLinks && closeBtnLink && homeBtn){
+          modalLinks.unshift(closeBtnLink[0])
+          modalLinks.unshift(homeBtn[0])
+        }
+        const firstLink = modalLinks ? modalLinks[0] : null
+        const lastLink = modalLinks ? modalLinks[modalLinks.length - 1] : null 
+      const stayInModal = (e) => {
+        if(document.activeElement === firstLink){
+          if (e.shiftKey && e.key === 'Tab'){
+            e.preventDefault();
+            lastLink.focus()
+          }
+        } else if(document.activeElement === lastLink){
+          if(e.key === 'Tab' && !e.shiftKey){
+            e.preventDefault();
+            firstLink.focus()
+          }
+        }
+      }
+      window.addEventListener('keydown', stayInModal)
+    return () => window.removeEventListener('keydown', stayInModal)
+  })
 
   const parentLinks = Object.keys(menuItems).map(link => {
     return (

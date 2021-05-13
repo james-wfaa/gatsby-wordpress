@@ -81,7 +81,7 @@ const Header = ({ noborder }) => {
         <div className="mainnav">
           <div className="inner">
             <span className="logo">
-              <Link to="/">
+              <Link to="/" className="link-home">
                 <img src={Logo} alt="Logo" width="112" height="54" />
               </Link>
             </span>
@@ -155,6 +155,7 @@ const Header = ({ noborder }) => {
                 backgroundColor: `white`,
               }}
               className="overflow"
+              id="modal"
             >
               {width > 655 ? <PrimaryMenu /> : <PrimaryMenuMobile />}
             </animated.div>
@@ -176,6 +177,7 @@ const Header = ({ noborder }) => {
                 backgroundColor: `white`
               }}
               className="overflow"
+              id="modal"
             >
               <SearchModal
                 topOffset={topOffset}
