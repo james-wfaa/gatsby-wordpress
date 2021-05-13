@@ -275,7 +275,7 @@ module.exports = {
         },
         serialize: ({
           site,
-          allSitePage,
+          //allSitePage,
           allWpEvent,
           allWpClassnote,
           allWpPost,
@@ -287,20 +287,22 @@ module.exports = {
           const classnotes = allWpClassnote.nodes.map((f) => f.uri)
           const posts = allWpPost.nodes.map((p) => p.uri)
           const pages = allWpPage.nodes.map((p) => p.uri)
-          return allSitePage.nodes.map((node) => {
-            let change = new Date()
-            let matched = false
+          const allNodes = pages.concat(posts,classnotes,events)
+          return allNodes.map((node) => {
+            //let change = new Date()
+            //let matched = false
             // grab just the slug part of any feature or blog prefixed page
-            const slug = node.path.split(`/`)[2]
-            const path = node.path
+            //const slug = node.path.split(`/`)[2]
+            //const path = node.path
             // this grab un-prefixed page slugs
             const pageSlug = node.path.split(`/`)[1]
-            const eventIndex = events.indexOf(path)
-            const classnoteIndex = classnotes.indexOf(path)
-            const postIndex = posts.indexOf(path)
-            const pageIndex = pages.indexOf(path)
+            //const eventIndex = events.indexOf(path)
+            //const classnoteIndex = classnotes.indexOf(path)
+            //const postIndex = posts.indexOf(path)
+            //const pageIndex = pages.indexOf(path)
             // check if the current nodes slug appears in any of the array
             // if so set the change variable to that page's modified data
+            /*
             if (eventIndex >= 0) {
               change = allWpEvent.nodes[eventIndex].modified
               matched = true
@@ -314,13 +316,13 @@ module.exports = {
               change = allWpPage.nodes[pageIndex].modified
               matched = true
             }
+            */
             // if nothing found then the default of build time date is used.
-            return (matched) 
-              ? ({
-              url: `${site.siteMetadata.siteUrl}${node.path}`,
-              lastmod: `${change}`,
+            return ({
+              url: `${site.siteMetadata.siteUrl}${node.uri}`,
+              lastmod: `${node.modified}`,
             })
-            : null
+            
           })
         }
         
