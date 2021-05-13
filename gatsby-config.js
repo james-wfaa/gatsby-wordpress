@@ -234,11 +234,6 @@ module.exports = {
               siteUrl
             }
           }
-          allSitePage {
-            nodes {
-              path
-            }
-          }
           allWpPage {
             nodes {
               slug
@@ -283,11 +278,13 @@ module.exports = {
         }) => {
           // https://www.gatsbyjs.com/blog/fs-route-api/ FAQs about pageContext
           // turn fetch feature post and pages data to arrays of their slugs
-          const events = allWpEvent.nodes.map((f) => f.uri)
-          const classnotes = allWpClassnote.nodes.map((f) => f.uri)
-          const posts = allWpPost.nodes.map((p) => p.uri)
-          const pages = allWpPage.nodes.map((p) => p.uri)
-          const allNodes = pages.concat(posts,classnotes,events)
+          //const events = allWpEvent.nodes.map((f) => f.uri)
+          //const classnotes = allWpClassnote.nodes.map((f) => f.uri)
+          //const posts = allWpPost.nodes.map((p) => p.uri)
+          //const pages = allWpPage.nodes.map((p) => p.uri)
+          const allNodes = {
+            nodes: allWpEvent.nodes.concat(allWpClassnote.nodes, allWpPost.nodes, allWpPage.nodes)
+          }
           return allNodes.map((node) => {
             //let change = new Date()
             //let matched = false
@@ -295,7 +292,7 @@ module.exports = {
             //const slug = node.path.split(`/`)[2]
             //const path = node.path
             // this grab un-prefixed page slugs
-            const pageSlug = node.path.split(`/`)[1]
+            //const pageSlug = node.path.split(`/`)[1]
             //const eventIndex = events.indexOf(path)
             //const classnoteIndex = classnotes.indexOf(path)
             //const postIndex = posts.indexOf(path)
@@ -318,6 +315,7 @@ module.exports = {
             }
             */
             // if nothing found then the default of build time date is used.
+            console.log(node)
             return ({
               url: `${site.siteMetadata.siteUrl}${node.uri}`,
               lastmod: `${node.modified}`,
