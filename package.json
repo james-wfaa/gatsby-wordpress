@@ -60,6 +60,7 @@
     "react-select-country-list": "^2.2.3",
     "react-share": "^4.3.1",
     "react-slick": "^0.28.0",
+    "react-spring": "^8.0.27",
     "recaptcha": "^1.2.1",
     "slick-carousel": "^1.8.1",
     "slugger": "^1.0.1",
