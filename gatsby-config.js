@@ -284,7 +284,7 @@ module.exports = {
         },
         serialize: ({
           site,
-          //allSitePage,
+          allSitePage,
           allWpEvent,
           allWpClassnote,
           allWpPost,
