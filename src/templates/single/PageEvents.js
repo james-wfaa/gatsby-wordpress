@@ -192,7 +192,14 @@ categories.forEach((item) => {
         endAccessor="end"
         style={{ height: 1400 }}
         views={['month']}
-        //popup={true}
+        popup={true}
+        /*views={{
+          week: true,
+          month: true,
+          day: true,
+          //agenda: true
+          agenda: customAgenda
+        }}*/
         //onSelectEvent={event => alert(event.title)}
         onSelectEvent={event => handleModal(event)}
         /*components={{
