@@ -6,7 +6,6 @@ import ProductMenu from "../parts/ProductMenu"
 
 function WordPressPage({ page }) {
   const {  excerpt, link, featuredImage, introButtons, heroIntroSection, products, blocks, title, wpChildren } = page
-  console.log(page)
   const { introButtons: buttons } = introButtons
   const { heroHeading, introExcerpt } = heroIntroSection
 
