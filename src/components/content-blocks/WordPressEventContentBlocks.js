@@ -60,7 +60,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                 
                 arrayChildren.forEach((child) => {
                     if (child.props.className.includes('tribe-block__events-gcal')) {
-                        console.log(child.props.children.props.href)
+                        //console.log(child.props.children.props.href)
                         var clonedElementWithMoreProps = React.cloneElement(
                             child.props.children, 
                             { 
