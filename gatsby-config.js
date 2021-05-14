@@ -134,7 +134,15 @@ module.exports = {
             limit:
               process.env.NODE_ENV === `development`
                 ? // Lets just pull 50 posts in development to make it easy on ourselves.
-                  50
+                  100
+                : // and we don't actually need more than 5000 in production for this particular site
+                  5000,
+          },
+          Page: { 
+            limit:
+              process.env.NODE_ENV === `development`
+                ? // Lets just pull 50 posts in development to make it easy on ourselves.
+                  100
                 : // and we don't actually need more than 5000 in production for this particular site
                   5000,
           },
@@ -227,6 +235,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-sitemap",
       options: {
+        exclude: [`/organizer/*`, `/venue/`],
         query: `
         {
           site {
@@ -278,49 +287,40 @@ module.exports = {
         }) => {
           // https://www.gatsbyjs.com/blog/fs-route-api/ FAQs about pageContext
           // turn fetch feature post and pages data to arrays of their slugs
-          //const events = allWpEvent.nodes.map((f) => f.uri)
-          //const classnotes = allWpClassnote.nodes.map((f) => f.uri)
-          //const posts = allWpPost.nodes.map((p) => p.uri)
-          //const pages = allWpPage.nodes.map((p) => p.uri)
-          const allNodes = {
-            nodes: allWpEvent.nodes.concat(allWpClassnote.nodes, allWpPost.nodes, allWpPage.nodes)
-          }
-          return allNodes.nodes.map((node) => {
-            //let change = new Date()
-            //let matched = false
-            // grab just the slug part of any feature or blog prefixed page
-            //const slug = node.path.split(`/`)[2]
-            //const path = node.path
-            // this grab un-prefixed page slugs
-            //const pageSlug = node.path.split(`/`)[1]
-            //const eventIndex = events.indexOf(path)
-            //const classnoteIndex = classnotes.indexOf(path)
-            //const postIndex = posts.indexOf(path)
-            //const pageIndex = pages.indexOf(path)
-            // check if the current nodes slug appears in any of the array
-            // if so set the change variable to that page's modified data
-            /*
-            if (eventIndex >= 0) {
-              change = allWpEvent.nodes[eventIndex].modified
-              matched = true
-            } else if (postIndex >= 0) {
-              change = allWpPost.nodes[postIndex].modified
-              matched = true
-            } else if (classnoteIndex >= 0) {
-              change = allWpClassnote.nodes[classnoteIndex].modified
-              matched = true
+          const posts = allWpPost.nodes.map((p) => p.uri.replace(/\//g,''))
+          const pages = allWpPage.nodes.map((p) => p.uri)
+          const events = allWpEvent.nodes.map((e) => e.slug.replace(/\//g,''))
+          const classnotes = allWpClassnote.nodes.map((c) => c.slug.replace(/\//g,''))
+          
+          return allSitePage.nodes.map((node) => {
+            let change = new Date()
+            const slug = node.path.split(`/`)[2]
+            const prefix = node.path.split(`/`)[1]
+            const postIndex = (prefix === "news")
+            ? posts.indexOf(slug)
+            : -1
+            const eventIndex = (prefix === "events")
+                ? events.indexOf(slug)
+                : -1
+            const classnoteIndex = (prefix === "alumni-notes")
+                ? classnotes.indexOf(slug)
+                : -1
+            const pageIndex = pages.indexOf(node.path)
+            if (postIndex >= 0) {
+              change = allWpPost.nodes[postIndex].modified.substring(0,10)  
             } else if (pageIndex >= 0) {
-              change = allWpPage.nodes[pageIndex].modified
-              matched = true
+              change = allWpPage.nodes[pageIndex].modified.substring(0,10)
+            } else if (eventIndex >= 0) {
+              change = allWpEvent.nodes[eventIndex].modified.substring(0,10)
+            } else if (classnoteIndex >= 0) {    
+              change = allWpClassnote.nodes[classnoteIndex].modified.substring(0,10)
             }
-            */
             // if nothing found then the default of build time date is used.
-            console.log(node)
+            //console.log(node)
             return ({
               url: `${site.siteMetadata.siteUrl}${node.uri}`,
-              lastmod: `${node.modified}`,
+              lastmod: `${change}`,
             })
-            
           })
         }
         
