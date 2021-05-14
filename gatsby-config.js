@@ -323,7 +323,7 @@ module.exports = {
             // if nothing found then the default of build time date is used.
             //console.log(node)
             return ({
-              url: `${site.siteMetadata.siteUrl}${node.uri}`,
+              url: `${site.siteMetadata.siteUrl}${node.path}`,
               lastmod: `${change}`,
             })
           })
