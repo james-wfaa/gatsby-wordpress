@@ -271,6 +271,11 @@ module.exports = {
               modified
             }
           }
+          allSitePage {
+            nodes {
+              path
+            }
+          }
         }
         `,
         resolveSiteUrl: ({ site }) => {
