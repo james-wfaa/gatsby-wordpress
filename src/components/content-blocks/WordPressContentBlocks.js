@@ -155,19 +155,20 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                                     if(!combinedEvents.find(element => element.url === eventToShow.url)){
                                         combinedEvents.push(eventToShow)
                                     } 
-  
                                 })
                             }
                         })
                     }
+                    combinedEvents.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
+                    const reducedEvents = combinedEvents.slice(0,9)
                     
                     const buttons = (combinedEvents.length > 2) 
                         ? [{
-                            link: `/events/`,
+                            link: `/events/all`,
                             text: 'See More Events'
                         }]
                         : null
-                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" topBorder={forceBorderTop} stagger={stagger} buttons={buttons}><CardHandler items={combinedEvents} size="M" type="event"/></PageSection>)
+                    RenderedBlocks.push(<PageSection id="event-listing" heading="Upcoming Events" topBorder={forceBorderTop} stagger={stagger} buttons={buttons}><CardHandler items={reducedEvents} size="M" type="event"/></PageSection>)
                 }
                 break
                 case "acf/note-listing":

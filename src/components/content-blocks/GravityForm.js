@@ -316,6 +316,17 @@ input[type='date']{
 input[type=file]::-webkit-file-upload-button { /* chromes and blink button */
     cursor: pointer; 
 }
+.grecaptcha-badge{
+    visibility:hidden;
+}
+.gravityform__field__captcha {
+    label{
+        display:none;
+    }
+    .recaptchaBranding{
+        font-size: 14px;
+    }
+}
 
 `
 

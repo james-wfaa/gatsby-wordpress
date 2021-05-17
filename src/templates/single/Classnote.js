@@ -3,6 +3,10 @@ import { graphql } from "gatsby"
 import Classnote from "../../components/template-parts/wordpress-classnote"
 
 const ClassNote = ({ data }) => {
+  if (typeof window !== "undefined" && window.location.href.includes('chapters.uwalumni.com')) {
+    const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+window.location.replace(fixedUrl)
+  }
 //console.log('Post.js data:',data)
 
 return (<Classnote data={data} />)

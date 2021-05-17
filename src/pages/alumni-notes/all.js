@@ -6,6 +6,10 @@ import SponsorAd from "../../components/content-blocks/SponsorAd"
 
 
 const NoteAll = ({ data }) => {
+    if (typeof window !== "undefined" && window.location.href.includes('chapters.uwalumni.com')) {
+        const fixedUrl = window.location.href.replace('chapters.uwalumni.com','www.uwalumni.com')
+        window.location.replace(fixedUrl)
+      }
    
     return (
         <Layout title="All Alumni Notes" url="/alumni-notes/all">
