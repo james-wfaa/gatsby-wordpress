@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { colors,  sizes } from "../css-variables"
+import { colors,  sizes, breakpoints, mixins } from "../css-variables"
 
 const FormWrapper = styled.div`
   margin: 0 auto;
   width: 100%;
-  padding: 8px 8px 54px 8px;
+  padding: 8px 8px 0px 8px;
   
   margin-bottom: ${sizes.s48};
   text-align: left;
@@ -18,28 +18,30 @@ const InnerForm = styled.div`
   .inputlabel {
     margin-bottom: 4px;
   }
-  background-color: ${colors.bgLightGrey};
+
+  input{
+      color: ${colors.formTextBlack};
+      display: inline-block;
+      border: 2px solid ${colors.formInputBorder};
+      margin-top: 12px;
+      margin-right: 24px;
+      margin-bottom: 24px;
+      width: 100%;
+      padding: ${sizes.s10} ${sizes.s16};
+      @media screen and ${breakpoints.tabletS} {
+          width: 344px;
+          margin-bottom: 0;
+
+      }
+  }
 `
 
 const FormSubmitButton = styled.button`
-  background-color: ${colors.badgerRed};
-  display: inline-block;
-  margin: 40px auto;
+  ${mixins.buttons};
+  margin-top: 40px;
   border: none;
-  width: 98px;
-  height: 48px;
-  color: ${colors.bgWhite};
-  font-weight: bold;
-  :hover {
-    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-  }
-  :disabled {
-    background-color: rgba(239, 239, 239, 0.5);
-    color: #fff;
-    box-shadow: none;
-    cursor: default;
-  }
+  padding: ${sizes.s14} ${sizes.s16};
+  
 `
 const ErrorMessageVerbose = styled.div`
   border-top: 1px solid ${colors.bgRed};
@@ -62,6 +64,7 @@ const ErrorMessageVerbose = styled.div`
 `
 const ErrorMessageInput = styled.p`
   font-size: 16px;
+  margin-top: 24px;
   color: ${colors.bgRed};
 `
 
@@ -120,7 +123,6 @@ const LbraryResourceForm = () => {
           <input
             type="text"
             value={memberNumber}
-            style={{ display: `inline-block` }}
             onChange={e => handleChange(e)}
           /><FormSubmitButton onClick={e => handleSubmit(e)}>
           SUBMIT
