@@ -13,7 +13,7 @@ const CardSet = ({className, items, children, num, size="M", type="news" }) => {
         : size
 
     let cards = (children)
-        ? children.map((child) => {
+        ? React.Children.map(children,child => {
             return (<div key={child.id} dangerouslySetInnerHTML={{__html: child}} />)
         })
         : limitedItems.map((item) => {
