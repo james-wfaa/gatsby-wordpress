@@ -3,17 +3,18 @@ import parse from 'html-react-parser';
 import styled from 'styled-components'
 import { colors, fonts,sizes, mixins, breakpoints } from '../css-variables'
 import Accordian from "../parts/Accordian"
+import ReCAPTCHA from "react-google-recaptcha";
 
 const AccordionNavigation = ({ block, className }) => {
 
     const blockContent = block.dynamicContent ? block.dynamicContent : ''
     const parsed = parse(blockContent)
 
-    const RenderedBlocks = (parsed?.props?.children && Array.isArray(parsed.props.children)) ? parsed.props.children.map((child) => {
+    const RenderedBlocks = (parsed?.props?.children && Array.isArray(parsed.props.children)) ? React.Children.map(parsed.props.children, child => {
         let accordionHeader = ''
         let accordionContent = ''
         if(child.props && child.props.className === "accordion__item"){
-            child.props.children.forEach((element) => {
+            React.Children.forEach(child.props.children,element => {
                 if(element.props){
                     switch(element.props.className){
                         case "accordion__header":
