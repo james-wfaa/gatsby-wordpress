@@ -69,6 +69,17 @@ export const fragments = graphql`
         url: uri
         startDate
         endDate
+        eventDetails {
+          eventFullSoldOut
+          eventFullText
+          eventlocationDetails
+          fieldGroupName
+          questions
+          registrationUrl
+          timeZoneInfoFreeText
+          trip
+          virtualEvent
+        }
         venue {
           title
           city
