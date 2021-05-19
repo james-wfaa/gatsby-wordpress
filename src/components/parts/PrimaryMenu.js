@@ -244,14 +244,10 @@ const PrimaryMenu2 = () => {
       const modalLinks = document.getElementById('modal') ? Array.from(document.getElementById('modal').querySelectorAll('a, button')) : null
       const closeBtnLink = document.getElementsByClassName('open') ? Array.from(document.getElementsByClassName('menu')) : null
       const homeBtn = document.getElementsByClassName('link-home') ? Array.from(document.getElementsByClassName('link-home')) : null
-      const zendeskBtn = document.getElementById('launcher') ? document.getElementById('launcher') : null
-        if(zendeskBtn){
-          zendeskBtn.tabIndex = "11"
-        }
-        if (modalLinks && closeBtnLink && homeBtn && zendeskBtn){
-          modalLinks.push(homeBtn[0])
-          modalLinks.push(closeBtnLink[0])
-        }
+      if (modalLinks && closeBtnLink && homeBtn){
+        modalLinks.push(homeBtn[0])
+        modalLinks.push(closeBtnLink[0])
+      }
       const firstLink = modalLinks ? modalLinks[0] : null
       const lastLink = modalLinks ? modalLinks[modalLinks.length - 1] : null 
       const stayInModal = (e) => {
