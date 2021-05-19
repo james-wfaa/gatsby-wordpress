@@ -621,3 +621,14 @@ pre tt:before,
 pre tt:after {
   content: "";
 }
+.skipNavLink{
+  position: absolute;
+  color: white;
+  z-index: 20;
+  font-size:14px;
+  top: -100px;
+}
+.skipNavLink:focus{
+  top: 2px;
+  left: 8px;
+}
