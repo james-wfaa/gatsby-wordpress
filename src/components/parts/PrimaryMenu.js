@@ -220,6 +220,7 @@ const Logo = styled.div`
 const PrimaryMenu2 = () => {
   const [select, setSelect] = useState(null)
   const [childLinks, setChildLinks] = useState([])
+  const [currentTab, setCurrentTab] = useState(null)
 
   const modalClickHandler = () => {
     setSelect(null)
@@ -227,24 +228,32 @@ const PrimaryMenu2 = () => {
   }
 
   const parentEnterHandler = (str, e) => {
+    const updateTab = e.target.tabIndex
+    setCurrentTab(updateTab)
     setSelect(str)
   }
   const parentClickHandler = (str, e) => {
     e.preventDefault()
     e.stopPropagation()
+    const updateTab = e.target.tabIndex
+    setCurrentTab(updateTab)
     setSelect(str)
   }
   
   useEffect(() => {
-    const modalLinks = document.getElementById('modal') ? Array.from(document.getElementById('modal').querySelectorAll('a, button')) : null
-        const closeBtnLink = document.getElementsByClassName('open') ? Array.from(document.getElementsByClassName('menu')) : null
-        const homeBtn = document.getElementsByClassName('link-home') ? Array.from(document.getElementsByClassName('link-home')) : null
-        if (modalLinks && closeBtnLink && homeBtn){
-          modalLinks.unshift(closeBtnLink[0])
-          modalLinks.unshift(homeBtn[0])
+      const modalLinks = document.getElementById('modal') ? Array.from(document.getElementById('modal').querySelectorAll('a, button')) : null
+      const closeBtnLink = document.getElementsByClassName('open') ? Array.from(document.getElementsByClassName('menu')) : null
+      const homeBtn = document.getElementsByClassName('link-home') ? Array.from(document.getElementsByClassName('link-home')) : null
+      const zendeskBtn = document.getElementById('launcher') ? document.getElementById('launcher') : null
+        if(zendeskBtn){
+          zendeskBtn.tabIndex = "11"
         }
-        const firstLink = modalLinks ? modalLinks[0] : null
-        const lastLink = modalLinks ? modalLinks[modalLinks.length - 1] : null 
+        if (modalLinks && closeBtnLink && homeBtn && zendeskBtn){
+          modalLinks.push(homeBtn[0])
+          modalLinks.push(closeBtnLink[0])
+        }
+      const firstLink = modalLinks ? modalLinks[0] : null
+      const lastLink = modalLinks ? modalLinks[modalLinks.length - 1] : null 
       const stayInModal = (e) => {
         if(document.activeElement === firstLink){
           if (e.shiftKey && e.key === 'Tab'){
@@ -262,11 +271,14 @@ const PrimaryMenu2 = () => {
     return () => window.removeEventListener('keydown', stayInModal)
   })
 
+  let tabInd = 0
   const parentLinks = Object.keys(menuItems).map(link => {
+    tabInd++
     return (
       <li key={link}>
         <button
-          onMouseEnter={() => parentEnterHandler(link)}
+          tabIndex={tabInd}
+          onMouseEnter={(e) => parentEnterHandler(link, e)}
           onClick={e => parentClickHandler(link, e)}
           style={{
             backgroundColor: select === link ? `${colors.navcardGrey}` : null,
@@ -295,7 +307,7 @@ const PrimaryMenu2 = () => {
         else{
           return (
             <li key={link.tag}>
-              <Link to={link.url}>{link.tag}</Link>
+              <Link to={link.url} tabIndex={currentTab && currentTab !== -1 ? currentTab : 1}>{link.tag}</Link>
             </li>
           )
         }
@@ -318,20 +330,20 @@ const PrimaryMenu2 = () => {
           <BottomLeft>
             <ul>
               <li>
-                <Link to="/about">About WAA</Link>
+                <Link to="/about" tabIndex="6">About WAA</Link>
               </li>
               <li>
-                <Link to="/about/contact-waa">Contact WAA</Link>
+                <Link to="/about/contact-waa" tabIndex="6">Contact WAA</Link>
               </li>
               <li>
-                <Link to="/update-info">Update My Info</Link>
+                <Link to="/update-info" tabIndex="6">Update My Info</Link>
               </li>
               <li>
-                <Link to="/email">Alumni Email Login</Link>
+                <Link to="/email" tabIndex="6">Alumni Email Login</Link>
               </li>
             </ul>
             <SocialLinks>
-              <HeaderSocialIcons />
+              <HeaderSocialIcons desktopMenu/>
             </SocialLinks>
           </BottomLeft>
         </LeftMenu>

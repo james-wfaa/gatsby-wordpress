@@ -53,6 +53,15 @@ const Header = ({ noborder }) => {
     return () => window.removeEventListener('keydown', close)
   },[])
 
+  useEffect(() => {
+    const modalLinks = document.getElementById('modal') ? Array.from(document.getElementById('modal').querySelectorAll('a, button')) : null
+    if (modalLinks && modalLinks.length > 0){
+      modalLinks[0].focus()
+    }
+  },[open === true])
+
+  
+
   const toggleSearch = e => {
     e.preventDefault()
     getMenuHeight()
@@ -73,6 +82,7 @@ const Header = ({ noborder }) => {
             <li>
               <Link
                 to="/update-info"
+                tabIndex={open ? -1 : 0}
               >
                 Update My Info
               </Link>
@@ -80,6 +90,7 @@ const Header = ({ noborder }) => {
               <li>
                 <Link
                   to="/email"
+                  tabIndex={open ? -1 : 0}
                 >
                   Alumni Email Login
                 </Link>
@@ -91,7 +102,7 @@ const Header = ({ noborder }) => {
         <div className="mainnav">
           <div className="inner">
             <span className="logo">
-              <Link to="/" className="link-home">
+              <Link to="/" className="link-home" tabIndex={open ? "12" : "0"}>
                 <img src={Logo} alt="Logo" width="112" height="54" />
               </Link>
             </span>
@@ -139,7 +150,7 @@ const Header = ({ noborder }) => {
                 className={`menu ${open ? "open" : ""}`}
                 onClick={() => toggleMenu()}
                 onKeyPress={() => toggleMenu()}
-                tabIndex="0"
+                tabIndex={open ? "13" : "0"}
               >
                 <span></span>
                 <div>menu</div>
