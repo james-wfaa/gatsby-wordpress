@@ -96,7 +96,7 @@ const ContentCard = ({
                 <div className={`headersection headersection--${size}`}>
                     { startDate && (
                         <div className={`date date--${size}`}>
-                            <a href={finalUrl} dangerouslySetInnerHTML={{ __html: dateLinkText }}/>
+                            <a href={finalUrl} dangerouslySetInnerHTML={{ __html: dateLinkText }} className="gtm-event-date"/>
                         </div>
                     )}
                     { !startDate && (
@@ -105,7 +105,7 @@ const ContentCard = ({
                                 <div className={`category category--${size} `}>{displayCategory}</div>
                             )}
                             <h3 className={`title title--${size}`}>
-                                <a href={finalUrl} target={target} dangerouslySetInnerHTML={{ __html: title }}/>
+                                <a href={finalUrl} target={target} dangerouslySetInnerHTML={{ __html: title }} className="gtm-card-title"/>
                             </h3>
                         </>
                     )}
@@ -123,7 +123,7 @@ const ContentCard = ({
                 <div className={`headersection headersection--${size}`}>
                     { startDate && (
                         <div className={`date date--${size}`}>
-                            <Link to={finalUrl} dangerouslySetInnerHTML={{ __html: dateLinkText }} />
+                            <Link to={finalUrl} dangerouslySetInnerHTML={{ __html: dateLinkText }} className="gtm-event-date"/>
                         </div>
                     )}
                     { !startDate && (
@@ -132,7 +132,7 @@ const ContentCard = ({
                                 <div className={`category category--${size} `}>{displayCategory}</div>
                             )}
                             <h3 className={`title title--${size}`}>
-                                <Link to={finalUrl} dangerouslySetInnerHTML={{ __html: title }} />
+                                <Link to={finalUrl} dangerouslySetInnerHTML={{ __html: title }} className="gtm-card-title"/>
                             </h3>
                         </>
                     )}
@@ -161,7 +161,7 @@ const ContentCard = ({
                             { startDate && (
                                 <>
                                     <h3 className={`title title--${size}`}>
-                                        <a href={finalUrl} target={target} dangerouslySetInnerHTML={{ __html: title }}/>
+                                        <a href={finalUrl} target={target} dangerouslySetInnerHTML={{ __html: title }} className="gtm-card-title"/>
                                     </h3>
                                     { displayCategory && (
                                         <div className={`category category--${size}`}>{displayCategory}</div>
@@ -211,7 +211,7 @@ const ContentCard = ({
                             { startDate && (
                                 <>
                                     <h3 className={`title title--${size}`}>
-                                        <Link to={finalUrl} dangerouslySetInnerHTML={{ __html: title }} />
+                                        <Link to={finalUrl} dangerouslySetInnerHTML={{ __html: title }} className="gtm-card-title"/>
                                     </h3>
                                     { displayCategory && (
                                         <div className={`category category--${size}`}>{displayCategory}</div>
