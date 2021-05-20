@@ -632,3 +632,11 @@ pre tt:after {
   top: 2px;
   left: 8px;
 }
+@media only screen and (max-width: 656px) {
+  .skipNavLink{
+    color: black;
+  }
+  .skipNavLink:focus{
+    left: calc(50% - 32px);
+  }
+}
