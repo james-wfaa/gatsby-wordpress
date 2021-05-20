@@ -19,10 +19,17 @@ const Header = ({ noborder }) => {
   const menuRef = useRef(null)
 
   useEffect(() => {
+    const zendeskBtn = typeof document !== "undefined" && document.getElementById('launcher') ? document.getElementById('launcher') : null
     if(open === true){
       document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+      if(zendeskBtn){
+        zendeskBtn.style.display = "none"
+      }
     } else{
       document.getElementsByTagName('body')[0].style.overflow = 'unset';
+      if(zendeskBtn){
+        zendeskBtn.style.display = "block"
+      }
     }
   }, [open]);
 
