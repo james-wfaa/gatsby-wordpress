@@ -43,6 +43,7 @@ const PageSection = ({
     stagger,
     desktopOnly,
     onlyChild,
+    formRefresh, //for updateInfo form
     defaultPage // one page section with no top padding
  }) => {
 
@@ -82,6 +83,7 @@ const PageSection = ({
             <div className={`content ${plainTextContent} ${centeredContentClass}`}>
                 {children}
             </div>
+            {formRefresh && <p className="formRefreshBtn" onClick={() => window.location.reload()}>Want to update someone else's info?</p>}
             { buttons && (<PageSectionButtons buttons={buttons} buttonsAlt={buttonsAlt} compact={buttonsCompact} />
             )}
             </div>

@@ -48,6 +48,7 @@ const UpdateSuccess = () => {
             content={content}
             backgroundColor={colors.formIntroBg}
             pageTitle
+            formRefresh
             >
                 <div className="successPageIcon"></div>
             </PageSection>
