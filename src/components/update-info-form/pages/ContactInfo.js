@@ -5,12 +5,15 @@ import { StyledError, checkForLetters, handleFormSubmit, FormGeneralError } from
 import PageSection from "../../page-sections/PageSection"
 import Buttons from '../FormButtons'
 import { AppContext } from "../../../context/AppContext"
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 
 const ContactInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setContactInfoOnchange, setEntryId, setCommSignUpInfo } = actions;
   const [generalError, setGeneralError] = useState('')
+  const [value, setValue] = useState()
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdateContactInfo = () => {
@@ -167,23 +170,18 @@ const ContactInfo = () => {
             </label>
             <label htmlFor="phone" className="half leftMargin">
               Mobile Phone
-              <input
+              <PhoneInput
+                //placeholder="Enter phone number"
                 type="phone"
                 name="phone"
                 id="phone"
                 maxLength="30"
+                defaultCountry="US"
                 defaultValue={state.contactInfo.phone}
-                onChange={e => updateOnChangeValues(e)}
-                ref={register({
-                  /*validate: {
-                    numbersOnly: value => checkForLetters(value) === false,
-                  },*/
-                  pattern: {
-                    value: /^[- ]*[0-9][- 0-9]*$/,
-                    message: 'Phone number can only contain numbers and dashes.',
-                  }
-                })}
-              />
+                //onChange={e => updateOnChangeValues(e)}
+                value={value}
+                onChange={setValue}
+                ref={register({})}/>
               {errors.phone && (
                 <StyledError>{errors.phone.message}</StyledError>
               )}

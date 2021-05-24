@@ -430,5 +430,18 @@ form{
 .red{
   color:${colors.buttonRed};
 }
+.PhoneInput{
+  .PhoneInputCountry{
+    border: 2px solid #E0E0E0;
+    padding: 0 10px;
+    margin: 12px -2px 0 0;
+  }
+  .PhoneInputCountrySelectArrow{
+    color:${colors.buttonRed};
+  }
+  .PhoneInputCountryIcon{
+    box-shadow:none;
+  }
+}
 `
 export default UpdateInfoForm
