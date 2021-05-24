@@ -6,7 +6,12 @@ import formErrorIcon from "./../../svg/form-error-icon-red.svg"
 
 
 export const handleFormSubmit = (data) => {
-
+  //ok, new plan:
+  //check mailing address for required street address for both US country
+  //check phone types for existing numbers associated number
+  //check employment for address for US country
+  //do not include UWgrad checkbox on default?
+  //console.log({ ...data.contactInfo, ...data.mailingAddress, ...data.phoneInfo, ...data.employmentInfo, ...data.identityInfo, ...data.spouseInfo})
   let entryData = {
     "payload":{ ...data.contactInfo, ...data.mailingAddress, ...data.phoneInfo, ...data.employmentInfo, ...data.identityInfo, ...data.spouseInfo},
     'entry_id': data.entry_id,
