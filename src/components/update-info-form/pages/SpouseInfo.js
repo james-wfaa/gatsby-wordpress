@@ -28,7 +28,11 @@ const SpouseInfo = () => {
   }
   const updateOnChangeValues = (e) => {
     if(e.target.type === 'checkbox'){
-      setSpouseInfoOnchange([e.target.name, !state.spouseInfo.uwGrad])
+      if(state.spouseInfo.uwGrad === 'NA'){
+        setSpouseInfoOnchange([e.target.name, 'yes'])
+      } else{
+        setSpouseInfoOnchange([e.target.name, 'NA'])
+      }
     } else{
       setSpouseInfoOnchange([e.target.name, e.target.value])
     }
@@ -103,9 +107,9 @@ const SpouseInfo = () => {
                   <StyledError>{errors.spouseLastname.message}</StyledError>
                 )}
               </label>
-              <input type="checkbox" id="uwGrad" checked={state.spouseInfo.uwGrad} name="uwGrad" onChange={e => updateOnChangeValues(e)} />
+              <input type="checkbox" id="uwGrad" checked={state.spouseInfo.uwGrad === 'yes' ? true : false} name="uwGrad" onChange={e => updateOnChangeValues(e)} />
               <label htmlFor="uwGrad" >My spouse/partner is a UW-Madison graduate</label>
-              { state.spouseInfo.uwGrad ? (<div><label htmlFor="spouseUndergrad" className="smallThird">UW Undergraduate Year
+              { state.spouseInfo.uwGrad === "yes" ? (<div><label htmlFor="spouseUndergrad" className="smallThird">UW Undergraduate Year
                 <input
                     type="text"
                     name="spouseUndergrad"
