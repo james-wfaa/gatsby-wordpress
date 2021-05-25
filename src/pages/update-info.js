@@ -436,11 +436,28 @@ form{
     padding: 0 10px;
     margin: 12px -2px 0 0;
   }
+  .PhoneInputCountrySelect{
+    margin-top: 10px;
+  }
+  .PhoneInputCountrySelect:focus + .PhoneInputCountryIcon + .PhoneInputCountrySelectArrow{
+    color:${colors.buttonRed};
+  }
   .PhoneInputCountrySelectArrow{
     color:${colors.buttonRed};
+    width: 8px;
+    height: 8px;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
+    opacity: 1;
+    margin-left: 12px;
   }
   .PhoneInputCountryIcon{
     box-shadow:none;
+  }
+  .PhoneInputCountryIconImg{
+    width: 30px;
+    height: 20px;
+    max-width: 30px;
   }
 }
 `

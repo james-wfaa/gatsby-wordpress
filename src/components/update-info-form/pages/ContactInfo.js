@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { colors } from "../../css-variables"
 import { StyledError, checkForLetters, handleFormSubmit, FormGeneralError } from '../form-helpers'
@@ -6,7 +6,7 @@ import PageSection from "../../page-sections/PageSection"
 import Buttons from '../FormButtons'
 import { AppContext } from "../../../context/AppContext"
 import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
+import PhoneInput, { formatPhoneNumber, formatPhoneNumberIntl } from 'react-phone-number-input'
 
 
 const ContactInfo = () => {
@@ -14,6 +14,14 @@ const ContactInfo = () => {
   const { setCurrentStep, setContactInfoOnchange, setEntryId, setCommSignUpInfo } = actions;
   const [generalError, setGeneralError] = useState('')
   const [value, setValue] = useState()
+  console.log(value ? formatPhoneNumberIntl(value) : 'nno value yet')
+
+  useEffect(() => {
+    if(value !== undefined){
+      setContactInfoOnchange(['phone', formatPhoneNumberIntl(value)])
+    }
+    console.log(state.contactInfo.phone)
+  }, [value]);
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdateContactInfo = () => {
@@ -180,6 +188,7 @@ const ContactInfo = () => {
                 defaultValue={state.contactInfo.phone}
                 //onChange={e => updateOnChangeValues(e)}
                 value={value}
+                //onChange={e => {updateOnChangeValues(e); setValue()}}
                 onChange={setValue}
                 ref={register({})}/>
               {errors.phone && (
