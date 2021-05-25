@@ -86,7 +86,6 @@ const EventRegistration = ({className, date, startDate, endDate, timezone, venue
                 <div className="subHeader">WHEN</div>
                 <div>{calcDate(startDate)}</div>
                 <div className="dateTime" dangerouslySetInnerHTML={{ __html: datetime }}></div>
-                <a href="#" alt="Add to Calendar" onClick={() => handleModal()}>Add to Calendar</a>
                 { addressString && (
                     <div className="subHeader">WHERE</div>
                 )}
