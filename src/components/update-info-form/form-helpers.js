@@ -33,8 +33,8 @@ export const handleFormSubmit = (data) => {
     "payload": payload,
     'entry_id': data.entry_id,
   }
-  
-  return fetch("https://devwp.uwalumni.com/wp-json/formsubmit/v1/submit/3", {
+
+  return fetch("https://uwalumni.wpengine.com/wp-json/formsubmit/v1/submit/79", {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
