@@ -14,13 +14,11 @@ const ContactInfo = () => {
   const { setCurrentStep, setContactInfoOnchange, setEntryId, setCommSignUpInfo } = actions;
   const [generalError, setGeneralError] = useState('')
   const [value, setValue] = useState()
-  console.log(value ? formatPhoneNumberIntl(value) : 'nno value yet')
 
   useEffect(() => {
     if(value !== undefined){
       setContactInfoOnchange(['phone', formatPhoneNumberIntl(value)])
     }
-    console.log(state.contactInfo.phone)
   }, [value]);
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
@@ -183,14 +181,18 @@ const ContactInfo = () => {
                 type="phone"
                 name="phone"
                 id="phone"
-                maxLength="30"
+                maxLength="26"
                 defaultCountry="US"
-                defaultValue={state.contactInfo.phone}
                 //onChange={e => updateOnChangeValues(e)}
-                value={value}
+                value={value ? value : state.contactInfo.phone}
                 //onChange={e => {updateOnChangeValues(e); setValue()}}
                 onChange={setValue}
-                ref={register({})}/>
+                ref={register({
+                  maxLength: {
+                    value: 25,
+                    message: 'Phone number must be 25 characters or less.',
+                }
+                })}/>
               {errors.phone && (
                 <StyledError>{errors.phone.message}</StyledError>
               )}

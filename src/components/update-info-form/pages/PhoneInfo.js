@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { StyledError, checkForLetters, handleFormSubmit, FormGeneralError } from '../form-helpers'
 import PageSection from '../../page-sections/PageSection'
@@ -6,11 +6,32 @@ import { colors } from '../../css-variables'
 import Buttons from './../FormButtons'
 import ProgressBar from './../ProgressBar'
 import { AppContext } from "../../../context/AppContext"
+import 'react-phone-number-input/style.css'
+import PhoneInput, { formatPhoneNumber, formatPhoneNumberIntl } from 'react-phone-number-input'
 
 const PhoneInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setPhoneInfoOnchange } = actions;
   const [generalError, setGeneralError] = useState('')
+  const [value, setValue] = useState()
+  const [value2, setValue2] = useState()
+  const [value3, setValue3] = useState()
+
+  useEffect(() => {
+    if(value !== undefined){
+      setPhoneInfoOnchange(['phoneNumber1', formatPhoneNumberIntl(value)])
+    }
+  }, [value]);
+  useEffect(() => {
+    if(value2 !== undefined){
+      setPhoneInfoOnchange(['phoneNumber2', formatPhoneNumberIntl(value2)])
+    }
+  }, [value2]);
+  useEffect(() => {
+    if(value3 !== undefined){
+      setPhoneInfoOnchange(['phoneNumber3', formatPhoneNumberIntl(value3)])
+    }
+  }, [value3]);
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdatePhoneInfo = data =>{
@@ -97,24 +118,24 @@ const PhoneInfo = () => {
               <hr></hr>
               <label htmlFor="phoneNumber1" className="half">Phone Number 1
                 <span className="required">*</span>
-                <input
-                    type="phone"
-                    name="phoneNumber1"
-                    id="phoneNumber1"
-                    maxLength="30"
-                    defaultValue={state.phoneInfo.phoneNumber1}
-                    onChange={e => updateOnChangeValues(e)}
-                    ref={register({
-                      required: { value: true, message: "At least one valid phone number is required" },
-                      /*validate: {
-                        numbersOnly: value => checkForLetters(value) === false,
-                      },*/
-                      pattern: {
-                        value: /^[- ]*[0-9][- 0-9]*$/,
-                        message: 'Phone number can only contain numbers and dashes.',
-                      }
-                    })}
-                />
+                <PhoneInput
+                  //placeholder="Enter phone number"
+                  type="phone"
+                  name="phoneNumber1"
+                  id="phoneNumber1"
+                  maxLength="26"
+                  defaultCountry="US"
+                  //defaultValue={state.phoneInfo.phoneNumber1}
+                  //onChange={e => updateOnChangeValues(e)}
+                  value={value ? value : state.phoneInfo.phoneNumber1}
+                  //onChange={e => {updateOnChangeValues(e); setValue()}}
+                  onChange={setValue}
+                  ref={register({
+                    required: { value: true, message: "At least one valid phone number is required" },
+                    maxLength: {
+                      value: 25,
+                      message: 'Phone number must be 25 characters or less.',
+                  }})}/>
                 {errors.phoneNumber1 && (
                   <StyledError>{errors.phoneNumber1.message}</StyledError>
                 )}
@@ -142,23 +163,23 @@ const PhoneInfo = () => {
               </label>
               {state.phoneInfo.phoneType1 === "Seasonal" ? renderSeasonalDates() : null}
               <label htmlFor="phoneNumber2" className="half">Phone Number 2
-                <input
-                    type="phone"
-                    name="phoneNumber2"
-                    id="phoneNumber2"
-                    maxLength="30"
-                    defaultValue={state.phoneInfo.phoneNumber2}
-                    onChange={e => updateOnChangeValues(e)}
-                    ref={register({
-                      /*validate: {
-                        numbersOnly: value => checkForLetters(value) === false,
-                      },*/
-                      pattern: {
-                        value: /^[- ]*[0-9][- 0-9]*$/,
-                        message: 'Phone number can only contain numbers and dashes.',
-                      }
-                    })}
-                />
+              <PhoneInput
+                  //placeholder="Enter phone number"
+                  type="phone"
+                  name="phoneNumber2"
+                  id="phoneNumber2"
+                  maxLength="26"
+                  defaultCountry="US"
+                  //defaultValue={state.phoneInfo.phoneNumber2}
+                  //onChange={e => updateOnChangeValues(e)}
+                  value={value2 ? value2 : state.phoneInfo.phoneNumber2}
+                  //onChange={e => {updateOnChangeValues(e); setValue()}}
+                  onChange={setValue2}
+                  ref={register({
+                    maxLength: {
+                    value: 25,
+                    message: 'Phone number must be 25 characters or less.',
+                }})}/>
                 {errors.phoneNumber2 && (
                   <StyledError>{errors.phoneNumber2.message}</StyledError>
                 )}
@@ -184,23 +205,24 @@ const PhoneInfo = () => {
               </label>
               {state.phoneInfo.phoneType2 === "Seasonal" ? renderSeasonalDates() : null}
               <label htmlFor="phoneNumber3" className="half">Phone Number 3
-                <input
-                    type="phone"
-                    name="phoneNumber3"
-                    id="phoneNumber3"
-                    maxLength="30"
-                    defaultValue={state.phoneInfo.phoneNumber3}
-                    onChange={e => updateOnChangeValues(e)}
-                    ref={register({
-                      /*validate: {
-                        numbersOnly: value => checkForLetters(value) === false,
-                      },*/
-                      pattern: {
-                        value: /^[- ]*[0-9][- 0-9]*$/,
-                        message: 'Phone number can only contain numbers and dashes.',
-                      }
-                    })}
-                />
+              <PhoneInput
+                  //placeholder="Enter phone number"
+                  type="phone"
+                  name="phoneNumber3"
+                  id="phoneNumber3"
+                  maxLength="26"
+                  defaultCountry="US"
+                  //defaultValue={state.phoneInfo.phoneNumber3}
+                  //onChange={e => updateOnChangeValues(e)}
+                  value={value3 ? value3 : state.phoneInfo.phoneNumber3}
+                  //onChange={e => {updateOnChangeValues(e); setValue()}}
+                  onChange={setValue3}
+                  ref={register({
+                    maxLength: {
+                      value: 25,
+                      message: 'Phone number must be 25 characters or less.',
+                  }
+                  })}/>
                 {errors.phoneNumber3 && (
                   <StyledError>{errors.phoneNumber3.message}</StyledError>
                 )}
