@@ -296,14 +296,14 @@ const PrimaryMenu2 = () => {
         if(link.url === "https://www.uwalumnistore.com" ){
           return (
             <li key={link.tag}>
-              <a href={link.url} target="_blank">{link.tag}</a>
+              <a href={link.url} target="_blank" className="gtm-main-menu">{link.tag}</a>
             </li>
           )
         }
         else{
           return (
             <li key={link.tag}>
-              <Link to={link.url} tabIndex={currentTab && currentTab !== -1 ? currentTab : 1}>{link.tag}</Link>
+              <Link to={link.url} tabIndex={currentTab && currentTab !== -1 ? currentTab : 1} className="gtm-main-menu">{link.tag}</Link>
             </li>
           )
         }
@@ -326,16 +326,16 @@ const PrimaryMenu2 = () => {
           <BottomLeft>
             <ul>
               <li>
-                <Link to="/about" tabIndex="6">About WAA</Link>
+                <Link to="/about" className="gtm-main-menu" tabIndex="6">About WAA</Link>
               </li>
               <li>
-                <Link to="/about/contact-waa" tabIndex="6">Contact WAA</Link>
+                <Link to="/about/contact-waa" className="gtm-main-menu" tabIndex="6">Contact WAA</Link>
               </li>
               <li>
-                <Link to="/update-info" tabIndex="6">Update My Info</Link>
+                <Link to="/update-info" className="gtm-main-menu" tabIndex="6">Update My Info</Link>
               </li>
               <li>
-                <Link to="/email" tabIndex="6">Alumni Email Login</Link>
+                <Link to="/email" className="gtm-main-menu" tabIndex="6">Alumni Email Login</Link>
               </li>
             </ul>
             <SocialLinks>

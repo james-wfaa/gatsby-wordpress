@@ -304,14 +304,14 @@ const PrimaryMenu = () => {
         if(link.url === "https://www.uwalumnistore.com" ){
           return (
             <li>
-              <a href={link.url} target="_blank">{link.tag}</a>
+              <a href={link.url} target="_blank" className="gtm-main-menu">{link.tag}</a>
             </li>
           )
         }
         else{
           return (
             <li>
-              <Link to={link.url}>{link.tag}</Link>
+              <Link to={link.url} className="gtm-main-menu">{link.tag}</Link>
             </li>
           )
         }
@@ -341,14 +341,14 @@ const PrimaryMenu = () => {
         if(link.url === "https://www.uwalumnistore.com" ){
           return (
             <li key={link.tag}>
-              <a href={link.url} target="_blank">{link.tag}</a>
+              <a href={link.url} target="_blank" className="gtm-main-menu">{link.tag}</a>
             </li>
           )
         }
         else{
           return (
             <li key={link.tag}>
-              <Link to={link.url}>{link.tag}</Link>
+              <Link to={link.url} className="gtm-main-menu">{link.tag}</Link>
             </li>
           )
         }
@@ -391,16 +391,16 @@ const PrimaryMenu = () => {
                   <BottomLeft>
                     <ul>
                       <li>
-                        <Link to="/about">About WAA</Link>
+                        <Link to="/about" className="gtm-main-menu">About WAA</Link>
                       </li>
                       <li>
-                        <Link to="/about/contact-waa">Contact WAA</Link>
+                        <Link to="/about/contact-waa" className="gtm-main-menu">Contact WAA</Link>
                       </li>
                       <li>
-                        <Link to="/update-info">Update My Info</Link>
+                        <Link to="/update-info" className="gtm-main-menu">Update My Info</Link>
                       </li>
                       <li>
-                        <Link to="/email">Alumni Email Login</Link>
+                        <Link to="/email" className="gtm-main-menu">Alumni Email Login</Link>
                       </li>
                     </ul>
                     <SocialLinks>
