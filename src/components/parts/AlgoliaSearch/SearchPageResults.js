@@ -12,8 +12,6 @@ import CardHits from './SearchHitsCards';
 const CustomHits = connectHits(Hits);
 const CustomCardHits = connectHits(CardHits);
 
-//console.log(CardHits)
-
 const ResultsWrapper = styled.div`
   width: 80%;
   max-width: 760px;
@@ -44,6 +42,14 @@ const HitCounterWrapper = styled.div`
   }
 `;
 
+const NoResultsDiv = styled.div`
+  p {
+    width: 50%;
+    margin: 48px auto 88px;
+    text-align: center;
+  }
+`
+
 const TotalWrapper = (props) => {
   const [firstHit, setFirstHit] = useState(1);
   const [lastHit, setLastHit] = useState(1);
@@ -64,17 +70,19 @@ const TotalWrapper = (props) => {
   //console.log(props.cardtype)
   return (
     <>
+      {/* <Searching /> */}
       <HitCount firstHit={firstHit} lastHit={lastHit} />
       {props.cardtype === 'ContentCard' ? (
         <CustomCardHits hitHandler={(first, last) => hitHandler(first, last)} card={props.card} filterChange={props.filterChange} />
       ) : (
         <CustomHits hitHandler={(first, last) => hitHandler(first, last)} />
       )}
+      <NoResults />
     </>
   );
 };
 
-const HitCount = connectStateResults(({ searchResults, firstHit, lastHit, card, filterChange }) => {
+const HitCount = connectStateResults(({ searchState, searchResults, firstHit, lastHit, card, filterChange }) => {
   const hitCount = searchResults && searchResults.nbHits;
   return hitCount > 0 ? (
     <HitCounterWrapper>
@@ -95,6 +103,21 @@ const HitCount = connectStateResults(({ searchResults, firstHit, lastHit, card, 
     </HitCounterWrapper>
   ) : null;
 });
+
+const NoResults = connectStateResults(({ searchResults }) => {
+  const hitCount = searchResults && searchResults.nbHits;
+  return hitCount === 0 ? (
+    <NoResultsDiv>
+      <p>We didn’t find anything for that search - please try your search again or use our navigation to browse the site.</p>
+    </NoResultsDiv>
+  ) : null;
+});
+
+// const Searching = connectStateResults(({ searching, searchResults }) => {
+//   return searching ? (
+//     <HitCounterWrapper><p>Loading...</p></HitCounterWrapper>
+//   ) : null;
+// });
 
 const HitsInIndex = ({ index, cardtype, card, filterChange }) => {
   return (
