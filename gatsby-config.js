@@ -277,11 +277,18 @@ module.exports = {
             }
           }
         }
-      `,
-        resolveSiteUrl: () => 'https://www.uwalumni.com',
-        resolvePages: ({
-          allSitePage: { nodes: allPages },
-          allWpContentNode: { nodes: allWpNodes },
+        `,
+        resolveSiteUrl: ({ site }) => {
+          //Alternatively, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
+          return site.siteMetadata.siteUrl
+        },
+        serialize: ({
+          site,
+          allSitePage,
+          allWpEvent,
+          allWpClassnote,
+          allWpPost,
+          allWpPage,
         }) => {
           // https://www.gatsbyjs.com/blog/fs-route-api/ FAQs about pageContext
           // turn fetch feature post and pages data to arrays of their slugs
@@ -320,13 +327,8 @@ module.exports = {
               lastmod: `${change}`,
             })
           })
-        },
-        serialize: ({ path, modifiedGmt }) => {
-          return {
-            url: path,
-            lastmod: modifiedGmt,
-          }
-        },
+        }
+        
       },
     },
     {
