@@ -52,7 +52,7 @@ const WordPressEmailPage = ({ className, data }) => {
                 <div className="AdContent" dangerouslySetInnerHTML={{ __html: currentAd.adCopy }}/>
                 {currentAd.adButtonLink && (
                   <div className="button">
-                    <a href={currentAd.adButtonLink.uri}>{currentAd.adButtonText}</a>
+                    <a href={currentAd.adButtonLink.uri} className="gtm-email-ad">{currentAd.adButtonText}</a>
                   </div>
                 )}
               </div>
