@@ -248,6 +248,45 @@ const PrimaryMenu = () => {
     leave: { transform: `translate3d(100%,0, 0)` },
   })
 
+  useEffect(() => {
+        const modalLinks = document.getElementById('modal') ? Array.from(document.getElementById('modal').querySelectorAll('a, button')) : null
+        const closeBtnLink = document.getElementsByClassName('open') ? Array.from(document.getElementsByClassName('menu')) : null
+        const homeBtn = document.getElementsByClassName('link-home') ? Array.from(document.getElementsByClassName('link-home')) : null
+        const mobileBackLink = document.getElementById('backLink') ? document.getElementById('backLink') : null
+        if (modalLinks && mobileBackLink){
+          modalLinks.unshift(mobileBackLink)
+          
+        }
+        const firstLink = modalLinks ? modalLinks[0] : null
+        const lastLink = modalLinks ? modalLinks[modalLinks.length - 1] : null 
+        const stayInModal = (e) => {
+        console.log(document.activeElement, modalLinks)
+        if(document.activeElement === firstLink){
+          if (e.shiftKey && e.key === 'Tab'){
+            e.preventDefault();
+            closeBtnLink[0].focus()
+          }
+        } else if(document.activeElement === homeBtn[0]){
+          if(e.shiftKey && e.key === 'Tab'){
+            e.preventDefault();
+            lastLink.focus()
+          }
+        } else if(document.activeElement === lastLink){
+          if(e.key === 'Tab' && !e.shiftKey){
+            e.preventDefault();
+            homeBtn[0].focus()
+          }
+        } else if(document.activeElement === closeBtnLink[0]){
+          if(e.key === 'Tab' && !e.shiftKey){
+            e.preventDefault();
+            modalLinks[0].focus()
+          }
+        }
+      }
+      window.addEventListener('keydown', stayInModal)
+    return () => window.removeEventListener('keydown', stayInModal)
+  })
+
   const modalClickHandler = () => {
     setShowLeft(true)
   }
@@ -318,6 +357,13 @@ const PrimaryMenu = () => {
       setChildLinks(links)
     }
   }, [select])
+
+  useEffect(() => {
+    const focusFirstLink = document.getElementById('mChildLinks') ? Array.from(document.getElementById('mChildLinks').querySelectorAll('a, button')) : null
+    if(focusFirstLink && focusFirstLink.length > 0){
+      focusFirstLink[0].focus()
+    }
+  }, [childLinks])
 
   return (
     <div onClick={() => modalClickHandler()}>
@@ -396,12 +442,13 @@ const PrimaryMenu = () => {
                       onKeyPress={(e) => modalKeyPressHandler(e)}
                       style={{ marginBottom: 0 }}
                       tabIndex="0"
+                      id="backLink"
                     >
                       {select}
                     </p>
                   </BackLink>
 
-                  <ul>{childLinks.length > 0 ? childLinks : null}</ul>
+                  <ul id="mChildLinks">{childLinks.length > 0 ? childLinks : null}</ul>
                 </RightMenu>
               </animated.div>
             )
