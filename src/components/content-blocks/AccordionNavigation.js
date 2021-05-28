@@ -3,7 +3,6 @@ import parse from 'html-react-parser';
 import styled from 'styled-components'
 import { colors, fonts,sizes, mixins, breakpoints } from '../css-variables'
 import Accordian from "../parts/Accordian"
-import ReCAPTCHA from "react-google-recaptcha";
 
 const AccordionNavigation = ({ block, className }) => {
 
