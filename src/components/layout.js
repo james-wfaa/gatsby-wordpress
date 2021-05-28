@@ -7,6 +7,7 @@ import Header from "./header"
 import Footer from "./Footer"
 import Alert from "./content-blocks/Alert"
 import { useWindowSize } from "./hooks"
+import { Link } from "gatsby"
 
 import "./layout.css"
 
@@ -70,9 +71,10 @@ const Layout = ({ children, img, url, excerpt, noborder, title, plaintitle }) =>
       url={url}
       desc={excerpt}
       />
+      <Link href="#main" className="skipNavLink">Skip Navigation</Link>
       <Header noborder={noborder} />
       <div style={{marginTop: alertHeight + 'px'}}>
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
       </div>
       {alertText || marketingInterruptorText ? <Alert alertText={alertText} marketingInterruptorText={marketingInterruptorText} updateHeight={setalertHeight}/> : null}

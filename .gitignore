@@ -71,3 +71,4 @@ WordPress
 public
 parse-html.js
 src/components/parsed-components
+sitemap.js

@@ -60,7 +60,7 @@ import SponsorAdStyled from "./SponsorAdStyled"
             logoImage4?.localFile?.childImageSharp && 
             logoImage2?.localFile?.childImageSharp &&
             (
-                <a className="SponsorAd_Link" href={adLink.uri}>
+                <a className="SponsorAd_Link" href={adLink?.uri ? adLink.uri : null}>
                     <div className="contentWrap">
                         <div className="AdTitle" dangerouslySetInnerHTML={{ __html: adHeading }}/>
                         <div className="AdContent" dangerouslySetInnerHTML={{ __html: adCopy }}/>
