@@ -374,7 +374,7 @@ const MembershipForm = () => {
     return combinedText
   }
 
-  const recentGradText = state.membershipGraduate ? `- RECENT GRAD` : state.membershipAge ? `- SENIOR` : `- STANDARD`
+  const recentGradText = state.membershipAge ? `- SENIOR` : state.membershipGraduate ? `- RECENT GRAD` : `- STANDARD`
   const membershipTypeText =
     state.membershipType === "individual" ? `INDIVIDUAL` : `JOINT`
   const baseJoinUrl = "https://secure.uwalumni.com/join"
