@@ -19,10 +19,17 @@ const Header = ({ noborder }) => {
   const menuRef = useRef(null)
 
   useEffect(() => {
+    const zendeskBtn = typeof document !== "undefined" && document.getElementById('launcher') ? document.getElementById('launcher') : null
     if(open === true){
       document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+      if(zendeskBtn){
+        zendeskBtn.style.display = "none"
+      }
     } else{
       document.getElementsByTagName('body')[0].style.overflow = 'unset';
+      if(zendeskBtn){
+        zendeskBtn.style.display = "block"
+      }
     }
   }, [open]);
 
@@ -42,6 +49,25 @@ const Header = ({ noborder }) => {
     getMenuHeight()
     setOpen(!open)
   }
+
+  useEffect(() => {
+      const close = (e) => {
+        if(e.key === 'Escape'){
+          setOpen(false)
+        }
+      }
+      window.addEventListener('keydown', close)
+    return () => window.removeEventListener('keydown', close)
+  },[])
+
+  useEffect(() => {
+    const modalLinks = document.getElementById('modal') ? Array.from(document.getElementById('modal').querySelectorAll('a, button')) : null
+    if (modalLinks && modalLinks.length > 0){
+      modalLinks[0].focus()
+    }
+  },[open === true])
+
+  
 
   const toggleSearch = e => {
     e.preventDefault()
@@ -63,6 +89,7 @@ const Header = ({ noborder }) => {
             <li>
               <Link
                 to="/update-info"
+                tabIndex={open ? -1 : 0}
               >
                 Update My Info
               </Link>
@@ -70,6 +97,7 @@ const Header = ({ noborder }) => {
               <li>
                 <Link
                   to="/email"
+                  tabIndex={open ? -1 : 0}
                 >
                   Alumni Email Login
                 </Link>
@@ -81,7 +109,7 @@ const Header = ({ noborder }) => {
         <div className="mainnav">
           <div className="inner">
             <span className="logo">
-              <Link to="/">
+              <Link to="/" className="link-home" tabIndex={open ? "12" : "0"}>
                 <img src={Logo} alt="Logo" width="112" height="54" />
               </Link>
             </span>
@@ -129,7 +157,7 @@ const Header = ({ noborder }) => {
                 className={`menu ${open ? "open" : ""}`}
                 onClick={() => toggleMenu()}
                 onKeyPress={() => toggleMenu()}
-                tabIndex="0"
+                tabIndex={open ? "13" : "0"}
               >
                 <span></span>
                 <div>menu</div>
@@ -155,6 +183,7 @@ const Header = ({ noborder }) => {
                 backgroundColor: `white`,
               }}
               className="overflow"
+              id="modal"
             >
               {width > 655 ? <PrimaryMenu /> : <PrimaryMenuMobile />}
             </animated.div>
@@ -176,6 +205,7 @@ const Header = ({ noborder }) => {
                 backgroundColor: `white`
               }}
               className="overflow"
+              id="modal"
             >
               <SearchModal
                 topOffset={topOffset}
