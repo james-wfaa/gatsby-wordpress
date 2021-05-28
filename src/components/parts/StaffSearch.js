@@ -191,7 +191,7 @@ const StaffSearchModal = () => {
                 return response.json().then((data) => {
                     return data
                 }).catch((err) => {
-                    console.log(err)
+                    //console.log(err)
                 }) 
             });
         }

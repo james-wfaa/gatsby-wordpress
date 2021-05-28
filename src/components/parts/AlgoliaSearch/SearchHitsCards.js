@@ -46,7 +46,7 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
         switch (hit.type) {
             case 'Events':
             case 'Trips':
-                console.log(hit)
+                //console.log(hit)
                 return (
                     <EventContentCard
                         key={hit.objectID}

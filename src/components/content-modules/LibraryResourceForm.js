@@ -170,7 +170,7 @@ const LbraryResourceForm = () => {
                 </p>
               </LinkBlock>
               <LinkBlock>
-                <a href="https://muse.jhu.edu/refer">Project Muse</a>
+                <a href="https://muse.jhu.edu/cgi-bin/refer.cgi?uri=/search" referrerpolicy="no-referrer-when-downgrade">Project Muse</a>
                 <p>
                   Project Muse provides full-text access to more than 300
                   humanities and social science journals from various
