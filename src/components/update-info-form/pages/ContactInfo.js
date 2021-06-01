@@ -183,16 +183,19 @@ const ContactInfo = () => {
                 id="phone"
                 maxLength="26"
                 defaultCountry="US"
+                international={true}
+                limitMaxLength={true}
+                countryCallingCodeEditable={false}
                 //onChange={e => updateOnChangeValues(e)}
                 value={value ? value : state.contactInfo.phone}
                 //onChange={e => {updateOnChangeValues(e); setValue()}}
                 onChange={setValue}
-                ref={register({
+                /*ref={register({
                   maxLength: {
                     value: 25,
                     message: 'Phone number must be 25 characters or less.',
                 }
-                })}/>
+                })}*//>
               {errors.phone && (
                 <StyledError>{errors.phone.message}</StyledError>
               )}

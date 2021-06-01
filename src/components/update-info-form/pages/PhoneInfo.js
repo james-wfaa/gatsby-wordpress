@@ -125,17 +125,20 @@ const PhoneInfo = () => {
                   id="phoneNumber1"
                   maxLength="26"
                   defaultCountry="US"
+                  international={true}
+                  limitMaxLength={true}
+                  countryCallingCodeEditable={false}
                   //defaultValue={state.phoneInfo.phoneNumber1}
                   //onChange={e => updateOnChangeValues(e)}
                   value={value ? value : state.phoneInfo.phoneNumber1}
                   //onChange={e => {updateOnChangeValues(e); setValue()}}
                   onChange={setValue}
-                  ref={register({
+                  /*ref={register({
                     required: { value: true, message: "At least one valid phone number is required" },
                     maxLength: {
                       value: 25,
                       message: 'Phone number must be 25 characters or less.',
-                  }})}/>
+                  }})}*//>
                 {errors.phoneNumber1 && (
                   <StyledError>{errors.phoneNumber1.message}</StyledError>
                 )}
@@ -170,16 +173,19 @@ const PhoneInfo = () => {
                   id="phoneNumber2"
                   maxLength="26"
                   defaultCountry="US"
+                  international={true}
+                  limitMaxLength={true}
+                  countryCallingCodeEditable={false}
                   //defaultValue={state.phoneInfo.phoneNumber2}
                   //onChange={e => updateOnChangeValues(e)}
                   value={value2 ? value2 : state.phoneInfo.phoneNumber2}
                   //onChange={e => {updateOnChangeValues(e); setValue()}}
                   onChange={setValue2}
-                  ref={register({
+                  /*ref={register({
                     maxLength: {
                     value: 25,
                     message: 'Phone number must be 25 characters or less.',
-                }})}/>
+                }})}*//>
                 {errors.phoneNumber2 && (
                   <StyledError>{errors.phoneNumber2.message}</StyledError>
                 )}
@@ -212,17 +218,20 @@ const PhoneInfo = () => {
                   id="phoneNumber3"
                   maxLength="26"
                   defaultCountry="US"
+                  international={true}
+                  limitMaxLength={true}
+                  countryCallingCodeEditable={false}
                   //defaultValue={state.phoneInfo.phoneNumber3}
                   //onChange={e => updateOnChangeValues(e)}
                   value={value3 ? value3 : state.phoneInfo.phoneNumber3}
                   //onChange={e => {updateOnChangeValues(e); setValue()}}
                   onChange={setValue3}
-                  ref={register({
+                  /*ref={register({
                     maxLength: {
                       value: 25,
                       message: 'Phone number must be 25 characters or less.',
                   }
-                  })}/>
+                  })}*//>
                 {errors.phoneNumber3 && (
                   <StyledError>{errors.phoneNumber3.message}</StyledError>
                 )}

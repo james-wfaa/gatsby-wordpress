@@ -5,7 +5,7 @@ import strings from '../../utils/strings'
 import InputWrapper from '../InputWrapper'
 import InputSubfieldWrapper from '../InputSubfieldWrapper'
 import 'react-phone-number-input/style.css'
-import PhoneInput, { formatPhoneNumber, formatPhoneNumberIntl } from 'react-phone-number-input'
+import PhoneInput from 'react-phone-number-input'
 
 const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden, fromNameField, ...wrapProps }) => {
     const {
