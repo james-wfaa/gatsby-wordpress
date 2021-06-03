@@ -75,6 +75,32 @@ categories.forEach((item) => {
   const slug = topic?.slug ? topic.slug : null
   let categoryEventItems = []
 
+  let linkPath
+    if (slug) {
+      switch(slug) {
+        case 'events':
+          linkPath = 'all'
+          break
+        case 'travel':
+          linkPath = `all?product=${topic.slug}`
+          break
+        default:
+          linkPath = categoryEvent
+            ? `all?filter=${topic.slug}`
+            : `all?product=${topic.slug}`
+          break
+      }
+    }
+    let topicButton
+    if (topic?.name) {
+      topicButton = [
+        {
+          link: `/events/${linkPath}`,
+          text: `See All ${topic.name}`,
+        },
+      ]
+    }
+
   
     allevents.nodes.forEach((event) => {
       let pushed = false
@@ -98,7 +124,7 @@ categories.forEach((item) => {
 
     if (categoryEventItems && topic?.name) {
       displayCategories.push(
-        <PageSection key={item?.slug} heading={topic?.name} centered stagger>
+        <PageSection key={item?.slug} heading={topic?.name} centered stagger buttons={topicButton}>
           <CardSet items={categoryEventItems} num={numberToShow} type="event"/>
         </PageSection>
       )
