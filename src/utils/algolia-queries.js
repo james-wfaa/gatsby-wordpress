@@ -32,6 +32,7 @@ const eventQuery = `{
           nodes {
             name
             url: uri
+            slug
           }
         }
         products {
