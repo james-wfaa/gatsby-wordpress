@@ -17,6 +17,10 @@ module.exports = {
     author: `WFAA`,
     siteUrl: 'https://www.uwalumni.com',
   },
+  flags: { 
+    PRESERVE_WEBPACK_CACHE: true,
+    PRESERVE_FILE_DOWNLOAD_CACHE: true,
+   },
   plugins: [
     {
       resolve: `gatsby-plugin-gatsby-cloud`,
@@ -281,6 +285,84 @@ module.exports = {
         resolveSiteUrl: ({ site }) => {
           //Alternatively, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
           return site.siteMetadata.siteUrl
+        },
+        resolvePages: ({
+          site,
+          allSitePage,
+          allWpEvent,
+          allWpClassnote,
+          allWpPost,
+          allWpPage,
+        }) => {
+          const allPages =  allSitePage.nodes
+          const allWpEvents = allWpEvent.nodes
+          const allWpClassnotes = allWpClassnote.nodes
+          const allWpPosts = allWpPost.nodes
+          const allWpPages = allWpPage.nodes
+
+          const posts = allWpPosts.map((p) => p.uri.replace(/\//g,''))
+          const pages = allWpPages.map((p) => p.uri)
+          const events = allWpEvents.map((e) => e.slug.replace(/\//g,''))
+          const classnotes = allWpClassnotes.map((c) => c.slug.replace(/\//g,''))
+
+          const wpEventMap = allWpEvents.reduce((acc, node) => {
+            const { uri } = node
+            acc[uri] = node
+
+            return acc
+          }, {})
+
+          const wpClassnoteMap = allWpClassnotes.reduce((acc, node) => {
+            const { uri } = node
+            acc[uri] = node
+
+            return acc
+          }, {})
+
+          const wpPostMap = allWpPosts.reduce((acc, node) => {
+            const { uri } = node
+            acc[uri] = node
+
+            return acc
+          }, {})
+
+          const wpPageMap = allWpPages.reduce((acc, node) => {
+            const { uri } = node
+            acc[uri] = node
+
+            return acc
+          }, {})
+
+          return allPages.map(page => { 
+            const slug = page.path.split(`/`)[2]
+            const prefix = page.path.split(`/`)[1]
+            const postIndex = (prefix === "news")
+              ? posts.indexOf(slug)
+              : -1
+            const eventIndex = (prefix === "events")
+              ? events.indexOf(slug)
+              : -1
+            const classnoteIndex = (prefix === "alumni-notes")
+              ? classnotes.indexOf(slug)
+              : -1
+            const pageIndex = pages.indexOf(node.path)
+
+            if (postIndex >= 0) {
+              //change = allWpPost.nodes[postIndex].modified.substring(0,10)  
+              return { ...page, ...wpPostMap[page.path] }
+            } else if (pageIndex >= 0) {
+              //change = allWpPage.nodes[pageIndex].modified.substring(0,10)
+              return { ...page, ...wpPageMap[page.path] }
+            } else if (eventIndex >= 0) {
+              //change = allWpEvent.nodes[eventIndex].modified.substring(0,10)
+              return { ...page, ...wpEventMap[page.path] }
+            } else if (classnoteIndex >= 0) {    
+              //change = allWpClassnote.nodes[classnoteIndex].modified.substring(0,10)
+              return { ...page, ...wpClassnoteMap[page.path] }
+            }
+
+            return { ...page, ...wpPageMap[page.path] }
+          })
         },
         serialize: ({
           site,
