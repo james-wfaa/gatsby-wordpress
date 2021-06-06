@@ -239,7 +239,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-sitemap",
       options: {
-        exclude: [`/organizer/*`, `/venue/`],
+        excludes: [],
         query: `
         {
           site {
@@ -280,6 +280,26 @@ module.exports = {
               path
             }
           }
+          allWpContentNode(filter: {nodeType: {in: ["Post", "Page", "Event", "Classnote"]}}) {
+            nodes {
+              ... on WpPost {
+                uri
+                modifiedGmt
+              }
+              ... on WpPage {
+                uri
+                modifiedGmt
+              }
+              ... on WpEvent {
+                uri
+                modifiedGmt
+              }
+              ... on WpClassnote {
+                uri
+                modifiedGmt
+              }
+            }
+          }
         }
         `,
         resolveSiteUrl: ({ site }) => {
@@ -287,24 +307,32 @@ module.exports = {
           return site.siteMetadata.siteUrl
         },
         resolvePages: ({
-          site,
           allSitePage,
-          allWpEvent,
-          allWpClassnote,
-          allWpPost,
-          allWpPage,
+          allWpContentNode,
+          
         }) => {
           const allPages =  allSitePage.nodes
-          const allWpEvents = allWpEvent.nodes
-          const allWpClassnotes = allWpClassnote.nodes
-          const allWpPosts = allWpPost.nodes
-          const allWpPages = allWpPage.nodes
+          const allWpNodes = allWpContentNode.nodes
+          //const allWpEvents = allWpEvent.nodes
+          //const allWpClassnotes = allWpClassnote.nodes
+          //const allWpPosts = allWpPost.nodes
+          //const allWpPages = allWpPage.nodes
 
+          /*
           const posts = allWpPosts.map((p) => p.uri.replace(/\//g,''))
           const pages = allWpPages.map((p) => p.uri)
           const events = allWpEvents.map((e) => e.slug.replace(/\//g,''))
           const classnotes = allWpClassnotes.map((c) => c.slug.replace(/\//g,''))
+          */
 
+          const wpNodeMap = allWpNodes.reduce((acc, node) => {
+            const { uri } = node
+            acc[uri] = node
+
+            return acc
+          }, {})
+
+          /*
           const wpEventMap = allWpEvents.reduce((acc, node) => {
             const { uri } = node
             acc[uri] = node
@@ -332,8 +360,10 @@ module.exports = {
 
             return acc
           }, {})
+          */
 
           return allPages.map(page => { 
+            /*
             const slug = page.path.split(`/`)[2]
             const prefix = page.path.split(`/`)[1]
             const postIndex = (prefix === "news")
@@ -360,18 +390,16 @@ module.exports = {
               //change = allWpClassnote.nodes[classnoteIndex].modified.substring(0,10)
               return { ...page, ...wpClassnoteMap[page.path] }
             }
+            */
 
-            return { ...page, ...wpPageMap[page.path] }
+            return { ...page, ...wpNodeMap[page.path] }
           })
         },
         serialize: ({
-          site,
-          allSitePage,
-          allWpEvent,
-          allWpClassnote,
-          allWpPost,
-          allWpPage,
+          path, 
+          modifiedGmt
         }) => {
+          /*
           // https://www.gatsbyjs.com/blog/fs-route-api/ FAQs about pageContext
           // turn fetch feature post and pages data to arrays of their slugs
           const posts = allWpPost.nodes.map((p) => p.uri.replace(/\//g,''))
@@ -409,6 +437,12 @@ module.exports = {
               lastmod: `${change}`,
             })
           })
+          */
+          return {
+            url: path,
+            lastmod: modifiedGmt,
+          }
+
         }
         
       },
