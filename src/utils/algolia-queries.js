@@ -1,3 +1,5 @@
+
+
 const eventQuery = `{
   events: allWpEvent {
     edges {
@@ -273,6 +275,15 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
   let startDateTimestamp = new Date(startDate).getTime() / 1000
   let endDateTimestamp = new Date(endDate).getTime() / 1000
   let isTrip = eventDetails.trip
+  let formattedStartDate = shortDate(startDate)
+  let formattedEndDate = shortDate(endDate)
+  let formattedLongDate = null
+  let options = { year: 'numeric', month: 'long', day: 'numeric' };
+  let parsedStartDate = new Date(startDate).toLocaleDateString('en-US', options)
+  let parsedEndDate = new Date(endDate).toLocaleDateString('en-US', options)
+  let parsedTime = convertTime(startDate, endDate)
+
+
   if (blocks) {
     blockOriginalContent = blocks.map(block => {
       return block.originalContent
@@ -281,6 +292,24 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
       return block.dynamicContent
     })
   }
+
+  if(isTrip){
+    if(endDate){
+      formattedLongDate = parsedStartDate + " - " + parsedEndDate
+    }
+    else{
+      formattedLongDate = parsedStartDate
+    }
+  }
+  else{
+    if(parsedTime){
+      formattedLongDate = parsedDate + ', ' + parsedTime
+    }
+    else{
+      formattedLongDate = parsedDate
+    }
+  }
+
   return (isTrip)
     ? {
         objectID: id,
@@ -290,6 +319,9 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
         date: dateTimestamp,
         startDate: startDateTimestamp,
         endDate: endDateTimestamp,
+        formattedStartDate: formattedStartDate,
+        formattedEndDate: formattedEndDate,
+        formattedLongDate: formattedLongDate,
         eventDetails: eventDetails,
         type: 'Trips',
         typeIndex: 2,
@@ -303,6 +335,9 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
       date: dateTimestamp,
       startDate: startDateTimestamp,
       endDate: endDateTimestamp,
+      formattedStartDate: formattedStartDate,
+      formattedEndDate: formattedEndDate,
+      formattedLongDate: formattedLongDate,
       eventDetails: eventDetails,
       type: 'Events',
       typeIndex: 1,
