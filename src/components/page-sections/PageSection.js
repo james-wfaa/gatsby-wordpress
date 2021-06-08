@@ -77,13 +77,15 @@ const PageSection = ({
             { withSocial && (
                 <StyledSocialIcons data={withSocial} />
             )}
-            { excerpt && (
+            { excerpt && !formRefresh && (
                 <div className="sectionexcerpt"  dangerouslySetInnerHTML={{ __html: excerpt }} />
+            )}
+            { formRefresh && (
+                <div className="sectionexcerpt"><p>Thanks for taking the time to do a complete update of your information. Now you’re all set to receive messages, invitations, and more — and you have a better way to stay connected to UW–Madison and WAA.</p><p>If you would like to provide additional information, please <span className="reload-form-btn" onClick={() => window.location.reload()}>restart this form</span>.</p><p>On, Wisconsin!</p></div>
             )}
             <div className={`content ${plainTextContent} ${centeredContentClass}`}>
                 {children}
             </div>
-            {formRefresh && <p className="formRefreshBtn" onClick={() => window.location.reload()}>Want to update someone else's info?</p>}
             { buttons && (<PageSectionButtons buttons={buttons} buttonsAlt={buttonsAlt} compact={buttonsCompact} />
             )}
             </div>

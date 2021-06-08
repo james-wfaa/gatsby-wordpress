@@ -38,7 +38,7 @@ const SpouseInfo = () => {
       return (
         <div>
             <PageSection
-              excerpt='If there’s been a change regarding your spouse or partner, please indicate that here. If your spouse/partner is a UW-Madison alum, you can even add grad years. Click “Save and Continue” after completing the page to ensure your changes are recorded.'
+              excerpt='Please provide information about your spouse or partner. If your spouse/partner is a UW-Madison alum, you can even add grad years.'
               heading='Update My Info'
               headingCompact
               backgroundColor={colors.formIntroBg}
@@ -50,7 +50,7 @@ const SpouseInfo = () => {
             )}
             <form id="spouseInfo" onSubmit={handleSubmit(submitForm)} className="spouse-info">
             { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
-              <legend>Spouse/Partner<span className="requiredInfo">*Required Information</span></legend>
+              <legend>Spouse/Partner Information<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="spouseFirstname" className="half required">Spouse/Partner First Name
                 <span className="required">*</span>

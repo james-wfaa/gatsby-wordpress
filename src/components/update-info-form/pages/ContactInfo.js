@@ -39,7 +39,7 @@ const ContactInfo = () => {
       return (
         <div>
           <PageSection
-            excerpt="Make sure you stay in the know — and more connected to the UW and WAA! Please take a moment to complete this form with your current contact information to ensure you receive communications about events, programs, and services that matter to you."
+            excerpt="Stay in the know — and more connected to the UW and WAA! Please take a moment to provide your current contact information to receive communications about events, programs, and services that matter to you."
             heading="Update My Info"
             headingCompact
             backgroundColor={colors.formIntroBg}
