@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import styled from 'styled-components'
 import EventCard from './cards/EventCard'
 import TripCard from './cards/TripCard'
@@ -6,17 +6,9 @@ import PostCard from './cards/PostCard'
 import PageCard from './cards/PageCard'
 import ChapterCard from './cards/ChapterCard'
 
-const NoResultsDiv = styled.div`
-  p {
-    width: 50%;
-    margin: 48px auto 88px;
-    text-align: center;
-  }
-`
 
 const SearchHits = ({ hits, hitHandler }) => {
 
-  //console.log(hits)
   useEffect(() => {
     if (hits.length > 0) {
       let firstHit = hits[0].__position
@@ -128,10 +120,7 @@ const SearchHits = ({ hits, hitHandler }) => {
 
   return (
     <>
-      {cards.length > 0 ? cards :
-      <NoResultsDiv>
-        <p>We didn’t find anything for that search - please try your search again or use our navigation to browse the site.</p>
-      </NoResultsDiv>}
+      {cards}
     </>
   )
 }

@@ -28,12 +28,12 @@ const FooGallery = ({ content, id, className }) => {
         if (fooGallery?.props?.children) {
             if (Array.isArray(fooGallery.props.children)) {
                 //console.log(fooGallery.props.children)
-                fooGallery.props.children.forEach((child) => {
+                React.Children.forEach(fooGallery.props.children,child => {
                     if (child?.props?.className === 'fg-item') {
                         if (child?.props?.children?.[0]) {
-                            child.props.children.forEach((innerChild) => {
+                            React.Children.forEach(child.props.children,innerChild => {
                                 if (innerChild.props.className === "fg-item-inner" && innerChild.props?.children) {
-                                    innerChild.props.children.forEach((item) => {
+                                    React.Children.forEach(innerChild.props.children,item => {
                                         if (item.type === "a") {
                                             if (item.props?.children) {
                                                 if (item.props.children?.props?.className === "fg-image-wrap") {
@@ -56,22 +56,22 @@ const FooGallery = ({ content, id, className }) => {
             } 
             else if (fooGallery.props.children?.props?.className && fooGallery.props.children.props.className === "fiv-inner") {
                 //console.log(fooGallery.props.children.props.children)
-                fooGallery.props.children.props.children.forEach((child) => {
+                React.Children.forEach(fooGallery.props.children.props.children,child => {
                     if (child?.props?.className === 'fiv-inner-container') {
                         //console.log('found the items')
                         if (child?.props?.children?.[0]) {
-                            child.props.children.forEach((innerChild) => {
+                            React.Children.forEach(child.props.children,innerChild => {
                                // console.log(innerChild)
                                 if (innerChild.props.className === "fg-item" && innerChild.props?.children) {
                                     //console.log('fg-item')
-                                    innerChild.props.children.forEach((item) => {
+                                    React.Children.forEach(innerChild.props.children,item => {
                                         let src = null
                                         let resolvedCaption = ''
                                         let resolvedAlt = ''
                                         if (item.props.className === "fg-item-inner" && item.props?.children) {
                                             //console.log('.fiv-inner-container .fg-item-inner')
 
-                                            item.props.children.forEach((inner) => {
+                                            React.Children.forEach(item.props.children,inner => {
                                                 
                                                 if (inner.type === "a") {
                                                     //console.log('inner type a', inner)

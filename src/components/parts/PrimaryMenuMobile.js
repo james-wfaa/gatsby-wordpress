@@ -248,6 +248,45 @@ const PrimaryMenu = () => {
     leave: { transform: `translate3d(100%,0, 0)` },
   })
 
+  useEffect(() => {
+        const modalLinks = document.getElementById('modal') ? Array.from(document.getElementById('modal').querySelectorAll('a, button')) : null
+        const closeBtnLink = document.getElementsByClassName('open') ? Array.from(document.getElementsByClassName('menu')) : null
+        const homeBtn = document.getElementsByClassName('link-home') ? Array.from(document.getElementsByClassName('link-home')) : null
+        const mobileBackLink = document.getElementById('backLink') ? document.getElementById('backLink') : null
+        if (modalLinks && mobileBackLink){
+          modalLinks.unshift(mobileBackLink)
+          
+        }
+        const firstLink = modalLinks ? modalLinks[0] : null
+        const lastLink = modalLinks ? modalLinks[modalLinks.length - 1] : null 
+        const stayInModal = (e) => {
+        console.log(document.activeElement, modalLinks)
+        if(document.activeElement === firstLink){
+          if (e.shiftKey && e.key === 'Tab'){
+            e.preventDefault();
+            closeBtnLink[0].focus()
+          }
+        } else if(document.activeElement === homeBtn[0]){
+          if(e.shiftKey && e.key === 'Tab'){
+            e.preventDefault();
+            lastLink.focus()
+          }
+        } else if(document.activeElement === lastLink){
+          if(e.key === 'Tab' && !e.shiftKey){
+            e.preventDefault();
+            homeBtn[0].focus()
+          }
+        } else if(document.activeElement === closeBtnLink[0]){
+          if(e.key === 'Tab' && !e.shiftKey){
+            e.preventDefault();
+            modalLinks[0].focus()
+          }
+        }
+      }
+      window.addEventListener('keydown', stayInModal)
+    return () => window.removeEventListener('keydown', stayInModal)
+  })
+
   const modalClickHandler = () => {
     setShowLeft(true)
   }
@@ -265,14 +304,14 @@ const PrimaryMenu = () => {
         if(link.url === "https://www.uwalumnistore.com" ){
           return (
             <li>
-              <a href={link.url} target="_blank">{link.tag}</a>
+              <a href={link.url} target="_blank" className="gtm-main-menu">{link.tag}</a>
             </li>
           )
         }
         else{
           return (
             <li>
-              <Link to={link.url}>{link.tag}</Link>
+              <Link to={link.url} className="gtm-main-menu">{link.tag}</Link>
             </li>
           )
         }
@@ -302,14 +341,14 @@ const PrimaryMenu = () => {
         if(link.url === "https://www.uwalumnistore.com" ){
           return (
             <li key={link.tag}>
-              <a href={link.url} target="_blank">{link.tag}</a>
+              <a href={link.url} target="_blank" className="gtm-main-menu">{link.tag}</a>
             </li>
           )
         }
         else{
           return (
             <li key={link.tag}>
-              <Link to={link.url}>{link.tag}</Link>
+              <Link to={link.url} className="gtm-main-menu">{link.tag}</Link>
             </li>
           )
         }
@@ -318,6 +357,13 @@ const PrimaryMenu = () => {
       setChildLinks(links)
     }
   }, [select])
+
+  useEffect(() => {
+    const focusFirstLink = document.getElementById('mChildLinks') ? Array.from(document.getElementById('mChildLinks').querySelectorAll('a, button')) : null
+    if(focusFirstLink && focusFirstLink.length > 0){
+      focusFirstLink[0].focus()
+    }
+  }, [childLinks])
 
   return (
     <div onClick={() => modalClickHandler()}>
@@ -345,16 +391,16 @@ const PrimaryMenu = () => {
                   <BottomLeft>
                     <ul>
                       <li>
-                        <Link to="/about">About WAA</Link>
+                        <Link to="/about" className="gtm-main-menu">About WAA</Link>
                       </li>
                       <li>
-                        <Link to="/about/contact-waa">Contact WAA</Link>
+                        <Link to="/about/contact-waa" className="gtm-main-menu">Contact WAA</Link>
                       </li>
                       <li>
-                        <Link to="/update-info">Update My Info</Link>
+                        <Link to="/update-info" className="gtm-main-menu">Update My Info</Link>
                       </li>
                       <li>
-                        <Link to="/email">Alumni Email Login</Link>
+                        <Link to="/email" className="gtm-main-menu">Alumni Email Login</Link>
                       </li>
                     </ul>
                     <SocialLinks>
@@ -396,12 +442,13 @@ const PrimaryMenu = () => {
                       onKeyPress={(e) => modalKeyPressHandler(e)}
                       style={{ marginBottom: 0 }}
                       tabIndex="0"
+                      id="backLink"
                     >
                       {select}
                     </p>
                   </BackLink>
 
-                  <ul>{childLinks.length > 0 ? childLinks : null}</ul>
+                  <ul id="mChildLinks">{childLinks.length > 0 ? childLinks : null}</ul>
                 </RightMenu>
               </animated.div>
             )
