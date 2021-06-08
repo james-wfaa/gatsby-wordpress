@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { colors, mixins, sizes } from '../css-variables'
 import Img from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import TagList from "../parts/TagList"
 import styled from 'styled-components'
 import { shortDate } from "../../utils/tools"
