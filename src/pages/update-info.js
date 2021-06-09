@@ -407,6 +407,8 @@ form{
   /*.content{
     margin-bottom: 70px;
   }*/
+}
+.communications-success-page, .success-page{
   .reload-form-btn{
     text-decoration: underline;
     cursor: pointer;
