@@ -303,10 +303,10 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
   }
   else{
     if(parsedTime){
-      formattedLongDate = parsedDate + ', ' + parsedTime
+      formattedLongDate = parsedStartDate + ', ' + parsedTime
     }
     else{
-      formattedLongDate = parsedDate
+      formattedLongDate = parsedStartDate
     }
   }
 
@@ -406,10 +406,10 @@ function chapterToAlgoliaRecord({node: { id, date, link, chapterDetails, ...rest
   }
 }
 
-function convertTime ({node: { istartTime, endTime}}) {
-  const startDS = new Date(startTime.replace(/\s/, 'T'));
-  const endDS = new Date(endTime.replace(/\s/, 'T'));
-  if(startDS.getDate() === endDS.getDate()){
+function convertTime ({startTime, endTime}) {
+  const startDS = startTime ? new Date(startTime.replace(/\s/, 'T')) : null;
+  const endDS = endTime ? new Date(endTime.replace(/\s/, 'T')) : null;
+  if(startDS && endDS && startDS.getDate() === endDS.getDate()){
     const startTime = formatAMPM(startDS);
     const endTime = formatAMPM(endDS);
     let strTime = '';
@@ -423,10 +423,9 @@ function convertTime ({node: { istartTime, endTime}}) {
 
   }
   else{
-
   }
 }
-function formatAMPM ({node: {date}}) {
+function formatAMPM ({date}) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
   const ampm = hours >= 12 ? 'p.m.' : 'a.m.';
@@ -445,7 +444,7 @@ function formatAMPM ({node: {date}}) {
   return timeObj;
 }
 
-function shortDate ({node: {date}}) {
+function shortDate ({date}) {
   if (!date) {
     return null
   }
