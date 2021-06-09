@@ -24,12 +24,12 @@ const EventsAll = (props) => {
             setFilterFilter(` AND categories.slug:${filter}`)
         }
         if (product?.length > 0) {
-            setProductFilter(` AND products.slug:${product}`)
+            setProductFilter(` AND categories.slug:${product}`)
         }
     }, [])
 
     useEffect(() => {
-        setAllFilters(`type:'Events'${filterFilter}${productFilter}`)
+        setAllFilters(`type:'Events' OR type:'Trips'${filterFilter}${productFilter}`)
         //setAllFilters(`type:'News & Stories' AND NOT categories.name:Classnote${filterFilter}${pubFilter}${productFilter}`)
     }, [filterFilter, productFilter])
 
@@ -37,7 +37,7 @@ const EventsAll = (props) => {
         if (type === "filter") {
             setFilterFilter(` AND categories.slug:${slug}`)
         } else if (type === "product") {
-            setProductFilter(` AND products.slug:${slug}`)
+            setProductFilter(` AND categories.slug:${slug}`)
         } else {
             return
         }
