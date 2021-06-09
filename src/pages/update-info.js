@@ -376,7 +376,7 @@ form{
     top:unset;
     background-color:${colors.buttonRed};
   }
-  .successPageIcon{
+  /*.successPageIcon{
     position:relative;
     height: 0;
     width: 60px;
@@ -403,9 +403,15 @@ form{
       width: 32px;
       transform: rotate(-55deg);
     }
-  }
-  .content{
+  }*/
+  /*.content{
     margin-bottom: 70px;
+  }*/
+}
+.communications-success-page, .success-page{
+  .reload-form-btn{
+    text-decoration: underline;
+    cursor: pointer;
   }
 }
 .validFormMessage{
