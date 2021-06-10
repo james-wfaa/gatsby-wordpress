@@ -38,7 +38,13 @@ module.exports = {
         generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
       }
     },
-    `gatsby-plugin-sharp`,
+    `gatsby-plugin-image`,
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        breakpoints: [414, 656, 936, 1200, 1440, 1920, 2880],
+      }
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,

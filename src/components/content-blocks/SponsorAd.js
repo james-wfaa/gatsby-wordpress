@@ -21,22 +21,22 @@ import SponsorAdStyled from "./SponsorAdStyled"
                     fieldGroupName
                     logoImage1 {
                       localFile {
-                        ...HeroImage
+                        ...HeroImageNew
                       }
                     }
                     logoImage2 {
                         localFile {
-                          ...HeroImage
+                          ...HeroImageNew
                         }
                       }
                     logoImage3 {
                         localFile {
-                            ...HeroImage
+                            ...HeroImageNew
                         }
                     }
                     logoImage4 {
                         localFile {
-                          ...HeroImage
+                          ...HeroImageNew
                         }
                     }
                 }

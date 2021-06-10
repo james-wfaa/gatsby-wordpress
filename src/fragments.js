@@ -9,6 +9,16 @@ export const fragments = graphql`
       }
     }
   }
+  fragment HeroImageNew on File {
+    childImageSharp {
+      gatsbyImageData(layout: FULL_WIDTH)
+    }
+  }
+  fragment EventImage on File {
+    childImageSharp {
+      gatsbyImageData(layout: CONSTRAINED)
+    }
+  }
   fragment Children on WpPage {
     wpChildren {
       nodes {

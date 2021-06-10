@@ -194,7 +194,7 @@ export const query = graphql`
       featuredImage {
         node {
           localFile {
-            ...HeroImage
+            ...HeroImageNew
           }
         }
       }
@@ -234,7 +234,7 @@ export const query = graphql`
           adImage {
             id
             localFile {
-              ...HeroImage
+              ...HeroImageNew
             }
           }
         }

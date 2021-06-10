@@ -77,18 +77,15 @@ const ContentCard = ({
     if(!sizes.includes(size) || promo ){
         size = "S";
     }
+    
+    const imgSourceNew = (featureImg?.childImageSharp)
+            ? featureImg
+            : img
 
-    const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
-        ? null
-        : (featureImg && typeof featureImg !== 'undefined' && featureImg.childImageSharp && featureImg.childImageSharp !== img.childImageSharp) ?
-            [
-                img.childImageSharp.fluid,
-                {
-                    ...featureImg.childImageSharp.fluid,
-                    media: `(min-width: 1200px)`
-                }
-            ]
-            :  img.childImageSharp.fluid
+    console.log(title)
+   
+    console.log(imgSourceNew)
+    
 
     return (
 
@@ -110,12 +107,9 @@ const ContentCard = ({
                             </h3>
                         </>
                     )}
-                    {imgSources && (
+                    {imgSourceNew && (
                         <a href={finalUrl}  target={target} className={`imgzoomlink headerImg`} >
-                            <Img
-                                className={`img`}
-                                fluid={imgSources}
-                            />
+                            <GatsbyImage image={imgSourceNew.childImageSharp.gatsbyImageData} />
                         </a>
                     )}
                 </div>
@@ -137,24 +131,19 @@ const ContentCard = ({
                             </h3>
                         </>
                     )}
-                    {imgSources && (
+                    {imgSourceNew && (
                         <Link to={finalUrl} className={`imgzoomlink headerImg`} >
-                            <Img
-                                className={`img`}
-                                fluid={imgSources}
-                            />
+                            <GatsbyImage image={imgSourceNew.childImageSharp.gatsbyImageData} />
                         </Link>
                     )}
                 </div>  
             )}
             { linkFormat && (
                 <div className={`contentwrap contentwrap--${size}`}>
-                    {imgSources && (
+                    {imgSourceNew && (
                         <a href={finalUrl}  target={target} className={`imgzoomlink bodyImg `} >
-                            <Img
-                                className={`img`}
-                                fluid={imgSources}
-                            />
+                           
+                           <GatsbyImage image={imgSourceNew.childImageSharp.gatsbyImageData} />
                         </a>
                     )}
                     <div className={`contentsection contentsection--${size}`}>
@@ -200,12 +189,9 @@ const ContentCard = ({
             )}
             { !linkFormat && (
                 <div className={`contentwrap contentwrap--${size}`}>
-                    {imgSources && (
+                    {imgSourceNew && (
                         <Link to={finalUrl} className={`imgzoomlink bodyImg`}>
-                        <Img
-                            className={`img`}
-                            fluid={imgSources}
-                        /></Link>
+                        <GatsbyImage image={imgSourceNew.childImageSharp.gatsbyImageData} /></Link>
                     )}
                     <div className={`contentsection contentsection--${size}`}>
                         <div className={`columnwrap columnwrap--${size}`}>

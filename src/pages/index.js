@@ -285,7 +285,7 @@ export const pageQuery = graphql`
         featuredImage {
           node {
             localFile {
-              ...HeroImage
+              ...HeroImageNew
             }
           }
         }

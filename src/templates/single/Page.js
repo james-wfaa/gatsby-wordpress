@@ -134,7 +134,7 @@ export const query = graphql`
             width
           }
           localFile {
-            ...HeroImage
+            ...HeroImageNew
             publicURL
           }
         }

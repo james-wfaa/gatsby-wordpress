@@ -80,7 +80,7 @@ export const query = graphql`
             }
           }
           localFile {
-            ...HeroImage
+            ...HeroImageNew
           }
         }
       }
@@ -97,7 +97,7 @@ export const query = graphql`
             }
           }
           localFile{
-            ...HeroImage
+            ...HeroImageNew
           }
         }
       }

@@ -33,9 +33,9 @@ const AllEvents = () => {
                 featuredEvent
                 featuredImage {
                     node {
-                    localFile {
-                        ...HeroImage
-                    }
+                      localFile {
+                          ...HeroImageNew
+                      }
                     }
                 }
                 eventsCategories {
