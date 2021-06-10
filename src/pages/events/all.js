@@ -15,7 +15,7 @@ const EventsAll = (props) => {
   }
     const [filterFilter, setFilterFilter] = useState("")
     const [productFilter, setProductFilter] = useState("")
-    const [allFilters, setAllFilters] = useState(`type:Events`)
+    const [allFilters, setAllFilters] = useState(`type:'Events' OR type:'Trips`)
 
     const { filter, product } = queryString.parse(props.location.search)
 
@@ -24,20 +24,19 @@ const EventsAll = (props) => {
             setFilterFilter(` AND categories.slug:${filter}`)
         }
         if (product?.length > 0) {
-            setProductFilter(` AND categories.slug:${product}`)
+            setProductFilter(` AND products.slug:${product}`)
         }
     }, [])
 
     useEffect(() => {
         setAllFilters(`type:'Events' OR type:'Trips'${filterFilter}${productFilter}`)
-        //setAllFilters(`type:'News & Stories' AND NOT categories.name:Classnote${filterFilter}${pubFilter}${productFilter}`)
     }, [filterFilter, productFilter])
 
     const filterChange = (type, slug) => {
         if (type === "filter") {
             setFilterFilter(` AND categories.slug:${slug}`)
         } else if (type === "product") {
-            setProductFilter(` AND categories.slug:${slug}`)
+            setProductFilter(` AND products.slug:${slug}`)
         } else {
             return
         }
@@ -55,7 +54,6 @@ const EventsAll = (props) => {
           <AlgoliaArchivePage
             indices={[{ name: 'All' }]}
             results={false}
-            //filters={'type:Events OR type:Trips'}
             filters={allFilters}
             filterChange={filterChange}
             clearFilters={clearFilters}

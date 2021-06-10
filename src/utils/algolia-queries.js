@@ -270,6 +270,7 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
   let blockOriginalContent = [];
   let blockDynamicContent = [];
   let categories = eventsCategories.nodes;
+  let convertedproducts = products.nodes;
   let dateTimestamp = new Date(date).getTime() / 1000
   let startDateTimestamp = new Date(startDate).getTime() / 1000
   let endDateTimestamp = new Date(endDate).getTime() / 1000
@@ -288,6 +289,7 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
         blocksOriginal: blockOriginalContent,
         blocksDynamic: blockDynamicContent,
         categories: categories,
+        products: convertedproducts,
         date: dateTimestamp,
         startDate: startDateTimestamp,
         endDate: endDateTimestamp,
@@ -301,6 +303,7 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
       blocksOriginal: blockOriginalContent,
       blocksDynamic: blockDynamicContent,
       categories: categories,
+      products: convertedproducts,
       date: dateTimestamp,
       startDate: startDateTimestamp,
       endDate: endDateTimestamp,
