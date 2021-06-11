@@ -59,9 +59,13 @@
 		"fromPath": "/event/*",
 		"toPath": "/events/*"
    	},
+    {
+        "fromPath": "/awards/",
+        "toPath": "/about/alumni-awards/"
+    },
 	{
 		"fromPath": "/awards/*",
-		"toPath": "/about/alumni-awards/*"
+		"toPath": "/news/*"
    	},
 	{
 		"fromPath": "/trip/*",
@@ -502,10 +506,6 @@
     {
         "fromPath": "/austin/",
         "toPath": "/groups/austin/"
-   	},
-    {
-        "fromPath": "/awards/",
-        "toPath": "/about/alumni-awards/"
    	},
     {
         "fromPath": "/badgercafe/",
