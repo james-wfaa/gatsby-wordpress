@@ -83,7 +83,7 @@ const PageSection = ({
             { formRefresh && excerpt && (
                 <div className="sectionexcerpt">
                     <p dangerouslySetInnerHTML={{ __html: excerpt }} />
-                    <p>If you would like to provide additional information updates, please <span className="reload-form-btn" onClick={() => window.location.reload()}>restart this form</span>.</p>
+                    <p>If you would like to provide additional information updates, please <span className="reload-form-btn red" onClick={() => window.location.reload()}>restart this form</span>.</p>
                     <p>On, Wisconsin!</p>
                 </div>
             )}
