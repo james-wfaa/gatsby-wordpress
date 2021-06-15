@@ -345,8 +345,8 @@ module.exports = {
           appId: process.env.GATSBY_ALGOLIA_APP_ID,
           apiKey: process.env.ALGOLIA_ADMIN_KEY,
           queries: require("./src/utils/algolia-queries"),
-          enablePartialUpdates: false,
-          //matchFields: ['slug', 'modified'],
+          enablePartialUpdates: true,
+          matchFields: ['slug', 'modified'],
           skipIndexing: (process.env.GATSBY_ALGOLIA_SKIP_INDEX === "true"), // default: false, useful for e.g. preview deploys or local development
           continueOnFailure: (process.env.GATSBY_ALGOLIA_CONTINUE_ON_FAILURE === "true") // default: false, don't fail the build if algolia indexing fails
        },
