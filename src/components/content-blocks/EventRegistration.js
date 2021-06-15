@@ -48,6 +48,8 @@ const EventRegistration = ({className, date, startDate, endDate, timezone, venue
     const registrationText = eventDetails.eventFullSoldOut ? eventDetails.eventFullText 
     : eventDetails.trip ? 'Book Now' : 'Register Now';
 
+    const hostText = eventDetails.trip ? "TOUR OPERATOR(S)" : "HOST(S)"
+
     const regIsFull = eventDetails.eventFullSoldOut;
     const [show, setShow] = useState(false);
     const mapLinkText = (venue && venue.address) ? "View Map and Event Details" : "View Event Details";
@@ -97,7 +99,7 @@ const EventRegistration = ({className, date, startDate, endDate, timezone, venue
                 <div className="amount ">{costDisplay(cost)} {priceDetailsDisplay}</div>
                 {organizerList.length < 5 ?
                     <>
-                    <div className="subHeader">HOST(S)</div>
+                    <div className="subHeader">{hostText}</div>
                     <div className="orgName ">{organizerList}</div>
                     </>
                 :
