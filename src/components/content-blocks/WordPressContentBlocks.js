@@ -146,8 +146,10 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                 //console.log('events-listing-section')
                 if ( products) { // FIX THIS
                     let combinedEvents = []
+                    let linkslug
                     if (products?.nodes) {
                         products.nodes.forEach((product) => {
+                            linkslug = product.slug
                             const { events } = product 
                             const eventsToShow = (events?.nodes) ? events.nodes : null
                             if (eventsToShow) {
@@ -159,12 +161,12 @@ const WordPressContentBlocks = ({className, blocks, products, stagger}) => {
                             }
                         })
                     }
+                    let linkPath = linkslug ? `all?product=${linkslug}` : 'all'
                     combinedEvents.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
                     const reducedEvents = combinedEvents.slice(0,9)
-                    
                     const buttons = (combinedEvents.length > 2) 
                         ? [{
-                            link: `/events/all`,
+                            link: `/events/${linkPath}`,
                             text: 'See More Events'
                         }]
                         : null

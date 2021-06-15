@@ -150,6 +150,7 @@ const StyledHeader = styled.header`
       mask: url(${Search});
       &:hover {
         background-color: ${colors.buttonRed};
+        cursor: pointer;
       }
     }
   }

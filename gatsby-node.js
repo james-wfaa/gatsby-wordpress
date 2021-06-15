@@ -117,6 +117,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 	    fromPath: redirect.fromPath,
 	    toPath: redirect.toPath,
       isPermanent: true,
+      ignoreCase: true,
 	  })
 	)
 }

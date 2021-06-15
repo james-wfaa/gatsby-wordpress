@@ -54,7 +54,11 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
              * 3) point the ical link at the WordPress URL so the download works correctly
              * */ 
 
+<<<<<<< HEAD
             React.Children.forEach((child) => {
+=======
+             React.Children.forEach((child) => {
+>>>>>>> master
                 if (child.props.className.includes('tribe-block__events-gcal')) {
                     //console.log(child.props.children.props.href)
                     var clonedElementWithMoreProps = React.cloneElement(
