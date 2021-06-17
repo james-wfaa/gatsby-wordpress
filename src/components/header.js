@@ -110,7 +110,7 @@ const Header = ({ noborder }) => {
           <div className="inner">
             <span className="logo">
               <Link to="/" className="link-home" tabIndex={open ? "12" : "0"}>
-                <img src={Logo} alt="Logo" width="112" height="54" />
+                <img src={Logo} alt="Wisconsin Alumni Association" width="112" height="54" />
               </Link>
             </span>
             <div>

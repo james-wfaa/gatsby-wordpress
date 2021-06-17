@@ -34,7 +34,7 @@ const WfaaFooter = ({ className }) =>  (
     <div className="footer--inner">
       <div className="footer__column footer__column--first">
         <StyledCrest>
-          <Crest className="wfaa-uw-crest" />
+          <Crest className="wfaa-uw-crest" alt="University of Wisconsin-Madison crest" />
         </StyledCrest>
         <div className="external-link">
           <div>University of Wisconsin Foundation</div>
