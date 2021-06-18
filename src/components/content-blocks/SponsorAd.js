@@ -1,9 +1,9 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Img from 'gatsby-image'
 import SponsorAdStyled from "./SponsorAdStyled"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
-  const SponsorAd = ({className}) => {
+  const SponsorAd = () => {
     const data = useStaticQuery(graphql`
     query HeadingQuery {
         allWp {
@@ -21,22 +21,30 @@ import SponsorAdStyled from "./SponsorAdStyled"
                     fieldGroupName
                     logoImage1 {
                       localFile {
-                        ...HeroImageNew
+                        childImageSharp {
+                        gatsbyImageData(layout: CONSTRAINED, width: 210)
+                        }
                       }
                     }
                     logoImage2 {
                         localFile {
-                          ...HeroImageNew
+                          childImageSharp {
+                          gatsbyImageData(layout: CONSTRAINED, width: 210)
+                          }
                         }
                       }
                     logoImage3 {
                         localFile {
-                            ...HeroImageNew
+                          childImageSharp {
+                          gatsbyImageData(layout: CONSTRAINED, width: 210)
+                          }
                         }
                     }
                     logoImage4 {
                         localFile {
-                          ...HeroImageNew
+                          childImageSharp {
+                          gatsbyImageData(layout: CONSTRAINED, width: 210)
+                          }
                         }
                     }
                 }
@@ -50,15 +58,18 @@ import SponsorAdStyled from "./SponsorAdStyled"
     const { siteOptions } = allWp.nodes[0]
     const { SponsorAd } = siteOptions
     const { adHeading, adCopy, adLink, logoImage1, logoImage2, logoImage3, logoImage4} = SponsorAd
-
+    const logo1 = getImage(logoImage1.localFile)
+    const logo2 = getImage(logoImage2.localFile)
+    const logo3 = getImage(logoImage3.localFile)
+    const logo4 = getImage(logoImage4.localFile)
   
     return (
         <SponsorAdStyled>
             {siteOptions && 
-            logoImage1?.localFile?.childImageSharp && 
-            logoImage3?.localFile?.childImageSharp && 
-            logoImage4?.localFile?.childImageSharp && 
-            logoImage2?.localFile?.childImageSharp &&
+            logo1 && 
+            logo2 && 
+            logo3 && 
+            logo4 &&
             (
                 <a className="SponsorAd_Link" href={adLink?.uri ? adLink.uri : null}>
                     <div className="contentWrap">
@@ -66,34 +77,22 @@ import SponsorAdStyled from "./SponsorAdStyled"
                         <div className="AdContent" dangerouslySetInnerHTML={{ __html: adCopy }}/>
                     </div>
                     <div className="LogoList">
-                        <div className="LogoLeft LogoColumn" >
-                            <div className="LogoWrap">
-                                <Img
-                                    className="Logo_AmFam LogoIcon"
-                                    fluid={logoImage1.localFile.childImageSharp.fluid}
-                                />
-                            </div>
-                            <div className="LogoWrap">
-                                <Img
-                                    className="Logo_UWCU LogoIcon"
-                                    fluid={logoImage3.localFile.childImageSharp.fluid}
-                                />
-                            </div>
-                        </div>
-                        <div className="LogoRight LogoColumn">
-                            <div className="LogoWrap">
-                                <Img
-                                    className="Logo_WPS LogoIcon"
-                                    fluid={logoImage4.localFile.childImageSharp.fluid}
-                                />
-                            </div>
-                            <div className="LogoWrap">
-                                <Img
-                                    className="Logo_CapLake LogoIcon"
-                                    fluid={logoImage2.localFile.childImageSharp.fluid}
-                                />
-                            </div>
-                        </div>
+                      <div className="LogoLeft LogoColumn" >
+                          <div className="LogoWrap">
+                            <GatsbyImage className="LogoIcon" image={logo1} />
+                          </div>
+                          <div className="LogoWrap">
+                            <GatsbyImage className="LogoIcon" image={logo3} />
+                          </div>
+                      </div>
+                      <div className="LogoRight LogoColumn">
+                          <div className="LogoWrap">
+                          <GatsbyImage className="LogoIcon" image={logo4} />
+                          </div>
+                          <div className="LogoWrap">
+                          <GatsbyImage className="LogoIcon" image={logo2} />
+                          </div>
+                      </div>
                     </div>
                 </a>
             )}

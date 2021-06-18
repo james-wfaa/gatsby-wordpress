@@ -173,19 +173,7 @@ export const query = graphql`
                 featuredImage {
                   node {
                     localFile {
-                      childImageSharp {
-                        fluid(maxWidth: 712) {
-                          base64
-                          srcWebp
-                          srcSetWebp
-                          originalImg
-                          originalName
-                          src
-                          srcSet
-                          aspectRatio
-                          sizes
-                        }
-                      }
+                      ...CardImage
                       publicURL
                     }
                   }
@@ -215,19 +203,7 @@ export const query = graphql`
                 featuredImage {
                   node {
                     localFile {
-                      childImageSharp {
-                        fluid(maxWidth: 712) {
-                          base64
-                          srcWebp
-                          srcSetWebp
-                          originalImg
-                          originalName
-                          src
-                          srcSet
-                          aspectRatio
-                          sizes
-                        }
-                      }
+                      ...CardImage
                       publicURL
                     }
                   }
@@ -277,20 +253,7 @@ export const query = graphql`
                 featuredImage {
                   node {
                     localFile {
-                      childImageSharp {
-                        fluid(maxWidth: 712) {
-                          base64
-                          srcWebp
-                          srcSetWebp
-                          originalImg
-                          originalName
-                          aspectRatio
-                          base64
-                          src
-                          srcSet
-                          sizes
-                        }
-                      }
+                      ...CardImage
                     }
                   }
                 }
@@ -343,19 +306,7 @@ export const query = graphql`
               featuredImage {
                 node {
                   localFile {
-                    childImageSharp {
-                      fluid(maxWidth: 712) {
-                        base64
-                        srcWebp
-                        srcSetWebp
-                        originalImg
-                        originalName
-                        src
-                        srcSet
-                        aspectRatio
-                        sizes
-                      }
-                    }
+                    ...CardImage
                     publicURL
                   }
                 }
@@ -408,9 +359,9 @@ export const query = graphql`
             altText
             localFile {
               childImageSharp {
-                fluid(maxWidth: 312) {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData(
+                  width:312
+                )
               }
               publicURL
             }

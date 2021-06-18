@@ -48,6 +48,7 @@ function WordPressPage({ data }) {
   const { backgroundImage } = gridDetails
 
   const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
+
   const moreButton = [
     {
       link: "/news/all",
@@ -219,20 +220,7 @@ export const query = graphql`
                 featuredImage {
                   node {
                     localFile {
-                      childImageSharp {
-                        fluid(maxWidth: 712) {
-                          base64
-                          srcWebp
-                          srcSetWebp
-                          originalImg
-                          originalName
-                          aspectRatio
-                          base64
-                          src
-                          srcSet
-                          sizes
-                        }
-                      }
+                      ...CardImage
                     }
                   }
                 }
@@ -294,12 +282,7 @@ export const query = graphql`
                 featuredImage {
                   node {
                     localFile {
-                      childImageSharp {
-                        gatsbyImageData(
-                          layout: CONSTRAINED,
-                          width: 712,
-                        )
-                      }
+                      ...CardImage
                     }
                   }
                 }
@@ -349,18 +332,11 @@ export const query = graphql`
         backgroundImage {
           localFile {
             childImageSharp {
-              fluid(maxWidth: 2880) {
-                base64
-                srcWebp
-                srcSetWebp
-                originalImg
-                originalName
-                src
-                srcSet
-                aspectRatio
-                sizes
-
-              }
+              gatsbyImageData(
+                width: 2880,
+                placeholder: BLURRED
+                formats: [AUTO, WEBP]
+              )
             }
           }
         }

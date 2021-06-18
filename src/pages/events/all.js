@@ -47,7 +47,7 @@ const EventsAll = (props) => {
         setProductFilter("")
         navigate('/events/all')
     }
-    console.log(allFilters, queryString.parse(props.location.search))
+    //console.log(allFilters, queryString.parse(props.location.search))
     return (
       <Layout title="All Events" url="/events/all">
         <PageSection heading='All Events'>

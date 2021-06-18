@@ -42,7 +42,19 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
-        breakpoints: [414, 656, 936, 1200, 1440, 1920, 2880],
+        defaults: {
+          formats: [`auto`, `webp`],
+          placeholder: `blurred`,
+          quality: 80,
+          breakpoints: [414, 656, 936, 1200, 1440, 1920, 2880],
+          backgroundColor: `transparent`,
+          tracedSVGOptions: {},
+          blurredOptions: {},
+          jpgOptions: {},
+          pngOptions: {},
+          webpOptions: {},
+          avifOptions: {},
+        },
       }
     },
     `gatsby-plugin-react-helmet`,
@@ -461,6 +473,7 @@ module.exports = {
         policy: [{ userAgent: '*', allow: '/' }]
       }
     },
+    
      {
        resolve: `gatsby-plugin-algolia`,
        options: {
@@ -473,6 +486,7 @@ module.exports = {
           continueOnFailure: (process.env.GATSBY_ALGOLIA_CONTINUE_ON_FAILURE === "true") // default: false, don't fail the build if algolia indexing fails
        },
      },
+     
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

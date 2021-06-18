@@ -281,17 +281,11 @@ export const query = graphql`
         backgroundImage {
           localFile {
             childImageSharp {
-              fluid(maxWidth: 2880) {
-                base64
-                srcWebp
-                srcSetWebp
-                originalImg
-                originalName
-                src
-                srcSet
-                aspectRatio
-                sizes
-              }
+              gatsbyImageData(
+                width: 2880,
+                placeholder: BLURRED
+                formats: [AUTO, WEBP]
+              )
             }
           }
         }

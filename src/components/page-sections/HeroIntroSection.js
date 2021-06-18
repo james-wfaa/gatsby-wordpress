@@ -1,10 +1,9 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { sizes, breakpoints, mixins, colors } from '../css-variables'
-import BackgroundImage from 'gatsby-background-image'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import IntroPageSection from "./IntroPageSection"
 import VimeoVideo from '../content-modules/VimeoVideo'
-import HeroCarousel from '../page-sections/HeroCarousel'
 import downCaret from "../../../static/down-carat@2x.png"
 
 import { useWindowSize } from "../hooks"
@@ -28,7 +27,7 @@ const HeroIntroSection = ({
   const { width } = useWindowSize();
   let size
   if (heroSize === 'jumbo') {
-    size = width > 655 ? "calc(100vh - 118px)" : "calc(100vh - 86px)"
+    size = width > 655 ? "calc(100vh - 118px)" : "calc(100vh - 191px)"
   }
 
   let imageWidthClass = imageWidth ? 'constrainWidth' : null
@@ -94,60 +93,79 @@ const HeroIntroSection = ({
     classes += ' noHero'
   }
 
+  const image = getImage(heroImage)
+  const mobileImage = getImage(mobileHeroImage)
+  //console.log(mobileHeroImage)
+  //console.log(mobileImage)
+  //console.log(image)
   return (
     <div className={classes}>
-      {videoURL && width > 656 ? (
-        <VimeoVideo videoURL={videoURL} heroSize={heroSize} />
-      ) : mobileHeroImageCheck && mobileHeroImage?.childImageSharp?.fluid ? (
-        <div style={{height: `${size}`}}>
-        <BackgroundImage
-          Tag="div"
-          className={`${heroClasses} overlay`}
-          fluid={mobileHeroImage.childImageSharp.fluid}
-          preserveStackingContext
-        >
-          {heroHeading && (
-            <div className="wrapper">
-              <div
-                className={headingClasses}
-                dangerouslySetInnerHTML={{ __html: heroHeading }}
-              />
-            </div>
-          )}
-        </BackgroundImage>
-        </div>
-      ) : ( background && heroImage?.childImageSharp?.fluid ) ? (
-        <div style={{height: `${size}`}} className={`${imageWidthClass} ${imageHeightClass}`}>
-        <BackgroundImage
-          Tag="div"
-          className={heroClasses}
-          fluid={heroImage.childImageSharp.fluid}
-          preserveStackingContext
-        >
-          {heroHeading && (
-            <div className="wrapper">
-              <div
-                className={headingClasses}
-                dangerouslySetInnerHTML={{ __html: heroHeading }}
-              />
-            </div>
-          )}
-        </BackgroundImage>
-        </div>
-      ) :
-      carouselItems?.length > 0 ?
-        <>
-          <HeroCarousel carouselItems={carouselItems} width={width} />
-          {heroHeading && (
-            <div className="wrapper">
-              <div
-                className={headingClasses}
-                dangerouslySetInnerHTML={{ __html: heroHeading }}
-              />
-            </div>
-          )}
-        </>
-      : null}
+      { (videoURL && width > 656) 
+        ? 
+          (
+            <VimeoVideo videoURL={videoURL} heroSize={heroSize} />
+          ) 
+        : (mobileHeroImageCheck && mobileImage)
+          ? (
+          <div style={{height: `${size}`, display: "grid"}}>
+            <GatsbyImage image={mobileImage} alt="" style={{
+              gridArea: "1/1",
+              // You can set a maximum height for the image, if you wish.
+              // maxHeight: 600,
+            }}/>
+            {heroHeading && (
+              <div className="wrapper" style={{
+                gridArea: "1/1",
+                position: "relative",
+                placeItems: "center",
+                display: "grid",
+              }}>
+                <div
+                  className={headingClasses}
+                  dangerouslySetInnerHTML={{ __html: heroHeading }}
+                />
+              </div>
+            )}
+          </div>
+          ) 
+        : ( background && image ) 
+          ? 
+            (
+              <div display="grid" style={{height: `${size}`}} className={`${imageWidthClass} ${imageHeightClass}`}>
+              <GatsbyImage image={image} alt="" style={{
+              gridArea: "1/1",
+              // You can set a maximum height for the image, if you wish.
+              // maxHeight: 600,
+            }}/>
+            {heroHeading && (
+              <div className="wrapper" style={{
+                gridArea: "1/1",
+                position: "relative",
+                placeItems: "center",
+                display: "grid",
+              }}>
+                <div
+                  className={headingClasses}
+                  dangerouslySetInnerHTML={{ __html: heroHeading }}
+                />
+              </div>
+            )}
+              </div>
+            ) 
+          : (carouselItems?.length > 0) 
+            ?
+              <>
+                {heroHeading && (
+                  <div className="wrapper">
+                    <div
+                      className={headingClasses}
+                      dangerouslySetInnerHTML={{ __html: heroHeading }}
+                    />
+                  </div>
+                )}
+              </>
+            : null
+      }
       {productPage 
         ? <div className="standardProductLabel"></div> 
         : (heroSize === 'slim') 
@@ -200,6 +218,7 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
   margin-bottom: -80px;
   z-index: 4;
   overflow: hidden;
+  display: grid;
   .downscroll_after {
     @media screen and ${breakpoints.tabletS} {
       position: absolute;

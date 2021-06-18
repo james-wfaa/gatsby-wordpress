@@ -61,17 +61,7 @@ const eventQuery = `{
             sourceUrl
             localFile {
               childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
-                  originalImg
-                  originalName
-                  src
-                  srcSet
-                  aspectRatio
-                  sizes
-                }
+                gatsbyImageData(layout: CONSTRAINED, width: 712)
               }
             }
           }
@@ -119,17 +109,7 @@ const postQuery = `{
             sourceUrl
             localFile {
               childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
-                  srcSet
-                  src
-                  sizes
-                  originalImg
-                  originalName
-                  aspectRatio
-                }
+                gatsbyImageData(layout: CONSTRAINED, width: 712)
               }
             }
           }
@@ -189,17 +169,7 @@ const classNoteQuery = `{
               id
               publicURL
               childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
-                  originalName
-                  originalImg
-                  src
-                  srcSet
-                  sizes
-                  aspectRatio
-                }
+                gatsbyImageData(layout: CONSTRAINED, width: 712)
               }
             }
             sourceUrl
