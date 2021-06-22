@@ -10,8 +10,11 @@ const CardE = ({ className, img, width, fooImage, alt, caption, marginTop, cente
     const centerClass = center ? ' center' : ''
     const enhancedHomepageCaptionClass = enhancedHomepageCaption ? ' enhancedHomepageCaption' : ''
     const pillarClass = (pillar) ? ' pillar' : ''
-    const image = getImage(img)
-    const imageFoo = getImage(fooImage)
+    const image = img ? getImage(img) : null
+    const imageFoo = fooImage ? getImage(fooImage) : null
+
+    //console.log(img)
+    //console.log(fooImage)
 
     return (
         <div className={`${className}${pillarClass}`}>

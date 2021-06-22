@@ -10,7 +10,9 @@ const FeaturedImage = ({ className, featuredImage, event, size }) => {
   const imgSizeClass = (718 <= size && size < 1080) ? `mediumImg` : (size < 718) ? `smallImg` : ''
 
   //console.log(featuredImage)
-  const image = getImage(featuredImage.localFile)
+  const image = featuredImage?.localFile
+    ? getImage(featuredImage.localFile)
+    : null
   //console.log(image)
 
   return (featuredImage?.localFile?.childImageSharp) 

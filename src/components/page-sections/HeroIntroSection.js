@@ -93,8 +93,8 @@ const HeroIntroSection = ({
     classes += ' noHero'
   }
 
-  const image = getImage(heroImage)
-  const mobileImage = getImage(mobileHeroImage)
+  const image = heroImage ? getImage(heroImage) : null
+  const mobileImage = mobileHeroImage ? getImage(mobileHeroImage) : null
   //console.log(mobileHeroImage)
   //console.log(mobileImage)
   //console.log(image)
