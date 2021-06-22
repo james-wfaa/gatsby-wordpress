@@ -61,6 +61,7 @@ const eventQuery = `{
             sourceUrl
             localFile {
               childImageSharp {
+                gatsbyImageData(layout: CONSTRAINED, width: 712)
                 fluid {
                   base64
                   srcWebp
@@ -72,6 +73,7 @@ const eventQuery = `{
                   aspectRatio
                   sizes
                 }
+
               }
             }
           }
@@ -119,17 +121,19 @@ const postQuery = `{
             sourceUrl
             localFile {
               childImageSharp {
+                gatsbyImageData(layout: CONSTRAINED, width: 712)
                 fluid {
                   base64
                   srcWebp
                   srcSetWebp
-                  srcSet
-                  src
-                  sizes
                   originalImg
                   originalName
+                  src
+                  srcSet
                   aspectRatio
+                  sizes
                 }
+
               }
             }
           }
@@ -189,17 +193,19 @@ const classNoteQuery = `{
               id
               publicURL
               childImageSharp {
+                gatsbyImageData(layout: CONSTRAINED, width: 712)
                 fluid {
                   base64
                   srcWebp
                   srcSetWebp
-                  originalName
                   originalImg
+                  originalName
                   src
                   srcSet
-                  sizes
                   aspectRatio
+                  sizes
                 }
+
               }
             }
             sourceUrl

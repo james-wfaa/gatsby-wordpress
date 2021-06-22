@@ -17,6 +17,10 @@ module.exports = {
     author: `WFAA`,
     siteUrl: 'https://www.uwalumni.com',
   },
+  flags: { 
+    PRESERVE_WEBPACK_CACHE: true,
+    PRESERVE_FILE_DOWNLOAD_CACHE: true,
+   },
   plugins: [
     {
       resolve: `gatsby-plugin-gatsby-cloud`,
@@ -34,7 +38,25 @@ module.exports = {
         generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
       }
     },
-    `gatsby-plugin-sharp`,
+    `gatsby-plugin-image`,
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`],
+          placeholder: `blurred`,
+          quality: 80,
+          breakpoints: [414, 656, 936, 1200, 1440, 1920, 2880],
+          backgroundColor: `transparent`,
+          tracedSVGOptions: {},
+          blurredOptions: {},
+          jpgOptions: {},
+          pngOptions: {},
+          webpOptions: {},
+          avifOptions: {},
+        },
+      }
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -235,7 +257,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-sitemap",
       options: {
-        exclude: [`/organizer/*`, `/venue/`],
+        excludes: [],
         query: `
         {
           site {
@@ -276,20 +298,126 @@ module.exports = {
               path
             }
           }
+          allWpContentNode(filter: {nodeType: {in: ["Post", "Page", "Event", "Classnote"]}}) {
+            nodes {
+              ... on WpPost {
+                uri
+                modifiedGmt
+              }
+              ... on WpPage {
+                uri
+                modifiedGmt
+              }
+              ... on WpEvent {
+                uri
+                modifiedGmt
+              }
+              ... on WpClassnote {
+                uri
+                modifiedGmt
+              }
+            }
+          }
         }
         `,
         resolveSiteUrl: ({ site }) => {
           //Alternatively, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
           return site.siteMetadata.siteUrl
         },
-        serialize: ({
-          site,
+        resolvePages: ({
           allSitePage,
-          allWpEvent,
-          allWpClassnote,
-          allWpPost,
-          allWpPage,
+          allWpContentNode,
+          
         }) => {
+          const allPages =  allSitePage.nodes
+          const allWpNodes = allWpContentNode.nodes
+          //const allWpEvents = allWpEvent.nodes
+          //const allWpClassnotes = allWpClassnote.nodes
+          //const allWpPosts = allWpPost.nodes
+          //const allWpPages = allWpPage.nodes
+
+          /*
+          const posts = allWpPosts.map((p) => p.uri.replace(/\//g,''))
+          const pages = allWpPages.map((p) => p.uri)
+          const events = allWpEvents.map((e) => e.slug.replace(/\//g,''))
+          const classnotes = allWpClassnotes.map((c) => c.slug.replace(/\//g,''))
+          */
+
+          const wpNodeMap = allWpNodes.reduce((acc, node) => {
+            const { uri } = node
+            acc[uri] = node
+
+            return acc
+          }, {})
+
+          /*
+          const wpEventMap = allWpEvents.reduce((acc, node) => {
+            const { uri } = node
+            acc[uri] = node
+
+            return acc
+          }, {})
+
+          const wpClassnoteMap = allWpClassnotes.reduce((acc, node) => {
+            const { uri } = node
+            acc[uri] = node
+
+            return acc
+          }, {})
+
+          const wpPostMap = allWpPosts.reduce((acc, node) => {
+            const { uri } = node
+            acc[uri] = node
+
+            return acc
+          }, {})
+
+          const wpPageMap = allWpPages.reduce((acc, node) => {
+            const { uri } = node
+            acc[uri] = node
+
+            return acc
+          }, {})
+          */
+
+          return allPages.map(page => { 
+            /*
+            const slug = page.path.split(`/`)[2]
+            const prefix = page.path.split(`/`)[1]
+            const postIndex = (prefix === "news")
+              ? posts.indexOf(slug)
+              : -1
+            const eventIndex = (prefix === "events")
+              ? events.indexOf(slug)
+              : -1
+            const classnoteIndex = (prefix === "alumni-notes")
+              ? classnotes.indexOf(slug)
+              : -1
+            const pageIndex = pages.indexOf(node.path)
+
+            if (postIndex >= 0) {
+              //change = allWpPost.nodes[postIndex].modified.substring(0,10)  
+              return { ...page, ...wpPostMap[page.path] }
+            } else if (pageIndex >= 0) {
+              //change = allWpPage.nodes[pageIndex].modified.substring(0,10)
+              return { ...page, ...wpPageMap[page.path] }
+            } else if (eventIndex >= 0) {
+              //change = allWpEvent.nodes[eventIndex].modified.substring(0,10)
+              return { ...page, ...wpEventMap[page.path] }
+            } else if (classnoteIndex >= 0) {    
+              //change = allWpClassnote.nodes[classnoteIndex].modified.substring(0,10)
+              return { ...page, ...wpClassnoteMap[page.path] }
+            }
+            */
+
+            return { ...page, ...wpNodeMap[page.path] }
+          })
+        },
+        serialize: ({
+          path, 
+          modifiedGmt
+        }) => {
+          /*
           // https://www.gatsbyjs.com/blog/fs-route-api/ FAQs about pageContext
           // turn fetch feature post and pages data to arrays of their slugs
           const posts = allWpPost.nodes.map((p) => p.uri.replace(/\//g,''))
@@ -327,6 +455,12 @@ module.exports = {
               lastmod: `${change}`,
             })
           })
+          */
+          return {
+            url: path,
+            lastmod: modifiedGmt,
+          }
+
         }
         
       },
@@ -339,18 +473,24 @@ module.exports = {
         policy: [{ userAgent: '*', allow: '/' }]
       }
     },
+    
      {
        resolve: `gatsby-plugin-algolia`,
        options: {
           appId: process.env.GATSBY_ALGOLIA_APP_ID,
           apiKey: process.env.ALGOLIA_ADMIN_KEY,
           queries: require("./src/utils/algolia-queries"),
-          enablePartialUpdates: true,
-          matchFields: ['slug', 'modified'],
-          skipIndexing: (process.env.GATSBY_ALGOLIA_SKIP_INDEX === "true"), // default: false, useful for e.g. preview deploys or local development
-          continueOnFailure: (process.env.GATSBY_ALGOLIA_CONTINUE_ON_FAILURE === "true") // default: false, don't fail the build if algolia indexing fails
+          //chunkSize: 10000,
+          //settings: {
+          //  replicaUpdateMode: 'replace',
+          //},
+          enablePartialUpdates: false,
+          //matchFields: ['slug', 'modified'],
+          skipIndexing: false, //(process.env.GATSBY_ALGOLIA_SKIP_INDEX === "true"), // default: false, useful for e.g. preview deploys or local development
+          continueOnFailure: false, //(process.env.GATSBY_ALGOLIA_CONTINUE_ON_FAILURE === "true") // default: false, don't fail the build if algolia indexing fails
        },
      },
+     
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

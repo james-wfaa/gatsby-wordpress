@@ -2,12 +2,14 @@ import React from 'react'
 import striptags from 'striptags'
 import { Helmet } from 'react-helmet'
 import DefaultImg from "../../static/open_graph_illus_1200x630.png"
+import { getSrc } from "gatsby-plugin-image"
 
 
 function FilledHelmet({title, plaintitle, img, desc, url}) {
   let fullhostname = 'https://www.uwalumni.com'
-  const imgpath = ( img?.localFile?.childImageSharp?.fluid?.src)
-  ?   `${fullhostname}${img.localFile.childImageSharp.fluid.src}`
+  const imgpath = getSrc(img)
+  const fullimgpath = ( imgpath )
+  ?   `${fullhostname}${imgpath}`
   : fullhostname + DefaultImg
   const cleanDesc = ( desc ) ? striptags(desc) : null
   const resolvedTitle = plaintitle
@@ -36,10 +38,10 @@ function FilledHelmet({title, plaintitle, img, desc, url}) {
       <meta property="og:url" content={`${fullhostname}${url}`} />
       }
 
-      {imgpath &&
-        <meta property="og:image" content={imgpath} />
+      {fullimgpath &&
+        <meta property="og:image" content={fullimgpath} />
       }
-      {imgpath &&
+      {fullimgpath &&
         <meta name="twitter:card" content="summary_large_image" />
       }
 

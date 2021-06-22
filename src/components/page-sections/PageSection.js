@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { colors, sizes, breakpoints } from '../css-variables'
 import BackgroundImage from 'gatsby-background-image'
-
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import PageSectionHeader from '../parts/PageSectionHeader'
 import PageSectionButtons from '../parts/PageSectionButtons'
 import FbIcon from '../../svg/fb_icon_gray.svg'
@@ -63,6 +63,10 @@ const PageSection = ({
     const dividerClass = (divider) ? ' divider' : ''
     const centeredContentClass = (centered) ? ' centered' : ''
 
+    //console.log(bgImage)
+    const backgroundImage = getImage(bgImage)
+    //console.log(backgroundImage)
+
     return (
         <div id={id} className={`${className} ${staggerClass} ${altClass} ${topBorderClass} ${desktopOnlyClass}${onlyChildClass}${hasPreHeading}${hasNoHeading}${featureClass}${defaultClass} ${bgClass}`}  >
             { ! background &&  (
@@ -87,30 +91,37 @@ const PageSection = ({
             </div>
 
         )}
-        { background && (
-            <BackgroundImage
-            Tag="div"
-            className={`${classesList} ${className}--bgimage`}
-            fluid={bgImage.childImageSharp.fluid}
-            preserveStackingContext
-          >
-            { heading && (
-                <PageSectionHeader heading={heading} pageTitle={pageTitle} withSocial={withSocial} bgimage />
-            )}
-            { withSocial && (
-                <StyledSocialIcons data={withSocial} />
-            )}
-             { excerpt && (
-                <div className={`sectionexcerpt ${className}__excerpt ${className}__excerpt--bgimage`}  dangerouslySetInnerHTML={{ __html: excerpt }} />
-            )}
-            <div className={`content content--bgimage`}>
-                {children}
-            </div>
-            { buttons && (<PageSectionButtons buttons={buttons} bgimage buttonsAlt={buttonsAlt}/>
-            )}
-      </BackgroundImage>
+        { background && backgroundImage && (
+            <GatsbyImage image={backgroundImage} alt="" style={{
+                gridArea: "1/1",
+                // You can set a maximum height for the image, if you wish.
+                // maxHeight: 600,
+                }}/>
         )
         }
+        { background && (
+            <div className={`${classesList} ${className}--bgimage`} style={{
+                gridArea: "1/1",
+                position: "relative",
+                placeItems: "center",
+                display: "grid",
+              }}>
+                { heading && (
+                <PageSectionHeader heading={heading} pageTitle={pageTitle} withSocial={withSocial} bgimage />
+                )}
+                { withSocial && (
+                    <StyledSocialIcons data={withSocial} />
+                )}
+                { excerpt && (
+                    <div className={`sectionexcerpt ${className}__excerpt ${className}__excerpt--bgimage`}  dangerouslySetInnerHTML={{ __html: excerpt }} />
+                )}
+                <div className={`content content--bgimage`}>
+                    {children}
+                </div>
+                { buttons && (<PageSectionButtons buttons={buttons} bgimage buttonsAlt={buttonsAlt}/>
+                )}
+                </div>
+        )}
 
         </div>
     )
@@ -230,6 +241,7 @@ const StyledPageSection = styled(PageSection)`
     &.withBg {
         padding-top: 0;
         padding-bottom: 0;
+        display: grid;
     }
     &.topborder {
         border-top: ${sizes.s36} solid ${colors.sectionBorder};

@@ -1,12 +1,20 @@
 import { graphql } from "gatsby"
 
 export const fragments = graphql`
-  fragment HeroImage on File {
+  
+  fragment HeroImageNew on File {
     childImageSharp {
-      fluid(maxWidth: 2880) {
-        ...GatsbyImageSharpFluid
-        aspectRatio
-      }
+      gatsbyImageData(layout: FULL_WIDTH)
+    }
+  }
+  fragment EventImage on File {
+    childImageSharp {
+      gatsbyImageData(layout: CONSTRAINED, width: 1080)
+    }
+  }
+  fragment CardImage on File {
+    childImageSharp {
+      gatsbyImageData(layout: CONSTRAINED, width: 712)
     }
   }
   fragment Children on WpPage {
@@ -90,17 +98,7 @@ export const fragments = graphql`
           node {
             localFile {
               childImageSharp {
-                fluid(maxWidth: 712) {
-                  base64
-                  srcWebp
-                  srcSetWebp
-                  originalImg
-                  originalName
-                  aspectRatio
-                  src
-                  srcSet
-                  sizes
-                }
+                gatsbyImageData(layout: CONSTRAINED, width: 712)
               }
             }
           }
@@ -124,17 +122,7 @@ export const fragments = graphql`
           node {
             localFile {
               childImageSharp {
-                fluid(maxWidth: 712) {
-                  base64
-                  srcWebp
-                  srcSetWebp
-                  originalImg
-                  originalName
-                  src
-                  srcSet
-                  aspectRatio
-                  sizes
-                }
+                gatsbyImageData(layout: CONSTRAINED, width: 712)
               }
             }
           }

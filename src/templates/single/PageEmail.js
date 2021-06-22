@@ -7,6 +7,8 @@ import PageSection from "../../components/page-sections/PageSection"
 import RecentPosts from "../../components/page-sections/RecentPosts"
 import WordPressContent from "../../components/content-blocks/WordPressBasicContentBlocks"
 import BackgroundImage from 'gatsby-background-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+
 import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
 const WordPressEmailPage = ({ className, data }) => {
@@ -30,7 +32,8 @@ const WordPressEmailPage = ({ className, data }) => {
     let adSpot = randomAdGenerator(1, (filteredAds.length))
     setCurrentAd(filteredAds[adSpot])
   }, [ads])
-
+  
+  const image = getImage(currentAd?.adImage?.localFile)
   return (
     <Layout title={title} url="/email">
       <div className={`${className}`}>
@@ -39,15 +42,25 @@ const WordPressEmailPage = ({ className, data }) => {
         <WordPressContent {...page} />
         </PageSection>
         </div>
-        {currentAd && (<div className="col col--ad">
-          <BackgroundImage
-            Tag="div"
+        {currentAd && image && (<div className="col col--ad" style={{ display: "grid" }}>
+          <GatsbyImage 
+            image={image} 
+            alt="" 
+            style={{
+              gridArea: "1/1",
+              position: "relative",
+              placeItems: "center",
+              display: "grid",
+            }}
             className="adBgImg"
-            fluid={currentAd.adImage.localFile.childImageSharp.fluid}
-            preserveStackingContext
-          >
-            {currentAd && (
-              <div className="wrapper">
+          />
+          {currentAd && (
+              <div className="wrapper" style={{
+                gridArea: "1/1",
+                position: "relative",
+                placeItems: "center",
+                display: "grid",
+              }}>
                 <div className="AdTitle" dangerouslySetInnerHTML={{ __html: currentAd.adHeading }}/>
                 <div className="AdContent" dangerouslySetInnerHTML={{ __html: currentAd.adCopy }}/>
                 {currentAd.adButtonLink && (
@@ -57,7 +70,6 @@ const WordPressEmailPage = ({ className, data }) => {
                 )}
               </div>
             )}
-          </BackgroundImage>
         </div> )
       }
       </div>
@@ -191,13 +203,6 @@ export const query = graphql`
       title
       excerpt
       content
-      featuredImage {
-        node {
-          localFile {
-            ...HeroImage
-          }
-        }
-      }
       blocks {
         name
         originalContent
@@ -215,7 +220,6 @@ export const query = graphql`
       }
       HalfPageAd {
         adList {
-          fieldGroupName
           adButtonLink {
             ... on WpPage {
               id
@@ -234,7 +238,9 @@ export const query = graphql`
           adImage {
             id
             localFile {
-              ...HeroImage
+              childImageSharp {
+                gatsbyImageData(layout: FULL_WIDTH)
+              }
             }
           }
         }

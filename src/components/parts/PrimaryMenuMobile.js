@@ -260,7 +260,7 @@ const PrimaryMenu = () => {
         const firstLink = modalLinks ? modalLinks[0] : null
         const lastLink = modalLinks ? modalLinks[modalLinks.length - 1] : null 
         const stayInModal = (e) => {
-        console.log(document.activeElement, modalLinks)
+        //console.log(document.activeElement, modalLinks)
         if(document.activeElement === firstLink){
           if (e.shiftKey && e.key === 'Tab'){
             e.preventDefault();

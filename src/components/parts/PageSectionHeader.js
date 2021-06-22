@@ -34,6 +34,7 @@ const StyledPageSectionHeader = styled(PageSectionHeader)`
     ${mixins.sectionHeader}
     &.bgimage,
     &.headingAlt {
+        width: 100%;
         h2 {
             color: ${colors.titleWhite};
         }

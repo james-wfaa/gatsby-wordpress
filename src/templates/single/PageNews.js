@@ -48,6 +48,7 @@ function WordPressPage({ data }) {
   const { backgroundImage } = gridDetails
 
   const gridBgImage = (backgroundImage && backgroundImage.localFile) ? backgroundImage.localFile : null
+
   const moreButton = [
     {
       link: "/news/all",
@@ -93,7 +94,7 @@ function WordPressPage({ data }) {
 
     if (cardItems) {
       return (
-        <PageSection heading={topic.name} stagger buttons={topicButton}>
+        <PageSection key={item.id} heading={topic.name} stagger buttons={topicButton}>
           <CardSet items={cardItems} num={numberToShow} type="news"/>
         </PageSection>
       )
@@ -173,7 +174,7 @@ export const query = graphql`
       featuredImage {
         node {
           localFile {
-            ...HeroImage
+            ...HeroImageNew
           }
         }
       }
@@ -181,7 +182,7 @@ export const query = graphql`
         heroImageMobile {
           altText
           localFile {
-            ...HeroImage
+            ...HeroImageNew
           }
         }
         heroHeading
@@ -219,20 +220,7 @@ export const query = graphql`
                 featuredImage {
                   node {
                     localFile {
-                      childImageSharp {
-                        fluid(maxWidth: 712) {
-                          base64
-                          srcWebp
-                          srcSetWebp
-                          originalImg
-                          originalName
-                          aspectRatio
-                          base64
-                          src
-                          srcSet
-                          sizes
-                        }
-                      }
+                      ...CardImage
                     }
                   }
                 }
@@ -294,20 +282,7 @@ export const query = graphql`
                 featuredImage {
                   node {
                     localFile {
-                      childImageSharp {
-                        fluid(maxWidth: 712) {
-                          base64
-                          srcWebp
-                          srcSetWebp
-                          originalImg
-                          originalName
-                          aspectRatio
-                          base64
-                          src
-                          srcSet
-                          sizes
-                        }
-                      }
+                      ...CardImage
                     }
                   }
                 }
@@ -357,18 +332,11 @@ export const query = graphql`
         backgroundImage {
           localFile {
             childImageSharp {
-              fluid(maxWidth: 712) {
-                base64
-                srcWebp
-                srcSetWebp
-                originalImg
-                originalName
-                src
-                srcSet
-                aspectRatio
-                sizes
-
-              }
+              gatsbyImageData(
+                width: 2880,
+                placeholder: BLURRED
+                formats: [AUTO, WEBP]
+              )
             }
           }
         }
@@ -381,7 +349,7 @@ export const query = graphql`
         featuredImage {
           node {
             localFile {
-              ...HeroImage
+              ...HeroImageNew
             }
           }
         }
@@ -414,7 +382,7 @@ export const query = graphql`
         featuredImage {
           node {
             localFile {
-              ...HeroImage
+              ...HeroImageNew
             }
           }
         }

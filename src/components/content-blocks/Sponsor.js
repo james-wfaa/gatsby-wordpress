@@ -1,7 +1,8 @@
 import React from "react"
 import styled from 'styled-components'
 import { sizes, colors, breakpoints } from '../css-variables'
-import Img from 'gatsby-image'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+
 
 const Sponsor = ({ className, sponsorName, sponsorText, sponsorLogo }) => {
 
@@ -12,6 +13,9 @@ const Sponsor = ({ className, sponsorName, sponsorText, sponsorLogo }) => {
         margin: 0 auto ${sizes.s32} auto;
     `
 
+    //console.log(sponsorLogo)
+    const logo = getImage(sponsorLogo?.localFile)
+    //console.log(logo)
     const alt = sponsorLogo?.altText ? sponsorLogo.altText : ''
     const isGif = (! sponsorLogo?.localFile?.childImageSharp)
 
@@ -21,14 +25,10 @@ const Sponsor = ({ className, sponsorName, sponsorText, sponsorLogo }) => {
                 {sponsorName && (
                         <SponsorHeading>{sponsorName}</SponsorHeading>
                     )}
-                {!isGif && (
-                    <Img 
-                        className={`${className}__img`}
-                        fluid={sponsorLogo.localFile.childImageSharp.fluid}
-                        alt={alt}
-                    />
+                {!isGif && logo && (
+                    <GatsbyImage alt="" image={logo} />
                 )}
-                {isGif && sponsorLogo?.localFile && (
+                {isGif && sponsorLogo?.localFile?.publicURL && (
                     <img src={sponsorLogo.localFile.publicURL} alt={alt} />
                 )}
                 
