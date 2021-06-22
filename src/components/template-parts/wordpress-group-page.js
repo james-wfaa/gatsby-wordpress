@@ -24,6 +24,7 @@ function WordPressGroupPage({  page, options }) {
 const thisChapter = thisChapterArr[0] ? thisChapterArr[0] : null
   
 const RenderedSponsors = (sponsors) ? sponsors.map((sponsor) => {
+  //console.log(sponsor)
   return (<Sponsor key={sponsor.name} {...sponsor} />)
 }) : null
 

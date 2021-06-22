@@ -80,7 +80,7 @@ export const query = graphql`
             }
           }
           localFile {
-            ...HeroImage
+            ...HeroImageNew
           }
         }
       }
@@ -97,7 +97,7 @@ export const query = graphql`
             }
           }
           localFile{
-            ...HeroImage
+            ...HeroImageNew
           }
         }
       }
@@ -163,17 +163,7 @@ export const query = graphql`
                 node {
                   localFile {
                     childImageSharp {
-                      fluid(maxWidth: 712) {
-                        base64
-                        srcWebp
-                        srcSetWebp
-                        originalImg
-                        originalName
-                        src
-                        srcSet
-                        aspectRatio
-                        sizes
-                      }
+                      gatsbyImageData(layout: CONSTRAINED, width: 1080)
                     }
                   }
                 }

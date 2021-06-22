@@ -14,7 +14,7 @@ const RecentNotes = () => {
             featuredImage {
               node {
                 localFile {
-                  ...HeroImage
+                  ...HeroImageNew
                 }
               }
             }

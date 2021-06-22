@@ -12,13 +12,7 @@ const Index = ({ data }) => (
 export default Index
 
 export const query = graphql`
-  fragment Thumbnail on File {
-    childImageSharp {
-      fluid(maxWidth: 500) {
-        ...GatsbyImageSharpFluid
-      }
-    }
-  }
+  
 
   query HomePage($offset: Int!, $perPage: Int!) {
     allWpPost(
@@ -30,13 +24,6 @@ export const query = graphql`
       nodes {
         uri
         title
-        featuredImage {
-          node {
-            localFile {
-              ...Thumbnail
-            }
-          }
-        }
       }
     }
   }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { colors, mixins, sizes } from '../css-variables'
-import Img from 'gatsby-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import TagList from "../parts/TagList"
 import styled from 'styled-components'
 import { shortDate } from "../../utils/tools"
@@ -76,18 +76,20 @@ const ContentCard = ({
     if(!sizes.includes(size) || promo ){
         size = "S";
     }
+    
+    const imgSourceNew = (featureImg?.childImageSharp)
+            ? featureImg
+            : img?.childImageSharp
+                ? img
+                : null
 
-    const imgSources = (!img || typeof img === 'undefined' || !img.childImageSharp)
-        ? null
-        : (featureImg && typeof featureImg !== 'undefined' && featureImg.childImageSharp && featureImg.childImageSharp !== img.childImageSharp) ?
-            [
-                img.childImageSharp.fluid,
-                {
-                    ...featureImg.childImageSharp.fluid,
-                    media: `(min-width: 1200px)`
-                }
-            ]
-            :  img.childImageSharp.fluid
+    //console.log(title)
+    //console.log(imgSourceNew)
+
+    const image = imgSourceNew ? getImage(imgSourceNew) : null
+
+    
+    
 
     return (
 
@@ -109,12 +111,9 @@ const ContentCard = ({
                             </h3>
                         </>
                     )}
-                    {imgSources && (
+                    {image && (
                         <a href={finalUrl}  target={target} className={`imgzoomlink headerImg`} >
-                            <Img
-                                className={`img`}
-                                fluid={imgSources}
-                            />
+                            <GatsbyImage image={image} />
                         </a>
                     )}
                 </div>
@@ -136,24 +135,19 @@ const ContentCard = ({
                             </h3>
                         </>
                     )}
-                    {imgSources && (
+                    {image && (
                         <Link to={finalUrl} className={`imgzoomlink headerImg`} >
-                            <Img
-                                className={`img`}
-                                fluid={imgSources}
-                            />
+                            <GatsbyImage image={image} />
                         </Link>
                     )}
                 </div>  
             )}
             { linkFormat && (
                 <div className={`contentwrap contentwrap--${size}`}>
-                    {imgSources && (
+                    {image && (
                         <a href={finalUrl}  target={target} className={`imgzoomlink bodyImg `} >
-                            <Img
-                                className={`img`}
-                                fluid={imgSources}
-                            />
+                           
+                           <GatsbyImage image={image} />
                         </a>
                     )}
                     <div className={`contentsection contentsection--${size}`}>
@@ -199,12 +193,9 @@ const ContentCard = ({
             )}
             { !linkFormat && (
                 <div className={`contentwrap contentwrap--${size}`}>
-                    {imgSources && (
+                    {image && (
                         <Link to={finalUrl} className={`imgzoomlink bodyImg`}>
-                        <Img
-                            className={`img`}
-                            fluid={imgSources}
-                        /></Link>
+                        <GatsbyImage image={image} /></Link>
                     )}
                     <div className={`contentsection contentsection--${size}`}>
                         <div className={`columnwrap columnwrap--${size}`}>

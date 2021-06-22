@@ -42,8 +42,9 @@ export const query = graphql`
       url
       featuredImage {
         node {
+          altText
           localFile {
-            ...HeroImage
+            ...EventImage
           }
         }
       }
@@ -70,19 +71,7 @@ export const query = graphql`
               featuredImage {
                 node {
                   localFile {
-                    childImageSharp {
-                      fluid(maxWidth: 712) {
-                        base64
-                        srcWebp
-                        srcSetWebp
-                        originalImg
-                        originalName
-                        src
-                        srcSet
-                        aspectRatio
-                        sizes
-                      }
-                    }
+                    ...CardImage
                   }
                 }
               }
@@ -158,19 +147,7 @@ export const query = graphql`
               featuredImage {
                 node {
                   localFile {
-                    childImageSharp {
-                      fluid(maxWidth: 712) {
-                        base64
-                        srcWebp
-                        srcSetWebp
-                        originalImg
-                        originalName
-                        src
-                        srcSet
-                        aspectRatio
-                        sizes
-                      }
-                    }
+                    ...CardImage
                   }
                 }
               }

@@ -119,48 +119,57 @@ const HomePage = ({ data }) => {
             img={data.img1}
             caption="Strengthen UW Connections"
             enhancedHomepageCaption
+            width="344"
             pillar
           />
           <CardE
             img={data.img2}
             caption="Stay in the Know"
             enhancedHomepageCaption
+            width="344"
             pillar
           />
           <CardE
             img={data.img3}
             caption="Share Your UW Pride"
             enhancedHomepageCaption
+            width="344"
             pillar
           />
           <CardE
             img={data.img4}
             caption="Continue Your Pursuit of Knowledge"
             enhancedHomepageCaption
+            width="344"
+
             pillar
           />
            <CardE
             img={data.img5}
             caption="Boost Your Badger Spirit"
             enhancedHomepageCaption
+            width="344"
             pillar
           />
           <CardE
             img={data.img6}
             caption="Build Your Badger Network"
             enhancedHomepageCaption
+            width="344"
             pillar
           />
           <CardE
             img={data.img7}
             caption="Satisfy Your Wanderlust"
             enhancedHomepageCaption
+            width="344"
             pillar
           />
           <CardE
             img={data.img8}
             caption="Make a Difference"
             enhancedHomepageCaption
+            width="344"
             pillar
           />
         </SimpleSlider>
@@ -199,81 +208,81 @@ export const pageQuery = graphql`
   query {
     homeBg: file(relativePath: { eq: "pier-bg@2x.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 2000, quality: 100) {
-          ...GatsbyImageSharpFluid
-          ...GatsbyImageSharpFluidLimitPresentationSize
-        }
+        gatsbyImageData(
+          width: 2880,
+        )
       }
     }
     mobileHomeBg: file(relativePath: { eq: "home_mobileHeroImg@2x.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 1312, quality: 100) {
-          ...GatsbyImageSharpFluid
-          ...GatsbyImageSharpFluidLimitPresentationSize
-        }
+        gatsbyImageData(
+          width: 1312,
+        )
       }
     }
     gridBg: file(relativePath: { eq: "home-bucky-faded.jpg" }) {
       childImageSharp {
-        fluid(quality: 95, maxWidth: 2000) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 2880,
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
     }
     img1: file(relativePath: { eq: "1_benefit_connect_d_344x344_2x.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 344) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(
+          width: 688,
+        )
       }
     }
     img2: file(relativePath: { eq: "2_benefit_inform_d_344x344_2x.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 344) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(
+          width: 688,
+        )
       }
     }
     img3: file(relativePath: { eq: "3_benefit_pride_d_344x344_2x.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 344) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(
+          width: 688,
+        )
       }
     }
     img4: file(relativePath: { eq: "4_benefit_enrich_d_344x344_2x.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 344) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(
+          width: 688,
+        )
       }
     }
     img5: file(relativePath: { eq: "5_benefit_spirit_d_344x344_2x.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 344) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(
+          width: 688,
+        )
       }
     }
     img6: file(relativePath: { eq: "6_benefit_prof_adv_d_344x344_2x.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 344) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(
+          width: 688,
+        )
       }
     }
     img7: file(relativePath: { eq: "7_benefit_travel_d_344x344_2x.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 344) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(
+          width: 688,
+        )
       }
     }
     img8: file(relativePath: { eq: "8_benefit_support_d_344x344_2x.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 344) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(
+          width: 688,
+        )
       }
     }
 
@@ -285,7 +294,7 @@ export const pageQuery = graphql`
         featuredImage {
           node {
             localFile {
-              ...HeroImage
+              ...HeroImageNew
             }
           }
         }

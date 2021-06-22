@@ -45,7 +45,7 @@ export const query = graphql`
             }
           }
           localFile {
-            ...HeroImage
+            ...HeroImageNew
           }
         }
       }
