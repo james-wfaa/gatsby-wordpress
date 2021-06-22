@@ -476,23 +476,23 @@ const queries = [
   {
     query: postQuery,
     transformer: ({ data }) => data.posts.edges.map(postToAlgoliaRecord),
-    indexName: `Second`,
+    indexName: `All`,
   },
   {
       query: eventQuery,
       transformer: ({ data }) => data.events.edges.map(eventToAlgoliaRecord),
-      indexName: `Second`,
+      indexName: `All`,
   },
   {
       query: classNoteQuery,
       transformer: ({ data }) =>
           data.classnotes.edges.map(classNoteToAlgoliaRecord),
-      indexName: `Second`,
+      indexName: `All`,
   },
   {
       query: pageQuery,
       transformer: ({ data }) => data.pages.edges.map(pageToAlgoliaRecord),
-      indexName: `Second`,
+      indexName: `All`,
   },
   {
     query: chapterQuery,
