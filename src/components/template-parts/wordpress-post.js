@@ -80,7 +80,7 @@ function BlogPost({ data }) {
       : null
   
   let image = null
-  if ((size >= 1080) && featuredImage?.node?.localFile?.childImageSharp?.fluid){
+  if ((size >= 1080) && featuredImage?.node?.localFile?.childImageSharp){
     image = featuredImage?.node
   } else if ((718 <= size && size < 1080) && heroImage?.heroImage?.localFile?.childImageSharp){
     image = heroImage.heroImage

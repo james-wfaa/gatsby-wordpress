@@ -181,7 +181,7 @@ export const query = graphql`
       featuredImage {
         node {
           localFile {
-            ...HeroImage
+            ...HeroImageNew
           }
         }
       }
@@ -189,7 +189,7 @@ export const query = graphql`
         heroImageMobile {
           altText
           localFile {
-            ...HeroImage
+            ...HeroImageNew
           }
         }
         heroHeading
@@ -228,18 +228,10 @@ export const query = graphql`
                   node {
                     localFile {
                       childImageSharp {
-                        fluid(maxWidth: 712) {
-                          base64
-                          srcWebp
-                          srcSetWebp
-                          originalImg
-                          originalName
-                          aspectRatio
-                          base64
-                          src
-                          srcSet
-                          sizes
-                        }
+                        gatsbyImageData(
+                          layout: CONSTRAINED,
+                          width: 712,
+                        )
                       }
                     }
                   }
@@ -289,17 +281,11 @@ export const query = graphql`
         backgroundImage {
           localFile {
             childImageSharp {
-              fluid(maxWidth: 712) {
-                base64
-                srcWebp
-                srcSetWebp
-                originalImg
-                originalName
-                src
-                srcSet
-                aspectRatio
-                sizes
-              }
+              gatsbyImageData(
+                width: 2880,
+                placeholder: BLURRED
+                formats: [AUTO, WEBP]
+              )
             }
           }
         }

@@ -1,28 +1,29 @@
 import React from "react"
 import styled from 'styled-components'
 import {  mixins } from '../css-variables'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
-import Img from 'gatsby-image'
 
-const CardE = ({ className, img, fooImage, alt, caption, marginTop, center, enhancedHomepageCaption, pillar}) => {
+const CardE = ({ className, img, width, fooImage, alt, caption, marginTop, center, enhancedHomepageCaption, pillar}) => {
     
     const marginTopClass = marginTop ? ' marginTop' : ''
     const centerClass = center ? ' center' : ''
     const enhancedHomepageCaptionClass = enhancedHomepageCaption ? ' enhancedHomepageCaption' : ''
     const pillarClass = (pillar) ? ' pillar' : ''
+    const image = img ? getImage(img) : null
+    const imageFoo = fooImage ? getImage(fooImage) : null
+
+    //console.log(img)
+    //console.log(fooImage)
 
     return (
         <div className={`${className}${pillarClass}`}>
             <figure >
-                {img && (
-                    <Img 
-                        className={`${className}__img `}
-                        fluid={img.childImageSharp.fluid}
-                        alt={alt}
-                    />
+                {image && (
+                    <GatsbyImage image={image} alt={alt} layout="constrained" width={width} />
                 )}
-                {fooImage && (
-                    <img alt={alt} src={fooImage} />
+                {imageFoo && (
+                    <GatsbyImage image={imageFoo} alt={alt} layout="constrained"  width={width} />
                 )}
             <figcaption className={`${marginTopClass} ${centerClass} ${enhancedHomepageCaptionClass}`}>{caption}</figcaption>
             </figure>

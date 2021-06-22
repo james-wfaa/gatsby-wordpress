@@ -1,18 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import { colors, sizes, breakpoints, fonts } from "../css-variables"
-import BackgroundImage from 'gatsby-background-image'
-
-import PageSectionHeader from '../parts/PageSectionHeader'
 import PageSectionButtons from '../parts/PageSectionButtons'
 
 
 
-const PageSection = ({className, preheading, heading, pageTitle, withSocial, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, variantObject, bgImage, fromBlocks, children, productPage }) => {
-  const background = typeof bgImage !== "undefined" && bgImage !== null
+const PageSection = ({className, preheading, heading, plainText, popOut, excerpt, buttons, buttonsAlt, buttonsCompact, alt, topBorder, variantObject, bgImage, children, productPage }) => {
+  const background = (typeof bgImage !== "undefined" && bgImage !== null)
   const excerptBottom = variantObject.scroll_color === '#9E9E9E'? 0 : buttons ? sizes.s32 : 0;
 
-  const classesList = alt ? `${className} ${className}--alt` : className
   const altClass = alt ? ` ${className}--alt` : ""
   const plainTextContent = plainText ? ` plaintext` : ""
   const topBorderClass = topBorder ? ` ${className}--topborder` : ""
@@ -22,6 +18,7 @@ const PageSection = ({className, preheading, heading, pageTitle, withSocial, pla
     !preheading && !heading ? ` ${className}--hasNoHeading` : ""
   const popClass = popOut ? `${className}__popOut` : ""
   const removeHeadingAfter = productPage ? `productPage` : ""
+
 
   const StyledPageSection = styled.div`
   position: relative;
@@ -194,36 +191,6 @@ const PageSection = ({className, preheading, heading, pageTitle, withSocial, pla
             />
           )}
         </div>
-      )}
-      {background && (
-        <BackgroundImage
-          Tag="div"
-          className={`${classesList} ${className}--bgimage`}
-          fluid={bgImage.childImageSharp.fluid}
-          preserveStackingContext
-        >
-          <div className="wrapper">
-            {heading && (
-              <PageSectionHeader
-                heading={heading}
-                pageTitle={pageTitle}
-                withSocial={withSocial}
-                variantObject={variantObject}
-                bgimage
-              />
-            )}
-            {excerpt && (
-              <div
-                className={`${className}__excerpt ${className}__excerpt--bgimage`}
-                dangerouslySetInnerHTML={{ __html: excerpt }}
-              />
-            )}
-            <div className={`content content--bgimage`}>{children}</div>
-            {buttons && (
-              <PageSectionButtons buttons={buttons} bgimage buttonsAlt />
-            )}
-          </div>
-        </BackgroundImage>
       )}
     </StyledPageSection>
   )

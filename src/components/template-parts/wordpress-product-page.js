@@ -12,6 +12,9 @@ function WordPressPage({ page }) {
   const heroIntroExcerpt = (introExcerpt) ? introExcerpt : excerpt
   const heroOverlayHeading = (heroHeading) ? `<span>${heroHeading}</span> ON` : null
 
+
+  //console.log(featuredImage)
+
   const navContents = (wpChildren.nodes[0])
     ? wpChildren.nodes.map((node) => {
       //console.log("Nav: " +  node.uri);
