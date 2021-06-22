@@ -62,6 +62,18 @@ const eventQuery = `{
             localFile {
               childImageSharp {
                 gatsbyImageData(layout: CONSTRAINED, width: 712)
+                fluid {
+                  base64
+                  srcWebp
+                  srcSetWebp
+                  originalImg
+                  originalName
+                  src
+                  srcSet
+                  aspectRatio
+                  sizes
+                }
+
               }
             }
           }
@@ -110,6 +122,18 @@ const postQuery = `{
             localFile {
               childImageSharp {
                 gatsbyImageData(layout: CONSTRAINED, width: 712)
+                fluid {
+                  base64
+                  srcWebp
+                  srcSetWebp
+                  originalImg
+                  originalName
+                  src
+                  srcSet
+                  aspectRatio
+                  sizes
+                }
+
               }
             }
           }
@@ -170,6 +194,18 @@ const classNoteQuery = `{
               publicURL
               childImageSharp {
                 gatsbyImageData(layout: CONSTRAINED, width: 712)
+                fluid {
+                  base64
+                  srcWebp
+                  srcSetWebp
+                  originalImg
+                  originalName
+                  src
+                  srcSet
+                  aspectRatio
+                  sizes
+                }
+
               }
             }
             sourceUrl
@@ -441,7 +477,7 @@ const queries = [
     query: postQuery,
     transformer: ({ data }) => data.posts.edges.map(postToAlgoliaRecord),
     indexName: `Second`,
-  },/*
+  },
   {
       query: eventQuery,
       transformer: ({ data }) => data.events.edges.map(eventToAlgoliaRecord),
@@ -462,7 +498,7 @@ const queries = [
     query: chapterQuery,
     transformer: ({ data }) => data.chapters.edges.map(chapterToAlgoliaRecord),
     indexName: `Second`,
-  },*/
+  },
 ]
 
 module.exports = queries
