@@ -51,40 +51,29 @@ const isNewsArchive = (page.slug === "news" && menuRoot.link.replace(menuRoot.sl
         {width >= 1200
         ?
         <>
-        { wpMenu && (
-          <Menu name={wpMenu.name} link={wpMenu.link} menuItems={wpMenu.menuItems.nodes} width={width} hideNews />
-        )}
-
-        {isNewsArchive && (
-          <PageSection heading={title} pageTitle leftAlign defaultPage divider>
-            <ChildNewsPages items={page.wpChildren.nodes} />
-          </PageSection>
-
-        )}
-        {!isNewsArchive && (
-          <PageSection heading={title} pageTitle leftAlign defaultPage divider>
-            <WordPressContent blocks={blocks}  content={content} />
-          </PageSection>
-        )}
+          { wpMenu && (
+            <Menu name={wpMenu.name} link={wpMenu.link} menuItems={wpMenu.menuItems.nodes} width={width} hideNews />
+          )}
         </>
         :
         <>
           <PageSectionHeader heading={title} pageTitle />
           { wpMenu && (
-          <Menu name={wpMenu.name} link={wpMenu.link} menuItems={wpMenu.menuItems.nodes} width={width} />
-        )}
+            <Menu name={wpMenu.name} link={wpMenu.link} menuItems={wpMenu.menuItems.nodes} width={width} />
+          )}
+        </>
+        }
         {isNewsArchive && (
-          <PageSection >
+          <PageSection heading={width >= 1200 ? title : null} pageTitle leftAlign defaultPage divider={width >= 1200}>
             <ChildNewsPages items={page.wpChildren.nodes} />
           </PageSection>
+
         )}
         {!isNewsArchive && (
-          <PageSection >
-            <WordPressContent blocks={blocks} content={content} />
+          <PageSection heading={width >= 1200 ? title : null} pageTitle leftAlign defaultPage divider={width >= 1200}>
+            <WordPressContent blocks={blocks}  content={content} />
           </PageSection>
         )}
-        </>
-      }
       </PageWrapper>
     </Layout>
   )
