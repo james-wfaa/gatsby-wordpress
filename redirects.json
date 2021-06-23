@@ -12,13 +12,13 @@
 		"toPath": "/events/*"
    	},
     {
-        "fromPath": "/about/staff/*",
-        "toPath": "/about/contact-waa/#staff-directory"
-   	},
+		"fromPath": "/about/staff/*",
+		"toPath": "/about/contact-waa/#staff-directory"
+	},
 	{
 		"fromPath": "/services/alumni-directory/*",
 		"toPath": "/alumni-directory/*"
-   	},
+	},
 	{
 		"fromPath": "/scrapbooks/*",
 		"toPath": "/news/*"
@@ -1975,6 +1975,14 @@
         "fromPath": "/resources-services/email/sign-up/",
         "toPath": "/email/sign-up/"
    	},
+    {
+        "fromPath": "/home/onlinetools/email.aspx",
+        "toPath": "/email/"
+    },
+    {
+        "fromPath": "/email.aspx",
+        "toPath": "/email/"
+    },
     {
         "fromPath": "/resources-services/library/",
         "toPath": "/about/library/"
