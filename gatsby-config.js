@@ -212,14 +212,13 @@ module.exports = {
       resolve: "gatsby-source-gravityforms",
       options: {
         // Base URL needs to include protocol (http/https)
-        baseUrl: "https://uwalumni.wpengine.com",
-        //include: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], // Array of form IDs. Will only import these forms.
+        baseUrl: process.env.GRAVITYFORMS_SOURCE || "https://uwalumni.wpengine.com",
         exclude: [16], // Array of form IDs. Will exclude these forms.
         // Gravity Forms API
         allowSelfSigned: true,
         api: {
-          key: "ck_2df05b5d127aa2a3cf4b7163e2190c4e5a80b0f8", //'ck_05467ba5c64789fa4fc2aca5cb13e28baae38617',
-          secret: "cs_9bbe6e5dcb8bed64daeb0657543f9894acb500ce", //'cs_b24f465d257bf548d78b5bd6723621babf4e3dfc',
+          key: process.env.GRAVITYFORMS_API_KEY,
+          secret: process.env.GRAVITYFORMS_API_SECRET,
         },
       },
     },
@@ -321,7 +320,6 @@ module.exports = {
         }
         `,
         resolveSiteUrl: ({ site }) => {
-          //Alternatively, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
           return site.siteMetadata.siteUrl
         },
         resolvePages: ({
@@ -331,18 +329,7 @@ module.exports = {
         }) => {
           const allPages =  allSitePage.nodes
           const allWpNodes = allWpContentNode.nodes
-          //const allWpEvents = allWpEvent.nodes
-          //const allWpClassnotes = allWpClassnote.nodes
-          //const allWpPosts = allWpPost.nodes
-          //const allWpPages = allWpPage.nodes
-
-          /*
-          const posts = allWpPosts.map((p) => p.uri.replace(/\//g,''))
-          const pages = allWpPages.map((p) => p.uri)
-          const events = allWpEvents.map((e) => e.slug.replace(/\//g,''))
-          const classnotes = allWpClassnotes.map((c) => c.slug.replace(/\//g,''))
-          */
-
+          
           const wpNodeMap = allWpNodes.reduce((acc, node) => {
             const { uri } = node
             acc[uri] = node
@@ -350,66 +337,7 @@ module.exports = {
             return acc
           }, {})
 
-          /*
-          const wpEventMap = allWpEvents.reduce((acc, node) => {
-            const { uri } = node
-            acc[uri] = node
-
-            return acc
-          }, {})
-
-          const wpClassnoteMap = allWpClassnotes.reduce((acc, node) => {
-            const { uri } = node
-            acc[uri] = node
-
-            return acc
-          }, {})
-
-          const wpPostMap = allWpPosts.reduce((acc, node) => {
-            const { uri } = node
-            acc[uri] = node
-
-            return acc
-          }, {})
-
-          const wpPageMap = allWpPages.reduce((acc, node) => {
-            const { uri } = node
-            acc[uri] = node
-
-            return acc
-          }, {})
-          */
-
           return allPages.map(page => { 
-            /*
-            const slug = page.path.split(`/`)[2]
-            const prefix = page.path.split(`/`)[1]
-            const postIndex = (prefix === "news")
-              ? posts.indexOf(slug)
-              : -1
-            const eventIndex = (prefix === "events")
-              ? events.indexOf(slug)
-              : -1
-            const classnoteIndex = (prefix === "alumni-notes")
-              ? classnotes.indexOf(slug)
-              : -1
-            const pageIndex = pages.indexOf(node.path)
-
-            if (postIndex >= 0) {
-              //change = allWpPost.nodes[postIndex].modified.substring(0,10)  
-              return { ...page, ...wpPostMap[page.path] }
-            } else if (pageIndex >= 0) {
-              //change = allWpPage.nodes[pageIndex].modified.substring(0,10)
-              return { ...page, ...wpPageMap[page.path] }
-            } else if (eventIndex >= 0) {
-              //change = allWpEvent.nodes[eventIndex].modified.substring(0,10)
-              return { ...page, ...wpEventMap[page.path] }
-            } else if (classnoteIndex >= 0) {    
-              //change = allWpClassnote.nodes[classnoteIndex].modified.substring(0,10)
-              return { ...page, ...wpClassnoteMap[page.path] }
-            }
-            */
-
             return { ...page, ...wpNodeMap[page.path] }
           })
         },
@@ -417,50 +345,10 @@ module.exports = {
           path, 
           modifiedGmt
         }) => {
-          /*
-          // https://www.gatsbyjs.com/blog/fs-route-api/ FAQs about pageContext
-          // turn fetch feature post and pages data to arrays of their slugs
-          const posts = allWpPost.nodes.map((p) => p.uri.replace(/\//g,''))
-          const pages = allWpPage.nodes.map((p) => p.uri)
-          const events = allWpEvent.nodes.map((e) => e.slug.replace(/\//g,''))
-          const classnotes = allWpClassnote.nodes.map((c) => c.slug.replace(/\//g,''))
-          
-          return allSitePage.nodes.map((node) => {
-            let change = new Date()
-            const slug = node.path.split(`/`)[2]
-            const prefix = node.path.split(`/`)[1]
-            const postIndex = (prefix === "news")
-            ? posts.indexOf(slug)
-            : -1
-            const eventIndex = (prefix === "events")
-                ? events.indexOf(slug)
-                : -1
-            const classnoteIndex = (prefix === "alumni-notes")
-                ? classnotes.indexOf(slug)
-                : -1
-            const pageIndex = pages.indexOf(node.path)
-            if (postIndex >= 0) {
-              change = allWpPost.nodes[postIndex].modified.substring(0,10)  
-            } else if (pageIndex >= 0) {
-              change = allWpPage.nodes[pageIndex].modified.substring(0,10)
-            } else if (eventIndex >= 0) {
-              change = allWpEvent.nodes[eventIndex].modified.substring(0,10)
-            } else if (classnoteIndex >= 0) {    
-              change = allWpClassnote.nodes[classnoteIndex].modified.substring(0,10)
-            }
-            // if nothing found then the default of build time date is used.
-            //console.log(node)
-            return ({
-              url: `${site.siteMetadata.siteUrl}${node.path}`,
-              lastmod: `${change}`,
-            })
-          })
-          */
           return {
             url: path,
             lastmod: modifiedGmt,
           }
-
         }
         
       },
