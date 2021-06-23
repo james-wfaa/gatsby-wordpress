@@ -30,8 +30,8 @@ const HeroIntroSection = ({
     size = width > 655 ? "calc(100vh - 118px)" : "calc(100vh - 191px)"
   }
 
-  let imageWidthClass = imageWidth ? 'constrainWidth' : null
-  let imageHeightClass = imageWidth ? ' constrainHeight' : null
+  let imageWidthClass = imageWidth ? 'constrainWidth' : ''
+  let imageHeightClass = imageWidth ? ' constrainHeight' : ''
 
   const background = typeof heroImage !== "undefined" && heroImage !== null
   const mobileHeroImageCheck = typeof mobileHeroImage !== "undefined" && mobileHeroImage !== null
@@ -110,8 +110,6 @@ const HeroIntroSection = ({
           <div style={{height: `${size}`, display: "grid"}}>
             <GatsbyImage image={mobileImage} alt="" style={{
               gridArea: "1/1",
-              // You can set a maximum height for the image, if you wish.
-              // maxHeight: 600,
             }}/>
             {heroHeading && (
               <div className="wrapper" style={{
@@ -131,25 +129,23 @@ const HeroIntroSection = ({
         : ( background && image ) 
           ? 
             (
-              <div display="grid" style={{height: `${size}`}} className={`${imageWidthClass} ${imageHeightClass}`}>
-              <GatsbyImage image={image} alt="" style={{
-              gridArea: "1/1",
-              // You can set a maximum height for the image, if you wish.
-              // maxHeight: 600,
-            }}/>
-            {heroHeading && (
-              <div className="wrapper" style={{
-                gridArea: "1/1",
-                position: "relative",
-                placeItems: "center",
-                display: "grid",
-              }}>
-                <div
-                  className={headingClasses}
-                  dangerouslySetInnerHTML={{ __html: heroHeading }}
-                />
-              </div>
-            )}
+              <div style={{height: `${size}`, display: "grid"}} className={`${imageWidthClass} ${imageHeightClass}`}>
+                <GatsbyImage image={image} alt="" style={{
+                  gridArea: "1/1",
+                }}/>
+                {heroHeading && (
+                  <div className="wrapper" style={{
+                    gridArea: "1/1",
+                    position: "relative",
+                    placeItems: "center",
+                    display: "grid",
+                  }}>
+                    <div
+                      className={headingClasses}
+                      dangerouslySetInnerHTML={{ __html: heroHeading }}
+                    />
+                  </div>
+                )}
               </div>
             ) 
           : (carouselItems?.length > 0) 
