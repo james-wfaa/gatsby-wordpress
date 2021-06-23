@@ -131,15 +131,15 @@ const navSection = ({ className }) =>(
   <div className={className}>
     <div className="external-link">
     <div>University of Wisconsin&#8212;Madison</div>
-    <a href="https://www.wisc.edu" target="_blank">wisc.edu</a>
+    <a href="https://www.wisc.edu" target="_blank" rel="noreferrer">wisc.edu</a>
     </div>
     <div className="external-link">
     <div>Wisconsin Foundation and Alumni Association</div>
-    <a href="https://www.advanceuw.org?utm_source=uwalumni&utm_medium=referral&utm_content=footer" target="_blank">advanceuw.org</a>
+    <a href="https://www.advanceuw.org?utm_source=uwalumni&utm_medium=referral&utm_content=footer" target="_blank" rel="noreferrer">advanceuw.org</a>
     </div>
     <div className="external-link">
     <div>University of Wisconsin Foundation</div>
-    <a href="https://www.supportuw.org/?utm_source=uwalumni&utm_medium=referral&utm_content=footer" target="_blank">supportuw.org</a>
+    <a href="https://www.supportuw.org/?utm_source=uwalumni&utm_medium=referral&utm_content=footer" target="_blank" rel="noreferrer">supportuw.org</a>
     </div>
   </div>
 )
@@ -148,11 +148,11 @@ const StyledNavSection = styled(navSection)``
 
 const Social = ({className})=>(
   <ul className={className}>
-    <li><a className="fb" title="Follow WAA on Facebook" href="https://www.facebook.com/wisalumni" target="_blank">&nbsp;</a></li>
-    <li><a className="tw" title="Follow WAA on Twitter" href="https://www.twitter.com/wisalumni" target="_blank">&nbsp;</a></li>
-    <li><a className="ig" title="Follow WAA on Instagram" href="https://www.instagram.com/wisalumni" target="_blank">&nbsp;</a></li>
+    <li><a className="fb" title="Follow WAA on Facebook" href="https://www.facebook.com/wisalumni" target="_blank" rel="noreferrer">&nbsp;</a></li>
+    <li><a className="tw" title="Follow WAA on Twitter" href="https://www.twitter.com/wisalumni" target="_blank" rel="noreferrer"> &nbsp;</a></li>
+    <li><a className="ig" title="Follow WAA on Instagram" href="https://www.instagram.com/wisalumni" target="_blank" rel="noreferrer">&nbsp;</a></li>
     <li><a className="wc" title="Learn more about following WAA on WeChat" href="/about/wechat">&nbsp;</a></li>
-    <li><a className="li" title="Follow WAA on LinkedIn" href="https://www.linkedin.com/company/wisconsin-alumni-association" target="_blank">&nbsp;</a></li>
+    <li><a className="li" title="Follow WAA on LinkedIn" href="https://www.linkedin.com/company/wisconsin-alumni-association" target="_blank" rel="noreferrer">&nbsp;</a></li>
   </ul>
 )
 
@@ -175,7 +175,7 @@ const WfaaFooter = ({ className }) =>  (
     <div className="footer--inner"><div className="footer--border">
       <div className="footer__column footer__column--first">
         <StyledCrest>
-          <img className="wfaa-uw-crest" src={Crest} alt="" width="73" height="73" />
+          <img className="wfaa-uw-crest" src={Crest} alt="University of Wisconsin-Madison crest" width="73" height="73" />
         </StyledCrest>
 
         <Social className="footer--social"></Social>

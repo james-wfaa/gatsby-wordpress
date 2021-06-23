@@ -12,13 +12,13 @@
 		"toPath": "/events/*"
    	},
     {
-        "fromPath": "/about/staff/*",
-        "toPath": "/about/contact-waa/#staff-directory"
-   	},
+		"fromPath": "/about/staff/*",
+		"toPath": "/about/contact-waa/#staff-directory"
+	},
 	{
 		"fromPath": "/services/alumni-directory/*",
 		"toPath": "/alumni-directory/*"
-   	},
+	},
 	{
 		"fromPath": "/scrapbooks/*",
 		"toPath": "/news/*"
@@ -59,9 +59,13 @@
 		"fromPath": "/event/*",
 		"toPath": "/events/*"
    	},
+    {
+        "fromPath": "/awards/",
+        "toPath": "/about/alumni-awards/"
+    },
 	{
 		"fromPath": "/awards/*",
-		"toPath": "/about/alumni-awards/*"
+		"toPath": "/news/*"
    	},
 	{
 		"fromPath": "/trip/*",
@@ -502,10 +506,6 @@
     {
         "fromPath": "/austin/",
         "toPath": "/groups/austin/"
-   	},
-    {
-        "fromPath": "/awards/",
-        "toPath": "/about/alumni-awards/"
    	},
     {
         "fromPath": "/badgercafe/",
@@ -1975,6 +1975,14 @@
         "fromPath": "/resources-services/email/sign-up/",
         "toPath": "/email/sign-up/"
    	},
+    {
+        "fromPath": "/home/onlinetools/email.aspx",
+        "toPath": "/email/"
+    },
+    {
+        "fromPath": "/email.aspx",
+        "toPath": "/email/"
+    },
     {
         "fromPath": "/resources-services/library/",
         "toPath": "/about/library/"

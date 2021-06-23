@@ -74,7 +74,6 @@ categories.forEach((item) => {
 
   const slug = topic?.slug ? topic.slug : null
   let categoryEventItems = []
-
   
     allevents.nodes.forEach((event) => {
       let pushed = false
@@ -95,10 +94,24 @@ categories.forEach((item) => {
         })
       }
     })
-
+    let linkPath = 'all'
+    if (slug) {
+      linkPath = categoryEvent
+            ? `all?filter=${slug}`
+            : `all?product=${slug}`
+    }
+    let topicButton
+    if (topic?.name) {
+      topicButton = [
+        {
+          link: `/events/${linkPath}`,
+          text: `See More Events`,
+        },
+      ]
+    }
     if (categoryEventItems && topic?.name) {
       displayCategories.push(
-        <PageSection key={item?.slug} heading={topic?.name} centered stagger>
+        <PageSection key={item?.slug} heading={topic?.name} centered stagger buttons={categoryEventItems?.length > numberToShow ? topicButton: null}>
           <CardSet items={categoryEventItems} num={numberToShow} type="event"/>
         </PageSection>
       )
@@ -117,7 +130,6 @@ categories.forEach((item) => {
   eventEdges.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
   const cardGridEvents = eventEdges.slice(0,9)
   //cardGridEvents.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1)
-
 
   let eventCards = cardGridEvents.map((event) => {
     return (
@@ -169,7 +181,7 @@ export const query = graphql`
       featuredImage {
         node {
           localFile {
-            ...HeroImage
+            ...HeroImageNew
           }
         }
       }
@@ -177,7 +189,7 @@ export const query = graphql`
         heroImageMobile {
           altText
           localFile {
-            ...HeroImage
+            ...HeroImageNew
           }
         }
         heroHeading
@@ -216,18 +228,10 @@ export const query = graphql`
                   node {
                     localFile {
                       childImageSharp {
-                        fluid(maxWidth: 712) {
-                          base64
-                          srcWebp
-                          srcSetWebp
-                          originalImg
-                          originalName
-                          aspectRatio
-                          base64
-                          src
-                          srcSet
-                          sizes
-                        }
+                        gatsbyImageData(
+                          layout: CONSTRAINED,
+                          width: 712,
+                        )
                       }
                     }
                   }
@@ -277,17 +281,11 @@ export const query = graphql`
         backgroundImage {
           localFile {
             childImageSharp {
-              fluid(maxWidth: 712) {
-                base64
-                srcWebp
-                srcSetWebp
-                originalImg
-                originalName
-                src
-                srcSet
-                aspectRatio
-                sizes
-              }
+              gatsbyImageData(
+                width: 2880,
+                placeholder: BLURRED
+                formats: [AUTO, WEBP]
+              )
             }
           }
         }
