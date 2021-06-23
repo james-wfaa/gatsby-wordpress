@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import parse from 'html-react-parser';
+import styled from "styled-components"
 
 const EmbedBlock = ({source, type}) => {
   //console.log(type)
@@ -8,7 +9,26 @@ const EmbedBlock = ({source, type}) => {
   //console.log(source.children)
   //console.log(parse(data.data))
   let interactQuizClass = source && source?.includes('tryinteract') ? 'quiz-embed' : null;
+  let istagboard = source && source?.includes('tagboard') ? 'tagboard' : null;
 
+  const StyledWrapper = styled.div`
+    iframe{
+      margin-bottom: 0;
+      height: 380px;
+      @media screen and (min-width:380px) {
+        height: 450px;
+      }
+      @media screen and (min-width:460px) {
+        height: 630px;
+      }
+      @media screen and (min-width:575px) {
+        height: 705px;
+      }
+      @media screen and (min-width:800px) {
+        height: 450px;
+      }
+    }
+  `
   
   switch (type) {
     case "vimeo":
@@ -166,7 +186,22 @@ const EmbedBlock = ({source, type}) => {
         parsed?.props?.children &&
         parsed.props.children?.props?.className &&
         parsed.props.children.props.className === "wp-block-embed__wrapper"
-      ) ? (
+      ) ? istagboard ?  (
+        <StyledWrapper id="wrapper">
+          <iframe
+            style={{
+              width: "100%",
+            }}
+            src={parsed.props.children.props.children}
+            scrolling="yes"
+            frameBorder="0"
+            allowFullScreen={true}
+            webkitallowfullscreen="true"
+            mozallowfullscreen="true"
+          ></iframe>
+        </StyledWrapper>
+      )
+      : (
           <div
             style={{
               position: "relative",
