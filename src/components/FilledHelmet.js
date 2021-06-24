@@ -45,7 +45,6 @@ function FilledHelmet({title, plaintitle, img, desc, url}) {
       {fullimgpath &&
         <meta name="twitter:card" content="summary_large_image" />
       }
-      {isHomecomingPage && <script src="https://static.tagboard.com/embed/assets/js/embed.js"></script>}
     </Helmet>
   )
 }
