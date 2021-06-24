@@ -15,7 +15,7 @@ function FilledHelmet({title, plaintitle, img, desc, url}) {
   const resolvedTitle = plaintitle
     ? "%s"
     : "%s | Wisconsin Alumni Association"
-  const isHomecomingPage = url?.includes('homecoming') ? true : false
+
   return (
     <Helmet titleTemplate={resolvedTitle} htmlAttributes={{
       lang: 'en',
