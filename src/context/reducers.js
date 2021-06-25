@@ -71,7 +71,7 @@ const initialState = {
     spouseUndergrad: '',
     spousePostgrad: '',
     spouseUpdate: '',
-    uwGrad: false,
+    uwGrad: "NA",
   },
   commSignUpInfo: {
     firstname: '',

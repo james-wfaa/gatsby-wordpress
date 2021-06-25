@@ -49,7 +49,7 @@ const EmploymentInfo = () => {
       return (
         <div>
             <PageSection
-              excerpt='Please make updates regarding your current employment status. Click “Save and Continue” after completing the page to ensure your changes are recorded.'
+              excerpt='Please provide updates regarding your current employment status.'
               heading='Update My Info'
               headingCompact
               backgroundColor={colors.formIntroBg}
@@ -61,7 +61,7 @@ const EmploymentInfo = () => {
             )}
             <form id="contact" onSubmit={handleSubmit(UpdateEmploymentInfo)}>
               { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
-              <legend>Employment Info<span className="requiredInfo">*Required Information</span></legend>
+              <legend>Employment Information and Address<span className="requiredInfo">*Required Information</span></legend>
               <hr />
               <label htmlFor="startDate" className="smallThird">Start Date
                 <span className="required">*</span>

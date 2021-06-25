@@ -28,7 +28,11 @@ const SpouseInfo = () => {
   }
   const updateOnChangeValues = (e) => {
     if(e.target.type === 'checkbox'){
-      setSpouseInfoOnchange([e.target.name, !state.spouseInfo.uwGrad])
+      if(state.spouseInfo.uwGrad === 'NA'){
+        setSpouseInfoOnchange([e.target.name, 'yes'])
+      } else{
+        setSpouseInfoOnchange([e.target.name, 'NA'])
+      }
     } else{
       setSpouseInfoOnchange([e.target.name, e.target.value])
     }
@@ -38,7 +42,7 @@ const SpouseInfo = () => {
       return (
         <div>
             <PageSection
-              excerpt='If there’s been a change regarding your spouse or partner, please indicate that here. If your spouse/partner is a UW-Madison alum, you can even add grad years. Click “Save and Continue” after completing the page to ensure your changes are recorded.'
+              excerpt='Please provide information about your spouse or partner. If your spouse/partner is a UW-Madison alum, you can even add grad years.'
               heading='Update My Info'
               headingCompact
               backgroundColor={colors.formIntroBg}
@@ -50,7 +54,7 @@ const SpouseInfo = () => {
             )}
             <form id="spouseInfo" onSubmit={handleSubmit(submitForm)} className="spouse-info">
             { requiredFieldsCheck && (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
-              <legend>Spouse/Partner<span className="requiredInfo">*Required Information</span></legend>
+              <legend>Spouse/Partner Information<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <label htmlFor="spouseFirstname" className="half required">Spouse/Partner First Name
                 <span className="required">*</span>
@@ -103,9 +107,9 @@ const SpouseInfo = () => {
                   <StyledError>{errors.spouseLastname.message}</StyledError>
                 )}
               </label>
-              <input type="checkbox" id="uwGrad" checked={state.spouseInfo.uwGrad} name="uwGrad" onChange={e => updateOnChangeValues(e)} />
+              <input type="checkbox" id="uwGrad" checked={state.spouseInfo.uwGrad === 'yes' ? true : false} name="uwGrad" onChange={e => updateOnChangeValues(e)} />
               <label htmlFor="uwGrad" >My spouse/partner is a UW-Madison graduate</label>
-              { state.spouseInfo.uwGrad ? (<div><label htmlFor="spouseUndergrad" className="smallThird">UW Undergraduate Year
+              { state.spouseInfo.uwGrad === "yes" ? (<div><label htmlFor="spouseUndergrad" className="smallThird">UW Undergraduate Year
                 <input
                     type="text"
                     name="spouseUndergrad"

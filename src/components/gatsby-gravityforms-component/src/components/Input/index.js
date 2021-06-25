@@ -4,6 +4,8 @@ import React, { useRef, useLayoutEffect, useEffect, useState} from 'react'
 import strings from '../../utils/strings'
 import InputWrapper from '../InputWrapper'
 import InputSubfieldWrapper from '../InputSubfieldWrapper'
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden, fromNameField, ...wrapProps }) => {
     const {
@@ -18,6 +20,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
     } = fieldData
     const regex = inputMaskValue ? new RegExp(inputMaskValue) : false
     const [defaultValue, setDefaultValue] = useState(null);
+    const [phoneValue, setPhoneValue] = useState()
     
     //check if things are loaded, component did mount
     const firstUpdate = useRef(true);
@@ -98,7 +101,26 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
             fieldHidden={fieldHidden}
             {...wrapProps}
         >
-            <input
+            {type === 'phone' ? (<PhoneInput
+                  //placeholder="Enter phone number"
+                  type="phone"
+                  name={name}
+                  id={name}
+                  maxLength="26"
+                  defaultCountry="US"
+                  value={phoneValue}
+                  international={true}
+                  limitMaxLength={true}
+                  countryCallingCodeEditable={false}
+                  onChange={setPhoneValue}
+                  ref={register({
+                    required: !fieldHidden ? isRequired && strings.errors.required : false,
+                    maxLength: {
+                        value: 25,
+                        message: 'Phone number must be 25 characters or less.',
+                    }
+                  })}/>) 
+                  : (<input
                 aria-invalid={errors}
                 aria-required={!fieldHidden ? isRequired : false}
                 className={classnames(
@@ -150,7 +172,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
                     : type === 'website' 
                         ? 'url' 
                         : type}
-            />
+            />)}
         </InputWrapper>
     )
 }

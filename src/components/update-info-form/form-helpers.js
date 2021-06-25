@@ -4,14 +4,36 @@ import styled from "styled-components"
 import formErrorIcon from "./../../svg/form-error-icon-red.svg"
 
 
-
 export const handleFormSubmit = (data) => {
+  let payload = { ...data.contactInfo, ...data.mailingAddress, ...data.phoneInfo, ...data.employmentInfo, ...data.identityInfo, ...data.spouseInfo}
+  //clean up default data for sections not completed
+  if(payload.streetAddress === ''){
+    payload.country = ''
+  } 
+  if (payload.seasonalStreetAddress === ''){
+    payload.seasonalCountry = ''
+  } 
+  if(payload.phoneNumber1 === ''){
+    payload.phoneType1 = ''
+  }
+  if(payload.phoneNumber2 === ''){
+    payload.phoneType2 = ''
+  }
+  if(payload.phoneNumber3 === ''){
+    payload.phoneType3 = ''
+  }
+  if(payload.businessStreetAddress === ''){
+    payload.businessCountry = ''
+  }
+  if(payload.spousePostgrad === '' && payload.spouseUndergrad === ''){
+    payload.uwGrad = ''
+  }
 
   let entryData = {
-    "payload":{ ...data.contactInfo, ...data.mailingAddress, ...data.phoneInfo, ...data.employmentInfo, ...data.identityInfo, ...data.spouseInfo},
+    "payload": payload,
     'entry_id': data.entry_id,
   }
-  
+
   return fetch("https://uwalumni.wpengine.com/wp-json/formsubmit/v1/submit/79", {
     method: 'POST',
     headers: {
