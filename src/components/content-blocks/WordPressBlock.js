@@ -7,9 +7,21 @@ import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'
 
 const WordPressBlock = ({className, block, product = false}) => {
     //console.log(block)
+    const addTagboardScript = () => {
+        if(typeof document !== "undefined"){
+            const script = document.createElement("script")
+            script.src = "https://static.tagboard.com/embed/assets/js/embed.js"
+            script.async = true
+            document.body.appendChild(script)
+        }
+    }
+
     const isProduct = product ? 'product' : null
     if (block) {
         if (block.originalContent || block.dynamicContent || block.saveContent) {
+            if(block.originalContent.includes('tagboard')){
+                addTagboardScript()
+            }
             const blockContent = (block.isDynamic)
             ? block.dynamicContent
             : (block.saveContent)

@@ -15,6 +15,7 @@ function FilledHelmet({title, plaintitle, img, desc, url}) {
   const resolvedTitle = plaintitle
     ? "%s"
     : "%s | Wisconsin Alumni Association"
+
   return (
     <Helmet titleTemplate={resolvedTitle} htmlAttributes={{
       lang: 'en',
@@ -44,7 +45,6 @@ function FilledHelmet({title, plaintitle, img, desc, url}) {
       {fullimgpath &&
         <meta name="twitter:card" content="summary_large_image" />
       }
-
     </Helmet>
   )
 }
