@@ -282,45 +282,45 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
   let startDateTimestamp = new Date(startDate).getTime() / 1000
   let endDateTimestamp = new Date(endDate).getTime() / 1000
   let isTrip = eventDetails.trip
-  let formattedStartDate = startDate ? shortDate(startDate) : null
-  let formattedEndDate = endDate ? shortDate(endDate) : null
   let formattedLongDate = null
-  let options = { year: 'numeric', month: 'long', day: 'numeric' };
-  let parsedStartDate = startDate ? new Date(startDate).toLocaleDateString('en-US', options) : null
-  let parsedEndDate = endDate ? new Date(endDate).toLocaleDateString('en-US', options) : null
+
+  const startDateDate = startDate 
+    ? (typeof startDate !== 'string')
+      ? new Date(startDate)
+      : new Date(startDate.replace(/\s/, 'T'))
+    : null
+
+  const endDateDate = endDate 
+    ? (typeof endDate !== 'string')
+      ? new Date(endDate)
+      : new Date(endDate.replace(/\s/, 'T'))
+    : null
+
+  const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June",
+  "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
+];
+let options = { year: 'numeric', month: 'long', day: 'numeric' };
+let parsedStartDate = startDate ? new Date(startDate).toLocaleDateString('en-US', options) : null
+let parsedEndDate = endDate ? new Date(endDate).toLocaleDateString('en-US', options) : null
+
+
+/*
+  let parsedStartDate = startDateDate 
+    ? monthNames[startDateDate.getMonth()] + ' ' + startDateDate.getDate()
+    : null
+  let parsedEndDate = endDateDate 
+    ? monthNames[endDateDate.getMonth()] + ' ' + endDateDate.getDate()
+    : null
+    */
+
+ 
   let parsedTime = null
 
   const { timeZoneInfoFreeText } = eventDetails
 
   const startDS = startTime ? new Date(startTime.replace(/\s/, 'T')) : null;
   const endDS = endTime ? new Date(endTime.replace(/\s/, 'T')) : null;
-  if(startDS && endDS && startDS.getDate() === endDS.getDate()){
-
-    function formatAMPM ({date}) {
-      let hours = date.getHours();
-      let minutes = date.getMinutes();
-      const ampm = hours >= 12 ? 'p.m.' : 'a.m.';
-      hours = hours % 12;
-      hours = hours ? hours : 12; // the hour '0' should be '12'
-      minutes = minutes < 10 ? '0'+minutes : minutes;
-    
-      let strTime = hours
-      if(minutes && minutes !== '00'){
-        strTime += ':' + minutes;
-      }
-      const timeObj = [{
-        time: strTime,
-        ampm: ampm,
-      }]
-      return timeObj;
-    }
-
-    const fmtStartTime = formatAMPM(startDS);
-    const fmtEndTime = formatAMPM(endDS);
-    parsedTime = (fmtStartTime[0].ampm === fmtEndTime[0].ampm)
-      ? fmtStartTime[0].time  + '&ndash;' + fmtEndTime[0].time + ' ' + fmtEndTime[0].ampm
-      : fmtStartTime[0].time + ' ' + fmtStartTime[0].ampm + '&ndash;' + fmtEndTime[0].time + ' ' + fmtEndTime[0].ampm
-  }
+  
 
   if(isTrip){
     if(endDate){
@@ -331,9 +331,36 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
     }
   }
   else{
-    if(parsedTime){
+    if(startDS && endDS && startDS.getDate() === endDS.getDate()){
+
+      function formatAMPM ({date}) {
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        const ampm = hours >= 12 ? 'p.m.' : 'a.m.';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+      
+        let strTime = hours
+        if(minutes && minutes !== '00'){
+          strTime += ':' + minutes;
+        }
+        const timeObj = [{
+          time: strTime,
+          ampm: ampm,
+        }]
+        return timeObj;
+      }
+  
+      const fmtStartTime = formatAMPM(startDS);
+      const fmtEndTime = formatAMPM(endDS);
+      parsedTime = (fmtStartTime[0].ampm === fmtEndTime[0].ampm)
+        ? fmtStartTime[0].time  + '&ndash;' + fmtEndTime[0].time + ' ' + fmtEndTime[0].ampm
+        : fmtStartTime[0].time + ' ' + fmtStartTime[0].ampm + '&ndash;' + fmtEndTime[0].time + ' ' + fmtEndTime[0].ampm
+      
       formattedLongDate = `${parsedStartDate}, ${parsedTime} ${timeZoneInfoFreeText}`
     }
+    
     else{
       formattedLongDate = parsedStartDate
     }
@@ -348,41 +375,26 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
   }
 
 
-  return (isTrip)
-    ? {
-        objectID: id,
-        blocksOriginal: blockOriginalContent,
-        blocksDynamic: blockDynamicContent,
-        categories: categories,
-        products: convertedproducts,
-        date: dateTimestamp,
-        startDate: startDateTimestamp,
-        endDate: endDateTimestamp,
-        formattedStartDate: formattedStartDate,
-        formattedEndDate: formattedEndDate,
-        formattedLongDate: formattedLongDate,
-        eventDetails: eventDetails,
-        type: 'Trips',
-        typeIndex: 2,
-        ...rest,
-      }
-    : {
-      objectID: id,
-      blocksOriginal: blockOriginalContent,
-      blocksDynamic: blockDynamicContent,
-      categories: categories,
-      products: convertedproducts,
-      date: dateTimestamp,
-      startDate: startDateTimestamp,
-      endDate: endDateTimestamp,
-      formattedStartDate: formattedStartDate,
-      formattedEndDate: formattedEndDate,
-      formattedLongDate: formattedLongDate,
-      eventDetails: eventDetails,
-      type: 'Events',
-      typeIndex: 1,
-      ...rest,
-    }
+  const type = isTrip ? 'Trips' : 'Events'
+  const typeIndex = isTrip ? 2 : 1
+
+  return {
+    objectID: id,
+    blocksOriginal: blockOriginalContent,
+    blocksDynamic: blockDynamicContent,
+    categories: categories,
+    products: convertedproducts,
+    date: dateTimestamp,
+    startDate: startDateTimestamp,
+    endDate: endDateTimestamp,
+    formattedStartDate: parsedStartDate,
+    formattedEndDate: parsedEndDate,
+    formattedLongDate: formattedLongDate,
+    eventDetails: eventDetails,
+    type: type,
+    typeIndex: typeIndex,
+    ...rest,
+  }
 }
 
 
