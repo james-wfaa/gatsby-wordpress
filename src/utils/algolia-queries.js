@@ -340,41 +340,26 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
     }
   }
 
-  return (isTrip)
-    ? {
-        objectID: id,
-        blocksOriginal: blockOriginalContent,
-        blocksDynamic: blockDynamicContent,
-        categories: categories,
-        products: convertedproducts,
-        date: dateTimestamp,
-        startDate: startDateTimestamp,
-        endDate: endDateTimestamp,
-        formattedStartDate: parsedStartDate,
-        formattedEndDate: parsedEndDate,
-        formattedLongDate: formattedLongDate,
-        eventDetails: eventDetails,
-        type: 'Trips',
-        typeIndex: 2,
-        ...rest,
-      }
-    : {
-      objectID: id,
-      blocksOriginal: blockOriginalContent,
-      blocksDynamic: blockDynamicContent,
-      categories: categories,
-      products: convertedproducts,
-      date: dateTimestamp,
-      startDate: startDateTimestamp,
-      endDate: endDateTimestamp,
-      formattedStartDate: parsedStartDate,
-      formattedEndDate: parsedEndDate,
-      formattedLongDate: formattedLongDate,
-      eventDetails: eventDetails,
-      type: 'Events',
-      typeIndex: 1,
-      ...rest,
-    }
+  const type = isTrip ? 'Trips' : 'Events'
+  const typeIndex = isTrip ? 2 : 1
+
+  return {
+    objectID: id,
+    blocksOriginal: blockOriginalContent,
+    blocksDynamic: blockDynamicContent,
+    categories: categories,
+    products: convertedproducts,
+    date: dateTimestamp,
+    startDate: startDateTimestamp,
+    endDate: endDateTimestamp,
+    formattedStartDate: parsedStartDate,
+    formattedEndDate: parsedEndDate,
+    formattedLongDate: formattedLongDate,
+    eventDetails: eventDetails,
+    type: type,
+    typeIndex: typeIndex,
+    ...rest,
+  }
 }
 
 function postToAlgoliaRecord({ node: { id, url, blocks, date, categories, products, ...rest } }) {
