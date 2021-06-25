@@ -318,8 +318,8 @@ let parsedEndDate = endDate ? new Date(endDate).toLocaleDateString('en-US', opti
 
   const { timeZoneInfoFreeText } = eventDetails
 
-  const startDS = startTime ? new Date(startTime.replace(/\s/, 'T')) : null;
-  const endDS = endTime ? new Date(endTime.replace(/\s/, 'T')) : null;
+  const startDS = startDate ? new Date(startDate.replace(/\s/, 'T')) : null;
+  const endDS = endDate ? new Date(endDate.replace(/\s/, 'T')) : null;
   
 
   if(isTrip){
