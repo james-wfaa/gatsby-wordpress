@@ -282,13 +282,36 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
   let startDateTimestamp = new Date(startDate).getTime() / 1000
   let endDateTimestamp = new Date(endDate).getTime() / 1000
   let isTrip = eventDetails.trip
-  let formattedStartDate = startDate ? shortDate(startDate) : null
-  let formattedEndDate = endDate ? shortDate(endDate) : null
   let formattedLongDate = null
-  let options = { year: 'numeric', month: 'long', day: 'numeric' };
-  let parsedStartDate = startDate ? new Date(startDate).toLocaleDateString('en-US', options) : null
-  let parsedEndDate = endDate ? new Date(endDate).toLocaleDateString('en-US', options) : null
+
+  
   let parsedTime = startDate ? convertTime(startDate, endDate) : null
+
+ 
+  
+  const startDateDate = startDate 
+    ? (typeof startDate !== 'string')
+      ? new Date(startDate)
+      : new Date(startDate.replace(/\s/, 'T'))
+    : null
+
+  const endDateDate = endDate 
+    ? (typeof endDate !== 'string')
+      ? new Date(endDate)
+      : new Date(endDate.replace(/\s/, 'T'))
+    : null
+
+  const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June",
+  "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
+];
+
+
+  let parsedStartDate = startDateDate 
+    ? monthNames[startDateDate.getMonth()] + ' ' + startDateDate.getDate()
+    : null
+  let parsedEndDate = endDateDate 
+    ? monthNames[endDateDate.getMonth()] + ' ' + endDateDate.getDate()
+    : null
 
 
   if (blocks) {
@@ -327,8 +350,8 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
         date: dateTimestamp,
         startDate: startDateTimestamp,
         endDate: endDateTimestamp,
-        formattedStartDate: formattedStartDate,
-        formattedEndDate: formattedEndDate,
+        formattedStartDate: parsedStartDate,
+        formattedEndDate: parsedEndDate,
         formattedLongDate: formattedLongDate,
         eventDetails: eventDetails,
         type: 'Trips',
@@ -344,8 +367,8 @@ function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, ev
       date: dateTimestamp,
       startDate: startDateTimestamp,
       endDate: endDateTimestamp,
-      formattedStartDate: formattedStartDate,
-      formattedEndDate: formattedEndDate,
+      formattedStartDate: parsedStartDate,
+      formattedEndDate: parsedEndDate,
       formattedLongDate: formattedLongDate,
       eventDetails: eventDetails,
       type: 'Events',
@@ -476,28 +499,28 @@ const queries = [
   {
     query: postQuery,
     transformer: ({ data }) => data.posts.edges.map(postToAlgoliaRecord),
-    indexName: `All`,
+    indexName: `Second`,
   },
   {
       query: eventQuery,
       transformer: ({ data }) => data.events.edges.map(eventToAlgoliaRecord),
-      indexName: `All`,
+      indexName: `Second`,
   },
   {
       query: classNoteQuery,
       transformer: ({ data }) =>
           data.classnotes.edges.map(classNoteToAlgoliaRecord),
-      indexName: `All`,
+      indexName: `Second`,
   },
   {
       query: pageQuery,
       transformer: ({ data }) => data.pages.edges.map(pageToAlgoliaRecord),
-      indexName: `All`,
+      indexName: `Second`,
   },
   {
     query: chapterQuery,
     transformer: ({ data }) => data.chapters.edges.map(chapterToAlgoliaRecord),
-    indexName: `All`,
+    indexName: `Second`,
   },
 ]
 
