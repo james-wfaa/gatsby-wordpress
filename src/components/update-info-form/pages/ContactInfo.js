@@ -1,16 +1,25 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { colors } from "../../css-variables"
 import { StyledError, checkForLetters, handleFormSubmit, FormGeneralError } from '../form-helpers'
 import PageSection from "../../page-sections/PageSection"
 import Buttons from '../FormButtons'
 import { AppContext } from "../../../context/AppContext"
+import 'react-phone-number-input/style.css'
+import PhoneInput, { formatPhoneNumber, formatPhoneNumberIntl } from 'react-phone-number-input'
 
 
 const ContactInfo = () => {
   const { state, actions } = useContext(AppContext);
   const { setCurrentStep, setContactInfoOnchange, setEntryId, setCommSignUpInfo } = actions;
   const [generalError, setGeneralError] = useState('')
+  const [value, setValue] = useState()
+
+  useEffect(() => {
+    if(value !== undefined){
+      setContactInfoOnchange(['phone', formatPhoneNumberIntl(value)])
+    }
+  }, [value]);
 
   const { register, handleSubmit, errors, formState: { submitCount } } = useForm({mode : 'onChange'})
   const UpdateContactInfo = () => {
@@ -39,7 +48,7 @@ const ContactInfo = () => {
       return (
         <div>
           <PageSection
-            excerpt="Make sure you stay in the know — and more connected to the UW and WAA! Please take a moment to complete this form with your current contact information to ensure you receive communications about events, programs, and services that matter to you."
+            excerpt="Stay in the know — and more connected to the UW and WAA! Please take a moment to provide your current contact information to receive communications about events, programs, and services that matter to you."
             heading="Update My Info"
             headingCompact
             backgroundColor={colors.formIntroBg}
@@ -167,23 +176,26 @@ const ContactInfo = () => {
             </label>
             <label htmlFor="phone" className="half leftMargin">
               Mobile Phone
-              <input
+              <PhoneInput
+                //placeholder="Enter phone number"
                 type="phone"
                 name="phone"
                 id="phone"
-                maxLength="30"
-                defaultValue={state.contactInfo.phone}
-                onChange={e => updateOnChangeValues(e)}
-                ref={register({
-                  /*validate: {
-                    numbersOnly: value => checkForLetters(value) === false,
-                  },*/
-                  pattern: {
-                    value: /^[- ]*[0-9][- 0-9]*$/,
-                    message: 'Phone number can only contain numbers and dashes.',
-                  }
-                })}
-              />
+                maxLength="26"
+                defaultCountry="US"
+                international={true}
+                limitMaxLength={true}
+                countryCallingCodeEditable={false}
+                //onChange={e => updateOnChangeValues(e)}
+                value={value ? value : state.contactInfo.phone}
+                //onChange={e => {updateOnChangeValues(e); setValue()}}
+                onChange={setValue}
+                /*ref={register({
+                  maxLength: {
+                    value: 25,
+                    message: 'Phone number must be 25 characters or less.',
+                }
+                })}*//>
               {errors.phone && (
                 <StyledError>{errors.phone.message}</StyledError>
               )}

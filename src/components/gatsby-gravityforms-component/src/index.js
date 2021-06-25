@@ -83,6 +83,23 @@ const GravityFormForm = ({
                     values = {...values, ...checkboxes}
                 }
 
+                function checkForPhoneInput( myArray){
+                    for (var i=0; i < myArray.length; i++) {
+                        if (myArray[i].type === "phone") {
+                            return true
+                        }
+                    }
+                }
+                if(singleForm && singleForm?.formFields){
+                    if(checkForPhoneInput(singleForm?.formFields)){
+                        Object.keys(values).forEach(key =>{
+                            if(values[key] === '+1' ){
+                                values[key] = ''
+                            }
+                        })
+                    }
+                }
+
                 const { data, status } = await passToGravityForms({
                     baseUrl: singleForm.apiURL,
                     formData: values,
