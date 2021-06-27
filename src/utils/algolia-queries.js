@@ -334,22 +334,26 @@ let parsedEndDate = endDate ? new Date(endDate).toLocaleDateString('en-US', opti
     if(startDS && endDS && startDS.getDate() === endDS.getDate()){
 
       function formatAMPM ({date}) {
-        let hours = date.getHours();
-        let minutes = date.getMinutes();
-        const ampm = hours >= 12 ? 'p.m.' : 'a.m.';
-        hours = hours % 12;
-        hours = hours ? hours : 12; // the hour '0' should be '12'
-        minutes = minutes < 10 ? '0'+minutes : minutes;
-      
-        let strTime = hours
-        if(minutes && minutes !== '00'){
-          strTime += ':' + minutes;
+        if (typeof date !== 'undefined') {
+          let hours = date.getHours();
+          let minutes = date.getMinutes();
+          const ampm = hours >= 12 ? 'p.m.' : 'a.m.';
+          hours = hours % 12;
+          hours = hours ? hours : 12; // the hour '0' should be '12'
+          minutes = minutes < 10 ? '0'+minutes : minutes;
+        
+          let strTime = hours
+          if(minutes && minutes !== '00'){
+            strTime += ':' + minutes;
+          }
+          const timeObj = [{
+            time: strTime,
+            ampm: ampm,
+          }]
+          return timeObj
         }
-        const timeObj = [{
-          time: strTime,
-          ampm: ampm,
-        }]
-        return timeObj;
+        return date
+        
       }
   
       const fmtStartTime = formatAMPM(startDS);
