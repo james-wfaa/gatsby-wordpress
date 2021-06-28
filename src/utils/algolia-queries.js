@@ -1,4 +1,4 @@
-const indexName = 'All'
+const indexName = 'Second'
 
 const eventQuery = `{
   events: allWpEvent {
@@ -335,8 +335,8 @@ function eventToAlgoliaRecord({ node: { id, content, endDate, startDate, eventDe
   const formattedLongDate = (isTrip)
     ? (endDateDate)
       ? (endDateDate.getFullYear() === startDateDate.getFullYear())
-        ? `${formattedStartDate} - ${formattedEndDate}`
-        : `${formattedStartDate}, ${startDateDate.getFullYear()} - ${formattedEndDate}, ${endDateDate.getFullYear()}`
+        ? `<nobr>${formattedStartDate}</nobr> &ndash; <nobr>${formattedEndDate}</nobr>`
+        : `<nobr>${formattedStartDate}</nobr>, ${startDateDate.getFullYear()} &ndash; <nobr>${formattedEndDate}</nobr>, ${endDateDate.getFullYear()}`
       : formattedStartDate
     : (parsedTime)
       ? `${parsedStartDate}, ${parsedTime}`
