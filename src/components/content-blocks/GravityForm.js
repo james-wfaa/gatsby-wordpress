@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { breakpoints, mixins, sizes, fonts, colors } from '../css-variables'
+import { breakpoints, mixins, colors } from '../css-variables'
 //import Block from './WordPressBlock'
 import GravityFormForm from '../gatsby-gravityforms-component/src/'
 import { useStaticQuery, graphql } from 'gatsby'

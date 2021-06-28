@@ -6,7 +6,6 @@ import Layout from "../../components/layout"
 import PageSection from "../../components/page-sections/PageSection"
 import RecentPosts from "../../components/page-sections/RecentPosts"
 import WordPressContent from "../../components/content-blocks/WordPressBasicContentBlocks"
-import BackgroundImage from 'gatsby-background-image'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import arrowSVG from '../../svg/Arrow_45-degrees_white_1x.svg'

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react"
 import { colors, sizes } from "../css-variables"
 import styled from "styled-components"
 import { useTransition, animated } from "react-spring"
-import { useWindowSize } from "../hooks"
 import HeaderSocialIcons from "./HeaderSocialIcons"
 import FbIcon from "../../svg/fb_icon_gray.svg" // Tell webpack this JS file uses this image
 import TwIcon from "../../svg/twitter_icon_gray.svg" // Tell webpack this JS file uses this image
@@ -304,7 +303,7 @@ const PrimaryMenu = () => {
         if(link.url === "https://www.uwalumnistore.com" ){
           return (
             <li>
-              <a href={link.url} target="_blank" className="gtm-main-menu">{link.tag}</a>
+              <a href={link.url} target="_blank" rel="noreferrer" className="gtm-main-menu">{link.tag}</a>
             </li>
           )
         }

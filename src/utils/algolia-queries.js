@@ -1,3 +1,5 @@
+const indexName = 'Second'
+
 const eventQuery = `{
   events: allWpEvent {
     edges {
@@ -475,28 +477,28 @@ const queries = [
   {
     query: postQuery,
     transformer: ({ data }) => data.posts.edges.map(postToAlgoliaRecord),
-    indexName: `All`,
+    indexName: indexName,
   },
   {
       query: eventQuery,
       transformer: ({ data }) => data.events.edges.map(eventToAlgoliaRecord),
-      indexName: `All`,
+      indexName: indexName,
   },
   {
       query: classNoteQuery,
       transformer: ({ data }) =>
           data.classnotes.edges.map(classNoteToAlgoliaRecord),
-      indexName: `All`,
+      indexName: indexName,
   },
   {
       query: pageQuery,
       transformer: ({ data }) => data.pages.edges.map(pageToAlgoliaRecord),
-      indexName: `All`,
+      indexName: indexName,
   },
   {
     query: chapterQuery,
     transformer: ({ data }) => data.chapters.edges.map(chapterToAlgoliaRecord),
-    indexName: `All`,
+    indexName: indexName,
   },
 ]
 
