@@ -5,6 +5,7 @@ const EventContentCard = ({
   className,
   startDate,
   endDate, 
+  formattedLongDate,
   title, 
   products,
   eventDetails,
@@ -44,6 +45,7 @@ const EventContentCard = ({
           venue={venue}
           img={img}
           endDate={endDate}
+          formattedLongDate={formattedLongDate}
           caption={caption}
           urlText={urlText}
         />

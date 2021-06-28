@@ -107,10 +107,11 @@ const DetailsDiv = styled.div`
   margin-bottom: 24px;
 `
 
-const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, topResult, type, tags, url}) => {
+const EventCard = ({startDate, parsedStartDate, excerpt, hit, city, state, title, topResult, type, tags, url}) => {
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  let parsedDate = new Date(parseInt(startDate)).toLocaleDateString('en-US', options)
+  let parsedDate = parsedStartDate || new Date(parseInt(startDate)).toLocaleDateString('en-US', options)
   let locationString = city && state ? `| ${city}, ${state}` : null
+  console.log(parsedStartDate)
 
   return (
     <CardWrapper className={topResult ? "topResult" : null}>

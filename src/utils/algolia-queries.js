@@ -1,12 +1,11 @@
+const indexName = 'All'
+
 const eventQuery = `{
   events: allWpEvent {
     edges {
       node {
         id
-        blocks {
-          dynamicContent
-          originalContent
-        }
+        content
         modified
         slug
         startDate
@@ -272,85 +271,97 @@ const chapterQuery = `{
   }
 }`
 
-function eventToAlgoliaRecord({ node: { id, blocks, date, endDate, startDate, eventDetails, products, eventsCategories, ...rest } }) {
-  let blockOriginalContent = [];
-  let blockDynamicContent = [];
-  let categories = eventsCategories.nodes;
-  let convertedproducts = products.nodes;
-  let dateTimestamp = new Date(date).getTime() / 1000
-  let startDateTimestamp = new Date(startDate).getTime() / 1000
-  let endDateTimestamp = new Date(endDate).getTime() / 1000
+function eventToAlgoliaRecord({ node: { id, content, endDate, startDate, eventDetails, products, eventsCategories, ...rest } }) {
+  
   let isTrip = eventDetails.trip
-  let formattedStartDate = startDate ? shortDate(startDate) : null
-  let formattedEndDate = endDate ? shortDate(endDate) : null
-  let formattedLongDate = null
-  let options = { year: 'numeric', month: 'long', day: 'numeric' };
-  let parsedStartDate = startDate ? new Date(startDate).toLocaleDateString('en-US', options) : null
-  let parsedEndDate = endDate ? new Date(endDate).toLocaleDateString('en-US', options) : null
-  let parsedTime = startDate ? convertTime(startDate, endDate) : null
+ 
+  let options = { year: 'numeric', month: 'long', day: 'numeric' }
 
+  function formatAMPM(date) {
+    let hours = date.getHours()
+    let minutes = date.getMinutes()
+    const ampm = hours >= 12 ? 'p.m.' : 'a.m.'
+    hours = hours % 12
+    hours = hours ? hours : 12 // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes
+  
+    let strTime = hours
+    if(minutes && minutes !== '00'){
+      strTime += ':' + minutes;
+    }
+    const timeObj = [{
+      time: strTime,
+      ampm: ampm,
+    }]
+    return timeObj;
+  }
+  function convertTime (startTime, endTime) {
+    const startDS = new Date(startTime.replace(/\s/, 'T'))
+    const endDS = new Date(endTime.replace(/\s/, 'T'))
+    if(startDS.getDate() === endDS.getDate()){
+      const startTime = formatAMPM(startDS)
+      const endTime = formatAMPM(endDS)
 
-  if (blocks) {
-    blockOriginalContent = blocks.map(block => {
-      return block.originalContent
-    })
-    blockDynamicContent = blocks.map(block => {
-      return block.dynamicContent
-    })
+      return (startTime[0].ampm === endTime[0].ampm)
+        ? startTime[0].time  + '&ndash;' + endTime[0].time + ' ' + endTime[0].ampm
+        : startTime[0].time + ' ' + startTime[0].ampm + '&ndash;' + endTime[0].time + ' ' + endTime[0].ampm
+    }
+    return null
   }
 
-  if(isTrip){
-    if(endDate){
-      formattedLongDate = parsedStartDate + " - " + parsedEndDate
-    }
-    else{
-      formattedLongDate = parsedStartDate
-    }
-  }
-  else{
-    if(parsedTime){
-      formattedLongDate = parsedStartDate + ', ' + parsedTime
-    }
-    else{
-      formattedLongDate = parsedStartDate
-    }
-  }
+  const startDateDate = (startDate) ? new Date(startDate) : null
+  const endDateDate   = (endDate) ? new Date(endDate) : null
+  const startDateTimestamp = startDateDate ? startDateDate.getTime() / 1000 : null
+  const endDateTimestamp = endDateDate ? endDateDate.getTime() / 1000 : null
+  const parsedStartDate = startDateDate ? startDateDate.toLocaleDateString('en-US', options) : null
+  const parsedEndDate = endDateDate ? endDateDate.toLocaleDateString('en-US', options) : null
+  const parsedTime = (!isTrip && (startDateDate.getDate() && endDateDate.getDate())) 
+    ? convertTime(startDate, endDate) 
+    : null
 
-  return (isTrip)
-    ? {
-        objectID: id,
-        blocksOriginal: blockOriginalContent,
-        blocksDynamic: blockDynamicContent,
-        categories: categories,
-        products: convertedproducts,
-        date: dateTimestamp,
-        startDate: startDateTimestamp,
-        endDate: endDateTimestamp,
-        formattedStartDate: formattedStartDate,
-        formattedEndDate: formattedEndDate,
-        formattedLongDate: formattedLongDate,
-        eventDetails: eventDetails,
-        type: 'Trips',
-        typeIndex: 2,
-        ...rest,
-      }
-    : {
-      objectID: id,
-      blocksOriginal: blockOriginalContent,
-      blocksDynamic: blockDynamicContent,
-      categories: categories,
-      products: convertedproducts,
-      date: dateTimestamp,
-      startDate: startDateTimestamp,
-      endDate: endDateTimestamp,
-      formattedStartDate: formattedStartDate,
-      formattedEndDate: formattedEndDate,
-      formattedLongDate: formattedLongDate,
-      eventDetails: eventDetails,
-      type: 'Events',
-      typeIndex: 1,
-      ...rest,
-    }
+  const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June",
+    "July", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
+  ];
+  
+
+  let formattedStartDate = startDateDate 
+    ?  `${monthNames[startDateDate.getMonth()]} ${startDateDate.getDate()}`
+    : null
+  let formattedEndDate = endDateDate 
+    ? `${monthNames[endDateDate.getMonth()]} ${endDateDate.getDate()}`
+    : null
+
+
+  const formattedLongDate = (isTrip)
+    ? (endDateDate)
+      ? (endDateDate.getFullYear() === startDateDate.getFullYear())
+        ? `${formattedStartDate} - ${parsedEndDate}`
+        : `${parsedStartDate} - ${parsedEndDate}`
+      : parsedStartDate
+    : (parsedTime)
+      ? `${parsedStartDate}, ${parsedTime}`
+      : parsedStartDate
+
+  const type = isTrip ? 'Trips' : 'Events'
+  const typeIndex = isTrip ? 2 : 1
+
+  return {
+    objectID: id,
+    content: content,
+    categories: eventsCategories.nodes,
+    products: products.nodes,
+    startDate: startDateTimestamp,
+    endDate: endDateTimestamp,
+    parsedStartDate: parsedStartDate,
+    parsedEndDate: parsedEndDate,
+    formattedStartDate: formattedStartDate,
+    formattedEndDate: formattedEndDate,
+    formattedLongDate: formattedLongDate,
+    eventDetails: eventDetails,
+    type: type,
+    typeIndex: typeIndex,
+    ...rest,
+  }
 }
 
 function postToAlgoliaRecord({ node: { id, url, blocks, date, categories, products, ...rest } }) {
@@ -475,28 +486,28 @@ const queries = [
   {
     query: postQuery,
     transformer: ({ data }) => data.posts.edges.map(postToAlgoliaRecord),
-    indexName: `All`,
+    indexName: indexName,
   },
   {
       query: eventQuery,
       transformer: ({ data }) => data.events.edges.map(eventToAlgoliaRecord),
-      indexName: `All`,
+      indexName: indexName,
   },
   {
       query: classNoteQuery,
       transformer: ({ data }) =>
           data.classnotes.edges.map(classNoteToAlgoliaRecord),
-      indexName: `All`,
+      indexName: indexName,
   },
   {
       query: pageQuery,
       transformer: ({ data }) => data.pages.edges.map(pageToAlgoliaRecord),
-      indexName: `All`,
+      indexName: indexName,
   },
   {
     query: chapterQuery,
     transformer: ({ data }) => data.chapters.edges.map(chapterToAlgoliaRecord),
-    indexName: `All`,
+    indexName: indexName,
   },
 ]
 

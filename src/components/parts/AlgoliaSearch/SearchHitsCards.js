@@ -52,6 +52,7 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
                         key={hit.objectID}
                         startDate={hit.startDate * 1000}
                         endDate={hit.endDate ? hit.endDate * 1000 : null}
+                        formattedLongDate={hit.formattedLongDate}
                         title={hit.title}
                         category={hit.category}
                         venue={hit.venue}

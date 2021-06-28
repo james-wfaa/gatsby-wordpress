@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { colors, sizes, breakpoints } from '../css-variables'
-import BackgroundImage from 'gatsby-background-image'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import PageSectionHeader from '../parts/PageSectionHeader'
 import PageSectionButtons from '../parts/PageSectionButtons'

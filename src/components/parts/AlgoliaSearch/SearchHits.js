@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react"
-import styled from 'styled-components'
+import React, { useEffect } from "react"
 import EventCard from './cards/EventCard'
 import TripCard from './cards/TripCard'
 import PostCard from './cards/PostCard'
@@ -25,6 +24,7 @@ const SearchHits = ({ hits, hitHandler }) => {
 
     switch (hit.type) {
       case "Trips":
+        console.log(hit)
         return (
           <TripCard
             key={hit.objectID}
@@ -34,6 +34,7 @@ const SearchHits = ({ hits, hitHandler }) => {
             title={hit.title}
             excerpt={hit.excerpt}
             startDate={hit.startDate * 1000}
+            parsedStartDate={hit.parsedStartDate}
             endDate={hit.endDate ? hit.endDate * 1000 : null}
             city={hit.venue?.city}
             state={hit.venue?.state}
