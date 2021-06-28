@@ -319,8 +319,8 @@ function eventToAlgoliaRecord({ node: { id, content, endDate, startDate, eventDe
     ? convertTime(startDate, endDate) 
     : null
 
-  const monthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October.", "November", "December"
+  const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June",
+    "July", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
   ];
   
 
