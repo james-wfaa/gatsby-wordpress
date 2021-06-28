@@ -335,9 +335,9 @@ function eventToAlgoliaRecord({ node: { id, content, endDate, startDate, eventDe
   const formattedLongDate = (isTrip)
     ? (endDateDate)
       ? (endDateDate.getFullYear() === startDateDate.getFullYear())
-        ? `${formattedStartDate} - ${parsedEndDate}`
-        : `${parsedStartDate} - ${parsedEndDate}`
-      : parsedStartDate
+        ? `${formattedStartDate} - ${formattedEndDate}`
+        : `${formattedStartDate}, ${startDateDate.getFullYear()} - ${formattedEndDate}, ${endDateDate.getFullYear()}`
+      : formattedStartDate
     : (parsedTime)
       ? `${parsedStartDate}, ${parsedTime}`
       : parsedStartDate
