@@ -5,10 +5,7 @@ const eventQuery = `{
     edges {
       node {
         id
-        blocks {
-          dynamicContent
-          originalContent
-        }
+        content
         modified
         slug
         startDate
@@ -322,8 +319,8 @@ function eventToAlgoliaRecord({ node: { id, content, endDate, startDate, eventDe
     ? convertTime(startDate, endDate) 
     : null
 
-  const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June",
-    "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October.", "November", "December"
   ];
   
 
@@ -337,7 +334,9 @@ function eventToAlgoliaRecord({ node: { id, content, endDate, startDate, eventDe
 
   const formattedLongDate = (isTrip)
     ? (endDateDate)
-      ? `${parsedStartDate} ${parsedEndDate}`
+      ? (endDateDate.getFullYear() === startDateDate.getFullYear())
+        ? `${formattedStartDate} - ${parsedEndDate}`
+        : `${parsedStartDate} - ${parsedEndDate}`
       : parsedStartDate
     : (parsedTime)
       ? `${parsedStartDate}, ${parsedTime}`
