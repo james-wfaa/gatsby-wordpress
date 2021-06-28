@@ -11,6 +11,7 @@ const ContentCard = ({
     className, 
     startDate, 
     endDate, 
+    formattedLongDate,
     title, 
     category, 
     linkFormat, 
@@ -40,7 +41,13 @@ const ContentCard = ({
     if (endDate && shortDate(endDate) !== fmtStartDate) {
         fmtEndDate = shortDate(endDate)
     }
-    const dateLinkText = fmtEndDate ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
+    const dateLinkText = formattedLongDate
+        ? formattedLongDate
+        : (fmtEndDate)
+            ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` 
+            : fmtStartDate
+
+    console.log(formattedLongDate)
 
 
     const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];

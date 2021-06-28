@@ -35,7 +35,7 @@ const HitCount = connectStateResults(({ searchResults }) => {
     <div className="HitCount">
       {hitCount} result{hitCount !== 1 ? `s` : ``}
     </div>
-  ) : null
+  ) : null~
 })
 
 const PageHit = ({ hit }) => {
