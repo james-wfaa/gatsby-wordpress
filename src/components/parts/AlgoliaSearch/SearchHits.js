@@ -24,7 +24,6 @@ const SearchHits = ({ hits, hitHandler }) => {
 
     switch (hit.type) {
       case "Trips":
-        console.log(hit)
         return (
           <TripCard
             key={hit.objectID}
