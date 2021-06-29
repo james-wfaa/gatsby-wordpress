@@ -107,11 +107,10 @@ const DetailsDiv = styled.div`
   margin-bottom: 24px;
 `
 
-const EventCard = ({startDate, parsedStartDate, excerpt, hit, city, state, title, topResult, type, tags, url}) => {
+const TripCard = ({startDate, longStartDate, excerpt, hit, city, state, title, topResult, type, tags, url}) => {
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  let parsedDate = parsedStartDate || new Date(parseInt(startDate)).toLocaleDateString('en-US', options)
-  let locationString = city && state ? `| ${city}, ${state}` : null
-  console.log(parsedStartDate)
+  let parsedDate = longStartDate || new Date(parseInt(startDate)).toLocaleDateString('en-US', options)
+  let locationString = city && state ? `| ${city}, ${state}` : ''
 
   return (
     <CardWrapper className={topResult ? "topResult" : null}>
@@ -147,4 +146,4 @@ const EventCard = ({startDate, parsedStartDate, excerpt, hit, city, state, title
   )
 }
 
-export default EventCard
+export default TripCard

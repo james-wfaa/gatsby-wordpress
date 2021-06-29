@@ -1,4 +1,4 @@
-const indexName = 'Second'
+const indexName = 'All'
 
 const eventQuery = `{
   events: allWpEvent {

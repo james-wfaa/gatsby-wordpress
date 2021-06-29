@@ -46,13 +46,12 @@ const SearchHits = ({ hits, hitHandler, card, filterChange}) => {
         switch (hit.type) {
             case 'Events':
             case 'Trips':
-                //console.log(hit)
                 return (
                     <EventContentCard
                         key={hit.objectID}
                         startDate={hit.startDate * 1000}
                         endDate={hit.endDate ? hit.endDate * 1000 : null}
-                        formattedLongDate={hit.formattedLongDate}
+                        cardFormattedDate={hit.cardFormattedDate}
                         title={hit.title}
                         category={hit.category}
                         venue={hit.venue}

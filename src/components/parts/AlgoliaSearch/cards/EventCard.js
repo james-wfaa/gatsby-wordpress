@@ -107,16 +107,19 @@ const DetailsDiv = styled.div`
   margin-bottom: 24px;
 `
 
-const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, topResult, type, tags, url}) => {
+const EventCard = ({startDate, endDate, date, fixedTime, excerpt, hit, city, state, title, topResult, type, tags, url}) => {
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   let parsedDate = new Date(parseInt(startDate) * 1000).toLocaleDateString('en-US', options)
-  let parsedTime = new Date(parseInt(startDate) * 1000).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})
+  //let parsedTime = new Date(parseInt(startDate) * 1000).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})
 
   const timezone = (hit?.eventDetails?.timeZoneInfoFreeText)
     ? hit.eventDetails.timeZoneInfoFreeText
     : ''
   //console.log(excerpt)
-  let locationString = city && state ? `| ${city}, ${state}` : null
+  const timeBit = fixedTime ? `, ${fixedTime} ` : ''
+  const locationString = city && state ? `| ${city}, ${state}` : ''
+
+  const formattedDetails = `${parsedDate}${timeBit}${timezone} ${locationString}`
 
   return (
     <CardWrapper className={topResult ? "topResult" : null}>
@@ -129,13 +132,13 @@ const EventCard = ({startDate, endDate, date, excerpt, hit, city, state, title, 
         <DetailsDiv>
           <p><span className="cardType">EVENT</span></p>
           <h3><Link to={url}>{title}</Link></h3>
-          <p className="datetime">{parsedDate}, {parsedTime} {timezone} {locationString}</p>
+          <p className="datetime">{parsedDate}, {fixedTime} {timezone} {locationString || ''}</p>
         </DetailsDiv>
         :
         <>
           <p><span className="cardType">EVENT</span></p>
           <h3><Link to={url}>{title}</Link></h3>
-          <p className="datetime">{parsedDate}, {parsedTime} {timezone} {locationString}</p>
+          <p className="datetime" dangerouslySetInnerHTML={{__html: formattedDetails}} />
         </>
         }
         {excerpt ?

@@ -33,7 +33,7 @@ const SearchHits = ({ hits, hitHandler }) => {
             title={hit.title}
             excerpt={hit.excerpt}
             startDate={hit.startDate * 1000}
-            parsedStartDate={hit.parsedStartDate}
+            longStartDate={hit.longStartDate}
             endDate={hit.endDate ? hit.endDate * 1000 : null}
             city={hit.venue?.city}
             state={hit.venue?.state}
@@ -50,6 +50,7 @@ const SearchHits = ({ hits, hitHandler }) => {
             excerpt={hit.excerpt}
             startDate={hit.startDate}
             endDate={hit.endDate ? hit.endDate : null}
+            fixedTime={hit.correctedTime}
             city={hit.venue?.city}
             state={hit.venue?.state}
           />
