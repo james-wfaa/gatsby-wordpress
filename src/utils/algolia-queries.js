@@ -313,9 +313,9 @@ function eventToAlgoliaRecord({ node: { id, content, endDate, startDate, eventDe
   const endDateDate   = (endDate) ? new Date(endDate) : null
   const startDateTimestamp = startDateDate ? startDateDate.getTime() / 1000 : null
   const endDateTimestamp = endDateDate ? endDateDate.getTime() / 1000 : null
-  const parsedStartDate = startDateDate ? startDateDate.toLocaleDateString('en-US', options) : null
-  const parsedEndDate = endDateDate ? endDateDate.toLocaleDateString('en-US', options) : null
-  const parsedTime = (!isTrip && (startDateDate.getDate() && endDateDate.getDate())) 
+  const longStartDate = startDateDate ? startDateDate.toLocaleDateString('en-US', options) : null
+  const longEndDate = endDateDate ? endDateDate.toLocaleDateString('en-US', options) : null
+  const correctedTime = (!isTrip && (startDateDate.getDate() && endDateDate.getDate())) 
     ? convertTime(startDate, endDate) 
     : null
 
@@ -323,24 +323,18 @@ function eventToAlgoliaRecord({ node: { id, content, endDate, startDate, eventDe
     "July", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
   ];
   
-
-  let formattedStartDate = startDateDate 
-    ?  `${monthNames[startDateDate.getMonth()]} ${startDateDate.getDate()}`
+  const shortStartDate = startDateDate 
+    ? `${monthNames[startDateDate.getMonth()]} ${startDateDate.getDate()}`
     : null
-  let formattedEndDate = endDateDate 
+  const shortEndDate = endDateDate 
     ? `${monthNames[endDateDate.getMonth()]} ${endDateDate.getDate()}`
     : null
 
-
-  const formattedLongDate = (isTrip)
-    ? (endDateDate)
-      ? (endDateDate.getFullYear() === startDateDate.getFullYear())
-        ? `<nobr>${formattedStartDate}</nobr> &ndash; <nobr>${formattedEndDate}</nobr>`
-        : `<nobr>${formattedStartDate}</nobr>, ${startDateDate.getFullYear()} &ndash; <nobr>${formattedEndDate}</nobr>, ${endDateDate.getFullYear()}`
-      : formattedStartDate
-    : (formattedStartDate !== formattedEndDate)
-      ? `<nobr>${parsedStartDate}</nobr> &ndash; <nobr>${parsedEndDate}</nobr>`
-      : parsedStartDate
+  const cardFormattedDate = (shortStartDate === shortEndDate)
+    ? shortStartDate
+    : (endDateDate.getFullYear() === startDateDate.getFullYear())
+      ? `<nobr>${shortStartDate}</nobr> &ndash; <nobr>${shortEndDate}</nobr>`
+      : `<nobr>${longStartDate}</nobr> &ndash; <nobr>${longEndDate}</nobr>`
 
   const type = isTrip ? 'Trips' : 'Events'
   const typeIndex = isTrip ? 2 : 1
@@ -352,11 +346,12 @@ function eventToAlgoliaRecord({ node: { id, content, endDate, startDate, eventDe
     products: products.nodes,
     startDate: startDateTimestamp,
     endDate: endDateTimestamp,
-    parsedStartDate: parsedStartDate,
-    parsedEndDate: parsedEndDate,
-    formattedStartDate: formattedStartDate,
-    formattedEndDate: formattedEndDate,
-    formattedLongDate: formattedLongDate,
+    longStartDate: longStartDate,
+    longEndDate: longEndDate,
+    shortStartDate: shortStartDate,
+    shortEndDate: shortEndDate,
+    cardFormattedDate: cardFormattedDate,
+    correctedTime: correctedTime,
     eventDetails: eventDetails,
     type: type,
     typeIndex: typeIndex,
@@ -423,63 +418,6 @@ function chapterToAlgoliaRecord({node: { id, date, link, chapterDetails, ...rest
     date: dateTimestamp,
     ...rest,
   }
-}
-
-function convertTime ({startTime, endTime}) {
-  const startDS = startTime ? new Date(startTime.replace(/\s/, 'T')) : null;
-  const endDS = endTime ? new Date(endTime.replace(/\s/, 'T')) : null;
-  if(startDS && endDS && startDS.getDate() === endDS.getDate()){
-    const startTime = formatAMPM(startDS);
-    const endTime = formatAMPM(endDS);
-    let strTime = '';
-    if(startTime[0].ampm === endTime[0].ampm){
-      strTime = startTime[0].time  + '&ndash;' + endTime[0].time + ' ' + endTime[0].ampm;
-    }
-    else {
-      strTime = startTime[0].time + ' ' + startTime[0].ampm + '&ndash;' + endTime[0].time + ' ' + endTime[0].ampm;
-    }
-    return strTime;
-
-  }
-  else{
-  }
-}
-function formatAMPM ({date}) {
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  const ampm = hours >= 12 ? 'p.m.' : 'a.m.';
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? '0'+minutes : minutes;
-
-  let strTime = hours
-  if(minutes && minutes !== '00'){
-    strTime += ':' + minutes;
-  }
-  const timeObj = [{
-    time: strTime,
-    ampm: ampm,
-  }]
-  return timeObj;
-}
-
-function shortDate ({date}) {
-  if (!date) {
-    return null
-  }
-  let tmpDate
-  if (typeof date !== 'string') {
-    tmpDate = new Date(date)
-  } else {
-    tmpDate = new Date(date.replace(/\s/, 'T'))
-  }
-
-  const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June",
-  "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
-];
-  const month = monthNames[tmpDate.getMonth()]
-  const dd = tmpDate.getDate()
-  return `${month} ${dd}`
 }
 
 const queries = [
