@@ -95,9 +95,8 @@ const HeroIntroSection = ({
 
   const image = heroImage ? getImage(heroImage) : null
   const mobileImage = mobileHeroImage ? getImage(mobileHeroImage) : null
-  //console.log(mobileHeroImage)
-  //console.log(mobileImage)
-  //console.log(image)
+
+  console.log(image)
   return (
     <div className={classes}>
       { (videoURL && width > 656) 
@@ -398,6 +397,7 @@ const StyledHeroIntroSection = styled(HeroIntroSection)`
   }
   .constrainWidth{
     max-width: 718px;
+    width: 100%;
     margin: 0 auto;
     div{
       @media screen and ${breakpoints.laptopS} {
