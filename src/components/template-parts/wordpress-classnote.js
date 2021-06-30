@@ -62,6 +62,12 @@ function BlogPost({ data }) {
   //Remove slug from Category until Archive links are set up
   classCategory.slug = ''
 
+  //check for proper external link
+  let classUrl = alumniNotesFields?.classnotesUrl
+  if(classUrl && !classUrl.includes('http')){
+    classUrl = `http://${classUrl}`
+  }
+
   let links = [
     { url: "/", name: "Home" },
     { url: "/news", name: "News & Stories" },
@@ -80,7 +86,7 @@ function BlogPost({ data }) {
         <WordPressBasicContentBlocks {...page} />
       {alumniNotesFields?.classnotesUrl && (
         <StyledExternalLink>
-          <div>For more information, visit <a href={alumniNotesFields.classnotesUrl} target="_blank">{alumniNotesFields.classnotesUrlname}</a>.</div>
+          <div>For more information, visit <a href={classUrl} target="_blank">{alumniNotesFields.classnotesUrlname}</a>.</div>
         </StyledExternalLink>
       )}
       <SocialShareLinks className="SocailShare" text="Share This Story" title={title} excerpt={excerpt} url={link} tight/>
