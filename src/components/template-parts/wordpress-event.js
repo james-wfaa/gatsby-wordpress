@@ -5,6 +5,7 @@ import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"
 import UpcomingEvents from "../../components/page-sections/UpcomingEvents"
 import FeaturedImage from "../content-blocks/FeaturedImage"
+//import { parse } from "dotenv"
 
 
 function WordPressPage({ page }) {

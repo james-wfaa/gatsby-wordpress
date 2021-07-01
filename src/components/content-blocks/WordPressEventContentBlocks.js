@@ -15,6 +15,16 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
     //console.log('WordPressEventContentBlocks - blocks:',blocks)
     //console.log(blocks)
 
+    //parse(page.content)
+    const options = {
+        replace: ({ attribs }) => {
+          if (!attribs) return;
+          if(attribs?.class?.includes('tribe-events-schedule')){
+            return(<></>);
+          }
+        }
+      };
+
     const [show, setShow] = useState(false);
 
     const handleModal = () => {
@@ -95,9 +105,8 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
 
    
 
-    const RenderedBlocks = (blocks) ? blocks.map((block) => {
+    /*const RenderedBlocks = (blocks) ? blocks.map((block) => {
         const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-        //console.log(block.name)
         switch(block.name) {
             case "tribe/event-datetime":
             case "tribe/featured-image":
@@ -137,7 +146,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
                 break
         }
         }
-    ) : null
+    ) : null*/
 
     //console.log('RenderedBlocks:',RenderedBlocks)
     const questionsDiv = <div dangerouslySetInnerHTML={{__html: eventDetails.questions}} />
@@ -153,12 +162,7 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
             <div className="desktopWrap">
                 <TitleSection className="header" heading={title} event />
                 <div className="mobileWrap">
-                { RenderedBlocks && (
-                    <div className="content">{RenderedBlocks}</div>
-                )}
-                { !RenderedBlocks && (
-                    <div className="content" dangerouslySetInnerHTML={{ __html: content }} />
-                )}
+                <div className="content" >{parse(content, options)}</div>
 
                     <EventRegistration
                         className="reg-mobile"
