@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { breakpoints, mixins, sizes, fonts, colors } from '../css-variables'
+import { breakpoints, mixins, colors } from '../css-variables'
 //import Block from './WordPressBlock'
 import GravityFormForm from '../gatsby-gravityforms-component/src/'
 import { useStaticQuery, graphql } from 'gatsby'
@@ -327,6 +327,36 @@ input[type=file]::-webkit-file-upload-button { /* chromes and blink button */
         font-size: 14px;
     }
 }
+.PhoneInput{
+    .PhoneInputCountry{
+      border: 2px solid #E0E0E0;
+      padding: 0 10px;
+      margin: 0 -2px 0 0;
+    }
+    .PhoneInputCountrySelect{
+      margin-top: 10px;
+    }
+    .PhoneInputCountrySelect:focus + .PhoneInputCountryIcon + .PhoneInputCountrySelectArrow{
+      color:${colors.buttonRed};
+    }
+    .PhoneInputCountrySelectArrow{
+      color:${colors.buttonRed};
+      width: 8px;
+      height: 8px;
+      border-bottom-width: 2px;
+      border-right-width: 2px;
+      opacity: 1;
+      margin-left: 12px;
+    }
+    .PhoneInputCountryIcon{
+      box-shadow:none;
+    }
+    .PhoneInputCountryIconImg{
+      width: 30px;
+      height: 20px;
+      max-width: 30px;
+    }
+  }
 
 `
 

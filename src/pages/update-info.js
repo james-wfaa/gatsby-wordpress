@@ -68,7 +68,7 @@ const UpdateInfoForm = () =>  {
         { renderCurrentStep() }
         {//console.log(state)
         }
-        { !(state.currentStep === 8 || state.currentStep === 9) && <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our <a href="https://www.advanceuw.org/privacy-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=updateinfo" target="_blank">Privacy Statement</a>.</p>}
+        { !(state.currentStep === 8 || state.currentStep === 9) && <p className="disclaimer">By entering your information above, you give consent to the Wisconsin Foundation and Alumni Association to store your information and communicate with you. You can withdraw your consent at any time by emailing recordsupdates@supportuw.org. To learn more, please review our <a href="https://www.advanceuw.org/privacy-policy/?utm_source=uwalumni&utm_medium=referral&utm_content=updateinfo" target="_blank" rel="noreferrer">Privacy Statement</a>.</p>}
       </StyledUpdateInfoForm>
     </Layout>
   )
@@ -376,7 +376,7 @@ form{
     top:unset;
     background-color:${colors.buttonRed};
   }
-  .successPageIcon{
+  /*.successPageIcon{
     position:relative;
     height: 0;
     width: 60px;
@@ -403,9 +403,15 @@ form{
       width: 32px;
       transform: rotate(-55deg);
     }
-  }
-  .content{
+  }*/
+  /*.content{
     margin-bottom: 70px;
+  }*/
+}
+.communications-success-page, .success-page{
+  .reload-form-btn{
+    text-decoration: underline;
+    cursor: pointer;
   }
 }
 .validFormMessage{
@@ -429,6 +435,36 @@ form{
 }
 .red{
   color:${colors.buttonRed};
+}
+.PhoneInput{
+  .PhoneInputCountry{
+    border: 2px solid #E0E0E0;
+    padding: 0 10px;
+    margin: 12px -2px 0 0;
+  }
+  .PhoneInputCountrySelect{
+    margin-top: 10px;
+  }
+  .PhoneInputCountrySelect:focus + .PhoneInputCountryIcon + .PhoneInputCountrySelectArrow{
+    color:${colors.buttonRed};
+  }
+  .PhoneInputCountrySelectArrow{
+    color:${colors.buttonRed};
+    width: 8px;
+    height: 8px;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
+    opacity: 1;
+    margin-left: 12px;
+  }
+  .PhoneInputCountryIcon{
+    box-shadow:none;
+  }
+  .PhoneInputCountryIconImg{
+    width: 30px;
+    height: 20px;
+    max-width: 30px;
+  }
 }
 `
 export default UpdateInfoForm

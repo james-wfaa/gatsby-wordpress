@@ -60,6 +60,7 @@ const SearchPageAlgolia = props => {
   useEffect(() => {
     if (!props.results) {
       let index = searchClient.initIndex('All')
+      console.log(index)
       index.search(query).then(({hits}) => {
         const returnedHits = hits.filter(hit => hit.type === "Event")
         props.callback(returnedHits)

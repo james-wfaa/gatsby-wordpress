@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { colors, sizes, breakpoints } from '../css-variables'
-import BackgroundImage from 'gatsby-background-image'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import PageSectionHeader from '../parts/PageSectionHeader'
 import PageSectionButtons from '../parts/PageSectionButtons'
@@ -43,6 +42,7 @@ const PageSection = ({
     stagger,
     desktopOnly,
     onlyChild,
+    formRefresh, //for updateInfo form
     defaultPage // one page section with no top padding
  }) => {
 
@@ -80,8 +80,15 @@ const PageSection = ({
             { withSocial && (
                 <StyledSocialIcons data={withSocial} />
             )}
-            { excerpt && (
-                <div className="sectionexcerpt"  dangerouslySetInnerHTML={{ __html: excerpt }} />
+            { excerpt && !formRefresh && (
+                <div className="sectionexcerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
+            )}
+            { formRefresh && excerpt && (
+                <div className="sectionexcerpt">
+                    <p dangerouslySetInnerHTML={{ __html: excerpt }} />
+                    <p>If you would like to provide additional information updates, please <span className="reload-form-btn red" onClick={() => window.location.reload()}>restart this form</span>.</p>
+                    <p>On, Wisconsin!</p>
+                </div>
             )}
             <div className={`content ${plainTextContent} ${centeredContentClass}`}>
                 {children}

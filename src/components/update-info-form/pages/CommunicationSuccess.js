@@ -12,6 +12,7 @@ const UpdateSuccess = () => {
             headingCompact
             backgroundColor={colors.formIntroBg}
             pageTitle
+            formRefresh
             />
         </div>
     )

@@ -67,7 +67,7 @@ const IdentityInfo = () => {
       return (
         <div>
             <PageSection
-              excerpt='Please provide information regarding how you identify yourself. Click “Save and Continue” after completing the page to ensure your changes are recorded.'
+              excerpt='To help us improve our services and communications for you, please share any information you would like us to know regarding how you identify yourself. Living up to our long-standing commitment to diversity and inclusion means continually working to improve.'
               heading='Update My Info'
               headingCompact
               backgroundColor={colors.formIntroBg}
@@ -79,7 +79,7 @@ const IdentityInfo = () => {
             )}
             <form className="identity-info" id="contact" onSubmit={handleSubmit(UpdateIdentityInfo)}>
               { (Object.keys(errors).length !== 0) && <StyledError className="topError">Please correct error(s) below</StyledError>}
-              <legend>Race/Ethnicity/Identity<span className="requiredInfo">*Required Information</span></legend>
+              <legend>Race/Ethnicity/Identity Information<span className="requiredInfo">*Required Information</span></legend>
               <hr></hr>
               <input type="checkbox" name="American Indian/Alaska Native" id="select1" onChange={e => updateOnChangeValues(e)} defaultChecked={state.identityInfo.identity.includes("American Indian/Alaska Native")}/>
               <label htmlFor="select1" selected>American Indian/Alaska Native</label>

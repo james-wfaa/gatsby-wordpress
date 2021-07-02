@@ -6,11 +6,11 @@ import TagList from "../parts/TagList"
 import styled from 'styled-components'
 import { shortDate } from "../../utils/tools"
 
-
 const ContentCard = ({ 
     className, 
     startDate, 
     endDate, 
+    cardFormattedDate,
     title, 
     category, 
     linkFormat, 
@@ -40,8 +40,11 @@ const ContentCard = ({
     if (endDate && shortDate(endDate) !== fmtStartDate) {
         fmtEndDate = shortDate(endDate)
     }
-    const dateLinkText = fmtEndDate ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` : fmtStartDate;
-
+    const dateLinkText = cardFormattedDate
+        ? cardFormattedDate
+        : (fmtEndDate)
+            ? `<nobr>${fmtStartDate}</nobr> &ndash; <nobr>${fmtEndDate}</nobr>` 
+            : fmtStartDate
 
     const sizes = ['S', 'M', 'L', 'XL', 'XXL','Wide'];
     const maxLength = (img && typeof img !== 'undefined') ? 150 : 250;

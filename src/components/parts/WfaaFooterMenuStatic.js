@@ -4,7 +4,7 @@ const FooterMenu = ({ menu, pageLink="#" }) => {
 
   const { name, items } = menu
   
-  const isLink = (pageLink != "#")
+  const isLink = (pageLink !== "#")
       return (
         <nav className="footer-menu">
           {isLink ? 

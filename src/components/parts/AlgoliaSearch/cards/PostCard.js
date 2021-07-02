@@ -121,7 +121,7 @@ const PostCard = ({ initialBlock, excerpt, title, topResult, url, categories, ca
   
 
   // modify this to check for linkFormat
-  let type = categories[0].name === "Classnote" ? 'STORY' : 'STORY'
+  //let type = categories[0].name === "Classnote" ? 'STORY' : 'STORY'
 
   let altPostType = acfAlternatePostType?.alternateposttype 
       ? acfAlternatePostType.alternateposttype 
