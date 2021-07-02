@@ -64,7 +64,7 @@ function BlogPost({ data }) {
 
   //check for proper external link
   let classUrl = alumniNotesFields?.classnotesUrl
-  if(classUrl && !classUrl.includes('http')){
+  if(classUrl && !classUrl.startsWith('http')){
     classUrl = `http://${classUrl}`
   }
 
