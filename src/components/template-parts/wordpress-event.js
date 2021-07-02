@@ -50,7 +50,6 @@ function WordPressPage({ page }) {
       }
       })
   }
-  console.log(uniqueRelatedPosts)
   const relatedEventsButtons = (filterType && filterTerm && uniqueRelatedPosts.length > 3) 
     ? [
       {
