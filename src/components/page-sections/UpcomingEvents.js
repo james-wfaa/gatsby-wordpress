@@ -1,5 +1,4 @@
 import React from 'react'
-import { useStaticQuery, graphql } from "gatsby"
 import EventContentCard from "../content-blocks/EventContentCard"
 import SimpleSlider from "../content-modules/SimpleSlider"
 import AllEvents from "../../components/collections/AllEvents"
@@ -26,7 +25,7 @@ const UpcomingEvents = () => {
           slidesToShow="1"
           centerMode
           variableWidth>
-            {eventCards}
+            {eventCards.slice(0,10)}
           </SimpleSlider>
     </div>
   )

@@ -51,6 +51,7 @@ export const query = graphql`
       eventsCategories {
         nodes {
           name
+          slug
           url: uri
           events {
             nodes {

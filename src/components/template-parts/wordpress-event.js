@@ -20,11 +20,15 @@ function WordPressPage({ page }) {
   // TODO: then pass that filtered list of blocks in lieu of the content
 
   let relatedPostsToShow = []
+  let filterType = null
+  let filterTerm = null
 
   if(products?.nodes){
       products.nodes.forEach((product) => {
         product.events.nodes.forEach((event) => {
             relatedPostsToShow.push(event) 
+            filterType='product'
+            filterTerm=product?.slug
         })
       })
   }
@@ -32,6 +36,8 @@ function WordPressPage({ page }) {
     eventsCategories.nodes.forEach((eventCategory) => {
       eventCategory.events.nodes.forEach((event) => {
           relatedPostsToShow.push(event) 
+          filterType='filter'
+          filterTerm=eventCategory?.slug
       })
     })
   }
@@ -44,7 +50,15 @@ function WordPressPage({ page }) {
       }
       })
   }
-  const filteredRelated = uniqueRelatedPosts.slice(0,10)
+  console.log(uniqueRelatedPosts)
+  const relatedEventsButtons = (filterType && filterTerm && uniqueRelatedPosts.length > 3) 
+    ? [
+      {
+        link: `/events/all/?${filterType}=${filterTerm}`,
+        text: 'See All'
+      }
+    ]
+    : null
 
   return (
     <Layout title={title} url={link} noborder={noborder} img={featuredImage?.node}>
@@ -53,7 +67,7 @@ function WordPressPage({ page }) {
         )}
         <WordPressEventContentBlocks {...page} />
         {uniqueRelatedPosts.length > 0 ? (
-        <PageSection id="post-listing" heading="Related Events" topBorder ><CardHandler items={uniqueRelatedPosts.slice(0,10)} size="M" sliderSize="S" type="event" /></PageSection>
+        <PageSection id="post-listing" heading="Related Events" topBorder buttons={relatedEventsButtons}><CardHandler items={uniqueRelatedPosts.slice(0,10)} size="M" sliderSize="S" type="event" /></PageSection>
         ):(
         <PageSection
           heading="Upcoming Events"
