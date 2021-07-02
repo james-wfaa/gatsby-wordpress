@@ -241,9 +241,7 @@ const pageQuery = `{
       node {
       id
       title
-      blocks {
-        saveContent
-      }
+      content
       date
       link
       excerpt
