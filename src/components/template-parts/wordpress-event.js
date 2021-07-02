@@ -54,7 +54,7 @@ function WordPressPage({ page }) {
     ? [
       {
         link: `/events/all/?${filterType}=${filterTerm}`,
-        text: 'See All'
+        text: 'See More Events'
       }
     ]
     : null
