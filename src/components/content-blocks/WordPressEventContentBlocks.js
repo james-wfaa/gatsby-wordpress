@@ -15,13 +15,13 @@ const WordPressEventContentBlocks = ({className, date, startDate, endDate, link,
     //console.log('WordPressEventContentBlocks - blocks:',blocks)
     //console.log(blocks)
 
-    //parse(page.content)
     const options = {
         replace: ({ attribs }) => {
-          if (!attribs) return;
-          if(attribs?.class?.includes('tribe-events-schedule')){
+          //if (!attribs) return;
+          /*if(attribs?.class?.includes('tribe-events-schedule')){
             return(<></>);
-          }
+          }*/
+          return
         }
       };
 
