@@ -121,7 +121,7 @@ const GravityForm = ({className, id}) => {
         return e.node.formId == id
     })
     //console.log(thisForm)
-    let fullhostname = 'https://uwalumni.wpengine.com'
+    let fullhostname = process.env.GRAVITYFORMS_SOURCE || "https://uwalumni.wpengine.com";
     /*if (typeof window !== 'undefined') {
     const { protocol, hostname } = window.location;
     fullhostname = protocol.concat("//").concat(hostname);

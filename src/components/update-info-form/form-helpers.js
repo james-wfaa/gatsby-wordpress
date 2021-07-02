@@ -34,7 +34,7 @@ export const handleFormSubmit = (data) => {
     'entry_id': data.entry_id,
   }
 
-  return fetch("https://uwalumni.wpengine.com/wp-json/formsubmit/v1/submit/79", {
+  return fetch(`${process.env.GRAVITYFORMS_SOURCE || "https://uwalumni.wpengine.com"}/wp-json/formsubmit/v1/submit/79`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
@@ -59,7 +59,7 @@ export const handleCommFormSubmit = (data) => {
     }
   }
   
-  return fetch("https://uwalumni.wpengine.com/wp-json/formsubmit/v1/submit/80", {
+  return fetch(`${process.env.GRAVITYFORMS_SOURCE || "https://uwalumni.wpengine.com"}/wp-json/formsubmit/v1/submit/80`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
