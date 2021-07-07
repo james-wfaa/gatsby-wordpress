@@ -16,7 +16,8 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
         placeholder,
         size,
         type,
-        id
+        id, 
+        inputType
     } = fieldData
     const regex = inputMaskValue ? new RegExp(inputMaskValue) : false
     const [defaultValue, setDefaultValue] = useState(null);
@@ -153,14 +154,14 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
                             ? /^[- ]*[0-9][- 0-9]*$/ 
                             : type === 'email' 
                                 ? /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ 
-                                : type === 'website'
+                                : type === 'website' || inputType === 'website' 
                                     ? /^(http|https):/
                                     : regex,
                         message: type === 'phone' 
                             ? 'Phone number can only contain numbers and dashes.' 
                             : type === 'email' 
                                 ? "Must be valid email address." 
-                                : type === 'website'
+                                : type === 'website' || inputType === 'website' 
                                     ? 'Must be a valid url starting with http:// or https://'
                                     : regex && strings.errors.pattern,
                     },
@@ -169,7 +170,7 @@ const Input = ({ errors, fieldData, name, register, value, subfield, fieldHidden
                 ? 'tel' 
                 : type === 'fileupload' || type === 'post_image'
                     ? 'file' 
-                    : type === 'website' 
+                    : type === 'website' || inputType === 'website' 
                         ? 'url' 
                         : type}
             />)}

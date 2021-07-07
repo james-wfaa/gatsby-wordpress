@@ -379,12 +379,10 @@ module.exports = {
           skipIndexing: (process.env.GATSBY_ALGOLIA_SKIP_INDEX === "true"), // default: false, useful for e.g. preview deploys or local development
           continueOnFailure: (process.env.GATSBY_ALGOLIA_CONTINUE_ON_FAILURE === "true") // default: false, don't fail the build if algolia indexing fails
           
-          
           //enablePartialUpdates: false,
           //skipIndexing: false, //(process.env.GATSBY_ALGOLIA_SKIP_INDEX === "true"), // default: false, useful for e.g. preview deploys or local development
           //continueOnFailure: (process.env.GATSBY_ALGOLIA_CONTINUE_ON_FAILURE === "true") // default: false, don't fail the build if algolia indexing fails
           
-
        },
      },
      
