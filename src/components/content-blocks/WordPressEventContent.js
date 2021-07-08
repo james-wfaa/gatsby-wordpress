@@ -40,14 +40,18 @@ const WordPressEventContent = ({className, date, startDate, endDate, link, venue
           if(attribs?.class){
               switch(true){
                     case attribs?.class?.includes("tribe-block__events-link"):
+                    case attribs?.class?.includes("tribe-events-schedule"):
                     case attribs?.class?.includes("tribe-events-event-image"):
                     case attribs?.class?.includes("tribe-block__venue"):
                     case attribs?.class?.includes("tribe-events-event-meta"):
                     case attribs?.class?.includes("tribe-block__related-events__title"):
                     case attribs?.class?.includes("tribe-related-events"):
-                    case attribs?.class?.includes("tribe-block__venue"):
+                    case attribs?.class?.includes("tribe-event-details"):
                     case attribs?.class?.includes("tribe-block__event-price"):
                     case attribs?.class?.includes("tribe-block__organizer__details"):
+                    case attribs?.class?.includes("tribe-events-single-section"):
+                    case attribs?.class?.includes("tribe-block_events-link"):
+                    case attribs?.class?.includes("tribe-block_events-website"):
                         return(<></>);
                     default:
                       break;
@@ -99,7 +103,6 @@ const WordPressEventContent = ({className, date, startDate, endDate, link, venue
                 tag,
                 { children: modifiedChildren }
             )
-            
         }
         if (classes.includes('tribe-block__event-price')) {
             React.Children.forEach((priceDiv) => {
@@ -109,54 +112,9 @@ const WordPressEventContent = ({className, date, startDate, endDate, link, venue
                     parsedEventPriceDetails = (<span dangerouslySetInnerHTML={{__html: priceDiv.props.children }} />)
                 }
             })
-
         }
     })
 
-    /*const RenderedBlocks = (blocks) ? blocks.map((block) => {
-        const borderTop = (block.originalContent.indexOf(' border-top') > 0)
-        switch(block.name) {
-            case "tribe/event-datetime":
-            case "tribe/featured-image":
-            case "tribe/event-links":
-            case "tribe/classic-event-details":
-            case "tribe/event-venue":
-            case "tribe/event-links":
-            case "tribe/related-events":
-            case "tribe/event-organizer":
-                break
-            case "tribe/event-website":
-                if(block.dynamicContent){
-                    return (<Block key={block.order} className={block.name.replace('/', '-')} block={block} />)
-                }
-                break
-            case "core/freeform":
-            case "core/paragraph":
-            case "core/list":
-            case "core/heading":
-            case "core/table":
-            case "core/image":
-            case "core/html":
-                return (<Block  key={block.order} className={block.name.replace('/', '-')} block={block} />)
-            case "core/group":
-                if (block.innerBlocks && block.originalContent.indexOf(' page-section') > 0) {
-                    return (<PageSectionFromBlocks key={block.order}  blocks={block.innerBlocks} borderTop={borderTop} />)
-                }
-                if (block.innerBlocks && block.originalContent.indexOf(' gallery') > 0) {
-                    return (<PageSectionFromBlocks key={block.order}  blocks={block.innerBlocks} gallery borderTop={borderTop} />)
-                }
-                break
-            case "core/separator":
-                return (<div key={block.order} dangerouslySetInnerHTML={{__html: block.originalContent}} />)
-                break
-            default:
-                return (<Block key={block.order} className={block.name.replace('/', '-')} block={block} />)
-                break
-        }
-        }
-    ) : null*/
-
-    //console.log('RenderedBlocks:',RenderedBlocks)
     const questionsDiv = <div dangerouslySetInnerHTML={{__html: eventDetails.questions}} />
     return(
         <div className={className} id="Top">
@@ -399,19 +357,6 @@ margin: ${sizes.s48} auto 0;
         font-weight: bold;
         font-family: ${fonts.verlag};
     }
-
-    .tribe-block__events-link,
-    .tribe-events-event-image,
-    .tribe-block__venue,
-    .tribe-events-event-meta,
-    .tribe-block__related-events__title,
-    .tribe-related-events,
-    .tribe-block__venue,
-    .tribe-block__event-price,
-    .tribe-block__organizer__details
-     {
-        display: none;
-    }
     a {
         ${mixins.a}
     }
@@ -440,10 +385,6 @@ margin: ${sizes.s48} auto 0;
         font-weight: bold;
     }
 }
-
-
-
 `
-
 
 export default StyledWordPressEventContent
