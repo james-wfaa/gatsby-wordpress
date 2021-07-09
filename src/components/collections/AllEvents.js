@@ -10,24 +10,6 @@ const AllEvents = () => {
                 title
                 excerpt
                 content
-                blocks {
-                  name
-                  isDynamic
-                  originalContent
-                  dynamicContent
-                  innerBlocks {
-                    name
-                    isDynamic
-                    originalContent
-                    dynamicContent
-                    innerBlocks {
-                      name
-                      isDynamic
-                      originalContent
-                      dynamicContent
-                    }
-                  }
-                }
                 link
                 url
                 featuredEvent

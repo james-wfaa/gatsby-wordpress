@@ -19,25 +19,6 @@ export const query = graphql`
       title
       excerpt
       content
-      blocks {
-        name
-        order
-        isDynamic
-        originalContent
-        dynamicContent
-        innerBlocks {
-          name
-          isDynamic
-          originalContent
-          dynamicContent
-          innerBlocks {
-            name
-            isDynamic
-            originalContent
-            dynamicContent
-          }
-        }
-      }
       link
       url
       featuredImage {
