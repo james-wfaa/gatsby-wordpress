@@ -1,10 +1,11 @@
 import React from "react"
 import Layout from "../layout"
-import WordPressEventContentBlocks from "../content-blocks/WordPressEventContentBlocks"
+import WordPressEventContent from "../content-blocks/WordPressEventContent"
 import PageSection from "../page-sections/PageSection"
 import CardHandler from "../content-modules/CardHandler"
 import UpcomingEvents from "../../components/page-sections/UpcomingEvents"
 import FeaturedImage from "../content-blocks/FeaturedImage"
+//import { parse } from "dotenv"
 
 
 function WordPressPage({ page }) {
@@ -64,7 +65,7 @@ function WordPressPage({ page }) {
         {!!featuredImage?.node?.localFile?.childImageSharp && (
             <FeaturedImage featuredImage={featuredImage.node} event/>
         )}
-        <WordPressEventContentBlocks {...page} />
+        <WordPressEventContent {...page} />
         {uniqueRelatedPosts.length > 0 ? (
         <PageSection id="post-listing" heading="Related Events" topBorder buttons={relatedEventsButtons}><CardHandler items={uniqueRelatedPosts.slice(0,10)} size="M" sliderSize="S" type="event" /></PageSection>
         ):(
