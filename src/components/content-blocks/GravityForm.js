@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { breakpoints, mixins, colors } from '../css-variables'
-//import Block from './WordPressBlock'
 import GravityFormForm from '../gatsby-gravityforms-component/src/'
 import { useStaticQuery, graphql } from 'gatsby'
 import formErrorIcon from "./../../svg/form-error-icon-red.svg"
@@ -14,6 +13,7 @@ const AllGravityData = () => {
                     edges {
                         node {
                             formId
+                            title
                             slug
                             apiURL
                             descriptionPlacement
@@ -70,9 +70,16 @@ function handleError({values, error, reset}) {
     //console.log('values', values, 'error', error)
 }
 
-function handleSuccess({values, reset, confirmations}) {
+function handleSuccess({values, reset, confirmations, formData}) {
+
     //handle success
-    //console.log('success', values, confirmations)
+    //console.log('success', values, confirmations, formData)
+    let myDataLayer = (typeof window !== 'undefined' && window?.dataLayer) ? window.dataLayer : []
+    myDataLayer.push({
+        'event': 'formSubmission',
+        'formTitle': formData.title
+    })
+
 }
 
 const GravityForm = ({className, id}) => {
@@ -116,11 +123,7 @@ const GravityForm = ({className, id}) => {
         
     }
 
-    //console.log (gfData.edges)
-    let thisForm = gfData.edges.filter(function (e) {
-        return e.node.formId == id
-    })
-    //console.log(thisForm)
+    
     let fullhostname = process.env.GRAVITYFORMS_SOURCE || "https://uwalumni.wpengine.com";
     /*if (typeof window !== 'undefined') {
     const { protocol, hostname } = window.location;

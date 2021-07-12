@@ -166,6 +166,7 @@ const GravityFormForm = ({
                         values,
                         reset,
                         confirmations,
+                        formData: singleForm,
                     })
                 }
             } else {
